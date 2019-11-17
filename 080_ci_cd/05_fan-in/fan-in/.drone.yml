@@ -1,0 +1,9 @@
+pipeline:
+  fanin:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker pull registry:5000/groot/backend:latest
+    - docker pull registry:5000/groot/frontend:latest
+    - test "$(docker inspect --format '{{ index .Config.Labels "based-on.base"}}' registry:5000/groot/backend:latest)" == "$(docker inspect --format '{{ index .Config.Labels "based-on.base"}}' registry:5000/groot/frontend:latest)"

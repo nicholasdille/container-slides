@@ -1,0 +1,10 @@
+# Image building with img
+
+# Enter pod
+docker exec -it img bash
+
+# Build image
+img build --tag localhost:5000/test .
+
+# Push image
+img push --insecure-registry localhost:5000/test

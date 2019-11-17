@@ -1,0 +1,7 @@
+# Mount secrets into build
+# Build image with secret from `mysite.key`
+export DOCKER_BUILDKIT=1
+docker build \
+    --secret id=mysite.key,src=./mysite.key \
+    --progress plain \
+    .

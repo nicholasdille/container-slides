@@ -1,0 +1,12 @@
+# Install and test CLI plugin
+
+# Place `docker-distribution` in `~/.docker/cli-plugins`
+mkdir -p ~/.docker/cli-plugins
+cp docker-distribution ~/.docker/cli-plugins
+chmod +x ~/.docker/cli-plugins/docker-distribution
+
+# Test integration into Docker CLI
+docker
+
+# Display help for sub commands
+docker distribution

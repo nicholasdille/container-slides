@@ -1,0 +1,10 @@
+# Test CLI plugin distribution
+
+# Prepare local registry
+docker pull alpine
+docker tag alpine localhost:5000/alpine
+docker login localhost:5000
+docker push localhost:5000/alpine
+
+# Use docker-distribution to determine tags
+docker distribution list-tags localhost:5000/alpine

@@ -1,0 +1,22 @@
+# Proper tagging for multi-arch images
+
+# Build for arm, arm64 and amd64
+docker buildx build --platform linux/arm \
+    --tag localhost:5000/nicholasdille/hello:arm . --push
+docker buildx build --platform linux/arm64 \
+    --tag localhost:5000/nicholasdille/hello:arm64 . --push
+docker buildx build --platform linux/amd64 \
+    --tag localhost:5000/nicholasdille/hello:amd64 . --push
+
+# Test new images
+docker run localhost:5000/nicholasdille/hello:arm
+docker run localhost:5000/nicholasdille/hello:arm64
+docker run localhost:5000/nicholasdille/hello:amd64
+
+# Create manifest list with all images
+docker manifest create --amend --insecure \
+    localhost:5000/nicholasdille/hello \
+    localhost:5000/nicholasdille/hello:arm \
+    localhost:5000/nicholasdille/hello:arm64 \
+    localhost:5000/nicholasdille/hello:amd64
+docker manifest inspect localhost:5000/nicholasdille/hello

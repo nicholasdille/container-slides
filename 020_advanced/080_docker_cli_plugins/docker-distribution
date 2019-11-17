@@ -1,0 +1,172 @@
+#!/usr/bin/env bash
+
+docker_cli_plugin_metadata() {
+        local vendor="nicholasdille"
+        local version="v0.0.1"
+        local url="https://dille.name"
+        local description="Interact with a Docker registry"
+        cat <<-EOF
+        {"SchemaVersion":"0.1.0","Vendor":"${vendor}","Version":"${version}","ShortDescription":"${description}","URL":"${url}"}
+EOF
+}
+
+parse_image_reference() {
+        local image=$1
+
+        # Match arbitrary image
+        if [[ "${image}" =~ ^([^/]+)/([^:]+)(:(.+))?$ ]]; then
+		registry=${BASH_REMATCH[1]}
+		repository=${BASH_REMATCH[2]}
+		reference=${BASH_REMATCH[4]}
+
+        # Match image from Docker Hub
+    elif [[ "${image}" =~ ^([^:]+)(:(.+))?$ ]]; then
+		registry=registry.hub.docker.com
+		repository=${BASH_REMATCH[1]}
+		reference=${BASH_REMATCH[3]}
+		if [[ "${repository}" != */* ]]; then
+			repository=library/${repository}
+		fi
+
+	else
+		>&2 echo "Unable to parse image name <${image}>"
+		exit 1
+	fi
+
+        if [[ "${reference}" == "" ]]; then
+                reference=latest
+        fi
+
+        echo registry=${registry}
+        echo repository=${repository}
+        echo reference=${reference}
+}
+
+get_docker_credentials() {
+        local registry=$1
+
+        cat ~/.docker/config.json | jq --raw-output ".auths.\"${registry}\".auth" | base64 -d
+}
+
+list_tags() {
+        local image=$1
+        eval $(parse_image_reference ${image})
+
+	if [[ "${registry}" == "registry.hub.docker.com" ]]; then
+		local credentials=$(get_docker_credentials https://index.docker.io/v1/)
+		local response=$(curl -su "${credentials}" "https://auth.docker.io/token?service=registry.docker.io&scope=repository:${repository}:pull")
+		if echo ${response} | jq --raw-output '.details' | grep -q "incorrect username or password"; then
+			echo "Unable to retrieve token from Docker Hub. Please do 'docker login' first."
+			exit 1
+                fi
+		local token=$(echo ${response} | jq --raw-output '.token')
+		curl -sH "Authorization: Bearer $token" -H "Accept: ${content_type}" "https://${registry}/v2/${repository}/tags/list" | jq --raw-output '.tags[]'
+
+	else
+		local credentials=$(get_docker_credentials ${registry})
+		curl -su "${credentials}" -H "Accept: application/json" "https://${registry}/v2/${repository}/tags/list" | jq --raw-output '.tags[]'
+	fi
+}
+
+delete_tag() {
+        local image=$1
+        eval $(parse_image_reference ${image})
+
+	if [[ "${registry}" == "registry.hub.docker.com" ]]; then
+		local credentials=$(get_docker_credentials https://index.docker.io/v1/)
+		local response=$(curl -su "${credentials}" "https://auth.docker.io/token?service=registry.docker.io&scope=repository:${repository}:pull")
+		if echo ${response} | jq --raw-output '.details' | grep -q "incorrect username or password"; then
+			echo "Unable to retrieve token from Docker Hub. Please do 'docker login' first."
+			exit 1
+                fi
+		local token=$(echo ${response} | jq --raw-output '.token')
+		curl -sX DELETE -H "Authorization: Bearer $token" "https://${registry}/v2/${repository}/manifests/${reference}"
+
+	else
+		local credentials=$(get_docker_credentials ${registry})
+		curl -sX DELETE -u "${credentials}" "https://${registry}/v2/${repository}/manifests/${reference}"
+	fi
+}
+
+get_manifest() {
+	local image=$1
+        eval $(parse_image_reference ${image})
+	local content_type="application/vnd.docker.distribution.manifest.v2+json"
+
+	if [[ "${registry}" == "registry.hub.docker.com" ]]; then
+		local credentials=$(get_docker_credentials https://index.docker.io/v1/)
+		local response=$(curl -su "${credentials}" "https://auth.docker.io/token?service=registry.docker.io&scope=repository:${repository}:pull")
+		if echo ${response} | jq --raw-output '.details' | grep -q "incorrect username or password"; then
+			echo "Unable to retrieve token from Docker Hub. Please do 'docker login' first."
+			exit 1
+                fi
+		local token=$(echo ${response} | jq --raw-output '.token')
+		curl -sH "Authorization: Bearer $token" -H "Accept: ${content_type}" "https://${registry}/v2/${repository}/manifests/${reference}"
+
+	else
+		local credentials=$(get_docker_credentials ${registry})
+		curl -su "${credentials}" -H "Accept: ${content_type}" "https://${registry}/v2/${repository}/manifests/${reference}"
+	fi
+}
+
+put_manifest() {
+	local image=$1
+        eval $(parse_image_reference ${image})
+	local content_type="application/vnd.docker.distribution.manifest.v2+json"
+
+	if [[ "${registry}" == "registry.hub.docker.com" ]]; then
+		local credentials=$(get_docker_credentials https://index.docker.io/v1/)
+		local response=$(curl -su "${credentials}" "https://auth.docker.io/token?service=registry.docker.io&scope=repository:${repository}:push")
+		if echo ${response} | jq --raw-output '.details' | grep -q "incorrect username or password"; then
+			echo "Unable to retrieve token from Docker Hub. Please do 'docker login' first."
+			exit 1
+                fi
+                local token=$(echo ${response} | jq --raw-output '.token')
+                curl -sH "Authorization: Bearer $token" -H "Accept: ${content_type}" "https://${registry}/v2/${repository}/manifests/${reference}"
+
+	else
+		local credentials=$(get_docker_credentials ${registry})
+                cat - | curl -fX PUT -u "${credentials}" -H "Content-Type: ${content_type}" -d @- "https://${registry}/v2/${repository}/manifests/${reference}"
+	fi
+}
+
+case "$1" in
+        docker-cli-plugin-metadata)
+                docker_cli_plugin_metadata
+                ;;
+        *)
+		shift
+		case "$1" in
+                        list-tags)
+                                shift
+                                list_tags "$@"
+                                ;;
+
+                        delete-tag)
+                                shift
+                                delete_tag "$@"
+                                ;;
+
+			get-manifest)
+				shift
+				get_manifest "$@"
+				;;
+
+			put-manifest)
+				shift
+				put_manifest "$@"
+				;;
+
+			*)
+				echo
+				echo "Usage: docker distribution"
+				echo
+				echo "Commands:"
+				echo "  list-tags     List all tags in the specified image repository"
+				echo "  delete-tag    Delete a tag from the specified image repository"
+				echo "  get-manifest  Download image manifest from Docker registry"
+                                echo "  put-manifest  Upload image manifest to Docker registry"
+                                echo
+		esac
+                ;;
+esac

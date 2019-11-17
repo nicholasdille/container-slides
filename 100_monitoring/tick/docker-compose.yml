@@ -1,0 +1,55 @@
+version: "3.3"
+
+services:
+
+  proxy:
+    image: traefik:1.7
+    command: "--debug --docker --docker.endpoint='unix:///var/run/docker.sock' --docker.watch=true --docker.exposedByDefault=false --entryPoints='Name:http Address::80' --defaultEntryPoints='http'"
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  influxdb:
+    image: influxdb:1.6-alpine
+    environment:
+      INFLUXDB_DB: "demo"
+      INFLUXDB_ADMIN_USER: "admin"
+      INFLUXDB_ADMIN_PASSWORD: "admin"
+      INFLUXDB_READ_USER: "read"
+      INFLUXDB_READ_PASSWORD: "read"
+      INFLUXDB_WRITE_USER: "write"
+      INFLUXDB_WRITE_PASSWORD: "write"
+
+  grafana:
+    image: grafana/grafana:latest
+    depends_on:
+      - influxdb
+    labels:
+      traefik.enable: "true"
+      traefik.frontend.rule: "HostRegexp: ops.{domain:.+}"
+      traefik.port: 3000
+      traefik.protocol: "http"
+
+  telegraf:
+    image: telegraf:1.8-alpine
+    entrypoint: "sh"
+    command: "-c 'echo \"$${INFLUXDB_CONF}\" > /etc/telegraf/telegraf.conf && exec telegraf'"
+    environment:
+      INFLUXDB_CONF: |
+        [[inputs.docker]]
+          endpoint = "unix:///var/run/docker.sock"
+
+        [[outputs.influxdb]]
+          urls = ["$$INFLUXDB_URL"]
+          database = "$$INFLUXDB_NAME"
+          username = "$$INFLUXDB_USER"
+          password = "$$INFLUXDB_PASS"
+      INFLUXDB_URL: "http://influxdb:8086"
+      INFLUXDB_NAME: "demo"
+      INFLUXDB_USER: "write"
+      INFLUXDB_PASS: "write"
+    depends_on:
+      - influxdb
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"

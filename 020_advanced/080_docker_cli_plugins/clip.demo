@@ -1,0 +1,8 @@
+# Client Plugin Manager
+
+# Install plugin for `dive`
+docker clip add lukaszlach/clips:dive
+docker clip ls
+
+# Run plugin dive
+docker dive localhost:5000/alpine

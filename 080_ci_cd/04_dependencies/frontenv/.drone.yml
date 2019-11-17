@@ -1,0 +1,8 @@
+pipeline:
+  build:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker build --tag registry:5000/groot/frontend .
+    - docker push registry:5000/groot/frontend

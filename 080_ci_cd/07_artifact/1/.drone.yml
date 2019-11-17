@@ -1,0 +1,13 @@
+pipeline:
+
+  build:
+    image: openjdk:8-jdk
+    commands:
+    - javac HelloWorld.java
+    - jar -cvf HelloWorld.jar HelloWorld.class
+
+  store:
+    image: registry:5000/groot/tools
+    commands:
+    - curl -fT HelloWorld.jar -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/
+    secrets: [ WEBDAV_USER, WEBDAV_PASS ]

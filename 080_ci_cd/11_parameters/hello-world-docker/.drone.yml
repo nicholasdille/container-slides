@@ -1,0 +1,33 @@
+pipeline:
+
+  fetch:
+    image: registry:5000/groot/tools
+    commands:
+    - LATEST=$(curl -f -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/groot/hello-world/latest)
+    - curl -f -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" -o HelloWorld.jar https://webdav.dille.io/groot/hello-world/$${LATEST}/HelloWorld.java
+    secrets: [ WEBDAV_USER, WEBDAV_PASS ]
+
+  build:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker build --tag registry:5000/${CI_REPO_NAME}:${CI_BUILD_NUMBER} --tag registry:5000/${CI_REPO_NAME}:dev .
+    - docker push registry:5000/${CI_REPO_NAME}:${CI_BUILD_NUMBER}
+    - docker push registry:5000/${CI_REPO_NAME}:dev
+
+  test:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker run --rm registry:5000/${CI_REPO_NAME}:${CI_BUILD_NUMBER} test -f /tmp/testing
+
+  publish:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker pull registry:5000/${CI_REPO_NAME}:${CI_BUILD_NUMBER}
+    - docker tag registry:5000/${CI_REPO_NAME}:${CI_BUILD_NUMBER} registry:5000/${CI_REPO_NAME}:stable
+    - docker push registry:5000/${CI_REPO_NAME}:stable

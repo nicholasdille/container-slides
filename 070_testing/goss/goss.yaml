@@ -1,0 +1,30 @@
+package:
+  nginx:
+    installed: true
+    versions:
+    - 1.15.6-1~stretch
+port:
+  tcp:80:
+    listening: true
+    ip:
+    - 0.0.0.0
+service:
+  nginx:
+    enabled: true
+    running: true
+user:
+  nginx:
+    exists: true
+    uid: 101
+    gid: 101
+    groups:
+    - nginx
+    home: /nonexistent
+    shell: /bin/false
+group:
+  nginx:
+    exists: true
+    gid: 101
+process:
+  nginx:
+    running: true

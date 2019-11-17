@@ -1,0 +1,10 @@
+#!/bin/bash
+
+curl -fL https://get.docker.com | sh
+
+# k3s
+export INSTALL_K3S_SKIP_START=true
+curl -sfL https://get.k3s.io | sh -
+
+# k3d
+curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash

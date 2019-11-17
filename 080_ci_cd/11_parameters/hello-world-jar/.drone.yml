@@ -1,0 +1,21 @@
+pipeline:
+
+  fetch:
+    image: registry:5000/groot/tools
+    commands:
+    - LATEST=$(curl -f -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/groot/hello-world/latest)
+    - curl -f -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" -o HelloWorld.jar https://webdav.dille.io/groot/hello-world/$${LATEST}/HelloWorld.java
+    secrets: [ WEBDAV_USER, WEBDAV_PASS ]
+
+  package:
+    image: openjdk:8-jdk
+    commands:
+    - jar -cvf HelloWorld.jar HelloWorld.class
+
+  store:
+    image: registry:5000/groot/tools
+    commands:
+    - curl -fT HelloWorld.jar -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/${CI_REPO_NAME}/${CI_BUILD_NUMBER}/
+    - echo -n ${CI_BUILD_NUMBER} > latest
+    - curl -fT latest -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/${CI_REPO_NAME}/
+    secrets: [ WEBDAV_USER, WEBDAV_PASS ]

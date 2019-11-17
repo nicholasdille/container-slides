@@ -1,0 +1,17 @@
+pipeline:
+
+  build:
+    image: openjdk:8-jdk
+    commands:
+    - javac HelloWorld.java
+    - ls -l
+    - java HelloWorld
+
+  docker:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - ls -l
+    - docker build --tag hello-world .
+    - docker run hello-world

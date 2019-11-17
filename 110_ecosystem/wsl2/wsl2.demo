@@ -1,0 +1,9 @@
+# Windows Subsystem for Linux 2
+# Run Docker locally:
+uname -a
+sudo /etc/init.d/docker start
+docker context ls
+# Test Docker
+docker run --uts host alpine hostname
+# Shutdown tiny VM:
+wsl --shutdown

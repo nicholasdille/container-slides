@@ -1,0 +1,24 @@
+# Build for amd64, arm and arm64
+
+# Enable experimental mode for client and enable qemu
+export DOCKER_CLI_EXPERIMENTAL=enabled
+docker run --rm --privileged \
+    docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3
+
+# Create builder
+docker buildx create --name mybuilder --use
+docker buildx inspect --bootstrap
+
+# Hack for local registry
+docker run -d --volume $(pwd)/registry:/var/lib/registry --net container:buildx_buildkit_mybuilder0 registry:2
+
+# Build multi-arch
+docker buildx build \
+    --platform linux/arm,linux/arm64,linux/amd64 \
+    --tag localhost:5000/nicholasdille/hello \
+    . \
+    --push
+
+# Inspect result
+docker buildx imagetools inspect \
+    localhost:5000/nicholasdille/hello

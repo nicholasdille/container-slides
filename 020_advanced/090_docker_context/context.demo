@@ -1,0 +1,17 @@
+# Manage connections to Docker hosts
+
+# Check pre-defined context
+docker context ls
+
+# Create and use new context
+docker context create docker-hcloud \
+    --description 'Remote@Hetzner' \
+    --docker 'host=ssh://020advanced-090dockercontext'
+docker context use docker-hcloud
+docker context ls
+
+# Check connectivity
+docker version
+
+# Check remote host
+docker run --uts host alpine hostname

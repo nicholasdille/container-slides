@@ -1,0 +1,10 @@
+# Tools on demand
+
+# Container images are created on demand
+docker run -it --rm cmd.cat/curl
+
+# Very powerful when troubleshooting networking
+docker run -it --rm \
+    --net container:nginx \
+    --pid container:nginx \
+    cmd.cat/netstat/tcpdump/ip/ifconfig/ping

@@ -1,0 +1,14 @@
+# k3s in Docker
+
+# Create cluster
+k3d create --name k3d --workers 3
+
+# Check cluster info
+export KUBECONFIG="$(k3d get-kubeconfig --name='k3d')"
+kubectl cluster-info
+
+# Check nodes
+kubectl get nodes -o wide
+
+# Check containers
+docker ps

@@ -1,0 +1,13 @@
+# OCI registry as storage
+
+# Create artifact
+echo blarg >artifact.txt
+
+# Upload
+oras push localhost:5000/test:latest artifact.txt
+
+# Download
+oras pull localhost:5000/test:latest --output out
+
+# Check
+cat out/artifact.txt

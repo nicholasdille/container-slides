@@ -1,0 +1,15 @@
+pipeline:
+
+  docker:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+    - REGISTRY=hub.go-nerd.de
+    commands:
+    - ls -l
+    - echo "$${REGISTRY_PASS}" | docker login --username $${REGISTRY_USER} --password-stdin $${REGISTRY}
+    - docker build --tag $${REGISTRY}/${CI_REPO_NAME}:${CI_BUILD_NUMBER} .
+    - docker push $${REGISTRY}/${CI_REPO_NAME}:${CI_BUILD_NUMBER}
+    - docker logout $${REGISTRY}
+    secrets: [ REGISTRY_USER, REGISTRY_PASS ]

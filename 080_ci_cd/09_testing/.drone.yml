@@ -1,0 +1,35 @@
+pipeline:
+
+  build:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker build --tag registry:5000/groot/testing .
+    - docker push registry:5000/groot/testing
+
+  prepare:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker ps --quiet --filter "name=testcont" | xargs -r docker rm -f
+
+  test:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker run registry:5000/groot/testing test -f /tmp/testing
+    - docker run -d --name testcont registry:5000/groot/testing
+    - docker exec testcont ps cax | grep -q ping
+    - docker rm -f testcont
+
+  clean:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker ps --quiet --filter "name=testcont" | xargs -r docker rm -f
+    when:
+      status: [ failure ]

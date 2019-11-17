@@ -1,0 +1,19 @@
+# Create bundles with duffle
+
+# Clone examples
+git clone https://github.com/deislabs/duffle
+
+# Build bundle
+duffle build ./examples/helloworld/
+
+# List existing bundles
+duffle bundle list
+
+# Install bundle
+duffle install helloworld-demo helloworld:0.1.1
+
+# List installed bundles
+duffle list
+
+# Uninstall bundle
+duffle uninstall helloworld-demo

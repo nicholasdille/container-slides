@@ -1,0 +1,6 @@
+version: '2'
+
+services:
+  hello:
+    image: hello-world-java:git
+    build: github.com/nicholasdille/Sessions#master:containers/02_advanced/01_build_from_git

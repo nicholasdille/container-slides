@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  server:
+    image: localhost:5000/ntpd
+    cap_add:
+    - SYS_NICE
+    - SYS_TIME

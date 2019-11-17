@@ -1,0 +1,10 @@
+# CNAB installer
+
+# Create and build package
+porter create
+
+# Check porter.yaml
+vim porter.yaml
+
+# Build package
+porter build

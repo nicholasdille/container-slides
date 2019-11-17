@@ -1,0 +1,45 @@
+pipeline:
+
+  build:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker build --tag registry:5000/groot/testing:${CI_BUILD_NUMBER} --tag registry:5000/groot/testing:dev .
+    - docker push registry:5000/groot/testing:${CI_BUILD_NUMBER}
+    - docker push registry:5000/groot/testing:dev
+
+  prepare:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker ps --quiet --filter "name=testcont" | xargs -r docker rm -f
+
+  test:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker run registry:5000/groot/testing:dev test -f /tmp/testing
+    - docker run -d --name testcont registry:5000/groot/testing:dev
+    - docker exec testcont ps cax | grep -q ping
+    - docker rm -f testcont
+
+  clean:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker ps --quiet --filter "name=testcont" | xargs -r docker rm -f
+    when:
+      status: [ failure ]
+
+  publish:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker pull registry:5000/groot/testing:${CI_BUILD_NUMBER}
+    - docker tag registry:5000/groot/testing:${CI_BUILD_NUMBER} registry:5000/groot/testing:stable
+    - docker push registry:5000/groot/testing:stable

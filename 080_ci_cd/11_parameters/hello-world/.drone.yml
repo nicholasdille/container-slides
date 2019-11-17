@@ -1,0 +1,17 @@
+pipeline:
+
+  build:
+    image: openjdk:8-jdk
+    commands:
+    - javac HelloWorld.java
+    - curl -fT HelloWorld.java -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/${CI_REPO_NAME}/${CI_BUILD_NUMBER}/
+    - echo -n ${CI_BUILD_NUMBER} > latest
+    - curl -fT latest -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/${CI_REPO_NAME}/
+
+  trigger:
+    image: plugins/downstream
+    server: https://ci.go-nerd.de
+    fork: true
+    repositories:
+      - groot/hello-world-jar
+    secrets: [ downstream_token ]

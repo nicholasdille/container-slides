@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registry-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry
+  template:
+    metadata:
+      labels:
+        app: registry
+    spec:
+      containers:
+        - name: registry
+          image: registry
+          ports:
+          - containerPort: 5000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: registry-service
+spec:
+  selector:
+    app: registry
+  type: NodePort
+  ports:
+  - port: 5000
+    nodePort: 5000
+    targetPort: 5000

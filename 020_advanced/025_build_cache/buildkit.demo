@@ -1,0 +1,15 @@
+# Cache warming for BuildKit
+
+# Build image with cache information
+export DOCKER_BUILDKIT=1
+docker build \
+    --tag localhost:5000/test:1 \
+    --build-arg BUILDKIT_INLINE_CACHE=1 \
+    .
+docker push localhost:5000/test:1
+
+# Build with remote cache
+docker system prune --all
+docker build \
+    --cache-from localhost:5000/test:1 \
+    .

@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  dood:
+		image: docker:stable
+		command: [ "sh", "-c", "while true; do sleep 5; done" ]
+		container_name: dind
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

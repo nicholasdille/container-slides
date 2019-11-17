@@ -1,0 +1,17 @@
+pipeline:
+  build:
+    image: docker:18.06
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+    - docker build --tag registry:5000/groot/base .
+    - docker push registry:5000/groot/base
+
+  trigger:
+    image: plugins/downstream
+    server: https://ci.go-nerd.de
+    fork: true
+    repositories:
+      - groot/backend
+      - groot/frontend
+    secrets: [ downstream_token ]

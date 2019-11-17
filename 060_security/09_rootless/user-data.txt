@@ -1,0 +1,5 @@
+#!/bin/bash
+
+useradd --create-home --shell /bin/bash rootless
+cp -r ~root/.ssh ~rootless/
+chown -R rootless. ~rootless/.ssh
