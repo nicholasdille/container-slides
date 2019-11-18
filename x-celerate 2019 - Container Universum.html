@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/css/theme/black.css" id="theme"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/lib/css/zenburn.css"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3.1.0/notyf.min.css" />
 <script>
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
@@ -100,9 +101,11 @@
 <div class="slides">
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: data-background="images/Containers.jpg" class="center" style="color: black; text-align: center; vertical-align: middle; background: rgba(251, 171, 70, 0.5);" -->
+        <!-- .slide: data-background="images/x-celerate-2019-chain.png" class="center" style="text-align: center;" -->
 
-        # The Container Universe <!-- .element: style="color: black;" -->
+        ![](images/x-celerate-2019-logo-white.png) <!-- .element: style="width: 50%;" -->
+
+        # The Container Universe
 
         <b>*Nicholas Dille*</b>
 
@@ -167,6 +170,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.8.0/js/reveal.min.js" type="application/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3.1.0/notyf.min.js"></script>
 <script>
     Reveal.initialize({
         controls: true,
@@ -176,7 +181,7 @@
         transition: 'convex',
         backgroundTransition: 'fade',
 
-        allottedTime: 75 * 60 * 1000,
+        allottedTime: 45 * 60 * 1000,
         keyboard: {
             // pause/resume time when Enter is pressed
             13: () => {
@@ -198,6 +203,20 @@
             { src: 'plugins/elapsed-time-bar-2699fc8/elapsed-time-bar.js'}
 
         ]
+    });
+
+    var clipboard = new ClipboardJS(".hljs", {
+        text: function(trigger) {
+            return trigger.innerText;
+        }
+    });
+    clipboard.on("success", function(e) {
+        var notyf = new Notyf();
+        notyf.success("Copied to clipboard :)");
+    });
+    clipboard.on("error", function(e) {
+        var notyf = new Notyf();
+        notyf.error("Can't copy to clipboard :(");
     });
 </script>
 
