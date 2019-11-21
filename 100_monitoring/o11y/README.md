@@ -13,6 +13,7 @@ mv kubectl /usr/local/bin/
 curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
 
 # Prepare kubectl
+source <(kubectl completion bash)
 alias k=kubectl
 complete -F __start_kubectl k
 
@@ -43,4 +44,7 @@ helm tiller run helm install stable/kapacitor --name kapacitor --namespace defau
 helm tiller run helm repo add loki https://grafana.github.io/loki/charts
 helm tiller run helm install loki/loki --name loki --namespace default --values loki-values.yaml
 helm tiller run helm install loki/promtail --name promtail --namespace default --values promtail-values.yaml
+
+# Upgrade
+#helm tiller helm upgrade telegraf stable/telegraf --values telegraf-values.yaml
 ```
