@@ -307,7 +307,7 @@ datasources:
       url: http://loki:3100
       access: proxy
       isDefault: false
-      editable: false
+      editable: true
 
 ## Configure notifiers
 ## ref: http://docs.grafana.org/administration/provisioning/#alert-notification-channels

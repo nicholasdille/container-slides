@@ -43,7 +43,7 @@ config:
     flush_interval: "10s"
     flush_jitter: "0s"
     precision: ""
-    debug: false
+    debug: true
     quiet: false
     logfile: ""
     hostname: "$HOSTNAME"
@@ -65,7 +65,10 @@ config:
         username: admin
         password: influxdbadmin
   inputs:
-  - kubernetes: {}
+  - kubernetes:
+      url: "https://k3d-o11y-worker-0:10250"
+      bearer_token: /run/secrets/kubernetes.io/serviceaccount/token
+      insecure_skip_verify: true
   - cpu:
       percpu: false
       totalcpu: true
