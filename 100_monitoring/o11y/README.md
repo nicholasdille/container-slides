@@ -19,7 +19,7 @@ complete -F __start_kubectl k
 source <(helm completion bash)
 
 # Deploy cluster
-k3d create --name o11y --image docker.io/rancher/k3s:v1.0.0 --api-port 443 --publish 80:80 --workers 1
+k3d create --name o11y --image docker.io/rancher/k3s:v1.0.0 --api-port 443 --publish 80:80
 export KUBECONFIG=$(k3d get-kubeconfig --name o11y)
 
 curl -sLf https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz | tar -xvz -C /usr/local/bin --strip-components=1 linux-amd64/helm linux-amd64/tiller
@@ -34,19 +34,23 @@ helm tiller run helm install loki/promtail --name promtail --namespace default -
 # Metrics collection
 helm tiller run helm install stable/influxdb --name influxdb --namespace default --values influxdb-values.yaml
 kubectl apply -f telegraf-rbac.yaml
-#helm tiller run helm install stable/telegraf --name telegraf --namespace default --values telegraf-values.yaml
-k create secret generic monitoring --from-literal=monitor_host=http://influxdb:8086 --from-literal=monitor_database=demo --from-literal=monitor_username=admin --from-literal=monitor_password=influxdbadmin
+kubectl create secret generic monitoring --from-literal=monitor_host=http://influxdb:8086 --from-literal=monitor_database=demo --from-literal=monitor_username=admin --from-literal=monitor_password=influxdbadmin
 kubectl apply -f telegraf.yaml
 
 # Visualization
 helm tiller run helm install stable/grafana --name grafana --namespace default --values grafana-values.yaml
 
-# Analysis
-kubectl create secret generic mysecret --from-file <(htpasswd -nbB admin chronografadmin)
+# Administration
+kubectl create secret generic chronograf --from-file <(htpasswd -nbB admin chronografadmin)
 helm fetch stable/chronograf --untar
 patch -p0 -i chronograf.patch
 helm template chronograf --values chronograf-values.yaml | sed 's/release-name-//g' | kubectl apply -f -
-helm tiller run helm install stable/kapacitor --name kapacitor --namespace default --values kapacitor-values.yaml
+
+# Analysis
+#helm tiller run helm install stable/kapacitor --name kapacitor --namespace default --values kapacitor-values.yaml
+helm fetch stable/kapacitor --untar
+patch -p0 -i kapacitor.patch
+helm template kapacitor --values kapacitor-values.yaml | sed 's/release-name-//g' | kubectl apply -f -
 
 # Upgrade
 #helm tiller helm upgrade telegraf stable/telegraf --values telegraf-values.yaml
