@@ -65,6 +65,13 @@ config:
         username: admin
         password: influxdbadmin
   inputs:
+  # curl --cacert /run/secrets/kubernetes.io/serviceaccount/ca.crt -H "Authorization: Bearer $(cat /run/secrets/kubernetes.io/serviceaccount/token)" https://kubernetes.default.svc/api/v1/nodes/k3d-o11y-se
+  # rver/proxy/metrics
+  - prometheus:
+      urls:
+      - "https://kubernetes.default.svc/api/v1/nodes/k3d-o11y-server/proxy/metrics"
+      bearer_token: /run/secrets/kubernetes.io/serviceaccount/token
+      tls_ca: /run/secrets/kubernetes.io/serviceaccount/ca.crt
   - kubernetes:
       url: "https://k3d-o11y-worker-0:10250"
       bearer_token: /run/secrets/kubernetes.io/serviceaccount/token

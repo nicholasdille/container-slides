@@ -19,7 +19,7 @@ complete -F __start_kubectl k
 source <(helm completion bash)
 
 # Deploy cluster
-k3d create --name 011y --image docker.io/rancher/k3s:v1.0.0 --api-port 443 --publish 80:80 --workers 1
+k3d create --name o11y --image docker.io/rancher/k3s:v1.0.0 --api-port 443 --publish 80:80 --workers 1
 export KUBECONFIG=$(k3d get-kubeconfig --name o11y)
 
 curl -sLf https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz | tar -xvz -C /usr/local/bin --strip-components=1 linux-amd64/helm linux-amd64/tiller
@@ -33,7 +33,10 @@ helm tiller run helm install loki/promtail --name promtail --namespace default -
 
 # Metrics collection
 helm tiller run helm install stable/influxdb --name influxdb --namespace default --values influxdb-values.yaml
-helm tiller run helm install stable/telegraf --name telegraf --namespace default --values telegraf-values.yaml
+kubectl apply -f telegraf-rbac.yaml
+#helm tiller run helm install stable/telegraf --name telegraf --namespace default --values telegraf-values.yaml
+k create secret generic monitoring --from-literal=monitor_host=http://influxdb:8086 --from-literal=monitor_database=demo --from-literal=monitor_username=admin --from-literal=monitor_password=influxdbadmin
+kubectl apply -f telegraf.yaml
 
 # Visualization
 helm tiller run helm install stable/grafana --name grafana --namespace default --values grafana-values.yaml
