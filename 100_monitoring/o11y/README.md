@@ -52,6 +52,11 @@ helm fetch stable/kapacitor --untar
 patch -p0 -i kapacitor.patch
 helm template kapacitor --values kapacitor-values.yaml | sed 's/release-name-//g' | kubectl apply -f -
 
+# Weave Scope
+kubectl create secret generic weave-scope --from-file <(htpasswd -nbB admin scopeadmin)
+kubectl apply -f scope.yaml
+kubectl apply -f scope-ingress.yaml
+
 # Upgrade
 #helm tiller helm upgrade telegraf stable/telegraf --values telegraf-values.yaml
 ```

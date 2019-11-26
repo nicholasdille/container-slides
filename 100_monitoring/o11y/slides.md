@@ -1,9 +1,15 @@
 ## Observability (o11y)
 
-XXX 3 pillars
+Three pillars
 
-XXX metrics
+### Metrics
 
-XXX logs
+### Logs
 
-XXX tracing
+### Tracing
+
+--
+
+## Correlation
+
+XXX

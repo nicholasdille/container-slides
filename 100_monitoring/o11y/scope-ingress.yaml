@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: weave-scope
+  labels:
+    app: weave-scope
+  name: weave-scope
+spec:
+  rules:
+  - host: scope.o11y.dille.io
+    http:
+      paths:
+      - backend:
+          serviceName: weave-scope-app
+          servicePort: 80
+        path: /
