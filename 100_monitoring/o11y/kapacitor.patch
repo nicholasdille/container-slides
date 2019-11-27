@@ -1,6 +1,6 @@
 diff -ru kapacitor/templates/deployment.yaml kapacitor.new/templates/deployment.yaml
---- kapacitor/templates/deployment.yaml 2019-11-24 22:45:44.191654594 +0100
-+++ kapacitor.new/templates/deployment.yaml     2019-11-24 22:45:31.703656368 +0100
+--- kapacitor/templates/deployment.yaml	2019-11-24 22:45:44.191654594 +0100
++++ kapacitor.new/templates/deployment.yaml	2019-11-24 22:45:31.703656368 +0100
 @@ -1,6 +1,6 @@
  {{- $bl := empty .Values.influxURL }}
  {{- if not $bl }}

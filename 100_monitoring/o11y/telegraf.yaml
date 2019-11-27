@@ -87,19 +87,19 @@ spec:
               key: monitor_database
               name: monitoring
         volumeMounts:
-        - name: sys
-          mountPath: /rootfs/sys
-          readOnly: true
+        #- name: sys
+        #  mountPath: /rootfs/sys
+        #  readOnly: true
         - name: proc
           mountPath: /rootfs/proc
           readOnly: true
         - name: config
           mountPath: /etc/telegraf
       volumes:
-      - name: sys
-        hostPath:
-          path: /sys
-          type: ""
+      #- name: sys
+      #  hostPath:
+      #    path: /sys
+      #    type: ""
       - name: proc
         hostPath:
           path: /proc
@@ -108,4 +108,3 @@ spec:
         configMap:
           defaultMode: 420
           name: monitoring
-
