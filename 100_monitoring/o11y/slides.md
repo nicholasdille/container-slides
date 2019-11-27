@@ -1,15 +1,15 @@
 ## Observability (o11y)
 
-Three pillars
+<i class="far fa-eye fa-5x"></i><!-- .element: style="float: right;" -->
 
-### Metrics
+### Three pillars
 
-### Logs
+Metrics
 
-### Tracing
+Logs
 
---
+Traces
 
-## Correlation
+### Correlation
 
-XXX
+Time based matching of events

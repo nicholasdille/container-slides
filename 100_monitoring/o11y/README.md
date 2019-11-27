@@ -57,6 +57,10 @@ kubectl create secret generic weave-scope --from-file <(htpasswd -nbB admin scop
 kubectl apply -f scope.yaml
 kubectl apply -f scope-ingress.yaml
 
+# kube-state-metrics
+git clone https://github.com/kubernetes/kube-state-metrics
+kubectl apply -f kube-state-metrics/examples/standard/
+
 # Upgrade
 #helm tiller helm upgrade telegraf stable/telegraf --values telegraf-values.yaml
 ```

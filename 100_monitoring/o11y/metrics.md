@@ -1,12 +1,10 @@
 ## Metrics
 
+<i class="fas fa-sitemap fa-5x"></i><!-- .element: style="float: right;" -->
+
 Performance indicators
 
-### Host metrics
-
-Easy to collect with generic agent
-
-### Container/process metrics
+### Host/process/container metrics
 
 Easy to collect with generic agent
 
@@ -14,42 +12,76 @@ Easy to collect with generic agent
 
 Cloud native tools provide Prometheus metrics endpoint
 
-Traditional tools require dedicates API calls ...
-
-... processing to match input format
+Traditional tools require dedicated tooling
 
 --
 
 ## Golden Signals
 
-XXX [Google Site Reliability Engineering](https://landing.google.com/sre/sre-book/toc/index.html)
+<i class="fas fa-traffic-light fa-5x"></i><!-- .element: style="float: right;" -->
+
+[Google SRE](https://landing.google.com/sre/sre-book/toc/index.html) defines important signals to watch
 
 ### Latency
 
-XXX
+Latency of requests overall as well as per service
 
 ### Traffic
 
-XXX
+Demand placed on a service
 
 ### Errors
 
-XXX
+Rate of failed requests
 
 ### Saturation
 
-XXX
+Fraction of resources available to a service
 
 --
 
 ## Visualization
 
-XXX
+<i class="fas fa-chart-area fa-5x"></i><!-- .element: style="float: right;" -->
+
+Dashboard per service
+
+Graphs for individual metrics
+
+Only include useful metrics
+
+One traffic light for each services
 
 --
 
 ## Analysis
 
-XXX
+<i class="fas fa-binoculars fa-5x"></i><!-- .element: style="float: right;" -->
 
-XXX statistics
+Service status depends on multiple metrics
+
+Calculate service status from metrics and thresholds
+
+Collect more metrics than required for RCA
+
+### Statistics
+
+Mean is problematic
+
+95%/99% percentile
+
+Baseline
+
+--
+
+## Alerting
+
+<i class="fas fa-bell fa-5x"></i><!-- .element: style="float: right;" -->
+
+Decide green/red or green/yellow/red
+
+Make sure thresholds are reasonable
+
+Only alert when intervention is unavoidable
+
+Excess alerts lead to dulling lead to missed outages
