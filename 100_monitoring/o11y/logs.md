@@ -22,6 +22,6 @@ Moderate effort to scrape logs from directories
 
 <i class="fas fa-align-left fa-5x"></i><!-- .element: style="float: right;" -->
 
-XXX full text index
+Full text indexing
 
-XXX time series with grepping
+Time series with grepping

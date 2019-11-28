@@ -70,7 +70,9 @@ Mean is problematic
 
 95%/99% percentile
 
-Baseline
+Develop baseline
+
+Watch trends
 
 --
 
