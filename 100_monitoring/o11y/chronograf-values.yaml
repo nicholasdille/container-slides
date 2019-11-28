@@ -63,9 +63,6 @@ ingress:
   tls: false
   hostname: chronograf.o11y.dille.io
   annotations:
-    # kubernetes.io/ingress.class: "nginx"
-    # secretName: my-tls-cert
-    # kubernetes.io/tls-acme: "true"
     ingress.kubernetes.io/auth-type: "basic"
     ingress.kubernetes.io/auth-secret: "chronograf"
 

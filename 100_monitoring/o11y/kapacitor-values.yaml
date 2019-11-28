@@ -55,9 +55,25 @@ resources:
 # or, at your terminal, with
 #
 # helm install --name kapacitor-rls --set influxURL=http://influxurl.com,envVars.KAPACITOR_SLACK_ENABLED=true,envVars.KAPACITOR_SLACK_URL="http://slack.com/xxxxx/xxxxx/xxxx/xxxxxxx" stable/kapacitor
+envVars:
+  KAPACITOR_CONFIG_OVERRIDE_ENABLE: 'false'
+  KAPACITOR_HOSTNAME: kapacitor
+  KAPACITOR_HTTP_AUTH_ENABLED: 'false'
+  KAPACITOR_HTTP_LOG_ENABLED: 'false'
+  KAPACITOR_INFLUXDB_0_DISABLE_SUBSCRIPTIONS: 'false'
+  KAPACITOR_INFLUXDB_0_HTTP_PORT: '443'
+  KAPACITOR_INFLUXDB_0_NAME: kapacitor
+  KAPACITOR_INFLUXDB_0_PASSWORD: influxdbadmin
+  KAPACITOR_INFLUXDB_0_SUBSCRIPTION_MODE: server
+  KAPACITOR_INFLUXDB_0_SUBSCRIPTION_PROTOCOL: https
+  #KAPACITOR_INFLUXDB_0_URLS_0: http://influxdb:8086
+  KAPACITOR_INFLUXDB_0_USERNAME: admin
+  KAPACITOR_LOAD_DIR: /etc/kapacitor/load
+  KAPACITOR_LOAD_ENABLED: 'true'
+  KAPACITOR_STATS_ENABLED: "true"
+  KAPACITOR_STATS_DATABASE: "_kapacitor"
 
 ## Set the URL of InfluxDB instance to create subscription on
 ## ref: https://docs.influxdata.com/kapacitor/v1.1/introduction/getting_started/
 ##
-# influxURL: http://influxdb-influxdb.tick:8086
-
+influxURL: http://influxdb:8086
