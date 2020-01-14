@@ -14,12 +14,12 @@
 export DOCKER_BUILDKIT=1
 
 # Build image with cache information
-docker build --tag myimage \
+docker build --tag myimg \
     --build-arg BUILDKIT_INLINE_CACHE=1 \
     .
 
 # Build image from remote cache
-docker build --cache-from myimage .
+docker build --cache-from myimg .
 ```
 
 --

@@ -1,6 +1,6 @@
 ## Classic Build Cache Warming
 
-Builds may not not run on the same host
+Builds may not run on the same host
 
 ### How it works
 
@@ -23,20 +23,12 @@ Image must be present locally
 
 ## Demo: Classic Build Cache Warming v1
 
-```bash
-# Push image
-docker run -d -p 5000:5000 registry:2
-docker build --tag localhost:5000/hello-world-java .
-docker push localhost:5000/hello-world-java
+<!-- include: classic-0.command -->
 
-# Reset Docker
-docker system prune --all
+<!-- include: classic-1.command -->
 
-# Pull image
-docker pull localhost:5000/hello-world-java
+<!-- include: classic-2.command -->
 
-# Build with cache from local image
-docker build --cache-from localhost:5000/hello-world-java .
-```
+<!-- include: classic-3.command -->
 
 Internal build cache is still used when cache image does not exist

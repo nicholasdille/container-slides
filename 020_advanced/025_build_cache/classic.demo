@@ -1,0 +1,14 @@
+# Cache warming with legacy build engine
+
+# Build and push image
+docker build --tag localhost:5000/hello-world-java .
+docker push localhost:5000/hello-world-java
+
+# Reset Docker
+docker system prune --all
+
+# Pull image
+docker pull localhost:5000/hello-world-java
+
+# Build with cache from local image
+docker build --cache-from localhost:5000/hello-world-java .

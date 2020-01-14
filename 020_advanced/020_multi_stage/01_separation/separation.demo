@@ -1,0 +1,7 @@
+# Separation of build and runtime environment
+
+# Multi-stage with legacy build system
+docker build --tag hello-world-java:multi .
+
+# Multi-stage with buildkit
+DOCKER_BUILDKIT=1 docker build --tag hello-world-java:multi .

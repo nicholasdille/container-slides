@@ -1,0 +1,10 @@
+# Mount SSH agent socket manually
+
+# Prepare SSH agent
+ssh-keygen -f id_rsa_test
+eval $(ssh-agent -s)
+ssh-add id_rsa_test
+ssh-add -l
+
+# Forward into build
+docker run -it --rm --mount type=bind,src=${SSH_AUTH_SOCK},dst=${SSH_AUTH_SOCK} --env SSH_AUTH_SOCK alpine-ssh

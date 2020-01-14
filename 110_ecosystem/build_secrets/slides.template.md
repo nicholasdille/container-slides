@@ -4,11 +4,15 @@ Do not provide secrets using environment variables
 
 `ENV` burns variables into image
 
-Build arguments are only one option
+Build arguments (`ARG`) are only one option
 
-Buildkit can mount secrets using `tmpfs`
+### Buildkit to the rescue
+
+Mount secrets using `tmpfs`
 
 Temporary files in `/run/secrets/`
+
+Introduced in Docker 18.09
 
 --
 

@@ -20,14 +20,6 @@ COPY --from=builder ...
 
 ## Demo: Multi Stage Builds - Separation
 
-Works with legacy build engine
+<!-- include: separation-0.command -->
 
-```bash
-docker build --tag hello-world-java:multi .
-```
-
-Good chance to get comfortable with builtin buildkit
-
-```bash
-DOCKER_BUILDKIT=1 docker build --tag hello-world-java:multi .
-```
+<!-- include: separation-1.command -->

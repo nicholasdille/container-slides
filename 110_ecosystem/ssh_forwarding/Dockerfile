@@ -1,8 +1,5 @@
 # syntax=docker/dockerfile:experimental
-
-FROM alpine
-
-RUN apk add --no-cache openssh-client
+FROM alpine-ssh
 RUN --mount=type=ssh \
     printenv | grep SSH \
  && ssh-add -l

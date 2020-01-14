@@ -23,10 +23,6 @@ COPY --from=build2 /opt/binary2 /opt/
 * Sequential build will take ~20 seconds
 * Parallel build ~10 seconds
 
-```bash
-# Builds sequentially
-docker build .
+<!-- include: concurrency-0.command -->
 
-# Builds in parallel
-DOCKER_BUILDKIT=1 docker build .
-```
+<!-- include: concurrency-1.command -->
