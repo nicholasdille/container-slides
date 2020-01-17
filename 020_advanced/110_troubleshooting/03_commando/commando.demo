@@ -4,6 +4,7 @@
 docker run -it --rm cmd.cat/curl
 
 # Very powerful when troubleshooting networking
+docker run -d --name nginx nginx
 docker run -it --rm \
     --net container:nginx \
     --pid container:nginx \

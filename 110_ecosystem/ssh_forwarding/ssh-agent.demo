@@ -1,7 +1,7 @@
 # Forward SSH agent socket into build
 
 # Prepare SSH agent
-ssh-keygen -f id_rsa_test
+ssh-keygen -f id_rsa_test -N ''
 eval $(ssh-agent -s)
 ssh-add id_rsa_test
 ssh-add -l

@@ -1,7 +1,9 @@
 # Troubleshooting networking issues
 
-# Join namespaces with existing container
+# Run container which needs troubleshooting
 docker run -d --name nginx nginx
+
+# Join namespaces with existing container
 docker run -it --rm \
     --net container:nginx \
     --pid container:nginx \
