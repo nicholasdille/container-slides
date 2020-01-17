@@ -23,6 +23,10 @@ if ! type hcloud; then
         xargs curl -sLf | \
         tar -xvzC /usr/local/bin/ --strip-components=2 --wildcards hcloud-linux-amd64-*/bin/hcloud
 fi
+if [[ "$(hcloud context active | wc -l)" -eq 0 ]]; then
+    echo "No context defined for hcloud"
+    exit 1
+fi
 
 echo
 echo -e "${YELLOW}### Creating new SSH key${DEFAULT}"

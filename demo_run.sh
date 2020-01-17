@@ -27,6 +27,10 @@ if ! type hcloud; then
     echo "Missing hcloud. Have you executed demo_prepare.sh on this machine?"
     exit 1
 fi
+if [[ "$(hcloud context active | wc -l)" -eq 0 ]]; then
+    echo "No context defined for hcloud"
+    exit 1
+fi
 
 echo
 echo -e "${YELLOW}### Generating files${DEFAULT}"
