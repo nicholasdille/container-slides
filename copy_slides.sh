@@ -37,9 +37,14 @@ if [[ ! -d "${TARGET}" ]]; then
     mkdir -p "${TARGET}"
 fi
 
-if ! type xmlstarlet; then
-    apt install xmlstarlet
+if ! type make; then
+    apt -y install make
 fi
+if ! type xmlstarlet; then
+    apt -y install xmlstarlet
+fi
+
+make
 
 echo "${FILE}" | copy_to_target
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${FILE}" | extract_links | copy_to_target

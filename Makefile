@@ -9,13 +9,21 @@ all:
 	    make -C $$(dirname $${TOPIC}) -f $$(pwd)/Makefile $$(basename $${TOPIC} .template.md).final.md; \
 	done
 
+.PHONY:
+clean-all:
+	@for TOPIC in $(TOPICS); do \
+	    make -C $$(dirname $${TOPIC}) -f $$(pwd)/Makefile clean; \
+	done
+
 %.final.md: %.template.md $(DEMOS)
 	@source $$(dirname $(MAKEFILE_LIST))/functions.sh; \
 	for DEMO in $(DEMOS); do \
+		echo "Splitting demo $$(basename $${DEMO} .demo)"; \
 	    split $$(basename $${DEMO} .demo); \
 	done; \
+	echo "Generating $$(basename $@)"; \
 	include $*
 
 .PHONY:
 clean:
-	@rm -f *.final.md *.command
+	@rm -fv *.final.md *.command
