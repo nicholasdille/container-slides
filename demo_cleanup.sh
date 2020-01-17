@@ -12,4 +12,4 @@ done
 
 hcloud ssh-key delete demo
 rm id_rsa_demo*
-ssh docker-hcloud rm /root/id_rsa_demo
+rm ~/id_rsa_demo

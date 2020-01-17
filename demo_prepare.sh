@@ -26,7 +26,7 @@ echo -e "${YELLOW}### Creating new SSH key${DEFAULT}"
 if [[ ! -f id_rsa_demo ]]; then
     ssh-keygen -f id_rsa_demo -N ""
     hcloud ssh-key create --name demo --public-key-from-file id_rsa_demo.pub
-    scp id_rsa_demo docker-hcloud:~
+    scp id_rsa_demo ~
 fi
 echo -e "${YELLOW}    Done.${DEFAULT}"
 
@@ -50,7 +50,6 @@ for DIR in ${DIRS}; do
         (cd ${DIR}; split ${DEMO})
     done
 
-    NAME=docker-hcloud
     if test -f "${PWD}/${DIR}/user-data.txt"; then
         echo -e "${YELLOW}    Deploying VM${DEFAULT}"
         NAME=${DIR////-}
@@ -71,10 +70,7 @@ for DIR in ${DIRS}; do
 
     if test -f "${PWD}/${DIR}/prep.sh"; then
         echo -e "${YELLOW}    Installing tools${DEFAULT}"
-        # TODO: Decide where to install the tools
-        #ssh ${NAME} bash < "${PWD}/${DIR}/prep.sh"
-        ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"
-        #bash "${PWD}/${DIR}/prep.sh"
+        bash "${PWD}/${DIR}/prep.sh"
     fi
 
     echo -e "${YELLOW}    Done.${DEFAULT}"

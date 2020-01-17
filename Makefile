@@ -18,4 +18,4 @@ all:
 
 .PHONY:
 clean:
-	@rm -f slides.md *.command
+	@rm -f *.final.md *.command
