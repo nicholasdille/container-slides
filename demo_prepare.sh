@@ -12,13 +12,16 @@ if [[ -z "${FILE}" ]]; then
 fi
 
 if ! type jq; then
-    apt install jq
+    apt -y install jq
 fi
 if ! type xmlstarlet; then
-    apt install xmlstarlet
+    apt -y install xmlstarlet
 fi
 if ! type hcloud; then
-    curl -sLf https://github.com/hetznercloud/cli/releases/download/v1.13.0/hcloud-linux-amd64-v1.13.0.tar.gz | tar -xvz -C /usr/local/bin/ --strip-components=2 hcloud-linux-amd64-v1.13.0/bin/hcloud hcloud-linux-amd64-v1.13.0/bin/hcloud
+    curl -sLf https://api.github.com/repos/hetznercloud/cli/releases/latest | \
+        jq --raw-output '.assets[] | select(.name | contains("-linux-amd64-")) | .browser_download_url' | \
+        xargs curl -sLf | \
+        tar -xvzC /usr/local/bin/ --strip-components=2 --wildcards hcloud-linux-amd64-*/bin/hcloud
 fi
 
 echo
