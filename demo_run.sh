@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o errexit
 
 . functions.sh
 
@@ -11,15 +12,25 @@ if [[ -z "${FILE}" ]]; then
     exit 1
 fi
 
+if ! type make; then
+    apt -y install make
+fi
 if ! type jq; then
-    apt install jq
+    echo "Missing jq. Have you executed demo_prepare.sh on this machine?"
+    exit 1
 fi
 if ! type xmlstarlet; then
-    apt install xmlstarlet
+    echo "Missing xmlstarlet. Have you executed demo_prepare.sh on this machine?"
+    exit 1
 fi
 if ! type hcloud; then
-    curl -sLf https://github.com/hetznercloud/cli/releases/download/v1.13.0/hcloud-linux-amd64-v1.13.0.tar.gz | tar -xvz -C /usr/local/bin/ --strip-components=2 hcloud-linux-amd64-v1.13.0/bin/hcloud hcloud-linux-amd64-v1.13.0/bin/hcloud
+    echo "Missing hcloud. Have you executed demo_prepare.sh on this machine?"
+    exit 1
 fi
+
+echo
+echo -e "${YELLOW}### Generating files${DEFAULT}"
+make
 
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
 DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)

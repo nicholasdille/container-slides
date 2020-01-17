@@ -32,7 +32,7 @@ demo() {
         . ${COMMAND}
         if [[ "$?" != 0 ]]; then
             echo
-            echo "Command failed stopping demo"
+            echo -e "${RED}Command failed stopping demo${DEFAULT}"
             break
         fi
         echo
