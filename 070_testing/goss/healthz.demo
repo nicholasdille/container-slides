@@ -1,0 +1,10 @@
+# Add a health endpoint to a container
+
+# Build image with health endpoint
+docker build --tag nginx-healthz healthz
+
+# Run container
+docker run -d --name nginx-healthz nginx-healthz
+
+# Check health endpoint
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx-healthz | xargs -I '{}' curl http://{}:8080/healthz

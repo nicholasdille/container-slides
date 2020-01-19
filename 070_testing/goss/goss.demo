@@ -1,0 +1,10 @@
+# Use goss to test an existing image
+
+# Add `goss` and test definition to existing image
+docker build --tag nginx-goss test/
+
+# Run container
+docker run -d --name nginx-goss nginx-goss
+
+# Validate container
+docker exec -it nginx-goss /goss validate
