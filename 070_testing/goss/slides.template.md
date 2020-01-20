@@ -10,11 +10,11 @@ XXX https://github.com/aelsabbahy/goss/tree/master/extras/dgoss
 
 ## Demo: Testing images
 
-<!-- include: goss-0.command -->
+<!-- include: docker-0.command -->
 
-<!-- include: goss-1.command -->
+<!-- include: docker-1.command -->
 
-<!-- include: goss-2.command -->
+<!-- include: docker-2.command -->
 
 Do not change behaviour specially entrypoint, commands and parameters
 
@@ -22,9 +22,23 @@ Do not change behaviour specially entrypoint, commands and parameters
 
 ## Demo: Using `dgoss`
 
-XXX wrapper
+`dgoss` is a wrapper for `docker`
+
+It runs a container, mounts goss and executes tests
 
 <!-- include: dgoss-0.command -->
+
+---
+
+## Demo: Creating tests
+
+Easily create tests using `dgoss`
+
+<!-- include: goss-0.command -->
+
+<!-- include: goss-1.command -->
+
+Check [the manual](https://github.com/aelsabbahy/goss/blob/master/docs/manual.md#dns) for syntax and available tests
 
 ---
 

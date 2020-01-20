@@ -1,10 +1,7 @@
-# Use goss to test an existing image
+# Create tests using autoadd
 
-# Add `goss` and test definition to existing image
-docker build --tag nginx-goss test/
+# Edit tests created in container (run `goss autoadd nginx`)
+dgoss edit nginx
 
-# Run container
-docker run -d --name nginx-goss nginx-goss
-
-# Validate container
-docker exec -it nginx-goss /goss validate
+# Run tests against container
+dgoss run nginx
