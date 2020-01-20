@@ -1,8 +1,8 @@
-FROM alpine as build1
+FROM alpine AS build1
 RUN touch /opt/binary1
 RUN sleep 10
 
-FROM alpine as build2
+FROM alpine AS build2
 RUN touch /opt/binary2
 RUN sleep 10
 

@@ -9,8 +9,9 @@
 - Prerequisites: Docker 17.09
 
 ```Dockerfile
-FROM openjdk:8-jdk as builder
+FROM openjdk:8-jdk AS builder
 #...
+
 FROM openjdk:8-jre
 COPY --from=builder ...
 #...
