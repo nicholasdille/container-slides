@@ -76,13 +76,13 @@ include() {
 		if [[ ${LINE} =~ ${PATTERN} ]]; then
 			FILE=$(echo ${LINE} | sed -E "s/${PATTERN}/\1/")
             TEXT=$(cat ${FILE} | grep -E "^#" | head -n 1 | sed -E 's/^#\s*(.+)$/\1/')
-            echo ${TEXT}:
+            echo "${TEXT}:"
             echo
             echo '```bash'
             cat ${FILE} | grep -vE "^\s*$" | grep -vE "^#"
             echo '```'
         else
-            echo ${LINE}
+            echo "${LINE}"
 		fi
 	done >${FILE}.final.md
 }

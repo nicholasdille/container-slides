@@ -18,7 +18,7 @@ clean-all:
 %.final.md: %.template.md $(DEMOS)
 	@source $$(dirname $(MAKEFILE_LIST))/functions.sh; \
 	for DEMO in $(DEMOS); do \
-		echo "Splitting demo $$(basename $${DEMO} .demo)"; \
+	    echo "Splitting demo $$(basename $${DEMO} .demo)"; \
 	    split $$(basename $${DEMO} .demo); \
 	done; \
 	echo "Generating $$(basename $@)"; \
