@@ -2,7 +2,7 @@
 
 ### Stages can be built in parallel
 
-`build1` and `build2` are built in parallel
+`build1` and `build2` are built at the same time
 
 ```Dockerfile
 FROM alpine AS build1
@@ -15,6 +15,8 @@ FROM alpine AS final
 COPY --from=build1 /opt/binary1 /opt/
 COPY --from=build2 /opt/binary2 /opt/
 ```
+
+Concurrency is determines based on a dependency graph
 
 --
 

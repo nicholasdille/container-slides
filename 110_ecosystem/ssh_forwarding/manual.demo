@@ -7,4 +7,7 @@ ssh-add id_rsa_test
 ssh-add -l
 
 # Forward into build
-docker run -it --rm --mount type=bind,src=${SSH_AUTH_SOCK},dst=${SSH_AUTH_SOCK} --env SSH_AUTH_SOCK alpine-ssh
+docker run -it --rm \
+    --mount type=bind,src=${SSH_AUTH_SOCK},dst=${SSH_AUTH_SOCK} \
+    --env SSH_AUTH_SOCK \
+    alpine-ssh

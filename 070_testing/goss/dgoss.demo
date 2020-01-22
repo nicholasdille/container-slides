@@ -1,4 +1,4 @@
 # Test existing images with modification
 
-# Run dgoss using `goss.yaml`
+# Run dgoss using `./goss.yaml`
 dgoss run nginx

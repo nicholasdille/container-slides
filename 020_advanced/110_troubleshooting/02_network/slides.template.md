@@ -19,3 +19,5 @@ k8s 1.16 introduces [ephemeral containers](https://kubernetes.io/docs/concepts/w
 ## Demo: Namespace sharing
 
 <!-- include: namespace-0.command -->
+
+<!-- include: namespace-1.command -->
