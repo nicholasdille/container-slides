@@ -22,3 +22,10 @@ docker buildx build \
 # Inspect result
 docker buildx imagetools inspect \
     localhost:5000/nicholasdille/hello
+
+# Run image for arm64
+curl http://localhost:5000/v2/nicholasdille/hello/manifests/latest \
+    --silent \
+    --header "Accept: application/vnd.docker.distribution.manifest.list.v2+json" \
+    | jq --raw-output '.manifests[] | select(.platform.architecture == "arm64") | .digest' \
+    | xargs -I '{}' docker run localhost:5000/nicholasdille/hello:latest@{}
