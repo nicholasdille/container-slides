@@ -1,0 +1,12 @@
+# WIP: Create context against Kubernetes cluster
+
+# Create cluster
+k3d create --name context --workers 3
+
+# Configure connection to cluster
+export KUBECONFIG=$(k3d get-kubeconfig --name=context)
+
+# Create context to cluster
+docker context create k3d \
+    --docker 'host=unix:///var/run/docker.sock' \
+    --kubernetes config-file=${KUBECONFIG}

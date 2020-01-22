@@ -1,0 +1,11 @@
+# Run buildkit in Kubernetes
+
+# Run buildkitd
+curl -Slf https://raw.githubusercontent.com/moby/buildkit/master/examples/kubernetes/pod.rootless.yaml | kubectl apply -f -
+
+# Run buildctl
+export BUILDKIT_HOST=kube-pod://buildkitd
+buildctl build \
+    --frontend=dockerfile.v0 \
+    --local context=. \
+    --local dockerfile=.

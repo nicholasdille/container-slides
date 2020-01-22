@@ -1,0 +1,25 @@
+# WIP: Use Kubernetes to run builder instances
+
+# TODO: Prepare k3d cluster
+echo NEED TO PREPARE CLUSTER
+
+# Update buildx
+git clone https://github.com/docker/buildx
+cd buildx
+make binaries install
+
+# Show new driver
+export DOCKER_CLI_EXPERIMENTAL=enabled
+docker buildx create --help
+
+# Create builder instances in Kubernetes
+docker buildx create \
+    --name k8s \
+    --driver kubernetes \
+    --driver-opt replicas=2 \
+    --driver-opt rootless=true \
+    --driver-opt loadbalance=random \
+    --use
+
+# Check builder instances in Kubernetes
+docker buildx inspect k8s
