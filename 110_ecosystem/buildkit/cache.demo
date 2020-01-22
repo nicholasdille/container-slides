@@ -1,0 +1,10 @@
+# WIP: Preserve caches across builds
+
+# Enable buildkit
+export DOCKER_BUILD=1
+
+# First run creates cache
+docker build cache
+
+# Second run uses cache
+docker build cache
