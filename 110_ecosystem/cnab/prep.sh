@@ -1,16 +1,13 @@
 #!/bin/bash
 
 # duffle
-curl -sLfo /usr/local/bin/duffle https://github.com/deislabs/duffle/releases/download/0.3.5-beta.1/duffle-linux-amd64
+curl -s https://api.github.com/repos/cnabio/duffle/releases/latest | \
+    jq --raw-output '.assets[] | select(.name == "duffle-linux-amd64") | .browser_download_url' | \
+    xargs curl -sLfo /usr/local/bin/duffle
 chmod +x /usr/local/bin/duffle
 
 # porter
-curl -sLfo /usr/local/bin/porter https://deislabs.blob.core.windows.net/porter/v0.20.2-beta.1/porter-linux-amd64
-chmod +x /usr/local/bin/porter
-cp /usr/local/bin/porter /usr/local/bin/porter-runtime
-for MIXIN in exec kubernetes helm azure terraform az aws gcloud; do
-    porter mixin install ${MIXIN} --version latest
-done
+curl https://cdn.porter.sh/latest/install-linux.sh | bash
 
 # cnab-to-oci
 docker build --tag cnab2oci:v0.3.0-beta1 --target build --build-arg BUILDTIME=$(date +%Y%m%d%H%M) --build-arg TAG=v0.3.0-beta1 github.com/docker/cnab-to-oci#v0.3.0-beta1

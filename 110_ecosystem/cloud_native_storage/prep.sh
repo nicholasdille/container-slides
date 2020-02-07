@@ -1,3 +1,6 @@
 #!/bin/bash
 
-curl -sLf https://github.com/deislabs/oras/releases/download/v0.7.0/oras_0.7.0_linux_amd64.tar.gz | tar -xvz -C /usr/local/bin/ oras
+curl -s https://api.github.com/repos/deislabs/oras/releases/latest | \
+    jq --raw-output '.assets[] | select(.name | endswith("_linux_amd64.tar.gz")) | .browser_download_url' | \
+    xargs curl -sLf | \
+    tar -xvzC /usr/local/bin/ oras

@@ -1,4 +1,6 @@
 #!/bin/bash
 
-curl -sLfo /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.24.1/docker-compose-Linux-x86_64
+curl -s https://api.github.com/repos/docker/compose/releases/latest | \
+        jq --raw-output '.assets[] | select(.name | endswith("-Linux-x86_64")) | .browser_download_url' | \
+        xargs curl -sLfo /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose

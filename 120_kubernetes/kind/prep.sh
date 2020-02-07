@@ -1,4 +1,6 @@
 #!/bin/bash
 
-curl -sLfo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/v0.5.1/kind-linux-amd64
+curl -s https://api.github.com/repos/kubernetes-sigs/kind/releases/latest | \
+    jq --raw-output '.assets[] | select(.name == "kind-linux-amd64") | .browser_download_url' | \
+    xargs curl -sLfo /usr/local/bin/kind
 chmod +x /usr/local/bin/kind

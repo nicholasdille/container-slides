@@ -1,3 +1,6 @@
 #!/bin/bash
 
-curl -sLf https://github.com/moby/buildkit/releases/download/v0.6.2/buildkit-v0.6.2.linux-amd64.tar.gz | tar -xvz -C /usr/local/
+curl -s https://api.github.com/repos/moby/buildkit/releases/latest | \
+    jq --raw-output '.assets[] | select(.name | endswith(".linux-amd64.tar.gz")) | .browser_download_url' | \
+    xargs curl -sLf | \
+    tar -xvzC /usr/local/
