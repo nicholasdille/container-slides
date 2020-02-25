@@ -16,6 +16,12 @@ k3s server &
 k3s kubectl get nodes
 ```
 
+XXX export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
+XXX token: /var/lib/rancher/k3s/server/node-token
+
+XXX k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}
+
 --
 
 ## k3d: k3s in Docker
