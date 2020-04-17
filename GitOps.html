@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+
+<title>GitOps</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/reveal.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/lib/css/zenburn.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3.1.0/notyf.min.css" />
+<script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/pdf.css' : 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+<script src="https://kit.fontawesome.com/979b781914.js" crossorigin="anonymous"></script>
+
+<style>
+    .reveal section h3,
+    .reveal section h4,
+    .reveal section h5,
+    .reveal section h6 {
+        text-transform: none;
+    }
+    .reveal section h1 {
+        font-size: 1.6em;
+    }
+    .reveal section h2 {
+        font-size: 1em;
+    }
+    .reveal section h3 {
+        color: #6a9fb5;
+        font-size: 0.8em;
+        padding-top: 0.5em;
+        margin-bottom: 0.2em;
+    }
+    .reveal section p,
+    .reveal section div,
+    .reveal section span,
+    .reveal section li,
+    .reveal section ul,
+    .reveal section ol,
+    .reveal section ul ul {
+        font-size: 0.8em;
+    }
+    .reveal section code {
+        font-size: 1em;
+    }
+    .two_column_list ul,
+    .two_column_list ol {
+        width: 100%;
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+    }
+    .reveal section img {
+        border: none;
+        background: none;
+        box-shadow: none;
+    }
+    .reveal a {
+        color: #6a9fb5;
+    }
+    .reveal a:hover {
+        color: #7cbad4;
+    }
+    .reveal section {
+        text-align: left;
+    }
+
+    html.dimbg75 .slide-background {
+        opacity: 0.75 !important;
+    }
+
+    .center-image {
+        display: block;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    ::selection,
+    ::-moz-selection {
+        color: white;
+        background: #6a9fb5;
+    }
+
+    code::selection,
+    code::-moz-selection {
+        color: #3f3f3f;
+        background: #dcdcdc
+    }
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        <!-- .slide: data-background="images/communication-4871245_1920.jpg" class="center" style="text-align: center; background: rgba(0, 0, 0, 0.5);" -->
+
+        # GitOps
+
+        <b>*Nicholas Dille*</b>
+
+        <i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> <b>Docker Captain</b> &amp; <i class="fab fa-windows" style="width: 1.5em; text-align: center;"></i> <b>Microsoft MVP</b>
+    </textarea></section>
+
+    <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Agenda
+
+        XXX
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Etymology
+
+        Git
+
+        Ops
+
+        WeaveWorks, 2017
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        <!-- .slide: class="center" -->
+
+        *GitOps: versioned CI/CD on top of declarative infrastructure. Stop scripting and start shipping.*
+
+        [Kelsey Hightower, Developer Advocate @ Google](https://twitter.com/kelseyhightower/status/953638870888849408)
+        <!-- .element: style="text-align: right;" -->
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Definition
+
+        Continuous Deployment for Cloud Native Applications
+
+        Developer centric experience when operating infrastructure
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## /Why/ GitOps?
+
+        Advantages of software development for operations
+
+        Ops must learn from devs
+
+        Version control as single source of truth
+
+        Declarative infrastructure as desired state
+
+        Immutable infrastructure
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## GitOps == DevOps?
+
+        DevOps is cultural change
+
+        GitOps is a technique
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## When this becomes religion
+
+        Pull vs push
+
+        CIOps
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## How to GitOps?
+
+        Source control
+
+        Declarative infrastructure
+
+        You decide
+        - Repository layout (monorepo or multirepo)
+        - Development mode (trunk-based or gitflow)
+        - Stages (one or more)
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Noteworthy projects
+
+        [fluxcd](https://fluxcd.io/) (created by WeaveWorks, now a CNCF sandbox project)
+
+        [tekton](https://tekton.dev/) (part of the [cd.foundation](https://cd.foundation/)
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Secrets
+
+        Push (also more permissions required)
+
+        Pull (minimal permissions)
+
+        Separate use cases with dedicated accounts
+
+        Assign minimal privileges
+
+        Deploy keys
+
+        Local development using `.env` (do not forget `.gitignore`)
+
+        Limit interactive access to target system
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Example use of git
+
+        Branch represents one instance of a service
+
+        Example 1: In MaaS one branch represents one deployment dedicated to a team
+
+        Example 2: k8s deployed from one repository, a branch represents a cluster
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Summary
+
+        XXX
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Further reading
+
+        [gitops.tech](https://www.gitops.tech/)
+
+        [Weave Works blog](https://www.weave.works/blog/category/gitops/)
+
+        [CIOps ](https://www.weave.works/blog/kubernetes-anti-patterns-let-s-do-gitops-not-ciops)
+    </textarea></section>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/js/reveal.min.js" type="application/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3.1.0/notyf.min.js"></script>
+<script>
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        transition: 'convex',
+        backgroundTransition: 'fade',
+
+        allottedTime: 45 * 60 * 1000,
+        keyboard: {
+            // pause/resume time when Enter is pressed
+            13: () => {
+                ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+            },
+            // reset timer when 'r' is pressed
+            82: () => {
+                ElapsedTimeBar.reset();
+            }
+        },
+
+        dependencies: [
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/zoom-js/zoom.js', async: true },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/notes/notes.js' },
+            { src: 'plugins/elapsed-time-bar-2699fc8/elapsed-time-bar.js'}
+
+        ]
+    });
+
+    /*
+    var clipboard = new ClipboardJS(".hljs", {
+        text: function(trigger) {
+            return trigger.innerText;
+        }
+    });
+    clipboard.on("success", function(e) {
+        var notyf = new Notyf();
+        notyf.success("Copied to clipboard :)");
+    });
+    clipboard.on("error", function(e) {
+        var notyf = new Notyf();
+        notyf.error("Can't copy to clipboard :(");
+    });
+    */
+</script>
+
+</body>
+</html>

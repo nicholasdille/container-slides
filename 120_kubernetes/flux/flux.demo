@@ -1,0 +1,10 @@
+# Basic demonstration
+
+# Check resources created by `flux`
+fluxctl list-workloads --all-namespaces
+
+# Check images used in workloads
+fluxctl list-images -w demo:deployment/podinfo
+
+# Check image tag policy
+fluxctl policy -w demo:deployment/podinfo --tag-all='1.4.*'
