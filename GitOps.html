@@ -115,17 +115,11 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Agenda
 
-        XXX
-    </textarea></section>
+        What is GitOps
 
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Etymology
+        How it works
 
-        Git
-
-        Ops
-
-        WeaveWorks, 2017
+        Noteworthy projects
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -138,49 +132,47 @@
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Definition
+        ## What is GitOps
 
         Continuous Deployment for Cloud Native Applications
 
         Developer centric experience when operating infrastructure
-    </textarea></section>
-
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## /Why/ GitOps?
-
-        Advantages of software development for operations
-
-        Ops must learn from devs
-
+        
         Version control as single source of truth
 
         Declarative infrastructure as desired state
 
-        Immutable infrastructure
+        Automation is key
+
+        Ops can learn from devs
+
+        Invented by WeaveWorks in 2017
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## GitOps == DevOps?
+        ## GitOps != DevOps
 
-        DevOps is cultural change
+        ### DevOps is cultural change
 
-        GitOps is a technique
+        Shared responsibility
+
+        Tools can support but are not essential
+
+        ### GitOps is a methodology
+
+        Technical implementation
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## When this becomes religion
+        ## How to do GitOps?
 
-        Pull vs push
-
-        CIOps
-    </textarea></section>
-
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## How to GitOps?
-
-        Source control
+        Version control
 
         Declarative infrastructure
+
+        Automation to *make it so*
+
+        Minimize glue code
 
         You decide
         - Repository layout (monorepo or multirepo)
@@ -189,45 +181,123 @@
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## How to do GitOps?
+        
+        When this becomes religion...
+
+        ### Push deployment
+
+        All-knowing CI/CD pipeline
+
+        Extensive permissions required
+
+        WeaveWorks calls this *CIOps*
+
+        ### Pull deployment
+        
+        Preached by WeaveWorks
+
+        Smaller attack surface due to few permissions
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Noteworthy projects
 
-        [fluxcd](https://fluxcd.io/) (created by WeaveWorks, now a CNCF sandbox project)
+        Most certainly not exhaustive ;-)
 
-        [tekton](https://tekton.dev/) (part of the [cd.foundation](https://cd.foundation/)
+        ### [flux](https://fluxcd.io/)
+
+        The GitOps reference project
+        
+        Created by [WeaveWorks](https://www.weave.works/), CNCF [sandbox project](https://www.cncf.io/sandbox-projects/)
+
+        ### [tekton](https://tekton.dev/)
+
+        Kubernetes native CI/CD
+        
+        Part of the [cd.foundation](https://cd.foundation/)
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Secrets
 
-        Push (also more permissions required)
+        ### Push deployment
+        
+        Permissions in target environment required
+        
+        Secrets are injected by pipeline
 
-        Pull (minimal permissions)
+        ### Pull deployment
 
-        Separate use cases with dedicated accounts
+        Deployments performed from inside the target environment
+        
+        Secrets using [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) or pulled from Vault
+    </textarea></section>
 
-        Assign minimal privileges
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Privileges
 
-        Deploy keys
+        ### Least privileges
 
-        Local development using `.env` (do not forget `.gitignore`)
+        Deny by default and add permissions
+
+        Use deploy keys but harder for auditing
+
+        Do not compromise
+
+        ### Separation of concerns
+
+        Dedicated account per use case
+
+        Evaluate permissions per account
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Security in dev and ops
+
+        Make human interaction more secure
+
+        ### Local development
+
+        Always add `.env` to your `.gitignore`
+
+        Place required environment variables in `.env`
+
+        ### Troubleshooting
+
+        Default to read access to live environment
 
         Limit interactive access to target system
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Example use of git
+        ## GitOps in DevInfra
 
-        Branch represents one instance of a service
+        Fully automated using push deployments
 
-        Example 1: In MaaS one branch represents one deployment dedicated to a team
+        Branch represents one instance or stage of a service
 
-        Example 2: k8s deployed from one repository, a branch represents a cluster
+        ### Example 1: Monitoring-as-a-Service (MaaS)
+        
+        One branch represents one deployment dedicated to a team
+
+        ### Example 2: Kubernetes cluster
+        
+        Deployed from one repository
+        
+        One branch represents a cluster
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Summary
 
-        XXX
+        Operate infrastructure from version control
+
+        WeaveWorks invented GitOps in 2017
+
+        GitOps is pull deployment
+
+        CIOps is push deployment
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -237,7 +307,11 @@
 
         [Weave Works blog](https://www.weave.works/blog/category/gitops/)
 
-        [CIOps ](https://www.weave.works/blog/kubernetes-anti-patterns-let-s-do-gitops-not-ciops)
+        [Guide to GitOps](https://www.weave.works/technologies/gitops/)
+
+        [CIOps as an anti-pattern](https://www.weave.works/blog/kubernetes-anti-patterns-let-s-do-gitops-not-ciops)
+
+        [Awesome GitOps](https://github.com/weaveworks/awesome-gitops)
     </textarea></section>
 </div>
 </div>
