@@ -1,7 +1,7 @@
 # Basic demonstration
 
 # Check resources created by `flux`
-fluxctl list-workloads --all-namespaces
+fluxctl list-workloads
 
 # Check images used in workloads
 fluxctl list-images -w demo:deployment/podinfo

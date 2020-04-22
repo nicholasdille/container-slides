@@ -1,0 +1,10 @@
+# PipelineRun
+
+# Define pipeline
+kubectl apply -f pipelinerun.yaml
+
+# Check results
+tkn pipelinerun list
+
+# Check output
+tkn pipelinerun logs pipelinerun-echo-greetings

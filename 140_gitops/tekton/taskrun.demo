@@ -1,0 +1,10 @@
+# TaskRun
+
+# Define pipeline
+kubectl apply -f taskrun.yaml
+
+# Check results
+tkn taskrun list
+
+# Check output
+tkn taskrun logs echo-hello-world-task-run
