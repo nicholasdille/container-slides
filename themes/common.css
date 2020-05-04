@@ -1,0 +1,9 @@
+html.dimbg75 .slide-background {
+    opacity: 0.75 !important;
+}
+
+.center-image {
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
