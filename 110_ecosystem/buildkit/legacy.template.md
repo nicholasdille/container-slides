@@ -1,7 +1,5 @@
 ## Build engines
 
-`docker` comes with two build engines
-
 ### Legacy build engine
 
 Default when running `docker build`

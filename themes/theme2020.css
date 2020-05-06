@@ -27,7 +27,7 @@ body {
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: normal;
-    text-transform: uppercase;
+    text-transform: none;
     text-shadow: none;
     word-wrap: break-word;
 }
@@ -38,16 +38,12 @@ body {
     font-size: 1em;
 }
 .reveal h3 {
-    color: #6a9fb5;
     font-size: 0.8em;
     padding-top: 0.5em;
     margin-bottom: 0.2em;
 }
-.reveal h3,
-.reveal h4,
-.reveal h5,
-.reveal h6 {
-    text-transform: none;
+.reveal h4 {
+    font-size: 0.8em;
 }
 
 /* TEXT AND LISTS */
@@ -98,7 +94,7 @@ body {
     font-size: 0.8em;
 }
 .reveal section code {
-    font-size: 1em;
+    font-size: 1.3em;
 }
 .two_column_list ul,
 .two_column_list ol {
@@ -140,11 +136,15 @@ body {
 
 /* LINKS */
 .reveal a {
-    color: #6a9fb5;
+    color: inherit;
     text-decoration: none;
     -webkit-transition: color .15s ease;
     -moz-transition: color .15s ease;
     transition: color .15s ease;
+}
+.reveal a::after {
+    font-family: FontAwesome;
+    content: " \f08e"
 }
 .reveal a:hover {
     color: #7cbad4;

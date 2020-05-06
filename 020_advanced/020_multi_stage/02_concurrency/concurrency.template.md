@@ -1,6 +1,6 @@
 ## Multi Stage Builds - Concurrency
 
-### Stages can be built in parallel
+Stages can be built in parallel
 
 `build1` and `build2` are built at the same time
 
@@ -16,13 +16,13 @@ COPY --from=build1 /opt/binary1 /opt/
 COPY --from=build2 /opt/binary2 /opt/
 ```
 
-Concurrency is determines based on a dependency graph
+Concurrency is determines based on the dependency graph
 
 --
 
 ## Demo: Multi Stage Builds - Concurrency
 
-### Stages have a delay of 10 seconds
+Stages have a delay of 10 seconds
 
 <!-- include: concurrency-0.command -->
 

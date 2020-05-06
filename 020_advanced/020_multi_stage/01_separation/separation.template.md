@@ -1,12 +1,14 @@
 ## Multi Stage Builds - Separation
 
-### Features
+Separate build and runtime environments
 
-- Separate build and runtime environments
-- Multiple `FROM` sections in `Dockerfile`
-- Last section represents final image
-- Intermediate images built using `--target`
-- Prerequisites: Docker 17.09
+Multiple `FROM` sections in `Dockerfile`
+
+Last section represents final image
+
+Intermediate images built using `--target`
+
+Prerequisites: Docker 17.09
 
 ```Dockerfile
 FROM openjdk:8-jdk AS builder

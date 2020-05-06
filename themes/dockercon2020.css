@@ -22,14 +22,14 @@ body {
     color: rgb(1, 124, 255);
     text-transform: none;
 }
-.reveal h3 {
-    color: rgb(1, 124, 255);
+
+/* TEXT AND LISTS */
+.reveal p {
+    margin: 20px 0;
+    line-height: 1.0;
 }
 
 /* LINKS */
-.reveal a {
-    color: rgb(1, 124, 255);
-}
 .reveal a:hover {
     color: rgb(1, 124, 255);
 }
