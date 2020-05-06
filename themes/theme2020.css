@@ -1,5 +1,5 @@
 /* GLOBAL */
-@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+@import url(https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/lib/font/source-sans-pro/source-sans-pro.css);
 body {
     background: #191919;
     background-color: #191919;
