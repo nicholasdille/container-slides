@@ -135,16 +135,16 @@ body {
 }
 
 /* LINKS */
+.external-link::after {
+    font-family: FontAwesome;
+    content: " \f08e"
+}
 .reveal a {
     color: inherit;
     text-decoration: none;
     -webkit-transition: color .15s ease;
     -moz-transition: color .15s ease;
     transition: color .15s ease;
-}
-.reveal a::after {
-    font-family: FontAwesome;
-    content: " \f08e"
 }
 .reveal a:hover {
     color: #7cbad4;
