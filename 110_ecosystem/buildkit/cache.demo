@@ -1,10 +1,12 @@
-# WIP: Preserve caches across builds
+# Preserve caches across builds
 
 # Enable buildkit
 export DOCKER_BUILD=1
 
 # First run creates cache
-docker build cache
+cat Dockerfile.cache-warm
+docker build --progress plain --file Dockerfile.cache-warm .
 
 # Second run uses cache
-docker build cache
+cat Dockerfile.cache-check
+docker build --progress plain --file Dockerfile.cache-check .

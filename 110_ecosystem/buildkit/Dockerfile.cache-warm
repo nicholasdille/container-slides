@@ -1,0 +1,4 @@
+# syntax = docker/dockerfile:experimental
+FROM ubuntu
+RUN --mount=type=cache,target=/tmp/cache \
+    touch /tmp/cache/foo.bar
