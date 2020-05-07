@@ -1,5 +1,4 @@
 /* GLOBAL */
-@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 body {
     background-color: rgb(20, 21, 47);
@@ -22,14 +21,14 @@ body {
     color: rgb(1, 124, 255);
     text-transform: none;
 }
-.reveal h3 {
-    color: rgb(1, 124, 255);
+
+/* TEXT AND LISTS */
+.reveal p {
+    margin: 20px 0;
+    line-height: 1.0;
 }
 
 /* LINKS */
-.reveal a {
-    color: rgb(1, 124, 255);
-}
 .reveal a:hover {
     color: rgb(1, 124, 255);
 }

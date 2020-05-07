@@ -1,8 +1,8 @@
 ## Classic Build Cache Warming
 
-Builds may not run on the same host
-
 ### How it works
+
+Builds may not run on the same host
 
 Use local images to warm cache
 
@@ -21,7 +21,7 @@ Image must be present locally
 
 --
 
-## Demo: Classic Build Cache Warming v1
+## Demo: Classic Build Cache Warming
 
 <!-- include: classic-0.command -->
 
