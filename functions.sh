@@ -72,9 +72,9 @@ include() {
         return
     fi
     PATTERN="^\s*<!--\s*include\:\s*(.+\.command)\s*-->\s*$"
-    cat ${FILE}.template.md | while read LINE; do
-		if [[ ${LINE} =~ ${PATTERN} ]]; then
-			FILE=$(echo ${LINE} | sed -E "s/${PATTERN}/\1/")
+    cat ${FILE}.template.md | while read; do
+		if [[ ${REPLY} =~ ${PATTERN} ]]; then
+			FILE=$(echo ${REPLY} | sed -E "s/${PATTERN}/\1/")
             TEXT=$(cat ${FILE} | grep -E "^#" | head -n 1 | sed -E 's/^#\s*(.+)$/\1/')
             echo "${TEXT}:"
             echo
@@ -82,7 +82,7 @@ include() {
             cat ${FILE} | grep -vE "^\s*$" | grep -vE "^#"
             echo '```'
         else
-            echo "${LINE}"
+            echo "${REPLY}"
 		fi
 	done >${FILE}.final.md
 }
