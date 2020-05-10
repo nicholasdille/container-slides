@@ -7,3 +7,8 @@ html.dimbg75 .slide-background {
     margin-left: auto !important;
     margin-right: auto !important;
 }
+
+.layout-double {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
