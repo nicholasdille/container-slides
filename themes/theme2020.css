@@ -223,6 +223,7 @@ code::-moz-selection {
     margin: auto;
     border-collapse: collapse;
     border-spacing: 0;
+    font-size: smaller;
 }
 .reveal table th {
     font-weight: bold;
