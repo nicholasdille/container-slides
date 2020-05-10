@@ -1,12 +1,15 @@
 # Internals of docker-app
+
 # Check image manifest
 MANIFEST=$(curl -sH \
     "Accept: application/vnd.docker.distribution.manifest.v2+json" \
     http://localhost:5000/v2/hello/manifests/1.0)
+
 # Image configuration is boring
 CONFIG=$(echo "${MANIFEST}" | jq --raw-output '.config.digest')
 curl -o - \
     http://localhost:5000/v2/hello/blobs/${CONFIG} | jq
+
 # Layer contains packaged app
 LAYER=$(echo "${MANIFEST}" | jq --raw-output '.layers[0].digest')
 curl -o - \

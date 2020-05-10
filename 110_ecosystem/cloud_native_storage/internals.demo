@@ -1,8 +1,10 @@
 # oras internals
+
 # Check registry
 curl http://localhost:5000/v2/test/tags/list
 curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" \
     http://localhost:5000/v2/test/manifests/latest | jq
+
 # Get content
 DIGEST=$(curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" \
     http://localhost:5000/v2/test/manifests/latest \

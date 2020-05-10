@@ -1,10 +1,14 @@
 # Add a health endpoint to a container
 
 # Build image with health endpoint
-docker build --tag nginx-healthz healthz
+docker build \
+    --tag nginx-healthz \
+    healthz
 
 # Run container
-docker run -d --name nginx-healthz nginx-healthz
+docker run -d \
+    --name nginx-healthz \
+    nginx-healthz
 
 # Check health endpoint
 docker inspect \
