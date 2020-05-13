@@ -12,7 +12,7 @@ Prerequisites: Docker 19.03
 
 ### Build with cache from remote image
 
-```bash
+```plaintext
 export DOCKER_BUILDKIT=1
 
 # Build image with cache information

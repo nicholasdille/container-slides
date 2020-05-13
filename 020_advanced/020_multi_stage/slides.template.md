@@ -4,11 +4,9 @@ Multiple `FROM` sections in `Dockerfile`
 
 Last section represents final image
 
-Intermediate images built using `--target`
+Copy files between stages
 
-Prerequisites: Docker 17.09
-
-```Dockerfile
+```plaintext
 FROM openjdk:8-jdk AS builder
 #...
 
@@ -16,3 +14,7 @@ FROM openjdk:8-jre
 COPY --from=builder ...
 #...
 ```
+
+Build intermediate images using `--target name`
+
+Prerequisites: Docker 17.09

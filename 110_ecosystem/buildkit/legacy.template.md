@@ -12,7 +12,7 @@ Based on [Moby Buildkit](https://github.com/moby/buildkit)
 
 Enabled by environment variable:
 
-```bash
+```plaintext
 export DOCKER_BUILDKIT=1
 ```
 

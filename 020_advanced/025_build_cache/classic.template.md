@@ -6,7 +6,7 @@ Builds may not run on the same host
 
 Use local images to warm cache
 
-```
+```plaintext
 docker pull myimage:1
 docker build --cache-from myimage:1 --tag myimage:2
 ```

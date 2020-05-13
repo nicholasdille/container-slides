@@ -74,7 +74,7 @@ RUN curl -Lo /usr/local/bin/docker-compose https://github.com/docker/compose/rel
 
 Shell notation wraps command in shell:
 
-```text
+```plaintext
 RUN java -version   # sh -c 'java -version'
 ```
 

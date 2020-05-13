@@ -4,7 +4,7 @@ Stages can be built in parallel
 
 `build1` and `build2` are built at the same time
 
-```Dockerfile
+```plaintext
 FROM alpine AS build1
 RUN touch /opt/binary1
 
@@ -17,6 +17,8 @@ COPY --from=build2 /opt/binary2 /opt/
 ```
 
 Concurrency is determines based on the dependency graph
+
+![](020_advanced//020_multi_stage/02_concurrency/dependency_graph.drawio.svg) <!-- .element: class="center-image" -->
 
 --
 

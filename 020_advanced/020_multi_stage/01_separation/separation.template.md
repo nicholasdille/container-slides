@@ -4,19 +4,29 @@ Separate build and runtime environments
 
 <div class="layout-double">
 
-**Build**
+**Build environment**
 
-**Run**
+**Runtime environment**
 
-a
+Compilers (e.g. `javac`)
 
-b
+Runtime (e.g. `java`)
 
-c
+Build dependencies
 
-d
+Execution dependencies
+
+Build tools (e.g. `make`)
+
+-
+
+Large image
+
+Smaller attack surface
 
 </div>
+
+XXX
 
 --
 

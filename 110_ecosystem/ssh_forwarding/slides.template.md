@@ -4,7 +4,7 @@ Do not copy secrets into image layers
 
 Bad example:
 
-```Dockerfile
+```plaintext
 FROM ubuntu
 COPY id_rsa /root/.ssh/
 RUN scp user@somewhere:/tmp/data .

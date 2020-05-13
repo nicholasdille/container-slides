@@ -2,7 +2,7 @@
 
 Sometime it is desirable to change context and Dockerfile
 
-```text
+```plaintext
 $ docker build          \\    $ buildctl build               \\
 >                       \\    >     --frontend dockerfile.v0 \\
 >     --file Dockerfile \\    >     --local dockerfile=.     \\
@@ -19,7 +19,7 @@ Remember: Context is the path which is packed and sent to the daemon
 
 Docker has taught us to build and push container images:
 
-```text
+```plaintext
 docker build \\
     --tag my_image_name \\
     .
@@ -28,7 +28,7 @@ docker push my_image_name
 
 BuildKit can directly upload to an image registry:
 
-```text
+```plaintext
 buildctl build \\
     --frontend dockerfile.v0 \\
     --local dockerfile=. \\
@@ -44,13 +44,13 @@ XXX https://github.com/moby/buildkit#imageregistry
 
 XXX build arguments
 
-```text
+```plaintext
 docker build \\
     --build-arg name=value \\
     .
 ```
 
-```text
+```plaintext
 buildctl build \\
     --frontend dockerfile.v0 \\
     --local dockerfile=. \\
@@ -64,7 +64,7 @@ buildctl build \\
 
 XXX cache
 
-```text
+```plaintext
 buildctl build \\
     --frontend dockerfile.v0 \\
     --local dockerfile=. \\

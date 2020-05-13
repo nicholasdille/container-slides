@@ -18,14 +18,14 @@ Daemonless is just a wrapper for daemon/CLI
 
 Docker CLI hides the details of using BuildKit
 
-```bash
+```plaintext
 export DOCKER_BUILDKIT=1
 docker build .
 ```
 
 Default daemon to BuildKit:
 
-```bash
+```plaintext
 $ cat /etc/docker/daemon.json
 { "features": { "buildkit": true } }
 ```
@@ -38,13 +38,13 @@ Run BuildKit locally
 
 Start the daemon:
 
-```bash
+```plaintext
 sudo buildkitd
 ```
 
 Run a build:
 
-```bash
+```plaintext
 buildctl build \\
     --frontend dockerfile.v0 \\
     --local context=. \\
@@ -59,7 +59,7 @@ Run BuildKit in a container
 
 Start the daemon:
 
-```bash
+```plaintext
 docker run -d \\
     --name buildkitd \\
     --privileged \\
@@ -69,7 +69,7 @@ docker run -d \\
 
 Run a build:
 
-```bash
+```plaintext
 docker run -it \\
     --network container:buildkitd \\
     --volume $PWD:/src \\
@@ -90,7 +90,7 @@ Let a script take care of running the daemon
 
 Run a build locally:
 
-```bash
+```plaintext
 buildctl-daemonless.sh build \\
     --frontend dockerfile.v0 \\
     --local context=. \\
@@ -99,7 +99,7 @@ buildctl-daemonless.sh build \\
 
 Run a build containerized:
 
-```bash
+```plaintext
 docker run -it \\
     --privileged \\
     --volume $PWD:/src \\

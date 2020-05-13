@@ -10,13 +10,13 @@ XXX
 
 Run the daemon in user context:
 
-```bash
+```plaintext
 buildkitd
 ```
 
 Run the build:
 
-```bash
+```plaintext
 buildctl-daemonless.sh build \\
     --frontend dockerfile.v0 \\
     --local context=. \\
@@ -29,7 +29,7 @@ buildctl-daemonless.sh build \\
 
 Run the daemon in user context:
 
-```bash
+```plaintext
 docker run -d \\
     --name buildkitd \\
     --security-opt apparmor=unconfined \\
@@ -41,7 +41,7 @@ docker run -d \\
 
 Run a build:
 
-```bash
+```plaintext
 docker run -it \\
     --network container:buildkitd \\
     --volume $PWD:/src \\
@@ -60,7 +60,7 @@ docker run -it \\
 
 Run a build:
 
-```bash
+```plaintext
 docker run -it \\
     --security-opt apparmor=unconfined \\
     --security-opt seccomp=unconfined \\

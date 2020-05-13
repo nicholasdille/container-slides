@@ -78,7 +78,7 @@ include() {
             TEXT=$(cat ${FILE} | grep -E "^#" | head -n 1 | sed -E 's/^#\s*(.+)$/\1/')
             echo "${TEXT}:"
             echo
-            echo '```bash'
+            echo '```plaintext'
             cat ${FILE} | grep -vE "^\s*$" | grep -vE "^#"
             echo '```'
         else

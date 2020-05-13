@@ -86,7 +86,7 @@ My own tests prove otherwise
 
 ### Separate functionality into chains of images
 
-```text
+```plaintext
 dind -> dind-gocd-agent
         linux-agent     -> linux-agent-gocd
                         -> linux-agent-jenkins
