@@ -2,22 +2,21 @@
 
 Separate build and runtime environments
 
-Multiple `FROM` sections in `Dockerfile`
+<div class="layout-double">
 
-Last section represents final image
+**Build**
 
-Intermediate images built using `--target`
+**Run**
 
-Prerequisites: Docker 17.09
+a
 
-```Dockerfile
-FROM openjdk:8-jdk AS builder
-#...
+b
 
-FROM openjdk:8-jre
-COPY --from=builder ...
-#...
-```
+c
+
+d
+
+</div>
 
 --
 
