@@ -6,7 +6,7 @@ Do not provide secrets using environment variables
 
 Build arguments (`ARG`) are only one option
 
-### Buildkit to the rescue
+### BuildKit to the rescue
 
 Mount secrets using `tmpfs`
 

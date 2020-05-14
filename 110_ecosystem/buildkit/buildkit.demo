@@ -1,6 +1,6 @@
-Building a container image using buildkit
+# Building a container image using BuildKit
 
-# Start buildkit daemon
+# Start BuildKit daemon
 sudo buildkitd >buildkitd.log 2>&1 &
 
 # Run equivalent of docker build

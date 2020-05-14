@@ -26,7 +26,7 @@ Smaller attack surface
 
 </div>
 
-XXX
+XXX works in legacy builder
 
 --
 

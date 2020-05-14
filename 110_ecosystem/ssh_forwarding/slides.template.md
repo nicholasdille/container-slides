@@ -11,7 +11,7 @@ RUN scp user@somewhere:/tmp/data .
 RUN rm /root/.ssh/id_rsa
 ```
 
-### Buildkit to the rescue
+### BuildKit to the rescue
 
 Forward the SSH agent socket
 
@@ -21,7 +21,7 @@ Introduced in Docker 18.09
 
 ## Demo: SSH Agent Forwarding
 
-Buildkit forwards the SSH agent socket
+BuildKit forwards the SSH agent socket
 
 <!-- include: ssh-agent-0.command -->
 

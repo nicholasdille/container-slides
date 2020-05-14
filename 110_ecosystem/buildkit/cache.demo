@@ -1,6 +1,6 @@
 # Preserve caches across builds
 
-# Enable buildkit
+# Enable BuildKit
 export DOCKER_BUILD=1
 
 # First run creates cache

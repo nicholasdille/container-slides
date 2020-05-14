@@ -1,6 +1,6 @@
 ## Multi Stage Builds - Concurrency
 
-Stages can be built in parallel
+Stages can be built in parallel *when using BuildKit*
 
 `build1` and `build2` are built at the same time
 
@@ -16,9 +16,9 @@ COPY --from=build1 /opt/binary1 /opt/
 COPY --from=build2 /opt/binary2 /opt/
 ```
 
-Concurrency is determines based on the dependency graph
+![](020_advanced//020_multi_stage/02_concurrency/dependency_graph.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
 
-![](020_advanced//020_multi_stage/02_concurrency/dependency_graph.drawio.svg) <!-- .element: class="center-image" -->
+Concurrency is determined based on the dependency graph
 
 --
 

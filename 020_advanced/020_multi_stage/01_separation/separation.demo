@@ -5,7 +5,7 @@ docker build \
     --tag hello-world-java:multi \
     .
 
-# Multi-stage with buildkit
+# Multi-stage with BuildKit
 DOCKER_BUILDKIT=1 docker build \
     --tag hello-world-java:multi \
     .

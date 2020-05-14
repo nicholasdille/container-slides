@@ -6,9 +6,9 @@ Default when running `docker build`
 
 Has been around since the early days
 
-### Buildkit powered build engine
+### BuildKit powered build engine
 
-Based on [Moby Buildkit](https://github.com/moby/buildkit)
+Based on [Moby BuildKit](https://github.com/moby/buildkit)
 
 Enabled by environment variable:
 

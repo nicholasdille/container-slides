@@ -1,4 +1,4 @@
-## Buildkit Cache Warming
+## BuildKit Cache Warming
 
 Use remote images to warm cache
 
@@ -24,7 +24,7 @@ docker build --cache-from myimg .
 
 --
 
-## Demo: Buildkit Cache Warming
+## Demo: BuildKit Cache Warming
 
 <!-- include: buildkit-0.command -->
 
@@ -32,6 +32,6 @@ docker build --cache-from myimg .
 
 --
 
-## Demo: Buildkit Cache Internals
+## Demo: BuildKit Cache Internals
 
 <!-- include: internals-0.command -->
