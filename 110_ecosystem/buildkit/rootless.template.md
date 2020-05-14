@@ -10,17 +10,41 @@ XXX host networking or slirp4netns https://github.com/rootless-containers/slirp4
 
 XXX distros?
 
+Docker rootless is experimental since Docker 19.03
+
+--
+
+## Demo: Docker Rootless Containerized
+
+Run the daemon
+
+```plaintext
+docker run -it \\
+    --publish 127.0.0.1:2375:2375 \\
+    docker:stable-dind-rootless \\
+        dockerd \\
+            --host tcp://0.0.0.0:2375
+```
+
+Run the build
+
+```plaintext
+docker --host tcp://127.0.0.1:2375 build .
+```
+
+XXX docker context
+
 --
 
 ## Demo: Rootless locally
 
-Run the daemon in user context:
+Run the daemon in user context
 
 ```plaintext
 buildkitd
 ```
 
-Run the build:
+Run the build
 
 ```plaintext
 buildctl build \\
@@ -33,7 +57,7 @@ buildctl build \\
 
 ## Demo: Rootless fully containerized
 
-Run the daemon in user context:
+Run the daemon in user context
 
 ```plaintext
 docker run -d \\
@@ -45,7 +69,7 @@ docker run -d \\
         --addr tcp://127.0.0.1:1234
 ```
 
-Run a build:
+Run a build sharing the same network namespace
 
 ```plaintext
 docker run -it \\
@@ -64,7 +88,7 @@ docker run -it \\
 
 ## Demo: Rootless daemon containerized
 
-Run the daemon in user context:
+Run the daemon in user context with a port publishing
 
 ```plaintext
 docker run -d \\
@@ -77,10 +101,10 @@ docker run -d \\
         --addr tcp://0.0.0.0:1234
 ```
 
-Run a build:
+Run a build
 
 ```plaintext
-buildkit build \\
+buildctl build \\
     --addr tcp://127.0.0.1:1234 \\
     --frontend dockerfile.v0 \\
     --local context=. \\
@@ -91,7 +115,7 @@ buildkit build \\
 
 ## Demo: Rootless daemonless
 
-Run a build:
+Run a build by running the daemon on-demand
 
 ```plaintext
 export BUILDKITD_FLAGS=--oci-worker-no-process-sandbox \\
@@ -105,7 +129,7 @@ buildctl-daemonless.sh build \\
 
 ## Demo: Rootless daemonless containerized
 
-Run a build:
+Run a containerized build with the daemon on-demand
 
 ```plaintext
 docker run -it \\

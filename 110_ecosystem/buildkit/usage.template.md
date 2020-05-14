@@ -6,9 +6,9 @@ Uses a client/server architecture (daemon and CLI)
 
 |            | Locally | Containerized | Rootless |
 |------------|:-------:|:-------------:|:--------:|
-| Docker CLI | X       | X             | experimental
-| Daemon/CLI | X       | X             | X
-| Daemonless | X       | X             | X
+| Docker     | X       | Demo          | experimental
+| Daemon/CLI | Demo    | X             | X
+| Daemonless | X       | X             | Demo
 
 Daemonless is just a wrapper for daemon/CLI
 
@@ -16,11 +16,13 @@ XXX why BuildKit without Docker CLI
 
 --
 
-## Demo: Docker CLI
+## Demo: Docker
 
 Docker CLI hides the details of using BuildKit
 
-### Option 1: Enable BuildKit using Docker CLI
+### Option 1: Enable BuildKit
+
+Control BuildKit usage from Docker CLI
 
 ```plaintext
 export DOCKER_BUILDKIT=1
@@ -28,6 +30,8 @@ docker build .
 ```
 
 ### Option 2: Configure Docker daemon to use BuildKit
+
+The Docker daemon can use BuildKit by default
 
 ```plaintext
 $ cat /etc/docker/daemon.json
@@ -42,7 +46,11 @@ $ cat /etc/docker/daemon.json
 
 ## Demo: Docker fully containerized
 
-XXX dind
+Docker-in-Docker requires a privileged container...
+
+...which is a severe security concern
+
+Running Docker-in-Docker
 
 ```plaintext
 docker run -d \\
@@ -52,9 +60,7 @@ docker run -d \\
         --host tcp://127.0.0.1:2375
 ```
 
-XXX
-
-Run a build from local files:
+Run a build from local files sharing the same network namespace
 
 ```plaintext
 docker run -it \\
@@ -70,7 +76,11 @@ docker run -it \\
 
 ## Demo: Docker daemon containerized
 
-XXX dind
+Docker-in-Docker requires a privileged container...
+
+...which is a severe security concern
+
+Run Docker-in-Docker with local port publishing
 
 ```plaintext
 docker run -d \\
@@ -78,12 +88,11 @@ docker run -d \\
     --privileged \\
     --publish 127.0.0.1:2375:2375 \\
     docker:stable-dind \\
-        --host tcp://0.0.0.0:2375
+        dockerd \\
+            --host tcp://0.0.0.0:2375
 ```
 
-XXX
-
-Run a build from local files:
+Run a build from local files
 
 ```plaintext
 docker --host tcp://127.0.0.1:2375 build .
@@ -97,13 +106,13 @@ Run BuildKit locally
 
 Requires daemon and CLI
 
-Start the daemon:
+Start the daemon
 
 ```plaintext
 sudo buildkitd
 ```
 
-Run a build:
+Run a build
 
 ```plaintext
 buildctl build \\
@@ -118,7 +127,7 @@ buildctl build \\
 
 Run BuildKit daemon and CLI in a container
 
-Start the daemon in a privileged container:
+Start the daemon in a privileged container
 
 ```plaintext
 docker run -d \\
@@ -128,7 +137,7 @@ docker run -d \\
         --addr tcp://127.0.0.1:1234
 ```
 
-Run a build from local files:
+Run a build from local files
 
 ```plaintext
 docker run -it \\
@@ -149,7 +158,7 @@ docker run -it \\
 
 Run only the BuildKit daemon in a container
 
-Start the daemon in a privileged container:
+Start the daemon in a privileged container
 
 ```plaintext
 docker run -d \\
@@ -160,10 +169,10 @@ docker run -d \\
         --addr tcp://0.0.0.0:1234
 ```
 
-Run a build from local files:
+Run a build from local files
 
 ```plaintext
-buildkit build \\
+buildctl build \\
     --addr tcp://127.0.0.1:1234 \\
     --frontend dockerfile.v0 \\
     --local context=. \\
@@ -176,7 +185,7 @@ buildkit build \\
 
 Let a script take care of running the daemon on-demand
 
-Run a build locally:
+Run a build locally
 
 ```plaintext
 buildctl-daemonless.sh build \\
@@ -185,7 +194,7 @@ buildctl-daemonless.sh build \\
     --local dockerfile=.
 ```
 
-Run a build containerized:
+Run a build containerized
 
 ```plaintext
 docker run -it \\
