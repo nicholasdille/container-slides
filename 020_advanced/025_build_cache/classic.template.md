@@ -4,7 +4,7 @@
 
 Builds may not run on the same host
 
-Use local images to warm cache
+Pull an image to warm the cache
 
 ```plaintext
 docker pull myimage:1
@@ -31,4 +31,4 @@ Image must be present locally
 
 <!-- include: classic-3.command -->
 
-Internal build cache is still used when cache image does not exist
+Internal build cache is used when image does not exist

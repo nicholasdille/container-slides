@@ -12,7 +12,7 @@ Uses a client/server architecture (daemon and CLI)
 
 Daemonless is just a wrapper for daemon/CLI
 
-XXX why BuildKit without Docker CLI
+Build container images without access to Docker
 
 --
 

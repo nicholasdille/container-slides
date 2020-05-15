@@ -2,20 +2,30 @@
 
 Sometime it is desirable to change context and Dockerfile
 
+What you are doing today
+
 ```plaintext
-$ docker build          \\    $ buildctl build               \\
->                       \\    >     --frontend dockerfile.v0 \\
->     --file Dockerfile \\    >     --local dockerfile=.     \\
->     .                      >     --local context=.
+$ docker build          \\
+>     --file Dockerfile \\
+>     .
 ```
 
-XXX
+How to do this using BuildKit
+
+```plaintext
+$ buildctl build               \\
+>     --frontend dockerfile.v0 \\
+>     --local dockerfile=.     \\
+>     --local context=.
+```
 
 Remember: Context is the path which is packed and sent to the daemon
 
 --
 
 ## Transition to BuildKit
+
+Publish an image in a registry
 
 Docker has taught us to build and push container images:
 
@@ -36,19 +46,23 @@ buildctl build \\
     --output type=image,name=my_image_name,push=true
 ```
 
-XXX https://github.com/moby/buildkit#imageregistry
+Read more about [pushing to image registries](https://github.com/moby/buildkit#imageregistry)
 
 --
 
 ## Transition to BuildKit
 
-XXX build arguments
+Pass build arguments to customize the image build
+
+The Docker way
 
 ```plaintext
 docker build \\
     --build-arg name=value \\
     .
 ```
+
+The BuildKit way
 
 ```plaintext
 buildctl build \\
@@ -62,7 +76,20 @@ buildctl build \\
 
 ## Transition to BuildKit
 
-XXX cache
+Use an existing image as build cache
+
+Docker is able to use an local image
+
+```plaintext
+docker build \\
+    --cache-from my_image_name \\
+    --tag my_image_name \\
+    .
+```
+
+BuildKit can use an image in a registry...
+
+...and download helpful layers
 
 ```plaintext
 buildctl build \\

@@ -11,6 +11,8 @@ RUN scp user@somewhere:/tmp/data .
 RUN rm /root/.ssh/id_rsa
 ```
 
+Layers contain SSH key as well as host and user information
+
 ### BuildKit to the rescue
 
 Forward the SSH agent socket
@@ -31,7 +33,7 @@ BuildKit forwards the SSH agent socket
 
 --
 
-## Demo: SSH Agent Forwarding without buildkit
+## Demo: SSH Agent Forwarding without BuildKit
 
 Mount existing SSH agent socket
 
