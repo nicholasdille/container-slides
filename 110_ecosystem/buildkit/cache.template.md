@@ -1,10 +1,25 @@
-## Caching package directories
+## Persisting Cache Directories
 
-XXX
+Modern software development relies on countless dependencies
+
+Filling caches takes time
+
+### BuildKit to the rescue
+
+Cache directories can be persisted
+
+Syntax is similar to mounting secrets
+
+```plaintext
+# syntax = docker/dockerfile:experimental
+FROM ubuntu
+RUN --mount=type=cache,target=/tmp/cache \\
+    ls -l /tmp/cache
+```
 
 --
 
-## Demo: Caching package directories
+## Demo: Persisting Cache Directories
 
 <!-- include: cache-0.command -->
 

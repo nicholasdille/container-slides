@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="themes/theme2020.css" id="theme"/>
 <link rel="stylesheet" href="themes/common.css" id="theme"/>
 <link rel="stylesheet" href="themes/dockercon2020.css" id="theme"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/rainbow.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/rainbow.css"/>
 <script>
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
@@ -34,6 +34,8 @@
         Nicholas Dille, Haufe.Group
 
         <i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain &amp; <i class="fab fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
+
+        <i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
     </textarea></section>
 
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -41,7 +43,7 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Agenda
 
-        Why BuildKit?
+        BuildKit?
 
         Multi-stage builds
 
@@ -51,7 +53,7 @@
 
         SSH
 
-        XXX Caches?
+        Caching directories
 
         Using BuildKit without Docker
 
@@ -61,9 +63,25 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Image building
 
-        XXX
+        Containers have revolutionized our work
 
-        XXX integral part of deployment process
+        ### Software lifecycle
+
+        Packaged runtime improved interface to ops
+
+        Easier to create immutable infrastructure
+
+        Easier to use declarative infrastructure
+
+        ### Security
+
+        Not only build secure software...
+
+        ...but create secure images
+
+        ### Performance
+
+        Image builds must be fast for short feedback loops
     </textarea></section>
 
     <section data-markdown="110_ecosystem/buildkit/legacy.final.md" demos="false" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -79,7 +97,9 @@
     <section data-markdown="110_ecosystem/buildkit/cache.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="110_ecosystem/buildkit/usage.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="110_ecosystem/buildkit/rootless.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="110_ecosystem/buildkit/usage_docker_dockercon.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="110_ecosystem/buildkit/usage_buildkit_dockercon.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="110_ecosystem/buildkit/rootless_dockercon.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="110_ecosystem/buildkit/transition.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -87,13 +107,13 @@
 
         BuildKit brings new features to image building
 
-        XXX multi stage builds
+        Multi stage builds
 
-        XXX security/secrets/SSH
+        Protect secrets using mounts and SSH forwarding
 
-        XXX cache
+        Improve performance by persisting cache directories
 
-        XXX without Docker
+        Works with and without Docker
 
         ### Thanks for joining!
 
