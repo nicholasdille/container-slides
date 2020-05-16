@@ -8,7 +8,7 @@ Build arguments (`ARG`/`--build-arg`) are only one option
 
 ### BuildKit to the rescue
 
-Mount secrets using `tmpfs`
+Mount [secrets](https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/experimental.md#run---mounttypesecret) using `tmpfs`
 
 Temporary files in `/run/secrets/`
 

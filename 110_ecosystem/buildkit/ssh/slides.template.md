@@ -15,7 +15,7 @@ Layers contain SSH key as well as host and user information
 
 ### BuildKit to the rescue
 
-Forward the SSH agent socket
+Forward the [SSH agent](https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/experimental.md#run---mounttypessh) socket
 
 Introduced in Docker 18.09
 

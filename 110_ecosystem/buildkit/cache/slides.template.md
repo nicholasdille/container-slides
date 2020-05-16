@@ -6,7 +6,7 @@ Filling caches takes time
 
 ### BuildKit to the rescue
 
-Cache directories can be persisted
+[Cache directories](https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/experimental.md#run---mounttypecache) can be persisted
 
 Syntax is similar to mounting secrets
 
