@@ -140,7 +140,7 @@ body {
     content: " \f08e"
 }
 .reveal a {
-    color: inherit;
+    color: #7cbad4;
     text-decoration: none;
     -webkit-transition: color .15s ease;
     -moz-transition: color .15s ease;
