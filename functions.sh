@@ -5,7 +5,7 @@ fi
 
 RED="\e[91m"
 GREEN="\e[92m"
-YELLOW="\e[92m"
+YELLOW="\e[93m"
 DEFAULT="\e[39m"
 
 demos() {
@@ -27,15 +27,18 @@ demo() {
     clear
     for COMMAND in $(ls ${DEMO}-*.command); do
         echo
-        cat ${COMMAND} | grep -vE '^\s*$' | while read LINE; do echo -e "$ ${GREEN}${LINE}${DEFAULT}"; done
+        cat ${COMMAND} | grep -vE '^\s*$' | sed 's|\\|\\\\|g' | while read LINE; do echo -e "${GREEN}${LINE} ${DEFAULT}"; done
+        echo -e "${YELLOW}Press [ENTER] to run${DEFAULT}"
         read KEY
         . ${COMMAND}
+        echo
+        echo -e "${YELLOW}Press [ENTER] to continue${DEFAULT}"
+        read KEY
         if [[ "$?" != 0 ]]; then
             echo
             echo -e "${RED}Command failed stopping demo${DEFAULT}"
             break
         fi
-        echo
     done
     echo
 }
