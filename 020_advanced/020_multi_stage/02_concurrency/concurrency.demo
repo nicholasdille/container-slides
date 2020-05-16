@@ -1,7 +1,7 @@
 # Building stages in parallel
 
 # Build sequentially using the legacy build engine
-docker build .
+time docker build .
 
 # Build in parallel using BuildKit
 DOCKER_BUILDKIT=1 docker build .

@@ -8,5 +8,8 @@ docker run -d \
         dockerd \
             --host tcp://0.0.0.0:2375
 
+# Check
+docker ps
+
 # Run local Docker CLI against daemon container
 docker --host tcp://127.0.0.1:2375 build .

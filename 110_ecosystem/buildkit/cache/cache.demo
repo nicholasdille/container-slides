@@ -1,7 +1,7 @@
 # Preserve caches across builds
 
 # Enable BuildKit
-export DOCKER_BUILD=1
+export DOCKER_BUILDKIT=1
 
 # First run creates cache
 cat Dockerfile.cache-warm

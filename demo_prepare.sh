@@ -18,10 +18,10 @@ if ! type xmlstarlet; then
     apt -y install xmlstarlet
 fi
 if ! type hcloud; then
-    curl -sLf https://api.github.com/repos/hetznercloud/cli/releases/latest | \
-        jq --raw-output '.assets[] | select(.name | contains("-linux-amd64-")) | .browser_download_url' | \
+    curl -s https://api.github.com/repos/hetznercloud/cli/releases/latest | \
+        jq --raw-output '.assets[] | select(.name | contains("-linux-amd64.")) | .browser_download_url' | \
         xargs curl -sLf | \
-        tar -xvzC /usr/local/bin/ --strip-components=2 --wildcards hcloud-linux-amd64-*/bin/hcloud
+        tar -xvzC /usr/local/bin/ hcloud
 fi
 if [[ "$(hcloud context active | wc -l)" -eq 0 ]]; then
     echo "No context defined for hcloud"

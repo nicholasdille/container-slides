@@ -27,4 +27,4 @@ RUN --mount=type=secret,id=mysite.key \\
     ls -l /run/secrets
 ```
 
-<!-- include: mount-0.command -->
+<!-- include: mount-1.command -->

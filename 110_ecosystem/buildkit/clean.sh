@@ -1,3 +1,3 @@
 #!/bin/bash
 
-killall buildkitd
+killall -q buildkitd || true
