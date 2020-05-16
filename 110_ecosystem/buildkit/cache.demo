@@ -5,6 +5,8 @@ export DOCKER_BUILD=1
 
 # First run creates cache
 cat Dockerfile.cache-warm
+
+# Run build
 docker build \
     --progress plain \
     --file Dockerfile.cache-warm \
@@ -12,6 +14,8 @@ docker build \
 
 # Second run uses cache
 cat Dockerfile.cache-check
+
+# Run build
 docker build \
     --progress plain \
     --file Dockerfile.cache-check \

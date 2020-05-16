@@ -4,17 +4,6 @@ Run BuildKit locally
 
 Requires daemon and CLI
 
-Start the daemon
+<!-- include: usage_buildkit_locally-0.command -->
 
-```plaintext
-sudo buildkitd
-```
-
-Run a build
-
-```plaintext
-buildctl build \\
-    --frontend dockerfile.v0 \\
-    --local context=. \\
-    --local dockerfile=.
-```
+<!-- include: usage_buildkit_locally-1.command -->

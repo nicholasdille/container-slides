@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.0.0-experimental
+# syntax=docker/dockerfile:experimental
 
 FROM alpine
 SHELL [ "sh", "-xec"]

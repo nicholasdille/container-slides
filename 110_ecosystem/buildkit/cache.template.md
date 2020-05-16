@@ -23,6 +23,6 @@ RUN --mount=type=cache,target=/tmp/cache \\
 
 <!-- include: cache-0.command -->
 
-<!-- include: cache-1.command -->
-
 <!-- include: cache-2.command -->
+
+<!-- include: cache-4.command -->

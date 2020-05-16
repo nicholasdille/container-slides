@@ -1,0 +1,10 @@
+# Usage: BuildKit locally
+
+# Run BuildKit daemon locally
+sudo buildkitd 2>&1 >/tmp/buildkit.log &
+
+# Run build against daemon
+buildctl build \
+    --frontend dockerfile.v0 \
+    --local context=. \
+    --local dockerfile=.

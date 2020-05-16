@@ -21,7 +21,7 @@ Introduced in Docker 18.09
 Use experimental syntax in `Dockerfile`:
 
 ```plaintext
-# syntax=docker/dockerfile:1.0.0-experimental
+# syntax=docker/dockerfile:experimental
 FROM alpine
 RUN --mount=type=secret,id=mysite.key \\
     ls -l /run/secrets

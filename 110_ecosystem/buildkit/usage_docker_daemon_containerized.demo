@@ -1,0 +1,12 @@
+# Usage: Docker daemon containerized
+
+# Run Docker-in-Docker with local port publishing
+docker run -d \
+    --privileged \
+    --publish 127.0.0.1:2375:2375 \
+    docker:stable-dind \
+        dockerd \
+            --host tcp://0.0.0.0:2375
+
+# Run local Docker CLI against daemon container
+docker --host tcp://127.0.0.1:2375 build .

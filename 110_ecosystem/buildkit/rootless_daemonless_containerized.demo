@@ -1,0 +1,14 @@
+# Rootless: Daemonless containerized
+
+# Run a containerized build with the daemon on-demand
+docker run -it \\
+    --security-opt apparmor=unconfined \\
+    --security-opt seccomp=unconfined \\
+    --env BUILDKITD_FLAGS=--oci-worker-no-process-sandbox \\
+    --volume $PWD:/src \\
+    --workdir /src \\
+    --entrypoint buildctl-daemonless.sh \\
+    moby/buildkit build \\
+        --frontend dockerfile.v0 \\
+        --local context=. \\
+        --local dockerfile=.
