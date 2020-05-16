@@ -12,4 +12,4 @@ Docker rootless is experimental since Docker 19.03
 
 ## Demo: Rootless daemonless containerized
 
-<!-- include: rootless_daemonless_containerized-0.command -->
+<!-- include: daemonless_containerized-0.command -->

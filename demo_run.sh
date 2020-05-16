@@ -34,7 +34,7 @@ fi
 
 echo
 echo -e "${YELLOW}### Generating files${DEFAULT}"
-make
+make --no-print-directory | grep -v 'is up to date' || true
 
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section[not(@demos='false')]/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
 DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)

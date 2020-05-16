@@ -3,10 +3,24 @@ if [[ "${SET_PROMPT}" == "1" ]]; then
     export PROMPT_DIRTRIM=2
 fi
 
+DEFAULT="\e[39m\e[49m"
+LIGHT_GRAY="\e[37m"
+
+DARK_GRAY="\e[90m"
 RED="\e[91m"
 GREEN="\e[92m"
 YELLOW="\e[93m"
-DEFAULT="\e[39m"
+BLUE="\e[94m"
+MAGENTA="\e[95m"
+CYAN="\e[96m"
+
+BG_DARKGRAY="\e[100m"
+BG_RED="\e[101m"
+BG_GREEN="\e[102m"
+BG_YELLOW="\e[103m"
+BG_BLUE="\e[104m"
+BG_MAGENTA="\e[105m"
+BG_CYAN="\e[106m"
 
 demos() {
     DEMOS=$(ls -1 *.demo 2>/dev/null)
@@ -17,6 +31,8 @@ demos() {
     fi
 }
 
+#ls *.demo 2>&1 >/dev/null && complete -W "$(ls *.demo | xargs -I{} basename {} .demo)" demo
+
 demo() {
     if [[ "$#" == "0" ]]; then
         echo "Usage: $0 <demo_name>"
@@ -24,10 +40,25 @@ demo() {
     fi
     DEMO=${1}
 
+    split ${DEMO}
+
     clear
     for COMMAND in $(ls ${DEMO}-*.command); do
         echo
-        cat ${COMMAND} | grep -vE '^\s*$' | sed 's|\\|\\\\|g' | while read LINE; do echo -e "${GREEN}${LINE} ${DEFAULT}"; done
+        FIRST_LINE=true
+        cat ${COMMAND} | grep -vE '^\s*$' | sed 's|\\|\\\\|g' | while read; do
+            if test "${REPLY:0:1}" == "#"; then
+                # print comment
+                echo -e "${LIGHT_GRAY}${REPLY} ${DEFAULT}"
+            elif ${FIRST_LINE}; then
+                # prefix first line with $
+                echo -e "$ ${GREEN}${REPLY} ${DEFAULT}"
+                FIRST_LINE=false
+            else
+                # prefix all other lines with >
+                echo -e "> ${GREEN}${REPLY} ${DEFAULT}"
+            fi
+        done
         echo -e "${YELLOW}Press [ENTER] to run${DEFAULT}"
         read KEY
         . ${COMMAND}
