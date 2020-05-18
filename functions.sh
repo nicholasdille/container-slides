@@ -31,7 +31,7 @@ demos() {
     fi
 }
 
-#ls *.demo 2>&1 >/dev/null && complete -W "$(ls *.demo | xargs -I{} basename {} .demo)" demo
+ls *.demo 2>&1 >/dev/null && complete -W "$(ls *.demo | xargs -I{} basename {} .demo)" demo
 
 demo() {
     if [[ "$#" == "0" ]]; then
@@ -76,6 +76,8 @@ demo() {
 
 prepare() {
     if [[ -f prepare.sh ]]; then
+        echo
+        echo -e "${YELLOW}### Preparing demo${DEFAULT}"
         bash prepare.sh
     fi
 }

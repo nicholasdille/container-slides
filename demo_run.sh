@@ -41,6 +41,7 @@ DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)
 
 DIRS=$(echo "${DIRS}" | while read DIR; do if [[ "$(ls ${DIR}/*.demo 2>/dev/null)" != "" ]]; then echo ${DIR}; fi; done)
 
+clear
 echo
 echo -e "${YELLOW}Waiting for demo to start. Press enter to continue...${DEFAULT}"
 read
@@ -48,8 +49,8 @@ read
 for DIR in ${DIRS}; do
     pushd ${PWD}
     clear
-    echo
-    echo -e "${YELLOW}### Demo for ${DIR}${DEFAULT}"
+    #echo
+    #echo -e "${YELLOW}### Demo for ${DIR}${DEFAULT}"
     NAME=${DIR////-}
     NAME=${NAME//_/}
     if hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
@@ -58,12 +59,7 @@ for DIR in ${DIRS}; do
     BASEDIR=$(pwd)
     cd "${PWD}/${DIR}"
 
-    echo
-    echo -e "${YELLOW}### Preparing demo${DEFAULT}"
     prepare
-
-    echo
-    echo -e "${YELLOW}### Ready for demo${DEFAULT}"
     export SET_PROMPT=1
     bash --init-file ${BASEDIR}/functions.sh
     unset SET_PROMPT
