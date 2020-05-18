@@ -1,0 +1,12 @@
+# Usage: BuildKit daemonless containerized
+
+# Run a containerized BuildKit daemon on-demand
+docker run -it \
+    --privileged \
+    --volume $PWD:/src \
+    --workdir /src \
+    --entrypoint buildctl-daemonless.sh \
+    moby/buildkit build \
+        --frontend dockerfile.v0 \
+        --local context=. \
+        --local dockerfile=.

@@ -2,7 +2,7 @@
 
 Do not provide secrets using environment variables
 
-`ENV`/`--env` burns variables into image
+`ENV` burns variables into image
 
 Build arguments (`ARG`/`--build-arg`) are only one option
 
