@@ -38,6 +38,7 @@ body {
     font-size: 1em;
 }
 .reveal h3 {
+    font-style: italic;
     font-size: 0.8em;
     padding-top: 0.5em;
     margin-bottom: 0.2em;
