@@ -33,9 +33,11 @@ body {
 }
 .reveal h1 {
     font-size: 1.6em;
+    color: #7cbad4;
 }
 .reveal h2 {
     font-size: 1em;
+    color: #7cbad4;
 }
 .reveal h3 {
     font-style: italic;
