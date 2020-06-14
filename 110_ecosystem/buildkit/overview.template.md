@@ -12,8 +12,12 @@ Community driven
 
 ### The features
 
+Multi-stage builds
+
 Concurrent and distributed execution
 
-Pluggable frontends and multiple output formats
+Remote build cache
+
+Builds secrets
 
 Unprivileged execution
