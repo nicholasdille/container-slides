@@ -7,8 +7,8 @@ Uses a client/server architecture (daemon and CLI)
 |            | Locally | Containerized | Rootless |
 |------------|:-------:|:-------------:|:--------:|
 | Docker     | X       | X             | experimental
-| Daemon/CLI | Demo    | X             | X
-| Daemonless | X       | Demo          | X
+| Daemon/CLI | X       | X             | X
+| Daemonless | X       | X             | X
 
 Daemonless is just a wrapper for daemon/CLI
 

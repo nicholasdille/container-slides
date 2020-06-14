@@ -2,7 +2,7 @@
 
 Multiple `FROM` sections in `Dockerfile`
 
-Last section represents final image
+Last section represents (default) final image
 
 Copy files between stages
 
@@ -15,6 +15,6 @@ COPY --from=builder ...
 #...
 ```
 
-Build intermediate images using `--target name`
+Build intermediate images using `--target <name>`
 
 Prerequisites: Docker 17.09
