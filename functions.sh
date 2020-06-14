@@ -45,18 +45,19 @@ demo() {
     clear
     for COMMAND in $(ls ${DEMO}-*.command); do
         echo
-        FIRST_LINE=true
+        PREFIX="\$"
         cat ${COMMAND} | grep -vE '^\s*$' | sed 's|\\|\\\\|g' | while read; do
             if test "${REPLY:0:1}" == "#"; then
                 # print comment
                 echo -e "${LIGHT_GRAY}${REPLY} ${DEFAULT}"
-            elif ${FIRST_LINE}; then
-                # prefix first line with $
-                echo -e "$ ${GREEN}${REPLY} ${DEFAULT}"
-                FIRST_LINE=false
+            elif test "${REPLY: -1}" == "\\"; then
+                echo -e "${PREFIX} ${GREEN}${REPLY} ${DEFAULT}"
+                # Next line continues current command
+                PREFIX=">"
             else
-                # prefix all other lines with >
-                echo -e "> ${GREEN}${REPLY} ${DEFAULT}"
+                echo -e "${PREFIX} ${GREEN}${REPLY} ${DEFAULT}"
+                # Next line is a new command
+                PREFIX="\$"
             fi
         done
         echo -e "${YELLOW}Press [ENTER] to run${DEFAULT}"
