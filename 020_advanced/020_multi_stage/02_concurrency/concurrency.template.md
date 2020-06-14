@@ -24,12 +24,12 @@ Concurrency is determined based on the dependency graph
 
 ## Demo: Multi Stage Builds - Concurrency
 
-Stages have a delay of 10 seconds
+Stages have a delay
 
 <!-- include: concurrency-0.command -->
 
 <!-- include: concurrency-1.command -->
 
-Sequential build will take ~20 seconds
+Sequential build will take double the time
 
-Parallel build ~10 seconds
+Parallel builds reduce the waiting time
