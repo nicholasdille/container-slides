@@ -4,4 +4,4 @@ The `html` files in the root directory define a presentation. It consists of one
 
 ## Documentation
 
-Please open [`documentation.html`](documentation.html) locally in a browser to view the documentation.
+Either see [`docs/`](docs/) or open [`documentation.html`](documentation.html) in a browser to view the documentation.
