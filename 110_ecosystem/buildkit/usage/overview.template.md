@@ -2,7 +2,7 @@
 
 BuildKit can be used in multiple ways
 
-Uses a client/server architecture (daemon and CLI)
+Uses a client/server architecture (`buildkitd` and `buildctl`)
 
 |            | Locally | Containerized | Rootless |
 |------------|:-------:|:-------------:|:--------:|
