@@ -18,9 +18,9 @@ if ! type xmlstarlet; then
     apt -y install xmlstarlet
 fi
 if ! type hcloud; then
-    curl -s https://api.github.com/repos/hetznercloud/cli/releases/latest | \
+    curl --silent https://api.github.com/repos/hetznercloud/cli/releases/latest | \
         jq --raw-output '.assets[] | select(.name | contains("-linux-amd64.")) | .browser_download_url' | \
-        xargs curl -sLf | \
+        xargs curl --silent --location --fail | \
         tar -xvzC /usr/local/bin/ hcloud
 fi
 if [[ "$(hcloud context active | wc -l)" -eq 0 ]]; then

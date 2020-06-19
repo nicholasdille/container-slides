@@ -13,6 +13,6 @@ docker run -d -p 127.0.0.1:5000:5000 --name registry \
 
 # Install CLIP
 FILEPATH=lukaszlach/clip/master/docker-clip
-curl -sLfO https://raw.githubusercontent.com/${FILEPATH}
+curl --silent --location --fail --remote-name https://raw.githubusercontent.com/${FILEPATH}
 mv docker-clip ~/.docker/cli-plugins/
 chmod +x ~/.docker/cli-plugins/docker-clip

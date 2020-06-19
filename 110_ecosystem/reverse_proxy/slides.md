@@ -49,9 +49,9 @@ Use `network_mode: host` to avoid port publishing
 Testing access:
 
 ```bash
-curl -s --resolve hub.dille.io:80:$IP \
+curl --silent --resolve hub.dille.io:80:$IP \
     http://hub.dille.io
 
-curl -s --resolve registry.dille.io:$IP \
+curl --silent --resolve registry.dille.io:$IP \
     http://registry.dille.io/v2/
 ```

@@ -64,7 +64,7 @@ CMD java -version
 ```bash
 FROM ubuntu
 ENV VERSION=1.24.1
-RUN curl -Lo /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-`uname -s`-`uname -m` \
+RUN curl --location --output /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-`uname -s`-`uname -m` \
  && chmod +x /usr/local/bin/docker-compose
 ```
 

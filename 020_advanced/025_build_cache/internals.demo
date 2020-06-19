@@ -1,12 +1,12 @@
 # Remote build cache internals
 
 # Check manifest for cache information
-curl -s \
+curl --silent \
     -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
     localhost:5000/v2/test/manifests/1 \
     | jq --raw-output '.config.digest' \
     | while read CONFIG_DIGEST; do \
-        curl -s \
+        curl --silent \
             -H "Accept: application/vnd.docker.container.image.v1+json" \
             localhost:5000/v2/test/blobs/${CONFIG_DIGEST} \
         | jq --raw-output '."moby.buildkit.cache.v0"' \

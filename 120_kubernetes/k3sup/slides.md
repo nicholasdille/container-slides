@@ -10,7 +10,7 @@
 
 ```bash
 # Install k3sup
-curl -sLS https://get.k3sup.dev | sh
+curl --silent --location --show-error https://get.k3sup.dev | sh
 
 # Deploy k3s server
 k3sup install \

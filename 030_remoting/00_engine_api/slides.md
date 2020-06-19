@@ -19,7 +19,7 @@ SDKs are based on this API (e.g. Go SDK)
 Substitute `docker version`:
 
 ```bash
-curl -s \
+curl --silent \
   --unix-socket /var/run/docker.sock \
   http://localhost/version
 ```
@@ -30,7 +30,7 @@ If `curl` is missing:
 docker run --rm \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   nathanleclaire/curl \
-  curl -s \
+  curl --silent \
     --unix-socket /var/run/docker.sock \
     http://localhost/version
 ```

@@ -28,7 +28,7 @@ $ docker pull docker/trusttest
 $ docker tag \
     docker/trusttest \
     sandboxregistry:5000/test/trusttest:latest
-$ curl -sL https://github.com/theupdateframework/notary/releases/download/v0.4.3/notary-Linux-amd64 > notary
+$ curl --silent --location https://github.com/theupdateframework/notary/releases/download/v0.4.3/notary-Linux-amd64 > notary
 $ chmod +x notary
 ```
 
@@ -55,14 +55,14 @@ $ docker pull sandboxregistry:5000/test/trusttest
 ```bash
 $ ./notary -s https://notaryserver:4443 \
     list sandboxregistry:5000/test/trusttest
-$ curl -sL \
+$ curl --silent --location \
     -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
     http://sandboxregistry:5000/v2/test/trusttest/manifests/latest
-$ curl -sL \
+$ curl --silent --location \
     -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
     http://sandboxregistry:5000/v2/test/trusttest/manifests/latest \
   | wc -c
-$ curl -sL \
+$ curl --silent --location \
     -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
     http://sandboxregistry:5000/v2/test/trusttest/manifests/latest \
   | sha256sum
@@ -75,7 +75,7 @@ $ curl -sL \
 ### Verify signature
 
 ```bash
-$ curl -sL \
+$ curl --silent --location \
     -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
     http://sandboxregistry:5000/v2/test/trusttest/manifests/latest \
   | ./notary \

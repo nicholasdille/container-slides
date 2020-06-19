@@ -4,9 +4,9 @@ pipeline:
     image: openjdk:8-jdk
     commands:
     - javac HelloWorld.java
-    - curl -fT HelloWorld.java -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/${CI_REPO_NAME}/${CI_BUILD_NUMBER}/
+    - curl --fail --upload-file HelloWorld.java -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/${CI_REPO_NAME}/${CI_BUILD_NUMBER}/
     - echo -n ${CI_BUILD_NUMBER} > latest
-    - curl -fT latest -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/${CI_REPO_NAME}/
+    - curl --fail --upload-file latest -u "$${WEBDAV_USER}:$${WEBDAV_PASS}" https://webdav.dille.io/${CI_REPO_NAME}/
 
   trigger:
     image: plugins/downstream

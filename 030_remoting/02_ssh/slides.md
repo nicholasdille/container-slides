@@ -58,7 +58,7 @@ Also works against older Docker engines if `user@host` has the updated Docker CL
 set -e
 
 mkdir -p $HOME/bin
-curl -sL \
+curl --silent --location \
   https://download.docker.com/linux/static/stable/x86_64/docker-18.09.0.tgz \
 | tar -xvz -C $HOME/bin --strip-components=1 docker/docker
 ```

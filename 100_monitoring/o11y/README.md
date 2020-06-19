@@ -2,15 +2,15 @@
 
 ```bash
 # Install Docker
-curl -fL https://get.docker.com | sh
+curl --fail --location https://get.docker.com | sh
 
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+curl --location --remote-namehttps://storage.googleapis.com/kubernetes-release/release/`curl --silent https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
 chmod +x kubectl
 mv kubectl /usr/local/bin/
 
 # Install k3d
-curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
+curl --silent https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
 
 # Prepare shell
 source <(kubectl completion bash)
@@ -22,7 +22,7 @@ source <(helm completion bash)
 k3d create --name o11y --image docker.io/rancher/k3s:v1.0.0 --api-port 443 --publish 80:80
 export KUBECONFIG=$(k3d get-kubeconfig --name o11y)
 
-curl -sLf https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz | tar -xvz -C /usr/local/bin --strip-components=1 linux-amd64/helm linux-amd64/tiller
+curl --silent --location --fail https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz | tar -xvz -C /usr/local/bin --strip-components=1 linux-amd64/helm linux-amd64/tiller
 helm init --client-only
 helm plugin install https://github.com/rimusz/helm-tiller
 

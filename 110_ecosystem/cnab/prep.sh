@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # duffle
-curl -s https://api.github.com/repos/cnabio/duffle/releases/latest | \
+curl --silent https://api.github.com/repos/cnabio/duffle/releases/latest | \
     jq --raw-output '.assets[] | select(.name == "duffle-linux-amd64") | .browser_download_url' | \
-    xargs curl -sLfo /usr/local/bin/duffle
+    xargs curl --silent --location --fail --output /usr/local/bin/duffle
 chmod +x /usr/local/bin/duffle
 
 # porter

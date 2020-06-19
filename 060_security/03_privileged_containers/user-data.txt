@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -fL https://get.docker.com | sh
+curl --fail --location https://get.docker.com | sh
 
 useradd --create-home --shell /bin/bash groot
 cp -r ~root/.ssh ~groot/

@@ -24,7 +24,7 @@ Reduce attack surface
 - Networking is based on [`moby/vpnkit`](https://github.com/moby/vpnkit)
 
 ```bash
-curl -sSL https://get.docker.com/rootless | sh
+curl --silent --location --show-error https://get.docker.com/rootless | sh
 ```
 
 ### What does not work
