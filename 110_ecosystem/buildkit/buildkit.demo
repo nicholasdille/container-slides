@@ -11,9 +11,9 @@ buildctl build \
     --output type=image,name=localhost:5000/test,push=true
 
 # List images in registry
-curl -s http://localhost:5000/v2/_catalog \
+curl --silent http://localhost:5000/v2/_catalog \
     | jq --raw-output '.repositories[]'
 
 # List tags of image
-curl -s http://localhost:5000/v2/test/tags/list \
+curl --silent http://localhost:5000/v2/test/tags/list \
     | jq --raw-output '.tags[]'
