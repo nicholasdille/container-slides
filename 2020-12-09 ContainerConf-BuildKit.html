@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+
+<title>ContainerConf: Beschleunigen von Container Image Builds mithilfe von BuildKit</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/reveal.css"/>
+<link rel="stylesheet" href="themes/theme2020.css" id="theme"/>
+<link rel="stylesheet" href="themes/common.css" id="theme"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/rainbow.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"/>
+<script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/pdf.css' : 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        <!-- .slide: data-background="images/stones-770264_1920.jpg" class="center" style="color: white; vertical-align: middle; background: rgba(0, 0, 0, 0.5);" -->
+        <img src="images/NicholasDille.jpg" /> <!-- .element: style="width: 20%; float: left; border-radius: 8px; margin-left: 1em; margin-right: 1em;" -->
+
+        # Beschleunigen von Container Image Builds mithilfe von BuildKit
+
+        Nicholas Dille, Haufe.Group
+
+        <i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain &amp; <i class="fab fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
+
+        <i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Lernziele
+
+        https://www.containerconf.de/lecture_compact1.php?id=12240&source=0
+
+        45 Minuten
+
+        - Abgrenzung des Legacy-Builders und BuildKit in Docker
+        - Parallelisierung von Build-Schritten
+        - Nutzung des Build Caches
+        - Zwischenspeichern von Cache-Verzeichnissen (npm, apt etc.)
+        - Nutzung von BuildKit ohne Docker
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Summary
+
+        XXX
+    </textarea></section>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/js/reveal.min.js" type="application/javascript"></script>
+<script>
+    Reveal.initialize({
+        //width: 1920,
+        //height: 1080,
+        //minScale: 1,
+        //maxScale: 1,
+        controls: true,
+        controlsTutorial: false,
+        controlsLayout: 'bottom-right',
+        progress: true,
+        slideNumber: false,
+        hash: true,
+        history: true,
+        keyboard: true,
+        overview: true,
+        center: false,
+        navigationMode: 'default',
+        shuffle: false,
+        fragments: true,
+        fragmentInURL: true,
+        embedded: false,
+        help: true,
+        showNotes: false,
+        autoPlayMedia: null,
+        preloadIframes: null,
+        defaultTiming: 120,
+        totalTime: 30,
+        minimumTimePerSlide: 0,
+        mouseWheel: false,
+        hideInactiveCursor: true,
+        hideCursorTime: 3000,
+        hideAddressBar: true,
+        previewLinks: false,
+        transition: 'convex',
+        transitionSpeed: 'default',
+        backgroundTransition: 'fade',
+        viewDistance: 3,
+        mobileViewDistance: 2,
+        parallaxBackgroundImage: '',
+        parallaxBackgroundSize: '',
+
+        allottedTime: 10 * 60 * 1000,
+        keyboard: {
+            // pause/resume time when Enter is pressed
+            13: () => {
+                ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+            },
+            // reset timer when 'r' is pressed
+            82: () => {
+                ElapsedTimeBar.reset();
+            }
+        },
+
+        dependencies: [
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/zoom-js/zoom.js', async: true },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/notes/notes.js' },
+            { src: 'plugins/elapsed-time-bar-2699fc8/elapsed-time-bar.js'}
+
+        ]
+    });
+</script>
+
+</body>
+</html>
