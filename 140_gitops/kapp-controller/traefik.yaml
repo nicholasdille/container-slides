@@ -1,0 +1,17 @@
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: traefik
+  namespace: kapp-controller
+spec:
+  serviceAccountName: kapp-controller
+  fetch:
+  - git:
+      url: https://github.com/nicholasdille/k8s-gitops
+      ref: origin/master
+      subPath: templates/traefik
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
