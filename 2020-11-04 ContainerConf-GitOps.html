@@ -85,11 +85,11 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## How to do GitOps?
 
-        Version control
+        Version control as single source of truth
 
-        Declarative infrastructure
+        Declarative infrastructure to describe desired state
 
-        Controller
+        Controller to *make it so*
 
         PULL
     </textarea></section>
@@ -97,21 +97,27 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## You are doing CIOps
 
-        Select well-established CI/CD tool
+        Version control as single source of truth
 
-        Do pipeline-as-code
+        Declarative infrastructure to describe desired state
 
-        Do fully automated deployments
-
-        Redeploy regularly
+        CI/CD tool
 
         PUSH
+
+        ### Goal
+
+        Pipeline-as-code
+
+        Fully automated deployments
+
+        Redeploy regularly
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Privileges
+        ## Challenge: Privileges
 
-        Push requires to be god
+        Push requires CI/CD pipeline to be god
 
         Pull separates concerns
     </textarea></section>
@@ -119,19 +125,81 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Implementations
 
-        FluxCD / GitOps Toolkit
+        FluxCD v1
+
+        GitOps Toolkit (Flux v2)
 
         ArgoCD
 
         kapp-controller
-
-        DEMOS!
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Challenges
+        ## Implementations: FluxCD
+
+        FluxCD v1 (fluxcd/flux, https://fluxcd.io/)
+
+        - WeaveWorks
+        - First implementation
+        - Envisioned
+        - Supports: plain YAML, any templating tool
+        - Helm Operator (fluxcd/helm-operator, https://docs.fluxcd.io/projects/helm-operator/en/stable/)
+
+        DEMO?
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Implementations: GitOps Toolkit
+
+        GitOps Toolkit
+
+        - Flux v2 (fluxcd/toolkit, https://toolkit.fluxcd.io/)
+        - Source Controller (fluxcd/source-controller)
+        - Kustomize Controller (fluxcd/kustomize-controller)
+        - Helm Controller (fluxcd/helm-controller)
+        - Notification Controller (fluxcd/notification-controller)
+
+        DEMO!
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Implementations: ArgoCD
+
+        ArgoCD (argoproj/argo-cd, https://argoproj.github.io/argo-cd/)
+
+        - Nice web UI
+        - Supports: plain YAML, Kustomize, Helm, ksonnet, jsonnet, any other templating tool as plugin
+
+        DEMO!
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Implementations: kapp-controller
+
+        kapp-controller (k14s/kapp-controller)
+
+        - VMware Tanzu
+        - Carvel formerly k14s
+        - Suite of tools
+        - Supports: kapp (package manager), ytt (templating)
+
+        DEMO?
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Challenge: Secrets
+
+        XXX describe
+
+        Vault Operator (banzaicloud/bank-vaults)
 
         Secrets (bitnami-labs/sealed-secrets, mozilla/sops)
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Challenge: Logic
+
+        XXX describe
 
         Logic (init containers, sidecars, controller/operator)
     </textarea></section>
