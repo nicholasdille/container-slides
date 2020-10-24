@@ -3,7 +3,7 @@
 # Create app
 kubectl apply -f podinfo.yaml
 kubectl get gitrepository podinfo
-kubectl get gitrepository podinfo-dev
+kubectl get kustomization podinfo-dev
 
 # Wait for deployment
 watch kubectl get pods -A
