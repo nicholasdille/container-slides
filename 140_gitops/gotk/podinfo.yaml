@@ -1,0 +1,39 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  interval: 5m
+  url: https://github.com/stefanprodan/podinfo
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/deploy
+    # exclude file extensions from deploy dir
+    /deploy/**/*.md
+    /deploy/**/*.txt
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: podinfo-dev
+  namespace: default
+spec:
+  interval: 5m
+  path: "./deploy/overlays/dev/"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: podinfo
+  validation: client
+  healthChecks:
+    - kind: Deployment
+      name: frontend
+      namespace: dev
+    - kind: Deployment
+      name: backend
+      namespace: dev
+  timeout: 80s
