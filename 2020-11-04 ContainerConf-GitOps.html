@@ -44,26 +44,18 @@
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Lernziele
+        <!-- .slide: class="center" style="text-align: center;" -->
+        ## GitOps
 
-        https://www.containerconf.de/kubernetes_1.php
+        --
 
-        45 Minuten
+        <!-- .slide: class="center" style="text-align: center;" -->
+        ## Git-powered Ops
 
-        - Verständnis von GitOps
-        - Abgrenzung zu CI/CD
-    </textarea></section>
+        --
 
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Agenda
-
-        Definition of GitOps
-
-        CIOps
-
-        Projekte
-
-        Demos
+        <!-- .slide: class="center" style="text-align: center;" -->
+        ## Ops managed from Git
     </textarea></section>
 
     <section data-markdown="140_gitops/quote_keysey_hightower.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -89,11 +81,9 @@
 
         Declarative infrastructure to describe desired state
 
-        Controller to *make it so*
+        Controller to *pull* changes into cluster
 
-        PULL
-
-        XXX recreate image from https://www.gitops.tech/#pull-based-deployments
+        ![CI tool pushes changes to Kubernetes cluster](140_gitops/pull.drawio.svg)
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -103,19 +93,9 @@
 
         Declarative infrastructure to describe desired state
 
-        CI/CD tool
+        CI/CD tool *pushes* changes into cluster
 
-        PUSH
-
-        XXX recreate image from https://www.gitops.tech/#push-based-deployments
-
-        ### Goal
-
-        Pipeline-as-code
-
-        Fully automated deployments
-
-        Redeploy regularly
+        ![CI tool pushes changes to Kubernetes cluster](140_gitops/push.drawio.svg)
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
