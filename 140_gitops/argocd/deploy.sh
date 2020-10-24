@@ -41,5 +41,9 @@ kubectl --namespace argocd rollout status deployment argocd-redis
 kubectl --namespace argocd rollout status deployment argocd-repo-server
 kubectl --namespace argocd rollout status deployment argocd-server
 
+# Install CLI
+curl -s https://pkg.dille.io/argocd/install.sh | bash
+source /usr/local/etc/bash_completion.d/argocd.sh
+
 # Create port forwarding
 kubectl port-forward --namespace argocd svc/argocd-server 8080:443
