@@ -47,15 +47,10 @@
         <!-- .slide: class="center" style="text-align: center;" -->
         ## GitOps
 
-        --
+        ---
 
         <!-- .slide: class="center" style="text-align: center;" -->
         ## Git-powered Ops
-
-        --
-
-        <!-- .slide: class="center" style="text-align: center;" -->
-        ## Ops managed from Git
     </textarea></section>
 
     <section data-markdown="140_gitops/quote_keysey_hightower.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -63,15 +58,15 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## What is GitOps?
 
-        Continuous Deployment for Cloud Native Applications
+        Continuous deployment for Cloud Native applications
 
-        Developer centric experience when operating infrastructure
+        Developer centric experience
 
-        Version control as single source of truth
+        Version control
 
-        Declarative infrastructure as desired state
+        Declarative infrastructure
 
-        Invented by WeaveWorks in 2017
+        ### Invented by WeaveWorks in 2017
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -81,9 +76,10 @@
 
         Declarative infrastructure to describe desired state
 
-        Controller to *pull* changes into cluster
+        ### Controller pulls changes into cluster
 
-        ![CI tool pushes changes to Kubernetes cluster](140_gitops/pull.drawio.svg)
+        ![Controller pulls changes into Kubernetes cluster](140_gitops/pull.drawio.svg)
+        <!-- .element: style="text-align: center; margin-top: 2em;" -->
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -93,115 +89,143 @@
 
         Declarative infrastructure to describe desired state
 
-        CI/CD tool *pushes* changes into cluster
+        ### CI/CD tool pushes changes into cluster
 
         ![CI tool pushes changes to Kubernetes cluster](140_gitops/push.drawio.svg)
+        <!-- .element: style="text-align: center; margin-top: 2em;" -->
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Challenge: Privileges
 
-        Push requires CI/CD pipeline to be god
+        ### CIOps requires CI/CD tool to be almighty
 
-        Pull separates concerns
-    </textarea></section>
+        ![CI/CD tool has write access to all components](140_gitops/push-permissions.drawio.svg)
+        <!-- .element: style="width: 55%;" -->
 
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Implementations
+        ### GitOps separates concerns
 
-        FluxCD v1
-
-        GitOps Toolkit (Flux v2)
-
-        ArgoCD
-
-        kapp-controller
+        ![CI/CD tool and controller have minimal write access](140_gitops/pull-permissions.drawio.svg)
+        <!-- .element: style="width: 55%;" -->
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Implementations: FluxCD
 
-        FluxCD v1 (fluxcd/flux, https://fluxcd.io/)
+        *In the beginning there was Flux*
 
-        - WeaveWorks
-        - First implementation
-        - Envisioned
-        - Supports: plain YAML, any templating tool
-        - Helm Operator (fluxcd/helm-operator, https://docs.fluxcd.io/projects/helm-operator/en/stable/)
+        FluxCD by WeaveWorks [<i class="fab fa-github"></i>](https://github.com/fluxcd/flux) [<i class="fas fa-globe"></i>](https://fluxcd.io/)
 
-        DEMO?
+        Supports: plain YAML, any other templating tool
+
+        CLI fluxctl [<i class="fab fa-github"></i>](https://github.com/fluxcd/flux)
+
+        Helm Operator [<i class="fab fa-github"></i>](https://github.com/fluxcd/helm-operator) [<i class="fas fa-globe"></i>](https://docs.fluxcd.io/projects/helm-operator/en/stable/)
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Implementations: GitOps Toolkit
+        ## Implementations: Flux v2 / GitOps Toolkit
 
-        GitOps Toolkit
+        ### Based on learnings from FluxCD
 
-        - Flux v2 (fluxcd/toolkit, https://toolkit.fluxcd.io/)
-        - Source Controller (fluxcd/source-controller)
-        - Kustomize Controller (fluxcd/kustomize-controller)
-        - Helm Controller (fluxcd/helm-controller)
-        - Notification Controller (fluxcd/notification-controller)
-        - CLI gotk
+        Flux v2 [<i class="fab fa-github"></i>](https://github.com/fluxcd/toolkit) [<i class="fas fa-globe"></i>](https://toolkit.fluxcd.io/)
 
-        XXX recreate image from https://toolkit.fluxcd.io/#gitops-toolkit
+        ### Components
 
-        DEMO!
+        Source Controller [<i class="fab fa-github"></i>](https://github.com/fluxcd/source-controller)
 
-        XXX recreate image from https://github.com/fluxcd/kustomize-controller#define-a-kustomization
+        Kustomize Controller [<i class="fab fa-github"></i>](https://github.com/fluxcd/kustomize-controller)
+
+        Helm Controller [<i class="fab fa-github"></i>](https://github.com/fluxcd/helm-controller)
+
+        ![](140_gitops/gotk/gotk.drawio.svg)
+        <!-- .element: style="text-align: center; margin-top: 1em;" -->
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Implementations: ArgoCD
 
-        ArgoCD (argoproj/argo-cd, https://argoproj.github.io/argo-cd/)
+        ### Part of the Argo project
 
-        - Nice web UI
-        - Supports: plain YAML, Kustomize, Helm, ksonnet, jsonnet, any other templating tool as plugin
-        - CLI argocd
+        ArgoCD [<i class="fab fa-github"></i>](https://github.com/argoproj/argo-cd) [<i class="fas fa-globe"></i>](https://argoproj.github.io/argo-cd/)
 
-        DEMO!
+        ### UI included
+
+        Supports plain YAML, Kustomize, Helm, jsonnet ...
+
+        ...as well as any other templating tool as a plugin
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Implementations: kapp-controller
 
-        kapp-controller (k14s/kapp-controller)
+        kapp-controller by VMware Tanzu [<i class="fab fa-github"></i>](https://github.com/k14s/kapp-controller)
 
-        - VMware Tanzu
-        - Carvel formerly k14s
-        - Suite of tools
-        - Supports: kapp (package manager), ytt (templating)
+        Carvel formerly k14s [<i class="fas fa-globe"></i>](https://carvel.dev)
 
-        DEMO!
+        ### Opinionated solution
+
+        Package manager kapp [<i class="fab fa-github"></i>](https://github.com/k14s/kapp)
+
+        YAML templating engine ytt [<i class="fab fa-github"></i>](https://github.com/k14s/ytt)
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Challenge: Secrets
 
-        XXX describe
+        Secrets should not be stored in git... or should they?
 
-        Vault Operator (banzaicloud/bank-vaults)
+        Encrypted secrets are stored in git
 
-        Secrets (bitnami-labs/sealed-secrets, mozilla/sops)
+        Secrets are decrypted in the cluster
+
+        ### Solutions
+
+        Bitnami Sealed Secrets [<i class="fab fa-github"></i>](https://github.com/bitnami-labs/sealed-secrets)
+
+        Mozilla SOPS [<i class="fab fa-github"></i>](https://github.com/mozilla/sops)
+
+        ### Alternative
+
+        Vault Operator [<i class="fab fa-github"></i>](https://github.com/banzaicloud/bank-vaults)
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Challenge: Logic
 
-        XXX describe
+        Some applications require logic for rollouts
 
-        Logic (init containers, sidecars, controller/operator)
+        ### Solutions
+
+        Init containers make sure the environment is ready
+
+        Sidecars manage XXX
+
+        Controller abstract XXX
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Summary
 
-        XXX
+        GitOps enables operations from version control
 
-        XXX https://github.com/argoproj/gitops-engine
+        Declarative infrastructure reduces glue code
 
-        XXX https://www.gitops.tech/
+        Developer centric experience
+
+        Pull deployments allow for separation of concerns
+
+        Flux is the most wide-spread implementation
+
+        ArgoCD offers a web UI
+
+        kapp-controller is an opinionated solution by VMware Tanzu
+
+        ### Further reading
+
+        Overview of GitOps by WeaveWorks [<i class="fas fa-globe"></i>](https://www.gitops.tech/)
+
+        Democratizing GitOps by Argo and Flux [<i class="fab fa-github"></i>](https://github.com/argoproj/gitops-engine)
     </textarea></section>
 </div>
 </div>
