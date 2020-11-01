@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o errexit
 
 # Create cluster
 if kind get clusters | grep -qv kapp; then
