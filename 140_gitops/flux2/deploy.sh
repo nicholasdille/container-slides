@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o errexit
 
 # Create cluster
 if ! kind get clusters | grep --quiet gotk; then
@@ -31,8 +32,14 @@ done
 echo " done."
 
 # Install CLI
-curl -s https://pkg.dille.io/gotk/install.sh | bash
-source /usr/local/etc/bash_completion.d/gotk.sh
+curl -s https://pkg.dille.io/flux/install.sh | bash
+source /usr/local/etc/bash_completion.d/flux.sh
 
-# Deploy gotk
-gotk bootstrap github --owner=nicholasdille --repository=container-slides --branch master --path 140_gitops/gotk/state --private=false --personal=true
+# Deploy flux2
+flux bootstrap github \
+    --owner=nicholasdille \
+    --repository=container-slides \
+    --branch master \
+    --path 140_gitops/flux2/state \
+    --private=false \
+    --personal=true
