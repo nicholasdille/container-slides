@@ -4,7 +4,9 @@ set -o errexit
 # Create cluster
 if kind get clusters | grep -qv kapp; then
     kind create cluster --name kapp --config kind.yaml
+    kind get kubeconfig --name kapp >${HOME}/.kube/config.kind-kapp
 fi
+export KUBECONFIG=${HOME}/.kube/config.kind-kapp
 
 # If the cluster is running on a remote Docker host
 if test "$(docker context ls | grep '*' | cut -d' ' -f1)" != "default"; then

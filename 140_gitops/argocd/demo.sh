@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Create port forwarding
+kubectl port-forward --namespace argocd svc/argocd-server 8080:443
+
 # Fetch authentication info
 PASSWORD=$(
     kubectl --namespace argocd get pods --selector app.kubernetes.io/name=argocd-server --output name | \

@@ -1,10 +1,17 @@
 #!/bin/bash
 set -o errexit
 
-# Create cluster
-if ! kind get clusters | grep --quiet gotk; then
-    kind create cluster --name gotk --config kind.yaml
+if test -z "${GITHUB_TOKEN}"; then
+    echo "ERROR: Must export GITHUB_TOKEN!"
+    exit 1
 fi
+
+# Create cluster
+if ! kind get clusters | grep --quiet flux2; then
+    kind create cluster --name flux2 --config kind.yaml
+    kind get kubeconfig --name flux2 >${HOME}/.kube/config.kind-flux2
+fi
+export KUBECONFIG=${HOME}/.kube/config.kind-flux2
 
 # If the cluster is running on a remote Docker host
 if test "$(docker context ls | grep '*' | cut -d' ' -f1)" != "default"; then
@@ -12,7 +19,7 @@ if test "$(docker context ls | grep '*' | cut -d' ' -f1)" != "default"; then
         kubectl config view --output json | \
             jq --raw-output '
                 .clusters[] |
-                select(.name == "kind-gotk") |
+                select(.name == "kind-flux2") |
                 .cluster.server
             '
     )
@@ -32,7 +39,9 @@ done
 echo " done."
 
 # Install CLI
-curl -s https://pkg.dille.io/flux/install.sh | bash
+if ! type flux >/dev/null 2>&1; then
+    curl -s https://pkg.dille.io/flux/install.sh | bash
+fi
 source /usr/local/etc/bash_completion.d/flux.sh
 
 # Deploy flux2

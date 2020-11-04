@@ -4,7 +4,9 @@ set -o errexit
 # Create cluster
 if kind get clusters | grep -qv argocd; then
     kind create cluster --name argocd --config kind.yaml
+    kind get kubeconfig --name argocd >${HOME}/.kube/config.kind-argocd
 fi
+export KUBECONFIG=${HOME}/.kube/config.kind-argocd
 
 # If the cluster is running on a remote Docker host
 if test "$(docker context ls | grep '*' | cut -d' ' -f1)" != "default"; then
@@ -32,7 +34,7 @@ done
 echo " done."
 
 # Deploy ArgoCD
-if ! kubectl get namespace argocd; then
+if ! kubectl get namespace argocd >/dev/null 2>&1; then
     kubectl create namespace argocd
 fi
 kubectl apply --namespace argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
@@ -43,8 +45,7 @@ kubectl --namespace argocd rollout status deployment argocd-repo-server
 kubectl --namespace argocd rollout status deployment argocd-server
 
 # Install CLI
-curl -s https://pkg.dille.io/argocd/install.sh | bash
+if ! type argocd >/dev/null 2>&1; then
+    curl -s https://pkg.dille.io/argocd/install.sh | bash
+fi
 source /usr/local/etc/bash_completion.d/argocd.sh
-
-# Create port forwarding
-kubectl port-forward --namespace argocd svc/argocd-server 8080:443
