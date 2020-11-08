@@ -2,6 +2,10 @@ SHELL   := /bin/bash
 TOPICS  := $(shell find $(pwd) -type f -name \*.template.md)
 DEMOS   := $(shell ls *.demo 2>/dev/null)
 BASEDIR ?= "../.."
+COMMIT  := $(shell git rev-parse HEAD | head -c7)
+TOPICS  := $(shell find $(pwd) -type f -name \*.md)
+IMAGES  := $(shell find $(pwd) -type f -name \*.svg -or -name \*.jpg -or -name *.png)
+SLIDES  := $(shell find $(pwd) -type f -name \*.html -or -name \*.css -or -name *.js)
 
 .PHONY:
 all:
@@ -23,6 +27,25 @@ clean-all:
 	done; \
 	echo "Generating $$(basename $@)"; \
 	include $*
+
+.PHONY:
+web-$(COMMIT):
+	@\
+	if docker image ls web:$(COMMIT) | tr -s ' ' | grep -q "web $(COMMIT)"; then \
+		:; \
+	else \
+		DOCKER_BUILDKIT=1 docker build --tag web:$(COMMIT) .; \
+	fi
+
+%.pdf: %.html web-$(COMMIT)
+	@\
+	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
+	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f; \
+	docker run -d --name web web:$(COMMIT); \
+	docker run -it --network container:web --name slides astefanutti/decktape --size 1920x1080 --load-pause 5000 --pause 500 http://localhost:80/$*.html $*.pdf; \
+	docker cp slides:/slides/$*.pdf .; \
+	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
+	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f
 
 .PHONY:
 clean:

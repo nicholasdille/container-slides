@@ -4,3 +4,4 @@ videos/**
 *.log
 id_rsa_*
 **/*.final.md
+*.pdf
