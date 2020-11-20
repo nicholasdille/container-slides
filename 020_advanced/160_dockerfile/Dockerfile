@@ -1,5 +1,7 @@
 # syntax = docker/dockerfile:1-experimental
 
+# https://github.com/chris-crone/containerized-go-dev
+
 FROM --platform=${BUILDPLATFORM} golang:1.14.3-alpine AS base
 WORKDIR /src
 ENV CGO_ENABLED=0
