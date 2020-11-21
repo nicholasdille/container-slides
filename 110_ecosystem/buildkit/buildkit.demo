@@ -4,16 +4,16 @@
 sudo buildkitd >buildkitd.log 2>&1 &
 
 # Run equivalent of docker build
-buildctl build \
-    --frontend=dockerfile.v0 \
-    --local context=. \
-    --local dockerfile=. \
+buildctl build \\
+    --frontend=dockerfile.v0 \\
+    --local context=. \\
+    --local dockerfile=. \\
     --output type=image,name=localhost:5000/test,push=true
 
 # List images in registry
-curl --silent http://localhost:5000/v2/_catalog \
+curl --silent http://localhost:5000/v2/_catalog \\
     | jq --raw-output '.repositories[]'
 
 # List tags of image
-curl --silent http://localhost:5000/v2/test/tags/list \
+curl --silent http://localhost:5000/v2/test/tags/list \\
     | jq --raw-output '.tags[]'

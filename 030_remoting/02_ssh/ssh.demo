@@ -1,0 +1,25 @@
+# Docker remoting using SSH
+
+# Build container with SSH daemon
+docker build --tag remoting-ssh .
+
+# Create SSH key
+mkdir -p .ssh
+chmod 0600 .ssh
+test -f .ssh/id_rsa || ssh-keygen -N '' -f ./.ssh/id_rsa
+cp ./.ssh/id_rsa.pub ./.ssh/authorized_keys
+
+# Run container with Docker and SSH
+docker run --name ssh \\
+    --detach \\
+    --privileged \\
+    --volume ${PWD}/.ssh:/root/.ssh \\
+    remoting-ssh
+
+# Get IP address of container
+docker inspect \\
+    --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \\
+    ssh
+
+# Use remote Docker over SSH
+docker --host ssh://${IP} version

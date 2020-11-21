@@ -1,0 +1,5 @@
+*.demo
+*.command
+*.md
+.ssh
+id_rsa*

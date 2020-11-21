@@ -1,0 +1,7 @@
+# Docker-out-of-Docker (DooD)
+
+# Use existing daemon from container
+docker run --interactive --tty --rm \\
+    --volume /var/run/docker.sock:/var/run/docker.sock \\
+    docker:18.09 \\
+        docker version

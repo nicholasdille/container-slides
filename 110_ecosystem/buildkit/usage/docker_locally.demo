@@ -1,0 +1,8 @@
+# Usage: Docker
+
+# Docker daemon in already running
+sudo buildkitd 2>&1 >/tmp/buildkit.log &
+
+# Run build against daemon
+export DOCKER_BUILDKIT=1
+docker build .

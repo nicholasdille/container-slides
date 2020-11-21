@@ -1,0 +1,10 @@
+# Docker-in-Docker (DinD)
+
+# Run Docker daemon in a container
+docker run --name dind \\
+    --detach \\
+    --privileged \
+    docker:stable-dind
+
+# Use Docker inside the container
+docker exec -it dind docker version

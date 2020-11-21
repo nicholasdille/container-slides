@@ -1,54 +1,10 @@
 ## Demo: BuildKit locally
 
-Run BuildKit locally
-
 Requires daemon and CLI
 
-Start the daemon
+<!-- include: buildkit_locally-0.command -->
 
-```plaintext
-sudo buildkitd
-```
-
-Run a build
-
-```plaintext
-buildctl build \\
-    --frontend dockerfile.v0 \\
-    --local context=. \\
-    --local dockerfile=.
-```
-
---
-
-## Demo: BuildKit fully containerized
-
-Run BuildKit daemon and CLI in a container
-
-Start the daemon in a privileged container
-
-```plaintext
-docker run -d \\
-    --name buildkitd \\
-    --privileged \\
-    moby/buildkit \\
-        --addr tcp://127.0.0.1:1234
-```
-
-Run a build from local files
-
-```plaintext
-docker run -it \\
-    --network container:buildkitd \\
-    --volume $PWD:/src \\
-    --workdir /src \\
-    --entrypoint buildctl \\
-    moby/buildkit build \\
-        --addr tcp://127.0.0.1:1234 \\
-        --frontend dockerfile.v0 \\
-        --local context=. \\
-        --local dockerfile=.
-```
+<!-- include: buildkit_locally-1.command -->
 
 --
 
@@ -56,27 +12,19 @@ docker run -it \\
 
 Run only the BuildKit daemon in a container
 
-Start the daemon in a privileged container
+<!-- include: buildkit_containerized-0.command -->
 
-```plaintext
-docker run -d \\
-    --name buildkitd \\
-    --privileged \\
-    --publish 127.0.0.1:1234:1234 \\
-    moby/buildkit \\
-        --addr tcp://0.0.0.0:1234
-```
+<!-- include: buildkit_containerized-1.command -->
 
-Run a build from local files
+--
 
-```plaintext
-buildctl build \\
-    --addr tcp://127.0.0.1:1234 \\
-    --frontend dockerfile.v0 \\
-    --local context=. \\
-    --local dockerfile=.
-```
+## Demo: BuildKit fully containerized
 
+Run BuildKit daemon and CLI in a container
+
+<!-- include: buildkit_containerized-0.command -->
+
+<!-- include: buildkit_containerized-2.command -->
 --
 
 ## Demo: BuildKit daemonless

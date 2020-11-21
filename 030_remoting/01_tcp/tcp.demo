@@ -1,0 +1,18 @@
+# Docker remoting over TCP
+
+# Run container with Docker
+docker run --name tcp \\
+    --detach \\
+    --privileged \\
+    --publish 127.0.0.1:2375:2375 \\
+    docker:stable-dind \\
+        dockerd \\
+            --host tcp://0.0.0.0:2375
+
+# Get IP address of container
+docker inspect \\
+    --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \\
+    tcp
+
+# Use remote Docker over SSH
+docker --host tcp://${IP}:2375 version

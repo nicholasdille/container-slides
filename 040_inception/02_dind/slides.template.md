@@ -4,12 +4,13 @@ Running an additional Docker daemon
 
 ### How it works
 
-- Containerized Docker daemon
-- Requires a privileged container
+Containerized Docker daemon
+
+Requires a privileged container
 
 ### Disadvantages
 
-- Privileged containers enable host breakouts
+Privileged containers enable host breakouts
 
 --
 
