@@ -14,7 +14,7 @@ SDKs are based on this API (e.g. Go SDK)
 
 --
 
-# Demo: Docker Engine API
+## Demo: Docker Engine API
 
 Replacement for `docker version`
 

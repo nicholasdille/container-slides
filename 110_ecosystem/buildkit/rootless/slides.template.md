@@ -1,6 +1,12 @@
+<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
+
 ## Rootless
 
-BuildKit 0.7.x supports [running without root privileges](https://github.com/moby/buildkit/blob/master/docs/rootless.md)
+---
+
+## Rootless
+
+BuildKit 0.7.x supports [building without root privileges](https://github.com/moby/buildkit/blob/master/docs/rootless.md)
 
 Based on [rootlesskit](https://github.com/rootless-containers/rootlesskit)
 
@@ -8,9 +14,11 @@ Uses host networking by default or [slirp4netns](https://github.com/rootless-con
 
 Docker rootless is experimental since Docker 19.03
 
+Docker rootless will be GA in Docker 20.10
+
 --
 
-## Demo: Docker Rootless Containerized
+## Demo: Docker Rootless CONTAINERIZED?!
 
 Run the daemon
 
@@ -37,18 +45,19 @@ docker context use dind
 
 --
 
-## Demo: Rootless locally
+## Demo: BuildKit rootless locally
 
 Run the daemon in user context
 
 ```plaintext
-buildkitd
+rootlesskit buildkitd
 ```
 
 Run the build
 
 ```plaintext
-buildctl build \\
+buildctl \\
+    --addr unix:///run/user/$UID/buildkit/buildkitd.sock build \\
     --frontend dockerfile.v0 \\
     --local context=. \\
     --local dockerfile=.
@@ -56,44 +65,21 @@ buildctl build \\
 
 --
 
-## Demo: Rootless fully containerized
+## Demo: Rootless containerized
 
-Run the daemon in user context
+<!-- include: containerized-0.command -->
 
-```plaintext
-docker run -d \\
-    --name buildkitd \\
-    --security-opt apparmor=unconfined \\
-    --security-opt seccomp=unconfined \\
-    moby/buildkit:rootless \\
-        --oci-worker-no-process-sandbox \\
-        --addr tcp://127.0.0.1:1234
-```
-
-Run a build sharing the same network namespace
-
-```plaintext
-docker run -it \\
-    --network container:buildkitd \\
-    --volume $PWD:/src \\
-    --workdir /src \\
-    --entrypoint buildctl \\
-    moby/buildkit build \\
-        --addr tcp://127.0.0.1:1234 \\
-        --frontend dockerfile.v0 \\
-        --local context=. \\
-        --local dockerfile=.
-```
+<!-- include: containerized-1.command -->
 
 --
 
-## Demo: Rootless daemon containerized
+## Demo: Rootless fully containerized
 
 Run the daemon in user context with a port publishing
 
 ```plaintext
-docker run -d \\
-    --name buildkitd \\
+docker run --name buildkitd \\
+    --detach \\
     --security-opt apparmor=unconfined \\
     --security-opt seccomp=unconfined \\
     --publish 127.0.0.1:1234:1234 \\
@@ -105,11 +91,17 @@ docker run -d \\
 Run a build
 
 ```plaintext
-buildctl build \\
-    --addr tcp://127.0.0.1:1234 \\
-    --frontend dockerfile.v0 \\
-    --local context=. \\
-    --local dockerfile=.
+docker run --interactive --tty \\
+    --network container:buildkitd \\
+    --volume $PWD:/src \\
+    --workdir /src \\
+    --entrypoint buildctl \\
+    moby/buildkit \\
+        --addr tcp://127.0.0.1:1234 \\
+        build \\
+            --frontend dockerfile.v0 \\
+            --local context=. \\
+            --local dockerfile=.
 ```
 
 --

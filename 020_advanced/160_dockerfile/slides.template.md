@@ -1,49 +1,79 @@
-# Container with build tooling 1/
+## Container with build tooling 1/
 
 All developers shoulduse the correct/same build tooling
 
-## Separate dependency download
+### Separate dependency download
 
-Add dependency file explicitly (go.mod, packages.json, pom.xml, ...)
+Add dependency file explicitly
 
 Code changes will not effect download
 
+```Dockerfile
+FROM golang AS base
+COPY go.* .
+RUN go mod download
+
+FROM base AS build
+#...
+```
+
 --
 
-# Container with build tooling 2/
+## Container with build tooling 2/
 
-All developers shoulduse the correct/same build tooling
+All developers should use the correct/same build tooling
 
-## Do not care for the container image
+### Ignore the container image
+
+Build targets are used for tasks
 
 XXX
 
 --
 
-# Container with build tooling 3/
+## Container with build tooling 3/
 
 All developers shoulduse the correct/same build tooling
 
-## Mount instead of copy
+### Mount instead of copy
+
+XXX
+
+```Dockerfile
+FROM base AS build
+RUN --mount=target=. \\
+    go build .
+```
+
+--
+
+## Container with build tooling 4/
+
+All developers shoulduse the correct/same build tooling
+
+### XXX build targets
 
 XXX
 
 --
 
-# Container with build tooling 4/
+## Container with build tooling 5/5
 
 All developers shoulduse the correct/same build tooling
 
-## XXX build targets
+### XXX Makefile
 
 XXX
 
---
+```Makefile
+bin/example:
+	@docker build . --target bin --output bin
 
-# Container with build tooling 5/5
+.PHONY: unit-test
+unit-test:
+	@docker build . --target unit-test
 
-All developers shoulduse the correct/same build tooling
-
-## XXX Makefile
-
-XXX
+.PHONY: lint
+lint:
+	@docker build . --target lint
+```

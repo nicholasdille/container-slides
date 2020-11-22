@@ -1,22 +1,24 @@
 ## Reverse Proxy
 
-### Why? Port conflicts!
+### Why?
 
-- Caused by multiple services on one host
-- For example: Multiple stages of the same environment
-- For example: Multiple web-based services using the same port
+Port conflicts!
+
+Caused by multiple services on one host
 
 ### Reverse Proxy
 
-- Routing of requests to correct container
-- Based on `Host` header in HTTP and SNI in HTTPS
-- Well-known: `nginx`, `haproxy`, `traefik`
+Routing of requests to correct container
+
+Based on `Host` header in HTTP and SNI in HTTPS
 
 ### Desired Features
 
-- HTTP(S)
-- Automatic certificates
-- Dynamic wiring
+HTTP(S)
+
+Automatic certificates
+
+Dynamic wiring
 
 --
 

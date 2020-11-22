@@ -1,38 +1,46 @@
-## Layers
+## Naming scheme
 
-### Naming scheme
+Format: `<registry>/<repository>:<tag>`
 
-- Format: `<registry>/<repository>:<tag>`
-- `<repository>` describes purpose
-- `<tag>` describes variant or version
-- `<repository>:<tag>` is called an image
+`<repository>` describes purpose
+
+`<tag>` describes variant or version
+
+`<repository>:<tag>` is called an image
 
 ### Docker Hub
 
-- On Docker Hub: `<repository>:<tag>`
-- Official image: `alpine:stable`
-- Community image: `nicholasdille/insulatr`
+On Docker Hub: `<repository>:<tag>`
 
-### Images and layers
+Official image: `alpine:stable`
 
-- Images consist of layers
-- Layers improve download performance
-- Layers enable reusability
+Community image: `nicholasdille/insulatr`
+
+--
+
+## Images and layers
+
+Images consist of layers
+
+Layers improve download performance
+
+Layers enable reusability
 
 ---
 
 ## Image Manifest
 
-### Layers
+Lists layers in the image
 
-- Lists layers in the image
-- Layers are referenced as blobs
-- References are SHA256 hashed: `sha256:...`
+Layers are referenced as blobs
+
+References are SHA256 hashed: `sha256:...`
 
 ### Image configuration
 
-- Contains command used to create layers
-- Stored as blob
+Contains command used to create layers
+
+Stored as blob
 
 ![](020_advanced/030_layers/image.svg) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
 
@@ -148,21 +156,27 @@ curl \
 
 ## Registries
 
-- REST API
-- No UI
-- Manage images, layers, configurations
-- Upload, list, update, delete
+REST API
+
+No UI
+
+Manage images, layers, configurations
+
+Upload, list, update, delete
 
 ### Usage
 
-- Registries are accessed using HTTPS
-- Insecure registries must be defined expicitly
-- Accepted insecure registry: `127.0.0.1/8`
+Registries are accessed using HTTPS
+
+Insecure registries must be defined expicitly
+
+Accepted insecure registry: `127.0.0.1/8`
 
 ### Further reading
 
-- [Registry API](https://docs.docker.com/registry/spec/api/)
-- [Image Manifest Specification v2.2](https://docs.docker.com/registry/spec/manifest-v2-2/)
+[Registry API](https://docs.docker.com/registry/spec/api/)
+
+[Image Manifest Specification v2.2](https://docs.docker.com/registry/spec/manifest-v2-2/)
 
 --
 

@@ -1,7 +1,7 @@
 # Rootless: Daemonless containerized
 
 # Run a containerized build with the daemon on-demand
-docker run -it \
+docker run --interactive --tty \
     --security-opt apparmor=unconfined \
     --security-opt seccomp=unconfined \
     --env BUILDKITD_FLAGS=--oci-worker-no-process-sandbox \

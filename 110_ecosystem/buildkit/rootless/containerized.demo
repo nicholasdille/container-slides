@@ -1,0 +1,17 @@
+# Rootless containerized
+
+# Run the daemon in a non-privileged container
+docker run --name buildkitd \\
+    --detach \\
+    --security-opt apparmor=unconfined \\
+    --security-opt seccomp=unconfined \\
+    moby/buildkit:rootless \\
+        --oci-worker-no-process-sandbox
+
+# Build against containerized daemon:
+buildctl \\
+    --addr docker-container://buildkitd \\
+    build \\
+        --frontend dockerfile.v0 \\
+        --local context=. \\
+        --local dockerfile=.
