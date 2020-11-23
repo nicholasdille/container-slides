@@ -1,29 +1,50 @@
-version: "3.3"
+version: "3.7"
 
 services:
 
-  proxy:
-    image: traefik:1.7
+  traefik:
+    image: traefik:v2.3
     command:
-    - --debug
-    - --docker
-    - --docker.endpoint='unix:///var/run/docker.sock'
-    - --docker.watch=true
-    - --docker.exposedByDefault=false
-    - --entryPoints='Name:http Address::80'
-    - --defaultEntryPoints='http'"
+    - --log=true
+    - --log.level=DEBUG
+    - --accesslog=true
+    - --accesslog.fields.names.StartUTC=drop
+    - --api=true
+    - --api.insecure=true
+    - --api.dashboard=true
+    - --ping=true
+    - --entrypoints.http.address=:80
+    - --entrypoints.metrics.address=:8082
+    - --providers.docker=true
+    - --providers.docker.exposedByDefault=false
+    - --metrics.prometheus=true
+    - --metrics.prometheus.addEntryPointsLabels=true
+    - --metrics.prometheus.addServicesLabels=true
+    - --metrics.prometheus.entrypoint=metrics
     ports:
     - 80:80
     volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /etc/localtime:/etc/localtime:ro
+    restart: always
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.traefik.loadbalancer.server.port: 8080
+      traefik.http.routers.traefik.entrypoints: http
+      traefik.http.routers.traefik.rule: HostRegexp(`traefik.{domain:[a-z0-9]+}.inmylab.de`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
 
   registry:
     image: registry:2
     labels:
       traefik.enable: "true"
-      traefik.frontend.rule: "HostRegexp: registry.{domain:.+}"
-      traefik.port: 5000
-      traefik.protocol: "http"
+      traefik.http.services.registry.loadbalancer.server.port: 5000
+      traefik.http.routers.registry.rule: HostRegexp(`registry.{domain:[a-z0-9]+}.inmylab.de`) && PathPrefix(`/v2`)
+      traefik.http.routers.registry.entrypoints: http
+
+  dind:
+    image: docker:stable-dind
+    privileged: true
+    network_mode: service:registry
 
   web:
     image: konradkleine/docker-registry-frontend:v2
@@ -34,6 +55,6 @@ services:
       ENV_DOCKER_REGISTRY_PORT: 5000
     labels:
       traefik.enable: "true"
-      traefik.frontend.rule: "HostRegexp: hub.{domain:.+}"
-      traefik.port: 80
-      traefik.protocol: "http"
+      traefik.http.services.web.loadbalancer.server.port: 80
+      traefik.http.routers.web.rule: HostRegexp(`hub.{domain:[a-z0-9]+}.inmylab.de`)
+      traefik.http.routers.web.entrypoints: http
