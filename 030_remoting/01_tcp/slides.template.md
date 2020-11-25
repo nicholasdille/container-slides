@@ -2,17 +2,17 @@
 
 Docker Engine API can be published on TCP port
 
-Unfortunately, very easy to publish insecurely
+Unfortunately, too easy to publish without authentication
 
 Certificate based server and client authentication is painful
 
-Insecure `dockerd` enables breakout
+Insecure `dockerd` enables host breakout
 
 ### Recommendation
 
-Do not open TCP directly
+Do not open TCP without authentication
 
-Use [containerized reverse proxy](https://dille.name/blog/2018/11/18/publishing-the-docker-daemon-using-a-containerized-reverse-proxy/)
+More later!
 
 --
 
@@ -25,9 +25,3 @@ Test containerized
 <!-- include: tcp-1.command -->
 
 <!-- include: tcp-2.command -->
-
---
-
-## Demo: Doing TCP Remoting Recurely
-
-TODO
