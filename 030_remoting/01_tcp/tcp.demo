@@ -8,10 +8,9 @@ docker run --name tcp \
     docker:stable-dind \
         dockerd --host tcp://0.0.0.0:2375
 
-# Get IP address of container
-docker inspect \
-    --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
-    tcp
-
 # Use remote Docker over TCP
-docker --host tcp://${IP}:2375 version
+docker --host tcp://:2375 version
+
+# Define remote Docker using environment variable
+export DOCKER_HOST=tcp://:2375
+docker version

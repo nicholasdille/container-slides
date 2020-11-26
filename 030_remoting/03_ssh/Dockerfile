@@ -9,5 +9,7 @@ RUN apk --update --no-cache add \
  && ln -s /usr/local/bin/docker /usr/bin/docker
 
 COPY files /
+RUN chmod +x /docker-entrypoint.sh
+
 EXPOSE 22
 ENTRYPOINT /docker-entrypoint.sh

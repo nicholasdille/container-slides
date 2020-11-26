@@ -1,0 +1,7 @@
+apt-get update
+apt-get -y install --no-install-recommends git curl jq xmlstarlet
+
+curl --fail --location --output /tmp/docker.sh https://get.docker.com
+bash /tmp/docker.sh
+
+git clone https://github.com/nicholasdille/container-slides /tmp/container-slides
