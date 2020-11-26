@@ -109,7 +109,7 @@ include() {
         return
     fi
     PATTERN="^\s*<!--\s*include\:\s*(.+\.command)\s*-->\s*$"
-    cat ${FILE}.template.md | while read; do
+    cat ${FILE}.template.md | while read -r; do
 		if [[ ${REPLY} =~ ${PATTERN} ]]; then
 			FILE=$(echo ${REPLY} | sed -E "s/${PATTERN}/\1/")
             TEXT=$(cat ${FILE} | grep -E "^#" | head -n 1 | sed -E 's/^#\s*(.+)$/\1/')

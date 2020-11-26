@@ -1,14 +1,14 @@
 # Docker engine API
 
 # Get version from API
-curl --silent \\
-    --unix-socket /var/run/docker.sock \\
+curl --silent \
+    --unix-socket /var/run/docker.sock \
     http://localhost/version
 
 # Using the API without curl
-docker run --rm \\
-    --volume /var/run/docker.sock:/var/run/docker.sock \\
-    nathanleclaire/curl \\
-    curl --silent \\
-        --unix-socket /var/run/docker.sock \\
+docker run --rm \
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    nathanleclaire/curl \
+    curl --silent \
+        --unix-socket /var/run/docker.sock \
         http://localhost/version

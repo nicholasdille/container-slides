@@ -1,12 +1,12 @@
 # Usage: Docker daemon containerized
 
 # Run Docker-in-Docker with local port publishing
-docker run --name dockerd \\
-    --detach \\
-    --privileged \\
-    --publish 127.0.0.1:2375:2375 \\
-    docker:stable-dind \\
-        dockerd \\
+docker run --name dockerd \
+    --detach \
+    --privileged \
+    --publish 127.0.0.1:2375:2375 \
+    docker:stable-dind \
+        dockerd \
             --host tcp://0.0.0.0:2375
 
 # Check
@@ -16,9 +16,9 @@ docker ps
 docker --host tcp://127.0.0.1:2375 build .
 
 # Run containerized Docker CLI against daemon container
-docker run --interactive --tty \\
-    --network container:dockerd \\
-    --volume $PWD:/src \\
-    --workdir /src \\
-    docker:stable \\
+docker run --interactive --tty \
+    --network container:dockerd \
+    --volume $PWD:/src \
+    --workdir /src \
+    docker:stable \
     docker --host tcp://127.0.0.1:2375 build .
