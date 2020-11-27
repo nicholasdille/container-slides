@@ -5,3 +5,6 @@ curl --fail --location --output /tmp/docker.sh https://get.docker.com
 bash /tmp/docker.sh
 
 git clone https://github.com/nicholasdille/container-slides /tmp/container-slides
+
+curl --silent --output /usr/local/bin/pkg https://pkg.dille.io/pkg.sh
+pkg install buildkit kubectl kind

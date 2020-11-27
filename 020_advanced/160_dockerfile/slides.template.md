@@ -1,3 +1,9 @@
+<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
+
+## Optimizing a Dockerfile
+
+---
+
 ## Container with build tooling 1/
 
 All developers shoulduse the correct/same build tooling
