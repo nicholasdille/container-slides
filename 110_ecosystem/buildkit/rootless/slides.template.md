@@ -18,15 +18,17 @@ Docker rootless will be GA in Docker 20.10
 
 --
 
-## Demo: Docker Rootless CONTAINERIZED?!
+## Demo: Docker Rootless
+
+https://docs.docker.com/engine/security/rootless/
 
 Run the daemon
 
 ```plaintext
-docker run -it \\
-    --publish 127.0.0.1:2375:2375 \\
-    docker:stable-dind-rootless \\
-        dockerd \\
+docker run -it \
+    --publish 127.0.0.1:2375:2375 \
+    docker:stable-dind-rootless \
+        dockerd \
             --host tcp://0.0.0.0:2375
 ```
 
@@ -46,6 +48,8 @@ docker context use dind
 --
 
 ## Demo: BuildKit rootless locally
+
+https://github.com/moby/buildkit/blob/master/docs/rootless.md
 
 Run the daemon in user context
 

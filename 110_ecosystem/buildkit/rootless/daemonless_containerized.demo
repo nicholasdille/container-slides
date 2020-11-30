@@ -1,4 +1,4 @@
-# Rootless: Daemonless containerized
+# Rootless BuildKit daemonless containerized
 
 # Run a containerized build with the daemon on-demand
 docker run --interactive --tty \

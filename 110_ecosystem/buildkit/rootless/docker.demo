@@ -1,0 +1,12 @@
+# Rootless Docker (run as user)
+
+# Setup
+curl -fsSL https://get.docker.com/rootless | sh
+
+# Prepare
+export XDG_RUNTIME_DIR=/home/user/.docker/run
+export PATH=/home/user/bin:$PATH
+export DOCKER_HOST=unix:///home/user/.docker/run/docker.sock
+
+# Run daemon
+/home/user/bin/dockerd-rootless.sh --experimental --storage-driver vfs

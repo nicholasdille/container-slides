@@ -1,0 +1,47 @@
+# Layers
+
+# Build and push image
+docker run -d -p 5000:5000 registry:2
+docker build --tag localhost:5000/hello-world-java .
+docker push localhost:5000/hello-world-java
+
+# Check layers
+docker history hello-world-java
+
+# Fetch image manifest
+curl http://localhost:5000/v2/hello-world-java/manifests/latest \
+  --silent \
+  --header "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+| jq
+
+# Fetch image configuration
+curl http://localhost:5000/v2/hello-world-java/manifests/latest \
+  --silent \
+  --header "Accept: application/vnd.docker.container.image.v1+json" \
+| jq
+
+# Fetch digest of last layer
+DIGEST=$(
+  curl http://localhost:5000/v2/hello-world-java/manifests/latest \
+    --silent \
+    --header "Accept: application/vnd.docker.container.image.v1+json" \
+  | jq --raw-output '.layers[-1].digest'
+)
+
+# View layer tarball
+curl http://localhost:5000/v2/hello-world-java/blobs/${DIGEST} \
+  --silent \
+  --header "Accept: application/vnd.docker.image.rootfs.diff.tar.gzip" \
+| tar -tvz
+
+# Verifying a layer digest
+curl http://localhost:5000/v2/hello-world-java/blobs/${DIGEST} \
+  --silent \
+  --header "Accept: application/vnd.docker.image.rootfs.diff.tar.gzip" \
+| sha256sum
+
+# Calculating a layer's length
+curl http://localhost:5000/v2/hello-world-java/blobs/${DIGEST} \
+  --silent \
+  --header "Accept: application/vnd.docker.image.rootfs.diff.tar.gzip" \
+| wc -c

@@ -1,5 +1,13 @@
 # Run BuildKit in Kubernetes
 
+# Create cluster
+kind create cluster
+
+# Wait for nodes to become ready
+while kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.conditions[?(@.reason=="KubeletReady")].status}{"\n"}{end}' | grep -qE "\sFalse$"; do \
+    sleep 5; \
+done
+
 # Run BuildKit daemon
 kubectl apply -f pod.rootless.yaml
 

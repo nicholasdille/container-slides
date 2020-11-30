@@ -1,0 +1,17 @@
+# Remote tagging
+
+# Download existing manifest
+MANIFEST=$(
+  curl http://localhost:5000/v2/hello-world-java/manifests/latest \
+    --silent \
+    --header "Accept: application/vnd.docker.distribution.manifest.v2+json"        
+)
+
+# Upload manifest to new path
+curl http://localhost:5000/v2/hello-world-java/manifests/new \
+  --request PUT \
+  --header "Content-Type: application/vnd.docker.distribution.manifest.v2+json" \
+  --data "${MANIFEST}"
+
+# Test new tag
+docker pull localhost:5000/v2/hello-world-java/manifests/new

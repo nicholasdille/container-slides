@@ -1,4 +1,4 @@
-# Rootless containerized
+# Rootless BuildKit containerized
 
 # Run the daemon in a non-privileged container
 docker run --name buildkitd \

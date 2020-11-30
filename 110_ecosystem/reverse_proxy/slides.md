@@ -1,3 +1,9 @@
+<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
+
+## Reverse Proxy
+
+---
+
 ## Reverse Proxy
 
 ### Why?
@@ -41,8 +47,9 @@ Automatic wiring using Traefik:
 ```bash
 docker-compose up -d
 IP=$(
-  docker-compose ps -q proxy \
-  | xargs docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+  docker-compose ps -q proxy | \
+      xargs docker inspect \
+          -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
 )
 ```
 

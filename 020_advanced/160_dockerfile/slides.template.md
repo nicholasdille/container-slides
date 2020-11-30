@@ -4,9 +4,9 @@
 
 ---
 
-## Container with build tooling 1/
+## Container with build tooling 1/5
 
-All developers shoulduse the correct/same build tooling
+All developers should use the correct/same build tooling
 
 ### Separate dependency download
 
@@ -25,25 +25,27 @@ FROM base AS build
 
 --
 
-## Container with build tooling 2/
+## Container with build tooling 2/5
 
 All developers should use the correct/same build tooling
 
 ### Ignore the container image
 
-Build targets are used for tasks
+Building an image is a non-goal
 
-XXX
+`Dockerfile` as declarative description of build process
 
 --
 
-## Container with build tooling 3/
+## Container with build tooling 3/5
 
-All developers shoulduse the correct/same build tooling
+All developers should use the correct/same build tooling
 
 ### Mount instead of copy
 
-XXX
+No need for duplication
+
+Use the same sources
 
 ```Dockerfile
 FROM base AS build
@@ -53,23 +55,31 @@ RUN --mount=target=. \\
 
 --
 
-## Container with build tooling 4/
+## Container with build tooling 4/5
 
-All developers shoulduse the correct/same build tooling
+All developers should use the correct/same build tooling
 
-### XXX build targets
+### Tasks as build targets
 
-XXX
+Define targets for...
+
+Build
+
+Test
+
+Lint
+
+etc.
 
 --
 
 ## Container with build tooling 5/5
 
-All developers shoulduse the correct/same build tooling
+All developers should use the correct/same build tooling
 
-### XXX Makefile
+### Abstraction
 
-XXX
+Build targets can be used in Makefile (or similar)
 
 ```Makefile
 bin/example:

@@ -14,22 +14,31 @@ docker run -it \\
 
 ### Parameters of `nsenter`
 
-- Work with namespaces (`nsenter`)
-- Uses process tree of host (`--pid=host`)
-- Get namespace from PID 1 (`-t 1`)
-- Enter namespaces required for shell (`-m -u -n -i`)
+Work with namespaces (`nsenter`)
+
+Uses process tree of host (`--pid=host`)
+
+Get namespace from PID 1 (`-t 1`)
+
+Enter namespaces required for shell (`-m -u -n -i`)
 
 --
 
 ## Taming Privileges Containers
 
-### For example
+Alternative container runtimes (instead of `runc`)
 
-![](https://katacontainers.io/assets/img/logo_white.e69d7ea6.svg) <!-- .element: style="width: 35%" -->
+### Kata Containers
 
 Isolates containers in a lightweight VM
 
-Configured as a container runtime (instead of `runc`)
+Also supports firecracker
+
+### Google gVisor
+
+Application kernel written in Go
+
+Implements Linux system calls
 
 --
 
@@ -37,9 +46,11 @@ Configured as a container runtime (instead of `runc`)
 
 For example [`sockguard`](https://github.com/buildkite/sockguard)
 
-- No privileged containers
-- No host bind mounts
-- No host network
+No privileged containers
+
+No host bind mounts
+
+No host network
 
 ```bash
 /sockguard \
