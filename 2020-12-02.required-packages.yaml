@@ -1,5 +1,5 @@
 apt-get update
-apt-get -y install --no-install-recommends git curl jq xmlstarlet
+apt-get -y install --no-install-recommends git curl jq xmlstarlet sshfs
 
 curl --fail --location --output /tmp/docker.sh https://get.docker.com
 bash /tmp/docker.sh

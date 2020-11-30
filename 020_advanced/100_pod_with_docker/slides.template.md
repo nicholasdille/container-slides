@@ -1,6 +1,22 @@
 ## Creating a pod using Docker
 
-XXX Kubernetes Pod
+### Definition
+
+Pods consist of one or more containers
+
+Containers in a pod share the network namespace
+
+Pods are the smallest unit of deployment in Kubernetes
+
+### Advantage
+
+Containers in a pod behave like the same host
+
+They can talk to each other using `localhost`
+
+### Disadvantage
+
+Docker does not handle pods natively
 
 --
 
