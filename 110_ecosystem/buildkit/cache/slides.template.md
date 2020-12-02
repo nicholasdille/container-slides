@@ -13,7 +13,7 @@ Syntax is similar to mounting secrets
 ```plaintext
 # syntax = docker/dockerfile:experimental
 FROM ubuntu
-RUN --mount=type=cache,target=/tmp/cache \\
+RUN --mount=type=cache,target=/tmp/cache \
     ls -l /tmp/cache
 ```
 

@@ -6,9 +6,10 @@ RUN apt-get update \
         ca-certificates
 
 WORKDIR /src
-COPY . .
-
+COPY go.* . #package.json, gemfile, pom.xml
 RUN go mod download
+
+COPY . .
 RUN go build -o hello . \
  && cp hello /
 

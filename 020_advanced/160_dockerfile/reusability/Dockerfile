@@ -9,7 +9,7 @@ WORKDIR /src
 COPY go.* .
 RUN go mod download
 
-FROM deps
+FROM deps AS builder
 COPY . .
 RUN go build -o hello . \
  && cp hello /

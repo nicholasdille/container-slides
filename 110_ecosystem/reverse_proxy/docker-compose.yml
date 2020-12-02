@@ -35,6 +35,8 @@ services:
 
   registry:
     image: registry:2
+    ports:
+    - "127.0.0.1:5000:5000"
     labels:
       traefik.enable: "true"
       traefik.http.services.registry.loadbalancer.server.port: 5000

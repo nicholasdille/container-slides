@@ -23,7 +23,7 @@ Use experimental syntax in `Dockerfile`:
 ```plaintext
 # syntax=docker/dockerfile:experimental
 FROM alpine
-RUN --mount=type=secret,id=mysite.key \\
+RUN --mount=type=secret,id=mysite.key \
     ls -l /run/secrets
 ```
 

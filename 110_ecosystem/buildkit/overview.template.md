@@ -27,3 +27,5 @@ Remote build cache
 Builds secrets
 
 Unprivileged execution
+
+XXX docker-compose: 1.25.1 (`COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build`)

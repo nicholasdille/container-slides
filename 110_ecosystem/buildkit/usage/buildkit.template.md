@@ -34,22 +34,22 @@ Let a script take care of running the daemon on-demand
 Run a build locally
 
 ```plaintext
-buildctl-daemonless.sh build \\
-    --frontend dockerfile.v0 \\
-    --local context=. \\
+buildctl-daemonless.sh build \
+    --frontend dockerfile.v0 \
+    --local context=. \
     --local dockerfile=.
 ```
 
 Run a build containerized
 
 ```plaintext
-docker run -it \\
-    --privileged \\
-    --volume $PWD:/src \\
-    --workdir /src \\
-    --entrypoint buildctl-daemonless.sh \\
-    moby/buildkit build \\
-        --frontend dockerfile.v0 \\
-        --local context=. \\
+docker run -it \
+    --privileged \
+    --volume $PWD:/src \
+    --workdir /src \
+    --entrypoint buildctl-daemonless.sh \
+    moby/buildkit build \
+        --frontend dockerfile.v0 \
+        --local context=. \
         --local dockerfile=.
 ```

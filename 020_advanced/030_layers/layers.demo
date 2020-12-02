@@ -8,6 +8,9 @@ docker push localhost:5000/hello-world-java
 # Check layers
 docker history hello-world-java
 
+# Analyze layers
+dive hello-world-java
+
 # Fetch image manifest
 curl http://localhost:5000/v2/hello-world-java/manifests/latest \
   --silent \
@@ -15,7 +18,13 @@ curl http://localhost:5000/v2/hello-world-java/manifests/latest \
 | jq
 
 # Fetch image configuration
-curl http://localhost:5000/v2/hello-world-java/manifests/latest \
+DIGEST=$(
+  curl http://localhost:5000/v2/hello-world-java/manifests/latest \
+    --silent \
+    --header "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+  | jq --raw-output '.config.digest'
+)
+curl http://localhost:5000/v2/hello-world-java/blobs/${DIGEST} \
   --silent \
   --header "Accept: application/vnd.docker.container.image.v1+json" \
 | jq

@@ -84,6 +84,8 @@ Use image build for isolation
 
 Write build output to host
 
+https://github.com/chris-crone/containerized-go-dev
+
 --
 
 ## Container with build tooling 1/5
@@ -131,7 +133,7 @@ Use the same sources
 
 ```Dockerfile
 FROM base AS build
-RUN --mount=target=. \\
+RUN --mount=target=. \
     go build .
 ```
 

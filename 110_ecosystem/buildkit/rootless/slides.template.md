@@ -60,10 +60,10 @@ rootlesskit buildkitd
 Run the build
 
 ```plaintext
-buildctl \\
-    --addr unix:///run/user/$UID/buildkit/buildkitd.sock build \\
-    --frontend dockerfile.v0 \\
-    --local context=. \\
+buildctl \
+    --addr unix:///run/user/$UID/buildkit/buildkitd.sock build \
+    --frontend dockerfile.v0 \
+    --local context=. \
     --local dockerfile=.
 ```
 
@@ -82,29 +82,29 @@ buildctl \\
 Run the daemon in user context with a port publishing
 
 ```plaintext
-docker run --name buildkitd \\
-    --detach \\
-    --security-opt apparmor=unconfined \\
-    --security-opt seccomp=unconfined \\
-    --publish 127.0.0.1:1234:1234 \\
-    moby/buildkit:rootless \\
-        --oci-worker-no-process-sandbox \\
+docker run --name buildkitd \
+    --detach \
+    --security-opt apparmor=unconfined \
+    --security-opt seccomp=unconfined \
+    --publish 127.0.0.1:1234:1234 \
+    moby/buildkit:rootless \
+        --oci-worker-no-process-sandbox \
         --addr tcp://0.0.0.0:1234
 ```
 
 Run a build
 
 ```plaintext
-docker run --interactive --tty \\
-    --network container:buildkitd \\
-    --volume $PWD:/src \\
-    --workdir /src \\
-    --entrypoint buildctl \\
-    moby/buildkit \\
-        --addr tcp://127.0.0.1:1234 \\
-        build \\
-            --frontend dockerfile.v0 \\
-            --local context=. \\
+docker run --interactive --tty \
+    --network container:buildkitd \
+    --volume $PWD:/src \
+    --workdir /src \
+    --entrypoint buildctl \
+    moby/buildkit \
+        --addr tcp://127.0.0.1:1234 \
+        build \
+            --frontend dockerfile.v0 \
+            --local context=. \
             --local dockerfile=.
 ```
 
@@ -115,10 +115,10 @@ docker run --interactive --tty \\
 Run a build by running the daemon on-demand
 
 ```plaintext
-export BUILDKITD_FLAGS=--oci-worker-no-process-sandbox \\
-buildctl-daemonless.sh build \\
-    --frontend dockerfile.v0 \\
-    --local context=. \\
+export BUILDKITD_FLAGS=--oci-worker-no-process-sandbox \
+buildctl-daemonless.sh build \
+    --frontend dockerfile.v0 \
+    --local context=. \
     --local dockerfile=.
 ```
 
@@ -129,15 +129,15 @@ buildctl-daemonless.sh build \\
 Run a containerized build with the daemon on-demand
 
 ```plaintext
-docker run -it \\
-    --security-opt apparmor=unconfined \\
-    --security-opt seccomp=unconfined \\
-    --env BUILDKITD_FLAGS=--oci-worker-no-process-sandbox \\
-    --volume $PWD:/src \\
-    --workdir /src \\
-    --entrypoint buildctl-daemonless.sh \\
-    moby/buildkit build \\
-        --frontend dockerfile.v0 \\
-        --local context=. \\
+docker run -it \
+    --security-opt apparmor=unconfined \
+    --security-opt seccomp=unconfined \
+    --env BUILDKITD_FLAGS=--oci-worker-no-process-sandbox \
+    --volume $PWD:/src \
+    --workdir /src \
+    --entrypoint buildctl-daemonless.sh \
+    moby/buildkit build \
+        --frontend dockerfile.v0 \
+        --local context=. \
         --local dockerfile=.
 ```

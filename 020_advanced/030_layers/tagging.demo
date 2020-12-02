@@ -4,7 +4,7 @@
 MANIFEST=$(
   curl http://localhost:5000/v2/hello-world-java/manifests/latest \
     --silent \
-    --header "Accept: application/vnd.docker.distribution.manifest.v2+json"        
+    --header "Accept: application/vnd.docker.distribution.manifest.v2+json"
 )
 
 # Upload manifest to new path
@@ -14,4 +14,4 @@ curl http://localhost:5000/v2/hello-world-java/manifests/new \
   --data "${MANIFEST}"
 
 # Test new tag
-docker pull localhost:5000/v2/hello-world-java/manifests/new
+docker pull localhost:5000/hello-world-java:new

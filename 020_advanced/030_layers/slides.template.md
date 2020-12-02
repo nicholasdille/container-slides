@@ -64,33 +64,37 @@ Upload image to local registry
 
 <!-- include: layers-1.command -->
 
+<!-- include: layers-2.command -->
+
+https://github.com/wagoodman/dive
+
 --
 
 ## Demo: Image Manifest
-
-<!-- include: layers-2.command -->
-
---
-
-## Demo: Image Configuration
 
 <!-- include: layers-3.command -->
 
 --
 
-## Demo: Download image layer
+## Demo: Image Configuration
 
 <!-- include: layers-4.command -->
 
+--
+
+## Demo: Download image layer
+
 <!-- include: layers-5.command -->
+
+<!-- include: layers-6.command -->
 
 --
 
 ## Demo: Verifying a layer
 
-<!-- include: layers-6.command -->
-
 <!-- include: layers-7.command -->
+
+<!-- include: layers-8.command -->
 
 ---
 
