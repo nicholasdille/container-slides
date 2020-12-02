@@ -4,6 +4,88 @@
 
 ---
 
+## Optimizing a Dockerfile
+
+### Order
+
+Order by rate of change
+
+From low frequency of change at the top
+
+To high frequency of change at the bottom
+
+### Consider
+
+OS packages
+
+Language dependencies
+
+Code and other files
+
+--
+
+## Optimizing a Dockerfile
+
+### Reusability
+
+Create base image
+
+Derive specialized images
+
+### Example
+
+Base image with OS packages
+
+Derived image with language dependencies
+
+Derived image with code
+
+--
+
+## Optimizing a Dockerfile
+
+### Separation
+
+One image for build environment
+
+Another image for runtime environment
+
+### Consider
+
+Build environment will be large
+
+Runtime environment should be small
+
+--
+
+## Optimizing a Dockerfile
+
+### Parallelization
+
+Create stages for independent steps
+
+Fan-in
+
+### Example
+
+Prepare base image
+
+Install tools in parallel
+
+Merge in final image
+
+--
+
+## Optimizing a Dockerfile
+
+### Isolation
+
+Use image build for isolation
+
+Write build output to host
+
+--
+
 ## Container with build tooling 1/5
 
 All developers should use the correct/same build tooling
