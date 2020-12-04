@@ -44,7 +44,7 @@ if ! type xmlstarlet; then
     apt -y install xmlstarlet
 fi
 
-make
+make || true
 
 echo "${FILE}" | copy_to_target
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${FILE}" | extract_links | copy_to_target
