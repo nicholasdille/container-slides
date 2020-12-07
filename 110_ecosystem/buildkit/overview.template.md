@@ -1,9 +1,3 @@
-<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
-
-## BuildKit
-
----
-
 ## BuildKit
 
 ### The project
@@ -28,4 +22,14 @@ Builds secrets
 
 Unprivileged execution
 
-XXX docker-compose: 1.25.1 (`COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build`)
+---
+
+## BuildKit
+
+### Why
+
+XXX
+
+### How
+
+XXX image

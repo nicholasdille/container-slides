@@ -37,6 +37,8 @@
         <i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
     </textarea></section>
 
+    <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Lernziele
 
@@ -51,10 +53,62 @@
         - Nutzung von BuildKit ohne Docker
     </textarea></section>
 
+    <section data-markdown="110_ecosystem/buildkit/overview.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="110_ecosystem/buildkit/usage/docker.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="110_ecosystem/buildkit/usage/dind.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="110_ecosystem/buildkit/usage/buildkit_containerized.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="110_ecosystem/buildkit/usage/daemonless_containerized.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Agenda
+
+        <i class="fas fa-tree" style="width: 1.5em; text-align: center;"></i> Rootless
+
+        <i class="fas fa-hourglass-half" style="width: 1.5em; text-align: center;"></i> Build Cache
+
+        <i class="fas fa-folder-open" style="width: 1.5em; text-align: center;"></i> Cache Directories
+
+        <i class="fas fa-key" style="width: 1.5em; text-align: center;"></i> Secrets
+
+        <i class="fas fa-music" style="width: 1.5em; text-align: center;"></i> Compose
+
+        <i class="fas fa-truck-loading" style="width: 1.5em; text-align: center;"></i> Kubernetes
+    </textarea></section>
+
+    <section data-markdown="110_ecosystem/buildkit/rootless/overview.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="110_ecosystem/buildkit/rootless/containerized.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="020_advanced/025_build_cache/buildkit.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="110_ecosystem/buildkit/cache/slides.template.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="110_ecosystem/buildkit/secrets/slides.template.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="110_ecosystem/buildkit/compose/slides.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="110_ecosystem/buildkit/k8s/slides.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="020_advanced/140_multi_arch/slides.template.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Summary
 
-        XXX
+        BuildKit is superior to the legacy builder
+
+        Can be used standalone
+
+        Supports rootless image building
+
+        Uses remote image as build cache
+
+        Caches directories between builds
+
+        Mounts secrets during builds
+
+        Can run in Kubernetes using load balancing
+
+        Builds images for other platforms
     </textarea></section>
 </div>
 </div>
@@ -101,7 +155,7 @@
         parallaxBackgroundImage: '',
         parallaxBackgroundSize: '',
 
-        allottedTime: 10 * 60 * 1000,
+        allottedTime: 45 * 60 * 1000,
         keyboard: {
             // pause/resume time when Enter is pressed
             13: () => {

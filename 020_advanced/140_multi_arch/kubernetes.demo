@@ -1,16 +1,9 @@
-# WIP: Use Kubernetes to run builder instances
+# Use Kubernetes to run builder instances
 
-# TODO: Prepare k3d cluster
-echo NEED TO PREPARE CLUSTER
-
-# Update buildx
-git clone https://github.com/docker/buildx
-cd buildx
-make binaries install
-
-# Show new driver
-export DOCKER_CLI_EXPERIMENTAL=enabled
-docker buildx create --help
+# Prepare k3d cluster
+kind create cluster --config kind.yaml
+docker network connect "kind" "registry"
+while kubectl --kubeconfig=./kubeconfig get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.conditions[?(@.reason=="KubeletReady")].status}{"\n"}{end}' | grep -qE "\sFalse$$"; do sleep 5; done
 
 # Create builder instances in Kubernetes
 docker buildx create \
@@ -22,4 +15,14 @@ docker buildx create \
     --use
 
 # Check builder instances in Kubernetes
-docker buildx inspect k8s
+docker buildx inspect k8s --bootstrap
+
+# Check pods
+kubectl get pods
+
+# Build using Kubernetes
+docker buildx build --platform linux/amd64,linux/arm64 --tag localhost:5000/hello . --push
+
+# Inspect result
+docker buildx imagetools inspect \
+    localhost:5000/hello

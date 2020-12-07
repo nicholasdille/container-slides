@@ -21,9 +21,3 @@ Docker 19.03
 <!-- include: buildkit-0.command -->
 
 <!-- include: buildkit-1.command -->
-
---
-
-## Demo: BuildKit Cache Internals
-
-<!-- include: internals-0.command -->

@@ -1,0 +1,10 @@
+# BuildKit in docker-compose
+
+# Enable building using CLI
+export COMPOSE_DOCKER_CLI_BUILD=1
+
+# Enable BuildKit
+DOCKER_BUILDKIT=1
+
+# Build using docker-compose
+docker-compose build

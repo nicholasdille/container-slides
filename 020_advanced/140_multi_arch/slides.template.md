@@ -1,39 +1,18 @@
 ## Multi-Arch Image
 
-### Image only work on a single platform
+### Images only work on a single platform
 
 But containers are supported on multiple architectures and operating systems
 
 ### Virtual images to the rescue
 
-Manifest links to multiple images for supported platforms
+Manifest links to separate image per platform
 
 Now integrated in Docker CLI (docker manifest)
 
 Based on manifest-tool (by Docker Captain Phil Estes)
 
 ### Official images are already multi-arch
-
---
-
-## Multi-Arch Image: openjdk
-
-```bash
-$ docker run mplatform/mquery openjdk:8-jdk
-Image: openjdk:8-jdk
- * Manifest List: Yes
- * Supported platforms:
-   - linux/amd64
-   - windows/amd64:10.0.17763.805
-   - windows/amd64:10.0.17134.1069
-   - windows/amd64:10.0.14393.3274
-$ docker run mplatform/mquery openjdk:8-jdk-nanoserver
-Image: openjdk:8-jdk-nanoserver
- * Manifest List: Yes
- * Supported platforms:
-   - windows/amd64:10.0.17763.802
-   - windows/amd64:10.0.17134.1069
-```
 
 --
 
@@ -49,10 +28,10 @@ Image: hello-world
    - linux/arm/v7
    - linux/arm64
    - linux/386
+   - linux/mips64le
    - linux/ppc64le
    - linux/s390x
-   - windows/amd64:10.0.17134.1069
-   - windows/amd64:10.0.17763.802
+   - windows/amd64:10.0.17763.1577
 ```
 
 --
