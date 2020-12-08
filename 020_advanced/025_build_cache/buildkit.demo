@@ -11,5 +11,7 @@ docker push localhost:5000/test:1
 # Build with remote cache
 docker system prune --all
 docker build \
+    --tag localhost:5000/test:2 \
+    --build-arg BUILDKIT_INLINE_CACHE=1 \
     --cache-from localhost:5000/test:1 \
     .

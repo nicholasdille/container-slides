@@ -3,7 +3,7 @@ TOPICS  := $(shell find $(pwd) -type f -name \*.template.md)
 DEMOS   := $(shell ls *.demo 2>/dev/null)
 BASEDIR ?= "../.."
 COMMIT  := $(shell git rev-parse HEAD | head -c7)
-TOPICS  := $(shell find $(pwd) -type f -name \*.md)
+TOPICS  := $(shell find $(pwd) -type f -name \*.template.md)
 IMAGES  := $(shell find $(pwd) -type f -name \*.svg -or -name \*.jpg -or -name *.png)
 SLIDES  := $(shell find $(pwd) -type f -name \*.html -or -name \*.css -or -name *.js)
 
