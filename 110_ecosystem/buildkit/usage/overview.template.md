@@ -6,7 +6,7 @@ Uses a client/server architecture (`buildkitd` and `buildctl`)
 
 |            | Locally | Containerized | Rootless |
 |------------|:-------:|:-------------:|:--------:|
-| Docker     | X       | X             | experimental
+| Docker     | X       | X             | X
 | Daemon/CLI | X       | X             | X
 | Daemonless | X       | X             | X
 

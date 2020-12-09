@@ -6,9 +6,9 @@ Based on [rootlesskit](https://github.com/rootless-containers/rootlesskit)
 
 Uses host networking by default or [slirp4netns](https://github.com/rootless-containers/slirp4netns) for isolation
 
-Docker rootless is experimental since Docker 19.03
+Docker rootless was experimental since Docker 19.03
 
-Docker rootless will be GA in Docker 20.10
+Docker rootless is GA since Docker 20.10 (December 8th 2020)
 
 ### Running in a rootless container
 

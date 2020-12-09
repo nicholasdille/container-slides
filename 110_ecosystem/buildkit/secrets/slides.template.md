@@ -18,10 +18,10 @@ Introduced in Docker 18.09
 
 ## Demo: Build Secrets
 
-Use experimental syntax in `Dockerfile`:
+Use new syntax in `Dockerfile`:
 
 ```plaintext
-# syntax=docker/dockerfile:experimental
+#syntax=docker/dockerfile:1.2
 FROM alpine
 RUN --mount=type=secret,id=mysite.key \
     ls -l /run/secrets

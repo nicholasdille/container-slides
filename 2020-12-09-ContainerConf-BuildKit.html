@@ -41,6 +41,24 @@
 
     <section data-markdown="110_ecosystem/buildkit/overview.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Docker 20.10
+
+        [Release Notes](https://docs.docker.com/engine/release-notes/)
+
+        [Container images](https://hub.docker.com/_/docker) not yet available (only RC)
+
+        BuildKit not enabled by default on Linux (only in Docker for Mac/Win)
+
+        Fix ownership (`--chown`) and permissions (`--chmod`) in COPY/ADD
+
+        Build arguments can now have multiple values: `ARG key1=val1 key2=val2`
+
+        BuildKit now offers connection pooling
+
+        Buildx is now GA (more later)
+    </textarea></section>
+
     <section data-markdown="110_ecosystem/buildkit/usage/docker.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="110_ecosystem/buildkit/usage/dind.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="110_ecosystem/buildkit/usage/buildkit_containerized.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>

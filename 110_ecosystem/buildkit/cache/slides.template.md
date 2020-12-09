@@ -11,7 +11,7 @@ Filling caches takes time
 Syntax is similar to mounting secrets
 
 ```plaintext
-# syntax = docker/dockerfile:experimental
+#syntax=docker/dockerfile:1.2
 FROM ubuntu
 RUN --mount=type=cache,target=/tmp/cache \
     ls -l /tmp/cache
