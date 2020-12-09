@@ -4,12 +4,13 @@
 kind create cluster
 
 # Wait for nodes to become ready
-while kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.conditions[?(@.reason=="KubeletReady")].status}{"\n"}{end}' | grep -qE "\sFalse$"; do \
-    sleep 5; \
-done
+watch kubectl get nodes
 
 # Run BuildKit daemon
 kubectl apply -f pod.rootless.yaml
+
+# Wait for pod to deploy
+watch kubectl get pods
 
 # Run build
 export BUILDKIT_HOST=kube-pod://buildkitd
