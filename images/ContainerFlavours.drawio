@@ -1,0 +1,55 @@
+<mxfile>
+    <diagram id="e36eb34b-554d-9957-1147-f064b803aee2" name="Page-1">
+        <mxGraphModel dx="1530" dy="830" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="OS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8800;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="210" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Hypervisor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="210" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;rotation=90;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="6" y="115" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Hardware" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="260" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="OS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8800;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="160" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Hardware" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="260" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;div align=&quot;center&quot;&gt;Windows&lt;br&gt;Containers&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="310" width="170" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Hyper-V&lt;br&gt;Containers" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="310" width="170" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;rotation=90;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="66" y="115" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="Container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;rotation=90;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="126" y="115" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;rotation=90;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="246" y="65" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="OS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8800;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="160" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="OS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8800;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="160" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;rotation=90;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="305" y="65" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6A9FB5;fontFamily=Verdana;fontSize=16;fontColor=#FFFFFF;align=center;rotation=90;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="65" width="120" height="50" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

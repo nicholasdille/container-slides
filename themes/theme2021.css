@@ -1,0 +1,306 @@
+/* GLOBAL */
+/*@import url(https://cdn.jsdelivr.net/npm/reveal.js@4.1.1/lib/font/source-sans-pro/source-sans-pro.css);*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+:root {
+    --background-color: #191919;
+    --main-font: 'Source Sans Pro', sans-serif;
+    --main-font-size: 42px;
+    --main-color: #7cbad4;
+    --block-margin: 20px;
+    --heading-margin: 0 0 20px 0;
+    --heading-font: 'Source Sans Pro', sans-serif;
+    --heading-color: #7cbad4;
+    --heading-line-height: 1.2;
+    --heading-letter-spacing: normal;
+    --heading-text-transform: uppercase;
+    --heading-text-shadow: none;
+    --heading-font-weight: 600;
+    --heading1-text-shadow: none;
+    --heading1-size: 2.5em;
+    --heading2-size: 1.6em;
+    --heading3-size: 1.3em;
+    --heading4-size: 1em;
+    --code-font: monospace;
+    --link-color: #7cbad4;
+    --link-color-hover: #7cbad4;
+    --selection-background-color: #dcdcdc;
+    --selection-color: #3f3f3f;
+  }
+
+.reveal-viewport {
+    background: #191919;
+    background-color: #191919;
+}
+
+.reveal {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #fff;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.reveal ::selection,
+.reveal ::-moz-selection {
+    color: white;
+    background: #6a9fb5;
+    text-shadow: none;
+}
+
+.reveal code::selection,
+.reveal code::-moz-selection {
+    color: #3f3f3f;
+    background: #dcdcdc;
+}
+
+.reveal .slides section,
+.reveal .slides section > section {
+  line-height: 1.3;
+  font-weight: inherit;
+  text-align: left;
+  width: 90%;
+  padding-left: 2em;
+  padding-right: 1em;
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+
+/* HEADINGS */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    margin: 0 0 20px 0;
+    color: #fff;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-transform: none;
+    text-shadow: none;
+    word-wrap: break-word;
+}
+.reveal h1 {
+    font-size: 1.6em;
+    color: #7cbad4;
+}
+.reveal h2 {
+    font-size: 1.2em;
+    color: #7cbad4;
+}
+.reveal h3 {
+    font-style: italic;
+    font-size: 0.9em;
+    padding-top: 0.5em;
+    margin-bottom: 0.2em;
+}
+.reveal h4 {
+    font-size: 0.8em;
+}
+.reveal h1:last-child,
+.reveal h2:last-child,
+.reveal h3:last-child,
+.reveal h4:last-child,
+.reveal h5:last-child,
+.reveal h6:last-child {
+  margin-bottom: 0;
+}
+
+/* TEXT AND LISTS */
+.reveal p {
+    margin: 20px 0;
+    line-height: 1;
+}
+.reveal strong,
+.reveal b {
+    font-weight: bold;
+}
+.reveal em {
+    font-style: italic;
+}
+.reveal ol,
+.reveal dl,
+.reveal ul {
+    display: inline-block;
+    text-align: left;
+    margin: 0 0 0 1em;
+}
+.reveal ol {
+    list-style-type: decimal;
+}
+.reveal ul {
+    list-style-type: disc;
+}
+.reveal ul ul {
+    list-style-type: square;
+}
+.reveal ul ul ul {
+    list-style-type: circle;
+}
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+    display: block;
+    margin-left: 40px;
+}
+.reveal p,
+.reveal div,
+.reveal span,
+.reveal li,
+.reveal ul,
+.reveal ol,
+.reveal ul ul {
+    font-size: 0.8em;
+}
+.reveal section code {
+    font-size: 1.3em;
+}
+.two_column_list ul,
+.two_column_list ol {
+    width: 100%;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+.reveal sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+.reveal sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+.reveal small {
+    display: inline-block;
+    font-size: 0.6em;
+    line-height: 1.2em;
+    vertical-align: top;
+}
+.reveal small * {
+    vertical-align: top;
+}
+
+/* IMAGES */
+.reveal img,
+.reveal video,
+.reveal iframe {
+    max-width: 95%;
+    max-height: 95%;
+}
+.reveal img {
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+/* LINKS */
+.reveal a {
+    color: #7cbad4;
+    text-decoration: none;
+    -webkit-transition: color .15s ease;
+    -moz-transition: color .15s ease;
+    transition: color .15s ease;
+}
+.reveal a:hover {
+    color: #7cbad4;
+    text-shadow: none;
+    border: none;
+}
+.reveal .roll span:after {
+    color: #fff;
+    background: #068de9;
+}
+
+/* FORMATTING */
+.reveal blockquote {
+    display: block;
+    position: relative;
+    width: 70%;
+    margin: 20px auto;
+    padding: 5px;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+    display: inline-block;
+}
+.reveal q {
+    font-style: italic;
+}
+.reveal pre {
+    display: block;
+    position: relative;
+    width: 90%;
+    margin: 20px auto;
+    text-align: left;
+    font-size: 0.55em;
+    font-family: monospace;
+    line-height: 1.5em;
+    word-wrap: break-word;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+.reveal code {
+    font-family: monospace;
+    text-transform: none;
+}
+.reveal pre code {
+    display: block;
+    padding: 5px;
+    overflow: auto;
+    max-height: 400px;
+    word-wrap: normal;
+}
+
+/* TABLES */
+.reveal dt {
+    font-weight: bold;
+}
+.reveal dd {
+    margin-left: 40px;
+}
+.reveal table {
+    margin: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: smaller;
+}
+.reveal table th {
+    font-weight: bold;
+}
+.reveal table th,
+.reveal table td {
+    text-align: left;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    border-bottom: 1px solid;
+}
+.reveal table th[align="center"],
+.reveal table td[align="center"] {
+    text-align: center;
+}
+.reveal table th[align="right"],
+.reveal table td[align="right"] {
+    text-align: right;
+}
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* CONTROLS */
+.reveal .controls {
+    color: #7cbad4;
+}
+.reveal .progress {
+    background: rgba(0, 0, 0, 0.2);
+    color: #7cbad4;
+}
+@media print {
+    .backgrounds {
+        background-color: #191919;
+    }
+}

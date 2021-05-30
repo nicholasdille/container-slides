@@ -1,6 +1,7 @@
 <!-- .slide: id="bio" -->
 
-<img src="images/NicholasDille.jpg" /> <!-- .element: style="size: 50%; width: 25%; float: right; border-radius: 8px;" -->
+<img src="images/NicholasDille.jpg" />
+<!-- .element: style="width: 15%; float: right; border-radius: 8px;" -->
 
 ## Nicholas Dille
 
@@ -17,5 +18,4 @@
 <i class="fas fa-briefcase" style="width: 1.5em; text-align: center;"></i> [Haufe.Group](https://www.haufe.com/) since 2016
 
 [<i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i>](https://twitter.com/@NicholasDille) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille) [<i class="fab fa-keybase" style="width: 1.5em; text-align: center;"></i>](https://keybase.io/nicholasdille)
-
 <!-- .element: style="float: right;" -->

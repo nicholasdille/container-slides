@@ -14,3 +14,8 @@ html.dimbg75 .slide-background {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+.external-link::after {
+    font-family: FontAwesome;
+    content: " \f08e"
+}

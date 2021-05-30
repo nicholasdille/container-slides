@@ -1,3 +1,5 @@
+--
+
 ## Names
 
 ### The Good
@@ -64,7 +66,7 @@ Hardware virtualization isolated operating systems
 
 Containers isolate processes
 
-XXX illustration
+![Hardware virtualization vs. containers](../images/ContainerFlavours.drawio.svg)
 
 ### Containers are just another option!
 
@@ -73,6 +75,7 @@ XXX illustration
 ## Advantages
 
 ![DevOps infinite loop](../images/DevOps.png)
+<!-- .element: style="width: 50%; float: right;" -->
 
 ### Development
 
@@ -108,13 +111,13 @@ Immutable
 
 ### Registry
 
-Plce to store images
+Place to store images
 
 --
 
 ## Container
 
-![Container](images/Container.png) <!-- .element: style="float: right; width: 50%;" -->
+![Container](../images/Container.png) <!-- .element: style="float: right; width: 40%; padding-right: 2em;" -->
 
 ### Isolated processes
 
@@ -128,17 +131,17 @@ Plce to store images
 
 ## Why Containers
 
-<div style="width: 32%; padding-right: 2%; float: left; text-align: center">
-<p><i class="fas fa-umbrella fa-2x"></i></p>
+<div style="width: 32%; padding-right: 0.5em; float: left; text-align: center;">
+<p><i class="fas fa-umbrella fa-3x"></i></p>
 
-<h3>Isolated</h3> <!-- .element: style="font-size: 0.8em;" -->
+<h3>Isolated</h3>
 
 <p>Process isolation</p>
 <p>Resource management</p>
 </div>
 
-<div style="width: 32%; padding-right: 2%; float: left; text-align: center">
-<p><i class="fas fa-suitcase fa-2x"></i></p>
+<div style="width: 32%; padding-right: 0.5em; float: left; text-align: center;">
+<p><i class="fas fa-suitcase fa-3x"></i></p>
 
 <h3>Packaged</h3>
 
@@ -146,8 +149,8 @@ Plce to store images
 <p>Distributable package</p>
 </div>
 
-<div style="width: 32%; float: right; text-align: center">
-<p><i class="fas fa-cog fa-2x"></i></p>
+<div style="width: 32%; float: right; text-align: center;">
+<p><i class="fas fa-cog fa-3x"></i></p>
 
 <h3>Automated</h3>
 
@@ -204,4 +207,4 @@ Dedicated resources
 
 Resource reservation / limitation
 
-But... it's just a process <!-- .element: style="color: #ff8800;" -->
+**But... it's just a process**
