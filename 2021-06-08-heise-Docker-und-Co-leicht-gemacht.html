@@ -38,11 +38,28 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Agenda
 
-        1. [XXX](#/3)
+        | Zeit  | Thema |
+        | :---: | :------------------------ |
+        | 09:00 | Begrüßung |
+        | 09:10 | Was sind Container |
+        |       | Arbeiten mit Containern |
+        | 10:45 | Pause |
+        | 11:00 | Arbeiten mit Containern |
+        |       | Fehlverhalten untersuchen |
+        | 12:30 | Q&A |
+        | 13:00 | Ende |
     </textarea></section>
 
     <section data-markdown="010_basics/00_docker/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="010_basics/01_containers/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="010_basics/00_docker/names.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="010_basics/00_docker/standards.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="010_basics/00_docker/tools.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="010_basics/00_docker/internals.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="010_basics/00_docker/competition.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Summary
@@ -105,10 +122,29 @@
         parallaxBackgroundSize: '',
 
         totalTime: 4 * 60 * 60,
+        allottedTime: 4 * 60 * 60 * 1000,
+
+        barColor: 'rgb(200, 0, 0)',
+        pausedBarColor: 'rgba(200, 0, 0, .6)',
 
         markdown: {
             smartypants: true
         },
+
+        keyboard: {
+            // pause/resume time when Enter is pressed
+            13: () => {
+                ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+            },
+            // reset timer when 'r' is pressed
+            82: () => {
+                ElapsedTimeBar.reset();
+            }
+        },
+
+        dependencies: [
+            { src: 'plugins/elapsed-time-bar-2699fc8/elapsed-time-bar.js' }
+        ],
 
         plugins: [
             RevealMarkdown,

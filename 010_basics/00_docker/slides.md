@@ -1,43 +1,3 @@
---
-
-## Names
-
-### The Good
-
-Docker is a company
-
-`docker` is a container management tool
-
-### The Bad
-
-Containerize not dockerize
-
-### The Ugly
-
-I have an application in a docker
-
---
-
-## What is so spacial about Docker
-
-### In the beginning there were logical partitions (LPARs)
-
-Made by our parents
-
-### Then came Linux Containers (LXC)
-
-Made by our brothers and sisters
-
-Interface to cgroups and namespaces in the kernel
-
-### The rise of Docker
-
-Founded 2013 by Solomon Hykes
-
-He revolutionized container management
-
---
-
 ## Concepts
 
 ### Process Isolation
@@ -54,19 +14,19 @@ Resource management
 
 ### Containers are immutable
 
-Configuration changes only when created
+Configuration changes require recreation
 
 --
 
-## Containers vs. VMs
+## Containers versus virtual machines
 
 ### Different levels of virtualization
 
-Hardware virtualization isolated operating systems
+Virtual machines isolate operating systems
 
 Containers isolate processes
 
-![Hardware virtualization vs. containers](../images/ContainerFlavours.drawio.svg)
+![Hardware virtualization vs. containers](010_basics/00_docker/containers_vs_vms.drawio.svg)
 
 ### Containers are just another option!
 
@@ -87,13 +47,13 @@ Deployable for testing
 
 ### Operations
 
-Lightweight virtualization
+Lightweight isolation
 
 Density
 
 Dependency management
 
---
+---
 
 ## Nomenclature
 
@@ -158,21 +118,25 @@ Place to store images
 <p>Fast deployments</p>
 </div>
 
----
+--
 
-## Internals
+## What is so special about Docker
 
-### Namespaces
+### In the beginning there were logical partitions (LPARs)
 
-* Used for resource isolation
-* Isolation of resource usage to limit visibility
-* Types are PID, network, mount
+Made by our parents
 
-### c(ontrol)groups
+### Then came Linux Containers (LXC)
 
-* Used to limit resource usage for proceses
-* Limits and measures access to...
-* ...CPU, memory, network, IO
+Made by our brothers and sisters
+
+Interface to cgroups and namespaces in the kernel
+
+### The rise of Docker
+
+Founded 2013 by Solomon Hykes
+
+Revolution of container management
 
 ---
 
@@ -196,15 +160,3 @@ Place to store images
 ### Stateless
 
 * By default, no persistence
-
---
-
-## Containers
-
-Process Isolation
-
-Dedicated resources
-
-Resource reservation / limitation
-
-**But... it's just a process**
