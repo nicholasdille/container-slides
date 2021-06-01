@@ -20,32 +20,22 @@ Containerization is a commmunity effort!
 
 ## References
 
-### Open Container Initiative
+Open Container Initiative (OCI) [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://opencontainers.org/) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/opencontainers)
 
-XXX https://opencontainers.org/
+OCI Specs [Runtime](https://github.com/opencontainers/runtime-spec) / [Image](https://github.com/opencontainers/image-spec) / [Distribution](https://github.com/opencontainers/distribution-spec) / [Artifacts](https://github.com/opencontainers/artifacts)
 
-XXX https://github.com/opencontainers
+Runc [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/opencontainers/runc)
 
-XXX https://github.com/opencontainers/runtime-spec
+CNCF [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://www.cncf.io/)
 
-XXX https://github.com/opencontainers/image-spec
+containerd [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://containerd.io/) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/containerd/containerd)
 
-XXX https://github.com/opencontainers/distribution-spec
+distribution [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/distribution/distribution)
 
-XXX https://github.com/opencontainers/runc
+Moby [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://mobyproject.org/) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/moby/moby)
 
-XXX OCI artifacts: https://github.com/opencontainers/artifacts
+Docker [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://www.docker.com/) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/docker)
 
-### Cloud Native Computing Foundation
+docker-compose [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/docker/compose)
 
-XXX CNCF
-
-XXX containerd
-
-XXX distribution
-
-### Docker
-
-XXX moby
-
-XXX docker compose
+docker compose [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/docker/compose-cli)

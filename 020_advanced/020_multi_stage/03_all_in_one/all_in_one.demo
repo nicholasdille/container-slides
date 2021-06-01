@@ -1,0 +1,11 @@
+# Multi-stage build
+
+# Build in parallel using BuildKit
+export DOCKER_BUILDKIT=1
+docker build --tag hello-demo .
+
+# Run default hello
+docker run hello-demo
+
+# Run other hello
+docker run hello-demo HelloHeise

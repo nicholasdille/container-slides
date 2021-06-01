@@ -1,0 +1,3 @@
+## Temporary mounts
+
+XXX tmpfs
