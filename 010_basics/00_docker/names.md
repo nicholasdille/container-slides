@@ -8,8 +8,8 @@ Docker is a company
 
 ### The Bad
 
-Containerize not dockerize
+Say **containerize** not ~~dockerize~~
 
 ### The Ugly
 
-I have an application in a docker
+~~The application is in a docker~~

@@ -1,14 +1,13 @@
 ## Background containers
+<!-- .slide: id="background" -->
 
 ```bash
 $ docker run -d nginx
 e10ddad9ec5b
 $ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-e10ddad9ec5b        nginx               "nginx -g 'daemon of…"   56 seconds ago      Up 55 seconds       80/tcp              awesome_minsky
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+d89e05a7d482   nginx     "/docker-entrypoint.…"   33 seconds ago   Up 31 seconds   80/tcp    nostalgic_wozniak
 ```
-
-Note 64-byte ID and generated name.
 
 ### First process keeps container alive
 
@@ -20,19 +19,41 @@ Container stops when process ends
 docker ps -a
 ```
 
-XXX filters, e.g. `docker ps --filter ancestor=nginx`
+List by image:
+
+```bash
+$ docker ps --filter ancestor=nginx
+CONTAINER ID   NAMES               IMAGE     STATUS
+d89e05a7d482   nostalgic_wozniak   nginx     Up About a minute
+```
 
 --
 
 ## Naming containers
 
-XXX ID
+Containers always receive a 64 byte hexadecimal ID
 
-XXX default name
+Docker assigns a random name `adjective-scientist`
 
-XXX --name foo
+```bash
+$ docker ps
+CONTAINER ID   NAMES               IMAGE     STATUS
+d89e05a7d482   nostalgic_wozniak   nginx     Up 2 hours
+```
 
-XXX --filter name=foo
+Assign a custom name (instead of random name) during start:
+
+```bash
+docker run -d --name foo nginx
+```
+
+List container with specific name:
+
+```bash
+$ docker ps --filter name=foo
+CONTAINER ID   NAMES     IMAGE     STATUS
+7921f03f74d3   foo       nginx     Up 44 seconds
+```
 
 --
 
@@ -41,7 +62,17 @@ XXX --filter name=foo
 Stop containers:
 
 ```bash
-docker stop awesome_minsky
+docker stop foo
 ```
 
-XXX check stopped containers
+Check stopped containers:
+
+```bash
+$ docker ps --all
+CONTAINER ID   NAMES               IMAGE     STATUS
+7921f03f74d3   foo                 nginx     Exited (0) 24 seconds ago
+d89e05a7d482   nostalgic_wozniak   nginx     Up 2 hours
+32ba8f1b6a2b   priceless_vaughan   centos    Exited (0) 2 hours ago
+33dd5a3ac395   laughing_tu         centos    Exited (0) 2 hours ago
+294197b7fd00   jovial_joliot       ubuntu    Exited (0) 2 hours ago
+```

@@ -1,20 +1,28 @@
 ## Data Exchange
+<!-- .slide: id="copy" -->
 
-XXX
+Copy file from container:
 
 ```bash
-docker cp CONTAINER:/path/file .
-docker cp /path/file CONTAINER:/path/file
+docker cp web2:/usr/share/nginx/html/index.html .
 ```
 
-XXX
+Copy file into container:
 
 ```bash
-docker cp CONTAINER:/path/file - | tar -xv
+docker cp index.html web2:/usr/share/nginx/html
 ```
 
-XXX
+Test updated file:
 
 ```bash
-docker exec -i CONTAINER tar -C /path -c . | tar -xv
+curl http://localhost
+```
+
+### Little known fact
+
+Copy uses tar internally:
+
+```bash
+docker cp web2:/usr/share/nginx/html - | tar -tv
 ```

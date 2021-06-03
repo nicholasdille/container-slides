@@ -1,4 +1,5 @@
-## My First Container
+## My First Container 1/3
+<!-- .slide: id="interactive" -->
 
 Start containerized process:
 
@@ -10,25 +11,28 @@ Work inside container:
 
 ```bash
 $ hostname
-a1b2c3d4
+294197b7fd00
 $ whoami
 root
-$ ps faux
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.2  0.0  18508  3456 pts/0    Ss   07:27   0:00 bash
-root        14  0.0  0.0  34400  2964 pts/0    R+   07:27   0:00 ps faux
-$ uname -a
-Linux abbbea946294 4.15.0-52-generic #56-Ubuntu SMP Tue Jun 4 22:49:08 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+$ ps
+  PID TTY          TIME CMD
+    1 pts/0    00:00:00 bash
+   13 pts/0    00:00:00 ps
+```
+
+```bash
+$ uname -srv
+Linux 4.15.0-142-generic #146-Ubuntu SMP Tue Apr 13 01:11:19 UTC 2021
 $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=18.04
-DISTRIB_CODENAME=bionic
-DISTRIB_DESCRIPTION="Ubuntu 18.04.2 LTS"
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04.2 LTS"
 ```
 
 --
 
-## My First Container
+## My First Container 2/3
 
 Start containerized process:
 
@@ -39,33 +43,15 @@ docker run -it ubuntu bash
 Work inside container:
 
 ```bash
-$ ls –l /
-total 64
-drwxr-xr-x   2 root root 4096 Jul 18 21:21 bin
-drwxr-xr-x   2 root root 4096 Apr 24  2018 boot
-drwxr-xr-x   5 root root  360 Jul 29 07:27 dev
-drwxr-xr-x   1 root root 4096 Jul 29 07:27 etc
-drwxr-xr-x   2 root root 4096 Apr 24  2018 home
-drwxr-xr-x   8 root root 4096 May 23  2017 lib
-drwxr-xr-x   2 root root 4096 Jul 18 21:19 lib64
-drwxr-xr-x   2 root root 4096 Jul 18 21:18 media
-drwxr-xr-x   2 root root 4096 Jul 18 21:18 mnt
-drwxr-xr-x   2 root root 4096 Jul 18 21:18 opt
-dr-xr-xr-x 156 root root    0 Jul 29 07:27 proc
-drwx------   2 root root 4096 Jul 18 21:21 root
-drwxr-xr-x   1 root root 4096 Jul 23 15:21 run
-drwxr-xr-x   1 root root 4096 Jul 23 15:21 sbin
-drwxr-xr-x   2 root root 4096 Jul 18 21:18 srv
-dr-xr-xr-x  13 root root    0 Jul  4 19:25 sys
-drwxrwxrwt   2 root root 4096 Jul 18 21:21 tmp
-drwxr-xr-x   1 root root 4096 Jul 18 21:18 usr
-drwxr-xr-x   1 root root 4096 Jul 18 21:21 var
+$ ls /
+bin   dev  home  lib32  libx32  mnt  proc  run   srv  tmp  var
+boot  etc  lib   lib64  media   opt  root  sbin  sys  usr
 $ exit
 ```
 
 --
 
-## My First Container
+## My First Container 3/3
 
 Run specific tool:
 

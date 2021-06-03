@@ -1,4 +1,5 @@
-## Concepts
+## Container concepts
+<!-- .slide: id="concepts" -->
 
 ### Process Isolation
 
@@ -59,13 +60,13 @@ Dependency management
 
 ### Container
 
-Isolated process
+Isolated process(es)
 
 Runtime environment
 
 ### Image
 
-Base image to create identical containers from
+Root FS to create containers from
 
 Immutable
 
@@ -77,7 +78,7 @@ Place to store images
 
 ## Container
 
-![Container](../images/Container.png) <!-- .element: style="float: right; width: 40%; padding-right: 2em;" -->
+![Container](010_basics/00_docker/container.drawio.svg) <!-- .element: style="float: right; width: 40%; padding-right: 2em;" -->
 
 ### Isolated processes
 
@@ -117,46 +118,3 @@ Place to store images
 <p>Reproducible tasks</p>
 <p>Fast deployments</p>
 </div>
-
---
-
-## What is so special about Docker
-
-### In the beginning there were logical partitions (LPARs)
-
-Made by our parents
-
-### Then came Linux Containers (LXC)
-
-Made by our brothers and sisters
-
-Interface to cgroups and namespaces in the kernel
-
-### The rise of Docker
-
-Founded 2013 by Solomon Hykes
-
-Revolution of container management
-
----
-
-## Docker
-
-### Packaged
-
-* Includes dependencies
-* Distributable
-
-### Immutable
-
-* Incremental changes not supported
-* Changes require rollout
-
-### Automated
-
-* Image builds
-* Deployments
-
-### Stateless
-
-* By default, no persistence

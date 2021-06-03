@@ -1,46 +1,45 @@
-## Container Management
+## Container Management 1/3
+<!-- .slide: id="container_management" -->
 
-XXX stopped containers are left behind
+Stopped containers are left behind
 
-Remove containers:
+Remove stopped containers:
 
 ```bash
-docker rm awesome_minsky
+docker rm nostalgic_wozniak
 ```
 
-Removing running containers must be force (`-f`)
-
---
-
-## Container Management
-
-Named containers:
+Removing running containers must be forced:
 
 ```bash
-docker run -d --name websrv nginx
-```
-
-Read logs (stdout of process):
-
-```bash
-docker logs websrv
-```
-
-XXX:
-
-```bash
-docker inspect websrv
+docker rm -f nostalgic_wozniak
 ```
 
 --
 
-## Container Management
+## Container Management 2/3
+
+Read logs (stdout/stderr of processes):
+
+```bash
+docker run -d --name web nginx
+docker logs web
+```
+
+Display configuration of container:
+
+```bash
+docker inspect web
+```
+
+--
+
+## Container Management 3/3
 
 Execute commands inside containers:
 
 ```bash
-docker exec websrv ps faux
-ps faux
+docker exec web pwd
 ```
 
 Enter containers interactively:
