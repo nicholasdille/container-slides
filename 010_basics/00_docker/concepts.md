@@ -35,7 +35,7 @@ Containers isolate processes
 
 ## Advantages
 
-![DevOps infinite loop](../images/DevOps.png)
+![DevOps infinite loop](images/DevOps.png)
 <!-- .element: style="width: 50%; float: right;" -->
 
 ### Development
