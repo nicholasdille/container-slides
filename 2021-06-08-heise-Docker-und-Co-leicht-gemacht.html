@@ -55,17 +55,17 @@
 
         Containers: [Concepts](#/concepts) // [Interactive containers](#/interactive) // [Background containers](#/background) // [Container management](#/container_management) // [Networking](#/networking) // [Data exchange](#/copy)
 
-        Images: Docker Hub // Dockerfile // Registry // Multi-stage builds
+        Images: [Docker Hub](#/image_management) // [Dockerfile](#/build) // [Registry](#/registry) // [Multi-stage builds](#/multi-stage)
 
-        Digression 1: Standards // Tools // Internals
+        Digression 1: [Standards](#/standards) // [Tools](#/tools)
 
-        Volumes: Bind Mounts // Volumes
+        Volumes: [Bind Mounts](#/bind_mount) // [Volumes](#/bind_mount)
 
-        Digression 2: Competition
+        Digression 2: [Competition](#/competitors)
 
-        Managing services: docker-compose
+        Managing services: [docker-compose](#/docker_compose)
 
-        Troubleshooting: From scratch // Networking // Commando
+        Troubleshooting: [`FROM scratch`](#/debug_from_scratch) // [Networking](#/debug_networking) // [Commando](#/commando)
 
         --
 
@@ -80,14 +80,12 @@
         ### What about Windows
 
         Concepts are identical
-
-        XXX
     </textarea></section>
 
     <section data-markdown="010_basics/00_docker/concepts.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: class="center" style="vertical-align: middle;"" -->
+        <!-- .slide: class="center" style="vertical-align: middle;" -->
 
         ## Containers
     </textarea></section>
@@ -100,7 +98,7 @@
     <section data-markdown="010_basics/00_docker/names.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: class="center" style="vertical-align: middle;"" -->
+        <!-- .slide: class="center" style="vertical-align: middle;" -->
 
         ## Container Images
     </textarea></section>
@@ -109,15 +107,41 @@
     <section data-markdown="010_basics/04_images/build.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="010_basics/04_images/registry.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="020_advanced/020_multi_stage/03_all_in_one/slides.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        <!-- .slide: class="center" style="vertical-align: middle;" -->
+
+        ## Standards and Tools
+    </textarea></section>
+
     <section data-markdown="010_basics/00_docker/standards.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="010_basics/00_docker/tools.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="010_basics/00_docker/internals.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        <!-- .slide: class="center" style="vertical-align: middle;" -->
+
+        ## Volumes
+    </textarea></section>
 
     <section data-markdown="010_basics/02_volumes/bind.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="010_basics/02_volumes/volume.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="010_basics/00_docker/competition.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        <!-- .slide: class="center" style="vertical-align: middle;" -->
+
+        ## docker-compose
+    </textarea></section>
+
     <section data-markdown="020_advanced/060_docker-compose/intro.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        <!-- .slide: class="center" style="vertical-align: middle;" -->
+
+        ## Troubleshooting
+    </textarea></section>
+
+
     <section data-markdown="020_advanced/110_troubleshooting/01_from_scratch/slides.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="020_advanced/110_troubleshooting/02_network/slides.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="020_advanced/110_troubleshooting/03_commando/slides.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -125,34 +149,23 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Summary
 
-        XXX
+        ![QR code to slides](images/2021-06-08.svg)
+        <!-- .element: style="float: right;" -->
 
-        ## Upcoming talks
+        Introduction to containers using Docker
 
-        | When | What |
-        | :--- | :--- |
-        | 2021-06-16 | Automatisierung der Infrastruktur mit GitOps @ [DevOps im Unternehmen](https://konferenzen.heise.de/devops-im-unternehmen/) (von JFrog und heise) |
-        | 2021-06-17 | [Kubernetes in der Praxis](https://webinare.heise.de/kubernetes/in-der-praxis/) @ Webinar-Serien [Kubernetes im professionellen Einsatz](https://webinare.heise.de/kubernetes/) |
+        Troubleshooting for containers
 
-        ## Other content
+        Slides will be made available [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille/container-slides/releases/tag/20210608)
 
-        Video-Kurs [Container-Orchestrierung mit Kubernetes leicht gemacht](https://www.heise-academy.de/run/4d571f26-46f0-4ac4-8d23-75a6c910a839) @ [heise Academy](https://www.heise-academy.de/]
-    </textarea></section>
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Summary
-
-        XXX
-
-        ## Upcoming talks
+        ### Upcoming talks / other content
 
         | When | What |
         | :--- | :--- |
         | 2021-06-16 | Automatisierung der Infrastruktur mit GitOps @ [DevOps im Unternehmen](https://konferenzen.heise.de/devops-im-unternehmen/) (von JFrog und heise) |
         | 2021-06-17 | [Kubernetes in der Praxis](https://webinare.heise.de/kubernetes/in-der-praxis/) @ Webinar-Serien [Kubernetes im professionellen Einsatz](https://webinare.heise.de/kubernetes/) |
 
-        ## Other content
-
-        Video-Kurs [Container-Orchestrierung mit Kubernetes leicht gemacht](https://www.heise-academy.de/run/4d571f26-46f0-4ac4-8d23-75a6c910a839) @ [heise Academy](https://www.heise-academy.de/]
+        Video-Kurs [Container-Orchestrierung mit Kubernetes leicht gemacht](https://www.heise-academy.de/run/4d571f26-46f0-4ac4-8d23-75a6c910a839) @ [heise Academy](https://www.heise-academy.de/)
     </textarea></section>
 </div>
 </div>

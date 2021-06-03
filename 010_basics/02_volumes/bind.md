@@ -1,14 +1,11 @@
 ## Storage
+<!-- .slide: id="bind_mount" -->
 
-By default, processes only get locally persistent storage
+Processes only get locally persistent storage
 
 Why should containers work differently?
 
 Containers are even worse by default
-
-### Bind mount
-
-XXX
 
 --
 
@@ -17,7 +14,7 @@ XXX
 Enter container:
 
 ```bash
-docker run -it --workdir /source ubuntu
+docker run -it --workdir /src ubuntu
 ```
 
 Inside container:
@@ -31,7 +28,7 @@ exit
 Look for file in new instance:
 
 ```bash
-docker run -it --workdir /source ubuntu
+docker run -it --workdir /src ubuntu
 ```
 
 It's gone!
@@ -43,7 +40,7 @@ It's gone!
 Enter container with bind mount:
 
 ```bash
-docker run -it --volume $PWD:/source --workdir /source ubuntu
+docker run -it --volume $PWD:/src --workdir /src ubuntu
 ```
 
 Create file:
@@ -57,7 +54,7 @@ exit
 Look for file in new instance:
 
 ```bash
-docker run -it --volume $PWD:/source --workdir /source ubuntu
+docker run -it --volume $PWD:/src --workdir /src ubuntu
 ```
 
 It's alive!
@@ -66,7 +63,7 @@ It's alive!
 
 ## Persistent storage
 
-Hard problem for green field
+Hard problem even for green field
 
 NFS shares are a good option
 

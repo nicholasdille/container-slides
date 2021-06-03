@@ -1,22 +1,27 @@
 ## Image management
+<!-- .slide: id="image_management" -->
 
-### Images are served from Docker Hub
+### Images are served from Docker Hub by default
 
-hub.docker.com
+[Official images](https://hub.docker.com/search?q=&type=image&image_filter=official) for many distributions and services
+
+Community images can be uploaded by anyone
 
 ### Images are named `[user/]name:tag`
 
+Pulling official images:
+
 ```bash
 docker pull ubuntu
-docker pull ubuntu:16.04
+docker pull ubuntu:20.04
+docker images
 docker rmi ubuntu
+docker images
 ```
 
-### Different distributions
+Pulling community images:
 
 ```bash
-docker pull centos
-docker run -it centos
+docker pull nicholasdille/sleeper
+docker images
 ```
-
-Look and feel of that distribution with host kernel

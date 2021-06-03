@@ -1,35 +1,68 @@
 ## docker-compose
+<!-- .slide: id="docker_compose" -->
 
-XXX infrastructure as code, declarative, service discovery, multiple files, commands
+Instead of running multiple containers...
+
+...declare a whole stack of services
+
+Services are described in a declarative manner
+
+Modifications are applied incrementally
+
+Service discovery is builtin
+
+Based on independent compose specification [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://compose-spec.io/) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/compose-spec/compose-spec)
 
 --
 
 ## Example
 
-XXX WordPress and MySQL
+WordPress requires a database, e.g. MySQL
 
-XXX rollout
+`docker-compose.yaml` defines both services:
+
+```yaml
+services:
+  db:
+    image: mysql:5
+  web:
+    image: wordpress:5.4
+```
+
+Both services need matching database configuration provided by environment variables
+
+Deploy using `docker-compose`:
+
+```bash
+docker-compose up
+```
+
+Remove deployment:
+
+```bash
+docker-compose down
+```
 
 --
 
 ## docker-compose vs. docker compose
 
-Two flavours
+Both flavours shipped with Docker Desktop
 
 ### docker-compose 1.x
 
-XXX python
+Implemented in Python
 
-XXX pip install docker-compose
+Install using pip: `pip install docker-compose`
 
-XXX link to binary
+Install [standalone binary from GitHub releases](https://github.com/docker/compose/releases/latest)
 
-XXX link
+Usage: `docker-compose`
 
-### docker compose 2.x in Go (beta)
+### docker compose 2.x (beta)
 
-XXX shipped in DD
+Implemented in Go
 
-XXX install script
+Install and update using [install script](https://github.com/docker/compose-cli/blob/main/scripts/install/install_linux.sh)
 
-XXX link
+Usage: `docker compose`

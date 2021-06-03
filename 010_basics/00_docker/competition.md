@@ -1,9 +1,11 @@
 ## Competitors
+<!-- .slide: id="competitors" -->
 
-XXX docker run - podman
+Most prominent competitor is RedHat:
 
-XXX docker build - buildah
-
-XXX containerd - cri-o
-
-XXX runc - crun
+| Docker | RedHat |
+| :----- | :----- |
+| docker run | podman |
+| docker build | buildah |
+| containerd | cri-o |
+| runc | crun |

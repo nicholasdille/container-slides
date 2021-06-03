@@ -1,6 +1,5 @@
 ## Multi Stage Builds
-
-Use BuildKit for advanced features like multi-stage builds
+<!-- .slide: id="multi-stage" -->
 
 ### Separate build and runtime environments
 
@@ -14,8 +13,6 @@ Use BuildKit for advanced features like multi-stage builds
 --
 
 ## Multi Stage Builds
-
-Use BuildKit for advanced features like multi-stage builds
 
 ### Build in parallel
 

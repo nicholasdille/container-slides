@@ -1,8 +1,9 @@
 ## Troubleshooting `FROM scratch`
+<!-- .slide: id="debug_from_scratch" -->
 
 ### Missing tools
 
-Modern containers only contain a single binary
+Many containers only contain a single binary
 
 No shell, no tools
 

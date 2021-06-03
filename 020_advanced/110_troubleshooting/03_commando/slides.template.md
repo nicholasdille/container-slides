@@ -1,4 +1,5 @@
 ## Commando: Tools on Demand
+<!-- .slide: id="commando" -->
 
 [Commando](https://github.com/lukaszlach/commando) created by [Docker Captain Łukasz Lach](https://www.docker.com/captains/%C5%82ukasz-lach)
 
