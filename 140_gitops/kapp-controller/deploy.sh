@@ -2,7 +2,7 @@
 set -o errexit
 
 # Create cluster
-if kind get clusters | grep -qv kapp; then
+if ! kind get clusters | grep --quiet kapp; then
     kind create cluster --name kapp --config kind.yaml
     kind get kubeconfig --name kapp >${HOME}/.kube/config.kind-kapp
 fi
@@ -34,8 +34,8 @@ done
 echo " done."
 
 # Deploy kapp-controller
-kubectl apply -f https://github.com/k14s/kapp-controller/releases/latest/download/release.yml
-kubectl -n kapp-controller rollout status deployment kapp-controller
+kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+kubectl --namespace kapp-controller rollout status deployment kapp-controller
 
 # RBAC
 kubectl apply -f sa.yaml

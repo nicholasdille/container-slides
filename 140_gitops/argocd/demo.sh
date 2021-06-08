@@ -11,7 +11,7 @@ PASSWORD=$(
 echo Access https://localhost:8080 using admin:${PASSWORD}
 
 # Login to ArgoCD
-argocd login --username admin --password ${PASSWORD} localhost:8080
+argocd login --insecure --username admin --password ${PASSWORD} localhost:8080
 
 # Create app
 kubectl apply -f podinfo.yaml

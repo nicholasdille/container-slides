@@ -2,7 +2,7 @@
 set -o errexit
 
 # Create cluster
-if kind get clusters | grep -qv argocd; then
+if ! kind get clusters | grep --quiet argocd; then
     kind create cluster --name argocd --config kind.yaml
     kind get kubeconfig --name argocd >${HOME}/.kube/config.kind-argocd
 fi
@@ -38,7 +38,7 @@ if ! kubectl get namespace argocd >/dev/null 2>&1; then
     kubectl create namespace argocd
 fi
 kubectl apply --namespace argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-kubectl --namespace argocd rollout status deployment argocd-application-controller
+kubectl --namespace argocd rollout status statefulset argocd-application-controller
 kubectl --namespace argocd rollout status deployment argocd-dex-server
 kubectl --namespace argocd rollout status deployment argocd-redis
 kubectl --namespace argocd rollout status deployment argocd-repo-server
