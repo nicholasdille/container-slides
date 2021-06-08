@@ -40,9 +40,9 @@ echo " done."
 
 # Install CLI
 if ! type flux >/dev/null 2>&1; then
-    curl -s https://pkg.dille.io/flux/install.sh | bash
+    curl -sL https://github.com/fluxcd/flux2/releases/download/v0.14.2/flux_0.14.2_linux_amd64.tar.gz | tar -xzC /usr/local/bin/
 fi
-source /usr/local/etc/bash_completion.d/flux.sh
+eval "$(flux completion bash)"
 
 # Deploy flux2
 flux bootstrap github \
