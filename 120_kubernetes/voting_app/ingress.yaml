@@ -1,0 +1,29 @@
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: voting-app
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: vote.dille.io
+      http:
+        paths:
+          - pathType: "Prefix"
+            path: "/"
+            backend:
+              service:
+                name: vote-ui
+                port:
+                  name: vote-ui-service
+    - host: result.dille.io
+      http:
+        paths:
+          - pathType: "Prefix"
+            path: "/"
+            backend:
+              service:
+                name: result-ui
+                port:
+                  number: 5001
