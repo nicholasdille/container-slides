@@ -1,0 +1,37 @@
+# Umgang mit ConfigMaps
+
+## ConfigMap anschauen
+cat configmap.yaml
+
+## ConfigMap ausrollen
+kubectl apply -f configmap.yaml
+
+## Ergebnis anschauen
+kubectl get configmaps
+
+## Inhalt von Secret auslesen
+kubectl get configmap config -o yaml
+
+## Pod mit Umgebungsvariable anschauen
+cat pod.yaml
+
+## Pod ausrollen
+kubectl apply -f pod.yaml
+
+## Ergebnis anschauen
+kubectl get pods
+
+## Umgebungsvariablen auslesen
+kubectl exec -it env -- printenv | sort
+
+## envFrom anschauen
+cat envfrom.yaml
+
+## envFrom ausrollen
+kubectl apply -f envfrom.yaml
+
+## Ergebnis anschauen
+kubectl get pods
+
+## Umgebungsvariablen auslesen
+kubectl exec -it envfrom -- printenv | sort

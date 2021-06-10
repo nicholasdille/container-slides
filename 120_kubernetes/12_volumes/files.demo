@@ -1,0 +1,21 @@
+# Dateien bereitstellen
+
+## ConfigMap als Volume verbinden
+cat configmap.yaml
+
+## Beispiel ausrollen
+kubectl apply -f configmap.yaml
+
+## Ergebnis anschauen
+kubectl get pods
+
+## Prüfen der Webseite
+kubectl run -it --image=cmd.cat/bash/curl --rm --command -- bash
+curl -s volume-configmap
+exit
+
+## Prüfen des Mountpoints
+kubectl exec -it volume-configmap -- df
+
+## Prüfen der index.html
+kubectl exec -it volume-configmap -- ls -l /usr/share/nginx/html

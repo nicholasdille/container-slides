@@ -1,0 +1,36 @@
+# Service Discovery
+
+## Service anschauen
+cat service.yaml
+
+## Ausrollen des Services
+kubectl apply -f service.yaml
+
+## Ergebnis anschauen
+kubectl get services
+
+## Pod anschauen
+cat web.yaml
+
+## Ausrollen des Pods
+kubectl apply -f web.yaml
+
+## Test aus Client (DNS beachten)
+kubectl run -it --image=cmd.cat/bash/curl --rm --command -- bash
+curl -s web
+exit
+
+## Zweiten Pod anschauen
+cat web2.yaml
+
+## Ausrollen des zweiten Pods
+kubectl apply -f web2.yaml
+
+## Test aus Client (Schleife)
+kubectl run -it --image=cmd.cat/bash/curl --rm --command -- bash
+curl -sv web | grep "< Server"
+exit
+
+## Cleanup
+kubectl get pod -l "app=web" -o name | xargs kubectl delete
+kubectl delete service web

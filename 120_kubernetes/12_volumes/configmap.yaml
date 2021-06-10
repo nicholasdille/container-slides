@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pages
+data:
+  index.html: |
+    <html>
+    <head>
+    <title>index</title>
+    </head>
+    <body>
+    Hooray!
+    </body>
+    </html>

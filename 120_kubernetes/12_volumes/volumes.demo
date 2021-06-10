@@ -1,0 +1,32 @@
+# Daten persistieren
+
+## Einführung mit emptyDir
+cat emptydir.yaml
+
+## Ausrollen von emptyDir
+kubectl apply -f emptydir.yaml
+
+## Ergebnis anschauen
+kubectl get pods
+
+## Prüfen des Mountpoint
+kubectl exec -it volume-emptydir -- df
+
+## Beispiel mit hostPath anschauen
+cat hostpath.yaml
+
+## Beispiel ausrollen
+kubectl apply -f hostpath.yaml
+
+## Mountpoint prüfen
+kubectl exec -it volume-hostpath -- bash
+df
+touch /data/foobar
+exit
+
+## Prüfen der Persistenz
+kubectl delete -f hostpath.yaml
+kubectl apply -f hostpath.yaml
+kubectl exec -it volume-hostpath -- bash
+ls -l /data
+exit

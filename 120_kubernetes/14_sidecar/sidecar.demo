@@ -1,0 +1,19 @@
+# Mehrere Container im Pod
+
+## Sidecar anschauen
+cat sidecar.yaml
+
+## Sidecar ausrollen
+kubectl apply -f sidecar.yaml
+
+## Ergebnis prüfen
+kubectl get all
+
+## Log prüfen
+kubectl logs mysql -c mysql
+kubectl logs mysql -c metrics
+
+## Metriken auslesen
+kubectl run -it --image=cmd.cat/bash/curl --rm --command -- bash
+curl db:9104/metrics
+exit

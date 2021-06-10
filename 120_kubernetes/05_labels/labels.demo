@@ -1,0 +1,25 @@
+# Arbeiten mit Labels
+
+## Jede Resource kann Labels haben, z.B. Pods
+cat labels.yaml
+
+## Ausrollen des Pods mit Labels
+kubectl apply -f labels.yaml
+
+## Prüfen des Rollouts
+kubectl get pods
+
+## Labels auslesen
+kubectl label pod nginx-labels --list
+
+## Filtern durch den Vergleich von Labels
+kubectl get pods -l app=nginx
+
+## Filtern mit Mengen
+kubectl get pods -l 'app in (nginx)'
+
+## Label anpassen
+kubectl label pod nginx-labels version=2 --overwrite
+
+## Ergebnis anschauen
+kubectl label pod nginx-labels --list

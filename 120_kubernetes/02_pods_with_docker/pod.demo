@@ -1,0 +1,25 @@
+# Vom Container zum Pod
+
+## Pod erstellen
+docker run -d --name pod ubuntu bash -c 'sleep infinity'
+
+## Docker-in-Docker hinzufügen
+docker run -d --name dockerd --network container:pod --privileged docker:stable-dind dockerd --host=tcp://0.0.0.0:2375
+
+## Registry hinzufügen
+docker run -d --name registry --network container:pod registry:2
+
+## Pod nutzen
+docker run -it --network container:pod docker:stable
+
+## Prozesse anderer Container im Pod sind nicht sichtbar
+ps faux
+
+## Nachinstallation einiger Tools
+apk add curl jq
+
+## Testen der Verbindung zur Registry
+curl localhost:5000/v2/
+
+## Testen der Verbindung zum Docker-Daemon
+curl localhost:2375/

@@ -1,0 +1,16 @@
+# Vorwissen: docker-compose
+
+## Anwendung ausrollen
+docker-compose up -d
+
+## Anwendung anschauen
+docker-compose ps
+
+## Anwendung aktualisieren
+yq write --inplace docker-compose.yaml 'services.web.image' wordpress:5.4
+
+## Anwendung erneut ausrollen
+docker-compose up -d
+
+## Anwendung entfernen
+docker-compose down

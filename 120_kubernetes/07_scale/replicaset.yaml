@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+spec:
+  # Anzahl der Kopien
+  replicas: 2
+  # Wählt die Pods aus
+  selector:
+    matchLabels:
+      app: web
+  # Spezifikation für die Pods
+  # template enthält spec
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginx
+        image: nicholasdille/nginx-hello

@@ -1,0 +1,25 @@
+# Arbeiten mit Annotationen
+
+# Jede Ressource kann Annotationen haben
+cat annotations.yaml
+
+# Ausrollen des Pods mit Annotationen
+kubectl apply -f annotations.yaml
+
+# Prüfen des Rollouts
+kubectl get pods
+
+# Annotationen auslesen
+kubectl describe pod
+
+# Annotation verändern
+kubectl annotate pod nginx-annotations deployment=2 --overwrite
+
+# Annotationen auslesen
+kubectl describe pod
+
+# Annotationen hinzufügen
+kubectl annotate pod nginx-annotations retry=2
+
+# Annotationen auslesen
+kubectl describe pod

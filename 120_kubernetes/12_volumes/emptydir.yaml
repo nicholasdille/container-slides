@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-emptydir
+spec:
+  volumes:
+  - name: cache
+    emptyDir: {}
+  containers:
+  - name: emptydir
+    image: nicholasdille/sleeper
+    volumeMounts:
+    - mountPath: /cache
+      name: cache

@@ -1,0 +1,60 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db
+type: Opaque
+stringData:
+  mysql-root-password: "my-D8_P@ssw0rd!"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  containers:
+  - name: mysql
+    image: mysql:5
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: db
+          key: mysql-root-password
+    ports:
+    - name: mysql
+      containerPort: 3306
+  - name: metrics
+    image: prom/mysqld-exporter:v0.10.0
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: db
+          key: mysql-root-password
+    command:
+    - sh
+    - -c
+    - DATA_SOURCE_NAME="root:$MYSQL_ROOT_PASSWORD@(localhost:3306)/" /bin/mysqld_exporter
+    ports:
+    - name: metrics
+      containerPort: 9104
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+spec:
+  selector:
+    app: mysql
+  ports:
+  - name: mysql
+    protocol: TCP
+    port: 3306
+    targetPort: 3306
+  - name: metrics
+    protocol: TCP
+    port: 9104
+    targetPort: 9104

@@ -1,0 +1,41 @@
+# Dienste skalieren
+
+## ReplicaSet anschauen
+cat replicaset.yaml
+
+## Ausrollen des ReplicaSet
+kubectl apply -f replicaset.yaml
+
+## Ergebnis anschauen
+## - beachtet die Namen der Pods
+## - beachtet im ReplicaSet die Felder replicas und selector
+kubectl get all
+
+## Hochskalieren
+kubectl scale --replicas=3 replicaset nginx
+
+## Ergebnis anschauen
+kubectl get all
+
+## Ursprüngliche Beschreibung anwenden
+kubectl apply -f replicaset.yaml
+
+## Ergebnis anschauen
+kubectl get all
+
+## Einen Pod löschen
+kubectl get pod -l app=web -o name | head -n 1 | xargs kubectl delete
+
+## Ergebnis anschauen
+kubectl get all
+
+## Ein Service macht die Pods einfach erreichbar
+cat service.yaml
+
+## Einen Service ausrollen
+kubectl apply -f service.yml
+
+## Prüfen der Antwort über den Service
+kubectl run -it --image=cmd.cat/bash/curl --rm --command -- bash
+watch curl -s web
+exit

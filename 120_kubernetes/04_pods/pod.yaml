@@ -1,0 +1,12 @@
+---
+# Ressourcentyp
+apiVersion: v1
+kind: Pod
+# Informationen über die Ressource
+metadata:
+  name: nginx
+# Spezifikation der Ressource
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.19

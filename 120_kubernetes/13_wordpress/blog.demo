@@ -1,0 +1,20 @@
+# Beispiel: Blog mit Datenbank-Backend
+
+## Beispiel anschauen
+cat *.yaml
+
+## Ausrollen des Blogs
+kubectl apply -f secret.yaml
+kubectl apply -f db-deployment.yaml
+kubectl apply -f db-service.yaml
+kubectl apply -f web-deployment.yaml
+kubectl apply -f web-service.yaml
+
+## Ergebnis anschauen
+kubectl get all
+
+## Prüfen der Installationsseite von WordPress
+kubectl run -it --image=cmd.cat/bash/curl/lynx --rm --command -- bash
+curl -sv server
+lynx server
+exit

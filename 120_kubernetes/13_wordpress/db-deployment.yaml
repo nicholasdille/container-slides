@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: blog
+    component: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blog
+      component: db
+  template:
+    metadata:
+      labels:
+        app: blog
+        component: db
+    spec:
+      volumes:
+      - name: data
+        hostPath:
+          path: /data/blog/mysql
+          type: DirectoryOrCreate
+      containers:
+      - name: mysql
+        image: mysql:5
+        env:
+        - name: MYSQL_RANDOM_ROOT_PASSWORD
+          value: "yes"
+        - name: MYSQL_DATABASE
+          value: wordpress
+        - name: MYSQL_USER
+          value: wordpress
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db
+              key: password
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: data
+        ports:
+        - containerPort: 3306

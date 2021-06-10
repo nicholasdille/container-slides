@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env
+spec:
+  containers:
+  - name: env
+    image: nicholasdille/sleeper
+    env:
+    - name: ENV_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: secret
+          key: SECRET

@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret2
+# Generisches Secret
+type: Opaque
+# Werte müssen Base64-kodiert sein
+stringData:
+  SECRET: "Psst, nicht verraten!"

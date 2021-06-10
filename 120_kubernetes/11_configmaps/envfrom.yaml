@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envfrom
+spec:
+  containers:
+    - name: envfrom
+      image: nicholasdille/sleeper
+      envFrom:
+      - configMapRef:
+          name: config

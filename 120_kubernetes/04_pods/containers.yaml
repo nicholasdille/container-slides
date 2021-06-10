@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+spec:
+  # Container teilen sich den Netzwerk-Namespace
+  # Jeder Port nur durch einen Container nutzbar
+  containers:
+  - name: nginx
+    image: nginx
+  - name: apache
+    image: httpd
