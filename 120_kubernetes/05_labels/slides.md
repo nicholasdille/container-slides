@@ -1,43 +1,43 @@
 ## Labels
 
-![Jede Ressource kann Labels enthalten](120_kubernetes/05_labels/labels.drawio.svg) <!-- .element: style="float: right;" -->
+![All resources can have labels](120_kubernetes/05_labels/labels.drawio.svg) <!-- .element: style="float: right;" -->
 
-Labels sind das zweite zentrale Konzept
+Labels are a central concept in Kubernetes
 
-Jede Resource kann Labels haben, z.B. Pods
+All resources can have labels...
 
-Labels werden zur Selektion verwendet
+... and - as a matter of fact - should have labels
 
-Labels werden eine wichtige Rolle in den nachfolgenden Lektionen spielen
+Labels are used for selection
 
-Änderungen an Labels verursachen keinen Neustart
-
----
-
-## Annotationen
-
-Annotationen speichern Informationen
-
-Annotationen haben keine Auswirkung auf das Verhalten von Kubernetes
-
-Änderungen an Annotationen verursachen keinen Neustart
+Changing labels does not cause pod updates
 
 ---
 
-## Formelles über Labels und Annotationen
+## Annotations
 
-Format: `[<Präfix>/]<Name>: <Wert>`
+Annotations store meta data
 
-### &lt;Präfix&gt;
+No effect on the bahviour of Kubernetes
 
-Das optionale Präfix muss eine DNS-Subdomäne sein
+Changing annotations does not cause pod updates
 
-### &lt;Name&gt;
+---
 
-Name darf maximal 63 Zeichen lang sein
+## More about labels and annotations
 
-### &lt;Wert&gt;
+Format: `[<prefix>/]<name>: <value>`
 
-Werte von Labels müssen entsprechen: `^[a-z0-9_\-]+$`
+### &lt;prefix&gt;
 
-Werte von Annotationen dürfen beliebigen Inhalt haben
+Optional prefix must be a fully qualified sub-domain
+
+### &lt;name&gt;
+
+No long than 63 characters
+
+### &lt;value&gt;
+
+Values of labels must match `^[a-z0-9_\-]+$`
+
+Values of annotations can contain any character

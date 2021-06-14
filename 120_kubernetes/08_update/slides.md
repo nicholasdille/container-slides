@@ -1,37 +1,39 @@
-## Pods aktualisieren
+## Updating pods
 
-![Erstellen, Skalieren, Aktualisieren, Wiederherstellen, Löschen](120_kubernetes/08_update/lifecycle.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![Create, scale, update, recover, remove](120_kubernetes/08_update/lifecycle.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
-ReplicaSets sind nur für das Skalieren zuständig
+ReplicaSets are only responsible for maintaining scale
 
-Containerisierte Dienste benötigen Lifecycle Management
+Containerized services require complete lifecycle management
 
-Anwendungen mit vielen Pods sollen unterbrechungsfrei aktualisiert werden
+XXX Anwendungen mit vielen Pods sollen unterbrechungsfrei aktualisiert werden
 
 ### Deployments
 
-Sie sind verantwortlich für das Aktualisieren und Wiederherstellen
+Responsible for updating applications with multiple pods
 
 ---
 
-## Deployment-Interna
+## Deployment internals
 
-![Deployment mit ReplicaSet und Pods](120_kubernetes/08_update/replicaset.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
+![Deployment with ReplicaSet and pods](120_kubernetes/08_update/replicaset.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
 
-### Verstecktes ReplicaSet
+### Hidden ReplicaSet
 
-Deployments erstellen ein ReplicaSet
+Deployments create a ReplicaSet
 
-Das ReplicaSet übernimmt die Skalierung
+ReplicaSet maintains scale
 
-Das ReplicaSet erhält ein zufälliges Suffix
+ReplicaSet receives a random suffix
 
-Pods erhalten dadurch zwei Suffixe
+Pods receive a second random suffix
 
-![Deployment mit neuem und altem ReplicaSet](120_kubernetes/08_update/updates.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
+![Deployment with old and new ReplicaSet](120_kubernetes/08_update/updates.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
 
 ### Updates
 
-Updates verursachen ein neues ReplicaSet
+Deployments initiate an update by creating a new ReplicaSet
 
-Das Update wird durch Hoch- und Runterskalieren umgesetzt
+Updates work by scaling the new ReplicaSet up...
+
+...and scaling the old ReplicaSet down

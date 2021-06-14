@@ -1,25 +1,25 @@
-## Skalieren
+## Scaling
 
-### Mehr Pods
+### More pods!
 
 ![Pod2](images/kubernetes-icons/resources/unlabeled/pod.svg) <!-- .element: style="float: right; padding-left: 1em; padding-right: 1.4em;" -->
 
 ![Pod1](images/kubernetes-icons/resources/unlabeled/pod.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
 
-Mehrere Pods können die Last abfangen
+Multiple pods can handle the load
 
-Identische Konfiguration aller Pods notwendig
+Identical configuration is required
 
 ### ReplicaSets
 
 ![ReplicaSet with two Pods](120_kubernetes/07_scale/replicaset.drawio.svg) <!-- .element: style="float: right;" -->
 
-Konfigurierte Anzahl von Pods sicherstellen
+Maintain the configured number of pods
 
-Alle Pods werden aus einer Spezifikation erstellt
+Create pods from a specification
 
-Die Pods sind identische Kopien
+Pods are identical copies
 
-Labels dienen der Zuordnung von Pods
+Labels are used for selection
 
-Pod-Namen enthalten ein zufälliges Suffix
+Pod names have a random suffix

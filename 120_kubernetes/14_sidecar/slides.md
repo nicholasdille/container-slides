@@ -1,33 +1,33 @@
-## Mehrere Container im Pod?
+## Multiple containers in a pod
 
-![Pods vs. Containers](120_kubernetes/14_sidecar/containers.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![Pods versus containers](120_kubernetes/14_sidecar/containers.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
-Müssen die Container als eine Einheit ausgerollt werden?
+Are containers rolled out as a unit?
 
-Können die Container nur gemeinsam skaliert werden?
+Will containers be scaled in unison?
 
-Besteht eine 1:1-Beziehung zwischen den Containern?
+Is there a 1:1 relationship between the containers?
 
-### Hinweis
+### Note
 
-Frontend und Backend gehören in separate Pods
+Frontend and backend belong in separate pods
 
 ---
 
 ## Sidecars
 
-![Pods vs. Containers](120_kubernetes/14_sidecar/containers.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![Pods versus Containers](120_kubernetes/14_sidecar/containers.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
-In der Regel gibt es einen Hauptcontainer
+There is one main container
 
-Alle anderen Container heißen Sidecars
+All other containers are sidecars
 
-Sidecars unterstützen den Hauptcontainer
+Sidecars support the main container
 
-Sidecars erfüllen Infrastrukturaufgaben
+Sidecars often provide integration with the infrastructure
 
-### Beispiele
+### Examples
 
-Ein Sidecar überwacht den Hauptcontainer
+Sidecar monitors main container (metrics collection)
 
-Ein Sidecar sammelt Logs zur zentralen Auswertung
+Sidecar collects logs for central storage (log shipping)

@@ -1,21 +1,19 @@
-## Blog bereitstellen
+## Deploying a blog
 
-![WordPress mit MySQL](120_kubernetes/13_wordpress/example.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![WordPress with MySQL](120_kubernetes/13_wordpress/example.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
-Uns stehen alle Werkzeuge für einen Beispieldienst zur Verfügung
+All necessary tools have been introduced
 
-Wir werden WordPress mit MySQL ausrollen
+Deployment of WordPress with MySQL
 
-Deployment für WordPress und MySQL
+Including services for accessing frontend and backend
 
-Services für Zugriff auf Frontend und Backend
+Secret for storing the database password
 
-Gemeinsames Secret für Datenbankkennwort
+Data persistence on the host
 
-Datenbank auf Host persistieren
+### Disadvantage
 
-### Nachteile der gewählten Dienste
+<i class="fas fa-minus" style="width: 1em;"></i> WordPress cannot be scaled easily (consistency)
 
-<i class="fas fa-minus" style="width: 1em;"></i> WordPress kann nicht einfach skaliert werden (Datenkonsistenz)
-
-<i class="fas fa-minus" style="width: 1em;"></i> MySQL kann nicht einfach skaliert werden (Datenkonsistenz)
+<i class="fas fa-minus" style="width: 1em;"></i> MySQL cannot be scaled easily (consistency)

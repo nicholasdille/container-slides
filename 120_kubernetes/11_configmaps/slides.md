@@ -1,17 +1,19 @@
-## Konfigurationsdateien verwalten
+## Configuration data
 
 ![ConfigMaps](120_kubernetes/11_configmaps/configmaps.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
-Container benötigen oft Konfigurationsdateien
+Containers require configuration data
 
-Konfigurationsdateien stehen beim Bauen des Image noch nicht zur Verfügung
+Configuration files are often generated on the fly...
 
-Diese werden oft in einem weiteren Build-Schritt hinzugefügt
+...and added during container start
 
 ### ConfigMaps
 
-ConfigMaps nehmen einen oder mehr Werte auf
+ConfigsMaps store one or more values...
 
-Die Werte können auch mehrere Zeilen umfassen
+...which can be literals as well as files
 
-Werte können als Umgebungsvariable an Pods bereitgestellt werden
+Multi-line values are possible
+
+Values can be provided to pods as environment variables

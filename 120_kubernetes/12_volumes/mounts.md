@@ -1,11 +1,11 @@
-## Dateien bereitstellen
+## Mounting files
 
-![Secrets und ConfigMaps als Volumes anbinden](120_kubernetes/12_volumes/files.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![Mounting Secrets and ConfigMaps as volumes](120_kubernetes/12_volumes/files.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
-Secrets können auch als Dateien angebunden werden
+Values from secrets can be mounted as a file
 
-ConfigMaps können ebenfalls als Dateien angebunden werden
+The same is true for ConfigMaps
 
-Jeder Wert wird als eigene Datei abgebildet
+Each value becomes a separate file
 
-Die Anbindung geschieht über Volumes
+Mounting is declared using volumes

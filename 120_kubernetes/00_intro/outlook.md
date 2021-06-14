@@ -1,5 +1,9 @@
 ## The journey has just begun
 
+XXX namespaces
+
+XXX rbac
+
 XXX ingress
 
 XXX monitoring

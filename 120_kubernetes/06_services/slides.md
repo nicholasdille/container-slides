@@ -1,19 +1,17 @@
 ## Services
 
-Pods erhalten nur eine dedizierte IP-Adresse<br> aber keinen DNS-Namen
+Pods receive a dedicated IP address but no DNS name
 
-![Services verteilen Anfragen auf mehrere Pods](120_kubernetes/06_services/dns.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
+![Services distribute requests among pods](120_kubernetes/06_services/dns.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
 
-### Services bieten DNS
+### Services provide DNS
 
-DNS-Einträge für Pods
+DNS records for pods
 
-Services implementieren Service Discovery
+### Services provide load balancing
 
-### Services bieten Lastverteilung
+![Services distribute requests among pods](120_kubernetes/06_services/load_balancing.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
 
-![Services verteilen Anfragen auf mehrere Pods](120_kubernetes/06_services/load_balancing.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
+Services are a reverse proxy with a dedicated IP address
 
-Services sind ein Reverse Proxy mit dedizierter IP
-
-Sie verteilen Anfragen auf mehrere Pods
+Requests are distributed among pods

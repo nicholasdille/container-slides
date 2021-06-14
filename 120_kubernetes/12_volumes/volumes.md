@@ -2,18 +2,18 @@
 
 ![Volumes](120_kubernetes/12_volumes/volumes.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
-Nur wenige Anwendungen kommen ohne Daten aus
+Most applications require data
 
-Mal sind es statische Daten wie Bilder<br>(z.B. für Webserver)
+Be it static contant, e.g. for web servers
 
-Oft sind es auch Verzeichnisse für dynamische Daten<br>(z.B. für Datenbanken)
+or directories for maintaining dynamic data, e.g. data directory for a database
 
 ### Volumes
 
-Volumes stellen zusätzlichen Speicherplatz am Pod bereit
+Volumes provide storage for pods
 
-`emptyDir` bildet flüchtigen Speicher für Cache-Verzeichnisse ab
+Temporary storage using `emptyDir`
 
-`hostPath` persistiert Daten auf einem Host
+Host local storage using `hostPath`
 
-Volumes können auch Backend-Storage bereitstellen, z.B. NFS u.v.m. [<i class="fas fa-external-link-alt"></i>](https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes)
+Volumes can also be hosted by storage backends, e.g. NFS

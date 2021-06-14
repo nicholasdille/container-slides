@@ -1,11 +1,11 @@
-## Umgebungsvariablen
+## Environment variables
 
-![Umgebungsvariablen im Container](120_kubernetes/09_variables/env.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![Environment variables in containers](120_kubernetes/09_variables/env.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
-Umgebungsvariablen werden zur Laufzeitkonfiguration verwendet
+Environment variables are used for runtime configuration
 
-Der Entrypoint des Containers reagiert auf Umgebungsvariablen
+Container entrypoints process environment variables
 
-Umgebungsvariablen werden in der Beschreibung des Pod definiert
+Environment variables are defined in the pod specification
 
-In ReplicaSets und Deployments muss die Pod-Spezifikation entsprechend angepasst werden
+The pod specification can be wrapped by a ReplicaSets or a Deployment

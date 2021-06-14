@@ -1,15 +1,17 @@
-## Kennwörter verwalten
+## Credentials
 
-Kennwörter in Umgebungsvariablen sind gefährlich
+Secrets in environment variables are dangerous
 
-Hartkodierte Kennwörter in Pod-Spezifikationen sind auch gefährlich
+Hard coding secrets in pod specifications is even more dangerous
 
 ### Secrets
 
-Secrets speichern geheime Daten
+Secrets are meant to store confidential information
 
 ![Secrets](120_kubernetes/10_secrets/secrets.drawio.svg) <!-- .element: style="width: 8em;" -->
 
-Secrets können aus Literalen und Dateien erstellt werden
+Secrets can store literals as well as files
 
-Secret sind lediglich Base64-kodiert, aber nicht verschlüsselt
+Secrets are only Base64 encoded but not encrypted
+
+Secrets are not secret
