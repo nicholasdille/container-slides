@@ -1,20 +1,20 @@
 <!-- .slide: id="compose" class="center" -->
 ## `docker-compose`
 
-Einzelne Container helfen nicht immer
+Single containers simply don't cut it
 
-Oft erfordern Anwendungen mehrere Komponenten
+Applications consist of multiple components
 
 ### `docker-compose`
 
 <i class="fas fa-network-wired fa-3x"></i> <!-- .element: style="float: right;" -->
 
-Beschreibung von Anwendungen bestehend aus mehreren Komponenten
+Describe an application
 
-Verwaltung des Lifecycles:
+Manage the lifecycle of an application
 
 <i class="fas fa-minus"></i> Rollout
 
 <i class="fas fa-minus"></i> Update
 
-<i class="fas fa-minus"></i> Scale-Out / Scale-In
+<i class="fas fa-minus"></i> Scale in/out

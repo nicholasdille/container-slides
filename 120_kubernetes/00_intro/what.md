@@ -1,49 +1,49 @@
-## Was ist Kubernetes
+## What is Kubernetes
 
-(Griechisch für *Steuermann*)
+(Greek for *helmsman*)
 
-Kubernetes ist ein Container-Orchestrierer
+Kubernetes is a container orchestrator
 
-Ursprünglich entwickelt von Google
+Initiated by Google
 
-Version 1.0 wurde 2015 an die Community gespendet
+Version 1.0 was donated to the community in 2015
 
-Die Cloud Native Computing Foundation (CNCF) [<i class="fas fa-external-link-alt"></i>](https://www.cncf.io/) ist verantwortlich
+Governed by the Cloud Native Computing Foundation (CNCF) [<i class="fas fa-external-link-alt"></i>](https://www.cncf.io/)
 
-Neue Minor-Version alle drei Monate
+Minor version every three months
 
 ### Support
 
-Drei Minor-Versionen (ca. 9 Monate)
+3 minor versions (9 months)
 
-Ab Version 1.19: Vier Minor-Versionen (ca. 12 Monate)
+Starting with version 1.19: 4 minor versions (12 months)
 
 ---
 
 ## Cloud Native Computing Foundation
 
-Teil der Linux Foundation
+Part of the Linux Foundation
 
-Unterstützung durch ca. 450 Mitglieder [<i class="fas fa-external-link-alt"></i>](https://www.cncf.io/about/members/)
+Governs the contained projects
 
-Unterstützt die enthaltenen Projekte
+Supported by over 450 members [<i class="fas fa-external-link-alt"></i>](https://www.cncf.io/about/members/)
 
-### Projekte und Reifegrad
+### Projects and maturity (as of 2021-06-14)
 
-11 graduierte Projekte
+15 graduated projects
 
-21 inkubierte Projekte
+21 incubated projects
 
-32 Sandbox-Projekte
+60 sandbox projects
 
 ---
 
 ## And the winner is... Kubernetes
 
-**Der** Container-Orchestrierer
+**The** container orchestrator
 
-Marktführer
+Leader
 
-Sehr aktives Ökosystem
+Very active ecosystem
 
-Übersicht der Cloud Native-Werkzeuge [<i class="fas fa-external-link-alt"></i>](https://landscape.cncf.io/)
+Cloud Native landscape [<i class="fas fa-external-link-alt"></i>](https://landscape.cncf.io/)

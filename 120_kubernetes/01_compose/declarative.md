@@ -1,43 +1,43 @@
-## Zwei Wege der Automatisierung
+## Two way to automate
 
-### Imperativer Ansatz
+### Imperative approach
 
-Skripte und Programme
+Scripts and applications
 
-Vollständige Logik für die Umsetzung
+Implement full logic for the task at hand
 
-### Deklarativer Ansatz
+### Declarative approach
 
-Beschreibung des gewünschten Zustands
+Textual description of a desired state
 
-Ein Werkzeug verändert System zu gewünschtem Zustand
-
----
-
-## Imperativer Ansatz
-
-**Beispiel:** Containerisierten Dienst verwalten
-
-![Flussdiagramm für imperativen Ansatz](120_kubernetes/01_compose/imperative.drawio.svg)
-
-### Herausforderung
-
-Abgleich der Konfiguration
-
-Anpassung an neue Konfiguration
+Engine makes adjustments to reach desired state
 
 ---
 
-## Deklarativer Ansatz
+## Imperative approach
 
-**Beispiel:** Containerisierten Dienst verwalten
+**Example:** Manage containerized service
 
-![Flussdiagramm für deklarativen Ansatz](120_kubernetes/01_compose/declarative.drawio.svg)
+![Imperative approach](120_kubernetes/01_compose/imperative.drawio.svg)
 
-### Herausforderungen
+### Challenge
 
-Es ist ein Werkzeug für die Umsetzung erforderlich
+Check for configuration changes
 
-Dieses muss unabhängig entwickelt werden
+Apply new configuration
 
-Weite Verbreitung schafft Investitionsschutz
+---
+
+## Declarative approach
+
+**Example:** Manage containerized service
+
+![Declarative approach](120_kubernetes/01_compose/declarative.drawio.svg)
+
+### Challenges
+
+Engine for implement changes
+
+Independent implementation with ecosystem
+
+Large user base provide security

@@ -10,4 +10,6 @@ AWS Elastic Kubernetes Service (EKS), Microsoft Azure Kubernetes Service (AKS), 
 
 ### How choose?
 
-XXX
+Managed is always better
+
+Self-hosted requires commitment

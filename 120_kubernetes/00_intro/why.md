@@ -1,16 +1,16 @@
-## Betrieb von Containern
+## Why have a container orchestrator
 
-Auf einem Host sind Container einfach zu verwalten
+Easy to manage on a single host
 
-Produktion benötigt Ausfallsicherheit
+Production environments require high availability
 
-Dafür ist mehr als ein Host notwendig
+HA requires multiple hosts
 
-### Container-Orchestrierer
+### Container orchestrator
 
-Er übernimmt die Verwaltung von Containern auf mehreren Hosts
+Responsible for maintaining containers on multiple hosts
 
-### Angebote
+### Offering
 
 Kubernetes
 
@@ -18,7 +18,7 @@ Docker Swarm
 
 ---
 
-## Aufgaben des Orchestrierers
+## Tasks of a container orchestrator
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 1em; text-align: left; font-size: larger;">
 
@@ -26,36 +26,36 @@ Docker Swarm
 
 ### Rollout
 
-Verteilen von Containern auf mehrere Hosts
+Distribute services across hosts
 
-Ausbalancieren der Ressourcennutzung
+Balance resource usage
 
-### Skalierung
+### Scale
 
-Verwaltung von Kopien eines Containers
+Maintain copies of a service definition
 
-Hinzufügen und Entfernen von Kopien
+Add and remove copies of services
 
 </div>
 <div>
 
-### Aktualisierung
+### Update
 
-Austausch von Containers mit einer neuen Version
+Replace servoces with an updated version
 
-Sicherstellen der Verfügbarkeit
+Ensure availability
 
-### Wiederherstellung
+### Recovery
 
-Neustart fehlerhalfter Container
+Restart misbehaving services
 
-Kompensieren von Ausfällen
+Compensate for outages
 
-### Aufräumen
+### Cleanup
 
-Löschen von Containern...
+Remove services...
 
-...inklusive aller Kopien
+...including all copies
 
 </div>
 
@@ -63,14 +63,14 @@ Löschen von Containern...
 
 ---
 
-## Darum Container-Orchestrierer
+## That's why (having a container orchestrator)
 
-Container-Orchestrierer nehmen Arbeit ab
+Container orchestrators make your life easier
 
-Nutzung mehrerer Hosts
+Use multiple hosts for high availability
 
-Sie können Ausfälle und Fehlverhalten kompensieren
+Compensate for outages and errors
 
-Ops: Mehr Zeit für wichtigere Aufgaben
+Ops has time for more important tasks
 
-Kubernetes ist der Container-Orchestrierer mit der weitesten Verbreitung
+Kuberentes is most widely used

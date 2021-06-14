@@ -1,15 +1,15 @@
 ## Pods
 
-Pods bestehen aus einem oder mehreren Containern
+Pods consist of one or more containers
 
-Container teilen sich den Netzwerk-Namespace
+Containers share the network namespace
 
-Docker kennt nur Container
+Docker only knows containers
 
-### Use Cases
+### Use cases
 
-Prozesse scheinen auf demselben Host zu laufen
+Processes seem to run on the same host
 
 ### Demo
 
-Pods mit Docker
+Creating pods with Docker

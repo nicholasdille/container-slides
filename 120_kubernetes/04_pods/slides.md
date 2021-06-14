@@ -1,14 +1,14 @@
-## Container in Kubernetes
+## Containers in Kubernetes
 
 ### Pods
 
-![Pod bestehen aus zwei Containern](120_kubernetes/04_pods/pod.drawio.svg) <!-- .element: style="float: right;" -->
+![Pod consist of two containers](120_kubernetes/04_pods/pod.drawio.svg) <!-- .element: style="float: right;" -->
 
-Einer oder mehr Container
+One or more containers
 
-Ein Netzwerk-Namespace
+Single network namespace
 
-Die kleine Einheit im Rollout
+Smallest unit of deployment
 
 ### YAML
 
@@ -21,7 +21,7 @@ top:
 ```
 <!-- .element: style="float: right; width: 35%;" -->
 
-Pods werden deklarativ in YAML beschrieben
+YAML is used to describe a pod
 
 ### Demo: `kubectl`
 
