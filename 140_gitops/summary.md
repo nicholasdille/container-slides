@@ -28,4 +28,6 @@ CIOps is also fine ;-)
 
 [CIOps as an anti-pattern](https://www.weave.works/blog/kubernetes-anti-patterns-let-s-do-gitops-not-ciops)
 
+[GitOps tools in comparison](https://cloudogu.com/en/blog/gitops-tools)
+
 [Awesome GitOps](https://github.com/weaveworks/awesome-gitops)
