@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Recommended layout
+#
+#                                       |
+#   watch kubectl get gitrepository -A  |
+#                                       |
+# --------------------------------------+
+#                                       |
+#   watch kubectl get kustomizastion -A |  watch kubectl get pods -A
+#                                       |
+# --------------------------------------+
+#                                       |
+#   kubectl apply -f podinfo.yaml       |
+#                                       |
+
 # Create app
 kubectl apply -f podinfo.yaml
 kubectl get gitrepository podinfo

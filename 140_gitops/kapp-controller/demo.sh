@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Recommended layout
+#
+#                                 |
+#   watch kubectl get app -A      |
+#                                 |
+# --------------------------------+  watch kubectl get pods -A
+#                                 |
+#   kubectl apply -f podinfo.yaml |
+#                                 |
+
 # Deploy app
 kubectl apply -f podinfo.yaml
 
