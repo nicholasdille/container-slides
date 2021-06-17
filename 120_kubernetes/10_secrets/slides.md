@@ -15,3 +15,9 @@ Secrets can store literals as well as files
 Secrets are only Base64 encoded but not encrypted
 
 Secrets are not secret
+
+### Alternatives
+
+Bitnami Sealed Secrets
+
+Vault Operator

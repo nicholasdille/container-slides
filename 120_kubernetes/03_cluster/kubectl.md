@@ -2,11 +2,7 @@
 
 CLI for Kubernetes API
 
-XXX
-
-XXX links
-
-Installation
+### Installation
 
 ```bash
 curl -L -s https://dl.k8s.io/release/stable.txt | \

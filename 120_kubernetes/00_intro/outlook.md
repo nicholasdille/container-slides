@@ -1,13 +1,15 @@
 ## The journey has just begun
 
-XXX namespaces
+Namespaces to logically group resources
 
-XXX rbac
+Role Based Access Control (RBAC)
 
-XXX ingress
+Resource Reservations
 
-XXX monitoring
+Access cluster resources from the outside (Ingress)
 
-XXX log shipping
+Monitoring and alerting
 
-XXX automation
+Log shipping
+
+Automation

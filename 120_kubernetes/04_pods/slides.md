@@ -22,7 +22,3 @@ top:
 <!-- .element: style="float: right; width: 35%;" -->
 
 YAML is used to describe a pod
-
-### Demo: `kubectl`
-
-XXX

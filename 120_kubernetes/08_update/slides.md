@@ -6,7 +6,7 @@ ReplicaSets are only responsible for maintaining scale
 
 Containerized services require complete lifecycle management
 
-XXX Anwendungen mit vielen Pods sollen unterbrechungsfrei aktualisiert werden
+Update without service interruption
 
 ### Deployments
 
