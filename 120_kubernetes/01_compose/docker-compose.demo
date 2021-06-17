@@ -1,5 +1,9 @@
 # Vorwissen: docker-compose
 
+## Compose installieren
+curl -sLo /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/latest/docker-compose-Linux-x86_64
+chmod +x /usr/local/bin/docker-compose
+
 ## Anwendung ausrollen
 docker-compose up -d
 
