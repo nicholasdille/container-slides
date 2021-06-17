@@ -11,7 +11,7 @@ Highly configurable
 Installation
 
 ```bash
-curl https://github.com/kubernetes-sigs/kind/releases/download/latest/kind-linux-amd64 \
+curl https://github.com/kubernetes-sigs/kind/releases/download/v0.11.1/kind-linux-amd64 \
     --silent \
     --location \
     --output /usr/local/bin/kind
