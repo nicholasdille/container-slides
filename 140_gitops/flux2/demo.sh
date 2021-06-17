@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Recommended layout
-#
 #                                       |
 #   watch kubectl get gitrepository -A  |
 #                                       |
