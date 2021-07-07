@@ -78,23 +78,19 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Development Infrastructure
 
-        XXX team, responsibilities
+        Team of 8 responsible for running services for DevOps cycle
 
-        XXX Kubernetes
+        Jira, GitLab, Artifactory, Xray, Team Foundation Server, SonarQube, Monitoring-as-a-Service, build agents
 
-        XXX services for DevOps cycle
+        XXX tr&aelig;fik: ~60 requests per second
 
-        XXX Jira, GitLab, Artifactory, Xray, Team Foundation Server, SonarQube, Monitoring-as-a-Service, build agents
+        XXX Artifactory: 1.4M artifacts, 16TB storage used
 
-        XXX tr&aelig;fik: x requests per y
+        XXX GitLab: ~1.100 active users, ~4.000 repositories
 
-        XXX Artifactory: 1M/10TB artifacts
+        XXX build agents: >2.500 Linux builds per day, ~100 Windows-VMs
 
-        XXX GitLab: ~1.100 active users, ~4000 repositories
-
-        XXX build agents: x Linux builds per day, 50 Windows-VMs
-
-        XXX MaaS: 14 instances
+        XXX MaaS: 15 instances
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -126,13 +122,15 @@
 
         XXX external-dns
 
-        XXX count?
+        XXX >130 DNS records
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Automation
 
-        XXX
+        XXX cluster rollout based on kubespray and some custom Ansible (plan: Cluster API, kubeone)
+
+        XXX cluster migration (based on DNS, cleanup in old cluster before rollout in new cluster)
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
