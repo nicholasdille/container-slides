@@ -46,67 +46,97 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Haufe Group
 
-        Family-owned enterprise with 70-year history
+        Family-owned enterprise founded in 1951
 
         Leading software and media company
 
         ~2.200 employees, dozens of autonomous development teams
 
-        19 location worldwide: Freiburg (+9), Germany | Barcelona, Spain | Cluji/Timisoara, Romania | St. Gallen, Switzerland | Vienna, Austria
+        19 location worldwide with HQ in Freiburg, Germany
 
         €393M renevue FY19/20, all DAX 30 companies, 1M customers in SMB market, 360.000 seminars per year
-
-        --
-
-        ## Haufe Group
-
-        Founded in 1951 by Rudolf Haufe
-
-        Publishing house (loose-leaf publications)
-
-        Producing up-to-date and easy-to-understand publications about law, business and tax
-
-        In 1978, Haufe Akademie was born
-
-        In 1993, Acquisition of software startup Lexware
-
-        In 2010, development of online solutions for tax, HR, accounting
-
-        In 2017, Haufe Group
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Development Infrastructure
 
-        Team of 8 responsible for running services for DevOps cycle
+        Team of 8 responsible for running services
 
-        Jira, GitLab, Artifactory, Xray, Team Foundation Server, SonarQube, Monitoring-as-a-Service, build agents
+        Jira, GitLab, Artifactory/Xray, Team Foundation Server, SonarQube, Monitoring-as-a-Service, build agents
 
-        XXX tr&aelig;fik: ~60 requests per second
+        tr&aelig;fik serves ~60 requests per second
 
-        XXX Artifactory: 1.4M artifacts, 16TB storage used
+        Artifactory holds 1.4M artifacts using 16TB storage
 
-        XXX GitLab: ~1.100 active users, ~4.000 repositories
+        GitLab: ~1.100 active users with ~4.000 repositories
 
-        XXX build agents: >2.500 Linux builds per day, ~100 Windows-VMs
+        Build agents: >2.500 Linux build jobs per day, ~100 Windows-VMs
 
-        XXX MaaS: 15 instances
+        Monitoring-as-a-Service: 15 instances
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Access
 
         ![client access](000_introduction/haufe_group/access.drawio.svg)
+        <!-- .element: style="float: left;" -->
 
-        XXX build cluster
+        Self-hosted clusters
+
+        Services cluster with external access
+        
+        Build cluster without external access
+
+        Debug instance uses `--log.level=debug`
+
+        Few services are exposed to the internet
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## High availability
 
-        ![client access](000_introduction/haufe_group/access.drawio.svg)
+        ![high availability](000_introduction/haufe_group/ha.drawio.svg)
+        <!-- .element: style="float: left;" -->
 
-        XXX load balancing
+        Load balancing across DMZ hosts
+
+        Load balancing across all workers
+
+        DNS is updated after failover
+
+        Small TTL keeps outage minimal
+
+        Avoid caching DNS servers not overriding the TTL because reasons
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Demo environment
+
+        ![Technical overview of demo environment](000_introduction/haufe_group/kind.drawio.svg)
+        <!-- .element: style="float: left;" -->
+
+        Kubernetes-in-Docker (KinD)
+
+        First worker serves external requests
+
+        Host ports 80/443 are forwarded
+
+        Other workers XXX
+
+        Internal access using Squid
+
+        --
+
+        ## Demo environment
+
+        ![Equivalent to production environment](000_introduction/haufe_group/demo.drawio.svg)
+        <!-- .element: style="float: left;" -->
+
+        kind network represents internal network
+
+        First worker represents DMZ hosts
+
+        XXX
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
