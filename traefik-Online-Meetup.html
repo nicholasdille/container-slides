@@ -60,13 +60,17 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Haufe Group
 
-        XXX
+        Digital media: knowledge base for lawyers, accounts, HR
+
+        Software: tax, accounting, human resources, talent management, ERP, real estate
+
+        Training: seminars, brokering
+
+        ### Numbers
 
         €393M renevue FY19/20
         
-        All DAX 30 companies
-        
-        1M customers in SMB market
+        All DAX 30 companies, 1M customers in SMB market
         
         360.000 seminars per year
     </textarea></section>
@@ -76,9 +80,7 @@
 
         Team of 8 engineers
 
-        Jira, GitLab, Artifactory/Xray, Team Foundation Server,
-        
-        SonarQube, Monitoring-as-a-Service, build agents
+        Running Jira, GitLab, Artifactory/Xray, Team Foundation Server, <br/>GoCD, build agents, SonarQube, Monitoring-as-a-Service
 
         ### Challenges
 
@@ -92,17 +94,17 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Development Infrastructure
 
-        tr&aelig;fik serves **60-100 connections/second**
-
         Artifactory holds **1.4M artifacts** using **16TB storage**
 
         GitLab provides **4.000 repositories** to **1.100 active users**
 
         Build agents execute **2.500 Linux build jobs per day**
         
-        **100 Windows VMs** build desktop products
+        **100 Windows VMs** build and test desktop products
 
         Monitoring-as-a-Service runs in **15 instances**
+
+        tr&aelig;fik serves **60-100 connections/second**
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -112,31 +114,31 @@
 
         Self-hosted clusters
 
-        Services cluster with external access
-        
-        Internal build cluster
-
         Only very few services are exposed to the internet
 
         270 ingress rules with 200 middlewares
 
         Assigned by label selector
+
+        No performant hairpin mode
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## High availability
+        ## High availability for and with tr&aelig;fik
 
         ![high availability](000_introduction/haufe_group/ha.drawio.svg) <!-- .element: style="float: left; width: 40%; padding: 1em 1em 2em 0;" -->
 
-        Load balancing across DMZ hosts
+        `CNAME` to tr&aelig;fik's `A` record
 
-        Load balancing across all workers
+        Failover across DMZ hosts
 
-        DNS is updated after failover
+        Failover across all workers
 
-        Small TTL keeps outage minimal
+        `A` records are updated after failover
 
-        Avoid caching DNS servers overriding the TTL
+        Small TTL for short outage
+
+        Avoid DNS servers overriding the TTL
 
         Mind TTL for negative caching
     </textarea></section>
@@ -180,7 +182,7 @@
 
         More than 130 certificates
 
-        Usable by all instances of tr&aelig;fik
+        Available to all instances of tr&aelig;fik
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -208,7 +210,7 @@
         
         Based on DNS
         
-        Export certificates before cleanup in old cluster
+        Exports certificates before cleanup in old cluster
 
         ### Monitoring
         
@@ -230,7 +232,7 @@
 
         Service born from our own needs
 
-        We maintain monitoring stack
+        We maintain the monitoring stack
 
         ### Components
 
@@ -262,9 +264,11 @@
 
         Service offerings to support dozens of teams
 
-        tr&aelig;fik plays vital role in architecture
+        tr&aelig;fik drives the architecture
 
-        Declarative infrastructure to drive automation
+        Declarative infrastructure to simplify automation
+
+        Monitoring-as-a-Service is a success
 
         ### Slides will be made available [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille/container-slides/releases/tag/20210721)
     </textarea></section>
@@ -323,8 +327,8 @@
         parallaxBackgroundImage: '',
         parallaxBackgroundSize: '',
 
-        totalTime: 4 * 60 * 60,
-        allottedTime: 4 * 60 * 60 * 1000,
+        totalTime: 50 * 60,
+        allottedTime: 50 * 60 * 1000,
 
         barColor: 'rgb(200, 0, 0)',
         pausedBarColor: 'rgba(200, 0, 0, .6)',
