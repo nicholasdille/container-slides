@@ -39,11 +39,16 @@ web-$(COMMIT):
 
 %.pdf: %.html web-$(COMMIT)
 	@\
+	echo "### Remove containers"; \
 	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
 	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f; \
+	echo "### Run web server"; \
 	docker run -d --name web web:$(COMMIT); \
+	echo "### Create slides"; \
 	docker run -it --network container:web --name slides astefanutti/decktape --size 1920x1080 --load-pause 5000 --pause 500 http://localhost:80/$*.html $*.pdf; \
+	echo "### Copy slides"; \
 	docker cp slides:/slides/$*.pdf .; \
+	echo "### Remove containers"; \
 	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
 	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f
 
