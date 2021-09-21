@@ -208,7 +208,7 @@ XXX
 
 ---
 
-## XXX homebrew
+## Rootless Playground
 
 XXX
 
@@ -225,9 +225,20 @@ XXX
 
 ---
 
-## XXX homebrew
+## Rootless Workplace
 
-### WIP
+Very much work in progress
+
+### Docker
+
+```bash
+brew tap nicholasdille/immortal
+brew install dockerd-immortal
+brew immortal start dockerd-rootless
+docker-immortal.sh version
+```
+
+### nerdctl
 
 ```bash
 brew tap nicholasdille/immortal
