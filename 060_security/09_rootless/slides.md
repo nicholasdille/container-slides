@@ -72,9 +72,7 @@ dockerd-rootless.sh
 ### Use
 
 ```bash
-export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
-docker version
-docker context ls
+docker context use rootless
 ```
 
 ---
@@ -180,11 +178,14 @@ buildctl --addr docker-container://buildkitd \
 ### Use with systemd
 
 ```bash
+mkdir -p ~/bin
+curl -sLo bin/containerd-rootless.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless.sh
+curl -sLo bin/containerd-rootless-setuptool.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless-setuptool.sh
 R=containerd/nerdctl
 V=v0.11.2
 P=extras/rootless
 S=containerd-rootless-setuptool.sh
-curl -sL https://github.com/$R/raw/$V/$P/$s | \
+curl -sL https://github.com/$R/raw/$V/$P/$S | \
     bash -s install
 ```
 
