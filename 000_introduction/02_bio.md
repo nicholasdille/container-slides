@@ -16,7 +16,4 @@
 
 <img src="images/traefik_ambassador.svg" style="width: 1.5em; height: 1em;" /> <a href="https://info.traefik.io/traefik-ambassador-program">tr&aelig;fik Ambassador</a> since 2021
 
-<i class="fas fa-briefcase" style="width: 1.5em; text-align: center;"></i> [Haufe.Group](https://www.haufe.com/) since 2016
-
-[<i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i>](https://twitter.com/@NicholasDille) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille) [<i class="fab fa-keybase" style="width: 1.5em; text-align: center;"></i>](https://keybase.io/nicholasdille)
-<!-- .element: style="float: right;" -->
+<i class="fas fa-briefcase" style="width: 1.5em; text-align: center;"></i> [Haufe Group](https://www.haufe.com/) since 2016
