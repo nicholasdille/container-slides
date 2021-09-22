@@ -1,41 +1,41 @@
 #!/bin/bash
 
-echo "### Install rootless docker"
-
 apt-get update
-apt-get -y install uidmap
+apt-get -y install curl ca-certificates jq
 
+echo "### Install rootless docker"
+apt-get -y install uidmap
 useradd --create-home --shell /bin/bash rootless
 cp -r ~root/.ssh ~rootless/
 chown -R rootless. ~rootless/.ssh
-
 sudo -iu rootless bash -c 'curl -fsSL https://get.docker.com/rootless | sh'
 
 echo "### Install rootful docker"
-
 useradd --create-home --shell /bin/bash rootful
 cp -r ~root/.ssh ~rootful/
 chown -R rootful. ~rootful/.ssh
-
+cat >/etc/sudoers.d/rootful <<EOF
+rootful ALL=(ALL:ALL) NOPASSWD: ALL
+EOF
 curl --fail --location https://get.docker.com | sh
 usermod -aG docker rootful
 
 echo "### Install rootless nerdctl"
-
-curl -sLo bin/slirp4netns https://github.com/rootless-containers/slirp4netns/releases/download/v1.1.12/slirp4netns-x86_64
+sudo -iu rootless bash <<EOF
+curl -sLo bin/slirp4netns https://github.com/rootless-containers/slirp4netns/releases/latest/download/slirp4netns-x86_64
 chmod +x bin/slirp4netns
-
 curl -sLo bin/containerd-rootless.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless.sh
 curl -sLo bin/containerd-rootless-setuptool.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless-setuptool.sh
 chmod +x bin/containerd-rootless*
-
 bin/containerd-rootless-setuptool.sh install
+EOF
 
 echo "### Install homebrew"
-
+apt-get -y install git build-essential
 useradd --create-home --shell /bin/bash user
 cp -r ~root/.ssh ~user/
 chown -R user. ~user/.ssh
-
-sudo -iu user bash -c 'curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash'
-/home/linuxbrew/.linuxbrew/bin/brew shellenv >>/home/user/.bashrc
+sudo -iu user bash <<EOF
+curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+/home/linuxbrew/.linuxbrew/bin/brew shellenv >>.bashrc
+EOF
