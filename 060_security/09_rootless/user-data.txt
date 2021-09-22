@@ -3,14 +3,25 @@
 apt-get update
 apt-get -y install curl ca-certificates jq
 
-echo "### Install rootless docker"
+echo
+echo "###############################"
+echo "### Install rootless docker ###"
+echo "###############################"
 apt-get -y install uidmap
 useradd --create-home --shell /bin/bash rootless
 cp -r ~root/.ssh ~rootless/
 chown -R rootless. ~rootless/.ssh
-sudo -iu rootless bash -c 'curl -fsSL https://get.docker.com/rootless | sh'
+cat >~rootless/install-docker-rootless.sh <<EOF
+#!/bin/bash
+curl -fsSL https://get.docker.com/rootless | sh
+EOF
+chown rootless. ~rootless/install-docker-rootless.sh
+chmod +x ~rootless/install-docker-rootless.sh
 
-echo "### Install rootful docker"
+echo
+echo "##############################"
+echo "### Install rootful docker ###"
+echo "##############################"
 useradd --create-home --shell /bin/bash rootful
 cp -r ~root/.ssh ~rootful/
 chown -R rootful. ~rootful/.ssh
@@ -20,8 +31,13 @@ EOF
 curl --fail --location https://get.docker.com | sh
 usermod -aG docker rootful
 
-echo "### Install rootless nerdctl"
-sudo -iu rootless bash <<EOF
+echo
+echo "###################################"
+echo "### Install rootless containerd ###"
+echo "###################################"
+cat >~rootless/install-containerd-rootless.sh <<EOF
+#!/bin/bash
+mkdir -p bin
 curl -sLo bin/slirp4netns https://github.com/rootless-containers/slirp4netns/releases/latest/download/slirp4netns-x86_64
 chmod +x bin/slirp4netns
 curl -sLo bin/containerd-rootless.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless.sh
@@ -29,12 +45,32 @@ curl -sLo bin/containerd-rootless-setuptool.sh https://github.com/containerd/ner
 chmod +x bin/containerd-rootless*
 bin/containerd-rootless-setuptool.sh install
 EOF
+chown rootless. ~rootless/install-containerd-rootless.sh
+chmod +x ~rootless/install-containerd-rootless.sh
 
-echo "### Install homebrew"
-apt-get -y install git build-essential
+echo
+echo "##################################"
+echo "### Install rootless buildkitd ###"
+echo "##################################"
+cat >~rootless/install-buildkitd-rootless.sh <<EOF
+#!/bin/bash
+mkdir -p bin
+curl -sL https://github.com/moby/buildkit/releases/download/v0.9.0/buildkit-v0.9.0.linux-amd64.tar.gz | tar -xz
+EOF
+chown rootless. ~rootless/install-buildkitd-rootless.sh
+chmod +x ~rootless/install-buildkitd-rootless.sh
+
+echo
+echo "########################"
+echo "### Install homebrew ###"
+echo "########################"
+apt-get -y install --no-install-recommends git build-essential
 useradd --create-home --shell /bin/bash user
 cp -r ~root/.ssh ~user/
 chown -R user. ~user/.ssh
+cat >/etc/sudoers.d/user <<EOF
+user ALL=(ALL:ALL) NOPASSWD: ALL
+EOF
 sudo -iu user bash <<EOF
 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 /home/linuxbrew/.linuxbrew/bin/brew shellenv >>.bashrc
