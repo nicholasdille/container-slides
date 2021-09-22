@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "### Install rootless docker"
+
 apt-get update
 apt-get -y install uidmap
 
@@ -9,12 +11,16 @@ chown -R rootless. ~rootless/.ssh
 
 sudo -iu rootless bash -c 'curl -fsSL https://get.docker.com/rootless | sh'
 
+echo "### Install rootful docker"
+
 useradd --create-home --shell /bin/bash rootful
 cp -r ~root/.ssh ~rootful/
 chown -R rootful. ~rootful/.ssh
 
 curl --fail --location https://get.docker.com | sh
 usermod -aG docker rootful
+
+echo "### Install rootless nerdctl"
 
 curl -sLo bin/slirp4netns https://github.com/rootless-containers/slirp4netns/releases/download/v1.1.12/slirp4netns-x86_64
 chmod +x bin/slirp4netns
@@ -24,3 +30,12 @@ curl -sLo bin/containerd-rootless-setuptool.sh https://github.com/containerd/ner
 chmod +x bin/containerd-rootless*
 
 bin/containerd-rootless-setuptool.sh install
+
+echo "### Install homebrew"
+
+useradd --create-home --shell /bin/bash user
+cp -r ~root/.ssh ~user/
+chown -R user. ~user/.ssh
+
+sudo -iu user bash -c 'curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash'
+/home/linuxbrew/.linuxbrew/bin/brew shellenv >>/home/user/.bashrc
