@@ -38,10 +38,9 @@ echo "###################################"
 cat >~rootless/install-containerd-rootless.sh <<EOF
 #!/bin/bash
 mkdir -p ~/bin
-R=containerd/nerdctl
-V=v0.11.2
-F="nerdctl-${V#v}-linux-amd64.tar.gz"
-curl -sL "https://github.com/$R/releases/download/$V/$F" | tar -xzC bin
+curl -sLo bin/slirp4netns https://github.com/rootless-containers/slirp4netns/releases/download/v1.1.12/slirp4netns-x86_64
+chmod +x bin/slirp4netns
+curl -sL "https://github.com/containerd/nerdctl/releases/download/v0.11.2/nerdctl-0.11.2-linux-amd64.tar.gz" | tar -xzC bin
 containerd-rootless-setuptool.sh install
 curl -sL https://github.com/containernetworking/plugins/releases/download/v1.0.1/cni-plugins-linux-amd64-v1.0.1.tgz | tar -xzC bin
 curl -sL https://github.com/AkihiroSuda/cni-isolation/releases/download/v0.0.3/cni-isolation-amd64.tgz | tar -xzC bin
