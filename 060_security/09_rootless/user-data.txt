@@ -37,13 +37,14 @@ echo "### Install rootless containerd ###"
 echo "###################################"
 cat >~rootless/install-containerd-rootless.sh <<EOF
 #!/bin/bash
-mkdir -p bin
-curl -sLo bin/slirp4netns https://github.com/rootless-containers/slirp4netns/releases/latest/download/slirp4netns-x86_64
-chmod +x bin/slirp4netns
-curl -sLo bin/containerd-rootless.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless.sh
-curl -sLo bin/containerd-rootless-setuptool.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless-setuptool.sh
-chmod +x bin/containerd-rootless*
-bin/containerd-rootless-setuptool.sh install
+mkdir -p ~/bin
+R=containerd/nerdctl
+V=v0.11.2
+F="nerdctl-${V#v}-linux-amd64.tar.gz"
+curl -sL "https://github.com/$R/releases/download/$V/$F" | tar -xzC bin
+containerd-rootless-setuptool.sh install
+curl -sL https://github.com/containernetworking/plugins/releases/download/v1.0.1/cni-plugins-linux-amd64-v1.0.1.tgz | tar -xzC bin
+curl -sL https://github.com/AkihiroSuda/cni-isolation/releases/download/v0.0.3/cni-isolation-amd64.tgz | tar -xzC bin
 EOF
 chown rootless. ~rootless/install-containerd-rootless.sh
 chmod +x ~rootless/install-containerd-rootless.sh

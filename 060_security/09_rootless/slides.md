@@ -26,7 +26,7 @@ Client controls daemon without authentication
 
 Running as non-root in a container
 
-Forcing a user `docker run/exec --user $(id -u):$(id -g) ...`
+Forcing a user `docker run/exec --user`
 
 Executing `docker` from a non-root account
 
@@ -52,7 +52,7 @@ Reduced network performance
 
 Unable to open ports below 1024
 
-No cgroup (resource management)
+Resource management only with cgroup v2
 
 ---
 
@@ -70,6 +70,19 @@ curl -fsSL https://get.docker.com/rootless | sh
 
 ```bash
 docker context use rootless
+```
+
+--
+
+## Testing Rootless Docker
+
+```bash
+docker info
+docker run -d nginx
+ps faux
+docker run -d ubuntu sleep infinity
+docker run -d --user $(id -u):$(id -g) ubuntu sleep infinity
+docker build github.com/nicholasdille/docker-tools
 ```
 
 ---
@@ -107,7 +120,7 @@ dockerd-rootless.sh \
 
 Remoting through SSH also works...
 
-...but `DOCKER_HOST` must be set and available
+...but `DOCKER_HOST` must be set and available for user
 
 ---
 
@@ -115,7 +128,7 @@ Remoting through SSH also works...
 
 [Official documentation](https://docs.docker.com/engine/security/rootless/)
 
-Resource management required cgroup v2
+Resource management requires cgroup v2
 
 Container UID 0 is mapped to host UID of user
 
@@ -140,11 +153,18 @@ rootlesskit --net=slirp4netns --copy-up=/etc --disable-host-loopback \
 
 (add `--oci-worker-snapshotter=native` when `fuse-overlayfs` produces errors)
 
+--
+
+## Test rootless BuildKit
+
 ### Build locally
 
 ```bash
-buildctl --addr unix:///run/user/$UID/buildkit/buildkitd.sock \
-    build ...
+buildctl --addr "unix:///run/user/$UID/buildkit/buildkitd.sock" \
+    build \
+        --frontend gateway.v0 \
+        --opt source=docker/dockerfile \
+        --opt context=git://github.com/nicholasdille/docker-tools
 ```
 
 ---
@@ -174,18 +194,45 @@ buildctl --addr docker-container://buildkitd \
 
 [Official documentation](https://github.com/containerd/containerd/blob/main/docs/rootless.md)
 
+Requires CNI
+
 ### Install and run
 
 ```bash
 mkdir -p ~/bin
-curl -sLo bin/containerd-rootless.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless.sh
-curl -sLo bin/containerd-rootless-setuptool.sh https://github.com/containerd/nerdctl/raw/master/extras/rootless/containerd-rootless-setuptool.sh
 R=containerd/nerdctl
 V=v0.11.2
-P=extras/rootless
-S=containerd-rootless-setuptool.sh
-curl -sL https://github.com/$R/raw/$V/$P/$S | \
-    bash -s install
+F="nerdctl-${V#v}-linux-amd64.tar.gz"
+curl -sL "https://github.com/$R/releases/download/$V/$F" | \
+    tar -xzC bin
+containerd-rootless-setuptool.sh install
+curl -sL https://github.com/containernetworking/plugins/releases/download/v1.0.1/cni-plugins-linux-amd64-v1.0.1.tgz | \
+    tar -xzC bin
+curl -sL https://github.com/AkihiroSuda/cni-isolation/releases/download/v0.0.3/cni-isolation-amd64.tgz | \
+    tar -xzC bin
+```
+
+--
+
+## Test rootless containerd
+
+### Run container
+
+```bash
+export CNI_PATH="$HOME/bin"
+nerdctl run -it --rm alpine
+nerdctl run -d nginx
+nerdctl ps -a
+```
+
+### Build
+
+Requires `buildkitd` to be running rootless
+
+```bash
+git clone https://github.com/nicholasdille/docker-tools
+cd docker-tools
+nerdctl build .
 ```
 
 ---
@@ -223,49 +270,65 @@ Follow the official documentation (links above)
 
 ## Rootless Workplace
 
-Very much work in progress
+Based on Homebrew
+
+Tap maintained by [@nicholasdille](https://twitter.com/) with >100 container tools
+
+Rootless is very much work in progress
 
 Please [report issues](https://github.com/nicholasdille/homebrew-tap/issues)
 
-### Docker
+### Prepare
 
 ```bash
 brew tap nicholasdille/tap
 brew tap nicholasdille/immortal
+```
+
+--
+
+## Docker
+
+```bash
 brew install dockerd-rootless
 brew immortal start dockerd-rootless
+
+SOCK="unix://$(brew --prefix)/var/run/dockerd/docker.sock"
 docker context create rootless \
     --description "Docker Rootless" \
-    --docker "host=unix:///home/linuxbrew/.linuxbrew/var/run/dockerd/docker.sock"
+    --docker "host=${SOCK}"
 docker context use rootless
+
 docker version
 ```
 
-### buildkitd
+--
+
+## BuildKit
 
 ```bash
-brew tap nicholasdille/tap
-brew tap nicholasdille/immortal
 brew install buildkitd-rootless
 brew immortal start buildkitd-rootless
-export BUILDKIT_HOST=unix:///home/linuxbrew/.linuxbrew/var/run/buildkitd/buildkit/buildkitd.sock
+
+SOCK="unix://$(brew --prefix)/var/run/buildkitd/buildkit/buildkitd.sock"
+export BUILDKIT_HOST="unix://${SOCK}"
 buildctl build ...
 ```
 
-### containerd
+--
+
+## containerd/nerdctl
+
+### Rootless containerd only
 
 ```bash
-brew tap nicholasdille/tap
-brew tap nicholasdille/immortal
 brew install containerd-rootless
 brew immortal start containerd-rootless
 ```
 
-### nerdctl
+### Rootless containerd with nerdctl
 
 ```bash
-brew tap nicholasdille/tap
-brew tap nicholasdille/immortal
 brew install nerdctl-immortal
 brew immortal start nerdctl-containerd
 brew immortal start nerdctl-buildkitd
@@ -297,8 +360,13 @@ kind create cluster
 
 ## Rootless Notes
 
-[usernetes](https://github.com/rootless-containers/usernetes): Run Kubernetes without root privileges
+Enable cgroup v2:
 
-[sysbox](https://github.com/nestybox/sysbox): Open-source, next-generation "runc" that empowers rootless containers to run workloads such as Systemd, Docker, Kubernetes, just like VMs
+- In `/etc/default/grub` set `GRUB_CMDLINE_LINUX="systemd.unified_cgroup_hierarchy=1"`
+- Run `update-grub` and `reboot`
 
 [WSL2 and cgroup v2](https://github.com/microsoft/WSL/issues/6662): Requires change in Microsoft owned init for service VM
+
+[usernetes](https://github.com/rootless-containers/usernetes): Run Kubernetes without root privileges
+
+[sysbox](https://github.com/nestybox/sysbox): Next-generation "runc" that empowers rootless containers to run workloads such as Systemd, Docker, Kubernetes, just like VMs
