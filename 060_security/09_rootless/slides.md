@@ -356,6 +356,12 @@ export DOCKER_HOST=unix://${XDG_RUNTIME_DIR}/docker.sock
 kind create cluster
 ```
 
+### k3s
+
+[Experimental support](https://rancher.com/docs/k3s/latest/en/advanced/#running-k3s-with-rootless-mode-experimental) for rootless
+
+[k3d issue #585](https://github.com/rancher/k3d/issues/585) w.r.t. rootless
+
 ---
 
 ## Rootless Notes
