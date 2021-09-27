@@ -18,6 +18,10 @@ CIOps is also fine ;-)
 
 --
 
+XXX https://opengitops.dev/
+
+--
+
 ## Further reading
 
 [gitops.tech](https://www.gitops.tech/)
