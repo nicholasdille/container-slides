@@ -1,0 +1,45 @@
+# Namespaces
+
+# Start containers
+docker run -d nginx
+docker run -d --name dind docker:dind
+docker exec -it dind docker run -d nginx
+
+# List all namespaces
+sudo lsns
+
+# List all process namespaces
+sudo lsns --output NS,TYPE,PATH,PID,PPID,USER,COMMAND --type pid
+
+# Show proces tree with namespaces and user names for containerd shim of dockerd
+sudo pstree -pTSu 18387
+
+# Enter namespace of inner nginx
+sudo nsenter -p -m -i -n -t 18899 env -i sh
+
+# https://www.redhat.com/sysadmin/pid-namespace
+# https://www.redhat.com/sysadmin/mount-namespaces
+# https://www.redhat.com/sysadmin/building-container-namespaces
+
+# Create pid namespace
+sudo unshare -rpf --mount-proc env -i sh
+sudo lsns
+
+# Create user pid namespace
+unshare -Urpf --mount-proc env -i sh
+sudo lsns
+
+# Create user namespace with UID mapping
+unshare -Ur env -i sh
+cat /proc/$$/uid_map
+
+# https://blog.scottlowe.org/2013/09/04/introducing-linux-network-namespaces/
+
+# Fix namespaces in the wrong place
+sudo ln -s /var/run/docker/netns /var/run/netns
+
+# List network namespaces
+sudo ip netns list
+
+# Show configuration inside networkl namespace
+sudo ip netns exec bb8a98c0e7b4 ip addr show
