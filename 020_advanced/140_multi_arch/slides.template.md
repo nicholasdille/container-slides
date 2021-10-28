@@ -1,3 +1,9 @@
+<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
+
+## Multi-Architecture Images
+
+--
+
 ## Multi-Arch Image
 
 ### Images only work on a single platform

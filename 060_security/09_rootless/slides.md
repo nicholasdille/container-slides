@@ -1,3 +1,9 @@
+<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
+
+## Rootless containers
+
+--
+
 # Reminder
 
 ![Docker stack with access from local and remote](060_security/09_rootless/stack.drawio.svg) <!-- .element: style="width: 80%;" -->

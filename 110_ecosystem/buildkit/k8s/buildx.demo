@@ -1,8 +1,7 @@
-# Use Kubernetes to run builder instances
+# Use buildx to run BuildKit in Kubernetes
 
-# Prepare k3d cluster
+# Prepare cluster
 kind create cluster --config kind.yaml
-docker network connect "kind" "registry"
 while kubectl --kubeconfig=./kubeconfig get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.conditions[?(@.reason=="KubeletReady")].status}{"\n"}{end}' | grep -qE "\sFalse$$"; do sleep 5; done
 
 # Create builder instances in Kubernetes
@@ -21,7 +20,9 @@ docker buildx inspect k8s --bootstrap
 kubectl get pods
 
 # Build using Kubernetes
-docker buildx build --platform linux/amd64,linux/arm64 --tag localhost:5000/hello . --push
+docker buildx build . \
+    --tag localhost:5000/hello \
+    --push
 
 # Inspect result
 docker buildx imagetools inspect \
