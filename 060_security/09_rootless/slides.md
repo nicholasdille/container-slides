@@ -1,9 +1,3 @@
-<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
-
-## Rootless containers
-
---
-
 ## Rootless Docker IS NOT
 
 Running as non-root in a container
