@@ -1,10 +1,13 @@
 # Use buildx to run BuildKit in Kubernetes
 
+# Deploy local registry for testing
+docker run -d --name registry --volume $(pwd)/registry:/var/lib/registry -p 127.0.0.1:5000:5000 registry:2
+
 # Prepare cluster
 kind create cluster --config kind.yaml
 while kubectl --kubeconfig=./kubeconfig get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.conditions[?(@.reason=="KubeletReady")].status}{"\n"}{end}' | grep -qE "\sFalse$$"; do sleep 5; done
 
-# Create builder instances in Kubernetes
+# Configure buildx to use Kubernetes
 docker buildx create \
     --name k8s \
     --driver kubernetes \
@@ -13,17 +16,11 @@ docker buildx create \
     --driver-opt loadbalance=random \
     --use
 
-# Check builder instances in Kubernetes
+# Deploy builder instances in Kubernetes
 docker buildx inspect k8s --bootstrap
 
 # Check pods
 kubectl get pods
 
 # Build using Kubernetes
-docker buildx build . \
-    --tag localhost:5000/hello \
-    --push
-
-# Inspect result
-docker buildx imagetools inspect \
-    localhost:5000/hello
+docker buildx build .

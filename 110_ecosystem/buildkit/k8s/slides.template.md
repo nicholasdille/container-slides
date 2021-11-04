@@ -22,6 +22,10 @@ Multiple pods can run simultaneously
 
 Build is passed to any one of them by the service
 
+### CLI
+
+`buildx` comes with options to deploy BuildKit based pods
+
 --
 
 ## Demo: BuildKit and Kubernetes
@@ -38,8 +42,8 @@ Pass build to remote pod
 
 ## Managing BuildKit using buildx
 
-<!-- include: buildx-1.command -->
-
 <!-- include: buildx-2.command -->
 
-<!-- include: buildx-4.command -->
+<!-- include: buildx-3.command -->
+
+<!-- include: buildx-5.command -->
