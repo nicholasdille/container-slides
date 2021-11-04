@@ -1,0 +1,8 @@
+# syntax=docker/dockerfile:1.3-labs
+
+FROM ubuntu:21.04
+
+COPY --chmod=0755 <<EOF /entrypoint.sh
+#!/bin/bash
+exec "$@"
+EOF

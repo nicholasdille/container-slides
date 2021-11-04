@@ -6,11 +6,16 @@
 
 ## Heredocs
 
-https://www.docker.com/blog/introduction-to-heredocs-in-dockerfiles/
+```bash
+$ cat <<EOF
+line1
+line2
+EOF
+line1
+line2
+```
 
-https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/syntax.md#here-documents
-
-XXX syntax 1.3-labs
+[Supported](https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/syntax.md#here-documents) in `Dockerfile` with experimental syntax >= 1.3-labs
 
 XXX RUN
 

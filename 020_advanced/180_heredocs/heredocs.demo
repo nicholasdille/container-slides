@@ -1,4 +1,16 @@
 # Heredocs in Dockerfile
 
-# TODO
-true
+# RUN
+docker build . --file Dockerfile.run
+
+# RUN with interpreter
+docker build . --file Dockerfile.interpreter
+
+# RUN script
+docker build . --file Dockerfile.script
+
+# COPY
+docker build . --file Dockerfile.copy
+
+# COPY multiple files
+docker build . --file Dockerfile.copy-multiple
