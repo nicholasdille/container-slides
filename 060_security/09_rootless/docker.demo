@@ -1,0 +1,30 @@
+# Rootless Docker
+
+# Install rootless Docker
+curl -fsSL https://get.docker.com/rootless | sh
+
+# Which to rootless context
+docker context use rootless
+
+# Show daemon info
+docker info
+
+# Show process tree
+ps faux
+
+# Run interactive container
+docker run -it --rm alpine
+
+# Run background container
+docker run -d --rm nginx
+
+# Build container image
+docker build github.com/nicholasdille/docker-tools
+
+# Check user ID of root user in container
+docker run -d --rm ubuntu sleep infinity \
+&& ps faux
+
+# Check user ID of own user ID in container
+docker run -d --rm --user $(id -u):$(id -g) ubuntu sleep infinity \
+&& ps faux
