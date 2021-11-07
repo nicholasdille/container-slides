@@ -18,7 +18,7 @@ docker context use rootless
 
 ## Rootless Inception
 
-Docker Rootless in Docker Rootful
+Rootless Docker in rootful Docker
 
 ```bash
 docker run -d --name dind-rootless --privileged \

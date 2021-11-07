@@ -1,4 +1,4 @@
-## Rootless Docker IS NOT
+## Rootless Docker *IS NOT*
 
 Running as non-root in a container
 
@@ -10,9 +10,9 @@ Enabling user namespace mapping
 
 ---
 
-## Rootless Docker IS
+## Rootless Docker *IS*
 
-Running containers as non-root
+Running the daemon as non-root
 
 Based on user namespaces
 

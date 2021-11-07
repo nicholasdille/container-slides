@@ -1,7 +1,7 @@
 # Build for amd64, arm and arm64
 
 # Enable qemu
-docker run --privileged --rm tonistiigi/binfmt --install all
+docker run --rm --privileged tonistiigi/binfmt --install all
 
 # Create builder
 docker buildx create --name mybuilder --use

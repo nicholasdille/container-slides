@@ -1,4 +1,4 @@
-<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
+<!-- .slide: id="layers" class="center" style="text-align: center; vertical-align: middle" -->
 
 ## Images and Layers
 

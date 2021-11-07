@@ -1,16 +1,16 @@
 # Heredocs in Dockerfile
 
-# RUN
+# Test RUN with script block
 docker build . --file Dockerfile.run
 
-# RUN with interpreter
+# Test RUN with interpreter
 docker build . --file Dockerfile.interpreter
 
-# RUN script
+# Test RUN with script
 docker build . --file Dockerfile.script
 
-# COPY
+# Test COPY with inline file
 docker build . --file Dockerfile.copy
 
-# COPY multiple files
+# Test COPY with multiple files
 docker build . --file Dockerfile.copy-multiple

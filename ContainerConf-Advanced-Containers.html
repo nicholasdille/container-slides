@@ -39,21 +39,21 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Agenda
 
-        Images and layers
+        Images and layers [<i class="fas fa-external-link-square-alt"></i>](#/layers)
 
-        Namespaces and control groups
+        Namespaces and control groups [<i class="fas fa-external-link-square-alt"></i>](#/kernel)
 
-        Docker-in-Docker
+        Nested containers [<i class="fas fa-external-link-square-alt"></i>](#/inception)
 
-        Docker Remoting
+        Docker Remoting [<i class="fas fa-external-link-square-alt"></i>](#/remoting)
 
-        Multi-architecture images
+        Multi-architecture images [<i class="fas fa-external-link-square-alt"></i>](#/multi-arch)
 
-        Remote builder
+        Remote builder [<i class="fas fa-external-link-square-alt"></i>](#/builders)
 
-        Rootless containers
+        Rootless containers [<i class="fas fa-external-link-square-alt"></i>](#/rootless)
 
-        Heredocs in Dockerfile
+        Heredocs in Dockerfile [<i class="fas fa-external-link-square-alt"></i>](#/heredocs)
     </textarea></section>
 
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -93,10 +93,10 @@
     <section data-markdown="060_security/09_rootless/docker.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <!-- Dockerfile heredocs -->
-    <section data-markdown="020_advanced/180_heredocs/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="020_advanced/180_heredocs/slides.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Recap
+        ## Questions
 
         ![QR code to slides](images/2021-11-08.svg) <!-- .element: style="float: right; width: 25%;" -->
 
@@ -129,6 +129,7 @@
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.1/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.1/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
+    var durationInMinutes = 8 * 60;
     Reveal.initialize({
         //width: 1920,
         //height: 1080,
@@ -174,8 +175,8 @@
         parallaxBackgroundImage: '',
         parallaxBackgroundSize: '',
 
-        totalTime: 4 * 60 * 60,
-        allottedTime: 4 * 60 * 60 * 1000,
+        totalTime: durationInMinutes * 60,
+        allottedTime: durationInMinutes * 60 * 1000,
 
         barColor: 'rgb(200, 0, 0)',
         pausedBarColor: 'rgba(200, 0, 0, .6)',

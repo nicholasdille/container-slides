@@ -1,36 +1,28 @@
-<!-- .slide: class="center" style="text-align: center; vertical-align: middle" -->
+<!-- .slide: id="builders" class="center" style="text-align: center; vertical-align: middle" -->
 
 ## Remote builders
 
---
+---
 
 ## BuildKit and Kubernetes
 
-BuildKit can be used as a build service in Kubernetes
-
-Multiple [examples available](https://github.com/moby/buildkit/tree/master/examples/kubernetes)
+BuildKit can be used as a [build service in Kubernetes](https://github.com/moby/buildkit/tree/master/examples/kubernetes)
 
 ### Pod
-
-Proof-of-concept
 
 BuildKit understands the schema `kube-pod://`
 
 ### Deployment
 
-Multiple pods can run simultaneously
-
-Build is passed to any one of them by the service
+Load balancing works
 
 ### CLI
 
 `buildx` comes with options to deploy BuildKit based pods
 
---
+---
 
 ## Demo: BuildKit and Kubernetes
-
-Pass build to remote pod
 
 <!-- include: manual-0.command -->
 
@@ -38,9 +30,11 @@ Pass build to remote pod
 
 <!-- include: manual-3.command -->
 
---
+<!-- include: manual-4.command -->
 
-## Managing BuildKit using buildx
+---
+
+## Managing BuildKit using `buildx`
 
 <!-- include: buildx-2.command -->
 
