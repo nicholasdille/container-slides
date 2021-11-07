@@ -36,6 +36,8 @@
         <!-- .element: style="width: 20%; float: right;" -->
     </textarea></section>
 
+    <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Agenda
 
@@ -56,7 +58,46 @@
         Heredocs in Dockerfile [<i class="fas fa-external-link-square-alt"></i>](#/heredocs)
     </textarea></section>
 
-    <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Lab
+
+        You have received credentials for a VM:
+
+        - Hostname in the form `seat<n>.inmylab.de`
+        - Username in the form `seat<n>`
+        - Password with 24 hexadecimal characters
+
+        VM stats:
+
+        - 2 vCPUs
+        - 4GB memory
+
+        Access VM using password:
+
+        ```bash
+        $ ssh seat<n>@seat<n>.inmylab.de
+        ```
+
+        ---
+
+        ## Lab
+
+        Add SSH public key:
+
+        ```bash
+        $ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_seat<n> -N ''
+        $ ssh-copy-id -i ~/.ssh/id_ed25519_seat<n> seat<n>@seat<n>.inmylab.de
+        ```
+
+        Create SSH config in `~/.ssh/config`:
+
+        ```plaintext
+        Host seat<n>
+            Hostname seat<n>.inmylab.de
+            User seat<n>
+            IdentityFile ~/.ssh/id_ed25519_seat<n>
+        ```
+    </textarea></section>
 
     <!-- Images and layers -->
     <section data-markdown="020_advanced/030_layers/slides.final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
