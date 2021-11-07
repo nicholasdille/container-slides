@@ -4,7 +4,7 @@
 docker run --name dind \
     --detach \
     --privileged \
-    docker:19.03.12-dind
+    docker:dind
 
 # Use Docker inside the container
 docker exec -it dind docker version

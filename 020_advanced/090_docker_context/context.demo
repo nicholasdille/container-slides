@@ -3,14 +3,24 @@
 # Check pre-defined context
 docker context ls
 
-# Create and use new context
-docker context create docker-hcloud \
-    --description 'Remote@Hetzner' \
-    --docker 'host=ssh://020advanced-090dockercontext'
-docker context use docker-hcloud
-docker context ls
+# Start DinD container
+docker run -d --name dind --privileged \
+    --publish 127.0.0.1:12376:2376 docker:dind
 
-# Check connectivity
+# Copy certificates
+mkdir -p dind-certs
+docker cp dind:/certs/client dind-certs
+
+# Create context
+docker context create dind \
+    --docker 'host=tcp://127.0.0.1:12376,ca=dind-certs/client/ca.pem,cert=dind-certs/client/cert.pem,key=dind-certs/client/key.pem'
+
+# Use context explicitly
+docker --context=dind version
+
+# Set default context
+docker context use dind
+docker context ls
 docker version
 
 # Check remote host

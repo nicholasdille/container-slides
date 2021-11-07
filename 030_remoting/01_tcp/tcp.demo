@@ -5,7 +5,7 @@ docker run --name tcp \
     --detach \
     --privileged \
     --publish 127.0.0.1:2375:2375 \
-    docker:stable-dind \
+    docker:dind \
         dockerd --host tcp://0.0.0.0:2375
 
 # Use remote Docker over TCP

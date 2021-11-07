@@ -8,7 +8,7 @@ Supports remoting via SSH
 
 <!-- include: context-0.command -->
 
---
+---
 
 ## Demo: `docker context`
 
@@ -17,3 +17,5 @@ Supports remoting via SSH
 <!-- include: context-2.command -->
 
 <!-- include: context-3.command -->
+
+<!-- include: context-5.command -->

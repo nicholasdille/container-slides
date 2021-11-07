@@ -1,3 +1,0 @@
-#!/bin/bash
-
-curl --fail --location https://get.docker.com | sh

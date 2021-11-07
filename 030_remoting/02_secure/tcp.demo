@@ -5,7 +5,7 @@ docker run --name secure \
     --detach \
     --privileged \
     --publish 127.0.0.1:2376:2376 \
-    docker:stable-dind
+    docker:dind
 
 # Copy certificates
 docker cp secure:/certs/client/ - | tar xC ${HOME}/.docker --strip-components=1

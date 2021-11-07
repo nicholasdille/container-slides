@@ -22,7 +22,7 @@ Official image: `alpine:stable`
 
 Community image: `nicholasdille/insulatr`
 
---
+---
 
 ## Images and layers
 
@@ -50,17 +50,13 @@ Stored as blob
 
 ![](020_advanced/030_layers/image.svg) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
 
---
+---
 
 ## Demo: Layers
-
-### Preparation
 
 Upload image to local registry
 
 <!-- include: layers-0.command -->
-
-### Investigate layers locally
 
 <!-- include: layers-1.command -->
 
@@ -68,19 +64,19 @@ Upload image to local registry
 
 https://github.com/wagoodman/dive
 
---
+---
 
 ## Demo: Image Manifest
 
 <!-- include: layers-3.command -->
 
---
+---
 
 ## Demo: Image Configuration
 
 <!-- include: layers-4.command -->
 
---
+---
 
 ## Demo: Download image layer
 
@@ -88,7 +84,7 @@ https://github.com/wagoodman/dive
 
 <!-- include: layers-6.command -->
 
---
+---
 
 ## Demo: Verifying a layer
 
@@ -100,7 +96,7 @@ https://github.com/wagoodman/dive
 
 ## Registries
 
-REST API
+[REST API](https://docs.docker.com/registry/spec/api/) and [Image Manifest Specification v2.2](https://docs.docker.com/registry/spec/manifest-v2-2/)
 
 No UI
 
@@ -116,13 +112,7 @@ Insecure registries must be defined expicitly
 
 Accepted insecure registry: `127.0.0.1/8`
 
-### Further reading
-
-[Registry API](https://docs.docker.com/registry/spec/api/)
-
-[Image Manifest Specification v2.2](https://docs.docker.com/registry/spec/manifest-v2-2/)
-
---
+---
 
 ## Demo: Registries
 
@@ -131,5 +121,3 @@ Accepted insecure registry: `127.0.0.1/8`
 <!-- include: tagging-0.command -->
 
 <!-- include: tagging-1.command -->
-
-<!-- include: tagging-2.command -->

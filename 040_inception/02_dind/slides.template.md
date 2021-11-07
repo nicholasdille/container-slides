@@ -12,7 +12,7 @@ Requires a privileged container
 
 Privileged containers enable host breakouts
 
---
+---
 
 ## Demo: Docker-in-Docker (DinD)
 
@@ -22,7 +22,7 @@ Isolating a Docker daemon:
 docker run -d --rm \
   --privileged \
   --name dind \
-  docker:stable-dind
+  docker:dind
 
 docker exec -it dind docker version
 ```

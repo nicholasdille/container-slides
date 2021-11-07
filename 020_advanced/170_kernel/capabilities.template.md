@@ -6,7 +6,7 @@ XXX
 
 Having all capabilities is equivalent to privileged
 
---
+---
 
 ## Demo: Capabilities
 
