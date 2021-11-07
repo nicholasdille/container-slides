@@ -17,7 +17,7 @@ Must be root to use cgroups v1
 
 ---
 
-## Demo: Control groups (cgroups)
+## Demo: Control groups (cgroups) <!-- directory -->
 
 <!-- include: cgroups-0.command -->
 

@@ -57,7 +57,7 @@ Manifests:
 
 ---
 
-## Demo: Building for other Architectures
+## Demo: Building for other Architectures <!-- directory -->
 
 Prepare for new sub command `buildx`
 
@@ -67,7 +67,7 @@ Prepare for new sub command `buildx`
 
 ---
 
-## Demo: Building for other Architectures
+## Demo: Building for other Architectures <!-- directory -->
 
 <!-- include: buildx-3.command -->
 
@@ -75,7 +75,7 @@ Prepare for new sub command `buildx`
 
 ---
 
-## Demo: Build multi-arch with proper tags (1)
+## Demo: Build multi-arch with proper tags (1) <!-- directory -->
 
 Build individual images to control tagging
 
@@ -87,6 +87,6 @@ This allows for proper versioning
 
 ---
 
-## Demo: Build multi-arch with proper tags (2)
+## Demo: Build multi-arch with proper tags (2) <!-- directory -->
 
 <!-- include: manifest-2.command -->

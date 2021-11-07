@@ -8,7 +8,7 @@ Having all capabilities is equivalent to privileged
 
 ---
 
-## Demo: Capabilities
+## Demo: Capabilities <!-- directory -->
 
 <!-- include: capabilities-0.command -->
 

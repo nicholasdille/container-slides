@@ -16,7 +16,7 @@ Can be nested
 
 ---
 
-## Demo: Namespaces
+## Demo: Namespaces <!-- directory -->
 
 - Show namespaces created by Docker
 - Enter existing namespaces
@@ -28,7 +28,7 @@ See `namespaces.demo`
 
 ---
 
-## Demo: Sharing namespaces
+## Demo: Sharing namespaces <!-- directory -->
 
 The nginx container image does not contain `ps`
 

@@ -19,3 +19,49 @@ html.dimbg75 .slide-background {
     font-family: FontAwesome;
     content: " \f08e"
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 50%;
+    padding: 5px 0.5em;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 125%;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.tooltip-right {
+    top: -5px;
+    left: 125%;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #555 transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

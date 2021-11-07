@@ -22,7 +22,7 @@ Load balancing works
 
 ---
 
-## Demo: BuildKit and Kubernetes
+## Demo: BuildKit and Kubernetes <!-- directory -->
 
 <!-- include: manual-0.command -->
 
@@ -34,7 +34,7 @@ Load balancing works
 
 ---
 
-## Managing BuildKit using `buildx`
+## Demo: Managing BuildKit using `buildx` <!-- directory -->
 
 <!-- include: buildx-2.command -->
 

@@ -25,7 +25,7 @@ Fist line of `Dockerfile` must be:
 
 ---
 
-## Demo: Heredocs
+## Demo: Heredocs <!-- directory -->
 
 Use `RUN` like a script block
 
@@ -41,7 +41,7 @@ EOF
 
 ---
 
-## Demo: Heredocs
+## Demo: Heredocs <!-- directory -->
 
 Use a custom interpreter for the script block
 
@@ -55,7 +55,7 @@ EOF
 
 ---
 
-## Demo: Heredocs
+## Demo: Heredocs <!-- directory -->
 
 Provide shebang to set interpreter
 
@@ -70,7 +70,7 @@ EOF
 
 ---
 
-## Demo: Heredocs
+## Demo: Heredocs <!-- directory -->
 
 Provide inline file
 
@@ -85,7 +85,7 @@ EOF
 
 ---
 
-## Demo: Heredocs
+## Demo: Heredocs <!-- directory -->
 
 Create multiple files in a single `COPY`
 

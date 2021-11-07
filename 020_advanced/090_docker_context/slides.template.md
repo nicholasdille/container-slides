@@ -10,7 +10,7 @@ Supports remoting via SSH
 
 ---
 
-## Demo: `docker context`
+## Demo: `docker context` <!-- directory -->
 
 <!-- include: context-1.command -->
 

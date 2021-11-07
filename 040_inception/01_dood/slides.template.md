@@ -16,7 +16,7 @@ Interferes with the host
 
 ---
 
-## Demo: Docker-out-of-Docker (DooD)
+## Demo: Docker-out-of-Docker (DooD) <!-- directory -->
 
 Mapping the daemon socket
 

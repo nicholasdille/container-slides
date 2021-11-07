@@ -108,16 +108,23 @@ include() {
         echo "Usage: $0 <basename>"
         return
     fi
-    PATTERN="^\s*<!--\s*include\:\s*(.+\.command)\s*-->\s*$"
+
+    INCLUDE_PATTERN="^\s*<!--\s*include\:\s*(.+\.command)\s*-->\s*$"
+    DIRECTORY_PATTERN="\s*<!--\s*directory\s*-->\s*"
+
     cat ${FILE}.template.md | while read -r; do
-		if [[ ${REPLY} =~ ${PATTERN} ]]; then
-			FILE=$(echo ${REPLY} | sed -E "s/${PATTERN}/\1/")
+		if [[ ${REPLY} =~ ${INCLUDE_PATTERN} ]]; then
+			FILE=$(echo ${REPLY} | sed -E "s/${INCLUDE_PATTERN}/\1/")
             TEXT=$(cat ${FILE} | grep -E "^#" | head -n 1 | sed -E 's/^#\s*(.+)$/\1/')
             echo "${TEXT}:"
             echo
             echo '```plaintext'
             cat ${FILE} | grep -vE "^\s*$" | grep -vE "^#"
             echo '```'
+		elif [[ ${REPLY} =~ ${DIRECTORY_PATTERN} ]]; then
+            ROOT_DIR=$(git rev-parse --show-toplevel)
+            SUB_DIR=$(pwd | sed -E "s|${ROOT_DIR}/||")
+			echo "${REPLY}" | sed -E "s|${DIRECTORY_PATTERN}| <i class=\"far fa-folder-open tooltip\"><span class=\"tooltiptext tooltip-right\">${SUB_DIR}</span></i>|"
         else
             echo "${REPLY}"
 		fi

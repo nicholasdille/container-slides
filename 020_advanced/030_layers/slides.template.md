@@ -52,7 +52,7 @@ Stored as blob
 
 ---
 
-## Demo: Layers
+## Demo: Layers <!-- directory -->
 
 Upload image to local registry
 
@@ -66,19 +66,19 @@ https://github.com/wagoodman/dive
 
 ---
 
-## Demo: Image Manifest
+## Demo: Image Manifest <!-- directory -->
 
 <!-- include: layers-3.command -->
 
 ---
 
-## Demo: Image Configuration
+## Demo: Image Configuration <!-- directory -->
 
 <!-- include: layers-4.command -->
 
 ---
 
-## Demo: Download image layer
+## Demo: Download image layer <!-- directory -->
 
 <!-- include: layers-5.command -->
 
@@ -86,7 +86,7 @@ https://github.com/wagoodman/dive
 
 ---
 
-## Demo: Verifying a layer
+## Demo: Verifying a layer <!-- directory -->
 
 <!-- include: layers-7.command -->
 
@@ -114,7 +114,7 @@ Accepted insecure registry: `127.0.0.1/8`
 
 ---
 
-## Demo: Registries
+## Demo: Registries <!-- directory -->
 
 ### Tagging images remotely
 
