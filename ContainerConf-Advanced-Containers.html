@@ -63,8 +63,8 @@
 
         You have received credentials for a VM:
 
-        - Hostname in the form `seat<n>.inmylab.de`
-        - Username in the form `seat<n>`
+        - Hostname in the form `seatN.inmylab.de`
+        - Username in the form `seatN`
         - Password with 24 hexadecimal characters
 
         VM stats:
@@ -75,7 +75,7 @@
         Access VM using password:
 
         ```bash
-        $ ssh seat<n>@seat<n>.inmylab.de
+        $ ssh seatN@seatN.inmylab.de
         ```
 
         ---
@@ -85,17 +85,17 @@
         Add SSH public key:
 
         ```bash
-        $ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_seat<n> -N ''
-        $ ssh-copy-id -i ~/.ssh/id_ed25519_seat<n> seat<n>@seat<n>.inmylab.de
+        $ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_seatN -N ''
+        $ ssh-copy-id -i ~/.ssh/id_ed25519_seatN seatN@seatN.inmylab.de
         ```
 
         Create SSH config in `~/.ssh/config`:
 
         ```plaintext
-        Host seat<n>
-            Hostname seat<n>.inmylab.de
-            User seat<n>
-            IdentityFile ~/.ssh/id_ed25519_seat<n>
+        Host seatN
+            Hostname seatN.inmylab.de
+            User seatN
+            IdentityFile ~/.ssh/id_ed25519_seatN
         ```
     </textarea></section>
 
