@@ -17,10 +17,6 @@ sudo pstree -pTSu 18387
 # Enter namespace of inner nginx
 sudo nsenter -p -m -i -n -t 18899 env -i sh
 
-# https://www.redhat.com/sysadmin/pid-namespace
-# https://www.redhat.com/sysadmin/mount-namespaces
-# https://www.redhat.com/sysadmin/building-container-namespaces
-
 # Create pid namespace
 sudo unshare -rpf --mount-proc env -i sh
 sudo lsns
@@ -41,5 +37,16 @@ sudo ln -s /var/run/docker/netns /var/run/netns
 # List network namespaces
 sudo ip netns list
 
-# Show configuration inside networkl namespace
+# Show configuration inside network namespace
 sudo ip netns exec bb8a98c0e7b4 ip addr show
+
+# Run `nginx` container
+docker run -d --name web nginx
+
+# Check for `ps` (missing)
+docker exec -it web \
+    whereis ps
+
+# Share PID namespace to use `ps`
+docker run -it --rm --pid container:web ubuntu:hirsute \
+    ps fauxww
