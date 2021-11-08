@@ -45,3 +45,5 @@ docker run --name buildkitd -d \
 buildctl --addr docker-container://buildkitd \
     build ...
 ```
+
+XXX rootless buildkit via buildx fails on rootless kind

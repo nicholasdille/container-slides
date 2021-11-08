@@ -59,7 +59,7 @@ Manifests:
 
 ## Demo: Building for other Architectures <!-- directory -->
 
-Prepare for new sub command `buildx`
+Prepare for new sub command [`buildx`](https://github.com/docker/buildx)
 
 <!-- include: buildx-0.command -->
 

@@ -41,3 +41,23 @@ Load balancing works
 <!-- include: buildx-3.command -->
 
 <!-- include: buildx-5.command -->
+
+---
+
+## Demo: Making `buildx`the default builder
+
+```bash
+docker buildx install
+```
+
+`uninstall` to revert
+
+Must push during build:
+
+```bash
+docker build --tag X --push .
+```
+
+`docker push` and `docker tag` do not work
+
+Similar but not identical DX

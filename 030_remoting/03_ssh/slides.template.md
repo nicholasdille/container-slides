@@ -16,7 +16,7 @@ Added in Docker 18.09
 
 Required on server and client
 
---
+---
 
 ## Demo: SSH Remoting <!-- directory -->
 
@@ -28,7 +28,7 @@ Test containerized
 
 <!-- include: ssh-4.command -->
 
---
+---
 
 ## Alternative
 

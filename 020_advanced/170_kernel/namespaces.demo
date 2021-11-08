@@ -2,7 +2,7 @@
 
 # Start containers
 docker run -d nginx
-docker run -d --name dind docker:dind
+docker run -d --name dind --privileged docker:dind
 docker exec -it dind docker run -d nginx
 
 # List all namespaces

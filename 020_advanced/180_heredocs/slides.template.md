@@ -75,7 +75,7 @@ EOF
 Provide inline file
 
 ```Dockerfile
-COPY --chmod=0755 <<EOF /entrypoint.sh
+COPY --chmod=0755 <<"EOF" /entrypoint.sh
 #!/bin/bash
 exec "$@"
 EOF

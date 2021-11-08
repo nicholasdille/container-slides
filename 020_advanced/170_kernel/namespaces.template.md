@@ -39,3 +39,17 @@ The nginx container image does not contain `ps`
 <!-- include: namespaces-14.command -->
 
 The same works for other namespaces
+
+---
+
+## Further reading
+
+https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work/
+
+https://www.redhat.com/sysadmin/building-container-namespaces
+
+https://www.redhat.com/sysadmin/pid-namespace
+
+https://www.redhat.com/sysadmin/mount-namespaces
+
+https://www.redhat.com/sysadmin/container-namespaces-nsenter

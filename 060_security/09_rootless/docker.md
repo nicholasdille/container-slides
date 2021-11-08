@@ -2,6 +2,8 @@
 
 ### Install
 
+MAke sure the `uidmap` package is installed
+
 Registers `dockerd` as systemd user unit
 
 ```bash

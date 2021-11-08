@@ -1,0 +1,11 @@
+# cgroup v2
+
+# Start container with 10% CPU limit
+docker run -d --name nginx --cpus=".1" nginx
+
+# Show processes belonging to container cgroup
+ID=$(docker container inspect nginx | jq -r '.[].Id')
+cat /sys/fs/cgroup/system.slice/docker-${ID}.scope/cgroup.procs
+
+# Show CPU period and quota
+cat /sys/fs/cgroup/system.slice/docker-${ID}.scope/cpu.max

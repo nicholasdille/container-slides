@@ -13,6 +13,8 @@ time="2020-11-25T14:53:19.046451800Z" level=info msg="API listen on /var/run/doc
 
 [Official documentation for protecting `dockerd`](https://docs.docker.com/engine/security/https/)
 
+Automate certificate creation with [this script](https://github.com/nicholasdille/scripts/blob/master/docker/tls.sh)
+
 ---
 
 ## Alternative: Secure TCP Remoting 1/2

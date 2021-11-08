@@ -1,4 +1,4 @@
-# cgroups
+# cgroup v1
 
 # Start container with 10% CPU limit
 docker run -d --name nginx --cpus=".1" nginx
