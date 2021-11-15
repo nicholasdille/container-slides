@@ -55,3 +55,5 @@ Scheduled rebuild <i class="fas fa-shield-alt"></i>
 BuildKit RUN mount <i class="fas fa-compress-arrows-alt"></i> <i class="fas fa-running"></i>
 
 Base and derived images <i class="fas fa-running"></i> <i class="fas fa-dumbbell"></i>
+
+Readability beats size <i class="fas fa-dumbbell"></i>
