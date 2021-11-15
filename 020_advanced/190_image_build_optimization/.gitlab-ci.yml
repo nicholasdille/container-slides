@@ -4,8 +4,14 @@ stages:
 - test
 - promote
 
+services:
+- docker:20.10-dind
+
 default:
-  image: docker:dind
+  image: docker:20.10
+
+variables:
+  DOCKER_BUILDKIT: 1
 
 .docker-login:
   before_script:
@@ -33,6 +39,9 @@ renovate:
 prescan:
   stage: prepare
   script:
+  - |
+    apk add --update-cache --no-cache \
+        jq
   - docker build --target base --tag base .
   - |
     PACKAGES=$(
@@ -52,12 +61,12 @@ prescan:
               .Results[] | select(.Class == "os-pkgs") | select(.Vulnerabilities != null) | .Vulnerabilities[].PkgName
               ' | \
           uniq | \
-          tr '\n' ',' \
+          tr '\n' ' ' \
     )
-  - echo "UPDATES=${PACKAGES}" >DOCKER_BUILD_ARGS
+  - echo "${PACKAGES}" >PACKAGES
   artifacts:
     paths:
-      - DOCKER_BUILD_ARGS
+      - PACKAGES
 
 build:
   stage: build
@@ -65,10 +74,11 @@ build:
   script:
   - |
     docker build . \
-        --push \
         --cache-from ${CI_REGISTRY_IMAGE}:dev \
+        --build-arg PACKAGES="$(cat PACKAGES)" \
         --tag ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID} \
         --tag ${CI_REGISTRY_IMAGE}:dev
+  - docker push ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
 
 test:
   stage: test
