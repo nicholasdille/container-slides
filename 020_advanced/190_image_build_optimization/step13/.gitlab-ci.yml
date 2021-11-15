@@ -1,0 +1,40 @@
+stages:
+- prepare
+- build
+
+default:
+  image: docker:dind
+
+.docker-login:
+  before_script:
+  - docker login --username ${CI_REGISTRY_USER} --password ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
+  after_script:
+  - docker logout ${CI_REGISTRY}
+
+renovate:
+  stage: prepare
+  image: renovate/renovate:29.8.3
+  variables:
+    LOG_LEVEL: debug
+  script:
+  - |
+    if test -z "${RENOVATE_TOKEN}"; then
+        echo "[ERROR] You must add an access token in the CI variable RENOVATE_TOKEN."
+        echo "        The token can be a project access token."
+        exit 1
+    fi
+  - renovate --platform=gitlab --endpoint="${CI_API_V4_URL}" "${CI_PROJECT_PATH}"
+  only:
+    refs:
+    - schedule
+
+build:
+  stage: build
+  extends: .docker-login
+  script:
+  - |
+    docker build . \
+        --push \
+        --cache-from ${CI_REGISTRY_IMAGE}:dev \
+        --tag ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID} \
+        --tag ${CI_REGISTRY_IMAGE}:dev

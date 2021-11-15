@@ -1,5 +1,5 @@
 stages:
-- prescan
+- prepare
 - build
 - test
 - promote
@@ -14,7 +14,7 @@ default:
   - docker logout ${CI_REGISTRY}
 
 renovate:
-  stage: prescan
+  stage: prepare
   image: renovate/renovate:29.8.3
   variables:
     LOG_LEVEL: debug
@@ -30,37 +30,9 @@ renovate:
     refs:
     - schedule
 
-prescan:
-  stage: prescan
-  script:
-  - docker build --target base --tag base .
-  - |
-    PACKAGES=$(
-      docker run \
-          --rm \
-          --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
-          aquasec/trivy \
-              --no-progress \
-              --vuln-type os \
-              --severity HIGH,CRITICAL \
-              --ignore-unfixed \
-              --light \
-              --quiet \
-              --format json \
-              base | \
-          jq --raw-output '
-              .Results[] | select(.Class == "os-pkgs") | select(.Vulnerabilities != null) | .Vulnerabilities[].PkgName
-              ' | \
-          uniq | \
-          tr '\n' ',' \
-    )
-  - echo "UPDATES=${PACKAGES}" >DOCKER_BUILD_ARGS
-  artifacts:
-    paths:
-      - DOCKER_BUILD_ARGS
-
 build:
   stage: build
+  extends: .docker-login
   script:
   - |
     docker build . \
@@ -76,23 +48,9 @@ test:
   - kubectl version --client --short
   - helm version --short
 
-scan:
-  stage: test
-  image: aquasec/trivy
-  script:
-  - export TRIVY_USERNAME=${CI_REGISTRY_USER}
-  - export TRIVY_PASSWORD=${CI_REGISTRY_PASSWORD}
-  - |
-    trivy \
-        --no-progress \
-        --vuln-type os \
-        --severity HIGH,CRITICAL \
-        --exit-code 1 \
-        --ignore-unfixed \
-        ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
-
 promote:
   stage: promote
+  extends: .docker-login
   script:
     - docker pull ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
     - docker tag ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID} ${CI_REGISTRY_IMAGE}:stable
