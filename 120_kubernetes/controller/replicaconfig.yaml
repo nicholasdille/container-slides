@@ -1,0 +1,10 @@
+apiVersion: k8s.dille.io/v1
+kind: ReplicaConfig
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  kind: Deployment
+  name: nginx
+  replicas: 3

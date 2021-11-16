@@ -1,0 +1,26 @@
+# Custom controller
+
+# Create cluster
+kind create cluster
+while kubectl --kubeconfig=./kubeconfig get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.conditions[?(@.reason=="KubeletReady")].status}{"\n"}{end}' | grep -qE "\sFalse$$"; do sleep 5; done
+
+# Create CRD ReplicaConfigs
+kubectl apply -f crd.yaml
+
+# Explore CRD ReplicaConfigs
+kubectl explain replicaconfig.spec
+
+# Create deployment
+kubectl apply -f deployment.yaml
+
+# Run controller
+bash controller.sh
+
+# Watch pods
+kubectl get pods
+
+# Create ReplicaConfig
+kubectl apply -f replicaconfig.yaml
+
+# Adjust replicas
+kubectl edit replicaconfig nginx

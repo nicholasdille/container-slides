@@ -44,62 +44,11 @@
         XXX
     </textarea></section>
 
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Events
-
-        XXX
-
-        ```bash
-        kubectl get pods --selector stage=prod --watch --output-watch-events --output json \
-        | jq -r '"\(.type): \(.object.metadata.name) \(.object.status.phase)"'
-        ```
-
-        XXX metrics
-    </textarea></section>
-
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Custom Resources
-
-        XXX Custom Resource Definition
-
-        XXX apiextensions.k8s.io/v1beta1 without validation (only before 1.22), e.g. https://doc.traefik.io/traefik/v2.0/user-guides/crd-acme/
-
-        XXX apiextensions.k8s.io/v1 requires an OpenAPI v3 schema (since 1.16), e.g. https://doc.traefik.io/traefik/v2.5/user-guides/crd-acme/
-
-        XXX https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/
-
-        XXX https://kubernetes.io/docs/reference/using-api/deprecation-guide/
-    </textarea></section>
-
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Controllers and Operators
-
-        XXX
-        
-        ### Controllers
-
-        Manages state based on CRD
-
-        Runs control loop to "make it so"
-
-        Example https://github.com/kubernetes/sample-controller
-
-        ### Operators
-
-        Manages application lifecycle
-
-        XXX https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
-
-        XXX https://github.com/flant/shell-operator
-
-        XXX https://kudo.dev/
-
-        XXX kubebuilder https://book.kubebuilder.io/
-
-        XXX operator framework https://operatorframework.io/
-
-        XXX example: prometheus operator (Prometheus, ServiceMonitor)
-    </textarea></section>
+    <section data-markdown="120_kubernetes/controller/events.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="120_kubernetes/controller/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="120_kubernetes/external-dns/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="120_kubernetes/controller/operator.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="120_kubernetes/prometheus-operator/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Recap
@@ -123,7 +72,7 @@
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.1/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.1.1/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 8 * 60;
+    var durationInMinutes = 45;
     Reveal.initialize({
         //width: 1920,
         //height: 1080,
