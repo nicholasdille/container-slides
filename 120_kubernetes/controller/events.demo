@@ -1,0 +1,24 @@
+# Kubernetes events
+
+# Show all events
+kubectl get events --watch
+
+# Create a new deployment
+kubectl apply -f deployment.yaml
+
+# Scale-out
+kubectl patch deployments.apps nginx --patch '{"spec": {"replicas": 2}}'
+
+# Watch who does what
+kubectl get events --watch --output json \
+| jq -r '"\(.source.component) \(.reason) \(.involvedObject.kind) \(.involvedObject.namespace)/\(.involvedObject.name)"'
+
+# Scale-out
+kubectl patch deployments.apps nginx --patch '{"spec": {"replicas": 3}}'
+
+# Watch changes to resource
+kubectl get pods --watch --output-watch-events --output json \
+| jq -r '"\(.type): \(.object.metadata.name) \(.object.status.phase)"'
+
+# Scale-out
+kubectl patch deployments.apps nginx --patch '{"spec": {"replicas": 4}}'
