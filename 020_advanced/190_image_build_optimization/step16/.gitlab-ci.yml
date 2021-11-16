@@ -35,7 +35,9 @@ renovate:
   only:
     refs:
     - schedule
-
+    variables:
+      - $TASK == "renovate"
+      
 prescan:
   stage: prepare
   script:
@@ -71,6 +73,9 @@ prescan:
   artifacts:
     paths:
       - PACKAGES
+  except:
+    variables:
+      - $TASK == "renovate"
 
 build:
   stage: build
@@ -84,6 +89,9 @@ build:
         --tag ${CI_REGISTRY_IMAGE}:dev
   - docker push ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
   - docker push ${CI_REGISTRY_IMAGE}:dev
+  except:
+    refs:
+    - schedule
 
 test:
   stage: test
@@ -91,6 +99,9 @@ test:
   script:
   - kubectl version --client --short
   - helm version --short
+  except:
+    variables:
+      - $TASK == "renovate"
 
 scan:
   stage: test
@@ -109,6 +120,9 @@ scan:
         --exit-code 1 \
         --ignore-unfixed \
         ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
+  except:
+    variables:
+      - $TASK == "renovate"
 
 promote:
   stage: promote
@@ -117,3 +131,9 @@ promote:
     - docker pull ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
     - docker tag ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID} ${CI_REGISTRY_IMAGE}:stable
     - docker push ${CI_REGISTRY_IMAGE}:stable
+  only:
+    refs:
+    - main
+  except:
+    variables:
+      - $TASK == "renovate"

@@ -3,6 +3,7 @@
   "extends": [
     "config:base"
   ],
+  "recreateClosed": true,
 
   "enabledManagers": [
     "regex"

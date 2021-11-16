@@ -49,4 +49,5 @@ if test -n "${PACKAGES}"; then
     echo "Will update ${PACKAGES}"
     apt-get install $(echo "${PACKAGES}" | tr ',' ' ')
 fi
+EOF
 USER nobody
