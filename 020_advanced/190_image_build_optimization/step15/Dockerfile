@@ -21,7 +21,6 @@ apt-get -y install --no-install-recommends \
 EOF
 
 FROM base AS kubectl
-# renovate: datasource=github-releases depName=kubernetes/kubernetes
 ARG KUBECTL_VERSION=1.22.3
 RUN <<EOF
 curl -sLo /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
@@ -29,7 +28,6 @@ chmod +x /usr/local/bin/kubectl
 EOF
 
 FROM base AS helm
-# renovate: datasource=github-releases depName=helm/helm
 ARG HELM_VERSION=3.7.1
 RUN <<EOF
 curl -sL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \

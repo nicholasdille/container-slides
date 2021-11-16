@@ -1,11 +1,16 @@
 stages:
-- prepare
 - build
 - test
 - promote
 
+services:
+- docker:20.10-dind
+
 default:
-  image: docker:dind
+  image: docker:20.10
+
+variables:
+  DOCKER_BUILDKIT: 1
 
 .docker-login:
   before_script:
@@ -13,33 +18,18 @@ default:
   after_script:
   - docker logout ${CI_REGISTRY}
 
-renovate:
-  stage: prepare
-  image: renovate/renovate:29.8.3
-  variables:
-    LOG_LEVEL: debug
-  script:
-  - |
-    if test -z "${RENOVATE_TOKEN}"; then
-        echo "[ERROR] You must add an access token in the CI variable RENOVATE_TOKEN."
-        echo "        The token can be a project access token."
-        exit 1
-    fi
-  - renovate --platform=gitlab --endpoint="${CI_API_V4_URL}" "${CI_PROJECT_PATH}"
-  only:
-    refs:
-    - schedule
-
 build:
   stage: build
   extends: .docker-login
   script:
   - |
     docker build . \
-        --push \
         --cache-from ${CI_REGISTRY_IMAGE}:dev \
+        --build-arg PACKAGES="$(cat PACKAGES)" \
         --tag ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID} \
         --tag ${CI_REGISTRY_IMAGE}:dev
+  - docker push ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
+  - docker push ${CI_REGISTRY_IMAGE}:dev
 
 test:
   stage: test
@@ -47,6 +37,24 @@ test:
   script:
   - kubectl version --client --short
   - helm version --short
+
+scan:
+  stage: test
+  image:
+    name: aquasec/trivy:0.21.0
+    entrypoint: ["/bin/sh", "-c"]
+  script:
+  - export TRIVY_USERNAME=${CI_REGISTRY_USER}
+  - export TRIVY_PASSWORD=${CI_REGISTRY_PASSWORD}
+  - printenv | sort
+  - |
+    trivy image \
+        --no-progress \
+        --vuln-type os \
+        --severity HIGH,CRITICAL \
+        --exit-code 1 \
+        --ignore-unfixed \
+        ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
 
 promote:
   stage: promote

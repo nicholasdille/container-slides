@@ -21,14 +21,16 @@ apt-get -y install --no-install-recommends \
 EOF
 
 FROM base AS kubectl
-ARG KUBECTL_VERSION=1.22.3
+# renovate: datasource=github-releases depName=kubernetes/kubernetes
+ARG KUBECTL_VERSION=1.21.0
 RUN <<EOF
 curl -sLo /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
 chmod +x /usr/local/bin/kubectl
 EOF
 
 FROM base AS helm
-ARG HELM_VERSION=3.7.1
+# renovate: datasource=github-releases depName=helm/helm
+ARG HELM_VERSION=3.7.0
 RUN <<EOF
 curl -sL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
     | tar -xzC /usr/local/bin/ --strip-components=1 --no-same-owner \
@@ -36,7 +38,17 @@ curl -sL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
 EOF
 
 FROM base
+ARG PACKAGES
 COPY --from=build /hello /usr/local/bin/
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/
 COPY --from=helm    /usr/local/bin/helm    /usr/local/bin/
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=cache,target=/var/cache \
+    --mount=type=cache,target=/var/log \
+    <<EOF
+if test -n "${PACKAGES}"; then
+    apt-get update
+    echo "Will update ${PACKAGES}"
+    apt-get install $(echo "${PACKAGES}" | tr ',' ' ')
+fi
 USER nobody
