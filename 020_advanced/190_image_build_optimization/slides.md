@@ -34,7 +34,9 @@ USER <i class="fas fa-shield-alt"></i>
 
 Parallel multi-stage build <i class="fas fa-running"></i>
 
-RenovateBot <i class="fas fa-shield-alt"></i>
+Dependency update, e.g. RenovateBot <i class="fas fa-shield-alt"></i>
+
+Patch/digest auto-merge <i class="fas fa-shield-alt"></i>
 
 Automated build <i class="fas fa-shield-alt"></i> <i class="fas fa-running"></i>
 
@@ -55,5 +57,15 @@ Scheduled rebuild <i class="fas fa-shield-alt"></i>
 BuildKit RUN mount <i class="fas fa-compress-arrows-alt"></i> <i class="fas fa-running"></i>
 
 Base and derived images <i class="fas fa-running"></i> <i class="fas fa-dumbbell"></i>
+
+LABEL <i class="fas fa-dumbbell"></i>
+
+Job dependencies <i class="fas fa-running"></i>
+
+CI caching <i class="fas fa-running"></i>
+
+CI only certain file changes <i class="fas fa-running"></i>
+
+Remote tagging <i class="fas fa-running"></i>
 
 Readability beats size <i class="fas fa-dumbbell"></i>
