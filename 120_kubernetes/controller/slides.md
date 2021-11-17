@@ -1,42 +1,32 @@
 ## Controller
 
-Responsible for a resource type (kind)
+Responsible for a resource type
 
 Waits for events for this kind
 
-Makes sure the state toward the description
+Converges the state toward the description
 
-XXX
+### Custom Resource (Definition)
 
----
+Builtin resource types, e.g. `Pod`
 
-## Custom Resource (Definition)
+Custom resources to extend Kubernetes
 
-Kubernetes offers builtin resource types
-
-Kubernetes can be extended with custom resources
-
-Many controllers ship with a custom resource type (kind)
+Many controllers ship with a custom resource type
 
 Custom resource are described in a [Custom Resource Definition (CRD)](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)
 
-### Example: traefik
-
-Ships with multiple CRDs
-
-XXX
-
 ---
 
 ## Custom Resource (Definition)
 
-CRDs can have validation since 1.16
+Can have validation since 1.16
 
-CRDs without validation are accepted only before 1.22
+Accepted without validation only before 1.22
 
-CRD API apiextensions.k8s.io/v1beta1 was deprecated and...
+`apiextensions.k8s.io/v1beta1` was deprecated and...
 
-...is superceded by apiextensions.k8s.io/v1
+...is superceded by `apiextensions.k8s.io/v1`
 
 Controllers must ship updated CRDs
 
@@ -44,8 +34,43 @@ Controllers must ship updated CRDs
 
 ---
 
+## Demo: Controller
+
+Quick and dirty
+
+Written in bash (yes, that is possible)
+
+### Idea
+
+CRD for controlling replicas
+
+```yaml
+apiVersion: k8s.dille.io/v1
+kind: ReplicaConfig
+metadata:
+  name: nginx
+spec:
+  kind: Deployment
+  name: nginx
+  replicas: 3
+```
+
+---
+
 ## Controllers for external services
 
 Controllers can control the state of external services
 
-XXX
+Custom resource describes that desired state
+
+Controller synchronized this state
+
+The external service is updated when the custom resource is...
+
+...created
+
+...modified
+
+...removed
+
+Enables infrastructure management from Kubernetes

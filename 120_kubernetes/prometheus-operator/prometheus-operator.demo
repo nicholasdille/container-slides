@@ -1,0 +1,22 @@
+# prometheus-operator
+
+# Rollout of operator
+curl -sL https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.52.1/bundle.yaml \
+| kubectl create -f -
+
+# Rollout of instance
+cat \
+    sa.yaml \
+    clusterrole.yaml \
+    clusterrolebinding.yaml \
+    prometheus.yaml \
+| kubectl apply -f -
+
+# Check instance
+kubectl port-forward --address 0.0.0.0 service/prometheus-operated 9090:9090
+
+# Create service monitor
+kubectl apply -f servicemonitor.yaml
+
+# Check data
+# prometheus_operator_kubernetes_client_http_requests_total

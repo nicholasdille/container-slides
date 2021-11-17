@@ -1,15 +1,18 @@
 # external-dns
 
 # Deploy external-dns
-kubectl apply -f crd.yaml
-kubectl apply -f sa.yaml
-kubectl apply -f clusterrole.yaml
-kubectl apply -f clusterrolebinding.yaml
-kubectl apply -f deployment.yaml
-
-# Watch external-dns
-kubectl get pod --selector app=external-dns --output name \
-| xargs kubectl logs -f
+cat \
+    crd.yaml \
+    namespace.yaml \
+    sa.yaml \
+    clusterrole.yaml \
+    clusterrolebinding.yaml \
+    deployment.yaml \
+| kubectl apply -f -
 
 # Create DNSEndpoint
 kubectl apply -f dnsendpoint.yaml
+
+# Watch external-dns
+kubectl --namespace external-dns get pod --selector app=external-dns --output name \
+| xargs kubectl --namespace external-dns logs -f

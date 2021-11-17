@@ -1,14 +1,12 @@
 ## Controllers versus Operators
 
-XXX
+Operators are controllers on steroids
 
 ### Controllers
 
-Manages state based on CRD
+Manages state (often based on CRD)
 
 Runs control loop to "make it so"
-
-Example https://github.com/kubernetes/sample-controller
 
 ### Operators
 
@@ -16,16 +14,16 @@ Manages application lifecycle
 
 Includes updates, configuration, backup, restore etc.
 
----
+--
 
 ## Frameworks
 
-XXX https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
+[kubebuilder](https://book.kubebuilder.io/)
 
-XXX https://github.com/flant/shell-operator
+[Operator Framework](https://operatorframework.io/)
 
-XXX https://kudo.dev/
+[metacontroller](https://metacontroller.github.io/metacontroller/intro.html)
 
-XXX kubebuilder https://book.kubebuilder.io/
+For very simple projects: [shell-operator](https://github.com/flant/shell-operator)
 
-XXX operator framework https://operatorframework.io/
+[Kubernetes Universal Declarative Operator (KUDO)](https://kudo.dev/)

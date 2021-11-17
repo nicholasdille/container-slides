@@ -1,7 +1,9 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: external-dns
+  namespace: external-dns
   labels:
     app: external-dns
 spec:
@@ -18,9 +20,9 @@ spec:
       serviceAccountName: external-dns
       containers:
         - name: external-dns
-          image: k8s.gcr.io/external-dns/external-dns
+          image: k8s.gcr.io/external-dns/external-dns:v0.10.1
           args:
-            - --source crd
-            - --crd-source-apiversion externaldns.k8s.io/v1alpha1
-            - --crd-source-kind DNSEndpoint
-            - --provider inmemory
+            - --source=crd
+            - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+            - --crd-source-kind=DNSEndpoint
+            - --provider=inmemory
