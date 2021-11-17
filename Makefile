@@ -45,7 +45,7 @@ web-$(COMMIT):
 	echo "### Run web server"; \
 	docker run -d --name web web:$(COMMIT); \
 	echo "### Create slides"; \
-	docker run -it --network container:web --name slides astefanutti/decktape:3 --size 1920x1080 --load-pause 5000 --pause 500 http://localhost:80/$*.html $*.pdf; \
+	docker run -it --network container:web --name slides astefanutti/decktape:3 --size 1920x1080 --load-pause 5000 --pause 1000 http://localhost:80/$*.html $*.pdf; \
 	echo "### Copy slides"; \
 	docker cp slides:/slides/$*.pdf .; \
 	echo "### Remove containers"; \
