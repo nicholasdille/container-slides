@@ -25,7 +25,6 @@ build:
   - |
     docker build . \
         --cache-from ${CI_REGISTRY_IMAGE}:dev \
-        --build-arg PACKAGES="$(cat PACKAGES)" \
         --tag ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID} \
         --tag ${CI_REGISTRY_IMAGE}:dev
   - docker push ${CI_REGISTRY_IMAGE}:${CI_PIPELINE_IID}
