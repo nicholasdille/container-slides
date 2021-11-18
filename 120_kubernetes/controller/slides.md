@@ -32,6 +32,11 @@ Controllers must ship updated CRDs
 
 [API deprecations](https://kubernetes.io/docs/reference/using-api/deprecation-guide/) are documented
 
+...and can be discovered using:
+
+- [pluto](https://github.com/FairwindsOps/Pluto) (CLI)
+- [deprek8](https://github.com/naquada/deprek8) (rego policy)
+
 ---
 
 ## Demo: Controller
