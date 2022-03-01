@@ -48,6 +48,7 @@ make || true
 
 echo "${FILE}" | copy_to_target
 find "themes" -type f | copy_to_target
+find "media" -type f | copy_to_target
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${FILE}" | extract_links | copy_to_target
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea/comment()" -v . -n "${FILE}" | extract_from_comments | copy_to_target
 
