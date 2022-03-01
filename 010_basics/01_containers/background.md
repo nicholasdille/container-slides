@@ -57,7 +57,7 @@ CONTAINER ID   NAMES     IMAGE     STATUS
 
 --
 
-## Container Management
+## Terminating containers
 
 Stop containers:
 
@@ -76,3 +76,9 @@ d89e05a7d482   nostalgic_wozniak   nginx     Up 2 hours
 33dd5a3ac395   laughing_tu         centos    Exited (0) 2 hours ago
 294197b7fd00   jovial_joliot       ubuntu    Exited (0) 2 hours ago
 ```
+
+Stopping a container means:
+
+1. Send the main process a TERM signal
+1. If it does not end, wait 30 seconds
+1. Kill all processes belonging to the container

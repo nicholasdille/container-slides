@@ -1,7 +1,4 @@
 /* GLOBAL */
-/*@import url(https://cdn.jsdelivr.net/npm/reveal.js@4.1.1/lib/font/source-sans-pro/source-sans-pro.css);*/
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
-
 :root {
     --background-color: #191919;
     --main-font: 'Source Sans Pro', sans-serif;
