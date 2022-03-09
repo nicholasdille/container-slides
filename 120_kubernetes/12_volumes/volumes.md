@@ -1,12 +1,12 @@
-## Speicherplatz bereitstellen
+## Storage
 
 ![Volumes](120_kubernetes/12_volumes/volumes.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
 
 Most applications require data
 
-Be it static contant, e.g. for web servers
+Be it static content, e.g. for web servers
 
-or directories for maintaining dynamic data, e.g. data directory for a database
+Or directories for maintaining dynamic data, e.g. data directory for a database
 
 ### Volumes
 

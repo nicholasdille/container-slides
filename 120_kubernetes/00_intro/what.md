@@ -14,9 +14,9 @@ Minor version every three months
 
 ### Support
 
-3 minor versions (9 months)
-
 Starting with version 1.19: 4 minor versions (12 months)
+
+Older versions: 3 minor versions (9 months)
 
 ---
 
@@ -28,13 +28,13 @@ Governs the contained projects
 
 Supported by over 450 members [<i class="fas fa-external-link-alt"></i>](https://www.cncf.io/about/members/)
 
-### Projects and maturity (as of 2021-06-14)
+### Projects and maturity (as of 2022-03-09)
 
-15 graduated projects
+16 graduated projects
 
-21 incubated projects
+31 incubated projects
 
-60 sandbox projects
+70 sandbox projects
 
 ---
 
@@ -44,6 +44,8 @@ Supported by over 450 members [<i class="fas fa-external-link-alt"></i>](https:/
 
 Leader
 
+First graduated project in CNCF
+
 Very active ecosystem
 
-Cloud Native landscape [<i class="fas fa-external-link-alt"></i>](https://landscape.cncf.io/)
+See Cloud Native landscape [<i class="fas fa-external-link-alt"></i>](https://landscape.cncf.io/)

@@ -4,7 +4,7 @@
 docker run -d --name pod ubuntu bash -c 'sleep infinity'
 
 ## Docker-in-Docker hinzufügen
-docker run -d --name dockerd --network container:pod --privileged docker:stable-dind dockerd --host=tcp://0.0.0.0:2375
+docker run -d --name dockerd --network container:pod --privileged docker:20-dind dockerd --host=tcp://0.0.0.0:2375
 
 ## Registry hinzufügen
 docker run -d --name registry --network container:pod registry:2
@@ -22,4 +22,4 @@ apk add curl jq
 curl localhost:5000/v2/
 
 ## Testen der Verbindung zum Docker-Daemon
-curl localhost:2375/
+curl localhost:2375/version | jq

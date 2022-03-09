@@ -12,9 +12,7 @@ Labels are used for selection
 
 Changing labels does not cause pod updates
 
----
-
-## Annotations
+### Annotations
 
 Annotations store meta data
 

@@ -1,4 +1,4 @@
-## Two way to automate
+## Two ways to automate
 
 ### Imperative approach
 

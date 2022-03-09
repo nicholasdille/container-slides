@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx
+    image: nginx:1.19
     ports:
     - name: web
       containerPort: 80

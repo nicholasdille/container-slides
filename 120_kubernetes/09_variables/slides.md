@@ -8,4 +8,4 @@ Container entrypoints process environment variables
 
 Environment variables are defined in the pod specification
 
-The pod specification can be wrapped by a ReplicaSets or a Deployment
+The pod specification can be wrapped by a ReplicaSet or a Deployment

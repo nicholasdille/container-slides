@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: apache
-    image: httpd
+    image: httpd:2.4
     ports:
     - name: web
       containerPort: 80

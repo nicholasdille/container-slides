@@ -1,6 +1,6 @@
 ## Why have a container orchestrator
 
-Easy to manage on a single host
+Containers are easy on a single host
 
 Production environments require high availability
 
@@ -8,7 +8,7 @@ HA requires multiple hosts
 
 ### Container orchestrator
 
-Responsible for maintaining containers on multiple hosts
+Responsible for containers on multiple hosts
 
 ### Offering
 
