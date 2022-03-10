@@ -9,7 +9,7 @@ k3s: Lightweight Kubernetes in a single binary https://github.com/k3s-io/k3s
 Installation
 
 ```bash
-curl https://github.com/k3s-io/k3s/releases/download/latest/k3s \
+curl https://github.com/k3d-io/k3d/releases/download/v5.3.0/k3d-linux-amd64 \
     --silent \
     --location \
     --output /usr/local/bin/k3d

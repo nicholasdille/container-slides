@@ -73,4 +73,4 @@ Compensate for outages and errors
 
 Ops has time for more important tasks
 
-Kuberentes is most widely used
+Kubernetes is most widely used
