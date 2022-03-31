@@ -1,13 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 set -o errexit
 
-case "$1" in
-    sh|bash)
-        set -- "$@"
-    ;;
-    *)
-        set -- nginx "$@"
-    ;;
-esac
-
-exec "$@"
+if test -n "${WELCOME_TO_TEXT}"; then
+    sed -i "s|<h1>Welcome to nginx\!</h1>|<h1>Welcome to ${WELCOME_TO_TEXT}\!</h1>|" /usr/share/nginx/html/index.html
+fi

@@ -1,4 +1,2 @@
-FROM nginx:alpine
+FROM nginx:stable
 COPY entrypoint.sh /
-ENTRYPOINT [ "/entrypoint.sh" ]
-CMD [ "-g", "daemon off;" ]
