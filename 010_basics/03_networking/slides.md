@@ -1,5 +1,4 @@
 ## Network internals 1/3
-<!-- .slide: id="networking" -->
 
 Daemon provides local network
 
@@ -13,7 +12,7 @@ Containers are assigned a local IP address
 
 Outgoing traffic is translated (source NAT)
 
---
+---
 
 ## Network internals 1/3
 
@@ -29,7 +28,7 @@ Only one container can use a published port
 
 ![Port mapping](010_basics/03_networking/network.drawio.svg) <!-- .element: style="width: 50%;" -->
 
---
+---
 
 ## Network internals
 

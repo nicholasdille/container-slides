@@ -18,7 +18,7 @@
 
 - Span multiple hosts (e.g. Docker Swarm)
 
---
+---
 
 ## Demo: Network Management
 
@@ -34,7 +34,11 @@ How to disable network isolation for a container:
 docker run -d --rm --network host nginx
 ```
 
-XXX conflict!
+### Running both commands will cause a conflict
+
+The first command creates a reverse proxy using `docker-proxy` on the host
+
+The second command opens a port on the host
 
 ---
 
@@ -57,7 +61,7 @@ XXX conflict!
 - Containers created through socket are in the default network
 - They are unreachable from services defined in `docker-compose.yml`
 
---
+---
 
 ## Demo: Network Context
 
@@ -66,12 +70,14 @@ Containers in the same `docker-compose.yml` are deployed to the same network:
 ```bash
 docker-compose up -d
 docker network ls
-docker exec -it svc1 ping svc2
+docker-compose exec svc1 ping svc2
 ```
 
-XXX note `/etc/resolve.conf`
+Docker provides DNS and load balancing for service names
 
---
+Docker updates `/etc/resolve.conf`
+
+---
 
 ## Demo: Breaking the Network Context
 
@@ -98,16 +104,16 @@ ping svc1
 ping svc2
 ```
 
-XXX note `/etc/resolve.conf`
+`/etc/resolv.conf` points to host DNS servers
 
---
+---
 
 ## Demo: Fixing the Broken Network Context
 
 Continue to test inside the `dind` service:
 
 ```bash
-docker run -it --rm --network test_default alpine
+docker run -it --rm --network 050_networks_default alpine
 ```
 
 Once the container is started in the network used by the deployment, it can see other services:
@@ -117,10 +123,29 @@ ping svc1
 ping svc2
 ```
 
-XXX note `/etc/resolve.conf`
+`/etc/resolve.conf` points to DNS server provided by Docker
+
+---
 
 ## Multiple networks
 
-XXX docker run
+Use case: Reverse proxy on `public` for services on `private`
 
-XXX docker-compose
+Using multiple network with `docker-compose`:
+
+```bash
+docker-compose --file docker-compose.networks.yml up -d
+docker-compose exec svc1 ping svc2
+```
+
+### Workaround using `docker run`
+
+```bash
+docker network create public
+docker network create private
+docker create --network public --name foo nginx
+docker network connect private foo
+docker start foo
+docker exec -it foo apt-get install iproute2
+docker exec -it foo ip a
+```

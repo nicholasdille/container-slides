@@ -5,7 +5,7 @@ Tooling feels like a blackbox
 
 ![Docker](010_basics/00_docker/monolith.drawio.svg)
 
---
+---
 
 ## Docker is not a monolith!
 <!-- .slide: data-transition="fade" -->
@@ -16,7 +16,7 @@ Many moving parts under the hood
 
 Containerization is a commmunity effort!
 
---
+---
 
 ## References
 

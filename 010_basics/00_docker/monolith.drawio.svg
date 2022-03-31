@@ -1,20 +1,20 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="631px" height="491px" viewBox="-0.5 -0.5 631 491" content="&lt;mxfile&gt;&lt;diagram id=&quot;diZ4RP-n2j4aalM64g7p&quot; name=&quot;Page-1&quot;&gt;3VZNb6MwEP013MFQ0h4bmn5IXWmlHPbsYgesGgYZpyT99TuEMR+BVpU2uyuVHMBv3piZ98YRXpgUhwfDq/wHCKk95ouDF955jAVXqwhvLXLskOvQ74DMKEGkAdiqd0mgo+2VkPWEaAG0VdUUTKEsZWonGDcGmiltB3r61opncgZsU67n6C8lbE5dsNWAP0qV5e7NQXzTRQruyNRJnXMBzQgKN16YGADbPRWHROpWPKdLl3f/QbQvzMjSfimBMt643lNzVJg9um4N7Esh24TAC9dNrqzcVjxtow36i1huC01hweu85+6U1gloMLguocSMNTcp+Ym9rjV/kfon1MoqKBFLsWyJ7PWbNFah4M9nhEIJoU/7aJUtZtxSoGfmYNQ7lJa7Ene4oBqCGNe1NfAqXZ0eC+9PFzGX8LnKTkYsQh5GEKn+IKGQ1hyRQlE38XQCYlo2wzjFjpKPRim6IZDTCGf9zoPL+EBGf2B6PDP9DtJXlPHcemzGTv1dspQU13JnPzNiaXKG2fLPh8eA5eS6f+ba9d/15opNzQnCuTvRgjnsAt64PRa88TdlplDxPzqf58M/9hNlXKUvXERzeYPb9jc7LDQBF9A8mkq+misesAXJ40tIPv8P7CVPnp++p97M/4+Cs08Eh6KC+psOeRj/M9FxOXxFnGKjb7Fw8xs=&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="631px" height="491px" viewBox="-0.5 -0.5 631 491" content="&lt;mxfile&gt;&lt;diagram id=&quot;diZ4RP-n2j4aalM64g7p&quot; name=&quot;Page-1&quot;&gt;3VZdj5swEPw1vINJSe/xwuU+pKtUKQ99drAD1hkWGedI7td3CesAMakqNW2lS6TInp01uzPriCBOy8OT4XXxDYTUAQvFIYgfAsaSaIm/HXDsga9x2AO5UaKHogHYqA9JoKPtlZDNhGgBtFX1FMygqmRmJxg3BtopbQd6+tSa59IDNhnXPvpDCVtQF2w54M9S5YV7cpTc9ZGSOzJ10hRcQDuC4nUQpwbA9qvykErdaed06fMer0TPhRlZ2d9KoIx3rvfUHBVmj65bA/tKyC4hCuJVWygrNzXPumiL9iJW2FJTWPCmOHN3SusUNBjcV1BhxoqbjPzEXleab6X+Do2yCirEMixbInv1Lo1VKPjrBaFUQujTOVrlsxn3FDgzCzDqAyrLXYk73FANUYL7xhp4k67OgMWPpw8x53BfZScjFiEPI4hUf5JQSmuOSKGom3i6AQlt22GcEkcpRqO0uCOQ0wjn55MHl3FBRl8xPfFMf4DsDWW8tB6bsVN/5ywlxbXc2V8ZMTc5w2yFl8NjwHJyPZy61un6N735wqbmRLHvzmLGHHYDb9wZM96E6ypXqPgf3U9PxpGfKOMy23Kx8OWN7ruvd1loAm6g+WIq+dJXPGIzkie3kNz/D3SSJ7qb6G23yrtV+vryOeVn4X/Un10f+RTKGppPOvNx8s9Ex+3wUnGKjd7M4vVP&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
         <rect x="0" y="0" width="630" height="490" rx="9.8" ry="9.8" fill="none" stroke="#ffffff" stroke-dasharray="3 3" pointer-events="all"/>
         <rect x="490" y="70" width="40" height="20" fill="none" stroke="none" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 38px; height: 1px; padding-top: 80px; margin-left: 492px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
-                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 22px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 Docker
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="492" y="85" fill="#FFFFFF" font-family="Helvetica" font-size="18px">
+                <text x="492" y="87" fill="#FFFFFF" font-family="Helvetica" font-size="22px">
                     Dock...
                 </text>
             </switch>
@@ -22,51 +22,53 @@
         <rect x="10" y="10" width="120" height="60" rx="9" ry="9" fill="#7cbad4" stroke="none" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 40px; margin-left: 11px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #1A1A1A; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                        <div data-drawio-colors="color: #1A1A1A; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 22px; font-family: Helvetica; color: rgb(26, 26, 26); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 Docker Engine
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="70" y="45" fill="#1A1A1A" font-family="Helvetica" font-size="16px" text-anchor="middle">
-                    Docker Engine
+                <text x="70" y="47" fill="#1A1A1A" font-family="Helvetica" font-size="22px" text-anchor="middle">
+                    Docker Engi...
                 </text>
             </switch>
         </g>
         <rect x="170" y="10" width="120" height="60" rx="9" ry="9" fill="#7cbad4" stroke="none" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 40px; margin-left: 171px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #1A1A1A; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Docker CLI
+                        <div data-drawio-colors="color: #1A1A1A; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 22px; font-family: Helvetica; color: rgb(26, 26, 26); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Docker
+                                <br/>
+                                CLI
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="230" y="45" fill="#1A1A1A" font-family="Helvetica" font-size="16px" text-anchor="middle">
-                    Docker CLI
+                <text x="230" y="47" fill="#1A1A1A" font-family="Helvetica" font-size="22px" text-anchor="middle">
+                    Docker...
                 </text>
             </switch>
         </g>
         <rect x="330" y="10" width="120" height="60" rx="9" ry="9" fill="#7cbad4" stroke="none" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 40px; margin-left: 331px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #1A1A1A; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                        <div data-drawio-colors="color: #1A1A1A; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 22px; font-family: Helvetica; color: rgb(26, 26, 26); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 Docker Compose
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="390" y="45" fill="#1A1A1A" font-family="Helvetica" font-size="16px" text-anchor="middle">
-                    Docker Compose
+                <text x="390" y="47" fill="#1A1A1A" font-family="Helvetica" font-size="22px" text-anchor="middle">
+                    Docker Comp...
                 </text>
             </switch>
         </g>

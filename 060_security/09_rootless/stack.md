@@ -10,7 +10,11 @@
 
 Daemon runs as root
 
-Client controls daemon without authentication
+Client is not authenticated by default
+
+Client controls daemon without authorization
+
+Client can be authenticted using certificates
 
 ### Security issues
 

@@ -7,7 +7,7 @@ How can containers be better?
 
 They are even worse by default
 
---
+---
 
 ## Non-persistent data
 
@@ -33,9 +33,9 @@ docker run -it --workdir /src ubuntu
 
 It's gone!
 
---
+---
 
-## Locally persistent storage
+## Locally persisted storage
 
 Enter container with bind mount:
 
@@ -59,13 +59,40 @@ docker run -it --volume $PWD:/src --workdir /src ubuntu
 
 It's alive!
 
---
+---
 
-## Where my data?
+## Where is my data?
 
-XXX
+Volume mounts are performed by daemon
 
---
+Remote daemon will not see your local data
+
+Prepare alternative Docker daemon:
+
+```bash
+docker run --name dind --detach \
+    --privileged \
+    --publish 127.0.0.1:2375:2375 \
+    docker:dind dockerd --host tcp://0.0.0.0:2375
+docker context create dind \
+    --docker "host=tcp://127.0.0.1:2375"
+```
+
+Try to mount current directory
+
+```bash
+docker run -it --rm --volume "${PWD}:/src" --workdir /src alpine
+```
+
+Revert remote context
+
+```bash
+docker context use default
+docker context rm dind
+docker rm -f dind
+```
+
+---
 
 ## Persistent storage
 

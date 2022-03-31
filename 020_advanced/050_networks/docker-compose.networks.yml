@@ -1,0 +1,17 @@
+version: "2"
+
+networks:
+  public:
+  private:
+
+services:
+  svc1:
+    build:
+      context: .
+    networks:
+    - public
+    - private
+  svc2:
+    image: nginx
+    networks:
+    - private
