@@ -1,7 +1,7 @@
 ## Permissions
 <!-- .slide: id="volume_permissions" -->
 
-XXX Root-owned files
+The nuisance of root-owned files
 
 Creating files in user-owned directories can be removed:
 

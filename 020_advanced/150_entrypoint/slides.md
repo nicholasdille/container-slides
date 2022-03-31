@@ -43,4 +43,21 @@ $ docker run -it --rm entrypoint
 
 ## My first entrypoint
 
-XXX
+Add an entrypoint to change the behaviour
+
+Example: Change text in web page
+
+```bash
+docker build \
+    --tag my-nginx \
+    .
+docker run --detach \
+    --publish 127.0.0.1:80:80 \
+    --env WELCOME_TO_TEXT="Haufe X360" \
+    my-nginx
+curl localhost
+```
+
+### More use cases
+
+Change configuration of nginx in `/etc/nginx`
