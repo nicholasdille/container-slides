@@ -1,9 +1,3 @@
-<!-- .slide: id="heredocs" class="center" style="text-align: center; vertical-align: middle" -->
-
-## Image Build Optimization
-
----
-
 ## Goal to optimize a `Dockerfile`
 
 <i class="fas fa-running fa-2x" style="width: 2em; text-align: center;"></i> Faster build

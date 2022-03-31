@@ -1,4 +1,4 @@
-# Reminder
+# Stack
 
 ![Docker stack with access from local and remote](060_security/09_rootless/stack.drawio.svg) <!-- .element: style="width: 80%;" -->
 

@@ -3,9 +3,9 @@
 
 Processes only get locally persistent storage
 
-Why should containers work differently?
+How can containers be better?
 
-Containers are even worse by default
+They are even worse by default
 
 --
 
@@ -58,6 +58,12 @@ docker run -it --volume $PWD:/src --workdir /src ubuntu
 ```
 
 It's alive!
+
+--
+
+## Where my data?
+
+XXX
 
 --
 

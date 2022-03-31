@@ -130,6 +130,9 @@
 .reveal ul {
     list-style-type: disc;
 }
+ul.fa-ul {
+    list-style-type: none;
+}
 .reveal ul ul {
     list-style-type: square;
 }

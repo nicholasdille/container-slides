@@ -26,7 +26,7 @@ OCI Specs [Runtime](https://github.com/opencontainers/runtime-spec) / [Image](ht
 
 Runc [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/opencontainers/runc)
 
-CNCF [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://www.cncf.io/)
+Cloud Native Computing Foundation (CNCF) [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://www.cncf.io/)
 
 containerd [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://containerd.io/) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/containerd/containerd)
 
@@ -38,4 +38,4 @@ Docker [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](
 
 docker-compose [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/docker/compose)
 
-docker compose [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/docker/compose-cli)
+docker compose v2 [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/docker/compose-cli)
