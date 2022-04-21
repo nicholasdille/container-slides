@@ -4,14 +4,27 @@
 <head>
 <meta charset="utf-8"/>
 
-<title>WorkShop: Docker</title>
+<title>WorkShop: GitLab Ops</title>
 
 <link rel="stylesheet" href="media/reveal.js@4.3.1/dist/reveal.css"/>
 <link rel="stylesheet" href="fonts/source-sans-pro.css"/>
 <link rel="stylesheet" href="themes/theme2021.css" id="theme"/>
 <link rel="stylesheet" href="themes/common.css" id="theme"/>
 <link rel="stylesheet" href="media/highlight.js@11.5.0/styles/rainbow.css"/>
-<link rel="stylesheet" href="media/fontawesome-free@6.1.1/css/all.min.css"/>
+
+<!--<link rel="stylesheet" href="https://cdn.dille.name/fontawesome-pro@6.1.1/css/all.min.css"/>-->
+
+<script>
+    var version = '6.1.1'
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    if (window.location.href.match(/^http(s)?:\/\/(.+\.)dille.name/)) {
+        link.href = 'https://cdn.dille.name/fontawesome-pro@' + version + '/css/all.min.css';
+    } else {
+        link.href = 'media/fontawesome-pro@' + version + '/css/all.min.css';
+    }
+    document.head.appendChild(link);
+</script>
 </head>
 
 <body>
@@ -21,7 +34,7 @@
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         <!-- .slide: data-background="images/Containers.jpg" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 75%; margin: auto; position: absolute; top: 25%; bottom: 25%; left: 0; right: 0;" -->
 
-        # Docker Special
+        # GitLab Ops
 
         Nicholas Dille, Haufe.Group
 
@@ -40,12 +53,9 @@
         | Zeit  | Thema |
         | :---: | :------------------------ |
         | 09:00 | Intro |
-        | 09:15 | Docker Internals |
-        |       | Networks |
+        | 09:15 | XXX |
         | 10:45 | Pause |
-        | 11:00 | Volumes |
-        |       | Entrypoints |
-        |       | Images? |
+        | 11:00 | XXX |
         | 13:00 | Ende |
 
         --
@@ -55,7 +65,7 @@
         Login to VM:
 
         ```bash
-        ssh seatN@seatN.inmylab.de
+        ssh seat@seatN.inmylab.de
         ```
 
         Test VM:
@@ -67,74 +77,13 @@
         ```
     </textarea></section>
 
-    <section data-markdown="010_basics/00_docker/standards.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="060_security/09_rootless/stack.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="010_basics/remember.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: class="center" style="vertical-align: middle;" -->
-
-        ## Networking
-
-        <i class="fas fa-network-wired fa-5x"></i><!-- .element: style="color: grey; position: absolute; top: 50%; width: 100%; text-align: center; z-index: -1;" -->
-    </textarea></section>
-
-    <section data-markdown="010_basics/03_networking/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="020_advanced/050_networks/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: class="center" -->
-
-        ## Volumes
-
-        <i class="fas fa-database fa-5x"></i><!-- .element: style="color: grey; position: absolute; top: 50%; width: 100%; text-align: center; z-index: -1;" -->
-    </textarea></section>
-
-    <section data-markdown="010_basics/02_volumes/bind.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="010_basics/02_volumes/volume.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="010_basics/02_volumes/permissions.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: class="center" style="vertical-align: middle;" -->
-
-        ## Entrypoints
-
-        <i class="fas fa-door-open fa-5x"></i><!-- .element: style="color: grey; position: absolute; top: 50%; width: 100%; text-align: center; z-index: -1;" -->
-    </textarea></section>
-
-    <section data-markdown="020_advanced/150_entrypoint/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: class="center" style="vertical-align: middle;" -->
-
-        ## Image builds
-
-        <i class="fas fa-box-open fa-5x"></i><!-- .element: style="color: grey; position: absolute; top: 50%; width: 100%; text-align: center; z-index: -1;" -->
-    </textarea></section>
-
-    <section data-markdown="020_advanced/190_image_build_optimization/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ![QR code to slides](images/2022-03-31.svg)
+        ![QR code to slides](images/2022-05-05.svg)
         <!-- .element: style="float: right;" -->
 
         ## Summary
 
-        <ul class="fa-ul">
-
-        <li><span class="fa-li"><i class="fa-solid fa-database"></i></span>Volumes are useful for CI/CD
-
-        ...but permissions <i class="fas fa-bolt-lightning"></i></li>
-
-        <li><span class="fa-li"><i class="fas fa-network-wired"></i></span>Networking is isolated
-
-        ...but `docker-compose` adds service discovery</li>
-
-        <li><span class="fa-li"><i class="fas fa-door-open"></i></span>Entrypoints and commands feel weird
-
-        ...but make your container configurable</li>
-
-        </ul>
+        XXX
 </textarea></section>
 </div>
 </div>
