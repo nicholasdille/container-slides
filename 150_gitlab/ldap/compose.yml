@@ -1,0 +1,70 @@
+# https://docs.docker.com/compose/compose-file
+
+volumes:
+  traefik_data:
+  openldap_data:
+
+services:
+
+  # https://doc.traefik.io/traefik/
+  traefik:
+    image: traefik:v2.6
+    command:
+    - --log=true
+    - --log.level=DEBUG
+    - --api=true
+    #- --api.insecure=true
+    - --api.dashboard=true
+    - --entrypoints.http.address=:80
+    - --entrypoints.https.address=:443
+    - --providers.docker=true
+    - --providers.docker.exposedByDefault=false
+    - --certificatesresolvers.le.acme.httpchallenge=true
+    - --certificatesresolvers.le.acme.httpchallenge.entrypoint=http
+    - --certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+    - --certificatesresolvers.le.acme.email=workshop20220507@inmylab.de
+    - --certificatesresolvers.le.acme.storage=/letsencrypt/acme.json
+    - --certificatesresolvers.le2.acme.tlschallenge=true
+    - --certificatesresolvers.le2.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+    - --certificatesresolvers.le2.acme.email=workshop20220507@inmylab.de
+    - --certificatesresolvers.le2.acme.storage=/letsencrypt/acme2.json
+    ports:
+    - 80:80
+    - 443:443
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /etc/localtime:/etc/localtime:ro
+    - traefik_data:/letsencrypt
+    restart: always
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.traefik.entrypoints: http
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.rule: Host(`traefik.127.0.0.1.nip.io`)
+
+  # https://hub.docker.com/r/bitnami/openldap
+  openldap:
+    image: bitnami/openldap:2.6.1
+    environment:
+      LDAP_ADMIN_USERNAME: admin
+      LDAP_ADMIN_PASSWORD: adminpassword
+      LDAP_USERS: user01,user02
+      LDAP_PASSWORDS: password1,password2
+    volumes:
+    - openldap_data:/bitnami/openldap
+
+  # https://github.com/kalaksi/docker-phpldapadmin
+  # http://phpldapadmin.sourceforge.net/wiki/index.php/Main_Page
+  phpldapadmin:
+    image: phpldapadmin:1.2.3
+    build:
+      context: github.com/kalaksi/docker-phpldapadmin
+      dockerfile: Dockerfile
+      args:
+        PHPLDAPADMIN_VERSION: 1.2.3
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.pla.loadbalancer.server.port: 8080
+      traefik.http.routers.pla.entrypoints: https
+      traefik.http.routers.pla.rule: Host(`pla.127.0.0.1.nip.io`)
+      traefik.http.routers.pla.tls.certresolver: le
