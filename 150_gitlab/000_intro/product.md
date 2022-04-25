@@ -32,6 +32,12 @@
 
 ---
 
+## Cloud or self-managed
+
+XXX
+
+---
+
 ## Pricing
 
 1. Free - $0
