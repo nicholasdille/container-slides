@@ -1,0 +1,11 @@
+Software Development Lifecycle Icons: https://gitlab.com/gitlab-com/marketing/corporate_marketing/corporate-marketing/-/tree/master/design/gitlab-brand-files/software-development-lifecycle/software-development-lifecycle-icons
+UI icons: http://gitlab-org.gitlab.io/gitlab-svgs/
+Zoom templates: https://docs.google.com/presentation/d/1PM4sCuCTSmVtoCp_O-_K9BS7yrIJjh1kteMTT7PS9zI/edit#slide=id.g8963180a07_0_30
+
+Brand colors:
+- light orange: fca121
+- orange: fc6d26
+- red orange: db3b21
+- light purple: 6e49cb
+- purple: 380d75
+- dark grey: 2e2e2e

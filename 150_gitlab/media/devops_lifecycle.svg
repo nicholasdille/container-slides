@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500">
+  <path id="Manage" fill="#fdbc60" d="M 17,0 L 0,17 17,34 1083,34 1100,17 1083,0 L 17,0" />
+  <path id="Secure" fill="#fdbc60" d="M 17,466 L 0,483 17,500 1083,500 1100,483 1083,466" />
+  <path id="Create" fill="#e44d2a" d="M 250,90 L 160,90 C 86,90 12,156 0,230 L 30,260 L 60,230 C 67.5,185 115,150 160,150 L 250,150 L 223,123 C 220,120 220,120 223,117" />
+  <path id="Verify" fill="#e95f29" d="M 0,250 C 0,329 81,410 160,410 L 250,410 L 280,380 L 250,350 L 160,350 C 110.5,350 60,299.5 60,250 L 33,277 C 30,280 30,280 27,277" />
+  <path id="Package" fill="#ed6c28" d="M 270,410 L 360,410 C 401,410 441,399 470,370 L 560,280 L 560,237.6 L 517.6,237.6 L 427.6,327.6 C 410,345.2 384.9,350 360,350 L 270,350 L 297,377 C 300,380 300,380 297,383" />
+  <path id="Release" fill="#f07727" d="M 567.1,272.9 L 667.1,172.9 C 683.7,156.3 706.6,150 730,150 L 830,150 L 860,120 L 830,90 L 730,90 C 690.5,90 652.6,102.6 624.7,130.5 L 524.7,230.5 L 562.9,230.5 C 567.1,230.5 567.1,230.5 567.1,234.7" />
+  <path id="Configure" fill="#f38327" d="M 850,90 L 940,90 C 1014,90 1088,156 1100,230 L 1070,260 L 1040,230 C 1032.5,185 985,150 940,150 L 850,150 L 877,123 C 880,120 880,120 877,117" />
+  <path id="Protect" fill="#f68d27" d="M 1100,250 C 1100,329 1019,410 940,410 L 850,410 L 820,380 L 850,350 L 940,350 C 989.5,350 1040,299.5 1040,250 L 1067,277 C 1070,280 1070,280 1073,277" />
+  <path id="Monitor" fill="#f99726" d="M 830,410 L 740,410 C 699,410 659,399 630,370 L 580,320 L 580,277.6 L 622.4,277.6 L 672.4,327.6 C 690,345.2 716.9,350 740,350 L 830,350 L 803,377 C 800,380 800,380 803,383" />
+  <path id="Plan" fill="#e1432a" d="M 492.9,232.9 L 432.9,172.9 C 416.3,156.3 393.4,150 370,150 L 270,150 L 240,120 L 270,90 L 370,90 C 409.5,90 447.4,102.6 475.3,130.5 L 535.3,190.5 L 497.1,190.5 C 492.9,190.5 492.9,190.5 492.9,194.7" />
+  <text x="50%" y="25" text-anchor="middle" class="text">MANAGE</text>
+  <text x="50%" y="491" text-anchor="middle" class="text">SECURE</text>
+  <text x="465.1" y="178.3" text-anchor="end" class="text" transform="rotate(45,465.1,178.3)">PLAN</text>
+  <text x="594.9" y="218.3" text-anchor="start" class="text" transform="rotate(315,594.9,218.3)">RELEASE</text>
+  <text x="526.6" y="286.6" text-anchor="end" class="text" transform="rotate(315,526.6,286.6)">PACKAGE</text>
+  <text x="260" y="270" text-anchor="middle" class="devops">DEV</text>
+  <text x="840" y="270" text-anchor="middle" class="devops">OPS</text>
+  <path id="createpath" fill="none" stroke="none" d="M 52.67,193.33 C 77,153.18 118.64,129.27 159,129" />
+  <path id="verifypath" fill="none" stroke="none" d="M 43,318.44 C 62.20,352.05 115.27,390.55 159.25,389.25" />
+  <path id="configurepath" fill="none" stroke="none" d="M 978.33,138 C 1014.33,150.33 1056.33,193.33 1058.67,228.67" />
+  <path id="protectpath" fill="none" stroke="none" d="M 987,377.67 C 1037.67,360 1078.33,298 1078.67,251" />
+  <path id="monitorpath" fill="none" stroke="none" d="M 613.4,326.6 L 643.4,356.6 C 668.8,382 704.1,391 740,391" />
+  <text class="text">
+    <textPath href="#createpath">CREATE</textPath>
+  </text>
+  <text class="text">
+    <textPath href="#verifypath">VERIFY</textPath>
+  </text>
+  <text class="text">
+    <textPath href="#configurepath">CONFIGURE</textPath>
+  </text>
+  <text class="text">
+    <textPath href="#protectpath">PROTECT</textPath>
+  </text>
+  <text class="text">
+    <textPath href="#monitorpath">MONITOR</textPath>
+  </text>
+  <style><![CDATA[
+  .text {
+    font-family: Source Sans Pro,sans-serif;
+    font-weight: bold;
+    font-size: 21px;
+    fill: white;
+  }
+  .devops {
+    font-family: Source Sans Pro,sans-serif;
+    font-weight: bold;
+    font-size: 60px;
+    fill: black;
+  }
+  ]]></style>
+</svg>

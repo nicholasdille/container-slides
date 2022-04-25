@@ -18,37 +18,25 @@ services:
       LDAP_PASSWORDS: password1,password2
     volumes:
     - openldap_data:/bitnami/openldap
+    - /etc/localtime:/etc/localtime:ro
 
   # https://github.com/kalaksi/docker-phpldapadmin
   # http://phpldapadmin.sourceforge.net/wiki/index.php/Main_Page
-  phpldapadmin:
-    image: phpldapadmin:1.2.3
+  pla:
+    image: pla
     build:
-      context: github.com/kalaksi/docker-phpldapadmin
-      dockerfile: Dockerfile
-      args:
-        PHPLDAPADMIN_VERSION: 1.2.3
+      context: pla
+    init: true
     volumes:
-    - phpldapadmin_htdocs:/usr/share/phpldapadmin/htdocs
-    - phpldapadmin_config:/etc/phpldapadmin
-    - phpldapadmin_nginx_config:/etc/nginx/conf.d
-
-  # https://github.com/kalaksi/docker-phpldapadmin
-  web:
-    image: nginx:stable
-    depends_on:
-    - phpldapadmin
-    volumes:
-      - phpldapadmin_nginx_config:/etc/nginx/conf.d:ro
-      - phpldapadmin_htdocs:/usr/share/phpldapadmin/htdocs:ro
+    - /etc/localtime:/etc/localtime:ro
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.pla.loadbalancer.server.port: 8080
+      traefik.http.routers.pla.entrypoints: http
+      traefik.http.routers.pla.rule: HostRegexp(`pla.{domain:.+}`)
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 5m
       timeout: 10s
       retries: 1
       start_period: 10s
-    labels:
-      traefik.enable: "true"
-      traefik.http.services.pla.loadbalancer.server.port: 8080
-      traefik.http.routers.pla.entrypoints: http
-      traefik.http.routers.pla.rule: HostRegexp(`pla.{domain:.+}`)

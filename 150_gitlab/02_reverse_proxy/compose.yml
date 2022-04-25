@@ -35,7 +35,6 @@ services:
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
     image: gitlab/gitlab-ce:14.10.0-ce.0
-    #image: gitlab/gitlab-ee:14.10.0-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -45,6 +44,7 @@ services:
     # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
     shm_size: 256m
     volumes:
+    - /etc/localtime:/etc/localtime:ro
     - gitlab_config:/etc/gitlab
     - gitlab_logs:/var/log/gitlab
     - gitlab_data:/var/opt/gitlab
