@@ -8,6 +8,18 @@ html.dimbg75 .slide-background {
     margin-right: auto !important;
 }
 
+.horizontal-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .layout-double {
     padding-left: 2em;
     padding-right: 2em;

@@ -1,3 +1,0 @@
-## GitLab and LDAP
-
-XXX

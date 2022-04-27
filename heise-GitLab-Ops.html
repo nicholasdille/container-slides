@@ -6,10 +6,14 @@
 
 <title>WorkShop: GitLab Ops</title>
 
+<!-- https://gauger.io/fonticon/ -->
+<link rel="icon" href="150_gitlab/media/favicon.ico">
+
 <link rel="stylesheet" href="media/reveal.js@4.3.1/dist/reveal.css"/>
-<link rel="stylesheet" href="fonts/source-sans-pro.css"/>
-<link rel="stylesheet" href="themes/theme2021.css" id="theme"/>
-<link rel="stylesheet" href="themes/common.css" id="theme"/>
+<link rel="stylesheet" href="media/fonts/source-sans-pro.css"/>
+<link rel="stylesheet" href="media/reveal.js@4.3.1/dist/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="themes/theme2022.css" id="theme"/>
+<link rel="stylesheet" href="themes/common.css"/>
 <link rel="stylesheet" href="media/highlight.js@11.5.0/styles/rainbow.css"/>
 
 <script>
@@ -30,13 +34,13 @@
 <div class="slides">
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: data-background="150_gitlab/media/background.png" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 75%; margin: auto; position: absolute; top: 25%; bottom: 25%; left: 0; right: 0;" -->
+        <!-- .slide: data-background="150_gitlab/media/fox-5195283_1920.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
 
-        ![](150_gitlab/media/gitlab-icon-rgb.svg) <!-- .element: style="width: 30%; float: right;" -->
+        ![](150_gitlab/media/gitlab-icon-rgb.svg) <!-- .element: style="width: 25%; float: right;" -->
 
         # GitLab Ops
 
-        Nicholas Dille, Haufe.Group
+        *Nicholas Dille, Haufe Group*
 
         <i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
 
@@ -48,15 +52,27 @@
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+        ## Goal
+
+        XXX
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ## Agenda
 
-        | Zeit  | Thema |
-        | :---: | :------------------------ |
-        | 09:00 | Intro |
-        | 09:15 | XXX |
-        | 10:45 | Pause |
-        | 11:00 | XXX |
-        | 13:00 | Ende |
+        Part 1: Web UI
+
+        Part 2: Configuration
+
+        ### Breaks
+
+        10:45 - 11:00 Coffee
+
+        12:30 - 13:30 Lunch
+
+        15:00 - 15:15 Coffee
+
+        17:00         The End
 
         --
 
@@ -80,25 +96,26 @@
     <section data-markdown="150_gitlab/000_intro/product.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="150_gitlab/000_intro/architecture.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="150_gitlab/001_quickstart/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/002_reverse_proxy/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-    <section data-markdown="150_gitlab/006_directories/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/007_logs/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/010_projects/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/020_users/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/030_authentication/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/040_profile/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/050_server_settings/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/060_api/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/080_integrations/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/090_maintenance/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-    <section data-markdown="150_gitlab/010_users/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/030_config/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/035_roles/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-    <section data-markdown="150_gitlab/040_ldap/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-    <section data-markdown="150_gitlab/050_troubleshooting/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/060_update/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/070_runner/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/075_monitoring/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/080_gcpe/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-    <section data-markdown="150_gitlab/090_resources/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/095_database/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/100_reverse_proxy/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/110_directories/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/120_configuration/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/130_ldap/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/140_troubleshooting/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/150_update/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/160_runner/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/170_monitoring/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/180_resources/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/190_database/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
         ![QR code to slides](images/2022-05-05.svg) <!-- .element: style="width: 25%; float: right;" -->
@@ -119,49 +136,28 @@
 <script>
     var durationInMinutes = 8 * 60;
     Reveal.initialize({
-        width: 1920,
-        height: 1080,
-        minScale: 1,
-        maxScale: 1,
-        controls: true,
         controlsTutorial: false,
-        controlsLayout: 'bottom-right',
-        progress: true,
-        slideNumber: false,
+        showSlideNumber: false,
         hash: true,
         history: true,
         keyboard: true,
-        disableLayout: true,
         overview: true,
         center: false,
-        touch: true,
-        loop: false,
-        rtl: false,
-        navigationMode: 'default',
+        touch: false,
         shuffle: false,
         fragments: true,
         fragmentInURL: true,
         embedded: false,
         help: true,
-        pause: true,
         showNotes: false,
         autoPlayMedia: null,
-        preloadIframes: null,
-        autoAnimate: true,
-        autoSlide: 0,
         mouseWheel: false,
         previewLinks: false,
-        postMessage: true,
         transition: 'convex',
         transitionSpeed: 'default',
         backgroundTransition: 'fade',
-        viewDistance: 3,
-        mobileViewDistance: 2,
-        display: 'block',
         hideInactiveCursor: true,
         hideCursorTime: 3000,
-        parallaxBackgroundImage: '',
-        parallaxBackgroundSize: '',
 
         totalTime: durationInMinutes * 60,
         allottedTime: durationInMinutes * 60 * 1000,

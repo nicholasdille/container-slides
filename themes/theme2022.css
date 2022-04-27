@@ -1,0 +1,43 @@
+:root {
+    --r-background-color: #191919;
+    --r-main-font: Source Sans Pro, Helvetica, sans-serif;
+    --r-main-font-size: 36px;
+    --r-main-color: #fff;
+    --r-block-margin: 0.3em;
+    --r-heading-margin: 0 0 20px 0;
+    --r-heading-font: Source Sans Pro, Helvetica, sans-serif;
+    --r-heading-color: #7cbad4;
+    --r-heading-line-height: 1.2;
+    --r-heading-letter-spacing: normal;
+    --r-heading-text-transform: uppercase;
+    --r-heading-text-shadow: none;
+    --r-heading-font-weight: 600;
+    --r-heading1-text-shadow: none;
+    --r-heading1-size: 2.5em;
+    --r-heading2-size: 1.6em;
+    --r-heading3-size: 1.3em;
+    --r-heading4-size: 1em;
+    --r-code-font: monospace;
+    --r-link-color: #7cbad4;
+    --r-link-color-dark: #7cbad4;
+    --r-link-color-hover: #7cbad4;
+    --r-selection-background-color: #dcdcdc;
+    --r-selection-color: white;
+}
+
+.reveal .slides {
+    text-align: left;
+}
+
+.reveal img {
+    margin: 0;
+}
+
+.reveal pre {
+    font-size: 0.7em;
+}
+
+.fa-duotone-colors {
+    --fa-primary-color: var(--r-heading-color);
+    --fa-secondary-color: var(--r-selection-background-color);
+}

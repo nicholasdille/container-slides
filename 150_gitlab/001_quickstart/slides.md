@@ -1,3 +1,11 @@
+<!-- .slide: class="vertical-center" -->
+
+<i class="fa-duotone fa-rocket-launch fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+
+## Quickstart
+
+---
+
 ## Quickstart
 
 Get GitLab quickly (~4m) up and running:

@@ -1,3 +1,0 @@
-## Users and identities
-
-XXX

@@ -10,7 +10,7 @@
 
 ## Features
 
-![](150_gitlab/media/manage.svg) <!-- .element: style="width: 1em; color: white;" --> Manage <span style="color: grey;"><span style="color: grey;">- Groups, Compliance Management, Value Stream </span>Management</span>
+![](150_gitlab/media/manage.svg) <!-- .element: style="width: 1em; color: white;" --> Manage <span style="color: grey;">- Groups, Compliance / Value Stream Management</span>
 
 ![](150_gitlab/media/plan.svg) <!-- .element: style="width: 1em; color: white;" --> Plan <span style="color: grey;">- Team Planning, Service Desk, Management</span>
 
