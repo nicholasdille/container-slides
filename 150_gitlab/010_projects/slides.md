@@ -2,29 +2,111 @@
 
 <i class="fa-duotone fa-users fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
-## Groups <br>and Projects
+## Projects <br>and Groups
 
 ---
 
 ## Groups
 
-XXX groups for structure
+<i class="fa-duotone fa-list-tree fa-4x fa-duotone-colors" style="float: right;"></i>
+
+Groups [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/group/subgroups/) are used for organizing projects
+
+- by organizational units
+- by architectural components
+
+Groups...
+
+- ...can be nested up to 20 levels
+- ...provide structure
+- ...manage people (more later)
+- ...control visibility (more later)
+
+### Hands-On
+
+1. Create a new group, e.g. `My first group`
+1. Create a subgroup, e.g. `My first subgroup`
 
 ---
 
 ## Projects
 
-XXX projects for collaboration (code, issues, CI/CD, MRs, wiki, pages)
+<i class="fa-duotone fa-people-roof fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+
+Project [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/project/) offer collaboration
+
+- Create content using code, wikis and pages
+- Review work using merge requests
+- Plan work using issues
+- Test and deploy work using CI/CD
+
+Projects are repositories with features for collaboration
+
+Projects can override visibility (more later)
+
+### Hands-On
+
+1. Create a project in your subgroup with default settings (e.g. `My first project`)
+1. Clone the code repository
 
 ---
 
 ## Project features
 
-XXX features
+<i class="fa-duotone fa-light-switch-on fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-XXX visibility
+### Visibility
 
-XXX roles
+Public, internal or private
+
+Limited by group visibility
+
+### Features
+
+Control availability of features
+
+For example: repository, issues etc.
+
+### Hands-On
+
+1. Disable issues
+1. XXX
+
+---
+
+## Project and Group Members
+
+<i class="fa-duotone fa-id-badge fa-4x fa-duotone-colors" style="float: right;"></i>
+
+### Roles
+
+Guest, Reporter, Developer, Maintainer, Owner
+
+XXX owner
+
+### Members
+
+Invite other users
+
+Control role
+
+Configure expiry date
+
+### Hands-On
+
+Later <i class="fa-duotone fa-face-grin-tongue-wink fa-duotone-colors"></i>
+
+---
+
+## Project management
+
+<i class="fa-duotone fa-user-tie fa-4x fa-duotone-colors" style="float: right;"></i>
+
+XXX rename project
+
+XXX change path
+
+XXX transfer
 
 ---
 

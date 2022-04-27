@@ -1,10 +1,10 @@
 :root {
     --r-background-color: #191919;
     --r-main-font: Source Sans Pro, Helvetica, sans-serif;
-    --r-main-font-size: 36px;
+    --r-main-font-size: 42px;
     --r-main-color: #fff;
     --r-block-margin: 0.3em;
-    --r-heading-margin: 0 0 20px 0;
+    --r-heading-margin: 0.5em 0 0 0;
     --r-heading-font: Source Sans Pro, Helvetica, sans-serif;
     --r-heading-color: #7cbad4;
     --r-heading-line-height: 1.2;
@@ -37,7 +37,27 @@
     font-size: 0.7em;
 }
 
+.reveal pre code {
+    margin-bottom: 1.5em;
+}
+
+.reveal h3,
+.reveal h4 {
+    text-transform: none;
+}
+
+.reveal h4 {
+    font-style: italic;
+}
+
 .fa-duotone-colors {
     --fa-primary-color: var(--r-heading-color);
-    --fa-secondary-color: var(--r-selection-background-color);
+    --fa-secondary-color: grey;
+    --fa-secondary-opacity: 1.0;
+}
+
+.fa-duotone-colors-inverted {
+    --fa-primary-color: grey;
+    --fa-secondary-color: var(--r-heading-color);
+    --fa-secondary-opacity: 1.0;
 }

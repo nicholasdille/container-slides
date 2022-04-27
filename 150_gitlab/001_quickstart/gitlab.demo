@@ -1,0 +1,20 @@
+# Quickstart
+
+# Start GitLab
+docker run -d --name gitlab \
+    --volume gitlab_config:/etc/gitlab \
+    --volume gitlab_logs:/var/log/gitlab \
+    --volume gitlab_data:/var/opt/gitlab \
+    gitlab/gitlab-ce:14.10.0-ce.0
+
+# Wait for container to finish starting
+while docker container inspect gitlab \
+      | jq --raw-output '.[].State.Health.Status' \
+      | grep -q "starting"; do
+    sleep 2
+done
+
+# Retrieve initial root password
+docker exec -it gitlab cat /etc/gitlab/initial_root_password \
+| grep ^Password \
+| cut -d' ' -f2

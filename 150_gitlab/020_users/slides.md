@@ -10,6 +10,8 @@
 
 XXX users
 
+XXX no concept of user groups, only group with members
+
 ---
 
 ## Membership
