@@ -9,3 +9,15 @@
 ## LDAP
 
 XXX
+
+```bash
+docker volume create openldap_data
+docker volume create postgresql_data
+docker volume create keycloak_data
+```
+
+XXX
+
+```bash
+docker compose --file ../100_reverse_proxy/compose.yml --file compose.yml up -d
+```

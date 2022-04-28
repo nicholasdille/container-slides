@@ -2,41 +2,109 @@
 
 volumes:
   openldap_data:
-  phpldapadmin_nginx_config:
-  phpldapadmin_config:
-  phpldapadmin_htdocs:
+    external: true
+  postgresql_data:
+    external: true
+  keycloak_data:
+    external: true
 
 services:
+
+  gitlab:
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        #external_url 'http://gitlab.172.20.57.234.nip.io'
+        gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
+
+        gitlab_rails['ldap_enabled'] = true
+        gitlab_rails['ldap_servers'] = YAML.load <<-EOS
+        main:
+          label: 'OpenLDAP'
+          host: 'openldap'
+          port: 1389
+          uid: 'uid'
+          bind_dn: 'cn=admin,dc=inmylab,dc=de'
+          password: 'adminpassword'
+          timeout: 10
+          allow_username_or_email_login: false
+          block_auto_created_users: false
+          base: 'dc=inmylab,dc=de'
+          #user_filter: '${GITLAB_LDAP_FILTER}'
+          attributes:
+            username: ['uid', 'userid', 'sAMAccountName']
+            email:    ['mail', 'email', 'userPrincipalName']
+            name:       'cn'
+            first_name: 'givenName'
+            last_name:  'sn'
+        EOS
 
   # https://hub.docker.com/r/bitnami/openldap
   openldap:
     image: bitnami/openldap:2.6.1
     environment:
+      LDAP_ROOT: dc=inmylab,dc=de
+      LDAP_ALLOW_ANON_BINDING: "yes"
+      LDAP_LOGLEVEL: 128
       LDAP_ADMIN_USERNAME: admin
       LDAP_ADMIN_PASSWORD: adminpassword
+      LDAP_USER_DC: users
+      LDAP_SKIP_DEFAULT_TREE: "no"
       LDAP_USERS: user01,user02
       LDAP_PASSWORDS: password1,password2
+      LDAP_GROUP: gitlab
     volumes:
-    - openldap_data:/bitnami/openldap
     - /etc/localtime:/etc/localtime:ro
+    - openldap_data:/bitnami/openldap/data
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 1 bash -c 'cat < /dev/null > /dev/tcp/localhost/1389'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
-  # https://github.com/kalaksi/docker-phpldapadmin
-  # http://phpldapadmin.sourceforge.net/wiki/index.php/Main_Page
-  pla:
-    image: pla
-    build:
-      context: pla
-    init: true
+  # https://hub.docker.com/r/bitnami/postgresql/
+  postgresql:
+    image: bitnami/postgresql:11
+    environment:
+      ALLOW_EMPTY_PASSWORD: yes
+      POSTGRESQL_USERNAME: keycloak
+      POSTGRESQL_DATABASE: keycloak
     volumes:
     - /etc/localtime:/etc/localtime:ro
+    - postgresql_data:/bitnami/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # https://hub.docker.com/r/bitnami/keycloak
+  # https://edenmal.moe/post/2018/GitLab-Keycloak-SAML-2-0-OmniAuth-Provider/
+  keycloak:
+    image: bitnami/keycloak:16.1.1
+    environment:
+      KEYCLOAK_DATABASE_HOST: postgresql
+      KEYCLOAK_DATABASE_NAME: keycloak
+      KEYCLOAK_DATABASE_USER: keycloak
+      KEYCLOAK_DATABASE_PASSWORD: keycloak
+      KEYCLOAK_CREATE_ADMIN_USER: "true"
+      KEYCLOAK_ADMIN_USER: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_MANAGEMENT_USER: manager
+      KEYCLOAK_MANAGEMENT_PASSWORD: manager
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - keycloak_data:/opt/keycloak/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
     labels:
       traefik.enable: "true"
-      traefik.http.services.pla.loadbalancer.server.port: 8080
-      traefik.http.routers.pla.entrypoints: http
-      traefik.http.routers.pla.rule: HostRegexp(`pla.{domain:.+}`)
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
-      interval: 5m
-      timeout: 10s
-      retries: 1
-      start_period: 10s
+      traefik.http.services.keycloak.loadbalancer.server.port: 8080
+      traefik.http.routers.keycloak.entrypoints: http
+      traefik.http.routers.keycloak.rule: HostRegexp(`keycloak.{domain:.+}`)

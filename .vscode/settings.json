@@ -1,8 +1,11 @@
 {
     "liveServer.settings.ignoreFiles": [
-        ".vscode/**",
-        "**/*.template.md",
+        "**/*.yml",
         "**/*.demo",
-        "**/*.sh"
+        "**/*.svg",
+        ".vscode/**",
+        "**/*.scss",
+        "**/*.sass",
+        "**/*.ts"
     ]
 }

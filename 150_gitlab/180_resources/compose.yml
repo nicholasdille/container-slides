@@ -1,0 +1,143 @@
+# https://docs.docker.com/compose/compose-file
+
+volumes:
+  foo:
+
+services:
+  
+  # https://doc.traefik.io/traefik/
+  traefik:
+    image: traefik:v2.6
+    command:
+    - --log=true
+    - --log.level=DEBUG
+    - --api=true
+    - --api.dashboard=true
+    - --entrypoints.http.address=:80
+    - --providers.docker=true
+    - --providers.docker.exposedByDefault=false
+    ports:
+    - 80:80
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /etc/localtime:/etc/localtime:ro
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "netstat -tunapl | grep LISTEN | grep :80"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.traefik.entrypoints: http
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.rule: HostRegexp(`traefik.{domain:.+}`)
+
+  gitlab:
+    image: gitlab/gitlab-ce:14.10.0-ce.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+
+        #external_url 'http://gitlab.172.20.57.234.nip.io'
+        gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
+
+        gitaly['enable'] = false
+        git_data_dirs({
+          'default' => { 'gitaly_address' => 'tcp://gitaly:8075' },
+        })
+        gitlab_rails['gitaly_token'] = "gitaly"
+        
+        postgresql['enable'] = false
+        gitlab_rails['db_adapter'] = 'postgresql'
+        gitlab_rails['db_encoding'] = 'utf8'
+        gitlab_rails['db_host'] = 'db'
+        gitlab_rails['db_port'] = '5432'
+        gitlab_rails['db_database'] = 'gitlab'
+        gitlab_rails['db_username'] = 'gitlab'
+        gitlab_rails['db_password'] = 'gitlab'
+        
+        redis['enable'] = false
+        gitlab_rails['redis_host'] = 'redis'
+        gitlab_rails['redis_port'] = 6379
+        gitlab_rails['redis_password'] = 'redis'
+    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    shm_size: 256m
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitlab_config:/etc/gitlab
+    - gitlab_logs:/var/log/gitlab
+    - gitlab_data:/var/opt/gitlab
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.www.loadbalancer.server.port: 80
+      traefik.http.routers.www.entrypoints: http
+      traefik.http.routers.www.rule: HostRegexp(`gitlab.{domain:.+}`)
+
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: gitlab
+      POSTGRES_USER: gitlab
+      POSTGRES_PASSWORD: gitlab
+
+  redis:
+    image: gitlab/gitlab-ce:14.10.0-ce.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+
+        alertmanager['enable'] = false
+        grafana['enable'] = false
+        prometheus['enable'] = false
+
+        redis_master_role['enable'] = true
+        redis['port'] = 6379
+        redis['bind'] = '0.0.0.0'
+        redis['password'] = 'redis'
+        gitlab_rails['redis_password'] = 'redis'
+        gitlab_rails['auto_migrate'] = false
+
+        redis_exporter['listen_address'] = '0.0.0.0:9121'
+        gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8','10.42.0.0/16']
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitaly_data:/var/opt/gitlab-data
+
+  gitaly:
+    image: gitlab/gitlab-ce:14.10.0-ce.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+
+        postgresql['enable'] = false
+        redis['enable'] = false
+        nginx['enable'] = false
+        puma['enable'] = false
+        sidekiq['enable'] = false
+        gitlab_workhorse['enable'] = false
+        alertmanager['enable'] = false
+        grafana['enable'] = false
+        prometheus['enable'] = false
+    
+        gitlab_rails['internal_api_url'] = 'http://gitlab'
+        gitlab_workhorse['auth_backend'] = 'http://gitlab'
+    
+        gitaly['listen_addr'] = "0.0.0.0:8075"
+        gitaly['auth_token'] = "gitaly"
+    
+        gitaly['storage'] = [
+          { 'name' => 'default', 'path' => '/var/opt/gitlab-data/git-data/repositories' },
+        ]
+        git_data_dirs({ "default" => { "path" => "/var/opt/gitlab-data/git-data" } })
+        
+        # monitoring
+        gitaly['prometheus_listen_addr'] = "0.0.0.0:9236"
+        gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8','10.42.0.0/16']
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitaly_data:/var/opt/gitlab-data

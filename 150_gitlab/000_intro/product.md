@@ -4,7 +4,7 @@
 
 "Deliver software faster with better security and collaboration in a single platform."
 
-![](150_gitlab/media/devops_lifecycle.svg) <!-- .element: style="width: 70%;" -->
+![](150_gitlab/media/devops_lifecycle.svg) <!-- .element: style="width: 70%; padding: 1em; background-color: grey;" -->
 
 ---
 
