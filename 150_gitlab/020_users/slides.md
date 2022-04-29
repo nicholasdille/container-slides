@@ -1,6 +1,6 @@
 <!-- .slide: class="vertical-center" -->
 
-<i class="fa-duotone fa-user fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-users fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
 ## Users
 
@@ -8,12 +8,43 @@
 
 ## Users
 
-XXX users
+<i class="fa-duotone fa-user fa-4x fa-duotone-colors" style="float: right;"></i>
 
-XXX no concept of user groups, only group with members
+GitLab maintains internal user object
+
+No concept of user groups...
+
+...only groups of projects with members
+
+Users can be...
+
+- Blocked/deactivated/banned/deleted
+- Impersonated
+
+### Hands-On
+
+1. Create new user
+1. Edit and reset password
+1. Login with new user
 
 ---
 
 ## Membership
 
-XXX group and project members
+<i class="fa-duotone fa-id-badge fa-4x fa-duotone-colors" style="float: right;"></i>
+
+Users can be invited to join group and projects
+
+Users can be assigned a role:
+
+- Guest
+- Reporter
+- Developer
+- Maintainer
+- Owner
+
+### Hands-On
+
+1. Create another user
+1. Create a group with one user
+1. Invite the other user

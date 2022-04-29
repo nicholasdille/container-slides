@@ -6,27 +6,52 @@
 
 ---
 
-## Personal
+## Personal Credentials
 
-XXX username / password
+<i class="fa-duotone fa-key-skeleton fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-XXX Personal Access Token (PAT)
+We have already used username and password
 
-XXX Personal SSH Key
+Users can create *Personal Access Tokens*
+
+- Used instead of password for `git` operations
+- Used to access the API (more later)
+
+Users can add SSH public keys
+
+- Used for `git` operations
+
+Permissions inherited from user
+
+### Hands-On
+
+1. Create a PAT
+1. Clone a repository using the PAT instead of the password
 
 ---
 
-## XXX
+## Group and Project Credentials
 
-XXX Group Access Token
+<i class="fa-duotone fa-bucket fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-XXX Group Deploy Token
+### Scoped to group
 
-XXX Project Access Token
+Group Deploy Tokens (read only)
 
-XXX Project Deploy Token
+Group Access Tokens (configurable)
 
-XXX Project Deploy SSH Key
+### Scoped to project
+
+Project Access Tokens (configurable)
+
+Project Deploy Token (read-only)
+
+Project Deploy SSH Key (read-write)
+
+### Hands-On
+
+1. Create a project deploy token
+1. Use it to clone the repository
 
 ---
 

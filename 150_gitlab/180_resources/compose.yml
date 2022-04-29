@@ -1,7 +1,15 @@
 # https://docs.docker.com/compose/compose-file
 
 volumes:
-  foo:
+  gitlab_config:
+  gitlab_logs:
+  gitlab_data:
+  postgresql_data:
+  redis_data:
+  gitaly_config:
+  gitaly_data:
+  gitaly_gitlab:
+  gitaly_logs:
 
 services:
   
@@ -14,9 +22,11 @@ services:
     - --api=true
     - --api.dashboard=true
     - --entrypoints.http.address=:80
+    - --entrypoints.ssh.address=:22
     - --providers.docker=true
     - --providers.docker.exposedByDefault=false
     ports:
+    - 2222:22
     - 80:80
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -44,12 +54,17 @@ services:
         #external_url 'http://gitlab.172.20.57.234.nip.io'
         gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
 
+        # Prevent conflict with host SSH port
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+
+        # Configure remote gitaly
         gitaly['enable'] = false
         git_data_dirs({
           'default' => { 'gitaly_address' => 'tcp://gitaly:8075' },
         })
         gitlab_rails['gitaly_token'] = "gitaly"
         
+        # Configure remote postgresql
         postgresql['enable'] = false
         gitlab_rails['db_adapter'] = 'postgresql'
         gitlab_rails['db_encoding'] = 'utf8'
@@ -59,6 +74,7 @@ services:
         gitlab_rails['db_username'] = 'gitlab'
         gitlab_rails['db_password'] = 'gitlab'
         
+        # Configure remote redis
         redis['enable'] = false
         gitlab_rails['redis_host'] = 'redis'
         gitlab_rails['redis_port'] = 6379
@@ -75,6 +91,9 @@ services:
       traefik.http.services.www.loadbalancer.server.port: 80
       traefik.http.routers.www.entrypoints: http
       traefik.http.routers.www.rule: HostRegexp(`gitlab.{domain:.+}`)
+      traefik.tcp.services.ssh.loadbalancer.server.port: 2222
+      traefol.tcp.routers.ssh.entrypoints: ssh
+      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.172.20.57.234.nip.io`)
 
   db:
     image: postgres:12
@@ -82,6 +101,9 @@ services:
       POSTGRES_DB: gitlab
       POSTGRES_USER: gitlab
       POSTGRES_PASSWORD: gitlab
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - postgresql_data:/var/lib/postgresql/data
 
   redis:
     image: gitlab/gitlab-ce:14.10.0-ce.0
@@ -90,6 +112,7 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
 
+        # Disable services
         alertmanager['enable'] = false
         grafana['enable'] = false
         prometheus['enable'] = false
@@ -105,7 +128,7 @@ services:
         gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8','10.42.0.0/16']
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - gitaly_data:/var/opt/gitlab-data
+    - redis_data:/var/opt/gitlab
 
   gitaly:
     image: gitlab/gitlab-ce:14.10.0-ce.0
@@ -114,6 +137,7 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
 
+        # Disable services
         postgresql['enable'] = false
         redis['enable'] = false
         nginx['enable'] = false
@@ -123,6 +147,10 @@ services:
         alertmanager['enable'] = false
         grafana['enable'] = false
         prometheus['enable'] = false
+        
+        # Prevent database connections during 'gitlab-ctl reconfigure'
+        gitlab_rails['rake_cache_clear'] = false
+        gitlab_rails['auto_migrate'] = false
     
         gitlab_rails['internal_api_url'] = 'http://gitlab'
         gitlab_workhorse['auth_backend'] = 'http://gitlab'
@@ -140,4 +168,7 @@ services:
         gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8','10.42.0.0/16']
     volumes:
     - /etc/localtime:/etc/localtime:ro
+    - gitaly_config:/etc/gitlab
     - gitaly_data:/var/opt/gitlab-data
+    - gitaly_gitlab:/var/opt/gitlab
+    - gitaly_logs:/var/log/gitlab

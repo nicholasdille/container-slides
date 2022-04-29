@@ -35,6 +35,12 @@ done
 
 ## First login
 
+<i class="fa-duotone fa-medal fa-3x fa-duotone-colors" style="float: right;"></i>
+
+Go to XXX
+
+Enter user `root`
+
 Retrieve initial root password:
 
 ```bash

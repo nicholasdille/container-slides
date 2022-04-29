@@ -19,9 +19,11 @@ services:
     - --api=true
     - --api.dashboard=true
     - --entrypoints.http.address=:80
+    - --entrypoints.ssh.address=:22
     - --providers.docker=true
     - --providers.docker.exposedByDefault=false
     ports:
+    - 2222:22
     - 80:80
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -49,6 +51,9 @@ services:
 
         #external_url 'http://gitlab.172.20.57.234.nip.io'
         gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
+
+        # Prevent conflict with host SSH port
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
     # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
     shm_size: 256m
     volumes:
@@ -61,3 +66,6 @@ services:
       traefik.http.services.www.loadbalancer.server.port: 80
       traefik.http.routers.www.entrypoints: http
       traefik.http.routers.www.rule: HostRegexp(`gitlab.{domain:.+}`)
+      traefik.tcp.services.ssh.loadbalancer.server.port: 22
+      traefol.tcp.routers.ssh.entrypoints: ssh
+      traefik.tcp.routers.ssh.rule: HostSNI(`*`)

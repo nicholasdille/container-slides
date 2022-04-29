@@ -1,6 +1,6 @@
 <!-- .slide: class="vertical-center" -->
 
-<i class="fa-duotone fa-users fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-building fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
 ## Projects <br>and Groups
 
@@ -69,8 +69,8 @@ For example: repository, issues etc.
 
 ### Hands-On
 
-1. Disable issues
-1. XXX
+1. Disable issues (and save)
+1. Check menu bar
 
 ---
 
