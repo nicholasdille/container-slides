@@ -1,0 +1,23 @@
+# https://docs.docker.com/compose/compose-file
+
+services:
+
+  kroki:
+    image: yuzutech/kroki
+    environment:
+      KROKI_BLOCKDIAG_HOST: blockdiag
+      KROKI_MERMAID_HOST: mermaid
+      KROKI_BPMN_HOST: bpmn
+      KROKI_EXCALIDRAW_HOST: excalidraw
+
+  blockdiag:
+    image: yuzutech/kroki-blockdiag
+
+  mermaid:
+    image: yuzutech/kroki-mermaid
+
+  bpmn:
+    image: yuzutech/kroki-bpmn
+
+  excalidraw:
+    image: yuzutech/kroki-excalidraw

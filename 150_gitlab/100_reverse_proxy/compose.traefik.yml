@@ -1,0 +1,34 @@
+# https://docs.docker.com/compose/compose-file
+
+services:
+
+  # https://doc.traefik.io/traefik/
+  traefik:
+    image: traefik:v2.6
+    command:
+    - --log=true
+    - --log.level=DEBUG
+    - --api=true
+    - --api.dashboard=true
+    - --entrypoints.http.address=:80
+    - --entrypoints.ssh.address=:2222
+    - --providers.docker=true
+    - --providers.docker.exposedByDefault=false
+    ports:
+    - 2222:2222
+    - 80:80
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /etc/localtime:/etc/localtime:ro
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "netstat -tunapl | grep LISTEN | grep :80"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.traefik.entrypoints: http
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.rule: HostRegexp(`traefik.{domain:.+}`)

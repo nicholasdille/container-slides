@@ -9,3 +9,7 @@
 ## Reverse Proxy in front of GitLab
 
 XXX
+
+XXX create volumes (optional)
+
+XXX reset by removing volumes

@@ -1,0 +1,18 @@
+concurrent = 1
+check_interval = 0
+
+[[runners]]
+  name = "runner-1"
+  url = "http://gitlab"
+  token = "{redacted}"
+  executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "docker:dind"
+    privileged = true
+    pull_policy = "if-not-present"
+    disable_cache = false
+    volumes = ["/var/run/docker/sock:/var/run/docker.sock","/cache"]
+    shm_size = 0
+  [runners.cache]
+    insecure = false

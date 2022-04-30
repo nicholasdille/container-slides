@@ -1,0 +1,9 @@
+# https://docs.docker.com/compose/compose-file
+
+services:
+
+  runner:
+    image: gitlab/gitlab-runner:v14.10.0
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./gitlab-runner:/etc/gitlab-runner
