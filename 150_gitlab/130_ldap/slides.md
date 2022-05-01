@@ -19,5 +19,9 @@ docker volume create keycloak_data
 XXX
 
 ```bash
-docker compose --file ../100_reverse_proxy/compose.yml --file compose.yml up -d
+docker compose --project-name gitlab \
+    --file ../100_reverse_proxy/compose.traefik.yml \
+    --file ../100_reverse_proxy/compose.gitlab.yml \
+    --file compose.yml \
+    up -d
 ```

@@ -52,13 +52,3 @@ Project Deploy SSH Key (read-write)
 
 1. Create a project deploy token
 1. Use it to clone the repository
-
----
-
-## Overview
-
-XXX
-
----
-
-XXX Demos

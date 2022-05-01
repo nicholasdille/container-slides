@@ -6,7 +6,17 @@
 
 ---
 
-XXX
+## Troubleshooting
+
+XXX https://docs.gitlab.com/ee/administration/troubleshooting/
+
+XXX sidekiq (job processor): https://docs.gitlab.com/ee/administration/troubleshooting/sidekiq.html
+
+XXX gitlab rails: https://docs.gitlab.com/ee/administration/troubleshooting/gitlab_rails_cheat_sheet.html
+
+XXX gitlabsos (omnibus, docker): https://gitlab.com/gitlab-com/support/toolbox/gitlabsos/
+
+XXX correlation IDs: https://docs.gitlab.com/ee/administration/troubleshooting/tracing_correlation_id.html
 
 ---
 

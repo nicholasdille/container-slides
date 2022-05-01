@@ -80,9 +80,15 @@ For example: repository, issues etc.
 
 ### Roles
 
-Guest, Reporter, Developer, Maintainer, Owner
+*Guest* for viewing
 
-XXX owner
+*Reporter* for issues
+
+*Developer* for coding
+
+*Maintainer* for merging
+
+*Owner* for XXX
 
 ### Members
 
@@ -92,22 +98,21 @@ Control role
 
 Configure expiry date
 
-### Hands-On
-
-Later <i class="fa-duotone fa-face-grin-tongue-wink fa-duotone-colors"></i>
-
 ---
 
 ## Project management
 
 <i class="fa-duotone fa-user-tie fa-4x fa-duotone-colors" style="float: right;"></i>
 
-XXX rename project
+Rename project to change display name
 
-XXX change path
+Change path to adjust URL
 
-XXX transfer
+Transfer to another group
 
----
+XXX more?
 
-XXX
+### Hands-On
+
+1. Rename a project
+1. Change path for a project

@@ -8,7 +8,13 @@
 
 ## Visibility
 
-XXX visibility
+Control defaults for group and project visibility
+
+Default visibility
+
+Available visibility options
+
+XXX
 
 ---
 

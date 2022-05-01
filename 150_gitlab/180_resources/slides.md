@@ -7,3 +7,10 @@
 ---
 
 XXX
+
+```bash
+docker compose --project-name gitlab \
+    --file ../100_reverse_proxy/compose.traefik.yml \
+    --file compose.yml \
+    up -d
+```

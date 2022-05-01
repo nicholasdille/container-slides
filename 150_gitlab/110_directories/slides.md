@@ -6,4 +6,16 @@
 
 ---
 
+## Directory layout
+
 XXX
+
+XXX /var/opt/gitlab
+
+XXX /var/log/gitlab
+
+---
+
+## Logs
+
+XXX /var/log/gitlab/**/

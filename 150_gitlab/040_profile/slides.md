@@ -10,12 +10,17 @@
 
 Personal information
 
-Personal access tokens
-
 Notifications
 
-SSH keys https://docs.gitlab.com/ee/user/ssh.html
+Personal access tokens
 
-GPG keys https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/
+SSH keys [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/ssh.html)
+
+GPG keys [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/)
 
 Preferences
+
+### Hands-On
+
+1. XXX notifications
+1. XXX theme?
