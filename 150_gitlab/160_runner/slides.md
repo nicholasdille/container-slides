@@ -14,11 +14,17 @@ XXX https://docs.gitlab.com/runner/
 
 XXX https://gitlab.com/gitlab-org/gitlab-runner
 
-XXX executors: shell, docker, docker-windows, docker-ssh, ssh, parallels, virtualbox, docker+machine, docker-ssh+machine, kubernetes
+Supported executors: shell, docker, docker-windows, docker-ssh, ssh, parallels, virtualbox, docker+machine, docker-ssh+machine, kubernetes
+
+### Shell
 
 XXX shell
 
+### Docker
+
 XXX docker
+
+### Kubernetes
 
 XXX kubernetes
 
@@ -31,6 +37,12 @@ XXX shared, group, specific (project)
 XXX select by tags
 
 XXX https://docs.gitlab.com/runner/configuration/advanced-configuration.html
+
+---
+
+## Hands-On
+
+XXX
 
 ```bash
 docker compose --project-name gitlab \
