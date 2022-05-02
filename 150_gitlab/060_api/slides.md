@@ -8,41 +8,36 @@
 
 ## Overview
 
-XXX https://docs.gitlab.com/ee/api/
+GitLab offers a very extensive API [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/)
 
-XXX /api/v4/
+The API is located at `/api/v4/`
 
-XXX https://docs.gitlab.com/ee/api/#how-to-use-the-api
+The notes how to use the API [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#how-to-use-the-api) include:
 
-XXX use ID or url-encoded path (`/` is `%2F`)
-
-XXX rate limits (see earlier)
+- Authentication (see next slides)
+- Pagination (see next slides)
+- Objects (projects, group etc.) are referenced by ID or url-encoded path (`/` is `%2F`)
+- Rate limits (mentioned earlier)
 
 ---
 
 ## Authentication
 
-XXX https://docs.gitlab.com/ee/api/#authentication
+Authentication [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#authentication) using a token (personal/group/project)
 
-XXX auth using personal/group/project token (plus more specific cases)
-
-XXX in HTTP header
+Send token in HTTP header using `Private-Token`:
 
 ```
-curl --header "PRIVATE-TOKEN: <your_access_token>" "https://gitlab.example.com/api/v4/projects"
+curl --header "Private-Token: <your_access_token>" "https://gitlab.example.com/api/v4/projects"
 ```
 
 ---
 
 ## Pagination
 
-XXX https://docs.gitlab.com/ee/api/#pagination
+Pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#pagination) done by offset
 
-XXX pagination: offset-based and keyset-based
-
-XXX offset-based pagination is well-known
-
-XXX GitLab API returns HTTP headers
+GitLab API returns HTTP headers:
 
 | Header          | Description              |
 |-----------------|--------------------------|
@@ -53,8 +48,14 @@ XXX GitLab API returns HTTP headers
 | `x-total`       | Total number of items    |
 | `x-total-pages` | Total number of pages    |
 
+Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#keyset-based-pagination) is also supported
+
 ---
 
 ## Resources
 
 XXX https://docs.gitlab.com/ee/api/api_resources.html
+
+### Hands-On
+
+XXX
