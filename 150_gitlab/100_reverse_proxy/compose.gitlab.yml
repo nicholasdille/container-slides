@@ -18,7 +18,7 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
 
-        #external_url 'http://gitlab.172.20.57.234.nip.io'
+        external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
         gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
 
         # Prevent conflict with host SSH port
@@ -34,7 +34,7 @@ services:
       traefik.enable: "true"
       traefik.http.services.www.loadbalancer.server.port: 80
       traefik.http.routers.www.entrypoints: http
-      traefik.http.routers.www.rule: HostRegexp(`gitlab.{domain:.+}`)
+      traefik.http.routers.www.rule: HostRegexp(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.tcp.services.ssh.loadbalancer.server.port: 2222
       traefik.tcp.routers.ssh.entrypoints: ssh
-      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.172.17.160.88.nip.io`)
+      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`)

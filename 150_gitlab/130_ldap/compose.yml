@@ -14,7 +14,7 @@ services:
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
-        #external_url 'http://gitlab.172.20.57.234.nip.io'
+        #external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
         gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
 
         gitlab_rails['ldap_enabled'] = true
@@ -107,4 +107,4 @@ services:
       traefik.enable: "true"
       traefik.http.services.keycloak.loadbalancer.server.port: 8080
       traefik.http.routers.keycloak.entrypoints: http
-      traefik.http.routers.keycloak.rule: HostRegexp(`keycloak.{domain:.+}`)
+      traefik.http.routers.keycloak.rule: HostRegexp(`keycloak.${DOMAIN:?You must supply DOMAIN}`)

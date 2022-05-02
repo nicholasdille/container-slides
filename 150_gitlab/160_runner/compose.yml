@@ -5,6 +5,8 @@ services:
   runner:
     build:
       context: .
+    environment:
+      REGISTRATION_TOKEN: ${REGISTRATION_TOKEN:?You must supply REGISTRATION_TOKEN}
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock
