@@ -7,6 +7,14 @@ if test -z "${REGISTRATION_TOKEN}"; then
     exit 1
 fi
 
+# PREDEFINED: URL of the GitLab server
+: "${CI_SERVER_URL:=http://gitlab}"
+export CI_SERVER_URL
+
+# PREDEFINED: Executor type
+: "${RUNNER_EXECUTOR:=shell}"
+export RUNNER_EXECUTOR
+
 # PREDEFINED: All projects can use the runner
 : "${REGISTER_LOCKED:=false}"
 export REGISTER_LOCKED
@@ -19,5 +27,7 @@ export REGISTER_RUN_UNTAGGED
 : "${RUNNER_TAG_LIST:=docker}"
 export RUNNER_TAG_LIST
 
+export CONFIG_FILE=/etc/gitlab-runner/config.toml
+
 gitlab-runner register --non-interactive
-exec gitlab-runner run --user gitlab-runner
+exec gitlab-runner --debug run --user gitlab-runner

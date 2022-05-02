@@ -107,4 +107,4 @@ services:
       traefik.enable: "true"
       traefik.http.services.keycloak.loadbalancer.server.port: 8080
       traefik.http.routers.keycloak.entrypoints: http
-      traefik.http.routers.keycloak.rule: HostRegexp(`keycloak.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.keycloak.rule: Host(`keycloak.${DOMAIN:?You must supply DOMAIN}`) || Host(`keycloak.${IP:?You must supply IP}.nip.io`)

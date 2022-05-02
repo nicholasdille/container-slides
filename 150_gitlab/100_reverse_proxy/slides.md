@@ -8,8 +8,31 @@
 
 ## Reverse Proxy in front of GitLab
 
-XXX
+Central service for...
 
-XXX create volumes (optional)
+- Request routing
+- SSL offloading
 
-XXX reset by removing volumes
+Examples in this workshop use [`traefik`](https://traefik.io/traefik/)
+
+XXX labels
+
+---
+
+## Configuration
+
+Services are reachable by `NAME.seatN.inmylab.de` or `NAME.IP.nip.io`
+
+```
+docker compose --project-name gitlab \
+    --file compose.traefik.yml \
+    --file compose.gitlab.yml \
+    up -d
+```
+
+Reset by recreating volumes
+
+VMs have environment variables:
+
+- `DOMAIN`
+- `IP`

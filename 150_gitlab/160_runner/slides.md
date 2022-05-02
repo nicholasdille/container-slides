@@ -6,43 +6,41 @@
 
 ---
 
-## Runner
+## Overview
 
 <i class="fa-duotone fa-person-running fa-4x fa-duotone-colors" style="float: right;"></i>
 
-XXX https://docs.gitlab.com/runner/
+Runners [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI
 
-XXX https://gitlab.com/gitlab-org/gitlab-runner
-
-Supported executors: shell, docker, docker-windows, docker-ssh, ssh, parallels, virtualbox, docker+machine, docker-ssh+machine, kubernetes
+Supported executors: `shell`, `docker`, `docker-windows`, `docker-ssh`, `ssh`, `parallels`, `virtualbox`, `docker+machine`, `docker-ssh+machine`, `kubernetes`
 
 ### Shell
 
-XXX shell
+Jobs are executed in the context of the runner
 
 ### Docker
 
-XXX docker
+Jobs are executed in a dedicated container
 
 ### Kubernetes
 
-XXX kubernetes
+Jobs are executed in a dedicated pod
 
 ---
 
-## XXX
+## Details
 
-XXX shared, group, specific (project)
+Runner can be shared across the instance of GitLab
 
-XXX select by tags
+They can be specific to a group of project
 
-XXX https://docs.gitlab.com/runner/configuration/advanced-configuration.html
+Jobs select runners by specifying a tag
 
----
+Extensive configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
 
-## Hands-On
+### Hands-On
 
-XXX
+Add runner to GitLab instance:
 
 ```bash
 docker compose --project-name gitlab \

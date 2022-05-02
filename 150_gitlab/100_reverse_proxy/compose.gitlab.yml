@@ -34,7 +34,7 @@ services:
       traefik.enable: "true"
       traefik.http.services.www.loadbalancer.server.port: 80
       traefik.http.routers.www.entrypoints: http
-      traefik.http.routers.www.rule: HostRegexp(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || Host(`gitlab.${IP:?You must supply IP}.nip.io`)
       traefik.tcp.services.ssh.loadbalancer.server.port: 2222
       traefik.tcp.routers.ssh.entrypoints: ssh
-      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)

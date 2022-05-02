@@ -31,4 +31,4 @@ services:
       traefik.enable: "true"
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.rule: HostRegexp(`traefik.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`) || Host(`traefik.${IP:?You must supply IP}.nip.io`)

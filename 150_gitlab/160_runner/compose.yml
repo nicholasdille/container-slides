@@ -4,9 +4,11 @@ services:
 
   runner:
     build:
-      context: .
+      context: $PWD
     environment:
       REGISTRATION_TOKEN: ${REGISTRATION_TOKEN:?You must supply REGISTRATION_TOKEN}
+      RUNNER_EXECUTOR: docker
+      DOCKER_IMAGE: alpine
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock
