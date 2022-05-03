@@ -8,6 +8,8 @@
 
 ## Package Registry
 
+<i class="fa-duotone fa-box-check fa-4x fa-duotone-colors" style="float: right;"></i>
+
 Use your favorite package manager against GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/packages/package_registry/index.html)
 
 Authentication using personal/group/project/job token
@@ -25,6 +27,8 @@ Authentication using personal/group/project/job token
 ---
 
 ## Container Registry
+
+<i class="fa-duotone fa-container-storage fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
 Store container images in GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/packages/container_registry/index.html)
 
@@ -50,6 +54,8 @@ registry['storage'] = {
 ---
 
 ## Infrastructure Registry
+
+<i class="fa-duotone fa-box-taped fa-4x fa-duotone-colors" style="float: right;"></i>
 
 Store Terraform modules in GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/packages/infrastructure_registry/index.html)
 

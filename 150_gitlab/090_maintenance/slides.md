@@ -14,6 +14,8 @@ XXX banners /admin/broadcast_messages
 
 ## Repository maintenance
 
+<i class="fa-brands fa-git-alt fa-4x" style="float: right;"></i>
+
 Runs `git fsck` to find silent disk corruption
 
 Incremental `git repack` after 10 pushes

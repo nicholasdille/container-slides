@@ -22,6 +22,8 @@ XXX correlation IDs: https://docs.gitlab.com/ee/administration/troubleshooting/t
 
 ## SSH
 
+<i class="fa-duotone fa-terminal fa-4x fa-duotone-colors-inverted" style="float: right; padding-left: 0.5em;"></i>
+
 Retrieve users public keys:
 
 ```bash
@@ -44,6 +46,8 @@ ssh -Tvvv -i id_rsa git@gitlab.<DOMAIN>
 ---
 
 ## Tokens
+
+<i class="fa-duotone fa-passport fa-4x fa-duotone-colors" style="float: right;"></i>
 
 Find owner of access token
 

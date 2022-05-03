@@ -8,6 +8,8 @@
 
 ## Overview
 
+<i class="fa-duotone fa-gears fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+
 GitLab offers a very extensive API [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/)
 
 The API is located at `/api/v4/`
@@ -27,17 +29,22 @@ XXX https://docs.gitlab.com/ee/api/api_resources.html
 
 ## Authentication
 
+<i class="fa-duotone fa-key-skeleton fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+
 Authentication [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#authentication) using a token (personal/group/project)
 
 Send token in HTTP header using `Private-Token`:
 
 ```
-curl --header "Private-Token: <your_access_token>" "https://gitlab.example.com/api/v4/projects"
+curl "https://gitlab.example.com/api/v4/projects" \
+    --header "Private-Token: <your_access_token>"
 ```
 
 ---
 
 ## Pagination
+
+<i class="fa-duotone fa-scroll-old fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
 Pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#pagination) done by offset
 

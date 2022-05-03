@@ -50,6 +50,18 @@
     font-style: italic;
 }
 
+.reveal ul.fa-ul {
+    list-style-type: none;
+}
+
+.reveal .fa-li {
+    left: calc(var(--fa-li-width, 1em)*-1);
+}
+
+.reveal .fa-ul > li {
+    padding-left: 1em;
+}
+
 .fa-duotone-colors {
     --fa-primary-color: var(--r-heading-color);
     --fa-secondary-color: grey;

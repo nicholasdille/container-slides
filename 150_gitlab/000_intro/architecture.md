@@ -2,7 +2,7 @@
 
 ## Architecture
 
-Written in Ruby
+Written in Ruby <i class="fa-duotone fa-gem fa-duotone-colors"></i>
 
 Consists of multiple services internally
 
@@ -10,4 +10,4 @@ Consists of multiple services internally
 
 GitLab offers reference architectures [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/reference_architectures/)
 
-These include sizing information
+Sizing information included <i class="fa-duotone fa-stars fa-duotone-colors"></i>

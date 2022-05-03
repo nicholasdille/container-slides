@@ -8,7 +8,7 @@
 
 ## Quickstart
 
-Get GitLab quickly up and running in less than 5 minutes
+Get GitLab quickly up and running in less than 5 minutes <i class="fa-duotone fa-clock fa-duotone-colors"></i>
 
 Start local GitLab instance using Docker:
 

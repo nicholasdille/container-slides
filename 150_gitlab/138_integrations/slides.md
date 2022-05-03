@@ -36,7 +36,7 @@ Self-hosted deployment requires Kubernetes
 
 <i class="fa-duotone fa-diagram-project fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Render diagrams from textual descriptions using Kroki [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://kroki.io/ https://docs.gitlab.com/ee/administration/integration/kroki.html)
+Render diagrams from textual descriptions [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/integration/kroki.html) using Kroki [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://kroki.io/)
 
 Many examples [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://kroki.io/examples.html)
 
@@ -55,8 +55,6 @@ docker compose --project-name gitlab \
 Enable Kroki in web UI (Menu -> Admin -> Settings -> General -> Kroki)
 
 Set Kroki URL: `http://kroki`
-
-Enable all additional diagram formats
 
 See `example.md` and commit to repository
 

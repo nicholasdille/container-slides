@@ -8,7 +8,9 @@
 
 ## LDAP
 
-![](150_gitlab/120_ldap/ldap.drawio.svg) <!-- .element: style="width: 50%;" -->
+<i class="fa-duotone fa-book fa-4x fa-duotone-colors" style="float: right;"></i>
+
+![](150_gitlab/120_ldap/ldap.drawio.svg) <!-- .element: style="width: 75%;" -->
 
 Prepare persistent volumes for new components:
 

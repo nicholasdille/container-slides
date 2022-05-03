@@ -34,92 +34,91 @@
 <div class="slides">
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: data-background="150_gitlab/media/fox-5195283_1920.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
+<!-- .slide: data-background="150_gitlab/media/fox-5195283_1920.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
 
-        ![](150_gitlab/media/gitlab-icon-rgb.svg) <!-- .element: style="width: 40%; float: left; margin: 0 -25px 0 -60px;" -->
+![](150_gitlab/media/gitlab-icon-rgb.svg) <!-- .element: style="width: 40%; float: left; margin: 0 -25px 0 -60px;" -->
 
-        # GitLab Ops
+# GitLab Ops
 
-        *Nicholas Dille, Haufe Group*
+*Nicholas Dille, Haufe Group*
 
-        <i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
+<i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
 
-        <i class="fab fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
+<i class="fab fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
 
-        <i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
+<i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
     </textarea></section>
 
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Goals
+## Goals
 
-        (ROCKET) Understand how to deploy
+<i class="fa-solid fa-rocket-launch fa-3x"></i> Understand how to deploy <!-- .element: style="vertical-align: middle;" -->
 
-        (DOCUMENT) Learn how to configure
+<i class="fa-solid fa-file-code fa-3x"></i> Learn how to configure <!-- .element: style="vertical-align: middle;" -->
 
-        (LIGHTBULB) Know the important features
-
-        XXX
+<i class="fa-solid fa-lightbulb-on fa-3x"></i> Know the important features <!-- .element: style="vertical-align: middle;" -->
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Agenda
+## Agenda
 
-        Part 1: Web UI
+| From  | To    | What         |
+|-------|-------|--------------|
+| 09:00 |       | Let's roll   |
+| 10:45 | 11:00 | Coffee Break |
+| 12:30 | 13:30 | Lunch Break  |
+| 15:00 | 15:15 | Coffee Break |
+|       | 17:00 | The End      |
 
-        Part 2: Configuration
+---
 
-        ### Breaks
+## Demos
 
-        10:45 - 11:00 Coffee
+Your personal login data:
 
-        12:30 - 13:30 Lunch
+```plaintext
+hostname;username;password
+seatN.inmylab.de;seat;0123456789abcdef0123456789abcdef
+```
 
-        15:00 - 15:15 Coffee
+Login to VM:
 
-        17:00         The End
+```bash
+ssh seat@seatN.inmylab.de
+```
 
-        ---
+Test VM:
 
-        ## Demos
+```bash
+docker version
+sudo -l
+git clone https://github.com/nicholasdille/container-slides
+```
 
-        Login to VM:
+---
 
-        ```bash
-        ssh seat@seatN.inmylab.de
-        ```
+## Quick links
 
-        Test VM:
+### Part 1 - Web UI
 
-        ```bash
-        docker version
-        sudo -l
-        git clone https://github.com/nicholasdille/container-slides
-        ```
+[Product](#/gitlab_product) - [Architecture](#/gitlab_architecture) - [Quickstart](#/gitlab_quickstart) - [Projects](#/gitlab_projects) - [Users](#/gitlab_users) - [Authentication](#/gitlab_authentication) - [Profile](#/gitlab_profile) - [Server Settings](#/gitlab_server_settings) - [API](#/gitlab_api) - [Maintenance](#/gitlab_maintenance)
 
-        ---
+### Part 2 - Configuration
 
-        ## Quick links
-
-        ### Part 1 - Web UI
-
-        [Product](#/gitlab_product) - [Architecture](#/gitlab_architecture) - [Quickstart](#/gitlab_quickstart) - [Projects](#/gitlab_projects) - [Users](#/gitlab_users) - [Authentication](#/gitlab_authentication) - [Profile](#/gitlab_profile) - [Server Settings](#/gitlab_server_settings) - [API](#/gitlab_api) - [Maintenance](#/gitlab_maintenance)
-
-        ### Part 2 - Configuration
-
-        [Reverse Proxy](#/gitlab_traefik) - [Directories](#/gitlab_directories) - [LDAP](#/gitlab_ldap) - [SMTP](#/gitlab_smtp) - [Registries](#/gitlab_registries) - [Pages](#/gitlab_pages) - [Integrations](#/gitlab_integrations) - [Troubleshooting](#/gitlab_troubleshooting) - [Update](#/gitlab_update) - [Runner](#/gitlab_runner) - [Monitoring](#/gitlab_monitoring) - [Resources](#/gitlab_components) - [Storage](#/gitlab_storage) - [Database](#/gitlab_database)
+[Reverse Proxy](#/gitlab_traefik) - [Directories](#/gitlab_directories) - [LDAP](#/gitlab_ldap) - [SMTP](#/gitlab_smtp) - [Registries](#/gitlab_registries) - [Pages](#/gitlab_pages) - [Integrations](#/gitlab_integrations) - [Troubleshooting](#/gitlab_troubleshooting) - [Update](#/gitlab_update) - [Runner](#/gitlab_runner) - [Monitoring](#/gitlab_monitoring) - [Resources](#/gitlab_components) - [Storage](#/gitlab_storage) - [Database](#/gitlab_database)
     </textarea></section>
 
     <section data-markdown="150_gitlab/000_intro/product.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="150_gitlab/000_intro/architecture.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: class="center" -->
+<!-- .slide: class="center" -->
 
-        <i class="fa-duotone fa-browser fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-browser fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
 
-        ## Part 1 - Web UI
+## Part 1 - Web UI
     </textarea></section>
 
     <section data-markdown="150_gitlab/001_quickstart/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -132,11 +131,11 @@
     <section data-markdown="150_gitlab/090_maintenance/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: class="center" -->
+<!-- .slide: class="center" -->
 
-        <i class="fa-duotone fa-file-code fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-file-code fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
-        ## Part 2 - Configuration
+## Part 2 - Configuration
     </textarea></section>
 
     <section data-markdown="150_gitlab/100_reverse_proxy/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -155,15 +154,23 @@
     <section data-markdown="150_gitlab/190_database/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ![QR code to slides](images/2022-05-05.svg) <!-- .element: style="width: 25%; float: right;" -->
+![QR code to slides](images/2022-05-05.svg) <!-- .element: style="width: 25%; float: right;" -->
 
-        ## Summary
+## Summary
 
-        (ROCKET) Easily deployed using containers
+<ul class="fa-ul">
+<li><span class="fa-li"><i class="fa-solid fa-rocket-launch"></i></span> Easily deployed using containers</li>
 
-        (???) GitLab is packed with features
+<li><span class="fa-li"><i class="fa-solid fa-ball-pile"></i></span> GitLab is packed with features</li>
 
-        (???) Configuration is two-fold - UI and configuration file
+<li><span class="fa-li"><i class="fa-solid fa-hand-peace"></i></span> Configuration is two-fold</li>
+
+<li><span class="fa-li"><i class="fa-solid fa-gauge-min"></i></span> Restarts are slow</li>
+
+<li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Security issues are patched quickly</li>
+
+<li><span class="fa-li"><i class="fa-solid fa-infinity"></i></span> GitLab covers the whole DevOps process</li>
+</ul>
 </textarea></section>
 </div>
 </div>
