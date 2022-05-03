@@ -2,14 +2,12 @@
 
 ## Architecture
 
-XXX ruby
+Written in Ruby
 
-XXX
+Consists of multiple services internally
 
-![](150_gitlab/000_intro/components.drawio.svg) <!-- .element: style="width: 50%;" -->
+![](150_gitlab/000_intro/components.drawio.svg) <!-- .element: style="width: 75%;" -->
 
-XXX reference architectures
+GitLab offers reference architectures [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/reference_architectures/)
 
-XXX sizing
-
-![](150_gitlab/000_intro/architecture.drawio.svg) <!-- .element: style="width: 50%;" -->
+These include sizing information

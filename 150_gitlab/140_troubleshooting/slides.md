@@ -45,9 +45,11 @@ ssh -Tvvv -i id_rsa git@gitlab.<DOMAIN>
 
 ## Tokens
 
+Find owner of access token
+
 ### Access Token
 
-XXX personal
+Example for personal access token:
 
 ```bash
 curl -sH "Private-Token: <TOKEN>" http://gitlab.<DOMAIN>/api/v4/user \
@@ -55,7 +57,7 @@ curl -sH "Private-Token: <TOKEN>" http://gitlab.<DOMAIN>/api/v4/user \
 <USERNAME>
 ```
 
-XXX group with id 6
+Example for group access token (group ID 6):
 
 ```bash
 curl -sH "Private-Token: <TOKEN>" http://gitlab.<DOMAIN>/api/v4/user | jq -r .username
@@ -64,4 +66,4 @@ group_6_bot
 
 ### Deploy Token
 
-XXX
+No known way to find group or project
