@@ -1,4 +1,4 @@
-<!-- .slide: class="vertical-center" -->
+<!-- .slide: id="gitlab_resources" class="vertical-center" -->
 
 <i class="fa-duotone fa-network-wired fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 

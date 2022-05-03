@@ -1,4 +1,4 @@
-<!-- .slide: class="vertical-center" -->
+<!-- .slide: id="gitlab_profile" class="vertical-center" -->
 
 <i class="fa-duotone fa-id-card fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 

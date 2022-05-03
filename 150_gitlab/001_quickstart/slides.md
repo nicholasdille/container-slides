@@ -1,4 +1,4 @@
-<!-- .slide: class="vertical-center" -->
+<!-- .slide: id="gitlab_quickstart" class="vertical-center" -->
 
 <i class="fa-duotone fa-rocket-launch fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
@@ -37,7 +37,7 @@ done
 
 <i class="fa-duotone fa-medal fa-3x fa-duotone-colors" style="float: right;"></i>
 
-Go to XXX
+Go to https://gitlab.seatN.inmylab.de
 
 Enter user `root`
 

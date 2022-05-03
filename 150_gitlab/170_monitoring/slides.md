@@ -1,4 +1,4 @@
-<!-- .slide: class="vertical-center" -->
+<!-- .slide: id="gitlab_monitoring" class="vertical-center" -->
 
 <i class="fa-duotone fa-monitor-waveform fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 

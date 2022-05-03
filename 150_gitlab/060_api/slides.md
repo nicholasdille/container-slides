@@ -1,4 +1,4 @@
-<!-- .slide: class="vertical-center" -->
+<!-- .slide: id="gitlab_api" class="vertical-center" -->
 
 <i class="fa-duotone fa-gears fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
@@ -18,6 +18,10 @@ The notes how to use the API [<i class="fa-solid fa-arrow-up-right-from-square">
 - Pagination (see next slides)
 - Objects (projects, group etc.) are referenced by ID or url-encoded path (`/` is `%2F`)
 - Rate limits (mentioned earlier)
+
+### Resources
+
+XXX https://docs.gitlab.com/ee/api/api_resources.html
 
 ---
 
@@ -52,10 +56,6 @@ Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 
 ---
 
-## Resources
-
-XXX https://docs.gitlab.com/ee/api/api_resources.html
-
-### Hands-On
+## Hands-On
 
 XXX

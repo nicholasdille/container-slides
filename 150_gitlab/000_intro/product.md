@@ -1,3 +1,5 @@
+<!-- .slide: id="gitlab_product" -->
+
 ## GitLab
 
 ### The DevOps Platform

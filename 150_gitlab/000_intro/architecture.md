@@ -1,3 +1,5 @@
+<!-- .slide: id="gitlab_architecture" -->
+
 ## Architecture
 
 XXX ruby
@@ -8,6 +10,6 @@ XXX
 
 XXX reference architectures
 
-XXX
+XXX sizing
 
 ![](150_gitlab/000_intro/architecture.drawio.svg) <!-- .element: style="width: 50%;" -->

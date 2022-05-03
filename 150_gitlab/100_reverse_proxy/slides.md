@@ -1,4 +1,4 @@
-<!-- .slide: class="vertical-center" -->
+<!-- .slide: id="gitlab_traefik" class="vertical-center" -->
 
 <i class="fa-duotone fa-signs-post fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
@@ -15,7 +15,7 @@ Central service for...
 
 Examples in this workshop use [`traefik`](https://traefik.io/traefik/)
 
-XXX labels
+`traefik` is configured using container labels
 
 ---
 

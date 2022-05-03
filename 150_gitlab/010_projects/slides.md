@@ -1,4 +1,4 @@
-<!-- .slide: class="vertical-center" -->
+<!-- .slide: id="gitlab_projects" class="vertical-center" -->
 
 <i class="fa-duotone fa-building fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
@@ -88,7 +88,7 @@ For example: repository, issues etc.
 
 *Maintainer* for merging
 
-*Owner* for XXX
+*Owner* for permissions
 
 ### Members
 
@@ -109,8 +109,6 @@ Rename project to change display name
 Change path to adjust URL
 
 Transfer to another group
-
-XXX more?
 
 ### Hands-On
 
