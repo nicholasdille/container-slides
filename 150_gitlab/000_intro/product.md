@@ -34,16 +34,12 @@
 
 ---
 
-## Cloud or self-managed
+## Options
 
-XXX
+### Cloud or self-hosted
 
----
-
-## Pricing
+### Pricing
 
 1. Free - $0
 1. Premium - $19 per user and month
 1. Ultimate - $99 per user and month
-
-XXX features

@@ -22,7 +22,7 @@ Grafana ships with custom dashboards
 
 1. Click link (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Monitoring <i class="fa-regular fa-arrow-right"></i> Metrics Dashboard)<br>or use the direct link https://gitlab.${DOMAIN}/-/grafana
 
-XXX
+1. Log in using GitLab
 
 ---
 
