@@ -22,11 +22,13 @@ Uses open-source project internally [<i class="fa-solid fa-arrow-up-right-from-s
 
 <i class="fa-duotone fa-browser fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Run full web-based IDE using Gitpod [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.gitpod.io/ https://docs.gitlab.com/ee/integration/gitpod.html)
+Run full web-based IDE [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/gitpod.html) using Gitpod [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.gitpod.io/)
 
-Uses web-based Visual Studio Code
+Uses web-based Visual Studio Code [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://vscode.dev/)
 
-Free tier of cloud service requires public servers
+Free tier of cloud service requires public repositories
+
+![](150_gitlab/138_integrations/gitpod.drawio.svg) <!-- .element: style="width: 60%;" -->
 
 Self-hosted deployment requires Kubernetes
 
@@ -52,7 +54,7 @@ docker compose --project-name gitlab \
     up -d
 ```
 
-Enable Kroki in web UI (Menu -> Admin -> Settings -> General -> Kroki)
+Enable Kroki in web UI (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> General <i class="fa-regular fa-arrow-right"></i> Kroki)
 
 Set Kroki URL: `http://kroki`
 
@@ -64,6 +66,16 @@ See `example.md` and commit to repository
 
 <i class="fa-brands fa-jira fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-XXX https://docs.gitlab.com/ee/integration/jira/
+Integration of Jira work items with code in GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/jira/)
 
-XXX two flavours
+Two flavours
+
+See feature comparison [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/jira/#direct-feature-comparison)
+
+### Jira integration
+
+Connects one or more project to a Jira instance [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/jira/configure.html)
+
+### Jira development panel integration
+
+Connects all projects under a group to a Jira instance [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/jira/development_panel.html#configure-the-integration)

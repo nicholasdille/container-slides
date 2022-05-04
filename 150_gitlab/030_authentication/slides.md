@@ -25,14 +25,14 @@ Permissions inherited from user
 
 ### Hands-On
 
-1. Create a PAT
+1. Create a personal access token
 1. Clone a repository using the PAT instead of the password
 
 ---
 
 ## Group and Project Credentials
 
-<i class="fa-duotone fa-bucket fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-id-card-clip fa-4x fa-duotone-colors" style="float: right;"></i>
 
 ### Scoped to group
 

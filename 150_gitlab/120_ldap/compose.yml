@@ -14,8 +14,9 @@ services:
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
-        #external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
-        gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+        
+        external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
 
         gitlab_rails['ldap_enabled'] = true
         gitlab_rails['ldap_servers'] = YAML.load <<-EOS
@@ -82,7 +83,7 @@ services:
 
   # https://hub.docker.com/r/bitnami/keycloak
   # https://edenmal.moe/post/2018/GitLab-Keycloak-SAML-2-0-OmniAuth-Provider/
-  keycloak:
+  x-keycloak:
     image: bitnami/keycloak:16.1.1
     environment:
       KEYCLOAK_DATABASE_HOST: postgresql

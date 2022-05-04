@@ -19,7 +19,13 @@ services:
         gitlab_rails['time_zone'] = 'Europe/Berlin'
 
         external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
-        gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
+
+        #gitlab_pages['enable'] = true
+        #external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
+        ## Set listen-proxy when behind reverse proxy. see https://docs.gitlab.com/ee/administration/pages/#configure-listener-for-reverse-proxy-requests
+        #gitlab_pages['listen_proxy'] = "0.0.0.0:8090"
+        ## Fix for https://gitlab.com/gitlab-org/gitlab-pages/-/issues/534
+        #gitlab_pages['internal_gitlab_server'] = "http://127.0.0.1"
 
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
@@ -35,6 +41,9 @@ services:
       traefik.http.services.www.loadbalancer.server.port: 80
       traefik.http.routers.www.entrypoints: http
       traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || Host(`gitlab.${IP:?You must supply IP}.nip.io`)
+      #traefik.http.services.pages.loadbalancer.server.port: 8090
+      #traefik.http.routers.pages.entrypoints: http
+      #traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostRegexp(`{subdomain:.+}gitlab.${IP:?You must supply IP}.nip.io`)
       traefik.tcp.services.ssh.loadbalancer.server.port: 2222
       traefik.tcp.routers.ssh.entrypoints: ssh
       traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)

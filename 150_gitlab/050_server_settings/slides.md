@@ -16,8 +16,6 @@ Default visibility
 
 Available visibility options
 
-XXX
-
 ---
 
 ## Sign-up

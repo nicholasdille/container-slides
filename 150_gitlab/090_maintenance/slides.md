@@ -8,7 +8,11 @@
 
 ## Maintenance
 
-XXX banners /admin/broadcast_messages
+<i class="fa-duotone fa-triangle-exclamation fa-4x fa-duotone-colors" style="float: right;"></i>
+
+Show a banner announcing maintenance work
+
+Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Messages
 
 ---
 

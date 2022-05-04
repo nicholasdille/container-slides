@@ -8,6 +8,8 @@
 
 ## Database
 
+<i class="fa-duotone fa-database fa-4x fa-duotone-colors" style="float: right;"></i>
+
 Important tables:
 
 | Table        | Contents                                                                         |

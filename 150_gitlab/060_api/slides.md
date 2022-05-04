@@ -23,7 +23,7 @@ The notes how to use the API [<i class="fa-solid fa-arrow-up-right-from-square">
 
 ### Resources
 
-XXX https://docs.gitlab.com/ee/api/api_resources.html
+Resources for every aspect of GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/api_resources.html)
 
 ---
 
@@ -65,4 +65,19 @@ Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 
 ## Hands-On
 
-XXX
+1. Retrieve projects using a private access token:
+
+    ```bash
+    curl http://gitlab.${DOMAIN}/api/v4/projects \
+        --silent \
+        --header "Private-Token: <TOKEN>"
+    ```
+
+1. Check pagination headers:
+
+    ```bash
+    curl http://gitlab.${DOMAIN}/api/v4/projects \
+        --silent \
+        --verbose \
+        --header "Private-Token: <TOKEN>"
+    ```

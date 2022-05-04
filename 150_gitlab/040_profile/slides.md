@@ -8,6 +8,8 @@
 
 ## User Profile
 
+<i class="fa-duotone fa-id-card fa-4x fa-duotone-colors" style="float: right;"></i>
+
 Personal information
 
 Notifications
@@ -22,5 +24,6 @@ Preferences
 
 ### Hands-On
 
-1. XXX notifications
-1. XXX theme?
+1. Configure global configuration level
+1. Configure individual notifications for a group or a project
+1. Configure appearance under preferences

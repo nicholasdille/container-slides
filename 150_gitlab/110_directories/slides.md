@@ -10,11 +10,21 @@
 
 <i class="fa-duotone fa-folder-tree fa-4x fa-duotone-colors" style="float: right;"></i>
 
-XXX /etc/gitlab (`$GITLAB_OMNIBUS_CONFIG`)
+GitLab uses a clean top level directory layout
 
-XXX /var/opt/gitlab
+### Configuration
 
-XXX /var/log/gitlab
+`/etc/gitlab`
+
+Generated from `$GITLAB_OMNIBUS_CONFIG`
+
+### Runtime data
+
+`/var/opt/gitlab`
+
+### Logs
+
+`/var/log/gitlab`
 
 ---
 
@@ -22,4 +32,16 @@ XXX /var/log/gitlab
 
 <i class="fa-duotone fa-align-left fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-XXX /var/log/gitlab/**/
+Logs are located in `/var/log/gitlab`
+
+Subdirectory per service
+
+### Important log files
+
+GitLab Workhorse: `/var/log/gitlab/gitlab-workhorse/current`
+
+GitLab Rails: `/var/log/gitlab/gitlab-rails/*.log`
+
+Gitaly: `/var/log/gitlab/gitaly/current`
+
+Sidekiq: `/var/log/gitlab/sidekiq/current`

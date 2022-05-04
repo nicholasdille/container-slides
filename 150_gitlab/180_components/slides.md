@@ -8,11 +8,15 @@
 
 ## Components
 
+<i class="fa-duotone fa-network-wired fa-4x fa-duotone-colors" style="float: right;"></i>
+
 So far GitLab was deployed as a monolith
 
 But GitLab can be run as separate services
 
 ![](150_gitlab/180_components/architecture.drawio.svg) <!-- .element: style="width: 75%;" -->
+
+---
 
 ### Hands-On
 

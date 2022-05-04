@@ -8,15 +8,41 @@
 
 ## Troubleshooting
 
-XXX https://docs.gitlab.com/ee/administration/troubleshooting/
+<i class="fa-duotone fa-briefcase-medical fa-4x fa-duotone-colors" style="float: right;"></i>
 
-XXX sidekiq (job processor): https://docs.gitlab.com/ee/administration/troubleshooting/sidekiq.html
+GitLab comes with extensive troubleshooting guides [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/troubleshooting/)
 
-XXX gitlab rails: https://docs.gitlab.com/ee/administration/troubleshooting/gitlab_rails_cheat_sheet.html
+### For example...
 
-XXX gitlabsos (omnibus, docker): https://gitlab.com/gitlab-com/support/toolbox/gitlabsos/
+Sidekiq (job processor) [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/troubleshooting/sidekiq.html)
 
-XXX correlation IDs: https://docs.gitlab.com/ee/administration/troubleshooting/tracing_correlation_id.html
+GitLab rails [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/troubleshooting/gitlab_rails_cheat_sheet.html)
+
+### ...as well as tools...
+
+gitlabsos (omnibus, docker) [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://gitlab.com/gitlab-com/support/toolbox/gitlabsos/)
+
+kubesos [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://gitlab.com/gitlab-com/support/toolbox/kubesos)
+
+### ...and tracing across logs
+
+Correlation IDs [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/troubleshooting/tracing_correlation_id.html)
+
+---
+
+## Reset the root password
+
+<i class="fa-duotone fa-terminal fa-4x fa-duotone-colors-inverted" style="float: right; padding-left: 0.5em;"></i>
+
+If you cannot log into GitLab using `root`
+
+But you have access to the console
+
+Use `gitlab-rake`:
+
+```bash
+docker exec -it gitlab gitlab-rake "gitlab:password:reset[root]"
+```
 
 ---
 

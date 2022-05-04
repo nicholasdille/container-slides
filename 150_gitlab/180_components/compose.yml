@@ -19,9 +19,8 @@ services:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
-
-        #external_url 'http://gitlab.172.20.57.234.nip.io'
-        gitlab_rails['initial_root_password'] = 'MySuperSecretAndSecurePass0rd!'
+        
+        external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
 
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222

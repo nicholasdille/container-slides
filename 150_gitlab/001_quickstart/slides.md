@@ -8,7 +8,9 @@
 
 ## Quickstart
 
-Get GitLab quickly up and running in less than 5 minutes <i class="fa-duotone fa-clock fa-duotone-colors"></i>
+<i class="fa-duotone fa-clock fa-3x fa-duotone-colors" style="float: right;"></i>
+
+Get GitLab quickly up and running in less than 5 minutes
 
 Start local GitLab instance using Docker:
 
@@ -27,7 +29,8 @@ Wait for container to finish starting:
 while docker container inspect gitlab \
       | jq --raw-output '.[].State.Health.Status' \
       | grep -q "starting"; do
-    sleep 2
+    echo "Waiting for GitLab to finish starting..."
+    sleep 10
 done
 ```
 

@@ -22,7 +22,7 @@
     --r-link-color-dark: #7cbad4;
     --r-link-color-hover: #7cbad4;
     --r-selection-background-color: #dcdcdc;
-    --r-selection-color: white;
+    --r-selection-color: black;
 }
 
 .reveal .slides {
@@ -48,6 +48,10 @@
 
 .reveal h4 {
     font-style: italic;
+}
+
+.reveal ul {
+    list-style-type: circle;
 }
 
 .reveal ul.fa-ul {

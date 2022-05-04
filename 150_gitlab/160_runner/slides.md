@@ -30,6 +30,8 @@ Jobs are executed in a dedicated pod
 
 ## Details
 
+<i class="fa-duotone fa-person-running fa-4x fa-duotone-colors" style="float: right;"></i>
+
 Runner can be shared across the instance of GitLab
 
 They can be specific to a group of project

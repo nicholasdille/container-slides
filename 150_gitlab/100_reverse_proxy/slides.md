@@ -8,6 +8,8 @@
 
 ## Reverse Proxy in front of GitLab
 
+<i class="fa-duotone fa-signs-post fa-4x fa-duotone-colors" style="float: right;"></i>
+
 Central service for...
 
 - Request routing
@@ -21,7 +23,14 @@ Examples in this workshop use [`traefik`](https://traefik.io/traefik/)
 
 ## Configuration
 
-Services are reachable by `NAME.seatN.inmylab.de` or `NAME.IP.nip.io`
+<i class="fa-duotone fa-signs-post fa-4x fa-duotone-colors" style="float: right;"></i>
+
+Services are reachable by...
+
+- `NAME.seatN.inmylab.de`
+- `NAME.IP.nip.io` (fallback)
+
+Deploy using `docker compose` v2:
 
 ```
 docker compose --project-name gitlab \
@@ -32,7 +41,7 @@ docker compose --project-name gitlab \
 
 Reset by recreating volumes
 
-VMs have environment variables:
+Your VM has environment variables:
 
 - `DOMAIN`
 - `IP`
