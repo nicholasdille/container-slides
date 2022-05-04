@@ -24,6 +24,8 @@ Check for update in admin area (Menu <i class="fa-regular fa-arrow-right"></i> A
 
 Upcoming releases [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/upcoming-releases/)
 
+Upcoming releases by product tier [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/direction/paid_tiers/)
+
 Deprecations are documented [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/update/deprecations)
 
 ---
