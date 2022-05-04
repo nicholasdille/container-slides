@@ -20,9 +20,16 @@ Grafana ships with custom dashboards
 
 1. Enable link to integrated Grafana (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Monitoring and profiling <i class="fa-regular fa-arrow-right"></i> Metrics - Grafana)
 
-1. Click link (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Monitoring <i class="fa-regular fa-arrow-right"></i> Metrics Dashboard)<br>or use the direct link https://gitlab.${DOMAIN}/-/grafana
+1. Go to Grafana (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Monitoring <i class="fa-regular fa-arrow-right"></i> Metrics Dashboard)
 
-1. Log in using GitLab
+1. Reset password for Grafana [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/grafana.html#resetting-the-admin-password):
+
+    ```bash
+    docker compose --project-name gitlab exec gitlab \
+        gitlab-ctl set-grafana-password
+    ```
+
+1. Log in to Grafana with user `admin` and your password
 
 ---
 

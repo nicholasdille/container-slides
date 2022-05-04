@@ -36,6 +36,10 @@ services:
 
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
+
+        grafana['alerting_enabled'] = true
+        # Fix for chicken-and-egg issue with oauth
+        grafana['disable_login_form'] = false
     # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
     shm_size: 256m
     volumes:
