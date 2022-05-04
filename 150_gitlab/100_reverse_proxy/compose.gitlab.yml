@@ -18,6 +18,8 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
 
+        gitlab_rails['usage_ping_enabled'] = false
+
         external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
