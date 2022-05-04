@@ -28,7 +28,7 @@ Uses web-based Visual Studio Code [<i class="fa-solid fa-arrow-up-right-from-squ
 
 Free tier of cloud service requires public repositories
 
-![](150_gitlab/138_integrations/gitpod.drawio.svg) <!-- .element: style="width: 60%;" -->
+![](150_gitlab/135_integrations/gitpod.drawio.svg) <!-- .element: style="width: 60%;" -->
 
 Self-hosted deployment requires Kubernetes
 

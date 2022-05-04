@@ -27,7 +27,11 @@ export REGISTER_RUN_UNTAGGED
 : "${RUNNER_TAG_LIST:=docker}"
 export RUNNER_TAG_LIST
 
-export CONFIG_FILE=/etc/gitlab-runner/config.toml
+# PREDEFINED: Docker image
+: "${DOCKER_IMAGE:=alpine}"
+export DOCKER_IMAGE
+
+printenv
 
 gitlab-runner register --non-interactive
 exec gitlab-runner --debug run --user gitlab-runner

@@ -16,12 +16,33 @@ Extensively customizable [<i class="fa-solid fa-arrow-up-right-from-square"></i>
 
 ### How it works
 
-Deploy to `public/` and create an artifact
+Deploy to `public/` and...
+
+...create an artifact
+
+---
 
 ### Hands-On
 
-Follow the tutorial [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/project/pages/getting_started/pages_from_scratch.html) but...
+1. Create a new top-level group with a new project
+1. Create a file called `index.html`
 
-...choose a template for Jekyll [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://jekyllrb.com/) when creating `.gitlab-ci.yml`
+    ```html
+    <html><body>
+    <h1>GitLab Pages</h1>Test
+    </body></html>
+    ```
 
-Go to the pages configuration to view your page (Settings <i class="fa-regular fa-arrow-right"></i> Pages)
+1. Create a files called `.gitlab-ci.yml`
+
+    ```yaml
+    pages:
+      script:
+      - mkdir public
+      - cp index.html public
+      artifacts:
+        paths:
+        - public
+    ```
+
+1. Go to the pages configuration to view your page (Settings <i class="fa-regular fa-arrow-right"></i> Pages)
