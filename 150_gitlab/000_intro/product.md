@@ -36,10 +36,16 @@
 
 ## Options
 
-### Cloud or self-hosted
+Same pricing [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/) and features [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/self-managed/feature-comparison/) for cloud and self-hosted
 
-### Pricing
+### Free
 
-1. Free - $0
-1. Premium - $19 per user and month
-1. Ultimate - $99 per user and month
+Based on open-source project, allows your own runners, static websites
+
+### Premium [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/premium/) ($19/user/month)
+
+Faster code reviews, advanced CI/CD, enterprise agile planning, release controls, support
+
+### Ultimate [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/ultimate/) ($99/user/month)
+
+Advanced security testing, security risk mitigation, compliance, portfolio management, value stream management, free guest users
