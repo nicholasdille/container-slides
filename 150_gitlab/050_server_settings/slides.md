@@ -56,10 +56,7 @@ Sign-in text
 
 <i class="fa-duotone fa-gauge-high fa-4x fa-duotone-colors" style="float: right;"></i>
 
-Separate rate limits for...
-
-- Unauthenticted requests
-- Authenticated requests
+Separate rate limits for authenticted and unauthenticated requests
 
 Separate rate limits against...
 

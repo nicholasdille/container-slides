@@ -16,6 +16,8 @@ But GitLab can be run as separate services
 
 ![](150_gitlab/180_components/architecture.drawio.svg) <!-- .element: style="width: 75%;" -->
 
+**Warning: This starts GitLab with an empty database!**
+
 ---
 
 ### Hands-On

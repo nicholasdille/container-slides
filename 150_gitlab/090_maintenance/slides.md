@@ -10,9 +10,15 @@
 
 <i class="fa-duotone fa-triangle-exclamation fa-4x fa-duotone-colors" style="float: right;"></i>
 
+### Messages
+
 Show a banner announcing maintenance work
 
 Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Messages
+
+### Maintenance Mode
+
+Switch GitLab into read-only mode [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/maintenance_mode/)
 
 ---
 

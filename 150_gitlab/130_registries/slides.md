@@ -36,7 +36,9 @@ Authentication using personal or deploy token
 
 Naming convention: `gitlab.example.com/mynamespace/myproject`
 
-Integrated cleanup policy
+Integrated cleanup policy [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/packages/container_registry/reduce_container_registry_storage.html#cleanup-policy)
+
+Proxy for upstream images [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/packages/dependency_proxy/)
 
 Optional S3 storage backend
 

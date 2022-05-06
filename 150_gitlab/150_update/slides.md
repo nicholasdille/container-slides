@@ -28,6 +28,8 @@ Upcoming releases by product tier [<i class="fa-solid fa-arrow-up-right-from-squ
 
 Deprecations are documented [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/update/deprecations)
 
+Make sure you have a backup [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/raketasks/backup_restore.html)
+
 ---
 
 ## Hands-On

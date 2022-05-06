@@ -37,3 +37,10 @@ gitlab_rails['gitlab_email_reply_to'] = 'noreply@example.com'
 # Connection pooling
 gitlab_rails['smtp_pool'] = true
 ```
+
+Test the SMTP configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/smtp.html#testing-the-smtp-configuration):
+
+```bash
+gitlab-rails console
+Notify.test_email('me@some.com', 'Subject', 'Body').deliver_now
+```
