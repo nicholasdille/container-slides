@@ -40,7 +40,7 @@ done
 
 <i class="fa-duotone fa-medal fa-3x fa-duotone-colors" style="float: right;"></i>
 
-Go to https://gitlab.seatN.inmylab.de
+Go to http://gitlab.seatN.inmylab.de
 
 Enter user `root`
 

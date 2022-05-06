@@ -45,6 +45,9 @@ Extensive configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 Add runner to GitLab instance:
 
 ```bash
+CI_SERVER_URL=http://gitlab.seatN.inmylab.de \
+REGISTRATION_TOKEN=<TOKEN> \
+RUNNER_EXECUTOR=docker \
 docker compose --project-name gitlab \
     --file ../100_reverse_proxy/compose.traefik.yml \
     --file ../100_reverse_proxy/compose.gitlab.yml \

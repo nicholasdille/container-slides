@@ -12,7 +12,7 @@
 
 GitLab releases regularly [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/releases/categories/releases/)
 
-New minor version on the 20th every month
+New minor version on the 22th every month
 
 New major version every May
 
