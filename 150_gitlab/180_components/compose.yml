@@ -64,14 +64,39 @@ services:
       traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)
 
   db:
-    image: postgres:12
+    image: gitlab/gitlab-ce:14.10.0-ce.0
     environment:
-      POSTGRES_DB: gitlab
-      POSTGRES_USER: gitlab
-      POSTGRES_PASSWORD: gitlab
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+
+        # Disable services
+        sidekiq['enable'] = false
+        puma['enable'] = false
+        registry['enable'] = false
+        gitaly['enable'] = false
+        gitlab_workhorse['enable'] = false
+        nginx['enable'] = false
+        prometheus_monitoring['enable'] = false
+        redis['enable'] = false
+
+        postgresql['enable'] = true
+        postgresql['listen_address'] = '0.0.0.0'
+        postgresql['user'] = 'gitlab'
+        # password=gitlab
+        # username=gitlab
+        # echo -n '${password}${username}' | md5sum - | cut -d' ' -f1`
+        postgresql['sql_user_password'] = 'b7a289c0600988fe8e709dd2887e4d37'
+        postgresql['md5_auth_cidr_addresses'] = ['10.42.0.0/16']
+        postgresql['trust_auth_cidr_addresses'] = ['10.42.0.0/16']
+
+        ## Configure gitlab_rails
+        gitlab_rails['auto_migrate'] = false
+
+        postgres_exporter['enable'] = true
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - postgresql_data:/var/lib/postgresql/data
+    - gitlab_data:/var/opt/gitlab
 
   redis:
     image: gitlab/gitlab-ce:14.10.0-ce.0

@@ -70,3 +70,11 @@ Configure GitLab to use Let's Encrypt [<i class="fa-solid fa-arrow-up-right-from
 Configure traefik to use Let's Encrypt with HTTP challenge [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-http/)
 
 Configure traefik to use Let's Encrypt with DNS challenge [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/)
+
+---
+
+## IDE
+
+XXX Visual Studio Code Web http://vscode.seatN.inmylab.de
+
+XXX Visual Studio Code Remote SSH https://code.visualstudio.com/docs/remote/ssh
