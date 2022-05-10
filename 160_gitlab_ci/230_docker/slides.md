@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_docker" class="vertical-center" -->
 
-<i class="fa-duotone fa-database fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-brands fa-docker fa-8x" style="float: right; color: var(--r-heading-color);"></i>
 
 ## Docker build
 
