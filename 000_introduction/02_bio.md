@@ -4,7 +4,7 @@
 
 <img src="images/NicholasDille.jpg" style="width: 20%; float: right; border-radius: 8px;" />
 
-**Husband, father, ops, automator**
+**Husband, father, ops, automator, runner**
 
 <i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i> [Blogger](https://dille.name) since 2003
 

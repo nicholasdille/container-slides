@@ -6,10 +6,14 @@
 
 <title>WorkShop: GitLab Ops</title>
 
+<!-- https://gauger.io/fonticon/ -->
+<link rel="icon" href="150_gitlab/media/favicon.ico"/>
+
 <link rel="stylesheet" href="media/reveal.js@4.3.1/dist/reveal.css"/>
-<link rel="stylesheet" href="fonts/source-sans-pro.css"/>
-<link rel="stylesheet" href="themes/theme2021.css" id="theme"/>
-<link rel="stylesheet" href="themes/common.css" id="theme"/>
+<link rel="stylesheet" href="media/fonts/source-sans-pro.css"/>
+<link rel="stylesheet" href="media/reveal.js@4.3.1/dist/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="themes/theme2022.css" id="theme"/>
+<link rel="stylesheet" href="themes/common.css"/>
 <link rel="stylesheet" href="media/highlight.js@11.5.0/styles/rainbow.css"/>
 
 <script>
@@ -30,63 +34,131 @@
 <div class="slides">
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: data-background="150_gitlab/media/background.png" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 75%; margin: auto; position: absolute; top: 25%; bottom: 25%; left: 0; right: 0;" -->
+<!-- .slide: data-background="150_gitlab/media/fox-5195283_1920.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
 
-        ![](150_gitlab/media/gitlab-icon-rgb.svg) <!-- .element: style="width: 30%; float: right;" -->
+![](150_gitlab/media/gitlab-icon-rgb.svg) <!-- .element: style="width: 40%; float: left; margin: 0 -25px 0 -60px;" -->
 
-        # GitLab Ops
+# GitLab CI
 
-        Nicholas Dille, Haufe.Group
+*Nicholas Dille, Haufe Group*
 
-        <i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
+<i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
 
-        <i class="fab fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
+<i class="fab fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
 
-        <i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
+<i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
     </textarea></section>
 
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Agenda
+## Agenda
 
-        | Zeit  | Thema |
-        | :---: | :------------------------ |
-        | 09:00 | Intro |
-        | 09:15 | XXX |
-        | 10:45 | Pause |
-        | 11:00 | XXX |
-        | 13:00 | Ende |
+| From  | To    | What         |
+|-------|-------|--------------|
+| 09:00 |       | Let's roll   |
+| 10:45 | 11:00 | Coffee Break |
+| 12:30 | 13:30 | Lunch Break  |
+| 15:00 | 15:15 | Coffee Break |
+|       | 17:00 | The End      |
 
-        --
+---
 
-        ## Demos
+## Demos
 
-        Login to VM:
+Your personal login data:
 
-        ```bash
-        ssh seat@seatN.inmylab.de
-        ```
+```plaintext
+hostname;username;password
+seatN.inmylab.de;seat;0123456789abcdef0123456789abcdef
+```
 
-        Test VM:
+Login to VM:
 
-        ```bash
-        docker version
-        sudo -l
-        git clone https://github.com/nicholasdille/container-slides
-        ```
+```bash
+ssh seat@seatN.inmylab.de
+```
+
+Test VM:
+
+```bash
+docker version
+sudo -l
+git clone https://github.com/nicholasdille/container-slides
+```
+
+---
+
+## Quick links
+
+XXX
     </textarea></section>
 
-    <section data-markdown="150_gitlab/000_intro/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="150_gitlab/100_rollout/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="150_gitlab/000_intro/product.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ![QR code to slides](images/2022-05-19.svg) <!-- .element: style="width: 25%; float: right;" -->
+## Topics
 
-        ## Summary
+### Fundamentals
 
-        XXX
+[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Image](#/gitlab_image) - [Before and after script](#/gitlab_script_blocks) - [Defaults](#/gitlab_defaults) - [Artifacts and dependencies](#/gitlab_artifacts)
+
+### Advanced
+
+[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_child_pipelines) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs)
+
+### Expert
+
+[Job token](#/gitlab_job_token) - [Caches](#/gitlab_caches) - [Services](#/gitlab_services) - [docker build](#/gitlab_docker) - [Registries](#/gitlab_registries) - [Releases](#/gitlab_releases) - [Runners](#/gitlab_runners) - [RenovateBot](#/gitlab_renovate)
 </textarea></section>
+
+<section data-markdown="160_gitlab_ci/000_rollout/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="160_gitlab_ci/010_jobs_and_stages/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/020_variables/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/020_variables/predefined.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/020_variables/ci.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/030_image/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/040_script_blocks/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/050_defaults/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/060_artifacts/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="160_gitlab_ci/100_environments/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/110_triggers/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/120_child_pipelines/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/130_templates/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/140_rules/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/150_merge_requests/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/160_matrix_jobs/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="160_gitlab_ci/200_job_token/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/210_caches/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/220_services/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/230_docker/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/240_registries/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/250_releases/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/260_runners/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/260_runners/shared.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/260_runners/specific.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/270_renovate/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+    ## Summary
+    
+    ![QR code to slides](images/2022-05-05.svg) <!-- .element: style="width: 25%; float: right;" -->
+    
+    <ul class="fa-ul">
+    <li><span class="fa-li"><i class="fa-solid fa-infinity"></i></span> GitLab covers the whole DevOps process</li>
+    <li><span class="fa-li"><i class="fa-solid fa-rocket-launch"></i></span> Easily deployed using containers</li>
+    <li><span class="fa-li"><i class="fa-solid fa-ball-pile"></i></span> GitLab is packed with features</li>
+    <li><span class="fa-li"><i class="fa-solid fa-hand-peace"></i></span> Configuration is two-fold</li>
+    <li><span class="fa-li"><i class="fa-solid fa-gauge-min"></i></span> Restarts are slow</li>
+    <li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Security issues are patched quickly</li>
+    </ul>
+    
+    **Seen my upcoming workshop about CI/CD with GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.heise-events.de/workshops/cicd-gitlab)?**
+</textarea></section>
+
 </div>
 </div>
 
@@ -97,51 +169,33 @@
 <script src="media/reveal.js@4.3.1/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.3.1/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 4 * 60;
+    var durationInMinutes = 8 * 60;
     Reveal.initialize({
-        width: 1920,
-        height: 1080,
-        minScale: 1,
-        maxScale: 1,
-        controls: true,
+        width: 1300,
+        height: 850,
+        margin: 0.05,
         controlsTutorial: false,
-        controlsLayout: 'bottom-right',
-        progress: true,
-        slideNumber: false,
+        showSlideNumber: false,
         hash: true,
         history: true,
         keyboard: true,
-        disableLayout: true,
         overview: true,
         center: false,
-        touch: true,
-        loop: false,
-        rtl: false,
-        navigationMode: 'default',
+        touch: false,
         shuffle: false,
         fragments: true,
         fragmentInURL: true,
         embedded: false,
         help: true,
-        pause: true,
         showNotes: false,
         autoPlayMedia: null,
-        preloadIframes: null,
-        autoAnimate: true,
-        autoSlide: 0,
         mouseWheel: false,
         previewLinks: false,
-        postMessage: true,
         transition: 'convex',
         transitionSpeed: 'default',
         backgroundTransition: 'fade',
-        viewDistance: 3,
-        mobileViewDistance: 2,
-        display: 'block',
         hideInactiveCursor: true,
         hideCursorTime: 3000,
-        parallaxBackgroundImage: '',
-        parallaxBackgroundSize: '',
 
         totalTime: durationInMinutes * 60,
         allottedTime: durationInMinutes * 60 * 1000,
