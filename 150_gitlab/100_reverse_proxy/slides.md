@@ -75,6 +75,14 @@ Configure traefik to use Let's Encrypt with DNS challenge [<i class="fa-solid fa
 
 ## IDE
 
-XXX Visual Studio Code Web http://vscode.seatN.inmylab.de
+<i class="fa-duotone fa-display-code fa-4x fa-duotone-colors" style="float: right;"></i>
 
-XXX Visual Studio Code Remote SSH https://code.visualstudio.com/docs/remote/ssh
+Visual Studio Code Web [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://code.visualstudio.com/docs/editor/vscode-web) can be deployed as well
+
+Based on code-server [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.com/coder/code-server)
+
+Accessible at http://vscode.seatN.inmylab.de
+
+### Alternative
+
+Use local Visual Studio Code [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://code.visualstudio.com/) with Remote SSH plugin [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://code.visualstudio.com/docs/remote/ssh)
