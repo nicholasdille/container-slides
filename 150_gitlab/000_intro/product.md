@@ -42,6 +42,8 @@ Same pricing [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://ab
 
 Based on open-source project, allows your own runners, static websites
 
+XXX https://about.gitlab.com/pricing/
+
 ### Premium [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/premium/) ($19/user/month)
 
 Faster code reviews, advanced CI/CD, enterprise agile planning, release controls, support
