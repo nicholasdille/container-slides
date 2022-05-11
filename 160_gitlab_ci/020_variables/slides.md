@@ -6,6 +6,14 @@
 
 ---
 
-## Variables
+## Variable
 
-XXX
+XXX in definition
+
+XXX predefined
+
+XXX CI
+
+### Hands-On
+
+XXX `variables` in definition

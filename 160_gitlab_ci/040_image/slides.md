@@ -9,3 +9,9 @@
 ## Image
 
 XXX
+
+### Hands-On
+
+Use `image` instead of `before_script`
+
+1. Add new `.gitlab-ci.yml`

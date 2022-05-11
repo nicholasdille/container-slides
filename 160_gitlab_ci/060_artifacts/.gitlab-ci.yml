@@ -1,0 +1,31 @@
+stages:
+- check
+- build
+- test
+
+default:
+  image: golang:1.17.9
+
+lint:
+  stage: check
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  script:
+  - go vet .
+
+build:
+  stage: build
+  script:
+  - go build -o hello .
+  artifacts:
+    paths:
+    - hello
+
+test:
+  stage: test
+  image: alpine
+  script:
+  - ./hello

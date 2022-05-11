@@ -9,3 +9,8 @@
 ## Defaults
 
 XXX
+
+### Hands-On
+
+1. Update `.gitlab-ci.yml`
+1. Check pipeline
