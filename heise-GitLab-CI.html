@@ -20,7 +20,7 @@
     var version = '6.1.1'
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    if (window.location.href.match(/^http(s)?:\/\/(.+\.)dille.name/)) {
+    if (window.location.href.match(/^http(s)?:\/\/(.+\.)*dille.name/)) {
         link.href = 'https://cdn.dille.name/fontawesome-pro@' + version + '/css/all.min.css';
     } else {
         link.href = 'media/fontawesome-pro@' + version + '/css/all.min.css';
@@ -117,6 +117,7 @@ git clone https://github.com/nicholasdille/container-slides
 <section data-markdown="160_gitlab_ci/050_defaults/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="160_gitlab_ci/060_artifacts/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="160_gitlab_ci/070_schedules/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/080_configuration/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="160_gitlab_ci/100_environments/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="160_gitlab_ci/110_triggers/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>

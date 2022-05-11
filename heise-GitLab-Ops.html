@@ -20,7 +20,7 @@
     var version = '6.1.1'
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    if (window.location.href.match(/^http(s)?:\/\/(.+\.)dille.name/)) {
+    if (window.location.href.match(/^http(s)?:\/\/(.+\.)*dille.name/)) {
         link.href = 'https://cdn.dille.name/fontawesome-pro@' + version + '/css/all.min.css';
     } else {
         link.href = 'media/fontawesome-pro@' + version + '/css/all.min.css';
