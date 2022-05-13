@@ -21,3 +21,14 @@ docker compose --project-name gitlab \
     --file ../160_runner/compose.yml \
     up -d
 ```
+
+XXX
+
+```bash
+docker ps --filter "label=com.docker.compose.service=gitlab" --quiet \
+| xargs -I{} \
+    docker exec {} \
+        cat /etc/gitlab/initial_root_password \
+| grep ^Password \
+| cut -d' ' -f2
+```

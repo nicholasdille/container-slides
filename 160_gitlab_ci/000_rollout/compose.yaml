@@ -1,6 +1,7 @@
 # https://docs.docker.com/compose/compose-file
 
 volumes:
+  portainer-data:
   gitlab_config:
   gitlab_data:
   gitlab_logs:
@@ -37,6 +38,27 @@ services:
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal
       traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`) || Host(`traefik.${IP:?You must supply IP}.nip.io`)
+      traefik.http.middlewares.traefik.basicauth.realm: traefik
+      traefik.http.middlewares.traefik.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
+      traefik.http.routers.traefik.middlewares: traefik
+
+  portainer:
+    image: portainer/portainer-ce:2.13.1-alpine
+    command:
+    - -H
+    - unix:///var/run/docker.sock
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/run/docker.sock:/var/run/docker.sock
+    - portainer-data:/data
+    labels:
+      traefik.http.services.portainer.loadbalancer.server.port: 9000
+      traefik.http.routers.portainer.entrypoints: http
+      traefik.http.routers.portainer.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`) || Host(`portainer.${IP:?You must supply IP}.nip.io`)
+      #traefik.http.routers.portainer.service: portainer
+      traefik.http.middlewares.portainer.basicauth.realm: portainer
+      traefik.http.middlewares.portainer.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
+      traefik.http.routers.portainer.middlewares: portainer
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
@@ -94,10 +116,14 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   vscode:
-    image: codercom/code-server:4.3.0
+    build:
+      context: .
     command:
+    - --auth
+    - none
     - --proxy-domain
     - vscode.${DOMAIN:?You must supply DOMAIN}
+    - --disable-telemetry
     user: ${USER}
     environment:
       DOCKER_USER: ${USER}
@@ -118,3 +144,6 @@ services:
       traefik.http.routers.vscode.entrypoints: http
       traefik.http.routers.vscode.rule: Host(`vscode.${DOMAIN:?You must supply DOMAIN}`) || Host(`vscode.${IP:?You must supply IP}.nip.io`)
       traefik.http.routers.vscode.service: vscode
+      traefik.http.middlewares.vscode.basicauth.realm: vscode
+      traefik.http.middlewares.vscode.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
+      traefik.http.routers.vscode.middlewares: vscode
