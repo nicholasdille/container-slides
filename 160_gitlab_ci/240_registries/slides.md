@@ -8,4 +8,4 @@
 
 ## Registries
 
-XXX
+XXX [](https://docs.gitlab.com/ee/user/packages/container_registry/index.html#build-and-push-by-using-gitlab-cicd)

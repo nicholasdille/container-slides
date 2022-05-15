@@ -9,3 +9,12 @@
 ## Triggers
 
 XXX
+
+### Hands-On
+
+XXX second project? which order?
+
+1. Go to **Settings** > **CI/CD** > XXX
+1. Create a trigger
+1. Copy project ID and token
+1. XXX

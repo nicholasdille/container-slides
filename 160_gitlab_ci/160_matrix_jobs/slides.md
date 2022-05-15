@@ -9,3 +9,7 @@
 ## Matrix jobs
 
 XXX
+
+### Hands-On
+
+XXX cross-compile for multiple architectures

@@ -32,3 +32,5 @@ docker ps --filter "label=com.docker.compose.service=gitlab" --quiet \
 | grep ^Password \
 | cut -d' ' -f2
 ```
+
+XXX get runner registration token and export REGISTRATION_TOKEN

@@ -1,22 +1,5 @@
-stages:
-- check
-- build
-
-default:
+.build-go:
   image: golang:1.17.9
-
-lint:
-  stage: check
-  script:
-  - go fmt .
-
-audit:
-  stage: check
-  script:
-  - go vet .
-
-build:
-  stage: build
   script:
   - |
     go build \

@@ -18,4 +18,8 @@ build:
   stage: build
   image: golang:1.17.9
   script:
-  - go build -o hello .
+  - |
+    go build \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
+        -o hello \
+        .

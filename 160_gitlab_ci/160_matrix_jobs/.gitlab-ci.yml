@@ -1,0 +1,57 @@
+stages:
+- check
+- build
+- test
+- deploy
+
+default:
+  image: golang:1.17.9
+
+lint:
+  stage: check
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  script:
+  - go vet .
+
+.build-go:
+  parallel:
+    matrix:
+    - GOOS: linux
+      GOARCH: amd64
+    - GOOS: linux
+      GOARCH: arm64
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
+        -o hello-${GOOS}-${GOARCH} \
+        .
+    mv hello-$(go env GOOS)-$(go env GOARCH) hello
+
+build:
+  stage: build
+  extends: .build-go
+  artifacts:
+    paths:
+    - hello*
+
+test:
+  stage: test
+  image: alpine
+  script:
+  - ./hello
+
+deploy:
+  stage: deploy
+  rules:
+  - if: $CI_PIPELINE_SOURCE == $CI_DEFAULT_BRANCH
+  image: alpine
+  script:
+  - cp hello public
+  artifacts:
+    paths:
+    - public

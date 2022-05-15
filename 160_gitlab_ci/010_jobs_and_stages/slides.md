@@ -16,6 +16,8 @@ Jobs in the same stage are executed in parallel
 
 ![](160_gitlab_ci/010_jobs_and_stages/jobs_and_stages.drawio.svg) <!-- .element: style="width: 60%;" -->
 
+Special stages `.pre` and `.post`
+
 ---
 
 ## Job layout

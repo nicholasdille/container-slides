@@ -1,3 +1,6 @@
+include:
+- local: go.yaml
+
 stages:
 - check
 - build
@@ -18,12 +21,7 @@ audit:
 
 build:
   stage: build
-  script:
-  - |
-    go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
-        -o hello \
-        .
+  extends: .build-go
   artifacts:
     paths:
     - hello

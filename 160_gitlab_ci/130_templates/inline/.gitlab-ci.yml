@@ -1,29 +1,38 @@
 stages:
 - check
 - build
+- test
+
+default:
+  image: golang:1.17.9
 
 lint:
   stage: check
   script:
-  - apk update
-  - apk add go
   - go fmt .
 
 audit:
   stage: check
   script:
-  - apk update
-  - apk add go
   - go vet .
 
-build:
-  stage: build
-  before_script:
-  - apk update
-  - apk add go
+.build-go:
   script:
   - |
     go build \
         -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
         -o hello \
         .
+
+build:
+  stage: build
+  extends: .build-go
+  artifacts:
+    paths:
+    - hello
+
+test:
+  stage: test
+  image: alpine
+  script:
+  - ./hello

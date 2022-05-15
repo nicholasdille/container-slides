@@ -10,6 +10,14 @@
 
 XXX
 
+XXX cron syntax
+
+XXX per branch
+
+XXX references the creator
+
+XXX creator shown as triggerer
+
 ### Hands-On
 
 1. Schedule pipeline run in 5 minutes

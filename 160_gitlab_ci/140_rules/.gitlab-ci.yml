@@ -2,6 +2,7 @@ stages:
 - check
 - build
 - test
+- deploy
 
 default:
   image: golang:1.17.9
@@ -16,14 +17,17 @@ audit:
   script:
   - go vet .
 
-build:
-  stage: build
+.build-go:
   script:
   - |
     go build \
         -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
         -o hello \
         .
+
+build:
+  stage: build
+  extends: .build-go
   artifacts:
     paths:
     - hello
@@ -33,3 +37,14 @@ test:
   image: alpine
   script:
   - ./hello
+
+pages:
+  stage: deploy
+  rules:
+  - if: $CI_PIPELINE_SOURCE == $CI_DEFAULT_BRANCH
+  image: alpine
+  script:
+  - cp hello public
+  artifacts:
+    paths:
+    - public

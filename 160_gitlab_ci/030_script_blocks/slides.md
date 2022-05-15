@@ -9,3 +9,13 @@
 ## Script blocks
 
 XXX
+
+XXX alternative
+
+```yaml
+job_name:
+  script: |
+    pwd
+    whoami
+    printenv
+```

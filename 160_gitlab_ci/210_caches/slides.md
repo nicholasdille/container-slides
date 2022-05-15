@@ -8,4 +8,4 @@
 
 ## Caches
 
-XXX
+XXX [](https://docs.gitlab.com/ee/ci/yaml/#cache)

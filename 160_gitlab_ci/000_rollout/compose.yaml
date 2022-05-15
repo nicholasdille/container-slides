@@ -115,10 +115,22 @@ services:
       traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)
       traefik.tcp.routers.ssh.service: ssh
 
+  runner:
+    build:
+      context: runner
+    environment:
+      REGISTRATION_TOKEN: ${REGISTRATION_TOKEN}
+      CI_SERVER_URL: http://gitlab.${DOMAIN:?You must supply DOMAIN}
+      RUNNER_EXECUTOR: docker
+      DOCKER_PRIVILEGED: true
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/run/docker.sock:/var/run/docker.sock
+
   # https://docs.gitlab.com/ee/install/docker.html
   vscode:
     build:
-      context: .
+      context: vscode
     command:
     - --auth
     - none
