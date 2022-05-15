@@ -78,3 +78,8 @@
     --fa-secondary-color: var(--r-heading-color);
     --fa-secondary-opacity: 1.0;
 }
+
+.reveal a:empty::after {
+    font: var(--fa-font-solid);
+    content: "\f08e";
+}

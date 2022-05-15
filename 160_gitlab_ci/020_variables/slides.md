@@ -6,14 +6,32 @@
 
 ---
 
-## Variable
+## Favors
 
-XXX in definition
+Variables can be...
 
-XXX predefined
+- defined in the pipeline definition
+- predefined by GitLab
+- defined in the UI
 
-XXX CI
+XXX explore them
 
 ### Hands-On
 
-XXX `variables` in definition
+1. Update files from `src/`
+1. `variables` in definition:
+
+    ```yaml
+    build:
+      stage: build
+      variables:
+        version: dev
+      script:
+      - apk update
+      - apk add go
+      - |
+        go build \
+          -ldflags "-X main.Version=${version}" \
+          -o hello \
+          .
+    ```

@@ -9,3 +9,8 @@
 ## Schedules
 
 XXX
+
+### Hands-On
+
+1. Schedule pipeline run in 5 minutes
+1. Check pipeline

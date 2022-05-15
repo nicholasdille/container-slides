@@ -8,15 +8,51 @@
 
 ## Jobs and stages
 
-XXX
+Jobs represent isolated steps in a pipeline
 
-XXX https://docs.gitlab.com/ee/ci/yaml/#stages
+Stages [](https://docs.gitlab.com/ee/ci/yaml/#stages) are executed sequentially
 
-![](160_gitlab_ci/010_jobs_and_stages/jobs_and_stages.drawio.svg)
+Jobs in the same stage are executed in parallel
 
-XXX running on alpine
+![](160_gitlab_ci/010_jobs_and_stages/jobs_and_stages.drawio.svg) <!-- .element: style="width: 60%;" -->
 
-XXX test script block using `docker run -it --rm -v $PWD:/src -w /src alpine sh`
+---
+
+## Job layout
+
+Minimal job:
+
+```yaml
+job_name:
+  script:
+  - whoami
+  - pwd
+  - printenv
+```
+
+### Testing job scripts
+
+XXX test script block using
+
+```bash
+docker run -it --rm -v $PWD:/src -w /src alpine sh
+```
+
+---
+
+## Example code
+
+XXX golang
+
+XXX see `src/main.go`
+
+XXX build: `go build -o hello .`
+
+XXX dep management init: `go mod init`
+
+XXX dep management update: `go mod tidy`
+
+XXX testing: `docker run -it --rm -v ${PWD}/src:/src -w /src golang:1.18 bash`
 
 ---
 
@@ -26,6 +62,7 @@ XXX
 
 ### Hands-On
 
+1. Create project
 1. Add files from `src/` to root of project
 1. Add `build/.gitlab-ci.yml` to root of project
 1. Check pipeline

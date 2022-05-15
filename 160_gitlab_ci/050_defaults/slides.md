@@ -8,7 +8,11 @@
 
 ## Defaults
 
-XXX
+XXX https://docs.gitlab.com/ee/ci/yaml/#default
+
+XXX `image`
+
+XXX also `before_script`, `after_script`
 
 ### Hands-On
 

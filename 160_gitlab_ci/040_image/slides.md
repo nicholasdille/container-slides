@@ -8,7 +8,7 @@
 
 ## Image
 
-XXX
+XXX [](https://docs.gitlab.com/ee/ci/yaml/#image)
 
 ### Hands-On
 

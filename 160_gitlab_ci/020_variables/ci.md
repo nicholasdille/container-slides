@@ -4,8 +4,11 @@
 
 XXX
 
+XXX also on group or instance level
+
 ### Hands-On
 
+1. Go to **Settings** > **CI/CD** and unfold **Variables**
 1. Create variable `AUTHOR` and set to a name of your choice
 1. Update build command:
 

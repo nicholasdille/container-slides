@@ -2,10 +2,15 @@
 
 ## Predefined variables
 
-XXX
+GitLab offers many predefined variables [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
+
+Most describe the current job, stage and pipeline
+
+Some describe the GitLab server
 
 ### Hands-On
 
+1. Remove `variables`
 1. Update build command:
 
     ```bash
