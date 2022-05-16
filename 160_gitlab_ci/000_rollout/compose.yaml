@@ -17,13 +17,18 @@ services:
     - --api=true
     - --api.dashboard=true
     - --entrypoints.http.address=:80
+    - --entrypoints.https.address=:443
     - --entrypoints.ssh.address=:2222
+    - --providers.file.directory=/etc/traefik/conf.d
     - --providers.docker=true
     - --providers.docker.exposedByDefault=false
     ports:
     - 2222:2222
     - 80:80
+    - 443:443
     volumes:
+    - ./traefik.d:/etc/traefik/conf.d:ro
+    - /root/ssl:/etc/traefik/ssl:ro
     - /var/run/docker.sock:/var/run/docker.sock:ro
     - /etc/localtime:/etc/localtime:ro
     restart: always
@@ -35,12 +40,17 @@ services:
       start_period: 5s
     labels:
       traefik.enable: "true"
+      traefik.http.middlewares.seat-auth.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
+      traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`) || Host(`traefik.${IP:?You must supply IP}.nip.io`)
-      traefik.http.middlewares.traefik.basicauth.realm: traefik
-      traefik.http.middlewares.traefik.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
-      traefik.http.routers.traefik.middlewares: traefik
+      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.traefik.middlewares: redirect-to-https
+      traefik.http.routers.traefik-s.entrypoints: https
+      traefik.http.routers.traefik-s.service: api@internal
+      traefik.http.routers.traefik-s.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.traefik-s.tls: "true"
+      traefik.http.routers.traefik-s.middlewares: seat-auth
 
   portainer:
     image: portainer/portainer-ce:2.13.1-alpine
@@ -55,11 +65,14 @@ services:
       traefik.enable: "true"
       traefik.http.services.portainer.loadbalancer.server.port: 9000
       traefik.http.routers.portainer.entrypoints: http
-      traefik.http.routers.portainer.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`) || Host(`portainer.${IP:?You must supply IP}.nip.io`)
+      traefik.http.routers.portainer.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.portainer.service: portainer
-      traefik.http.middlewares.portainer.basicauth.realm: portainer
-      traefik.http.middlewares.portainer.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
-      traefik.http.routers.portainer.middlewares: portainer
+      traefik.http.routers.portainer.middlewares: redirect-to-https
+      traefik.http.routers.portainer-s.entrypoints: https
+      traefik.http.routers.portainer-s.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.portainer-s.service: portainer
+      traefik.http.routers.portainer-s.middlewares: seat-auth
+      traefik.http.routers.portainer-s.tls: "true"
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
@@ -71,7 +84,7 @@ services:
 
         gitlab_rails['usage_ping_enabled'] = false
 
-        external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
+        external_url 'https://gitlab.${DOMAIN:?You must supply DOMAIN}'
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
         nginx['real_ip_trusted_addresses'] = [ '172.16.0.0/12' ]
@@ -79,13 +92,16 @@ services:
         nginx['real_ip_recursive'] = 'on'
 
         gitlab_pages['enable'] = true
-        pages_external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
+        pages_external_url 'https://gitlab.${DOMAIN:?You must supply DOMAIN}'
         # Required due to https://gitlab.com/gitlab-org/gitlab-pages/issues/129
         gitlab_pages['inplace_chroot'] = true
         # Set listen-proxy when behind reverse proxy. see https://docs.gitlab.com/ee/administration/pages/#configure-listener-for-reverse-proxy-requests
         gitlab_pages['listen_proxy'] = "0.0.0.0:8090"
         # Fix for https://gitlab.com/gitlab-org/gitlab-pages/-/issues/534
         gitlab_pages['internal_gitlab_server'] = "http://127.0.0.1"
+
+        registry_external_url 'https://gitlab.${DOMAIN:?You must supply DOMAIN}'
+        registry['registry_http_addr'] = "0.0.0.0:5000"
 
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
@@ -104,23 +120,39 @@ services:
       traefik.enable: "true"
       traefik.http.services.www.loadbalancer.server.port: 80
       traefik.http.routers.www.entrypoints: http
-      traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || Host(`gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.www.service: www
+      traefik.http.routers.www.middlewares: redirect-to-https
+      traefik.http.routers.www-s.entrypoints: https
+      traefik.http.routers.www-s.rule: Host(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.www-s.service: www
+      traefik.http.routers.www-s.tls: "true"
       traefik.http.services.pages.loadbalancer.server.port: 8090
       traefik.http.routers.pages.entrypoints: http
-      traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostRegexp(`{subdomain:.+}gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.http.routers.pages.middlewares: redirect-to-https
+      traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.pages.service: pages
+      traefik.http.routers.pages-s.entrypoints: https
+      traefik.http.routers.pages-s.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.pages-s.service: pages
+      traefik.http.routers.pages-s.tls: "true"
+      traefik.http.services.registry.loadbalancer.server.port: 5000
+      traefik.http.routers.registry-s.entrypoints: https
+      traefik.http.routers.registry-s.rule: HostRegexp(`gitlab.${DOMAIN:?You must supply DOMAIN}`) && PathPrefix(`/v2`)
+      traefik.http.routers.registry-s.service: registry
+      traefik.http.routers.registry-s.tls: "true"
       traefik.tcp.services.ssh.loadbalancer.server.port: 2222
       traefik.tcp.routers.ssh.entrypoints: ssh
-      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.tcp.routers.ssh.service: ssh
+      traefik.tcp.routers.ssh.tls.passthrough: "true"
 
   runner:
     build:
       context: runner
     environment:
       REGISTRATION_TOKEN: ${REGISTRATION_TOKEN}
-      CI_SERVER_URL: http://gitlab.${DOMAIN:?You must supply DOMAIN}
+      CI_SERVER_URL: https://gitlab.${DOMAIN:?You must supply DOMAIN}
       RUNNER_EXECUTOR: docker
       DOCKER_PRIVILEGED: true
     volumes:
@@ -155,8 +187,11 @@ services:
       traefik.enable: "true"
       traefik.http.services.vscode.loadbalancer.server.port: 8080
       traefik.http.routers.vscode.entrypoints: http
-      traefik.http.routers.vscode.rule: Host(`vscode.${DOMAIN:?You must supply DOMAIN}`) || Host(`vscode.${IP:?You must supply IP}.nip.io`)
+      traefik.http.routers.vscode.rule: Host(`vscode.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.vscode.service: vscode
-      traefik.http.middlewares.vscode.basicauth.realm: vscode
-      traefik.http.middlewares.vscode.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
-      traefik.http.routers.vscode.middlewares: vscode
+      traefik.http.routers.vscode.middlewares: redirect-to-https
+      traefik.http.routers.vscode-s.entrypoints: https
+      traefik.http.routers.vscode-s.rule: Host(`vscode.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.vscode-s.service: vscode
+      traefik.http.routers.vscode-s.middlewares: seat-auth
+      traefik.http.routers.vscode-s.tls: "true"

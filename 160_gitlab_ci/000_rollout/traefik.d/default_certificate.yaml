@@ -1,0 +1,6 @@
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /etc/traefik/ssl/seat.chain
+        keyFile: /etc/traefik/ssl/seat.key
