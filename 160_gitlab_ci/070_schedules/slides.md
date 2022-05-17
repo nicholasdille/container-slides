@@ -8,15 +8,15 @@
 
 ## Schedules
 
-XXX
+Execute pipelines on a `schedule` [](https://docs.gitlab.com/ee/ci/pipelines/schedules.html)
 
-XXX cron syntax
+Schedule is specified using cron syntax <i class="fa-duotone fa-face-hand-peeking fa-duotone-colors"></i>
 
-XXX per branch
+Scheduled pipelines run on a specific branch...
 
-XXX references the creator
+...and can have variables
 
-XXX creator shown as triggerer
+Creator is referenced and shown as the triggerer
 
 ### Hands-On
 

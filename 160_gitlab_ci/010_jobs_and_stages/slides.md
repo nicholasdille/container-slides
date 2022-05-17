@@ -29,7 +29,7 @@ job_name:
   script:
   - whoami
   - pwd
-  - printenv
+  - printenv | sort
 ```
 
 `script` is a string and supports all herestring variants of YAML

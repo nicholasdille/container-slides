@@ -1,4 +1,4 @@
-<!-- .slide: id="gitlab_defaults" class="vertical-center" -->
+<!-- .slide: id="gitlab_default" class="vertical-center" -->
 
 <i class="fa-duotone fa-send-backward fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
 
@@ -8,13 +8,19 @@
 
 ## Defaults
 
-XXX https://docs.gitlab.com/ee/ci/yaml/#default
+Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml/#default)
 
-XXX `image`
+`default` can contain...
 
-XXX also `before_script`, `after_script`
+- `image`
+- `before_script`
+- `after_script`
+- and some more we will explore later <i class="fa-duotone fa-face-smile-halo fa-duotone-colors"></i>
 
 ### Hands-On
 
-1. Update `.gitlab-ci.yml`
+1. Add `default` for `image`
+1. Remove `image` from all jobs
 1. Check pipeline
+
+(See new `.gitlab-ci.yml`)
