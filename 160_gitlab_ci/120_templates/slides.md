@@ -6,7 +6,7 @@
 
 ---
 
-## Templates
+## Make jobs reusable
 
 XXX include [](https://docs.gitlab.com/ee/ci/yaml/#include)
 

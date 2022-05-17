@@ -1,0 +1,9 @@
+services:
+- nginx:1.20.2
+
+test:
+  before_script: |
+    apk update
+    apk add curl
+  script: |
+    curl -s http://nginx

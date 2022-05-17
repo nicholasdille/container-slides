@@ -6,17 +6,25 @@
 
 ---
 
-## Rules
+## Make jobs conditional
 
-XXX [](https://docs.gitlab.com/ee/ci/yaml/#rules)
+Rules [](https://docs.gitlab.com/ee/ci/yaml/#rules) define whether to execute a job
 
-XXX requires one successful rule for the job to be added
+Pipeline requires one successful rule for the job to be added
+
+```yaml
+job_name:
+  rules:
+  - if: $VAR == "value"
+  - if: $VAR2 = "value2"
+  # ...
+```
 
 XXX [](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
 
-XXX formerly: only/except [](https://docs.gitlab.com/ee/ci/yaml/#only--except)
+Conditions are also used in workflow rules [](https://docs.gitlab.com/ee/ci/yaml/#workflow)
 
-XXX Workflow rules [](https://docs.gitlab.com/ee/ci/yaml/#workflow)
+Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) but "not actively developed"
 
 ---
 
@@ -37,7 +45,7 @@ XXX deploy only from main
 
 ## Hands-On: Workflow rules
 
-XXX disable execution for some trigger types
+Disable execution for some trigger types
 
 ```yaml
 workflow:
