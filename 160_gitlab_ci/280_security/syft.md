@@ -12,5 +12,7 @@ Supports CycloneDX and SPDX formats
 
 XXX run on hello?
 
+XXX output as release asset?
+
 1. XXX
 1. XXX
