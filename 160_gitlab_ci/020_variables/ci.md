@@ -2,14 +2,16 @@
 
 ## CI variables
 
-XXX
+Stored securely in the GitLab server
 
-XXX also on group or instance level
+Injected into jobs at runtime
+
+Available in project-, group- and instance-level
 
 ### Hands-On
 
 1. Go to **Settings** > **CI/CD** and unfold **Variables**
-1. Create variable `AUTHOR` and set to a name of your choice
+1. Create variable `AUTHOR` and set to a value of your choice
 1. Update build command:
 
     ```bash

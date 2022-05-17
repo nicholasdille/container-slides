@@ -12,7 +12,7 @@ Deploy a containerized stack for this workshop
 
 ![](160_gitlab_ci/000_rollout/stack.drawio.svg) <!-- .element: style="width: 95%" -->
 
-Obviously GitLab ;-)
+Obviously GitLab <i class="fa-duotone fa-face-smile-wink fa-duotone-colors"></i>
 
 Visual Studio Code for editing
 
@@ -62,7 +62,8 @@ Connect GitLab runner
 1. Make the registration token available:
 
     ```bash
-    echo "export REGISTRATION_TOKEN=<REGISTRATION_TOKEN>" >/etc/profile.d/gitlab_registration_token.sh
+    echo "export REGISTRATION_TOKEN=<REGISTRATION_TOKEN>" \
+        >/etc/profile.d/gitlab_registration_token.sh
     source /etc/profile.d/gitlab_registration_token.sh
     ```
 

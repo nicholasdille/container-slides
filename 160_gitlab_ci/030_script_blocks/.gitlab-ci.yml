@@ -4,16 +4,18 @@ stages:
 
 lint:
   stage: check
-  script:
+  before_script:
   - apk update
   - apk add go
+  script:
   - go fmt .
 
 audit:
   stage: check
-  script:
+  before_script:
   - apk update
   - apk add go
+  script:
   - go vet .
 
 build:

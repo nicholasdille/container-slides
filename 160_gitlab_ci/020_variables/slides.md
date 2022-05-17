@@ -6,15 +6,13 @@
 
 ---
 
-## Favors
+## Flavors
 
 Variables can be...
 
 - defined in the pipeline definition
 - predefined by GitLab
 - defined in the UI
-
-XXX explore them
 
 ### Hands-On
 
@@ -30,8 +28,6 @@ XXX explore them
       - apk update
       - apk add go
       - |
-        go build \
-          -ldflags "-X main.Version=${version}" \
-          -o hello \
-          .
+        go build -o hello . \
+          -ldflags "-X main.Version=${version}"
     ```

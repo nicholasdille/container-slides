@@ -32,9 +32,11 @@ job_name:
   - printenv
 ```
 
+`script` is a string and supports all herestring variants of YAML
+
 ### Testing job scripts
 
-XXX test script block using
+Script blocks can be testing using a container based on `alpine`:
 
 ```bash
 docker run -it --rm -v $PWD:/src -w /src alpine sh
@@ -44,17 +46,27 @@ docker run -it --rm -v $PWD:/src -w /src alpine sh
 
 ## Example code
 
-XXX golang
+Based on Go [](https://go.dev/)
 
-XXX see `src/main.go`
+See `src/main.go`
 
-XXX build: `go build -o hello .`
+Build command: `go build -o hello .`
 
-XXX dep management init: `go mod init`
+### Playground
 
-XXX dep management update: `go mod tidy`
+Use docker to play:
 
-XXX testing: `docker run -it --rm -v ${PWD}/src:/src -w /src golang:1.18 bash`
+```bash
+docker run --interactive --tty --rm \
+    --volume ${PWD}:/project --workdir /project \
+    golang:1.18 bash
+```
+
+### Dependency management
+
+Initialize dependency information: `go mod init`
+
+Update dependency information: `go mod tidy`
 
 ---
 

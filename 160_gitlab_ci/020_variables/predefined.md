@@ -8,6 +8,8 @@ Most describe the current job, stage and pipeline
 
 Some describe the GitLab server
 
+Some help interacting with the GitLab server
+
 ### Hands-On
 
 1. Remove `variables`
