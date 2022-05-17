@@ -42,12 +42,16 @@ services:
       start_period: 5s
     labels:
       traefik.enable: "true"
+      # Global authentication middleware
       traefik.http.middlewares.seat-auth.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
+      # Global redirection middleware
       traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
+      # traefik dashboard: redirection to HTTPS
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal
       traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.traefik.middlewares: redirect-to-https
+      # traefik dashboard: authenticated endpoint
       traefik.http.routers.traefik-s.entrypoints: https
       traefik.http.routers.traefik-s.service: api@internal
       traefik.http.routers.traefik-s.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`)
@@ -59,17 +63,31 @@ services:
       context: nginx
     environment:
       SEAT_INDEX: ${SEAT_INDEX:?You must supply SEAT_INDEX}
+      DOMAIN: ${DOMAIN:?You must supply DOMAIN}
     labels:
       traefik.enable: "true"
+      # Service port
       traefik.http.services.nginx.loadbalancer.server.port: 80
+      # Redirection to HTTPS
       traefik.http.routers.nginx.entrypoints: http
       traefik.http.routers.nginx.rule: Host(`${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.nginx.service: nginx
       traefik.http.routers.nginx.middlewares: redirect-to-https
+      # Unauthenticated endpoint
       traefik.http.routers.nginx-s.entrypoints: https
       traefik.http.routers.nginx-s.rule: Host(`${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.nginx-s.service: nginx
       traefik.http.routers.nginx-s.tls: "true"
+      # Authenticated endpoint for dev
+      traefik.http.routers.dev-s.entrypoints: https
+      traefik.http.routers.dev-s.rule: Host(`dev.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.dev-s.service: nginx
+      traefik.http.routers.dev-s.tls: "true"
+      # Authenticated endpoint for live
+      traefik.http.routers.live-s.entrypoints: https
+      traefik.http.routers.live-s.rule: Host(`live.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.live-s.service: nginx
+      traefik.http.routers.live-s.tls: "true"
 
   portainer:
     image: portainer/portainer-ce:2.13.1-alpine
@@ -84,11 +102,14 @@ services:
     - 9000:9000
     labels:
       traefik.enable: "true"
+      # Service port
       traefik.http.services.portainer.loadbalancer.server.port: 9000
+      # Redirection to HTTPS
       traefik.http.routers.portainer.entrypoints: http
       traefik.http.routers.portainer.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.portainer.service: portainer
       traefik.http.routers.portainer.middlewares: redirect-to-https
+      # Unauthenticated endpoint
       traefik.http.routers.portainer-s.entrypoints: https
       traefik.http.routers.portainer-s.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.portainer-s.service: portainer
@@ -96,7 +117,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
-    image: gitlab/gitlab-ce:14.10.0-ce.0
+    image: gitlab/gitlab-ce:14.10.2-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -141,30 +162,40 @@ services:
     - gitlab_data:/var/opt/gitlab
     labels:
       traefik.enable: "true"
+      # Web UI: service port
       traefik.http.services.www.loadbalancer.server.port: 80
+      # Web UI: redirection to HTTPS
       traefik.http.routers.www.entrypoints: http
       traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.www.service: www
       traefik.http.routers.www.middlewares: redirect-to-https
+      # Web UI: unauthenticated endpoint
       traefik.http.routers.www-s.entrypoints: https
       traefik.http.routers.www-s.rule: Host(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.www-s.service: www
       traefik.http.routers.www-s.tls: "true"
+      # Pages: service port
       traefik.http.services.pages.loadbalancer.server.port: 8090
+      # Pages: redirection to HTTPS
       traefik.http.routers.pages.entrypoints: http
       traefik.http.routers.pages.middlewares: redirect-to-https
       traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.pages.service: pages
+      # Pages: unauthenticated endpoint
       traefik.http.routers.pages-s.entrypoints: https
       traefik.http.routers.pages-s.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.pages-s.service: pages
       traefik.http.routers.pages-s.tls: "true"
+      # Registry: service port
       traefik.http.services.registry.loadbalancer.server.port: 5000
+      # Registry: Unauthenticated endpoint
       traefik.http.routers.registry-s.entrypoints: https
       traefik.http.routers.registry-s.rule: HostRegexp(`gitlab.${DOMAIN:?You must supply DOMAIN}`) && PathPrefix(`/v2`)
       traefik.http.routers.registry-s.service: registry
       traefik.http.routers.registry-s.tls: "true"
+      # SSH: service port
       traefik.tcp.services.ssh.loadbalancer.server.port: 2222
+      # SSH: TLS passthrough
       traefik.tcp.routers.ssh.entrypoints: ssh
       traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
       traefik.tcp.routers.ssh.service: ssh
@@ -208,11 +239,14 @@ services:
       start_period: 5s
     labels:
       traefik.enable: "true"
+      # Service port
       traefik.http.services.vscode.loadbalancer.server.port: 8080
+      # Redirection to HTTPS
       traefik.http.routers.vscode.entrypoints: http
       traefik.http.routers.vscode.rule: Host(`vscode.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.vscode.service: vscode
       traefik.http.routers.vscode.middlewares: redirect-to-https
+      # Authenticated endpoint
       traefik.http.routers.vscode-s.entrypoints: https
       traefik.http.routers.vscode-s.rule: Host(`vscode.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.vscode-s.service: vscode

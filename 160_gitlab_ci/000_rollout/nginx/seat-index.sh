@@ -6,6 +6,3 @@ if test -z "${SEAT_INDEX}"; then
 fi
 
 sed -i "s/\${SEAT_INDEX}/${SEAT_INDEX}/g" /usr/share/nginx/html/index.html
-
-echo "Running upstream entrypoint"
-exec /docker-entrypoint.sh nginx -g "daemon off;"

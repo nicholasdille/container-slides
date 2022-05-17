@@ -1,14 +1,11 @@
-docker-build:
+package:
   image: docker:20.10.16
-  stage: build
+  stage: package
 
   services:
   - name: docker:20.10.16-dind
-    command:
-    - dockerd
-    - --host
-    - tcp://0.0.0.0:2375
+    command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
 
   script:
-  - docker build --pull .
+  - docker build --tag hello .
 

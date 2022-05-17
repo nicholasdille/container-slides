@@ -8,4 +8,11 @@
 
 ## Registries
 
-XXX [](https://docs.gitlab.com/ee/user/packages/container_registry/index.html#build-and-push-by-using-gitlab-cicd)
+Integrated container registry [](https://docs.gitlab.com/ee/user/packages/container_registry/index.html#build-and-push-by-using-gitlab-cicd)
+
+CI jobs receive environment variables:
+
+- `CI_REGISTRY`
+- `CI_REGISTRY_USER`
+- `CI_REGISTRY_PASSWORD`
+- `CI_REGISTRY_IMAGE`
