@@ -6,23 +6,39 @@
 
 ---
 
-## Rollout
+## Rollout step 1/
 
-Deploy GitLab as separate services
+Deploy a containerized stack for this workshop
 
-Deploy a runner for CI jobs
+![](160_gitlab_ci/000_rollout/stack.drawio.svg) <!-- .element: style="width: 95%" -->
 
-Use `traefik` to route requests
+Obviously GitLab ;-)
+
+Visual Studio Code for editing
+
+Portainer to manage Docker
+
+traefik routes requests to containers
 
 ```bash
-docker compose --project-name gitlab \
-    --file ../100_reverse_proxy/compose.traefik.yml \
-    --file ../180_components/compose.yml \
-    --file ../160_runner/compose.yml \
+docker compose \
+    --project-name gitlab \
     up -d
 ```
 
-XXX
+Go to https://seatN.inmylab.de where seatN matches your subdomain
+
+---
+
+## Rollout 2/
+
+Wait for GitLab to be available (status is `running (healthy)`):
+
+```bash
+docker compose ps
+```
+
+Retrieve the initial root password for GitLab:
 
 ```bash
 docker ps --filter "label=com.docker.compose.service=gitlab" --quiet \
@@ -33,4 +49,41 @@ docker ps --filter "label=com.docker.compose.service=gitlab" --quiet \
 | cut -d' ' -f2
 ```
 
-XXX get runner registration token and export REGISTRATION_TOKEN
+Login to GitLab
+
+---
+
+## Rollout step 3/3
+
+Connect GitLab runner
+
+1. Go to **Menu** > **Admin** > **Overview** > **Runners**
+1. Click **Register an instance runner** and copy the registration token
+1. Make the registration token available:
+
+    ```bash
+    echo "export REGISTRATION_TOKEN=<REGISTRATION_TOKEN>" >/etc/profile.d/gitlab_registration_token.sh
+    source /etc/profile.d/gitlab_registration_token.sh
+    ```
+
+1. Restart runner:
+
+    ```bash
+    docker compose \
+        --project-name gitlab \
+        up -d
+    ```
+
+---
+
+## GitLab runner
+
+Needed to executed CI jobs
+
+![](160_gitlab_ci/000_rollout/runner.drawio.svg) <!-- .element: style="width: 95%;" -->
+
+Uses the `docker` executor
+
+Isolates jobs in dedicated containers
+
+Containers are based on `alpine` by default

@@ -5,6 +5,8 @@ volumes:
   gitlab_config:
   gitlab_data:
   gitlab_logs:
+  vscode_config:
+  vscode_project:
 
 services:
 
@@ -52,6 +54,23 @@ services:
       traefik.http.routers.traefik-s.tls: "true"
       traefik.http.routers.traefik-s.middlewares: seat-auth
 
+  nginx:
+    build:
+      context: nginx
+    environment:
+      SEAT_INDEX: ${SEAT_INDEX:?You must supply SEAT_INDEX}
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.nginx.loadbalancer.server.port: 80
+      traefik.http.routers.nginx.entrypoints: http
+      traefik.http.routers.nginx.rule: Host(`${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.nginx.service: nginx
+      traefik.http.routers.nginx.middlewares: redirect-to-https
+      traefik.http.routers.nginx-s.entrypoints: https
+      traefik.http.routers.nginx-s.rule: Host(`${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.nginx-s.service: nginx
+      traefik.http.routers.nginx-s.tls: "true"
+
   portainer:
     image: portainer/portainer-ce:2.13.1-alpine
     command:
@@ -61,6 +80,8 @@ services:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock
     - portainer-data:/data
+    ports:
+    - 9000:9000
     labels:
       traefik.enable: "true"
       traefik.http.services.portainer.loadbalancer.server.port: 9000
@@ -71,7 +92,6 @@ services:
       traefik.http.routers.portainer-s.entrypoints: https
       traefik.http.routers.portainer-s.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.portainer-s.service: portainer
-      traefik.http.routers.portainer-s.middlewares: seat-auth
       traefik.http.routers.portainer-s.tls: "true"
 
   # https://docs.gitlab.com/ee/install/docker.html
@@ -90,9 +110,11 @@ services:
         nginx['real_ip_trusted_addresses'] = [ '172.16.0.0/12' ]
         nginx['real_ip_header'] = 'X-Real-Ip'
         nginx['real_ip_recursive'] = 'on'
+        letsencrypt['enable'] = false
 
         gitlab_pages['enable'] = true
         pages_external_url 'https://gitlab.${DOMAIN:?You must supply DOMAIN}'
+        pages_nginx['listen_https'] = false
         # Required due to https://gitlab.com/gitlab-org/gitlab-pages/issues/129
         gitlab_pages['inplace_chroot'] = true
         # Set listen-proxy when behind reverse proxy. see https://docs.gitlab.com/ee/administration/pages/#configure-listener-for-reverse-proxy-requests
@@ -102,6 +124,7 @@ services:
 
         registry_external_url 'https://gitlab.${DOMAIN:?You must supply DOMAIN}'
         registry['registry_http_addr'] = "0.0.0.0:5000"
+        registry_nginx['listen_https'] = false
 
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
@@ -175,8 +198,8 @@ services:
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock
-    - ${HOME}/.config:/home/coder/.config
-    - ${HOME}:/home/coder/project
+    - vscode_config:/home/coder/.config
+    - vscode_project:/home/coder/project
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8080"]
       interval: 10s

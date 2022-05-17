@@ -30,6 +30,6 @@ RUN curl https://github.com/nicholasdille/docker-setup/releases/download/v${DOCK
         --output /usr/local/bin/docker-setup \
  && chmod +x /usr/local/bin/docker-setup
 
-#RUN docker_max_wait=60 docker-setup --no-wait --skip-docs --only docker --debug || true
+RUN docker_max_wait=60 docker-setup --no-wait --skip-docs --only docker --debug || true
 
 USER coder
