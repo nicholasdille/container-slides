@@ -20,27 +20,60 @@ XXX remote
 
 ## Hands-On: Template and include
 
-XXX
+1. Create inline tmplate:
 
-```yaml
-.build-go:
-  script:
-  - |
-    go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
-        -o hello \
-        .
-```
+    ```yaml
+    .build-go:
+      script:
+      - |
+        go build \
+            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
+            -o hello \
+            .
+    ```
+
+1. Use in build job
+
+    ```yaml
+    build:
+      extends: .build-go
+      # ...
+    ```
+
+1. Check pipeline
 
 ---
 
 ## Hands-On: Local
 
 1. Add `go.yaml` to root of project
-1. XXX
+1. Include `go.yaml`:
+
+    ```yaml
+    include:
+    - local: go.yaml
+
+    build:
+      extends: .build-go
+      # ...
+    ```
+
+1. Check pipeline
 
 ---
 
 ## Hands-On: File
 
-1. XXX
+1. Remove `go.yaml` from project
+1. Create a new project, e.g. `template-go`
+1. Add `go.yaml` to the root of the new project
+1. Include `go.yaml`:
+
+    ```yaml
+    include:
+    - project: <GROUP>/template-go
+      ref: main
+      file: go.yaml
+    ```
+
+1. Check pipeline

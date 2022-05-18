@@ -18,6 +18,18 @@ audit:
   script:
   - go vet .
 
+renovate:
+  stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE'
+  image: renovate/renovate:32.52.2
+  script: |
+    renovate --platform gitlab \
+        --endpoint https://gitlab.seatN.inmylab.de \
+        --token $TOKEN \
+        --autodiscover true \
+        --autodiscover-filter "<GROUP>/<PROJECT>"
+
 .build-go:
   parallel:
     matrix:

@@ -43,6 +43,6 @@ Separate `script` into...
 
 Move `apk` operations into `before_script`
 
-(See `.gitlab-ci.yml`)
+(See new `.gitlab-ci.yml`)
 
 (Yes, this is still repetetive <i class="fa-duotone fa-face-smile-tongue fa-duotone-colors"></i>)

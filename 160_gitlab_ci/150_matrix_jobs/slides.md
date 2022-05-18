@@ -10,6 +10,29 @@
 
 XXX
 
-### Hands-On
+---
 
-XXX cross-compile for multiple architectures
+## Hands-On
+
+Cross-compile Go for multiple architectures
+
+1. Extend template to support `GOOS` and `GOARCH`:
+
+    ```yaml
+    .build-go:
+      parallel:
+        matrix:
+        - GOOS: linux
+          GOARCH: amd64
+    ```
+
+1. Update the build command:
+
+    ```yaml
+    .build-go:
+      script:
+      - go build -o hello-${GOOS}-${GOARCH} . \
+            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}"
+    ```
+
+(See new `.gitlab-ci.yml`)

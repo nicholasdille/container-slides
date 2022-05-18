@@ -70,24 +70,21 @@ Update dependency information: `go mod tidy`
 
 ---
 
-## My first CI job
+## Hands-On
 
-XXX
-
-### Hands-On
+### My first CI job
 
 1. Create project
 1. Add files from `src/` to root of project
 1. Add `build/.gitlab-ci.yml` to root of project
 1. Check pipeline
 
----
-
-## My first stage
-
-XXX
-
-### Hands-On
+### My first stage
 
 1. Add `lint/.gitlab-ci.yml` to root of project
+1. Check pipeline
+
+### Parallel jobs
+
+1. Add `parallel/.gitlab-ci.yml` to root of project
 1. Check pipeline

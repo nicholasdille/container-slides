@@ -22,7 +22,7 @@ build:
   script:
   - |
     go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
         -o hello \
         .
   artifacts:
@@ -40,11 +40,12 @@ deploy:
   environment:
     name: ${CI_COMMIT_REF_NAME}
   before_script:
-  - apk update
-  - apk add curl ca-certificates
+  - apt-get update
+  - apt-get -y install curl ca-certificates
   script:
   - |
-    curl https://${CI_COMMIT_REF_NAME}.seat0.inmylab.de/ \
+    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
         --fail \
+        --verbose \
         --upload-file hello \
-        --user admin:${PASS_LIVE}
+        --user admin:${PASS}

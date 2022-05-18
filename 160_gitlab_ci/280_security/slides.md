@@ -25,10 +25,28 @@ Available in all tiers:
 
 ## Hands-On: Secret detection
 
-XXX
+GitLab automatically adds a job in the stage called `test`
+
+1. Add include:
+
+    ```yaml
+    include:
+    - template: Security/Secret-Detection.gitlab-ci.yml
+    ```
+
+1. Check pipeline
 
 ---
 
 ## Hands-On: SAST
 
-XXX
+XXX GitLab automatically adds a job in the stage called `test`
+
+1. Enable SAST:
+
+    ```yaml
+    include:
+    - template: Security/SAST.gitlab-ci.yml
+    ```
+
+1. Check pipeline

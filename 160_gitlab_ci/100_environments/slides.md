@@ -30,10 +30,11 @@ XXX
     | grep "Password for "
     ```
 
-1. Create CI variables `PASS_DEV`/`PASS_LIVE` with scope `dev`/`live`
+1. Create unprotected CI variable `PASS` twice with scope `dev`/`live`
+1. Create unprotected CI variable `SEAT_INDEX` with your seat number
 1. Add new stage and job called `deploy`
 1. Upload to WebDAV server using `curl`
-1. Create branch `dev` and `live`
+1. Create branches `dev` and `live`
 1. Download from https://dev.seatN.inmylab.de/hello and live
 
 (See new `.gitlab-ci.yml`)

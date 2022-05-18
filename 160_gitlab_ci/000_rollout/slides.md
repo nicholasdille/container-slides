@@ -88,3 +88,21 @@ Uses the `docker` executor
 Isolates jobs in dedicated containers
 
 Containers are based on `alpine` by default
+
+---
+
+## Visual Studio Code
+
+XXX
+
+1. Go to https://vscode.seatN.inmylab.de
+1. Authenticate using the user seat and your personal password
+1. Finish the configuration wizard
+1. Open a terminal and configure git:
+
+    ```bash
+    git config --global user.email "seatN@inmylab.de"
+    git config --global user.name "seatN"
+    ```
+
+1. Clone https://github.com/nicholasdille/container-slides

@@ -20,14 +20,10 @@ Variables can be...
 1. `variables` in definition:
 
     ```yaml
-    build:
-      stage: build
+    job_name:
       variables:
         version: dev
       script:
-      - apk update
-      - apk add go
-      - |
-        go build -o hello . \
-          -ldflags "-X main.Version=${version}"
+      # ...
+      - go build -o hello -ldflags "-X main.Version=${version}" .
     ```

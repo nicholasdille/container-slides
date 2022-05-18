@@ -18,7 +18,7 @@ XXX pipeline-integrated
 
 XXX cron job
 
-XXX https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premises/
+XXX [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premises/)
 
 ---
 
@@ -26,19 +26,13 @@ XXX https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premise
 
 XXX job token should be sufficient
 
+1. Create personal access token
 1. Add `renovate.json` to root of project
-1. Add job to `.gitlab-ci.yml`:
-
-    ```yaml
-    renovate:
-      stage: prepare
-      rules:
-      - if: $CI_PIPELINE_SOURCE == 'schedule` && $RENOVATE
-      image: renovate/renovate:32.52.2
-      script: |
-        XXX
-    ```
+1. Add new job called `renovate`
+1. Create schedule with non-empty variable `RENOVATE`
 1. Check job logs
 1. Check merge requests
 1. Check pipelines
 1. Merge at least one change
+
+(See new `gitlab-ci.yml`)

@@ -12,7 +12,7 @@ Some help interacting with the GitLab server
 
 ### Hands-On
 
-1. Remove `variables`
+1. Remove `variables` directive
 1. Update build command:
 
     ```bash

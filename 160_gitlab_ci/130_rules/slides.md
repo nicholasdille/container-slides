@@ -30,7 +30,7 @@ Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) bu
 
 ## Hands-On: Rules
 
-XXX deploy only from main
+Run the `deploy` job only for the `main` branch
 
 1. Create folder `public`
 1. Add files from `public/` to new folder `public`

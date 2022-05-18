@@ -11,12 +11,12 @@ Available in project-, group- and instance-level
 ### Hands-On
 
 1. Go to **Settings** > **CI/CD** and unfold **Variables**
-1. Create variable `AUTHOR` and set to a value of your choice
+1. Create unprotected variable `AUTHOR` and set to a value of your choice
 1. Update build command:
 
     ```bash
     go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
         -o hello \
         .
     ```

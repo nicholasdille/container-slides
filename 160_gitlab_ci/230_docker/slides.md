@@ -8,12 +8,18 @@
 
 ## Docker build
 
-XXX
+Building container image uses services [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_services)
+
+Use `docker:dind` for containerized Docker daemon
+
+The GitLab runner must be configured to run privileged container
 
 ### Hands-On
 
-XXX stage `package` after `test`
+Package binary in container image
 
-XXX
+1. Create new stage called `package` after `test`
+1. Add job `package` in stage `package`
+1. Add service to job `package`
 
 (See new `.gitlab-ci.yml`)
