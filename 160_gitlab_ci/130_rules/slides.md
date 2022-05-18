@@ -20,9 +20,9 @@ job_name:
   # ...
 ```
 
-XXX [](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
-
 Conditions are also used in workflow rules [](https://docs.gitlab.com/ee/ci/yaml/#workflow)
+
+Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
 
 Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) but "not actively developed"
 
@@ -32,14 +32,16 @@ Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) bu
 
 Run the `deploy` job only for the `main` branch
 
-1. Create folder `public`
+1. Create folder `public` in repository
 1. Add files from `public/` to new folder `public`
 1. Update `.gitlab-ci.yml`
 1. Check pipeline
-1. Go to **Settings** > **Pages** > XXX
-1. Open GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index.html)
+1. Go to **Settings** > **Pages**
+1. Open URL for pages
 1. Create branch
 1. Check pipeline
+
+Also see GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index.html)
 
 ---
 

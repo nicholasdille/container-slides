@@ -20,7 +20,26 @@ Portainer to manage Docker
 
 traefik routes requests to containers
 
+---
+
+## Rollout 2/
+
+Use SSH to login to you VM
+
 ```bash
+ssh seat@seatN.inmylab.de
+```
+
+Clone repository with slides and demos
+
+```bash
+git clone https://github.com/nicholasdille/container-slides
+```
+
+Deploy stack
+
+```bash
+cd container-slides/160_gitlab_ci/000_rollout
 docker compose \
     --project-name gitlab \
     up -d
@@ -30,7 +49,7 @@ Go to https://seatN.inmylab.de where seatN matches your subdomain
 
 ---
 
-## Rollout 2/
+## Rollout 3/
 
 Wait for GitLab to be available (status is `running (healthy)`):
 
@@ -53,7 +72,7 @@ Login to GitLab
 
 ---
 
-## Rollout step 3/3
+## Rollout step 4/4
 
 Connect GitLab runner
 
@@ -91,9 +110,9 @@ Containers are based on `alpine` by default
 
 ---
 
-## Visual Studio Code
+## IDE
 
-XXX
+Use the web-based Visual Studio Code
 
 1. Go to https://vscode.seatN.inmylab.de
 1. Authenticate using the user seat and your personal password

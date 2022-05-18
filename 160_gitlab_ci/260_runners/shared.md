@@ -8,4 +8,4 @@ Managed from admin area
 
 Privileges reserved for instance administrators
 
-XXX
+Can run untagged jobs

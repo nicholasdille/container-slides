@@ -37,9 +37,5 @@ test:
 
 trigger:
   stage: trigger
-  script: |
-    curl https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4/projects/<PROJECT_ID>/trigger/pipeline \
-        --request POST \
-        --fail \
-        -F token=<TOKEN> \
-        -F ref=<BRANCH>
+  trigger:
+    include: child.yml

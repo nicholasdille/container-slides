@@ -18,17 +18,14 @@ audit:
   script:
   - go vet .
 
-.build-go:
+build:
+  stage: build
   script:
   - |
     go build \
         -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
         -o hello \
         .
-
-build:
-  stage: build
-  extends: .build-go
   artifacts:
     paths:
     - hello
@@ -57,4 +54,5 @@ deploy:
 trigger:
   stage: trigger
   trigger:
-    include: child.yml
+    project: <GROUP>/<PROJECT>
+    branch: <BRANCH>

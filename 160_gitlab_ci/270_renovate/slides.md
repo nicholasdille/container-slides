@@ -14,19 +14,17 @@ Not integrated into GitLab
 
 ### Options
 
-XXX pipeline-integrated
+Pipeline-integrated optionally with official template [](https://gitlab.com/renovate-bot/renovate-runner)
 
-XXX cron job
+Cron job running separate from GitLab instance
 
-XXX [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premises/)
+Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premises/)
 
 ---
 
 ## Hands-On: Pipeline-integrated
 
-XXX job token should be sufficient
-
-1. Create personal access token
+1. Create personal access token and add unprotected CI variables called `RENOVATE_TOKEN`
 1. Add `renovate.json` to root of project
 1. Add new job called `renovate`
 1. Create schedule with non-empty variable `RENOVATE`

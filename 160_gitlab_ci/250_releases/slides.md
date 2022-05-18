@@ -8,18 +8,28 @@
 
 ## Releases
 
-XXX [](https://docs.gitlab.com/ee/ci/yaml/#release)
+Pipeline jobs can create releases [](https://docs.gitlab.com/ee/user/project/releases/index.html)
 
-XXX [](https://docs.gitlab.com/ee/user/project/releases/index.html)
+...by adding the `release` keyword [](https://docs.gitlab.com/ee/ci/yaml/#release)
 
-XXX shell executor requires [release-cli](https://docs.gitlab.com/ee/user/project/releases/release_cli.html)
+Release assets can be linked but must be stored elsewhere
 
-### Hands-On
+`release` uses `release-cli` [](https://docs.gitlab.com/ee/user/project/releases/release_cli.html) internally
 
-1. Extends `deploy` in `.gitlab-ci.yml`:
+Container images are publicly available [](https://gitlab.com/gitlab-org/release-cli/container_registry)
+
+`registry.gitlab.com/gitlab-org/release-cli:v0.11.0`
+
+Runners using the shell executor must have `release-cli` installed
+
+---
+
+## Hands-On
+
+1. Extends `pages` in `.gitlab-ci.yml`:
 
     ```yaml
-    deploy:
+    pages:
       #...
       release:
         tag_name: ${CI_PIPELINE_IID}
@@ -29,3 +39,5 @@ XXX shell executor requires [release-cli](https://docs.gitlab.com/ee/user/projec
           line text
         ref: ${CI_COMMIT_SHA}
     ```
+
+1. Go to **Deployments > Releases**

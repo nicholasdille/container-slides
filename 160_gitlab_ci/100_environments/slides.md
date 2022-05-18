@@ -12,8 +12,6 @@ Environments are deployment targets [](https://docs.gitlab.com/ee/ci/environment
 
 CI variables can be scoped to environments
 
-XXX
-
 ![](160_gitlab_ci/100_environments/webdav.drawio.svg) <!-- .element: style="width: 70%;" -->
 
 (Hint: Environments can also be assigned using branch names)

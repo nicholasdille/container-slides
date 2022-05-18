@@ -8,6 +8,7 @@ stages:
 - build
 - test
 - deploy
+- package
 - trigger
 
 default:
@@ -69,12 +70,33 @@ pages:
   stage: deploy
   rules:
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-  image: alpine
+  image: registry.gitlab.com/gitlab-org/release-cli:v0.11.0
+  release:
+    tag_name: ${CI_PIPELINE_IID}
+    name: Release ${CI_PIPELINE_IID}
+    description: |
+      Some multi
+      line text
+    ref: ${CI_COMMIT_SHA}
   script:
   - cp hello-linux-amd64 public/hello
   artifacts:
     paths:
     - public
+
+package:
+  image: docker:20.10.16
+  stage: package
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  services:
+  - name: docker:20.10.16-dind
+    command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+  before_script:
+  - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
+  script:
+  - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .
+  - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
 
 trigger:
   stage: trigger

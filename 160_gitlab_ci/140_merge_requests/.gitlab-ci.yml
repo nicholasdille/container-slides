@@ -10,16 +10,25 @@ default:
 
 lint:
   stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   script:
   - go fmt .
 
 audit:
   stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   script:
   - go vet .
 
 build:
   stage: build
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   script:
   - |
     go build \
@@ -32,12 +41,17 @@ build:
 
 test:
   stage: test
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   image: alpine
   script:
   - ./hello
 
 deploy:
   stage: deploy
+  rules:
+  - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
   environment:
     name: ${CI_COMMIT_REF_NAME}
   before_script:
@@ -64,6 +78,8 @@ pages:
 
 trigger:
   stage: trigger
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
   script: |
     curl https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4/projects/3/trigger/pipeline \
         --request POST \

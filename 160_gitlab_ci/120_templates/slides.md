@@ -8,13 +8,16 @@
 
 ## Make jobs reusable
 
-XXX include [](https://docs.gitlab.com/ee/ci/yaml/#include)
+Job templates begin with a dot to prevent execution
 
-XXX local
+Templates can be imported using `include` [](https://docs.gitlab.com/ee/ci/yaml/#include) from...
 
-XXX file
+- The same `.gitlab-ci.yml`
+- Files in the same repository
+- Files in othe repositories of the same instance
+- Remote locations
 
-XXX remote
+See also the development guide for templates [](https://docs.gitlab.com/ee/development/cicd/templates.html)
 
 ---
 
@@ -27,7 +30,7 @@ XXX remote
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X main.Author=${AUTHOR}" \
+            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
     ```

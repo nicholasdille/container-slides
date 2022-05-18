@@ -38,21 +38,42 @@ Run additional stages and jobs from a file [](https://docs.gitlab.com/ee/ci/pipe
 1. Go back to previous project
 1. Add new stage and job called `trigger`
 1. Add curl snippet in `script` block
-1. Store `TOKEN` as CI variable [](#/gitlab_ci_variable)
+1. Store `TOKEN` as unprotected but masked CI variable [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_ci_variable)
 1. Fill in `REF_NAME` with branch name (probably `main`)
 
 (See new `.gitlab-ci.yml`)
-
-(Pass variables using `--form "variables[NAME]=VALUE"`)
 
 ---
 
 ## Hands-On: Multi-project pipelines
 
-XXX
+1. Replace `script` with `trigger` keyword
+1. Specify project and branch:
+
+    ```yaml
+    job_name:
+      trigger:
+        project: foo/bar
+        branch: baz
+    ```
+
+1. Check pipeline
 
 ---
 
 ## Hands-On: Parent-child pipelines
 
-XXX
+1. Add `parent/child/child.yml` to first project
+1. Replace project and branch in `trigger` with `include` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_templates)
+
+    ```yaml
+    job_name:
+      trigger:
+        include: child.yml
+    ```
+
+Child pipeline can be made from multiple files
+
+`include` supports `local` for files in the same repository
+
+`project`/`ref`/`file` for files in other repositories

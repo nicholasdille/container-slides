@@ -15,6 +15,7 @@ Many are only in Ultimate:
 - Container scanning [](https://docs.gitlab.com/ee/user/application_security/container_scanning/index.html) based on trivy [](https://github.com/aquasecurity/trivy) and grype [](https://github.com/anchore/grype)
 - Dependency scanning [](https://docs.gitlab.com/ee/user/application_security/dependency_scanning/) based on gemnasium [](https://gitlab.com/gitlab-org/security-products/analyzers/gemnasium)
 - Dynamic Application Security Testing (DAST) [](https://docs.gitlab.com/ee/user/application_security/dast/index.html) based on the OWASP Zed Attack Proxy [](https://www.zaproxy.org/)
+- Security dashboards [](https://docs.gitlab.com/ee/user/application_security/security_dashboard/)
 
 Available in all tiers:
 
@@ -35,12 +36,13 @@ GitLab automatically adds a job in the stage called `test`
     ```
 
 1. Check pipeline
+1. Check report
 
 ---
 
 ## Hands-On: SAST
 
-XXX GitLab automatically adds a job in the stage called `test`
+GitLab automatically adds jobs in the stage called `test`
 
 1. Enable SAST:
 
@@ -50,3 +52,4 @@ XXX GitLab automatically adds a job in the stage called `test`
     ```
 
 1. Check pipeline
+1. Check reports

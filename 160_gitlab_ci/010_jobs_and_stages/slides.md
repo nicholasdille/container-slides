@@ -16,6 +16,8 @@ Jobs in the same stage are executed in parallel
 
 ![](160_gitlab_ci/010_jobs_and_stages/jobs_and_stages.drawio.svg) <!-- .element: style="width: 60%;" -->
 
+Described in `.gitlab-ci.yml` in YAML [](https://yaml.org/)
+
 Special stages `.pre` and `.post`
 
 ---
