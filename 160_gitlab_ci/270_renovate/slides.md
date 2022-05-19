@@ -34,3 +34,5 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 1. Merge at least one change
 
 (See new `gitlab-ci.yml`)
+
+(With proper configuration Renovate can also automerge tested merge requests.)

@@ -1,0 +1,139 @@
+workflow:
+  rules:
+  - if: $CI_PIPELINE_SOURCE == 'api'
+    when: never
+  - if: $CI_PIPELINE_SOURCE == 'trigger'
+    when: never
+  - when: always
+
+stages:
+- check
+- build
+- test
+- deploy
+- package
+- trigger
+
+include:
+- project: workshop/template-go
+  ref: main
+  file: go.yaml
+- template: Security/Secret-Detection.gitlab-ci.yml
+- template: Security/SAST.gitlab-ci.yml
+
+.rules-main-or-mr:
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  - if: '$CI_PIPELINE_SOURCE == "web"'
+
+.rules-dev-or-live:
+  rules:
+  - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
+
+default:
+  image: golang:1.18.2@sha256:02c05351ed076c581854c554fa65cb2eca47b4389fb79a1fc36f21b8df59c24f
+
+renovate:
+  stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE'
+  image: renovate/renovate:32.52.2
+  variables:
+    LOG_LEVEL: debug
+  script: |
+    renovate --platform gitlab \
+        --endpoint https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4 \
+        --token ${RENOVATE_TOKEN} \
+        --autodiscover true
+
+.lint:
+  stage: check
+  extends: .rules-main-or-mr
+  script:
+  - go fmt .
+
+.audit:
+  stage: check
+  extends: .rules-main-or-mr
+  script:
+  - go vet .
+
+build:
+  stage: build
+  extends:
+  - .build-go
+  - .rules-main-or-mr
+
+test:
+  stage: test
+  extends:
+  - .test-go
+  - .rules-main-or-mr
+
+deploy:
+  stage: deploy
+  extends: .rules-dev-or-live
+  environment:
+    name: ${CI_COMMIT_REF_NAME}
+  before_script:
+  - apt-get update
+  - apt-get -y install curl ca-certificates
+  script:
+  - test -n "${PASS}"
+  - |
+    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+        --fail \
+        --verbose \
+        --upload-file hello \
+        --user admin:${PASS}
+
+pages:
+  stage: deploy
+  rules:
+  # Only run when pushed to main branch
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  image: registry.gitlab.com/gitlab-org/release-cli:v0.11.0
+  release:
+    tag_name: ${CI_PIPELINE_IID}
+    name: Release ${CI_PIPELINE_IID}
+    description: |
+      Some multi
+      line text
+    ref: ${CI_COMMIT_SHA}
+    assets:
+      links:
+      - name: hello
+        url: https://workshop.gitlab.seat${SEAT_INDEX}.inmylab.de/hello-world/${CI_PIPELINE_IID}/hello
+  script:
+  - cp hello-linux-amd64 public/hello
+  - mkdir -p public/${CI_PIPELINE_IID}
+  - cp hello-linux-amd64 public/${CI_PIPELINE_IID}/hello
+  artifacts:
+    paths:
+    - public
+
+package:
+  image: docker:20.10.16
+  stage: package
+  extends: .go-targets
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  variables:
+    DOCKER_BUILDKIT: 1
+  services:
+  - name: docker:20.10.16-dind
+    command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+  before_script:
+  - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
+  script:
+  - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}-${GOOS}-${GOARCH}" .
+  - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}-${GOOS}-${GOARCH}"
+
+trigger:
+  stage: trigger
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  trigger:
+    include:
+    - local: child.yml

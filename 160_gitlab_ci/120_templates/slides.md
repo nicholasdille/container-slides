@@ -14,8 +14,8 @@ Templates can be imported using `include` [](https://docs.gitlab.com/ee/ci/yaml/
 
 - The same `.gitlab-ci.yml`
 - Files in the same repository
-- Files in othe repositories of the same instance
-- Remote locations
+- Files in other repositories of the same instance
+- Remote locations (only unauthenticated)
 
 See also the development guide for templates [](https://docs.gitlab.com/ee/development/cicd/templates.html)
 

@@ -57,3 +57,7 @@ job_name:
   dependencies: []
   # ...
 ```
+
+### Download artifact from another pipeline
+
+See GitLab API [](https://docs.gitlab.com/ee/api/job_artifacts.html#download-the-artifacts-archive)

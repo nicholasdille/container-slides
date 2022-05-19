@@ -18,4 +18,6 @@
 
 <i class="fas fa-briefcase" style="width: 1.5em; text-align: center;"></i> [Haufe Group](https://www.haufe.com/) since 2016
 
+<i class="fas fa-person-chalkboard" style="width: 1.5em; text-align: center;"></i> Self-employed [trainer](https://dille.name) since 2020
+
 *Reach out via* [<i class="fab fa-twitter" style="width: 1.5em; text-align: center;"></i>](https://twitter.com/@NicholasDille) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille) [<i class="fab fa-keybase" style="width: 1.5em; text-align: center;"></i>](https://keybase.io/nicholasdille)
