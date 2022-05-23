@@ -1,0 +1,18 @@
+services:
+
+  codes:
+    build: nginx
+    labels:
+      traefik.enable: "true"
+      # Service port
+      traefik.http.services.codes.loadbalancer.server.port: 80
+      # Redirection to HTTPS
+      traefik.http.routers.codes.entrypoints: http
+      traefik.http.routers.codes.service: codes
+      traefik.http.routers.codes.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.codes.middlewares: redirect-to-https
+      # Authenticated endpoint
+      traefik.http.routers.codes-s.entrypoints: https
+      traefik.http.routers.codes-s.service: codes
+      traefik.http.routers.codes-s.rule: Host(`traefik.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.codes-s.tls: "true"

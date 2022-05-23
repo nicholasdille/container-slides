@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Credentials</title>
+        <link rel="icon" href="data:image/x-icon;," type="image/x-icon">
+    </head>
+    <body>
+        <h1>Credentials</h1>
+
+        <p>Retrieve your credentials by entering your code:</p>
+
+        <form onsubmit="redirect()" accept-charset="utf-8">
+            Code: <input type="text" id="code">
+            <input type="submit">
+        </form>
+
+        <script>
+            function redirect() {
+                code = document.getElementById('code').value;
+                window.location.href = "http://localhost:8080/" + code + "/";
+                //window.location.replace("http://localhost:8080/" + code + "/");
+            }
+        </script>
+    </body>
+</html>
