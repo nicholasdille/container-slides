@@ -11,17 +11,20 @@
 
         <p>Retrieve your credentials by entering your code:</p>
 
-        <form onsubmit="redirect()" accept-charset="utf-8">
+        <form id="form" accept-charset="utf-8">
             Code: <input type="text" id="code">
             <input type="submit">
         </form>
 
         <script>
-            function redirect() {
-                code = document.getElementById('code').value;
-                window.location.href = "http://localhost:8080/" + code + "/";
-                //window.location.replace("http://localhost:8080/" + code + "/");
-            }
+            document.getElementById('form').addEventListener (
+                "submit", 
+                function (evt) {
+                    code = document.getElementById('code').value;
+                    window.location.href = "http://localhost:8080/" + code + "/";
+    	            evt.preventDefault();
+                }
+            );
         </script>
     </body>
 </html>
