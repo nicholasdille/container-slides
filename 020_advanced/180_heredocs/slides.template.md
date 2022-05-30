@@ -20,7 +20,7 @@ line2
 Fist line of `Dockerfile` must be:
 
 ```Dockerfile
-# syntax=docker/dockerfile:1.3-labs
+# syntax=docker/dockerfile:1.4.2
 ```
 
 ---
