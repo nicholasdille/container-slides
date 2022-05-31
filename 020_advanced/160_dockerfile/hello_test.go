@@ -2,18 +2,20 @@ package main
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/require"
 )
 
 func TestEcho(t *testing.T) {
 	// Test happy path
 	err := echo([]string{"bin-name", "hello", "world!"})
-	require.NoError(t, err)
+	if err != nil {
+		t.Errorf("Failed to generate output")
+	}
 }
 
 func TestEchoErrorNoArgs(t *testing.T) {
 	// Test empty arguments
 	err := echo([]string{})
-	require.Error(t, err)
+	if err == nil {
+		t.Errorf("Should have failed without arguments")
+	}
 }

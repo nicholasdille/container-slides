@@ -8,7 +8,7 @@ import (
 
 func echo(args []string) error {
 	if len(args) < 2 {
-		return errors.New("no message to echo")
+		return fmt.Errorf("no message to echo")
 	}
 	_, err := fmt.Println(strings.Join(args[1:], " "))
 	return err
