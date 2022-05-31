@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
-	"github.com/pkg/errors"
 )
 
 func echo(args []string) error {
