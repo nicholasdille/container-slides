@@ -1,18 +1,33 @@
 #!/bin/bash
 set -o errexit
 
+if test "$(dirname "$0")" != "${PWD}"; then
+    pushd "$(dirname "$0")"
+fi
+
+source /etc/profile.d/ip.sh
+source /etc/profile.d/domain.sh
+source /etc/profile.d/seat_index.sh
+source /etc/profile.d/seat_pass.sh
+source /etc/profile.d/seat_htpasswd.sh
+source /etc/profile.d/seat_htpasswd_only.sh
 if test -f .env; then
     source .env
 fi
 
 export REGISTRATION_TOKEN="foo"
 
+docker compose down --volumes
 docker compose pull traefik gitlab
 docker compose up -d traefik gitlab
 
 GITLAB_MAX_WAIT=300
 SECONDS=0
-while ! docker compose exec --no-tty gitlab curl -sfo /dev/null http://localhost/-/readiness?all=1; do
+while ! docker compose exec --no-tty gitlab \
+        curl http://localhost/-/readiness?all=1 \
+            --silent \
+            --fail \
+            --output /dev/null; do
     if test "${SECONDS}" -gt "${GITLAB_MAX_WAIT}"; then
         echo "ERROR: Timeout waiting for GitLab to become ready."
         exit 1
