@@ -27,6 +27,7 @@ docker compose up -d traefik gitlab
 
 echo
 echo "### Waiting for GitLab to be available"
+REGISTRATION_TOKEN=foo
 GITLAB_MAX_WAIT=300
 SECONDS=0
 while ! docker compose exec -T gitlab curl -sfo /dev/null http://localhost/-/readiness?all=1; do
@@ -65,7 +66,6 @@ if ! docker compose exec -T gitlab curl http://localhost/api/v4/users \
         --header "Content-Type: application/json" \
         --request POST \
         --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}"
-EOF
 fi
 
 echo
