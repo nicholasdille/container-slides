@@ -15,15 +15,14 @@ if test -f .env; then
     source .env
 fi
 
-export REGISTRATION_TOKEN="foo"
-
 docker compose down --volumes
+
 docker compose pull traefik gitlab
 docker compose up -d traefik gitlab
 
 GITLAB_MAX_WAIT=300
 SECONDS=0
-docker compose exec gitlab \
+docker compose exec --no-tty gitlab \
     timeout ${GITLAB_MAX_WAIT} \
         curl http://localhost/-/readiness?all=1 \
             --silent \
@@ -35,13 +34,14 @@ ROOT_TOKEN="$(openssl rand -hex 32)"
 docker compose exec gitlab gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty'); token.set_token('${ROOT_TOKEN}'); token.save!"
 
 echo "Creating user seat"
-docker compose exec gitlab curl http://localhost/api/v4/users \
-    --silent \
-    --fail \
-    --header "Private-Token: ${ROOT_TOKEN}" \
-    --header "Content-Type: application/json" \
-    --request POST \
-    --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}"
+docker compose exec gitlab \
+    curl http://localhost/api/v4/users \
+        --silent \
+        --fail \
+        --header "Private-Token: ${ROOT_TOKEN}" \
+        --header "Content-Type: application/json" \
+        --request POST \
+        --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}"
 
 echo "Retrieve runner registration token"
 export REGISTRATION_TOKEN="$(docker compose exec gitlab gitlab-rails runner -e production "puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token")"
