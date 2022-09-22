@@ -53,6 +53,16 @@ if ! docker compose exec -T gitlab curl http://localhost/api/v4/user \
 fi
 
 echo
+echo "### Disabling sign-up"
+docker compose exec -T gitlab \
+    curl http://localhost/api/v4/application/settings?signup_enabled=false \
+        --silent \
+        --fail \
+        --header "Private-Token: ${ROOT_TOKEN}" \
+        --header "Content-Type: application/json" \
+        --request PUT
+
+echo
 echo "### Creating user seat"
 if ! docker compose exec -T gitlab curl http://localhost/api/v4/users \
         --silent \
