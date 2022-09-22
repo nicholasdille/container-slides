@@ -17,7 +17,7 @@ docker compose up -d traefik gitlab
 
 GITLAB_MAX_WAIT=300
 SECONDS=0
-while ! docker compose exec gitlab curl -sfo /dev/null http://localhost/-/readiness?all=1; do
+while ! docker compose exec --no-tty gitlab curl -sfo /dev/null http://localhost/-/readiness?all=1; do
     if test "${SECONDS}" -gt "${GITLAB_MAX_WAIT}"; then
         echo "ERROR: Timeout waiting for GitLab to become ready."
         exit 1
@@ -26,7 +26,7 @@ while ! docker compose exec gitlab curl -sfo /dev/null http://localhost/-/readin
     echo "Waiting for GitLab to become ready..."
     sleep 10
 done
-echo "GitLab ready"
+echo "GitLab ready after ${SECONDS} second(s)"
 
 #echo "Setting root password"
 #docker compose exec gitlab gitlab-rails runner -e production "user = User.find_by_username('root'); user.password = '${SEAT_PASS}'; user.password_confirmation = '${SEAT_PASS}'; user.save!"
