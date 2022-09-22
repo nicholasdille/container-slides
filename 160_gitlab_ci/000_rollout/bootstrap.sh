@@ -15,14 +15,6 @@ if test -f .env; then
     source .env
 fi
 
-docker compose exec --no-tty gitlab \
-    timeout 300 \
-        curl http://localhost/-/readiness?all=1 \
-            --silent \
-            --verbose \
-            --fail
-exit
-
 echo
 echo "### Removing previous deployment"
 docker compose down --volumes
@@ -34,7 +26,7 @@ docker compose up -d traefik gitlab
 
 echo
 echo "### Waiting for GitLab to be available"
-docker compose exec --no-tty gitlab \
+docker compose exec -T gitlab \
     timeout 300 \
         curl http://localhost/-/readiness?all=1 \
             --silent \
@@ -44,11 +36,11 @@ docker compose exec --no-tty gitlab \
 echo
 echo "### Creating PAT for root"
 ROOT_TOKEN="$(openssl rand -hex 32)"
-docker compose exec --no-tty gitlab gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty'); token.set_token('${ROOT_TOKEN}'); token.save!"
+docker compose exec -T gitlab gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty'); token.set_token('${ROOT_TOKEN}'); token.save!"
 
 echo
 echo "### Creating user seat"
-docker compose exec --no-tty gitlab \
+docker compose exec -T gitlab \
     curl http://localhost/api/v4/users \
         --silent \
         --fail \
@@ -59,10 +51,7 @@ docker compose exec --no-tty gitlab \
 
 echo
 echo "### Retrieving runner registration token"
-export REGISTRATION_TOKEN="$(
-    docker compose exec --no-tty gitlab \
-        gitlab-rails runner -e production "puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token"
-)"
+export REGISTRATION_TOKEN="$(docker compose exec -T gitlab gitlab-rails runner -e production "puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token")"
 
 echo
 echo "### Starting runner"
