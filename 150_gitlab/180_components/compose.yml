@@ -14,7 +14,7 @@ volumes:
 services:
 
   gitlab:
-    image: gitlab/gitlab-ce:14.10.0-ce.0
+    image: gitlab/gitlab-ce:15.3.3-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -59,9 +59,15 @@ services:
       traefik.http.services.www.loadbalancer.server.port: 80
       traefik.http.routers.www.entrypoints: http
       traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || Host(`gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.http.routers.www.service: www
+      traefik.http.services.pages.loadbalancer.server.port: 8090
+      traefik.http.routers.pages.entrypoints: http
+      traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostRegexp(`{subdomain:.+}gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.http.routers.pages.service: pages
       traefik.tcp.services.ssh.loadbalancer.server.port: 2222
       traefik.tcp.routers.ssh.entrypoints: ssh
       traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.tcp.routers.ssh.service: ssh
 
   db:
     image: gitlab/gitlab-ce:14.10.0-ce.0

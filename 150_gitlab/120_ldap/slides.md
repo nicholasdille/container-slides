@@ -36,8 +36,7 @@ Deploy additional components:
 
 ```bash
 docker compose --project-name gitlab \
-    --file ../100_reverse_proxy/compose.traefik.yml \
-    --file ../100_reverse_proxy/compose.gitlab.yml \
+    --file ../100_reverse_proxy/compose.yml \
     --file compose.yml \
     up -d
 ```

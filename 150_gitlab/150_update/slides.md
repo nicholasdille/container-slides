@@ -34,5 +34,5 @@ Make sure you have a backup [<i class="fa-solid fa-arrow-up-right-from-square"><
 
 ## Hands-On
 
-1. Update `compose.yml` in 100_reverse_proxy<br>with new image `gitlab/gitlab-ce:14.10.1-ce.0`
+1. Update `compose.yml` in 100_reverse_proxy<br>with new image `gitlab/gitlab-ce:15.4.0-ce.0`
 1. Run deployment from [reverse proxy section](#/gitlab_traefik)

@@ -6,13 +6,11 @@
 
 ---
 
-## SMTP
-
 <i class="fa-duotone fa-envelope fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Outgoing emails for notifications [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/smtp.html)
+## SMTP
 
-GitLab offers many configuration examples
+Outgoing emails for notifications [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/smtp.html) (many examples)
 
 ```
 # Connection information

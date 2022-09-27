@@ -4,13 +4,13 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   vscode:
-    image: codercom/code-server:4.3.0
-    volumes:
-    - ${HOME}/.config:/home/coder/.config
-    - ${PWD}:/home/coder/project
-    user: ${USER}
+    image: codercom/code-server:4.7.0
+    #volumes:
+    #- /root/.config:/home/coder/.config
+    #- ${PWD}:/home/coder/project
+    user: root
     environment:
-      DOCKER_USER: ${USER}
+      DOCKER_USER: root
     labels:
       traefik.enable: "true"
       traefik.http.services.vscode.loadbalancer.server.port: 8080

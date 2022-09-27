@@ -58,19 +58,10 @@ Sign-in text
 
 Separate rate limits for authenticted and unauthenticated requests
 
-Separate rate limits against...
+### Separate rate limits against...
 
-- API
-- Web
-- Package registry
-- Files API
-- Search (only authenticated)
-- Deprecated API
-- Git LFS (only authenticated)
+API, Web, Package registry, Files API, Search (only authenticated), Deprecated API, Git LFS (only authenticated)
 
-In addition, rate limits for...
+### In addition, rate limits for...
 
-- Outbound requests
-- Issues
-- Notes
-- Import/export
+Outbound requests, Issues, Notes, Import/export

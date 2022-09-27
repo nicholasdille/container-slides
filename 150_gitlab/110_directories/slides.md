@@ -30,16 +30,24 @@ Generated from `$GITLAB_OMNIBUS_CONFIG`
 
 ## Repositories
 
-Repositories are located in `/var/opt/gitlab/git-data/repositories/@hashed`
+Repositories are located in 
 
-Subdirectories are hashes like `ab/cd/abcdefg0123456789.git`
+`/var/opt/gitlab/git-data/repositories/@hashed`
+
+Subdirectories are hashes like
+
+`ab/cd/abcdefg0123456789.git`
 
 Hashes for repositories can be looked up in the admin area
 
 Repository info for a hash can be found in...
 
 ```
-`/var/opt/gitlab/git-data/repositories/@hashed/ab/cd/abcdefg0123456789.git/config`
+/var/opt/gitlab
+  /git-data/repositories/
+    @hashed/ab/cd
+      /abcdefg0123456789.git
+        /config
 ```
 
 ---

@@ -18,7 +18,10 @@ The notes how to use the API [<i class="fa-solid fa-arrow-up-right-from-square">
 
 - Authentication (see next slides)
 - Pagination (see next slides)
-- Objects (projects, group etc.) are referenced by ID or url-encoded path (`/` is `%2F`)
+- Objects are referenced by ID or url-encoded path
+  
+  (for example subgroup `foo/bar` becomes `foo%2Fbar`)
+
 - Rate limits (mentioned earlier)
 
 ### Resources
@@ -36,7 +39,9 @@ Authentication [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://
 Send token in HTTP header using `Private-Token`:
 
 ```
-curl "https://gitlab.example.com/api/v4/projects" \
+curl "https://gitlab.${DOMAIN}/api/v4/projects" \
+    --silent \
+    --verbose \
     --header "Private-Token: <your_access_token>"
 ```
 
@@ -63,7 +68,9 @@ Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 
 ---
 
-## Hands-On
+## Hands-On (1/2)
+
+### `cURL`
 
 1. Retrieve projects using a private access token:
 
@@ -72,6 +79,7 @@ Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
         --silent \
         --header "Private-Token: <TOKEN>"
     ```
+    <!-- .element: style="width: 30em;" -->
 
 1. Check pagination headers:
 
@@ -81,5 +89,35 @@ Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
         --verbose \
         --header "Private-Token: <TOKEN>"
     ```
+    <!-- .element: style="width: 30em;" -->
 
-glab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.com/profclems/glab) helps talking with the API
+---
+
+## Hands-On (2/2)
+
+### `glab`
+
+glab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://gitlab.com/gitlab-org/cli) is in the process of being adopted as the official CLI
+
+1. Configure `glab`:
+
+    ```bash
+    glab auth login --hostname gitlab.${DOMAIN}
+    ```
+    <!-- .element: style="width: 32em;" -->
+
+1. Search for projects:
+
+    ```bash
+    GL_HOST=gitlab.${DOMAIN} glab repo search -s foo
+    ```
+    <!-- .element: style="width: 32em;" -->
+
+1. Send raw API requests with automatic pagination:
+
+    ```bash
+    GL_HOST=gitlab.${DOMAIN} glab api --paginate /projects
+    ```
+    <!-- .element: style="width: 32em;" -->
+
+

@@ -8,7 +8,7 @@
 
 ## Quickstart
 
-<i class="fa-duotone fa-clock fa-3x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-rocket-launch fa-3x fa-duotone-colors" style="float: right;"></i>
 
 Get GitLab quickly up and running in less than 5 minutes
 
@@ -20,7 +20,7 @@ docker run -d --name gitlab \
     --volume gitlab_logs:/var/log/gitlab \
     --volume gitlab_data:/var/opt/gitlab \
     --publish 80:80 \
-    gitlab/gitlab-ce:14.10.0-ce.0
+    gitlab/gitlab-ce:15.3.3-ce.0
 ```
 
 Wait for container to finish starting:

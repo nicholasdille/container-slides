@@ -26,9 +26,9 @@ Authentication using personal/group/project/job token
 
 ---
 
-## Container Registry
-
 <i class="fa-duotone fa-container-storage fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+
+## Container Registry
 
 Store container images in GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/packages/container_registry/index.html)
 
