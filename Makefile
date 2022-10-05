@@ -56,9 +56,10 @@ web-$(COMMIT):
 media/fontawesome-pro@%:
 	@\
 	mkdir -p $@/css $@/webfonts; \
-	curl -so $@/css/all.min.css https://cdn.dille.name/fontawesome-pro@$%/css/all.min.css; \
+	curl -so $@/css/all.min.css https://cdn.dille.name/fontawesome-pro@$*/css/all.min.css; \
 	for style in brands-400 duotone-900 light-300 regular-400 solid-900 thin-100; do \
-		curl -so $@/webfonts/fa-$${style}.woff2 https://cdn.dille.name/fontawesome-pro@$%/webfonts/fa-$${style}.woff2; \
+		curl -so $@/webfonts/fa-$${style}.woff2 https://cdn.dille.name/fontawesome-pro@$*/webfonts/fa-$${style}.woff2; \
+		curl -so $@/webfonts/fa-$${style}.ttf https://cdn.dille.name/fontawesome-pro@$*/webfonts/fa-$${style}.ttf; \
 	done
 
 .PHONY:
