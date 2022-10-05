@@ -14,12 +14,12 @@ volumes:
 services:
 
   gitlab:
-    image: gitlab/gitlab-ce:15.3.3-ce.0
+    image: gitlab/gitlab-ce:15.3.4-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
-        
+
         external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
 
         # Prevent conflict with host SSH port
@@ -31,7 +31,7 @@ services:
           'default' => { 'gitaly_address' => 'tcp://gitaly:8075' },
         })
         gitlab_rails['gitaly_token'] = "gitaly"
-        
+
         # Configure remote postgresql
         postgresql['enable'] = false
         gitlab_rails['db_adapter'] = 'postgresql'
@@ -41,7 +41,7 @@ services:
         gitlab_rails['db_database'] = 'gitlab'
         gitlab_rails['db_username'] = 'gitlab'
         gitlab_rails['db_password'] = 'gitlab'
-        
+
         # Configure remote redis
         redis['enable'] = false
         gitlab_rails['redis_host'] = 'redis'
@@ -146,22 +146,22 @@ services:
         alertmanager['enable'] = false
         grafana['enable'] = false
         prometheus['enable'] = false
-        
+
         # Prevent database connections during 'gitlab-ctl reconfigure'
         gitlab_rails['rake_cache_clear'] = false
         gitlab_rails['auto_migrate'] = false
-    
+
         gitlab_rails['internal_api_url'] = 'http://gitlab'
         gitlab_workhorse['auth_backend'] = 'http://gitlab'
-    
+
         gitaly['listen_addr'] = "0.0.0.0:8075"
         gitaly['auth_token'] = "gitaly"
-    
+
         gitaly['storage'] = [
           { 'name' => 'default', 'path' => '/var/opt/gitlab-data/git-data/repositories' },
         ]
         git_data_dirs({ "default" => { "path" => "/var/opt/gitlab-data/git-data" } })
-        
+
         # monitoring
         gitaly['prometheus_listen_addr'] = "0.0.0.0:9236"
         gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8','10.42.0.0/16']
