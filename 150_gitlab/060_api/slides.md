@@ -19,7 +19,7 @@ The notes how to use the API [<i class="fa-solid fa-arrow-up-right-from-square">
 - Authentication (see next slides)
 - Pagination (see next slides)
 - Objects are referenced by ID or url-encoded path
-  
+
   (for example subgroup `foo/bar` becomes `foo%2Fbar`)
 
 - Rate limits (mentioned earlier)
@@ -39,7 +39,7 @@ Authentication [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://
 Send token in HTTP header using `Private-Token`:
 
 ```
-curl "https://gitlab.${DOMAIN}/api/v4/projects" \
+curl "http://gitlab.${DOMAIN}/api/v4/projects" \
     --silent \
     --verbose \
     --header "Private-Token: <your_access_token>"

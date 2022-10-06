@@ -10,13 +10,15 @@
 
 <i class="fa-duotone fa-book fa-4x fa-duotone-colors" style="float: right;"></i>
 
-GitLab can directly connect to LDAP servers
+GitLab can directly connect to LDAP servers [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/auth/ldap/)
 
 LDAP backend based on OpenLDAP [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.openldap.org/)
 
 Management UI based on Keycloak [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.keycloak.org/)
 
 ![](150_gitlab/120_ldap/ldap.drawio.svg) <!-- .element: style="width: 90%;" -->
+
+Group sync [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/auth/ldap/ldap_synchronization.html#group-sync) only available in Premium
 
 ---
 

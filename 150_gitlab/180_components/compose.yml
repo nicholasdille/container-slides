@@ -14,7 +14,7 @@ volumes:
 services:
 
   gitlab:
-    image: gitlab/gitlab-ce:15.3.4-ce.0
+    image: gitlab/gitlab-ce:15.4.1-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -70,7 +70,7 @@ services:
       traefik.tcp.routers.ssh.service: ssh
 
   db:
-    image: gitlab/gitlab-ce:14.10.0-ce.0
+    image: gitlab/gitlab-ce:15.4.1-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -105,7 +105,7 @@ services:
     - gitlab_data:/var/opt/gitlab
 
   redis:
-    image: gitlab/gitlab-ce:14.10.0-ce.0
+    image: gitlab/gitlab-ce:15.4.1-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -130,7 +130,7 @@ services:
     - redis_data:/var/opt/gitlab
 
   gitaly:
-    image: gitlab/gitlab-ce:14.10.0-ce.0
+    image: gitlab/gitlab-ce:15.4.1-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |

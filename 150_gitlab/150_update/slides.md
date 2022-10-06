@@ -22,17 +22,17 @@ See changelog [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://g
 
 Check for update in admin area (Menu <i class="fa-regular fa-arrow-right"></i> Admin)
 
-Upcoming releases [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/upcoming-releases/)
-
-Upcoming releases by product tier [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/direction/paid_tiers/)
+Upcoming releases by version [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/upcoming-releases/) and by product tier [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/direction/paid_tiers/)
 
 Deprecations are documented [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/update/deprecations)
 
 Make sure you have a backup [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/raketasks/backup_restore.html)
 
+You must update to every minor version due to schema updates
+
 ---
 
 ## Hands-On
 
-1. Update `compose.yml` in 100_reverse_proxy<br>with new image `gitlab/gitlab-ce:15.4.0-ce.0`
+1. Update `compose.yml` in 100_reverse_proxy<br>with new image `gitlab/gitlab-ce:15.4.1-ce.0`
 1. Run deployment from [reverse proxy section](#/gitlab_traefik)

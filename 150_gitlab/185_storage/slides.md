@@ -23,3 +23,9 @@ gitlab_rails['object_store']['connection'] = {
   'aws_secret_access_key' => '<AWS_SECRET_ACCESS_KEY>'
 }
 ```
+
+Separate buckets for...
+
+Artifacts, Git LFS, Packages, Terraform state, Pages
+
+...and more <i class="fa-solid fa-face-smile-wink"></i>

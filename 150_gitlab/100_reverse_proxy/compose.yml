@@ -70,6 +70,8 @@ services:
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
 
+        # Enable integrated grafana
+        grafana['enable'] = true
         grafana['alerting_enabled'] = true
         # Fix for chicken-and-egg issue with oauth
         grafana['disable_login_form'] = false
@@ -94,3 +96,4 @@ services:
       traefik.tcp.routers.ssh.entrypoints: ssh
       traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)
       traefik.tcp.routers.ssh.service: ssh
+      traefik.tcp.routers.ssh.tls.passthrough: true

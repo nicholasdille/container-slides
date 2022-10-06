@@ -18,13 +18,13 @@ Supported executors: `shell`, `docker`, `docker-windows`, `docker-ssh`, `ssh`, `
 
 Jobs are executed in the context of the runner
 
-### Docker
+### Docker / Kubernetes
 
-Jobs are executed in a dedicated container
+Jobs are executed in a dedicated container / pod
 
-### Kubernetes
+### Image cleanup
 
-Jobs are executed in a dedicated pod
+docuum [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.com/stepchowfun/docuum) is able to remove least recently used images
 
 ---
 

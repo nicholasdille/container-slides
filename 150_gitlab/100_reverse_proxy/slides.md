@@ -37,10 +37,15 @@ docker rm -f gitlab
 docker compose --project-name gitlab up -d
 ```
 
-Your VM has the necessary environment variables:
+Your VM has the necessary environment variables: `DOMAIN` and `IP`
 
-- `DOMAIN`
-- `IP`
+Extract password:
+
+```bash
+docker compose --project-name gitlab exec gitlab
+    cat /etc/gitlab/initial_root_password \
+    | grep ^Password | cut -d' ' -f2
+```
 
 ---
 
@@ -78,15 +83,15 @@ Not configured in this workshop
 
 Multiple options
 
-### GitLab with certificate file
+### GitLab with certificate file <i class="fa-duotone fa-traffic-light-stop" style="--fa-secondary-color: red;"></i>
 
 Configure GitLab with key and certificate [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/ssl.html#other-certificate-authorities)
 
-### GitLab with Let's Encrypt
+### GitLab with Let's Encrypt <i class="fa-duotone fa-traffic-light-slow" style="--fa-secondary-color: yellow;"></i>
 
 Configure GitLab to use Let's Encrypt [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/ssl.html#lets-encrypt-integration)
 
-### traefik with Let's Encrypt
+### traefik with Let's Encrypt <i class="fa-duotone fa-traffic-light-go" style="--fa-secondary-color: green;"></i>
 
 Configure traefik to use Let's Encrypt with HTTP challenge [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-http/)
 

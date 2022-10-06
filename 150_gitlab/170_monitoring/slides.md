@@ -10,7 +10,7 @@
 
 <i class="fa-duotone fa-monitor-waveform fa-4x fa-duotone-colors" style="float: right;"></i>
 
-GitLab ships with Prometheus [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://prometheus.io/) and Grafana [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://grafana.com/grafana/) included
+GitLab ships with Prometheus and Grafana included [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/grafana.html)
 
 All components expose metrics
 
