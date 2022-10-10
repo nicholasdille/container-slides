@@ -23,3 +23,4 @@ COPY --chmod=0775 seat-index.sh /docker-entrypoint.d/
 COPY --chmod=0775 domain.sh /docker-entrypoint.d/
 
 COPY index.html /usr/share/nginx/html/
+COPY auth.html /usr/share/nginx/html/auth/index.html
