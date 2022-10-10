@@ -78,6 +78,12 @@ services:
       traefik.http.routers.nginx-s.rule: Host(`${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.nginx-s.service: nginx
       traefik.http.routers.nginx-s.tls: "true"
+      # Authenticated endpoint
+      traefik.http.routers.auth-s.entrypoints: https
+      traefik.http.routers.auth-s.rule: Host(`${DOMAIN:?You must supply DOMAIN}`) && PathPrefix(`/auth/`)
+      traefik.http.routers.auth-s.service: nginx
+      traefik.http.routers.auth-s.tls: "true"
+      traefik.http.routers.auth-s.middlewares: seat-auth
       # Authenticated endpoint for dev
       traefik.http.routers.dev-s.entrypoints: https
       traefik.http.routers.dev-s.rule: Host(`dev.${DOMAIN:?You must supply DOMAIN}`)
