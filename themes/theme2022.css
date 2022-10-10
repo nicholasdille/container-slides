@@ -23,6 +23,8 @@
     --r-link-color-hover: #7cbad4;
     --r-selection-background-color: #dcdcdc;
     --r-selection-color: black;
+    /*--fa-style-family: var(--fa-style-family-classic);
+    --fa-style: 900;*/
 }
 
 .reveal .slides {

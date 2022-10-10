@@ -2,11 +2,11 @@
 
 Build agents
 
-Service modelling <i class="fas fa-arrow-right"></i> Understanding dependencies
+Service modelling <i class="fa fa-arrow-right"></i> Understanding dependencies
 
-Microservices <i class="fas fa-arrow-right"></i> Understanding components
+Microservices <i class="fa fa-arrow-right"></i> Understanding components
 
-Cloud agnostic <i class="fas fa-arrow-right"></i> Easy targeting
+Cloud agnostic <i class="fa fa-arrow-right"></i> Easy targeting
 
 --
 

@@ -1,12 +1,12 @@
 ## Goal to optimize a `Dockerfile`
 
-<i class="fas fa-running fa-2x" style="width: 2em; text-align: center;"></i> Faster build
+<i class="fa fa-running fa-2x" style="width: 2em; text-align: center;"></i> Faster build
 
-<i class="fas fa-compress-arrows-alt fa-2x" style="width: 2em; text-align: center;"></i> Smaller image
+<i class="fa fa-compress-arrows-alt fa-2x" style="width: 2em; text-align: center;"></i> Smaller image
 
-<i class="fas fa-shield-alt fa-2x" style="width: 2em; text-align: center;"></i> More secure contents
+<i class="fa fa-shield-alt fa-2x" style="width: 2em; text-align: center;"></i> More secure contents
 
-<i class="fas fa-dumbbell fa-2x" style="width: 2em; text-align: center;"></i> Easier to maintain
+<i class="fa fa-dumbbell fa-2x" style="width: 2em; text-align: center;"></i> Easier to maintain
 
 ---
 
@@ -14,33 +14,33 @@
 
 <div class="layout-double">
 
-Multi-stage build <i class="fas fa-running"></i> <i class="fas fa-compress-arrows-alt"></i>
+Multi-stage build <i class="fa fa-running"></i> <i class="fa fa-compress-arrows-alt"></i>
 
-FROM scratch <i class="fas fa-shield-alt"></i> <i class="fas fa-compress-arrows-alt"></i>
+FROM scratch <i class="fa fa-shield-alt"></i> <i class="fa fa-compress-arrows-alt"></i>
 
-Order of commands <i class="fas fa-running"></i>
+Order of commands <i class="fa fa-running"></i>
 
-BuildKit RUN cache <i class="fas fa-compress-arrows-alt"></i>
+BuildKit RUN cache <i class="fa fa-compress-arrows-alt"></i>
 
-Heredocs <i class="fas fa-dumbbell"></i>
+Heredocs <i class="fa fa-dumbbell"></i>
 
-USER <i class="fas fa-shield-alt"></i>
+USER <i class="fa fa-shield-alt"></i>
 
-Parallel multi-stage build <i class="fas fa-running"></i>
+Parallel multi-stage build <i class="fa fa-running"></i>
 
-Dependency update, e.g. RenovateBot <i class="fas fa-shield-alt"></i>
+Dependency update, e.g. RenovateBot <i class="fa fa-shield-alt"></i>
 
-Patch/digest auto-merge <i class="fas fa-shield-alt"></i>
+Patch/digest auto-merge <i class="fa fa-shield-alt"></i>
 
-Automated build <i class="fas fa-shield-alt"></i> <i class="fas fa-running"></i>
+Automated build <i class="fa fa-shield-alt"></i> <i class="fa fa-running"></i>
 
-Cache From <i class="fas fa-running"></i>
+Cache From <i class="fa fa-running"></i>
 
-Testing <i class="fas fa-shield-alt"></i>
+Testing <i class="fa fa-shield-alt"></i>
 
-Scan <i class="fas fa-shield-alt"></i>
+Scan <i class="fa fa-shield-alt"></i>
 
-Scheduled rebuild <i class="fas fa-shield-alt"></i>
+Scheduled rebuild <i class="fa fa-shield-alt"></i>
 
 </div>
 
@@ -48,18 +48,18 @@ Scheduled rebuild <i class="fas fa-shield-alt"></i>
 
 ## More
 
-BuildKit RUN mount <i class="fas fa-compress-arrows-alt"></i> <i class="fas fa-running"></i>
+BuildKit RUN mount <i class="fa fa-compress-arrows-alt"></i> <i class="fa fa-running"></i>
 
-Base and derived images <i class="fas fa-running"></i> <i class="fas fa-dumbbell"></i>
+Base and derived images <i class="fa fa-running"></i> <i class="fa fa-dumbbell"></i>
 
-LABEL <i class="fas fa-dumbbell"></i>
+LABEL <i class="fa fa-dumbbell"></i>
 
-Job dependencies <i class="fas fa-running"></i>
+Job dependencies <i class="fa fa-running"></i>
 
-CI caching <i class="fas fa-running"></i>
+CI caching <i class="fa fa-running"></i>
 
-CI only certain file changes <i class="fas fa-running"></i>
+CI only certain file changes <i class="fa fa-running"></i>
 
-Remote tagging <i class="fas fa-running"></i>
+Remote tagging <i class="fa fa-running"></i>
 
-Readability beats size <i class="fas fa-dumbbell"></i>
+Readability beats size <i class="fa fa-dumbbell"></i>

@@ -4,7 +4,7 @@ k3s in Docker
 
 k3s: Lightweight Kubernetes in a single binary https://github.com/k3s-io/k3s
 
-[<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://github.com/rancher/k3d) [<i class="fas fa-file-alt" style="width: 1.5em; text-align: center;"></i>](https://k3d.io/)
+[<i class="fa fa-globe" style="width: 1.5em; text-align: center;"></i>](https://github.com/rancher/k3d) [<i class="fa fa-file-alt" style="width: 1.5em; text-align: center;"></i>](https://k3d.io/)
 
 Installation
 

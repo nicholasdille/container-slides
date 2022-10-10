@@ -14,6 +14,6 @@ Data persistence on the host
 
 ### Disadvantage
 
-<i class="fas fa-minus" style="width: 1em;"></i> WordPress cannot be scaled easily (consistency)
+<i class="fa fa-minus" style="width: 1em;"></i> WordPress cannot be scaled easily (consistency)
 
-<i class="fas fa-minus" style="width: 1em;"></i> MySQL cannot be scaled easily (consistency)
+<i class="fa fa-minus" style="width: 1em;"></i> MySQL cannot be scaled easily (consistency)

@@ -2,7 +2,7 @@
 
 Introduced in Windows 10 and Windows Server 2016
 
-Managed by Docker <i class="fab fa-docker"></i>
+Managed by Docker <i class="fa-brands fa-docker"></i>
 
 Two flavours:
 

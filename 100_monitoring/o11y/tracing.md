@@ -1,6 +1,6 @@
 ## Tracing
 
-<i class="fas fa-shoe-prints fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-shoe-prints fa-5x"></i><!-- .element: style="float: right;" -->
 
 Understanding data paths through infrastructure
 
@@ -18,7 +18,7 @@ Span: connection between two services
 
 ## Tracing in Software Development
 
-<i class="fas fa-shoe-prints fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-shoe-prints fa-5x"></i><!-- .element: style="float: right;" -->
 
 Instrumentation required
 
@@ -42,7 +42,7 @@ Header propagation usually requires code change
 
 ## Tracing in Operations
 
-<i class="fas fa-shoe-prints fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-shoe-prints fa-5x"></i><!-- .element: style="float: right;" -->
 
 Little to no advantages from service meshes
 

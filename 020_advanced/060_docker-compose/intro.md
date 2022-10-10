@@ -11,7 +11,7 @@ Modifications are applied incrementally
 
 Service discovery is builtin
 
-Based on independent compose specification [<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://compose-spec.io/) [<i class="fab fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/compose-spec/compose-spec)
+Based on independent compose specification [<i class="fa fa-globe" style="width: 1.5em; text-align: center;"></i>](https://compose-spec.io/) [<i class="fa-brands fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/compose-spec/compose-spec)
 
 --
 

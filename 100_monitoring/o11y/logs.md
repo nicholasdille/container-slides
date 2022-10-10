@@ -1,6 +1,6 @@
 ## Logs
 
-<i class="fas fa-align-left fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-align-left fa-5x"></i><!-- .element: style="float: right;" -->
 
 Log shipping
 
@@ -20,7 +20,7 @@ Moderate effort to scrape logs from directories
 
 ## Types
 
-<i class="fas fa-align-left fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-align-left fa-5x"></i><!-- .element: style="float: right;" -->
 
 Full text indexing
 

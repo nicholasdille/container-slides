@@ -93,7 +93,7 @@ Place to store images
 ## Why Containers
 
 <div style="width: 32%; padding-right: 0.5em; float: left; text-align: center;">
-<p><i class="fas fa-umbrella fa-3x"></i></p>
+<p><i class="fa fa-umbrella fa-3x"></i></p>
 
 <h3>Isolated</h3>
 
@@ -102,7 +102,7 @@ Place to store images
 </div>
 
 <div style="width: 32%; padding-right: 0.5em; float: left; text-align: center;">
-<p><i class="fas fa-suitcase fa-3x"></i></p>
+<p><i class="fa fa-suitcase fa-3x"></i></p>
 
 <h3>Packaged</h3>
 
@@ -111,7 +111,7 @@ Place to store images
 </div>
 
 <div style="width: 32%; float: right; text-align: center;">
-<p><i class="fas fa-cog fa-3x"></i></p>
+<p><i class="fa fa-cog fa-3x"></i></p>
 
 <h3>Automated</h3>
 

@@ -6,7 +6,7 @@ Official tool used by Kubernetes developers
 
 Highly configurable
 
-[<i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i>](https://github.com/kubernetes-sigs/kind/) [<i class="fas fa-file-alt" style="width: 1.5em; text-align: center;"></i>](https://kind.sigs.k8s.io/)
+[<i class="fa fa-globe" style="width: 1.5em; text-align: center;"></i>](https://github.com/kubernetes-sigs/kind/) [<i class="fa fa-file-alt" style="width: 1.5em; text-align: center;"></i>](https://kind.sigs.k8s.io/)
 
 Installation
 

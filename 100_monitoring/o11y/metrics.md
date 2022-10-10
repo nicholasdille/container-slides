@@ -1,6 +1,6 @@
 ## Metrics
 
-<i class="fas fa-sitemap fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-sitemap fa-5x"></i><!-- .element: style="float: right;" -->
 
 Performance indicators
 
@@ -18,7 +18,7 @@ Traditional tools require dedicated tooling
 
 ## Golden Signals
 
-<i class="fas fa-traffic-light fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-traffic-light fa-5x"></i><!-- .element: style="float: right;" -->
 
 [Google SRE](https://landing.google.com/sre/sre-book/toc/index.html) defines important signals to watch
 
@@ -42,7 +42,7 @@ Fraction of resources available to a service
 
 ## Visualization
 
-<i class="fas fa-chart-area fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-chart-area fa-5x"></i><!-- .element: style="float: right;" -->
 
 Dashboard per service
 
@@ -56,7 +56,7 @@ One traffic light for each services
 
 ## Analysis
 
-<i class="fas fa-binoculars fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-binoculars fa-5x"></i><!-- .element: style="float: right;" -->
 
 Service status depends on multiple metrics
 
@@ -78,7 +78,7 @@ Watch trends
 
 ## Alerting
 
-<i class="fas fa-bell fa-5x"></i><!-- .element: style="float: right;" -->
+<i class="fa fa-bell fa-5x"></i><!-- .element: style="float: right;" -->
 
 Decide green/red or green/yellow/red
 
