@@ -23,14 +23,11 @@ RUN apt-get update \
         gettext-base \
         vim-tiny
 
-ARG DOCKER_SETUP_VERSION=1.4.28
-RUN curl https://github.com/nicholasdille/docker-setup/releases/download/v${DOCKER_SETUP_VERSION}/docker-setup.sh \
+RUN curl https://github.com/nicholasdille/docker-setup/raw/main/docker-setup \
         --silent \
         --location \
         --output /usr/local/bin/docker-setup \
  && chmod +x /usr/local/bin/docker-setup
-
-ARG tool_max_wait=60
-RUN docker-setup --no-wait --skip-docs --only docker --debug || true
+RUN docker-setup install
 
 USER coder

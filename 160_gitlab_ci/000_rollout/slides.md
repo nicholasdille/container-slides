@@ -2,11 +2,11 @@
 
 <i class="fa-duotone fa-rocket-launch fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
-## Rollout
+## Demo environment
 
 ---
 
-## Rollout step 1/
+## GitLab
 
 Deploy a containerized stack for this workshop
 
@@ -19,80 +19,6 @@ Visual Studio Code for editing
 Portainer to manage Docker
 
 traefik routes requests to containers
-
----
-
-## Rollout 2/
-
-Use SSH to login to you VM
-
-```bash
-ssh seat@seatN.inmylab.de
-```
-
-Clone repository with slides and demos
-
-```bash
-git clone https://github.com/nicholasdille/container-slides
-```
-
-Deploy stack
-
-```bash
-cd container-slides/160_gitlab_ci/000_rollout
-docker compose \
-    --project-name gitlab \
-    up -d
-```
-
-Go to https://seatN.inmylab.de where seatN matches your subdomain
-
----
-
-## Rollout 3/
-
-Wait for GitLab to be available (status is `running (healthy)`):
-
-```bash
-docker compose ps
-```
-
-Retrieve the initial root password for GitLab:
-
-```bash
-docker ps --filter "label=com.docker.compose.service=gitlab" --quiet \
-| xargs -I{} \
-    docker exec {} \
-        cat /etc/gitlab/initial_root_password \
-| grep ^Password \
-| cut -d' ' -f2
-```
-
-Login to GitLab
-
----
-
-## Rollout step 4/4
-
-Connect GitLab runner
-
-1. Go to **Menu** > **Admin** > **Overview** > **Runners**
-1. Click **Register an instance runner** and copy the registration token
-1. Make the registration token available:
-
-    ```bash
-    echo "export REGISTRATION_TOKEN=<REGISTRATION_TOKEN>" \
-        >/etc/profile.d/gitlab_registration_token.sh
-    source /etc/profile.d/gitlab_registration_token.sh
-    ```
-
-1. Restart runner:
-
-    ```bash
-    docker compose \
-        --project-name gitlab \
-        up -d
-    ```
 
 ---
 

@@ -94,3 +94,8 @@ echo
 echo "### Starting runner"
 docker compose build --pull runner
 docker compose up -d runner
+
+echo
+echo "### Starting remaining services"
+docker compose build --pull
+docker compose up -d
