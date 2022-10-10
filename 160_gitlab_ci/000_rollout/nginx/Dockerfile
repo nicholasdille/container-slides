@@ -20,6 +20,7 @@ RUN rm -f /etc/nginx/sites-enabled/* \
 COPY webdav.conf /etc/nginx/conf.d/
 COPY --chmod=0775 webdav.sh /docker-entrypoint.d/
 COPY --chmod=0775 seat-index.sh /docker-entrypoint.d/
+COPY --chmod=0775 seat-pass.sh /docker-entrypoint.d/
 COPY --chmod=0775 domain.sh /docker-entrypoint.d/
 
 COPY index.html /usr/share/nginx/html/

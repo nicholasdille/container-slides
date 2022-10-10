@@ -42,8 +42,9 @@ services:
       start_period: 5s
     labels:
       traefik.enable: "true"
-      # Global authentication middleware
+      # Global authentication middlewares
       traefik.http.middlewares.seat-auth.basicauth.users: ${SEAT_HTPASSWD:?You must supply SEAT_HTPASSWD}
+      traefik.http.middlewares.seat-code.basicauth.users: ${SEAT_CODE_HTPASSWD:?You must supply SEAT_CODE_HTPASSWD}
       # Global redirection middleware
       traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
       # traefik dashboard: redirection to HTTPS
@@ -63,6 +64,8 @@ services:
       context: nginx
     environment:
       SEAT_INDEX: ${SEAT_INDEX:?You must supply SEAT_INDEX}
+      SEAT_PASS: ${SEAT_PASS:?You must supply SEAT_PASS}
+      SEAT_CODE: ${SEAT_CODE:?You must supply SEAT_CODE}
       DOMAIN: ${DOMAIN:?You must supply DOMAIN}
     labels:
       traefik.enable: "true"
@@ -83,7 +86,7 @@ services:
       traefik.http.routers.auth-s.rule: Host(`${DOMAIN:?You must supply DOMAIN}`) && PathPrefix(`/auth/`)
       traefik.http.routers.auth-s.service: nginx
       traefik.http.routers.auth-s.tls: "true"
-      traefik.http.routers.auth-s.middlewares: seat-auth
+      traefik.http.routers.auth-s.middlewares: seat-code
       # Authenticated endpoint for dev
       traefik.http.routers.dev-s.entrypoints: https
       traefik.http.routers.dev-s.rule: Host(`dev.${DOMAIN:?You must supply DOMAIN}`)
