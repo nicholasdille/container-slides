@@ -22,26 +22,12 @@ traefik routes requests to containers
 
 ---
 
-## GitLab runner
-
-Needed to executed CI jobs
-
-![](160_gitlab_ci/000_rollout/runner.drawio.svg) <!-- .element: style="width: 95%;" -->
-
-Uses the `docker` executor
-
-Isolates jobs in dedicated containers
-
-Containers are based on `alpine` by default
-
----
-
 ## IDE
 
 Use the web-based Visual Studio Code
 
 1. Go to https://vscode.seatN.inmylab.de
-1. Authenticate using the user seat and your personal password
+1. Authenticate using the user **seat** and your personal password
 1. Finish the configuration wizard
 1. Open a terminal and configure git:
 
@@ -51,3 +37,32 @@ Use the web-based Visual Studio Code
     ```
 
 1. Clone https://github.com/nicholasdille/container-slides
+
+---
+
+## Problems with credentials
+
+If your credentials are not working:
+
+1. Go to https://seatN.inmylab.de
+1. Click on "Show username and password"
+1. Authenticate using the user **seat** and your code
+
+The code was provided as part of your credentials:
+
+```plaintext
+code;hostname;username;password
+ABCDE;seatN.inmylab.de;seat;0123456789abcdef0123456789abcdef
+```
+
+---
+
+## Demos tell a story
+
+Demos focus on a single feature
+
+Each demo improves the previous state
+
+All demos will have unanswered questions
+
+Following demos will again improve

@@ -16,17 +16,17 @@ All jobs in subsequent stages will receive the artifacts (by default)
 
 ### Configuration
 
-`artifacts` can be in `default` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_default)
+Name artifacts
 
 Include and exclude paths
 
-Expire artifacts
+When to create artifacts (jobs success, failure, always)
 
-Name artifacts
+Expire artifacts
 
 Add untracked files
 
-When to create artifacts (jobs success, failure, always)
+`artifacts` can be in `default` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_default)
 
 ---
 
@@ -45,15 +45,21 @@ Test binary in a new job and stage
 
 ## Dependencies
 
-Jobs can receive artifacts from only some previous jobs
+Jobs can restrict which job artifacts to receive
 
-Done using `dependencies` [](https://docs.gitlab.com/ee/ci/yaml/#dependencies)
+Add `dependencies` [](https://docs.gitlab.com/ee/ci/yaml/#dependencies)
+
+```yaml
+job_name:
+  dependencies:
+  - other_job
+  # ...
+```
 
 Empty list disables receiving artifacts:
 
 ```yaml
 job_name:
-  # ...
   dependencies: []
   # ...
 ```

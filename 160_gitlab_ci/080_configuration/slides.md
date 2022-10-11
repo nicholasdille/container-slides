@@ -20,7 +20,7 @@ Get badges for pipelines status, coverage report and the latest release
 
 Audo DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
 
-### Runners
+### Runners [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
 
 Connect specific runners
 
@@ -36,4 +36,6 @@ More useful settings
 
 Prevent unintentional deployments using Deploy Freeze [](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze)
 
-Use `$CI_DEPLOY_FREEZE` to check for deploy freeze
+Job scripts must implement freeze
+
+Use `$CI_DEPLOY_FREEZE` to check for active deploy freeze

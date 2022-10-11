@@ -20,5 +20,5 @@ Creator is referenced and shown as the triggerer
 
 ### Hands-On
 
-1. Schedule pipeline run in 5 minutes
+1. Schedule pipeline to run in 5 minutes
 1. Check pipeline

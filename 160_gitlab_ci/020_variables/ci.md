@@ -20,3 +20,4 @@ Available in project-, group- and instance-level
         -o hello \
         .
     ```
+    <!-- .element: style="width: 45em;" -->

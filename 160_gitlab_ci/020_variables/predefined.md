@@ -21,3 +21,4 @@ Some help interacting with the GitLab server
         -o hello \
         .
     ```
+    <!-- .element: style="width: 35em;" -->
