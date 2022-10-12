@@ -17,10 +17,10 @@ if test -f .env; then
     source .env
 fi
 
-echo
-echo "### Removing previous deployment"
-docker compose version
-docker compose down --volumes
+#echo
+#echo "### Removing previous deployment"
+#docker compose version
+#docker compose down --volumes
 
 echo
 echo "### Pulling images"
