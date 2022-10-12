@@ -6,6 +6,6 @@ Shared across all projects
 
 Managed from admin area
 
-Privileges reserved for instance administrators
+Reserved for instance administrators
 
 Can run untagged jobs

@@ -1,15 +1,7 @@
 package main
 
-import "flag"
-import "github.com/fatih/color"
+import "github.com/TwiN/go-color"
 
 func main() {
-	var flagNoColor = flag.Bool("no-color", false, "Disable color output")
-	flag.Parse()
-	if *flagNoColor {
-		color.NoColor = true
-		color.Red("Disable colored output")
-	}
-
-	color.Green("hello world")
+	println(color.InGreen("hello world"))
 }

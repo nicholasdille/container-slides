@@ -12,7 +12,7 @@ stages:
 - trigger
 
 default:
-  image: golang:1.17.9
+  image: golang:1.19.2
 
 lint:
   stage: check
@@ -78,12 +78,14 @@ pages:
     - public
 
 package:
-  image: docker:20.10.16
+  image: docker:20.10.18
   stage: package
   rules:
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  variables:
+    DOCKER_HOST: tcp://127.0.0.1:2375
   services:
-  - name: docker:20.10.16-dind
+  - name: docker:20.10.18-dind
     command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
   script:
   - docker build --tag hello .

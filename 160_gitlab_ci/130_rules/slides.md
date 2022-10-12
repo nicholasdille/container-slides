@@ -17,7 +17,7 @@ job_name:
   rules:
   - if: $VAR == "value"
   - if: $VAR2 = "value2"
-  # ...
+  #...
 ```
 
 Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) which are "not actively developed"
@@ -90,12 +90,12 @@ Rules will be repeated multiple times
 Combine rules with templates to prevent repetition
 
 ```yaml
-.rule-only-mr:
+.rule-only-web:
   rules:
-  - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  - if: $CI_PIPELINE_SOURCE == 'web'
 
 job_name:
   extends:
-  - .rule-only-mr
+  - .rule-only-web
   #...
 ```

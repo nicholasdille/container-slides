@@ -19,4 +19,6 @@ Job tokens can be used to authenticate
 
 Job token inherits permissions of triggering user
 
-Limit access to specific projects [](https://docs.gitlab.com/ee/ci/jobs/ci_job_token.html#configure-the-job-token-scope-limit)
+When using schedules the creator of the schedule is used
+
+Configure the job token to limit access to projects [](https://docs.gitlab.com/ee/ci/jobs/ci_job_token.html#configure-the-job-token-scope-limit)

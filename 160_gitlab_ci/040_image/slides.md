@@ -22,7 +22,7 @@ Avoid maintaining custom image
 
 Use `image` instead of `before_script`
 
-1. Add `image: golang:1.17.9` to all jobs
+1. Add `image: golang:1.19.2` to all jobs
 1. Remove `before_script` from all jobs
 
 (See new `.gitlab-ci.yml`)

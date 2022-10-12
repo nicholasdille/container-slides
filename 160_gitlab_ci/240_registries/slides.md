@@ -12,9 +12,11 @@ Integrated container registry [](https://docs.gitlab.com/ee/user/packages/contai
 
 GitLab provides predefined variables [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_variables) for accessing the registry
 
-Images must be named according to the project path, e.g. ...
+Images must be named according to the project path
 
-...for project `bar` in group `foo`: gitlab.seatN.inmylab.de/foo/bar:latest
+For example in project `bar` in group `foo`:
+
+    gitlab.seatN.inmylab.de/foo/bar:latest
 
 CI jobs receive environment variables:
 
@@ -36,6 +38,7 @@ Upload the previously built container image
       before_script:
       - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
     ```
+    <!-- .element: style="width: 50em;" -->
 
 1. Update build command to assign a proper tag
 
@@ -44,6 +47,7 @@ Upload the previously built container image
       script:
       - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .
     ```
+    <!-- .element: style="width: 50em;" -->
 
 ---
 
@@ -54,10 +58,12 @@ Upload the previously built container image
     ```yaml
     job_name:
       script:
-      # ...
+      #...
       - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
     ```
+    <!-- .element: style="width: 35em;" -->
 
+1. Check pipeline
 1. Go to **Packages & Registries > Container Registry**
 1. Check root image
 

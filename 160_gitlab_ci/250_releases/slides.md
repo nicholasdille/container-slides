@@ -14,13 +14,15 @@ Pipeline jobs can create releases [](https://docs.gitlab.com/ee/user/project/rel
 
 Release assets can be linked but must be stored elsewhere
 
-`release` uses `release-cli` [](https://docs.gitlab.com/ee/user/project/releases/release_cli.html) internally
+`release-cli` [](https://gitlab.com/gitlab-org/release-cli) must be available
 
 Container images are publicly available [](https://gitlab.com/gitlab-org/release-cli/container_registry)
 
-`registry.gitlab.com/gitlab-org/release-cli:v0.11.0`
+`registry.gitlab.com/gitlab-org/release-cli:v0.14.0`
 
 Runners using the shell executor must have `release-cli` installed
+
+See official documentation [](https://docs.gitlab.com/ee/user/project/releases/release_cli.html)
 
 ---
 
@@ -39,5 +41,7 @@ Runners using the shell executor must have `release-cli` installed
           line text
         ref: ${CI_COMMIT_SHA}
     ```
+    <!-- .element: style="width: 30em;" -->
 
+1. Check pipeline
 1. Go to **Deployments > Releases**

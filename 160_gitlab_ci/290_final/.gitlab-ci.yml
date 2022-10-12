@@ -38,7 +38,7 @@ renovate:
   stage: check
   rules:
   - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE'
-  image: renovate/renovate:32.52.2
+  image: renovate/renovate:32.236.0-slim
   variables:
     LOG_LEVEL: debug
   script: |
@@ -93,7 +93,7 @@ pages:
   rules:
   # Only run when pushed to main branch
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-  image: registry.gitlab.com/gitlab-org/release-cli:v0.11.0
+  image: registry.gitlab.com/gitlab-org/release-cli:v0.14.0
   release:
     tag_name: ${CI_PIPELINE_IID}
     name: Release ${CI_PIPELINE_IID}
@@ -114,7 +114,7 @@ pages:
     - public
 
 package:
-  image: docker:20.10.16
+  image: docker:20.10.18
   stage: package
   extends: .go-targets
   rules:
@@ -122,7 +122,7 @@ package:
   variables:
     DOCKER_BUILDKIT: 1
   services:
-  - name: docker:20.10.16-dind
+  - name: docker:20.10.18-dind
     command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
   before_script:
   - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"

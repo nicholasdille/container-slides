@@ -42,7 +42,7 @@ See also the official development guide for templates [](https://docs.gitlab.com
     ```yaml
     build:
       extends: .build-go
-      # ...
+      #...
     ```
     <!-- .element: style="width: 48em;" -->
 
@@ -63,7 +63,7 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
     build:
       extends: .build-go
-      # ...
+      #...
     ```
 
 1. Check pipeline

@@ -12,30 +12,29 @@ Merge requests enable collaboration
 
 Pipelines can automatically test merge requests [](https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html)
 
-Use rules [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) to decide which jobs to run when
-
-Jobs require a rule to run for merge requests
-
-Commits to a branch with merge request cause multiple events:
+Commits to a branch with a merge request cause multiple events:
 
 1. Push event to branch
 1. Merge request event
 
-Filter carefully!
+Use rules [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) to decide which jobs to run when
+
+GitLab offers `$CI_PIPELINE_SOURCE` with event name
 
 ---
 
 ## Hands-On 1/
 
-1. Enable `lint`, `audit`, `build` and `test` for merge requests and pushes
+1. Enable jobs `lint`, `audit`, `build` and `test` for merge requests and pushes
 
     ```yaml
     job_name:
     rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      # ...
+      #...
     ```
+    <!-- .element: style="width: 40em;" -->
 
 1. Prevent `deploy` in merge requests
 
@@ -43,8 +42,9 @@ Filter carefully!
     job_name:
       rules:
       - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
-      # ...
+      #...
     ```
+    <!-- .element: style="width: 40em;" -->
 
 ---
 
@@ -56,12 +56,14 @@ Filter carefully!
     job_name:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-      # ...
+      #...
     ```
+    <!-- .element: style="width: 40em;" -->
 
 1. Check pipeline
 1. Create new branch
 1. Make dummy change in new branch
 1. Create merge requests
+1. Check pipelines and merge requests
 
 (See new `.gitlab-ci.yml`)

@@ -7,7 +7,7 @@
       GOARCH: arm64
 
 .build-go:
-  image: golang:1.17.9
+  image: golang:1.19.2
   extends:
   - .go-targets
   script:
@@ -21,7 +21,7 @@
     - hello-${GOOS}-${GOARCH}
 
 .test-go:
-  image: golang:1.17.9
+  image: golang:1.19.2
   extends:
   - .go-targets
   before_script:

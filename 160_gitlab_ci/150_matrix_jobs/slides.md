@@ -10,6 +10,8 @@
 
 Matrix jobs execute the same script with different inputs
 
+Inputs are specified using environment variables
+
 Matrix jobs are defined using `parallel` [](https://docs.gitlab.com/ee/ci/yaml/#parallel)
 
 The `matrix` keyword under `parallel` defines variables sets
@@ -24,7 +26,7 @@ Cross-compile Go for multiple architectures
 
     ```yaml
     .build-go:
-      # ...
+      #...
       parallel:
         matrix:
         - GOOS: linux
@@ -35,6 +37,7 @@ Cross-compile Go for multiple architectures
       - go build -o hello-${GOOS}-${GOARCH} . \
             -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'"
     ```
+    <!-- .element: style="width: 47em;" -->
 
 ---
 
@@ -48,6 +51,7 @@ Cross-compile Go for multiple architectures
       script:
       - ./hello-linux-amd64
     ```
+    <!-- .element: style="width: 30em;" -->
 
 1. Check pipeline
 

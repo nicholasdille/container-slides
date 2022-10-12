@@ -1,5 +1,5 @@
 .build-go:
-  image: golang:1.17.9
+  image: golang:1.19.2
   script:
   - |
     go build \

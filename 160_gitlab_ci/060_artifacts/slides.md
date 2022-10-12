@@ -53,7 +53,7 @@ Add `dependencies` [](https://docs.gitlab.com/ee/ci/yaml/#dependencies)
 job_name:
   dependencies:
   - other_job
-  # ...
+  #...
 ```
 
 Empty list disables receiving artifacts:
@@ -61,7 +61,7 @@ Empty list disables receiving artifacts:
 ```yaml
 job_name:
   dependencies: []
-  # ...
+  #...
 ```
 
 ### Download artifact from another pipeline

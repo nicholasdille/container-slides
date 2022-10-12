@@ -85,3 +85,7 @@
     font: var(--fa-font-solid);
     content: "\f08e";
 }
+
+.reveal .hljs {
+    max-height: 30em;
+}
