@@ -10,7 +10,7 @@
 
 Rules [](https://docs.gitlab.com/ee/ci/yaml/#rules) define whether to execute a job
 
-Pipeline requires one successful rule for the job to be added
+At least one successful rule for the job to be executed
 
 ```yaml
 job_name:
@@ -20,11 +20,9 @@ job_name:
   # ...
 ```
 
-Conditions are also used in workflow rules [](https://docs.gitlab.com/ee/ci/yaml/#workflow)
+Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) which are "not actively developed"
 
 Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
-
-Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) but "not actively developed"
 
 ---
 
@@ -45,6 +43,24 @@ Also see GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index.htm
 
 ---
 
+## Make pipelines conditional
+
+Workflow rules [](https://docs.gitlab.com/ee/ci/yaml/#workflow) define whether to execute a whole pipeline
+
+```yaml
+workflow:
+  rules:
+  - if: $VAR == "value"
+  - if: $VAR2 = "value2"
+
+job_name:
+  #...
+```
+
+Conditions are also used in workflow rules 
+
+---
+
 ## Hands-On: Workflow rules
 
 Disable execution for some trigger types
@@ -61,4 +77,25 @@ workflow:
     when: never
   - if: $CI_PIPELINE_SOURCE == 'trigger'
     when: never
+```
+
+---
+
+## Pro tip: Rule templates
+
+Pipelines often have many jobs
+
+Rules will be repeated multiple times
+
+Combine rules with templates to prevent repetition
+
+```yaml
+.rule-only-mr:
+  rules:
+  - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+job_name:
+  extends:
+  - .rule-only-mr
+  #...
 ```

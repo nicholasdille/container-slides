@@ -1,7 +1,5 @@
 include:
-- project: group/project
-  ref: main
-  file: go.yaml
+- local: go.yaml
 
 stages:
 - check

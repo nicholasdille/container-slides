@@ -10,14 +10,15 @@
 
 Job templates begin with a dot to prevent execution
 
+Templates can be located in the same `.gitlab-ci.yml` (inline)
+
 Templates can be imported using `include` [](https://docs.gitlab.com/ee/ci/yaml/#include) from...
 
-- The same `.gitlab-ci.yml`
 - Files in the same repository
 - Files in other repositories of the same instance
 - Remote locations (only unauthenticated)
 
-See also the development guide for templates [](https://docs.gitlab.com/ee/development/cicd/templates.html)
+See also the official development guide for templates [](https://docs.gitlab.com/ee/development/cicd/templates.html)
 
 ---
 
@@ -34,6 +35,7 @@ See also the development guide for templates [](https://docs.gitlab.com/ee/devel
             -o hello \
             .
     ```
+    <!-- .element: style="width: 48em;" -->
 
 1. Use in build job
 
@@ -42,8 +44,11 @@ See also the development guide for templates [](https://docs.gitlab.com/ee/devel
       extends: .build-go
       # ...
     ```
+    <!-- .element: style="width: 48em;" -->
 
 1. Check pipeline
+
+(See `inline/.gitlab-ci.yml`)
 
 ---
 
@@ -63,6 +68,8 @@ See also the development guide for templates [](https://docs.gitlab.com/ee/devel
 
 1. Check pipeline
 
+(See `local/.gitlab-ci.yml`)
+
 ---
 
 ## Hands-On: File
@@ -80,3 +87,56 @@ See also the development guide for templates [](https://docs.gitlab.com/ee/devel
     ```
 
 1. Check pipeline
+
+(See `file/.gitlab-ci.yml`)
+
+---
+
+## Pro tip: Multiple inheritence
+
+Jobs can inherit from multiple templates
+
+```yaml
+job_name:
+  extends:
+  - .template1
+  - .template2
+```
+
+With conflicting templates...
+
+```yaml
+.template1:
+  script: pwd
+.template2:
+  script: whoami
+```
+
+...last writer wins!
+
+```yaml
+job_name:
+  script: whoami
+```
+
+---
+
+## Pro tip 2: Solve multiple inheritence
+
+Conflicting templates...
+
+```yaml
+.template1:
+  script: pwd
+.template2:
+  script: whoami
+```
+
+...can be resolved by using reference tags [](https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#reference-tags)
+
+```yaml
+job_name:
+  script:
+  - !reference[.template1, script]
+  - !reference[.template2, script]
+```
