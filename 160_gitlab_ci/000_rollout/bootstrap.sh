@@ -11,6 +11,8 @@ source /etc/profile.d/seat_index.sh
 source /etc/profile.d/seat_pass.sh
 source /etc/profile.d/seat_htpasswd.sh
 source /etc/profile.d/seat_htpasswd_only.sh
+source /etc/profile.d/seat_code.sh
+source /etc/profile.d/seat_code_htpasswd.sh
 if test -f .env; then
     source .env
 fi
