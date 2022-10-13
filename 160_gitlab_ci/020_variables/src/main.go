@@ -1,18 +1,8 @@
 package main
 
-import "flag"
-import "github.com/fatih/color"
-
-var Author string = "unknown"
-var Version string = "none"
+import fmt
+import "github.com/TwiN/go-color"
 
 func main() {
-	var flagNoColor = flag.Bool("no-color", false, "Disable color output")
-	flag.Parse()
-	if *flagNoColor {
-		color.NoColor = true
-		color.Red("Disable colored output")
-	}
-
-	color.Green("hello world (by %s, version %s)", Author, Version)
+	fmt.Sprintf("hello world (by %s, version %s)", Author, Version)
 }
