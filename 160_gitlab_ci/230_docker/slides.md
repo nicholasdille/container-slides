@@ -14,12 +14,15 @@ Use `docker:dind` for containerized Docker daemon
 
 The GitLab runner must be configured to run privileged container
 
+Alternatives: Rootless and or daeamonless builds using kaniko [](https://github.com/GoogleContainerTools/kaniko), podman/buildah [](https://github.com/containers/buildah), BuildKit [](https://github.com/moby/buildkit)
+
 ---
 
 ## Hands-On
 
 Package binary in container image
 
+1. Add `Dockerfile` to repository
 1. Create new stage called `package` after `test`
 1. Add job `package` in stage `package`
 

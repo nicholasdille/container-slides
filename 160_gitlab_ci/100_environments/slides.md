@@ -22,12 +22,12 @@ WebDAV endpoints emulate deployment targets
 
 ## Hands-On (1/2)
 
+1. Optionally, create environments `dev` and `live`
 1. Retrieve passwords for dev and live environments:
 
     ```bash
     docker ps --filter "label=com.docker.compose.service=nginx" --quiet \
-    | xargs -I{} docker logs {} \
-    | grep "Password for "
+    | xargs -I{} docker logs {} | grep "Password for "
     ```
     <!-- .element: style="width: 40em;" -->
 
@@ -36,8 +36,9 @@ WebDAV endpoints emulate deployment targets
 1. Add new stage and job called `deploy`
 1. Upload to WebDAV server `dev` using `curl`
 1. Download from https://dev.seatN.inmylab.de/hello
+1. Check environments
 
-(See new `demo1.gitlab-ci.yml`)
+(See new `demo1/gitlab-ci.yml`)
 
 ---
 

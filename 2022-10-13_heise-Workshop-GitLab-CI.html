@@ -47,36 +47,6 @@
 <i class="fa-brands fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
 
 <i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
-
-Notes:
-
-Schritte einheitlich bennen
-Pre-create project
-Project-template?
-Job order in .gitlab-ci.yml does not matter
-git credential helper konfigurieren (git config --global credential.helper store)
-echo -n "https://seat:PASS@gitlab.seatN.inmylab.de" >~/.git-credentials
-demo1.gitlab-ci.yml
-check environments in UI
-Location in WebDAV (HTTPS redirect or fix location)
-environments in ui (docs!)
-reduce demo2 of envs
-Gegenüberstellung triggers
-Switch to main after envs (Fix .gitlab-ci.yml)
-trigger: erhaltvon kontext?
-include with generated pipeline
-.rule-only-main:
-  rules:
-  - if: |
-      $CI_PIPELINE_SOURCE == "push" &&
-      $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-MR hands-on 1 einrücken
-Warnung wegen protected vars
-reunner local cache
-Add Dockerfile
-rootless docker build
-fazit pipeline
-fazit folie
 </textarea></section>
 
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -84,13 +54,13 @@ fazit folie
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Agenda
 
-| From  | To    | What                                                  |
-|-------|-------|-------------------------------------------------------|
-| 09:00 |       | Let's roll <i class="fa-solid fa-rabbit-running"></i> |
-| 10:45 | 11:00 | Coffee Break <i class="fa-solid fa-mug-hot"></i>      |
-| 12:30 | 13:30 | Lunch Break <i class="fa-solid fa-pot-food"></i>      |
-| 15:00 | 15:15 | Coffee Break <i class="fa-solid fa-mug-hot"></i>      |
-|       | 17:00 | The End <i class="fa-solid fa-flag-checkered"></i>    |
+| From  | To    | What                                            |
+|-------|-------|-------------------------------------------------|
+| 09:00 |       | Let's roll <i class="fa fa-rabbit-running"></i> |
+| 10:45 | 11:00 | Coffee Break <i class="fa fa-mug-hot"></i>      |
+| 12:30 | 13:30 | Lunch Break <i class="fa fa-pot-food"></i>      |
+| 15:00 | 15:15 | Coffee Break <i class="fa fa-mug-hot"></i>      |
+|       | 17:00 | The End <i class="fa fa-flag-checkered"></i>    |
 
 
 ---
@@ -135,18 +105,17 @@ fazit folie
 
 ### Automatable steps
 
-- <span class="fa-li"><i class="fa fa-screwdriver-wrench"></i></span> Build
-- <span class="fa-li"><i class="fa fa-list-check"></i></span> Test
+- <span class="fa-li"><i class="fa fa-pen"></i></span> Create
+- <span class="fa-li"><i class="fa fa-list-check"></i></span> Verify
+- <span class="fa-li"><i class="fa fa-box-check"></i></span> Package
 - <span class="fa-li"><i class="fa fa-rocket"></i></span> Release
-- <span class="fa-li"><i class="fa fa-cloud-arrow-up"></i></span> Deploy
 
 <!-- .element: class="fa-ul" style="line-height: 150%;" -->
 
-### Manual / reactional / people steps
+### Manual / reactional steps
 
 - <span class="fa-li"><i class="fa fa-calendar-days"></i></span> Plan
-- <span class="fa-li"><i class="fa fa-code"></i></span> Code
-- <span class="fa-li"><i class="fa fa-person-chalkboard"></i></span> Operate
+- <span class="fa-li"><i class="fa fa-screwdriver-wrench"></i></span> Configure
 - <span class="fa-li"><i class="fa fa-chart-line"></i></span> Monitor
 
 <!-- .element: class="fa-ul" style="line-height: 150%;" -->
@@ -187,17 +156,22 @@ fazit folie
 <section data-markdown="160_gitlab_ci/280_security/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Final pipeline
+
+![](160_gitlab_ci/290_final/pipeline.drawio.svg)<!-- .element: style="width: 95%;" -->
+
+Download the final pipeline from [160_gitlab_ci/290_final/.gitlab-ci.yml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/.gitlab-ci.yml) as well as the template from [160_gitlab_ci/290_final/go.yaml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/go.yaml)
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
-<ul class="fa-ul">
-<li><span class="fa-li"><i class="fa-solid fa-infinity"></i></span> GitLab covers the whole DevOps process</li>
-<li><span class="fa-li"><i class="fa-solid fa-ball-pile"></i></span> GitLab is packed with features</li>
-<li><span class="fa-li"><i class="fa-solid fa-gauge-min"></i></span> No plugins to support recurring tasks</li>
-<li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Useful security features even in free tier</li>
-<li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Useful security features even in free tier</li>
+- <span class="fa-li"><i class="fa fa-infinity"></i></span> GitLab covers the whole DevOps process
+- <span class="fa-li"><i class="fa fa-ball-pile"></i></span> GitLab is packed with features
+- <span class="fa-li"><i class="fa fa-gauge-min"></i></span> No plugins to support recurring tasks
+- <span class="fa-li"><i class="fa fa-shield-check"></i></span> Useful security features even in free tier
 
-Download the final [160_gitlab_ci/290_final/.gitlab-ci.yml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/.gitlab-ci.yml) and [160_gitlab_ci/290_final/go.yaml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/go.yaml)
-</ul>
+<!-- .element: class="fa-ul" -->
 </textarea></section>
 
 </div>

@@ -29,9 +29,9 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 
     ```yaml
     job_name:
-    rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      rules:
+      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+      - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       #...
     ```
     <!-- .element: style="width: 40em;" -->

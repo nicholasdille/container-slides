@@ -8,6 +8,8 @@ Injected into jobs at runtime
 
 Available in project-, group- and instance-level
 
+Careful with protected variables
+
 ### Hands-On
 
 1. Go to **Settings** > **CI/CD** and unfold **Variables**

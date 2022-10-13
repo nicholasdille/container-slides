@@ -87,11 +87,21 @@ services:
       traefik.http.routers.auth-s.service: nginx
       traefik.http.routers.auth-s.tls: "true"
       traefik.http.routers.auth-s.middlewares: seat-code
+      # Redirection to HTTPS for dev
+      traefik.http.routers.dev.entrypoints: http
+      traefik.http.routers.dev.rule: Host(`dev.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.dev.service: nginx
+      traefik.http.routers.dev.middlewares: redirect-to-https
       # Authenticated endpoint for dev
       traefik.http.routers.dev-s.entrypoints: https
       traefik.http.routers.dev-s.rule: Host(`dev.${DOMAIN:?You must supply DOMAIN}`)
       traefik.http.routers.dev-s.service: nginx
       traefik.http.routers.dev-s.tls: "true"
+      # Redirection to HTTPS for live
+      traefik.http.routers.live.entrypoints: http
+      traefik.http.routers.live.rule: Host(`live.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.http.routers.live.service: nginx
+      traefik.http.routers.live.middlewares: redirect-to-https
       # Authenticated endpoint for live
       traefik.http.routers.live-s.entrypoints: https
       traefik.http.routers.live-s.rule: Host(`live.${DOMAIN:?You must supply DOMAIN}`)

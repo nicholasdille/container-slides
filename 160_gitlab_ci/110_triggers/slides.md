@@ -28,14 +28,28 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 
 ---
 
+## Comparison of triggers
+
+XXX
+
+| What            | Trigger Tokens | Multi-project | Parent-child |
+|-----------------|-------|--------|---------------|--------------|
+| Traceability    |       |        |               |              |
+| External access |       |        |               |              |
+
+XXX
+
+---
+
 ## Hands-On: Trigger tokens
 
 1. Create a new project (anywhere!)
 1. Add `trigger/.gitlab-ci.yml` to root of new project
+1. **Optionally, jump to next slide**
 1. Go to **Settings** > **CI/CD** and unfold **Pipeline triggers**
-1. Create a trigger
-1. Copy `curl` snippet
+1. Create a trigger and copy `curl` snippet
 1. Go back to previous project
+1. Switch to branch `main`
 1. Add new stage and job called `trigger`
 1. Add `curl` snippet in `script` block
 1. Store `TOKEN` as unprotected but masked CI variable [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_ci_variable)
@@ -78,3 +92,5 @@ Child pipeline can be made from multiple files
 `include` supports `local` for files in the same repository
 
 Use `project`/`ref`/`file` for files in other repositories
+
+Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)

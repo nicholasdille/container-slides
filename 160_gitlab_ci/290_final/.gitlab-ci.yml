@@ -47,13 +47,13 @@ renovate:
         --token ${RENOVATE_TOKEN} \
         --autodiscover true
 
-.lint:
+lint:
   stage: check
   extends: .rules-main-or-mr
   script:
   - go fmt .
 
-.audit:
+audit:
   stage: check
   extends: .rules-main-or-mr
   script:

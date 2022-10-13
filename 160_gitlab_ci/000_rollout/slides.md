@@ -34,6 +34,7 @@ Use the web-based Visual Studio Code
     ```bash
     git config --global user.email "seatN@inmylab.de"
     git config --global user.name "seatN"
+    git config --global credential.helper store
     ```
 
 1. Clone https://github.com/nicholasdille/container-slides
