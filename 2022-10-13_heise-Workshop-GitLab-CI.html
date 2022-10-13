@@ -47,6 +47,36 @@
 <i class="fa-brands fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
 
 <i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
+
+Notes:
+
+Schritte einheitlich bennen
+Pre-create project
+Project-template?
+Job order in .gitlab-ci.yml does not matter
+git credential helper konfigurieren (git config --global credential.helper store)
+echo -n "https://seat:PASS@gitlab.seatN.inmylab.de" >~/.git-credentials
+demo1.gitlab-ci.yml
+check environments in UI
+Location in WebDAV (HTTPS redirect or fix location)
+environments in ui (docs!)
+reduce demo2 of envs
+Gegenüberstellung triggers
+Switch to main after envs (Fix .gitlab-ci.yml)
+trigger: erhaltvon kontext?
+include with generated pipeline
+.rule-only-main:
+  rules:
+  - if: |
+      $CI_PIPELINE_SOURCE == "push" &&
+      $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+MR hands-on 1 einrücken
+Warnung wegen protected vars
+reunner local cache
+Add Dockerfile
+rootless docker build
+fazit pipeline
+fazit folie
 </textarea></section>
 
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -99,6 +129,9 @@
 ---
 
 ## From DevOps to pipelines
+
+![](images/DevOps.svg)
+<!-- .element: style="float: right; width: 50%;" -->
 
 ### Automatable steps
 
@@ -155,8 +188,6 @@
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
-
-![QR code to slides](images/2022-05-19.svg) <!-- .element: style="width: 25%; float: right;" -->
 
 <ul class="fa-ul">
 <li><span class="fa-li"><i class="fa-solid fa-infinity"></i></span> GitLab covers the whole DevOps process</li>
