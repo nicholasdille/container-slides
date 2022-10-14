@@ -26,7 +26,8 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 
 ## Hands-On: Pipeline-integrated
 
-1. Create personal access token and add unprotected CI variable called `RENOVATE_TOKEN`
+1. Create personal access token with scopes `api`, `read_user`, `write_repository`
+1. Add unprotected CI variable called `RENOVATE_TOKEN`
 1. Add `renovate.json` to root of project
 1. Add new job called `renovate`
 1. Create schedule with non-empty variable `RENOVATE`
