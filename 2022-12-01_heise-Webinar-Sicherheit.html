@@ -4,20 +4,19 @@
 <head>
 <meta charset="utf-8"/>
 
-<title>WorkShop: Sicherheit von Kubernetes und Cloud Native Apps</title>
+<title>Webinar: Sicherheit von Kubernetes und Cloud Native Apps</title>
 
 <!-- https://gauger.io/fonticon/ -->
 <link rel="icon" href="images/shield.ico"/>
 
 <link rel="stylesheet" href="media/reveal.js@4.3.1/dist/reveal.css"/>
-<link rel="stylesheet" href="media/fonts/source-sans-pro.css"/>
 <link rel="stylesheet" href="media/reveal.js@4.3.1/dist/theme/black.css" id="theme"/>
 <link rel="stylesheet" href="themes/theme2022.css" id="theme"/>
 <link rel="stylesheet" href="themes/common.css"/>
 <link rel="stylesheet" href="media/highlight.js@11.5.0/styles/rainbow.css"/>
 
 <script>
-    var version = '6.1.1'
+    var version = '6.2.0'
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     if (window.location.href.match(/^http(s)?:\/\/(.+\.)*dille.name/)) {
@@ -38,18 +37,18 @@
 
 # Security in Kubernetes and Cloud Native Apps
 
-*Nicholas Dille, Haufe Group*
+Nicholas Dille, Haufe.Group
 
 <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
 
 <i class="fa-brands fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
 
 <i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
-</textarea></section>
+    </textarea></section>
 
-<section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Agenda
 
 | From  | To    | What           |
@@ -57,66 +56,11 @@
 | 09:00 |       | Let's roll     |
 | 10:45 | 11:00 | Coffee Break   |
 | 11:00 | 12:30 | Let's continue |
-| 12:30 | 13:00 | Q&A            |
+| 12:30 | 13:00 | Q&amp;A        |
 |       | 13:00 | The End        |
+    </textarea></section>
 
----
-
-## Demos
-
-Your personal login data:
-
-```plaintext
-hostname;username;password
-seatN.inmylab.de;seat;0123456789abcdef0123456789abcdef
-```
-
-Login to VM:
-
-```bash
-ssh seat@seatN.inmylab.de
-```
-
-Test VM:
-
-```bash
-docker version
-sudo -l
-git clone https://github.com/nicholasdille/container-slides
-```
-
----
-
-## Powered By
-
-| What             | Where / Who |
-|:-----------------|:------------:|
-| Virtual machines | ![Hetzner logo](images/hetzner.svg) <!-- .element: style="height: 1em;" --> |
-| DNS              | ![Hetzner logo](images/hetzner.svg) <!-- .element: style="height: 1em;" --> |
-| Certificates     | acme.sh and ![Let's Encrypt logo](images/letsencrypt.svg) <!-- .element: style="height: 1em;" --> |
-| Slides           | ![](images/revealjs.svg) <!-- .element: style="height: 1em;" --> and <i class="fa-brands fa-font-awesome"></i> FontAwesome |
-| Repositories     | <i class="fa-brands fa-github"></i> GitHub |
-| Tooling          | [docker-setup](https://github.com/nicholasdille/docker-setup) |
-| VM management    | [seatctl](https://github.com/nicholasdille/seatctl) |
-
----
-
-## Quick links
-
-### Fundamentals
-
-[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Image](#/gitlab_image) - [Before and after script](#/gitlab_script_blocks) - [Defaults](#/gitlab_default) - [Artifacts and dependencies](#/gitlab_artifacts) - [Schedules](#/gitlab_schedules) - [Configuration](#/gitlab_ci_configuration)
-
-### Advanced
-
-[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_child_pipelines) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs)
-
-### Expert
-
-[Job token](#/gitlab_job_token) - [Caches](#/gitlab_caches) - [Services](#/gitlab_services) - [docker build](#/gitlab_docker) - [Registries](#/gitlab_registries) - [Releases](#/gitlab_releases) - [Runners](#/gitlab_runners) - [RenovateBot](#/gitlab_renovate)
-</textarea></section>
-
-<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <ul class="fa-ul">
@@ -127,6 +71,10 @@ git clone https://github.com/nicholasdille/container-slides
 <li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Useful security features even in free tier</li>
 
 Download the final [160_gitlab_ci/290_final/.gitlab-ci.yml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/.gitlab-ci.yml) and [160_gitlab_ci/290_final/go.yaml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/go.yaml)
+
+### Other content
+
+Video-Kurs [Container-Orchestrierung mit Kubernetes leicht gemacht](https://shop.heise-academy.de/kubernetes-container-orchestrierung-leicht-gemacht)
 </ul>
 </textarea></section>
 
@@ -140,11 +88,13 @@ Download the final [160_gitlab_ci/290_final/.gitlab-ci.yml](https://github.com/n
 <script src="media/reveal.js@4.3.1/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.3.1/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 8 * 60;
+    var durationInMinutes = 4 * 60;
     Reveal.initialize({
-        width: 1300,
-        height: 850,
+        width: 1920,
+        height: 1080,
         margin: 0.05,
+        minScale: 0.2,
+        maxScale: 2.0,
         controlsTutorial: false,
         showSlideNumber: false,
         hash: true,
