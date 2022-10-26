@@ -18,9 +18,6 @@ $ ps
   PID TTY          TIME CMD
     1 pts/0    00:00:00 bash
    13 pts/0    00:00:00 ps
-```
-
-```bash
 $ uname -srv
 Linux 4.15.0-142-generic #146-Ubuntu SMP Tue Apr 13 01:11:19 UTC 2021
 $ cat /etc/lsb-release

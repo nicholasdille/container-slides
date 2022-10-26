@@ -1,28 +1,47 @@
+@font-face {
+    font-family: 'Cascadia Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../media/fonts/CascadiaMono.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Cascadia Mono Italic';
+    font-style: italic;
+    font-weight: 400;
+    src: url(../media/fonts/CascadiaMonoItalic.ttf) format('truetype');
+}
+
 :root {
-    --r-background-color: #191919;
-    --r-main-font: Source Sans Pro, Helvetica, sans-serif;
-    --r-main-font-size: 42px;
+    --r-main-font: Source Sans Pro;
+    --r-heading-font: Source Sans Pro;
+    --r-code-font: 'Cascadia Mono';
+
+    --r-main-font-size: 3em;
+    --r-heading1-size: 2em;
+    --r-heading2-size: 1.8em;
+    --r-heading3-size: 1.3em;
+    --r-heading4-size: 1em;
+
     --r-main-color: #fff;
+    --r-heading-color: #7cbad4;
+    --r-background-color: #191919;
+    --r-link-color: #7cbad4;
+    --r-link-color-dark: #7cbad4;
+    --r-link-color-hover: #7cbad4;
+    --r-selection-background-color: #dcdcdc;
+    --r-selection-color: black;
+
     --r-block-margin: 0.3em;
     --r-heading-margin: 0.5em 0 0 0;
-    --r-heading-font: Source Sans Pro, Helvetica, sans-serif;
-    --r-heading-color: #7cbad4;
+
     --r-heading-line-height: 1.2;
     --r-heading-letter-spacing: normal;
     --r-heading-text-transform: uppercase;
     --r-heading-text-shadow: none;
     --r-heading-font-weight: 600;
     --r-heading1-text-shadow: none;
-    --r-heading1-size: 2.5em;
-    --r-heading2-size: 1.6em;
-    --r-heading3-size: 1.3em;
-    --r-heading4-size: 1em;
-    --r-code-font: monospace;
-    --r-link-color: #7cbad4;
-    --r-link-color-dark: #7cbad4;
-    --r-link-color-hover: #7cbad4;
-    --r-selection-background-color: #dcdcdc;
-    --r-selection-color: black;
+
     /*--fa-style-family: var(--fa-style-family-classic);
     --fa-style: 900;*/
 }
