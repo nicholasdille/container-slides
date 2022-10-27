@@ -1,5 +1,5 @@
 ## Image registries
-<!-- .slide: id="registry" -->
+<!-- .slide: id="image_registry" -->
 
 Docker Hub is not the only source for images
 
