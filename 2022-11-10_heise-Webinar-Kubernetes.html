@@ -7,17 +7,16 @@
 <title>Webinar: Kubernetes in der Praxis</title>
 
 <!-- https://gauger.io/fonticon/ -->
-<link rel="icon" href="images/kubernetes.ico"/>
+<link rel="icon" href="images/docker.ico"/>
 
 <link rel="stylesheet" href="media/reveal.js@4.3.1/dist/reveal.css"/>
-<link rel="stylesheet" href="media/fonts/source-sans-pro.css"/>
 <link rel="stylesheet" href="media/reveal.js@4.3.1/dist/theme/black.css" id="theme"/>
 <link rel="stylesheet" href="themes/theme2022.css" id="theme"/>
 <link rel="stylesheet" href="themes/common.css"/>
 <link rel="stylesheet" href="media/highlight.js@11.5.0/styles/rainbow.css"/>
 
 <script>
-    var version = '6.1.1'
+    var version = '6.2.0'
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     if (window.location.href.match(/^http(s)?:\/\/(.+\.)*dille.name/)) {
@@ -34,17 +33,17 @@
 <div class="slides">
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: data-background="images/Containers.jpg" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 75%; margin: auto; position: absolute; top: 25%; bottom: 25%; left: 0; right: 0;" -->
+<!-- .slide: data-background="images/Containers.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
 
-        # Kubernetes in der Praxis
+# Kubernetes in der Praxis
 
-        Nicholas Dille, Haufe.Group
+Nicholas Dille, Haufe.Group
 
-        <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
+<i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
 
-        <i class="fa-brands fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
+<i class="fa-brands fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
 
-        <i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
+<i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> @nicholasdille
     </textarea></section>
 
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -61,50 +60,45 @@
 |       | 13:00 | The End        |
     </textarea></section>
 
-    <section data-markdown="120_kubernetes/01_compose/compose.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="120_kubernetes/01_compose/declarative.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/00_intro/why.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/00_intro/what.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/00_intro/cluster.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="120_kubernetes/02_pods_with_docker/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/03_cluster/kubectl.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/03_cluster/kind/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="120_kubernetes/03_cluster/k3d/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="120_kubernetes/02_pods_with_docker/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="120_kubernetes/04_pods/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/05_labels/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/06_services/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/07_scale/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/08_update/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
     <section data-markdown="120_kubernetes/09_variables/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/10_secrets/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/11_configmaps/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="120_kubernetes/12_volumes/volumes.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="120_kubernetes/12_volumes/mounts.md" data-separator="^---$" data-separator-vertical="^--$"></section>
     <section data-markdown="120_kubernetes/13_wordpress/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-    <section data-markdown="120_kubernetes/14_sidecar/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+    <section data-markdown="120_kubernetes/20_architecture/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+    <section data-markdown="120_kubernetes/30_ingress/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="120_kubernetes/00_intro/outlook.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Summary
+## Summary
 
-        ![QR code to slides](images/2022-03-10.svg)
-        <!-- .element: style="float: right;" -->
+YAML all the things
 
-        YAML all the things
+Pods not containers
 
-        Pods not containers
+Labels are used for selection
 
-        Labels are used for selection
+Flexibility comes at a price
 
-        Flexibility comes at a price
+Slides will be made available [<i class="fa-brands fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille/container-slides/releases/tag/20220310)
 
-        Slides will be made available [<i class="fa-brands fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille/container-slides/releases/tag/20220310)
+### Other content
 
-        ### Other content
-
-        Video-Kurs [Container-Orchestrierung mit Kubernetes leicht gemacht](https://www.heise-academy.de/run/4d571f26-46f0-4ac4-8d23-75a6c910a839) @ [heise Academy](https://www.heise-academy.de/)
+Video-Kurs [Container-Orchestrierung mit Kubernetes leicht gemacht](https://www.heise-academy.de/run/4d571f26-46f0-4ac4-8d23-75a6c910a839) @ [heise Academy](https://www.heise-academy.de/)
     </textarea></section>
 </div>
 </div>
@@ -116,11 +110,13 @@
 <script src="media/reveal.js@4.3.1/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.3.1/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 8 * 60;
+    var durationInMinutes = 4 * 60;
     Reveal.initialize({
-        width: 1300,
-        height: 850,
+        width: 1920,
+        height: 1080,
         margin: 0.05,
+        minScale: 0.2,
+        maxScale: 2.0,
         controlsTutorial: false,
         showSlideNumber: false,
         hash: true,

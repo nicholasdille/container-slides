@@ -1,0 +1,23 @@
+# Ingress controller
+
+## Deploy cluster
+kind create cluster --config kind.yaml
+
+## Deploy NGINX-based ingress controller
+curl --silent --location https://github.com/kubernetes/ingress-nginx/raw/main/deploy/static/provider/kind/deploy.yaml \
+| kubectl apply -f -
+
+## Wait for ingress controller to become ready
+kubectl wait --namespace ingress-nginx \
+  --for=condition=ready pod \
+  --selector=app.kubernetes.io/component=controller \
+  --timeout=5m
+
+## Deploy demo services
+kubectl apply -f demo.yaml
+
+## Test demo service 1
+curl --resolve inmylab.de:80:127.0.0.1 http://inmylab.de/foo
+
+## Test demo service 2
+curl --resolve inmylab.de:80:127.0.0.1 http://inmylab.de/bar

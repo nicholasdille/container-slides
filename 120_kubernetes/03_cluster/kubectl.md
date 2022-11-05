@@ -13,3 +13,7 @@ curl -L -s https://dl.k8s.io/release/stable.txt | \
             --output /usr/local/bin/kubectl
 chmod +x /usr/local/bin/kubectl
 ```
+
+### Usage
+
+XXX

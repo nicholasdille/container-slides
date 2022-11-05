@@ -1,4 +1,4 @@
-## Why have a container orchestrator
+## Why a container orchestrator
 
 Containers are easy on a single host
 
@@ -10,7 +10,7 @@ HA requires multiple hosts
 
 Responsible for containers on multiple hosts
 
-### Offering
+### Offerings
 
 Kubernetes
 
@@ -36,20 +36,20 @@ Maintain copies of a service definition
 
 Add and remove copies of services
 
-</div>
-<div>
-
-### Update
-
-Replace servoces with an updated version
-
-Ensure availability
-
 ### Recovery
 
 Restart misbehaving services
 
 Compensate for outages
+
+</div>
+<div>
+
+### Update
+
+Replace services with an updated version
+
+Ensure availability
 
 ### Cleanup
 
@@ -63,7 +63,7 @@ Remove services...
 
 ---
 
-## That's why (having a container orchestrator)
+## That's why
 
 Container orchestrators make your life easier
 

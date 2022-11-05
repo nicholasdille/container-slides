@@ -1,27 +1,25 @@
-## kind
+## kind (Kubernetes-IN-Docker)
 
 Creates a Kubernetes cluster in containers
 
 Official tool used by Kubernetes developers
 
-Highly configurable
+Highly configurable [<i class="fa fa-globe" style="width: 1.5em; text-align: center;"></i>](https://github.com/kubernetes-sigs/kind/) [<i class="fa fa-file-alt" style="width: 1.5em; text-align: center;"></i>](https://kind.sigs.k8s.io/)
 
-[<i class="fa fa-globe" style="width: 1.5em; text-align: center;"></i>](https://github.com/kubernetes-sigs/kind/) [<i class="fa fa-file-alt" style="width: 1.5em; text-align: center;"></i>](https://kind.sigs.k8s.io/)
-
-Installation
+### Installation
 
 ```bash
-curl https://github.com/kubernetes-sigs/kind/releases/download/v0.11.1/kind-linux-amd64 \
+curl https://github.com/kubernetes-sigs/kind/releases/latest/download/kind-linux-amd64 \
     --silent \
     --location \
     --output /usr/local/bin/kind
 chmod +x /usr/local/bin/kind
 ```
 
-Create a cluster
+### Deployment
+
+`kubectl` is automatically configured:
 
 ```bash
 kind create cluster
 ```
-
-`kubectl` is automatically configured

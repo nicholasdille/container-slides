@@ -8,7 +8,7 @@ Initiated by Google
 
 Version 1.0 was donated to the community in 2015
 
-Governed by the Cloud Native Computing Foundation (CNCF) [<i class="fa fa-external-link-alt"></i>](https://www.cncf.io/)
+Governed by the Cloud Native Computing Foundation (CNCF) [](https://www.cncf.io/)
 
 Minor version every three months
 
@@ -26,26 +26,18 @@ Part of the Linux Foundation
 
 Governs the contained projects
 
-Supported by over 450 members [<i class="fa fa-external-link-alt"></i>](https://www.cncf.io/about/members/)
+Supported by over 700 members [](https://www.cncf.io/about/members/)
 
-### Projects and maturity (as of 2022-03-09)
+### Projects and maturity (as of 2022-11-05)
 
-16 graduated projects
+18 graduated, 37 incubated, 83 sandbox projects
 
-31 incubated projects
+See Cloud Native landscape [](https://landscape.cncf.io/)
 
-70 sandbox projects
+### Community
 
----
+KubeCon / CloudNativeCon (bi-annual, North America and Europe)
 
-## And the winner is... Kubernetes
+Many smaller conferences focused on specific topics all year
 
-**The** container orchestrator
-
-Leader
-
-First graduated project in CNCF
-
-Very active ecosystem
-
-See Cloud Native landscape [<i class="fa fa-external-link-alt"></i>](https://landscape.cncf.io/)
+Numerous community days across the world

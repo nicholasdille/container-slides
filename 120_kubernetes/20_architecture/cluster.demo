@@ -1,0 +1,16 @@
+# Architektur
+
+## Cluster erstellen
+kind create cluster --config kind.yaml
+
+## Knoten auslesen
+kubectl get nodes
+
+## Worker untersuchen (kubelet, kube-proxy, containerd)
+docker exec -it kind-worker ps fxwwo pid,cmd
+
+## Control plane untersuchen (kube-apiserver, kube-scheduler, kube-controller-manager)
+docker exec -it kind-control-plane ps fxwwo pid,cmd
+
+## Verteilung von Diensten im Cluster (ohne kubelet)
+kubectl get pods -A -o wide

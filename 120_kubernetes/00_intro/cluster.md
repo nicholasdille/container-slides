@@ -2,11 +2,19 @@
 
 ### Self-hosted
 
-kind, k3d, kubespray, kubeone, ...
+Local: kind / k3d / minikube / ...
 
-### Cloud
+Production: kubespray / Cluster API / ...
 
-AWS Elastic Kubernetes Service (EKS), Microsoft Azure Kubernetes Service (AKS), Google Kubernetes Engine (GKE), ...
+### Managed
+
+AWS Elastic Kubernetes Service (EKS)
+
+Microsoft Azure Kubernetes Service (AKS)
+
+Google Kubernetes Engine (GKE)
+
+...
 
 ### How choose?
 
