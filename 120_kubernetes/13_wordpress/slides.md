@@ -1,6 +1,6 @@
 ## Deploying a blog
 
-![WordPress with MySQL](120_kubernetes/13_wordpress/example.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![WordPress with MySQL](120_kubernetes/13_wordpress/example.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
 
 All necessary tools have been introduced
 

@@ -1,6 +1,6 @@
 ## Configuration data
 
-![ConfigMaps](120_kubernetes/11_configmaps/configmaps.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![ConfigMaps](120_kubernetes/11_configmaps/configmaps.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
 
 Containers require configuration data
 

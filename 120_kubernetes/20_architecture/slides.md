@@ -1,5 +1,7 @@
 ## Architecture
 
+![Control Plane und Worker Nodes](120_kubernetes/20_architecture/nodes.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
+
 Cluster bestehen aus Knoten (Nodes)
 
 Die Verwaltung des Cluster übernimmt die Control Plane
@@ -8,11 +10,11 @@ Die Control Plane besteht aus Master Nodes
 
 Anwendungen werden nur auf bestimmten Knoten ausgeführt (Worker Nodes)
 
-![Control Plane und Worker Nodes](120_kubernetes/20_architecture/nodes.drawio.svg)
-
 ---
 
 ## Worker Nodes
+
+![Dienste auf Worker Nodes](120_kubernetes/20_architecture/worker.drawio.svg) <!-- .element: style="float: right; width: 30%;" -->
 
 Worker Nodes führen containerisierte Dienste aus
 
@@ -24,11 +26,11 @@ Die Netzwerkkommunikation von Services übernimmt `kube-proxy`
 
 `kube-proxy` verwaltet Regeln, damit Services erreichbar sind
 
-![Dienste auf Worker Nodes](120_kubernetes/20_architecture/worker.drawio.svg)
-
 ---
 
 ## Control plane
+
+![Dienste der Control Plane](120_kubernetes/20_architecture/controller.drawio.svg) <!-- .element: style="float: right; width: 35%;" -->
 
 Master Nodes bilden die Control Plane und verwalten den Cluster
 
@@ -41,5 +43,3 @@ Alle Daten des Clusters werden in `etcd` gespeichert
 `kube-scheduler` weist Pods einem Worker zu
 
 `kube-controller-manager` führt Controller aus, die den Clusterzustand an die Ressourcen anpassen
-
-![Dienste der Control Plane](120_kubernetes/20_architecture/controller.drawio.svg)

@@ -2,7 +2,7 @@
 
 Pods receive a dedicated IP address but no DNS name
 
-![Services distribute requests among pods](120_kubernetes/06_services/dns.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
+![Services distribute requests among pods](120_kubernetes/06_services/dns.drawio.svg) <!-- .element: style="float: right; width: 20%;" -->
 
 ### Services provide DNS
 
@@ -10,7 +10,7 @@ DNS records for pods
 
 ### Services provide load balancing
 
-![Services distribute requests among pods](120_kubernetes/06_services/load_balancing.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
+![Services distribute requests among pods](120_kubernetes/06_services/load_balancing.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
 
 Services are a reverse proxy with a dedicated IP address
 

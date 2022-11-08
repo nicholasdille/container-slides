@@ -1,6 +1,6 @@
 ## Environment variables
 
-![Environment variables in containers](120_kubernetes/09_variables/env.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![Environment variables in containers](120_kubernetes/09_variables/env.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
 
 Environment variables are used for runtime configuration
 

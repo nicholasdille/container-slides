@@ -2,7 +2,7 @@
 
 ### Pods
 
-![Pod consist of two containers](120_kubernetes/04_pods/pod.drawio.svg) <!-- .element: style="float: right;" -->
+![Pod consist of two containers](120_kubernetes/04_pods/pod.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
 
 One or more containers
 

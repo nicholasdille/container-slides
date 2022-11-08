@@ -1,6 +1,6 @@
 ## Labels
 
-![All resources can have labels](120_kubernetes/05_labels/labels.drawio.svg) <!-- .element: style="float: right;" -->
+![All resources can have labels](120_kubernetes/05_labels/labels.drawio.svg) <!-- .element: style="float: right; width: 10%;" -->
 
 Labels are a central concept in Kubernetes
 

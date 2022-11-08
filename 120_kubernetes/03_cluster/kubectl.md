@@ -16,4 +16,4 @@ chmod +x /usr/local/bin/kubectl
 
 ### Usage
 
-XXX
+`kubectl` requires `kubeconfig` to connect to cluster

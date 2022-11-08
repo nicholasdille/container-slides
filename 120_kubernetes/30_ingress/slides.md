@@ -20,11 +20,11 @@ XXX image about ingress?
 
 XXX host port in pod (host port forward to port, any port)
 
-![](120_kubernetes/30_ingress/host_port.drawio.svg)
+![](120_kubernetes/30_ingress/host_port.drawio.svg) <!-- .element: style="width: 30%;" -->
 
 XXX node port in service provided by kube-proxy (port >30.000)
 
-![](120_kubernetes/30_ingress/node_port.drawio.svg)
+![](120_kubernetes/30_ingress/node_port.drawio.svg) <!-- .element: style="width: 45%;" -->
 
 ---
 
@@ -57,13 +57,13 @@ spec:
 
 XXX demo used nginx-based ingress controller [](https://github.com/kubernetes/ingress-nginx)
 
-![](120_kubernetes/30_ingress/demo.drawio.svg)
+![](120_kubernetes/30_ingress/demo.drawio.svg) <!-- .element: style="float: right; padding-left: 1em; width: 45%;" -->
 
 ---
 
 ## XXX
 
-![](120_kubernetes/30_ingress/access.drawio.svg)
+![](120_kubernetes/30_ingress/access.drawio.svg) <!-- .element: style="float: right; padding-left: 1em; width: 45%;" -->
 
 external-dns for managing DNS records
 

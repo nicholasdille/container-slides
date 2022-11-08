@@ -6,9 +6,9 @@ Hard coding secrets in pod specifications is even more dangerous
 
 ### Secrets
 
-Secrets are meant to store confidential information
+![Secrets](120_kubernetes/10_secrets/secrets.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
 
-![Secrets](120_kubernetes/10_secrets/secrets.drawio.svg) <!-- .element: style="width: 8em;" -->
+Secrets are meant to store confidential information
 
 Secrets can store literals as well as files
 

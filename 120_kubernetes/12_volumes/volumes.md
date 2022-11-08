@@ -1,6 +1,6 @@
 ## Storage
 
-![Volumes](120_kubernetes/12_volumes/volumes.drawio.svg) <!-- .element: style="float: right; width: 8em;" -->
+![Volumes](120_kubernetes/12_volumes/volumes.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
 
 Most applications require data
 

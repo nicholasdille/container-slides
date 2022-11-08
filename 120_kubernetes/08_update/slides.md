@@ -16,7 +16,7 @@ Responsible for updating applications with multiple pods
 
 ## Deployment internals
 
-![Deployment with ReplicaSet and pods](120_kubernetes/08_update/replicaset.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
+![Deployment with ReplicaSet and pods](120_kubernetes/08_update/replicaset.drawio.svg) <!-- .element: style="float: right; padding-left: 1em; width: 25%;" -->
 
 ### Hidden ReplicaSet
 
@@ -28,7 +28,7 @@ ReplicaSet receives a random suffix
 
 Pods receive a second random suffix
 
-![Deployment with old and new ReplicaSet](120_kubernetes/08_update/updates.drawio.svg) <!-- .element: style="float: right; padding-left: 1em;" -->
+![Deployment with old and new ReplicaSet](120_kubernetes/08_update/updates.drawio.svg) <!-- .element: style="float: right; padding-left: 1em; width: 20%;" -->
 
 ### Updates
 
