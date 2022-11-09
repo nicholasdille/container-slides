@@ -1,7 +1,5 @@
 ## Architecture
 
-![Control Plane und Worker Nodes](120_kubernetes/20_architecture/nodes.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
-
 Cluster bestehen aus Knoten (Nodes)
 
 Die Verwaltung des Cluster übernimmt die Control Plane
@@ -9,6 +7,8 @@ Die Verwaltung des Cluster übernimmt die Control Plane
 Die Control Plane besteht aus Master Nodes
 
 Anwendungen werden nur auf bestimmten Knoten ausgeführt (Worker Nodes)
+
+![Control Plane und Worker Nodes](120_kubernetes/20_architecture/nodes.drawio.svg) <!-- .element: style="margin-top: 1em; width: 30%;" -->
 
 ---
 

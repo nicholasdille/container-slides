@@ -10,6 +10,19 @@ Configuration files are often generated on the fly...
 
 ### ConfigMaps
 
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: foo
+data:
+  file1.ext: |
+    data1
+  file2.ext: |
+    data2
+```
+<!-- .element: style="float: right; width: 35%;" -->
+
 ConfigsMaps store one or more values...
 
 ...which can be literals as well as files

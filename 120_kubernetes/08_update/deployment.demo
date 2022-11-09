@@ -22,7 +22,7 @@ watch curl -s web
 exit
 
 ## Aktualisieren der Pods mithilfe des Deployments
-yq write --inplace deployment.yaml 'spec.template.spec.containers(name==nginx).image' nicholasdille/nginx-hello:1.19
+yq write --inplace deployment.yaml 'spec.template.spec.containers(name==nginx).image' nicholasdille/nginx-hello:1.22
 kubectl apply -f deployment.yaml
 
 ## Verbindung zu Pods prüfen

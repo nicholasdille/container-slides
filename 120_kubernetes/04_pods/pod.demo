@@ -13,7 +13,7 @@ kubectl apply -f pod.yaml
 kubectl get pods
 
 ## Pod verändern
-yq write --inplace pod.yaml 'spec.containers(name==nginx).image' nginx:1.19
+yq write --inplace pod.yaml 'spec.containers(name==nginx).image' nginx:1.22
 
 ## Änderung ausrollen
 kubectl apply -f pod.yaml

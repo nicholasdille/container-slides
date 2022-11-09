@@ -10,7 +10,13 @@ Update without service interruption
 
 ### Deployments
 
-Responsible for updating applications with multiple pods
+Responsible for updating applications with multiple replicas
+
+### Strategies
+
+`RollingUpdate` - Bring up new replicas as early as possible
+
+`Recreate` - Start new replica after old replica was removed
 
 ---
 
