@@ -1,0 +1,209 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kube-api-server
+  namespace: kube-system
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    port: https
+    scheme: https
+    tlsConfig:
+      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      serverName: kubernetes
+      insecureSkipVerify: false
+  jobLabel: component
+  namespaceSelector:
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      component: apiserver
+      provider: kubernetes
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: coredns
+  namespace: kube-system
+spec:
+  jobLabel: jobLabel
+  selector:
+    matchLabels:
+      k8s-app: kube-dns
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  endpoints:
+  - port: http-metrics
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-controller-manager
+  namespace: kube-system
+  labels:
+    app: kube-controller-manager
+spec:
+  clusterIP: None
+  ports:
+    - name: http-metrics
+      port: 10257
+      protocol: TCP
+      targetPort: 10257
+  selector:
+    component: kube-controller-manager
+  type: ClusterIP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kube-controller-manager
+  namespace: kube-system
+spec:
+  jobLabel: jobLabel
+  selector:
+    matchLabels:
+      app: kube-controller-manager
+  namespaceSelector:
+    matchNames:
+    - kube-system
+  endpoints:
+  - port: http-metrics
+    scheme: https
+    tlsConfig:
+      insecureSkipVerify: true
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-proxy
+  namespace: kube-system
+  labels:
+    app: kube-proxy
+spec:
+  clusterIP: None
+  ports:
+    - name: http-metrics
+      port: 10249
+      protocol: TCP
+      targetPort: 10249
+  selector:
+    k8s-app: kube-proxy
+  type: ClusterIP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kube-proxy
+  namespace: kube-system
+  labels:
+    app: kube-proxy
+spec:
+  jobLabel: jobLabel
+  selector:
+    matchLabels:
+      app: kube-proxy
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  endpoints:
+  - port: http-metrics
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-scheduler
+  namespace: kube-system
+  labels:
+    app: kube-scheduler
+    jobLabel: kube-scheduler
+spec:
+  clusterIP: None
+  ports:
+    - name: http-metrics
+      port: 10259
+      protocol: TCP
+      targetPort: 10259
+  selector:
+    component: kube-scheduler
+  type: ClusterIP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kube-scheduler
+  namespace: kube-system
+  labels:
+    app: kube-scheduler
+spec:
+  jobLabel: jobLabel
+  selector:
+    matchLabels:
+      app: kube-scheduler
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  endpoints:
+  - port: http-metrics
+    scheme: https
+    tlsConfig:
+      insecureSkipVerify: true
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kubelet
+  namespace: kube-system
+spec:
+  endpoints:
+  - port: https-metrics
+    scheme: https
+    tlsConfig:
+      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      insecureSkipVerify: true
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    honorLabels: true
+    relabelings:
+    - sourceLabels: [__metrics_path__]
+      targetLabel: metrics_path
+  - port: https-metrics
+    scheme: https
+    tlsConfig:
+      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      insecureSkipVerify: true
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    path: /metrics/cadvisor
+    honorLabels: true
+    relabelings:
+    - sourceLabels: [__metrics_path__]
+      targetLabel: metrics_path
+  jobLabel: k8s-app
+  namespaceSelector:
+    matchNames:
+    - kube-system
+  selector:
+    matchLabels:
+      k8s-app: kubelet
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-operator
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+spec:
+  endpoints:
+  - honorLabels: true
+    port: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/name: prometheus-operator

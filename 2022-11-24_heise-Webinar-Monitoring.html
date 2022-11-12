@@ -61,6 +61,94 @@ Nicholas Dille, Haufe.Group
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+Preparation
+
+```bash
+docker-setup --tools=kind,kubectl,helm,kubeletctl install
+
+# cluster
+kind create cluster --config kind.yaml
+
+# ingress
+curl --silent --location https://github.com/kubernetes/ingress-nginx/raw/main/deploy/static/provider/kind/deploy.yaml | kubectl apply -f -
+
+# metrics server (https://github.com/kubernetes-sigs/kind/issues/398)
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm repo update
+helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
+
+# node-exporter
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm --namespace kube-system install node-exporter prometheus-community/prometheus-node-exporter
+
+# kube-state-metrics
+helm --namespace kube-system install kube-state-metrics prometheus-community/kube-state-metrics
+
+# prometheus-operator
+curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.60.1/bundle.yaml | kubectl create -f -
+kubectl apply -f prometheus.yaml
+
+# monitors
+kubectl apply -f monitors.yaml
+docker exec -it kind-control-plane sed -i 's/--bind-address=127.0.0.1/--bind-address=0.0.0.0/' /etc/kubernetes/manifests/kube-scheduler.yaml
+docker exec -it kind-control-plane sed -i 's/--bind-address=127.0.0.1/--bind-address=0.0.0.0/' /etc/kubernetes/manifests/kube-controller-manager.yaml
+kubectl -n kube-system get cm kube-proxy -o yaml | sed 's/metricsBindAddress: ""/metricsBindAddress: "0.0.0.0:10249"/' | kubectl -n kube-system apply -f -
+kubectl -n kube-system get pod -l k8s-app=kube-proxy -o name | xargs -I{} kubectl -n kube-system delete {}
+
+# grafana
+# TODO: Provision datasource
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm --namespace kube-system install grafana grafana/grafana
+kubectl -n kube-system get secret grafana -o json | jq -r '.data."admin-password"' | base64 -d
+
+# ingress
+kubectl apply -f ingress.yaml
+```
+
+Agenda
+
+- Push vs. pull
+- Telegraf/InfluxDB for push
+- Exporters/Prometheus for pull
+
+Container metrics
+
+- Docker / cgroups
+- `docker stats`
+- `systemd-cgtop`
+- `/sys/fs/cgroup/cpuacct/docker/6f52a04ac483b7b40d738c4916b1783808a73b32054b8b17ae2bc83845a445ac/cpuacct.usage`
+- `/sys/fs/cgroup/memory/docker/6f52a04ac483b7b40d738c4916b1783808a73b32054b8b17ae2bc83845a445ac/memory.usage_in_bytes`
+- `kubectl top` requires metrics server https://github.com/kubernetes-sigs/metrics-server/
+- kubeletctl?
+
+Host metrics
+
+- OS/k8s reservations
+- kubelet: `kubeletctl metrics`
+- node_exporter
+
+Cluster metrics
+- kube-state-metrics https://github.com/kubernetes/kube-state-metrics
+
+Collection
+
+- Prometheus
+- Prometheus Operator
+- ServiceMonitor / PodMonitor
+
+Visualization
+
+- Grafana
+
+Outlook
+
+- Log shipping (ElasticSearch, promtail/loki)
+- Tracing (Tempo etc.)
+    </textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <ul class="fa-ul">
@@ -69,8 +157,6 @@ Nicholas Dille, Haufe.Group
 <li><span class="fa-li"><i class="fa-solid fa-gauge-min"></i></span> No plugins to support recurring tasks</li>
 <li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Useful security features even in free tier</li>
 <li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Useful security features even in free tier</li>
-
-Download the final [160_gitlab_ci/290_final/.gitlab-ci.yml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/.gitlab-ci.yml) and [160_gitlab_ci/290_final/go.yaml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/go.yaml)
 
 ### Upcoming talks / other content
 
