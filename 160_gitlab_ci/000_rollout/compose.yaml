@@ -108,32 +108,6 @@ services:
       traefik.http.routers.live-s.service: nginx
       traefik.http.routers.live-s.tls: "true"
 
-  x-portainer:
-    image: portainer/portainer-ce:2.13.1-alpine
-    command:
-    - --admin-password=${SEAT_HTPASSWD_ONLY}
-    - --host=unix:///var/run/docker.sock
-    volumes:
-    - /etc/localtime:/etc/localtime:ro
-    - /var/run/docker.sock:/var/run/docker.sock
-    - portainer-data:/data
-    ports:
-    - 9000:9000
-    labels:
-      traefik.enable: "true"
-      # Service port
-      traefik.http.services.portainer.loadbalancer.server.port: 9000
-      # Redirection to HTTPS
-      traefik.http.routers.portainer.entrypoints: http
-      traefik.http.routers.portainer.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`)
-      traefik.http.routers.portainer.service: portainer
-      traefik.http.routers.portainer.middlewares: redirect-to-https
-      # Unauthenticated endpoint
-      traefik.http.routers.portainer-s.entrypoints: https
-      traefik.http.routers.portainer-s.rule: Host(`portainer.${DOMAIN:?You must supply DOMAIN}`)
-      traefik.http.routers.portainer-s.service: portainer
-      traefik.http.routers.portainer-s.tls: "true"
-
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
     image: gitlab/gitlab-ce:15.3.4-ce.0
@@ -231,43 +205,3 @@ services:
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock
-
-  # https://docs.gitlab.com/ee/install/docker.html
-  x-vscode:
-    build:
-      context: vscode
-    command:
-    - --auth
-    - none
-    - --proxy-domain
-    - vscode.${DOMAIN:?You must supply DOMAIN}
-    - --disable-telemetry
-    user: ${USER}
-    environment:
-      DOCKER_USER: ${USER}
-    volumes:
-    - /etc/localtime:/etc/localtime:ro
-    - /var/run/docker.sock:/var/run/docker.sock
-    - vscode_config:/home/coder/.config
-    - vscode_project:/home/coder/project
-    healthcheck:
-      test: ["CMD-SHELL", "curl -sf http://localhost:8080"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 5s
-    labels:
-      traefik.enable: "true"
-      # Service port
-      traefik.http.services.vscode.loadbalancer.server.port: 8080
-      # Redirection to HTTPS
-      traefik.http.routers.vscode.entrypoints: http
-      traefik.http.routers.vscode.rule: Host(`vscode.${DOMAIN:?You must supply DOMAIN}`)
-      traefik.http.routers.vscode.service: vscode
-      traefik.http.routers.vscode.middlewares: redirect-to-https
-      # Authenticated endpoint
-      traefik.http.routers.vscode-s.entrypoints: https
-      traefik.http.routers.vscode-s.rule: Host(`vscode.${DOMAIN:?You must supply DOMAIN}`)
-      traefik.http.routers.vscode-s.service: vscode
-      traefik.http.routers.vscode-s.middlewares: seat-auth
-      traefik.http.routers.vscode-s.tls: "true"
