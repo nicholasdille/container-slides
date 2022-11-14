@@ -64,7 +64,7 @@ Nicholas Dille, Haufe.Group
 Preparation
 
 ```bash
-docker-setup --tools=kind,kubectl,helm,kubeletctl install
+docker-setup --tools=docker,docker-compose,buildx,kind,kubectl,helm,kubeletctl install
 
 # cluster
 kind create cluster --config kind.yaml
@@ -90,6 +90,7 @@ curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/dow
 kubectl apply -f prometheus.yaml
 
 # monitors
+# TODO: node_exporter
 kubectl apply -f monitors.yaml
 docker exec -it kind-control-plane sed -i 's/--bind-address=127.0.0.1/--bind-address=0.0.0.0/' /etc/kubernetes/manifests/kube-scheduler.yaml
 docker exec -it kind-control-plane sed -i 's/--bind-address=127.0.0.1/--bind-address=0.0.0.0/' /etc/kubernetes/manifests/kube-controller-manager.yaml
@@ -108,13 +109,11 @@ kubectl apply -f ingress.yaml
 ```
 
 Agenda
-
 - Push vs. pull
 - Telegraf/InfluxDB for push
 - Exporters/Prometheus for pull
 
 Container metrics
-
 - Docker / cgroups
 - `docker stats`
 - `systemd-cgtop`
@@ -122,28 +121,48 @@ Container metrics
 - `/sys/fs/cgroup/memory/docker/6f52a04ac483b7b40d738c4916b1783808a73b32054b8b17ae2bc83845a445ac/memory.usage_in_bytes`
 - `kubectl top` requires metrics server https://github.com/kubernetes-sigs/metrics-server/
 - kubeletctl?
+- `curl` against kubelet?
 
 Host metrics
-
-- OS/k8s reservations
+- OS/k8s reservations (managed k8s?)
 - kubelet: `kubeletctl metrics`
 - node_exporter
 
 Cluster metrics
 - kube-state-metrics https://github.com/kubernetes/kube-state-metrics
 
-Collection
+Anatomy of metrics (endpoints)
+- HTTP(S) server with(out) authentication
+- Comment precedes metric with type and description
+- Metrics should container tags and a value
+- Time series through regular pull
 
+Collection
 - Prometheus
+- Exporter
+- blackbox-exporter
+- Scrape configuration
+  - Read from app with metrics endpoints
+  - Read from central exporter which reads from app
+  - Read from app with exporter sidecar
+- Push gateway
+  - Helps with firewall traversal
+  - Accepts metrics from apps or agents
+  - Does not remove orphaned metrics
+  - No data?
 - Prometheus Operator
 - ServiceMonitor / PodMonitor
 
 Visualization
-
 - Grafana
+- Datasource
+- PromQL
+  - Graph for memory
+  - Graph for CPU (usage)
+  - Count running containers
 
 Outlook
-
+- Aggregation of multiple clusters
 - Log shipping (ElasticSearch, promtail/loki)
 - Tracing (Tempo etc.)
     </textarea></section>
