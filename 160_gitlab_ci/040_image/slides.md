@@ -18,7 +18,7 @@ Do not use community images
 
 Avoid maintaining custom image
 
-### Hands-On
+### Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/040_image/.gitlab-ci.yml "160_gitlab_ci/040_image/.gitlab-ci.yml")
 
 Use `image` instead of `before_script`
 

@@ -109,6 +109,7 @@ Use docker to play:
 docker run --interactive --tty --rm \
     --volume ${PWD}:/project --workdir /project \
     golang bash
+```
 
 ---
 
@@ -116,19 +117,19 @@ docker run --interactive --tty --rm \
 
 Follow in web UI or IDE
 
-### First CI job
+### First CI job [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/010_jobs_and_stages/src "160_gitlab_ci/010_jobs_and_stages/src")
 
 1. Create project
 1. Add files from `src/` to root of project
 1. Add `build/.gitlab-ci.yml` to root of project
 1. Check pipeline
 
-### Add a stage
+### Add a stage [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/010_jobs_and_stages/lint "160_gitlab_ci/010_jobs_and_stages/lint")
 
 1. Add `lint/.gitlab-ci.yml` to root of project
 1. Check pipeline
 
-### Add parallel jobs
+### Add parallel jobs [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/010_jobs_and_stages/parallel "160_gitlab_ci/010_jobs_and_stages/parallel")
 
 1. Add `parallel/.gitlab-ci.yml` to root of project
 1. Check pipeline

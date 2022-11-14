@@ -26,7 +26,7 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 
 ---
 
-## Hands-On
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/250_releases/.gitlab-ci.yml "160_gitlab_ci/250_releases/.gitlab-ci.yml")
 
 1. Extends `pages` in `.gitlab-ci.yml`:
 

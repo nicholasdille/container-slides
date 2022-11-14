@@ -24,7 +24,7 @@ Available in all tiers:
 
 ---
 
-## Hands-On: Secret detection
+## Hands-On: Secret detection [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/280_security/.gitlab-ci.yml#L5 "160_gitlab_ci/280_security/.gitlab-ci.yml")
 
 GitLab automatically adds a job in the stage called `test`
 
@@ -40,7 +40,7 @@ GitLab automatically adds a job in the stage called `test`
 
 ---
 
-## Hands-On: SAST
+## Hands-On: SAST [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/280_security/.gitlab-ci.yml#L6 "160_gitlab_ci/280_security/.gitlab-ci.yml")
 
 GitLab automatically adds jobs in the stage called `test`
 

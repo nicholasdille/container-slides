@@ -20,7 +20,7 @@ WebDAV endpoints emulate deployment targets
 
 ---
 
-## Hands-On (1/2)
+## Hands-On (1/2) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/100_environments/demo1/.gitlab-ci.yml "160_gitlab_ci/100_environments/demo1/.gitlab-ci.yml")
 
 1. Optionally, create environments `dev` and `live`
 1. Retrieve passwords for dev and live environments:
@@ -51,7 +51,7 @@ Branches can be used to represent target environments:
 
 ---
 
-## Hands-On (2/2)
+## Hands-On (2/2) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/100_environments/demo2/.gitlab-ci.yml "160_gitlab_ci/100_environments/demo2/.gitlab-ci.yml")
 
 1. Create branch called `dev`
 1. Use environment `${CI_COMMIT_REF_NAME}`

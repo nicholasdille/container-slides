@@ -14,7 +14,7 @@ Variables can be...
 - predefined by GitLab
 - defined in the UI
 
-### Hands-On
+### Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/020_variables/src "160_gitlab_ci/020_variables/src")
 
 1. Update files from `src/`
 1. `variables` in definition:

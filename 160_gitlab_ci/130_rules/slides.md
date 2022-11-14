@@ -26,7 +26,7 @@ Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_
 
 ---
 
-## Hands-On: Rules
+## Hands-On: Rules [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/130_rules "160_gitlab_ci/130_rules")
 
 Run the `deploy` job only for the `main` branch
 

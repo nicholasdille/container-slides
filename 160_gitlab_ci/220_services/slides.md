@@ -23,7 +23,7 @@ No guarantee of availability
 
 ---
 
-## Hands-On
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/220_services/.gitlab-ci.yml "160_gitlab_ci/220_services/.gitlab-ci.yml")
 
 Recommendation: Implement in dedicated project
 

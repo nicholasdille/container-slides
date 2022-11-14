@@ -22,7 +22,7 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ---
 
-## Hands-On: Template and include
+## Hands-On: Template and include [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/120_templates/inline/.gitlab-ci.yml#L21 "160_gitlab_ci/120_templates/inline/.gitlab-ci.yml")
 
 1. Create inline tmplate:
 
@@ -52,7 +52,7 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ---
 
-## Hands-On: Local
+## Hands-On: Local [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/120_templates/local "160_gitlab_ci/120_templates/local")
 
 1. Add `go.yaml` to root of project
 1. Include `go.yaml`:
@@ -72,7 +72,7 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ---
 
-## Hands-On: File
+## Hands-On: File [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/120_templates/file/.gitlab-ci.yml "160_gitlab_ci/120_templates/file/.gitlab-ci.yml")
 
 1. Remove `go.yaml` from project
 1. Create a new project, e.g. `template-go`

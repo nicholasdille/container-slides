@@ -30,7 +30,7 @@ Add untracked files
 
 ---
 
-## Hands-On
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/060_artifacts/.gitlab-ci.yml "160_gitlab_ci/060_artifacts/.gitlab-ci.yml")
 
 Test binary in a new job and stage
 

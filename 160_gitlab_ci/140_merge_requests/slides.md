@@ -23,7 +23,7 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 
 ---
 
-## Hands-On 1/
+## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/140_merge_requests/.gitlab-ci.yml "160_gitlab_ci/140_merge_requests/.gitlab-ci.yml")
 
 1. Enable jobs `lint`, `audit`, `build` and `test` for merge requests and pushes
 
@@ -34,7 +34,7 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       #...
     ```
-    <!-- .element: style="width: 40em;" -->
+    <!-- .element: style="width: 45em;" -->
 
 1. Prevent `deploy` in merge requests
 
@@ -44,11 +44,11 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
       - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       #...
     ```
-    <!-- .element: style="width: 40em;" -->
+    <!-- .element: style="width: 45em;" -->
 
 ---
 
-## Hands-On 2/2
+## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/140_merge_requests/.gitlab-ci.yml "160_gitlab_ci/140_merge_requests/.gitlab-ci.yml")
 
 3. Prevent `trigger` in merge requests
 
@@ -58,7 +58,7 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
       #...
     ```
-    <!-- .element: style="width: 40em;" -->
+    <!-- .element: style="width: 45em;" -->
 
 1. Check pipeline
 1. Create new branch

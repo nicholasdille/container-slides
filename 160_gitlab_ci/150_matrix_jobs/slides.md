@@ -18,7 +18,7 @@ The `matrix` keyword under `parallel` defines variables sets
 
 ---
 
-## Hands-On 1/
+## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/150_matrix_jobs/.gitlab-ci.yml "160_gitlab_ci/150_matrix_jobs/.gitlab-ci.yml")
 
 Cross-compile Go for multiple architectures
 
@@ -41,7 +41,7 @@ Cross-compile Go for multiple architectures
 
 ---
 
-## Hands-On 2/2
+## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/150_matrix_jobs/.gitlab-ci.yml "160_gitlab_ci/150_matrix_jobs/.gitlab-ci.yml")
 
 2. Update the test job:
 

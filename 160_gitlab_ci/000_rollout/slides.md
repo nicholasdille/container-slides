@@ -14,30 +14,7 @@ Deploy a containerized stack for this workshop
 
 Obviously GitLab <i class="fa-duotone fa-face-smile-wink fa-duotone-colors"></i>
 
-Visual Studio Code for editing
-
-Portainer to manage Docker
-
 traefik routes requests to containers
-
----
-
-## IDE
-
-Use the web-based Visual Studio Code
-
-1. Go to https://vscode.seatN.inmylab.de
-1. Authenticate using the user **seat** and your personal password
-1. Finish the configuration wizard
-1. Open a terminal and configure git:
-
-    ```bash
-    git config --global user.email "seatN@inmylab.de"
-    git config --global user.name "seatN"
-    git config --global credential.helper store
-    ```
-
-1. Clone https://github.com/nicholasdille/container-slides
 
 ---
 

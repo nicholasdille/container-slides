@@ -14,11 +14,15 @@ Use `docker:dind` for containerized Docker daemon
 
 The GitLab runner must be configured to run privileged container
 
-Alternatives: Rootless and or daeamonless builds using kaniko [](https://github.com/GoogleContainerTools/kaniko), podman/buildah [](https://github.com/containers/buildah), BuildKit [](https://github.com/moby/buildkit)
+Alternatives: Rootless and or daeamonless builds using...
+
+- kaniko [](https://github.com/GoogleContainerTools/kaniko)
+- podman/buildah [](https://github.com/containers/buildah)
+- BuildKit [](https://github.com/moby/buildkit)
 
 ---
 
-## Hands-On
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/230_docker "160_gitlab_ci/230_docker")
 
 Package binary in container image
 
@@ -28,7 +32,7 @@ Package binary in container image
 
     ```yaml
     package:
-      image: docker:20.10.18
+      image: docker:20.10.21
       stage: package
       script:
       - docker build --tag hello .
@@ -40,7 +44,7 @@ Package binary in container image
     ```yaml
     package:
       services:
-      - name: docker:20.10.18-dind
+      - name: docker:20.10.21-dind
         command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
       #...
     ```

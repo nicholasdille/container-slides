@@ -22,4 +22,4 @@ Careful with protected variables
         -o hello \
         .
     ```
-    <!-- .element: style="width: 45em;" -->
+    <!-- .element: style="width: 47em;" -->

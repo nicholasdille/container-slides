@@ -108,7 +108,7 @@ services:
       traefik.http.routers.live-s.service: nginx
       traefik.http.routers.live-s.tls: "true"
 
-  portainer:
+  x-portainer:
     image: portainer/portainer-ce:2.13.1-alpine
     command:
     - --admin-password=${SEAT_HTPASSWD_ONLY}
@@ -233,7 +233,7 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
 
   # https://docs.gitlab.com/ee/install/docker.html
-  vscode:
+  x-vscode:
     build:
       context: vscode
     command:

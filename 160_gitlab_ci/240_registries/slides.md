@@ -27,7 +27,7 @@ CI jobs receive environment variables:
 
 ---
 
-## Hands-On 1/
+## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/240_registries/.gitlab-ci.yml "160_gitlab_ci/240_registries/.gitlab-ci.yml")
 
 Upload the previously built container image
 
@@ -51,7 +51,7 @@ Upload the previously built container image
 
 ---
 
-## Hands-On 2/2
+## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/240_registries/.gitlab-ci.yml "160_gitlab_ci/240_registries/.gitlab-ci.yml")
 
 1. Add push command to upload container image
 
