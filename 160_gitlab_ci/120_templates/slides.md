@@ -119,6 +119,8 @@ job_name:
   script: whoami
 ```
 
+But `variables` are merged!
+
 ---
 
 ## Pro tip 2: Solve multiple inheritence

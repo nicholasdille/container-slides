@@ -29,7 +29,7 @@ WebDAV endpoints emulate deployment targets
     docker ps --filter "label=com.docker.compose.service=nginx" --quiet \
     | xargs -I{} docker logs {} | grep "Password for "
     ```
-    <!-- .element: style="width: 40em;" -->
+    <!-- .element: style="width: 45em;" -->
 
 1. Create unprotected CI variable `PASS` twice with scope `dev`/`live`
 1. Create unprotected CI variable `SEAT_INDEX` with your seat number

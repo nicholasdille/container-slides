@@ -17,9 +17,30 @@ Careful with protected variables
 1. Update build command:
 
     ```bash
-    go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
-        -o hello \
-        .
+    build:
+      script: |
+      - go build \
+            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -o hello \
+            .
     ```
     <!-- .element: style="width: 47em;" -->
+
+---
+
+## Pro tip: Protect masked variables
+
+Prevent project maintainers/owners to read masked CI variables:
+
+1. Define variable in parent group
+2. Limit permissions to group
+
+### Still security by obscurity
+
+But masked values can always be leaked through a pipeline:
+
+```yaml
+job_name:
+  script:
+  - echo "${MASKED_VAR}" | base64
+```

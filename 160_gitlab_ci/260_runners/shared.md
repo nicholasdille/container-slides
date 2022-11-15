@@ -1,4 +1,4 @@
-<!-- .slide: id="gitlab_shard_runners" -->
+<!-- .slide: id="gitlab_shared_runners" -->
 
 ## Shared runners
 

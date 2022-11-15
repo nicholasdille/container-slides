@@ -60,6 +60,23 @@ XXX
 
 ---
 
+## Heads-up
+
+### Visibility of trigger tokens
+
+Users sees only their own tokens
+
+Tokens of other users are hidden
+
+### Branch protection can prevent triggers
+
+Trigger owner must be able to either...
+
+- Push to a branch
+- Merge into a branch
+
+---
+
 ## Hands-On: Multi-project pipelines
 
 1. Replace `script` with `trigger` keyword
@@ -76,7 +93,7 @@ XXX
 
 ---
 
-## Hands-On: Parent-child pipelines
+## Hands-On: Parent-child pipelines [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/110_triggers/parent-child "160_gitlab_ci/110_triggers/parent-child")
 
 1. Add `parent-child/child.yml` to root of first project
 1. Replace `project` and `branch` under `trigger` with `include` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_templates)
@@ -94,3 +111,29 @@ Child pipeline can be made from multiple files
 Use `project`/`ref`/`file` for files in other repositories
 
 Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
+
+---
+
+## Pro tip: Variable inheritence
+
+Downstream pipelines inherit some variables [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
+
+Job variables are passed on unless:
+
+```yaml
+job_name:
+  inherit:
+    variables: false
+```
+
+Predefined variables must be redefined as job variables:
+
+```yaml
+job_name:
+  variables:
+    my_var: ${CI_COMMIT_REF_NAME}
+  trigger:
+    #...
+```
+
+Do not redefined masked variables - **they will not be masked**

@@ -10,11 +10,17 @@
 
 Matrix jobs execute the same script with different inputs
 
+Defined using `parallel` [](https://docs.gitlab.com/ee/ci/yaml/#parallel)
+
 Inputs are specified using environment variables
 
-Matrix jobs are defined using `parallel` [](https://docs.gitlab.com/ee/ci/yaml/#parallel)
-
 The `matrix` keyword under `parallel` defines variables sets
+
+Matrix variables can be used for...
+
+- Script blocks
+- Runner tags
+- Image
 
 ---
 
