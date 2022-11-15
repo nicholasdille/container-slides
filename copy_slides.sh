@@ -47,7 +47,7 @@ fi
 make || true
 
 echo "${FILE}" | copy_to_target
-sed -i 's|media/|https://cdn.dille.name/|' "${TARGET}/${FILE}"
+sed -i 's|"media/|"https://cdn.dille.name/|' "${TARGET}/${FILE}"
 
 find "fonts" -type f | copy_to_target
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${TARGET}/${FILE}" \
