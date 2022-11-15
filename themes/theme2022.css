@@ -2,14 +2,14 @@
     font-family: 'Cascadia Mono';
     font-style: normal;
     font-weight: 400;
-    src: url(../media/fonts/CascadiaMono.ttf) format('truetype');
+    src: url(../fonts/CascadiaMono.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'Cascadia Mono Italic';
     font-style: italic;
     font-weight: 400;
-    src: url(../media/fonts/CascadiaMonoItalic.ttf) format('truetype');
+    src: url(../fonts/CascadiaMonoItalic.ttf) format('truetype');
 }
 
 :root {

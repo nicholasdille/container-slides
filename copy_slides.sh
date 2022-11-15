@@ -47,14 +47,27 @@ fi
 make || true
 
 echo "${FILE}" | copy_to_target
-find "themes" -type f | copy_to_target
-find "media" -type f | grep -v "fontawesome-pro@" | copy_to_target
-xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${FILE}" | extract_links | copy_to_target
-xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea/comment()" -v . -n "${FILE}" | extract_from_comments | copy_to_target
-xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -v "//x:link/@href" -n "${FILE}" | copy_to_target
+sed -i 's|media/|https://cdn.dille.name/|' "${TARGET}/${FILE}"
 
-INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE "^\s*$")
+find "fonts" -type f | copy_to_target
+xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${TARGET}/${FILE}" \
+| extract_links \
+| copy_to_target
+xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea/comment()" -v . -n "${TARGET}/${FILE}" \
+| extract_from_comments \
+| copy_to_target
+xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -v "//x:link/@href" -n "${TARGET}/${FILE}" \
+| grep -v '^https://' \
+| copy_to_target
+
+INCLUDES=$(
+    xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${TARGET}/${FILE}" \
+    | grep -vE "^\s*$"
+)
 for INCLUDE in ${INCLUDES}; do
-    echo "${INCLUDE}" | copy_to_target
-    cat ${INCLUDE} | extract_links | copy_to_target
+    echo "${INCLUDE}" \
+    | copy_to_target
+    cat ${INCLUDE} \
+    | extract_links \
+    | copy_to_target
 done
