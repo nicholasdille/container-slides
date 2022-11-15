@@ -108,3 +108,7 @@
 .reveal .hljs {
     max-height: 30em;
 }
+
+.notyf-toast-success {
+    font-family: var(--r-code-font);
+}

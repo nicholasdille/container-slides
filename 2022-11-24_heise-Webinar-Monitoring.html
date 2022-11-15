@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="themes/common.css"/>
 <link rel="stylesheet" href="media/highlight.js@11.5.0/styles/rainbow.css"/>
 <link rel="stylesheet" href="media/fontawesome-pro@6.2.0/css/all.min.css"/>
+<link rel="stylesheet" href="media/notyf@3.10.0/notyf.min.css"/>
 </head>
 
 <body>
@@ -183,6 +184,8 @@ Video-Kurs [Container-Orchestrierung mit Kubernetes leicht gemacht](https://shop
 <script src="media/reveal.js@4.3.1/plugin/search/search.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.3.1/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.3.1/plugin/notes/notes.js" type="application/javascript"></script>
+<script src="media/clipboard@2.0.11/dist/clipboard.js" type="application/javascript"></script>
+<script src="media/notyf@3.10.0/notyf.min.js" type="application/javascript"></script>
 <script>
 var durationInMinutes = 4 * 60;
 Reveal.initialize({
@@ -246,6 +249,26 @@ Reveal.initialize({
         RevealZoom,
         RevealNotes
     ]
+});
+
+var clipboard = new ClipboardJS(".hljs", {
+    text: function(trigger) {
+        return trigger.innerText;
+    }
+});
+var notyf = new Notyf({
+    types: [
+        {
+            type: 'success',
+            className: 'notyf-toast-success'
+        }
+    ]
+});
+clipboard.on("success", function(e) {
+    notyf.success("Copied to clipboard :)");
+});
+clipboard.on("error", function(e) {
+    notyf.error("Can't copy to clipboard :(");
 });
 </script>
 

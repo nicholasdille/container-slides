@@ -15,49 +15,50 @@
 <link rel="stylesheet" href="themes/common.css"/>
 <link rel="stylesheet" href="media/highlight.js@11.5.0/styles/rainbow.css"/>
 <link rel="stylesheet" href="media/fontawesome-pro@6.2.0/css/all.min.css"/>
+<link rel="stylesheet" href="media/notyf@3.10.0/notyf.min.css"/>
 </head>
 
 <body>
 <div class="reveal">
 <div class="slides">
 
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        <!-- .slide: data-background="images/rinson-chory-2vPGGOU-wLA-unsplash.jpg" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 75%; margin: auto; position: absolute; top: 15%; bottom: 15%; left: 0; right: 0;" -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: data-background="images/rinson-chory-2vPGGOU-wLA-unsplash.jpg" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 75%; margin: auto; position: absolute; top: 15%; bottom: 15%; left: 0; right: 0;" -->
 
-        # Smaller, faster, more secure - Optimize container images
+# Smaller, faster, more secure - Optimize container images
 
-        Nicholas Dille, Haufe Group
+Nicholas Dille, Haufe Group
 
-        ### <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain <i class="fa-brands fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
+### <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain <i class="fa-brands fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
 
-        ![Logo ContainerConf](images/coc_ohnejahr_weiss_bunt.svg)
-        <!-- .element: style="width: 20%; float: right;" -->
+![Logo ContainerConf](images/coc_ohnejahr_weiss_bunt.svg)
+<!-- .element: style="width: 20%; float: right;" -->
 
-        ![Logo ContainerConf](images/clc_ohnejahr_weiss_bunt.svg)
-        <!-- .element: style="width: 20%; float: right;" -->
-    </textarea></section>
+![Logo ContainerConf](images/clc_ohnejahr_weiss_bunt.svg)
+<!-- .element: style="width: 20%; float: right;" -->
+</textarea></section>
 
-    <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-    <section data-markdown="020_advanced/190_image_build_optimization/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="020_advanced/190_image_build_optimization/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-        ## Recap
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Recap
 
-        ![QR code to slides](images/2022-11-16.svg) <!-- .element: style="float: right; width: 25%;" -->
+![QR code to slides](images/2022-11-16.svg) <!-- .element: style="float: right; width: 25%;" -->
 
-        There's more than meets the eye
+There's more than meets the eye
 
-        BuildKit plays an important role
+BuildKit plays an important role
 
-        Automation is key
+Automation is key
 
-        Readability beats size
+Readability beats size
 
-        ### Questions?
+### Questions?
 
-        ### Slides are available [<i class="fa-brands fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille/container-slides/releases/tag/20221116)
-    </textarea></section>
+### Slides are available [<i class="fa-brands fa-github" style="width: 1.5em; text-align: center;"></i>](https://github.com/nicholasdille/container-slides/releases/tag/20221116)
+</textarea></section>
 
 </div>
 </div>
@@ -68,70 +69,92 @@
 <script src="media/reveal.js@4.3.1/plugin/search/search.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.3.1/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.3.1/plugin/notes/notes.js" type="application/javascript"></script>
+<script src="media/clipboard@2.0.11/dist/clipboard.js" type="application/javascript"></script>
+<script src="media/notyf@3.10.0/notyf.min.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 45;
-    Reveal.initialize({
-        width: 1920,
-        height: 1080,
-        margin: 0.05,
-        minScale: 0.2,
-        maxScale: 2.0,
-        controlsTutorial: false,
-        showSlideNumber: false,
-        hash: true,
-        history: true,
-        keyboard: true,
-        overview: true,
-        center: false,
-        touch: false,
-        shuffle: false,
-        fragments: true,
-        fragmentInURL: true,
-        embedded: false,
-        help: true,
-        showNotes: false,
-        autoPlayMedia: null,
-        mouseWheel: false,
-        previewLinks: false,
-        transition: 'convex',
-        transitionSpeed: 'default',
-        backgroundTransition: 'fade',
-        hideInactiveCursor: true,
-        hideCursorTime: 3000,
+var durationInMinutes = 45;
+Reveal.initialize({
+    width: 1920,
+    height: 1080,
+    margin: 0.05,
+    minScale: 0.2,
+    maxScale: 2.0,
+    controlsTutorial: false,
+    showSlideNumber: false,
+    hash: true,
+    history: true,
+    keyboard: true,
+    overview: true,
+    center: false,
+    touch: false,
+    shuffle: false,
+    fragments: true,
+    fragmentInURL: true,
+    embedded: false,
+    help: true,
+    showNotes: false,
+    autoPlayMedia: null,
+    mouseWheel: false,
+    previewLinks: false,
+    transition: 'convex',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    hideInactiveCursor: true,
+    hideCursorTime: 3000,
 
-        totalTime: durationInMinutes * 60,
-        allottedTime: durationInMinutes * 60 * 1000,
+    totalTime: durationInMinutes * 60,
+    allottedTime: durationInMinutes * 60 * 1000,
 
-        barColor: 'rgb(200, 0, 0)',
-        pausedBarColor: 'rgba(200, 0, 0, .6)',
+    barColor: 'rgb(200, 0, 0)',
+    pausedBarColor: 'rgba(200, 0, 0, .6)',
 
-        markdown: {
-            smartypants: true
+    markdown: {
+        smartypants: true
+    },
+
+    keyboard: {
+        // pause/resume time when Enter is pressed
+        13: () => {
+            ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
         },
+        // reset timer when 'r' is pressed
+        82: () => {
+            ElapsedTimeBar.reset();
+        }
+    },
 
-        keyboard: {
-            // pause/resume time when Enter is pressed
-            13: () => {
-                ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
-            },
-            // reset timer when 'r' is pressed
-            82: () => {
-                ElapsedTimeBar.reset();
-            }
-        },
+    dependencies: [
+        { src: 'media/plugins/elapsed-time-bar@18feb15/elapsed-time-bar.js' }
+    ],
 
-        dependencies: [
-            { src: 'media/plugins/elapsed-time-bar@18feb15/elapsed-time-bar.js' }
-        ],
+    plugins: [
+        RevealMarkdown,
+        RevealHighlight,
+        RevealSearch,
+        RevealZoom,
+        RevealNotes
+    ]
+});
 
-        plugins: [
-            RevealMarkdown,
-            RevealHighlight,
-            RevealSearch,
-            RevealZoom,
-            RevealNotes
-        ]
-    });
+var clipboard = new ClipboardJS(".hljs", {
+    text: function(trigger) {
+        return trigger.innerText;
+    }
+});
+var notyf = new Notyf({
+    types: [
+        {
+            type: 'success',
+            className: 'notyf-toast-success'
+        }
+    ]
+});
+clipboard.on("success", function(e) {
+    notyf.success("Copied to clipboard :)");
+});
+clipboard.on("error", function(e) {
+    notyf.error("Can't copy to clipboard :(");
+});
 </script>
 
 </body>
