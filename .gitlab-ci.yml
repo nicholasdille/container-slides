@@ -1,0 +1,33 @@
+include:
+- local: go.yaml
+
+stages:
+- check
+- build
+- test
+
+default:
+  image: golang:1.19.2
+
+lint:
+  stage: check
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  script:
+  - go vet .
+
+build:
+  stage: build
+  extends: .build-go
+  artifacts:
+    paths:
+    - hello
+
+test:
+  stage: test
+  image: alpine
+  script:
+  - ./hello
