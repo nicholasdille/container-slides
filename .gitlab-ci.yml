@@ -1,0 +1,25 @@
+stages:
+- check
+- build
+
+lint:
+  stage: check
+  image: golang:1.19.2
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  image: golang:1.19.2
+  script:
+  - go vet .
+
+build:
+  stage: build
+  image: golang:1.19.2
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+        -o hello \
+        .
