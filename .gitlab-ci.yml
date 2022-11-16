@@ -1,0 +1,60 @@
+stages:
+- check
+- build
+- test
+- deploy
+- trigger
+
+default:
+  image: golang:1.19.2
+
+lint:
+  stage: check
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  script:
+  - go vet .
+
+.build-go:
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+        -o hello \
+        .
+
+build:
+  stage: build
+  extends: .build-go
+  artifacts:
+    paths:
+    - hello
+
+test:
+  stage: test
+  image: alpine
+  script:
+  - ./hello
+
+deploy:
+  stage: deploy
+  environment:
+    name: ${CI_COMMIT_REF_NAME}
+  before_script:
+  - apt-get update
+  - apt-get -y install curl ca-certificates
+  script:
+  - |
+    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+        --fail \
+        --verbose \
+        --upload-file hello \
+        --user admin:${PASS}
+
+trigger:
+  stage: trigger
+  trigger:
+    include: child.yml
