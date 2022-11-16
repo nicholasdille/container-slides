@@ -1,4 +1,4 @@
-## Goal to optimize a `Dockerfile`
+## Goal to optimize a container image
 
 <i class="fa fa-running fa-2x" style="width: 2em; text-align: center;"></i> Faster build
 
@@ -7,6 +7,26 @@
 <i class="fa fa-shield-alt fa-2x" style="width: 2em; text-align: center;"></i> More secure contents
 
 <i class="fa fa-dumbbell fa-2x" style="width: 2em; text-align: center;"></i> Easier to maintain
+
+---
+
+## Container image building
+
+How do you build your container image?
+
+### In the beginning, there was Docker
+
+But more great tools exist...
+
+- Buildah
+- BuildKit
+- Kaniko
+
+### Focus on Docker/BuildKit
+
+Strong focus on Developer Experience (DX)
+
+Many innnovations in the last few years
 
 ---
 

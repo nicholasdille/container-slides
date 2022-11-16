@@ -1,14 +1,14 @@
-# syntax=docker/dockerfile:1.3-labs
+# syntax=docker/dockerfile:1.4.3
 
-FROM golang:1.17 AS build
-WORKDIR /go/src/gitlab.com/nicholasdille/cc21_container_image_build_optimization
+FROM golang:1.18 AS build
+WORKDIR /go/src/gitlab.com/nicholasdille/cc22_container_image_build_optimization
 COPY go.* .
 RUN go mod download
 COPY . .
 RUN go build -o hello .
 RUN cp hello /
 
-FROM ubuntu:21.04 AS base
+FROM ubuntu:22.04 AS base
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache \
     --mount=type=cache,target=/var/log \
@@ -22,7 +22,7 @@ EOF
 
 FROM base AS kubectl
 # renovate: datasource=github-releases depName=kubernetes/kubernetes
-ARG KUBECTL_VERSION=1.21.0
+ARG KUBECTL_VERSION=1.25.3
 RUN <<EOF
 curl -sLo /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
 chmod +x /usr/local/bin/kubectl
@@ -30,7 +30,7 @@ EOF
 
 FROM base AS helm
 # renovate: datasource=github-releases depName=helm/helm
-ARG HELM_VERSION=3.7.0
+ARG HELM_VERSION=3.10.1
 RUN <<EOF
 curl -sL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
     | tar -xzC /usr/local/bin/ --strip-components=1 --no-same-owner \
@@ -49,7 +49,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
 if test -n "${PACKAGES}"; then
     apt-get update
     echo "Will update ${PACKAGES}"
-    apt-get install $(echo "${PACKAGES}" | tr ',' ' ')
+    apt-get -y install $(echo "${PACKAGES}" | tr ',' ' ')
 fi
 EOF
 USER nobody
