@@ -1,0 +1,18 @@
+stages:
+- check
+- build
+
+lint:
+  stage: check
+  script:
+  - apk update
+  - apk add go
+  - go fmt .
+  - go vet .
+
+build:
+  stage: build
+  script:
+  - apk update
+  - apk add go
+  - go build -o hello .
