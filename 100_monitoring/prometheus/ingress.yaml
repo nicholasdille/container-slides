@@ -16,13 +16,39 @@ spec:
             name: prometheus-operated
             port:
               number: 9090
-  - host: grafana.inmylab.de
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-example-app
+  namespace: default
+  labels:
+    app: kube-controller-manager
+spec:
+  clusterIP: None
+  ports:
+    - name: web
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: prometheus-example-app
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prometheus-example-app
+  namespace: default
+spec:
+  rules:
+  - host: app.inmylab.de
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: grafana
+            name: prometheus-operated
             port:
-              number: 80
+              number: 9090

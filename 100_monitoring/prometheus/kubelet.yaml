@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kubelet
+  namespace: default
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubelet
+  annotations:
+    kubernetes.io/service-account.name: kubelet
+type: kubernetes.io/service-account-token
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubelet
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes/proxy
+  - nodes/log
+  - nodes/stats
+  - nodes/metrics
+  - nodes/spec
+  verbs:
+  - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubelet
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubelet
+subjects:
+- kind: ServiceAccount
+  name: kubelet
+  namespace: default

@@ -22,6 +22,24 @@ spec:
       component: apiserver
       provider: kubernetes
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coredns
+  namespace: kube-system
+  labels:
+    k8s-app: kube-dns
+spec:
+  clusterIP: None
+  ports:
+    - name: metrics
+      port: 9153
+      protocol: TCP
+      targetPort: 9153
+  selector:
+    k8s-app: kube-dns
+  type: ClusterIP
+---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -36,7 +54,7 @@ spec:
     matchNames:
       - kube-system
   endpoints:
-  - port: http-metrics
+  - port: metrics
     bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
 ---
 apiVersion: v1
@@ -195,7 +213,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: prometheus-operator
-  namespace: kube-system
+  namespace: default
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
@@ -207,3 +225,20 @@ spec:
     matchLabels:
       app.kubernetes.io/component: controller
       app.kubernetes.io/name: prometheus-operator
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: grafana
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/name: grafana
+spec:
+  endpoints:
+  - honorLabels: true
+    port: service
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana
+      app.kubernetes.io/name: grafana

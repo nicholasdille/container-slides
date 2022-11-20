@@ -61,6 +61,11 @@ kind create cluster --config kind.yaml
 
 # ingress
 curl --silent --location https://github.com/kubernetes/ingress-nginx/raw/main/deploy/static/provider/kind/deploy.yaml | kubectl apply -f -
+kubectl apply -f ingress.yaml
+
+# prometheus-operator
+curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.60.1/bundle.yaml | kubectl create -f -
+kubectl apply -f prometheus.yaml
 
 # metrics server (https://github.com/kubernetes-sigs/kind/issues/398)
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
@@ -70,17 +75,15 @@ helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metric
 # node-exporter
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
-helm --namespace kube-system install node-exporter prometheus-community/prometheus-node-exporter
+helm --namespace kube-system upgrade --install node-exporter prometheus-community/prometheus-node-exporter --values values-node-exporter.yaml
 
 # kube-state-metrics
-helm --namespace kube-system install kube-state-metrics prometheus-community/kube-state-metrics
+helm --namespace kube-system upgrade --install kube-state-metrics prometheus-community/kube-state-metrics --values values-kube-state-metrics.yaml
 
-# prometheus-operator
-curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.60.1/bundle.yaml | kubectl create -f -
-kubectl apply -f prometheus.yaml
+# pushgateway
+helm --namespace kube-system upgrade --install pushgateway prometheus-community/prometheus-pushgateway --values values-pushgateway.yaml
 
 # monitors
-# TODO: node_exporter
 kubectl apply -f monitors.yaml
 docker exec -it kind-control-plane sed -i 's/--bind-address=127.0.0.1/--bind-address=0.0.0.0/' /etc/kubernetes/manifests/kube-scheduler.yaml
 docker exec -it kind-control-plane sed -i 's/--bind-address=127.0.0.1/--bind-address=0.0.0.0/' /etc/kubernetes/manifests/kube-controller-manager.yaml
@@ -88,14 +91,18 @@ kubectl -n kube-system get cm kube-proxy -o yaml | sed 's/metricsBindAddress: ""
 kubectl -n kube-system get pod -l k8s-app=kube-proxy -o name | xargs -I{} kubectl -n kube-system delete {}
 
 # grafana
-# TODO: Provision datasource
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
-helm --namespace kube-system install grafana grafana/grafana
+helm --namespace kube-system upgrade --install grafana grafana/grafana --values values-grafana.yaml
 kubectl -n kube-system get secret grafana -o json | jq -r '.data."admin-password"' | base64 -d
 
-# ingress
-kubectl apply -f ingress.yaml
+# postgresql
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm upgrade --install postgresql bitnami/postgresql --values values-postgresql.yaml
+
+# app
+curl -sL https://github.com/brancz/prometheus-example-app/raw/master/manifests/deployment.yaml | kubectl apply -f -
+curl -sL https://github.com/brancz/prometheus-example-app/raw/master/manifests/pod-monitor.yaml | kubectl apply -f -
 ```
 
 Agenda
@@ -110,16 +117,40 @@ Container metrics
 - `/sys/fs/cgroup/cpuacct/docker/6f52a04ac483b7b40d738c4916b1783808a73b32054b8b17ae2bc83845a445ac/cpuacct.usage`
 - `/sys/fs/cgroup/memory/docker/6f52a04ac483b7b40d738c4916b1783808a73b32054b8b17ae2bc83845a445ac/memory.usage_in_bytes`
 - `kubectl top` requires metrics server https://github.com/kubernetes-sigs/metrics-server/
-- kubeletctl?
-- `curl` against kubelet?
+- kubeletctl:
+
+```bash
+    IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-worker)"
+    TOKEN="$(kubectl get secrets kubelet -o json | jq --raw-output '.data.token' | base64 -d)"
+    kubectl get secrets kubelet -o json | jq --raw-output '.data."ca.crt"' | base64 -d >ca.crt
+    kubeletctl --server ${IP} --cacert ca.crt --token ${TOKEN} metrics cadvisor | less
+    ```
+
+- `curl` against kubelet:
+
+    ```bash
+    IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-worker)"
+    TOKEN="$(kubectl get secrets kubelet -o json | jq --raw-output '.data.token' | base64 -d)"
+    kubectl get secrets kubelet -o json | jq --raw-output '.data."ca.crt"' | base64 -d >ca.crt
+    curl -skH "Authorization: Bearer ${TOKEN}" "https://${IP}:10250/metrics/cadvisor" | less
+    curl -skH "Authorization: Bearer ${TOKEN}" "https://${IP}:10250/metrics/cadvisor" | grep container_memory_usage_bytes | grep kube-proxy
+    ```
 
 Host metrics
 - OS/k8s reservations (managed k8s?)
-- kubelet: `kubeletctl metrics`
+  - https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/
+  - CPU: 6% of first core, 1% of second core, 0.5% of third and fourth core, 0.25% per core > 4
+  - Memory AWS: 255MiB + 11MiB * MAX_PODS
+  - Memory others: 255MiB, 25% of 4GiB, 20% of next 4GiB, 10% of next 8GiB, 6% of next 112GiB, 2% of memory above 128GiB
+  - https://learnk8s.io/kubernetes-instance-calculator
+  - https://github.com/learnk8s/kubernetes-resource-inspector
 - node_exporter
 
 Cluster metrics
 - kube-state-metrics https://github.com/kubernetes/kube-state-metrics
+  - TODO: Explore
+- metrics-server
+  - TODO: Explore
 
 Anatomy of metrics (endpoints)
 - HTTP(S) server with(out) authentication
@@ -140,8 +171,12 @@ Collection
   - Accepts metrics from apps or agents
   - Does not remove orphaned metrics
   - No data?
+  - https://github.com/prometheus/pushgateway#command-line
 - Prometheus Operator
 - ServiceMonitor / PodMonitor
+- https://github.com/kubernetes-monitoring/kubernetes-mixin
+- https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter
+- https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-json-exporter
 
 Visualization
 - Grafana
@@ -155,6 +190,10 @@ Outlook
 - Aggregation of multiple clusters
 - Log shipping (ElasticSearch, promtail/loki)
 - Tracing (Tempo etc.)
+
+Alternative
+- [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus)
+- [prometheus-adapter](https://github.com/kubernetes-sigs/prometheus-adapter)
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">

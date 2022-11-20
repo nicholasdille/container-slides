@@ -48,5 +48,7 @@ spec:
   serviceAccountName: prometheus
   serviceMonitorSelector: {}
   serviceMonitorNamespaceSelector: {}
+  podMonitorSelector: {}
+  podMonitorNamespaceSelector: {}
   enableAdminAPI: false
   retention: 3d
