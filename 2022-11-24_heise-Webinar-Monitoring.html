@@ -53,17 +53,15 @@ Nicholas Dille, Haufe.Group
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Agenda topics
 
-XXX icons
+<i class="fa-duotone fa-binoculars"></i> Observability *o11y*
 
-Observability *o11y*
+<i class="fa-duotone fa-person-dolly-empty"></i> Collection strategies
 
-Collection strategies
+<i class="fa-duotone fa-layer-group"></i> Layers of Monitoring
 
-Layers of Monitoring
+<i class="fa-duotone fa-chart-line"></i> Visualization
 
-Visualization
-
-Lessons Learnt from Monitoring
+<i class="fa-duotone fa-person-chalkboard"></i> Lessons Learnt from Monitoring
 
 ---
 
@@ -73,17 +71,15 @@ Observability consist of three pillars
 
 XXX image
 
-XXX icons
-
-### Metrics
+### Metrics <i class="fa-duotone fa-chart-line"></i>
 
 XXX
 
-### Logs
+### Logs <i class="fa-duotone fa-file-lines"></i>
 
 XXX
 
-### Tracing
+### Tracing <i class="fa-duotone fa-shoe-prints"></i>
 
 XXX
 
@@ -93,17 +89,21 @@ XXX
 
 XXX
 
-### Push
+![](100_monitoring/prometheus/push.drawio.svg) <!-- .element: style="width: 45%; float: right;" -->
 
-XXX
+### Push <i class="fa-duotone fa-truck"></i>
 
-XXX image
+Metrics are delivered to database
 
-### Pull
+Example: Telegraf agent and InfluxDB
 
-XXX
+### Pull <i class="fa-duotone fa-hand-holding-heart"></i>
 
-XXX image
+![](100_monitoring/prometheus/pull.drawio.svg) <!-- .element: style="width:45%; float: right;" -->
+
+Database scrapes metrics
+
+Example: Exporters and Prometheus
 
 ---
 
@@ -115,7 +115,7 @@ XXX exporters
 
 XXX scraping
 
-XXX image
+![](100_monitoring/prometheus/prometheus.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 ---
 
@@ -150,10 +150,24 @@ XXX using `kubeletctl`
 XXX https://github.com/cyberark/kubeletctl
 
 ```bash
-IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-worker)"
-TOKEN="$(kubectl get secrets kubelet -o json | jq --raw-output '.data.token' | base64 -d)"
-kubectl get secrets kubelet -o json | jq --raw-output '.data."ca.crt"' | base64 -d >ca.crt
-kubeletctl --server ${IP} --cacert ca.crt --token ${TOKEN} metrics cadvisor | less
+IP="$(
+    docker inspect \
+        --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+        kind-worker
+)"
+TOKEN="$(
+    kubectl get secrets kubelet -o json \
+    | jq --raw-output '.data.token' \
+    | base64 -d
+)"
+kubectl get secrets kubelet -o json \
+| jq --raw-output '.data."ca.crt"' \
+| base64 -d >ca.crt
+kubeletctl \
+    --server ${IP} \
+    --cacert ca.crt \
+    --token ${TOKEN} \
+    metrics cadvisor | less
 ```
 
 ---
@@ -163,11 +177,23 @@ kubeletctl --server ${IP} --cacert ca.crt --token ${TOKEN} metrics cadvisor | le
 XXX using `curl`
 
 ```bash
-IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-worker)"
-TOKEN="$(kubectl get secrets kubelet -o json | jq --raw-output '.data.token' | base64 -d)"
-kubectl get secrets kubelet -o json | jq --raw-output '.data."ca.crt"' | base64 -d >ca.crt
-curl -skH "Authorization: Bearer ${TOKEN}" "https://${IP}:10250/metrics/cadvisor" | less
-curl -skH "Authorization: Bearer ${TOKEN}" "https://${IP}:10250/metrics/cadvisor" | grep container_memory_usage_bytes | grep kube-proxy
+IP="$(
+    docker inspect \
+        --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+        kind-worker
+)"
+TOKEN="$(
+    kubectl get secrets kubelet -o json \
+    | jq --raw-output '.data.token' \
+    | base64 -d
+)"
+kubectl get secrets kubelet -o json \
+| jq --raw-output '.data."ca.crt"' \
+| base64 -d >ca.crt
+curl -skH "Authorization: Bearer ${TOKEN}" \
+    "https://${IP}:10250/metrics/cadvisor" | less
+curl -skH "Authorization: Bearer ${TOKEN}" \
+    "https://${IP}:10250/metrics/cadvisor" | grep container_memory_usage_bytes | grep kube-proxy
 ```
 
 ---
@@ -199,6 +225,8 @@ XXX AWS, Azure, Google agree
 | 4     | + 10m          | 80m        |
 | 8     | + 10m          | 90m        |
 
+XXX 6% of first core, 1% of second core, 0.5% of third and fourth core, 0.25% per core > 4
+
 ---
 
 ## Memory reservations in Managed Kubernetes
@@ -215,11 +243,17 @@ XXX AWS: 255MiB + 11MiB * MAX_PODS
 | 112GiB | + 672MiB    | 2527MiB    |
 | 128GiB | + 256MiB    | 2783MiB    |
 
+XXX 255MiB, 25% of 4GiB, 20% of next 4GiB, 10% of next 8GiB, 6% of next 112GiB, 2% of memory above 128GiB
+
 ---
 
 ## Host metrics Collection
 
 node-exporter
+
+`kubectl proxy`
+
+`curl localhost:8001/api/v1/namespaces/kube-system/services/node-exporter-prometheus-node-exporter:metrics/proxy/metrics`
 </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -227,16 +261,22 @@ Notes
 - https://www.datadoghq.com/blog/how-to-collect-and-graph-kubernetes-metrics/
 
 Cluster metrics
+- All cluster components provide a metrics endpoint
 - metrics-server https://github.com/kubernetes-sigs/metrics-server/
   - Collected metrics
   - Required for Horizontal/Vertical Pod AutoScaler
-  - TODO: Explore
+  - `kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes/kind-worker | jq`
+  - `kubectl get --raw /apis/metrics.k8s.io/v1beta1/namespaces/kube-system/pods/etcd-kind-control-plane | jq`
+  - `kubectl top`
 - kube-state-metrics https://github.com/kubernetes/kube-state-metrics
   - New metrics about cluster
-  - TODO: Explore
+  - https://www.datadoghq.com/blog/monitoring-kubernetes-performance-metrics/
+  - `kubectl proxy`
+  - `curl localhost:8001/api/v1/namespaces/kube-system/services/kube-state-metrics:http/proxy/metrics`
 
 Anatomy of metrics (endpoints)
 - HTTP(S) server with(out) authentication
+- https://openmetrics.io/
 - Comment precedes metric with type and description
 - Metrics should container tags and a value
 - Time series through regular pull
@@ -257,6 +297,7 @@ Collection
   - https://github.com/prometheus/pushgateway#command-line
 - Prometheus Operator
 - ServiceMonitor / PodMonitor
+  - Scraping-as-Code
 - https://github.com/kubernetes-monitoring/kubernetes-mixin
 - Blackbox Exporter
   - https://github.com/prometheus/blackbox_exporter
@@ -278,7 +319,13 @@ PromQL https://prometheus.io/docs/prometheus/latest/querying/basics/
 
 PromQL CLI https://github.com/nalbury/promql-cli
 
+Pod Eviction
+
 Pod QoS https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/
+
+Resource requests/limits
+
+Scheduling/eviction
 
 Outlook
 - Aggregation of multiple clusters ([Federation](https://prometheus.io/docs/prometheus/latest/federation/))

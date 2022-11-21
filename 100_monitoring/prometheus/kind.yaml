@@ -8,7 +8,7 @@ nodes:
     nodeRegistration:
       kubeletExtraArgs:
         node-labels: "ingress-ready=true"
-        system-reserved: memory=100Mi,cpu=100m
+        system-reserved: memory=12Gi,cpu=2000m
         kube-reserved: memory=100Mi,cpu=100m
         eviction-hard: memory.available<500Mi,nodefs.available<10%
         enforce-node-allocatable: pods
@@ -27,8 +27,17 @@ nodes:
     kind: JoinConfiguration
     nodeRegistration:
       kubeletExtraArgs:
-        system-reserved: memory=100Mi,cpu=100m
+        system-reserved: memory=10Gi,cpu=2000m
         kube-reserved: memory=100Mi,cpu=100m
         eviction-hard: memory.available<500Mi,nodefs.available<10%
         enforce-node-allocatable: pods
 - role: worker
+  kubeadmConfigPatches:
+  - |
+    kind: JoinConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        system-reserved: memory=10Gi,cpu=2000m
+        kube-reserved: memory=100Mi,cpu=100m
+        eviction-hard: memory.available<500Mi,nodefs.available<10%
+        enforce-node-allocatable: pods
