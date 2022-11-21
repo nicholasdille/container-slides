@@ -47,6 +47,12 @@ kubectl -n kube-system get secret grafana -o json | jq -r '.data."admin-password
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm upgrade --install postgresql bitnami/postgresql --values values-postgresql.yaml
 
+# blackbox exporter
+helm upgrade --install blackbox-exporter prometheus-community/prometheus-blackbox-exporter --values values-blackbox-exporter.yaml
+
+# JSON exporter
+helm upgrade --install json-exporter prometheus-community/prometheus-json-exporter --values values-json-exporter.yaml
+
 # app
 curl -sL https://github.com/brancz/prometheus-example-app/raw/master/manifests/deployment.yaml | kubectl apply -f -
 curl -sL https://github.com/brancz/prometheus-example-app/raw/master/manifests/pod-monitor.yaml | kubectl apply -f -

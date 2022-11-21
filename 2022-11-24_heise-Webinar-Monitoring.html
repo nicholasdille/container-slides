@@ -54,6 +54,8 @@ Nicholas Dille, Haufe.Group
 Agenda
 - https://www.datadoghq.com/blog/how-to-collect-and-graph-kubernetes-metrics/
 - o11y
+  - Three pillars: Metrics, Logs, Tracing
+  - Focus on metrics
 - Push vs. pull
 - Telegraf/InfluxDB for push
 - Exporters/Prometheus for pull
@@ -95,9 +97,12 @@ Host metrics
 - node_exporter
 
 Cluster metrics
-- kube-state-metrics https://github.com/kubernetes/kube-state-metrics
+- metrics-server https://github.com/kubernetes-sigs/metrics-server/
+  - Collected metrics
+  - Required for Horizontal/Vertical Pod AutoScaler
   - TODO: Explore
-- metrics-server
+- kube-state-metrics https://github.com/kubernetes/kube-state-metrics
+  - New metrics about cluster
   - TODO: Explore
 
 Anatomy of metrics (endpoints)
@@ -123,8 +128,11 @@ Collection
 - Prometheus Operator
 - ServiceMonitor / PodMonitor
 - https://github.com/kubernetes-monitoring/kubernetes-mixin
-- https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter
-- https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-json-exporter
+- Blackbox Exporter
+  - https://github.com/prometheus/blackbox_exporter
+  - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter
+- JSON Exporter
+  - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-json-exporter
 
 Visualization
 - Grafana
