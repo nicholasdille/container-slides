@@ -51,50 +51,180 @@ Nicholas Dille, Haufe.Group
     </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-Agenda
+## Agenda topics
+
+XXX icons
+
+Observability *o11y*
+
+Collection strategies
+
+Layers of Monitoring
+
+Visualization
+
+Lessons Learnt from Monitoring
+
+---
+
+## o11y
+
+Observability consist of three pillars
+
+XXX image
+
+XXX icons
+
+### Metrics
+
+XXX
+
+### Logs
+
+XXX
+
+### Tracing
+
+XXX
+
+---
+
+## Collection strategies
+
+XXX
+
+### Push
+
+XXX
+
+XXX image
+
+### Pull
+
+XXX
+
+XXX image
+
+---
+
+## Cloud Native Monitoring
+
+XXX Prometheus
+
+XXX exporters
+
+XXX scraping
+
+XXX image
+
+---
+
+## Container metrics primer
+
+Containers are based on cgroups
+
+High level `docker stats`
+
+Low level `systemd-cgtop`
+
+Even lower level
+- `/sys/fs/cgroup/cpuacct/docker/<id>/cpuacct.usage`
+- `/sys/fs/cgroup/memory/docker/<id>/memory.usage_in_bytes`
+
+---
+
+## Container metrics in Kubernetes
+
+kubelet collects metrics
+
+Published under /metrics/cadvisor/
+
+`kubectl top` requires metrics server https://github.com/kubernetes-sigs/metrics-server/
+
+---
+
+## Demo: Container metrics in Kubernetes 1/
+
+XXX using `kubeletctl`
+
+XXX https://github.com/cyberark/kubeletctl
+
+```bash
+IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-worker)"
+TOKEN="$(kubectl get secrets kubelet -o json | jq --raw-output '.data.token' | base64 -d)"
+kubectl get secrets kubelet -o json | jq --raw-output '.data."ca.crt"' | base64 -d >ca.crt
+kubeletctl --server ${IP} --cacert ca.crt --token ${TOKEN} metrics cadvisor | less
+```
+
+---
+
+## Demo: Container metrics in Kubernetes 2/
+
+XXX using `curl`
+
+```bash
+IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-worker)"
+TOKEN="$(kubectl get secrets kubelet -o json | jq --raw-output '.data.token' | base64 -d)"
+kubectl get secrets kubelet -o json | jq --raw-output '.data."ca.crt"' | base64 -d >ca.crt
+curl -skH "Authorization: Bearer ${TOKEN}" "https://${IP}:10250/metrics/cadvisor" | less
+curl -skH "Authorization: Bearer ${TOKEN}" "https://${IP}:10250/metrics/cadvisor" | grep container_memory_usage_bytes | grep kube-proxy
+```
+
+---
+
+## Host metrics
+
+Are all resources available to containers? No!
+
+OS and Kubernetes
+
+XXX image
+
+https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/
+
+https://learnk8s.io/kubernetes-instance-calculator
+
+https://github.com/learnk8s/kubernetes-resource-inspector
+
+---
+
+## CPU Reservations in Managed Kubernetes
+
+XXX AWS, Azure, Google agree
+
+| Cores | Reservation    | Cumulative |
+|-------|---------------:|-----------:|
+| 1     |   60m          | 60m        |
+| 2     | + 10m          | 70m        |
+| 4     | + 10m          | 80m        |
+| 8     | + 10m          | 90m        |
+
+---
+
+## Memory reservations in Managed Kubernetes
+
+XXX providers differ
+
+XXX AWS: 255MiB + 11MiB * MAX_PODS
+
+| Memory | Reservation | Cumulative |
+|--------|------------:|-----------:|
+| 0      |   255MiB    | 255MiB     |
+| 4GiB   | + 800MiB    | 1055MiB    |
+| 8GiB   | + 800GiB    | 1855MiB    |
+| 112GiB | + 672MiB    | 2527MiB    |
+| 128GiB | + 256MiB    | 2783MiB    |
+
+---
+
+## Host metrics Collection
+
+node-exporter
+</textarea></section>
+
+    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+Notes
 - https://www.datadoghq.com/blog/how-to-collect-and-graph-kubernetes-metrics/
-- o11y
-  - Three pillars: Metrics, Logs, Tracing
-  - Focus on metrics
-- Push vs. pull
-- Telegraf/InfluxDB for push
-- Exporters/Prometheus for pull
-
-Container metrics
-- Docker / cgroups
-- `docker stats`
-- `systemd-cgtop`
-- `/sys/fs/cgroup/cpuacct/docker/6f52a04ac483b7b40d738c4916b1783808a73b32054b8b17ae2bc83845a445ac/cpuacct.usage`
-- `/sys/fs/cgroup/memory/docker/6f52a04ac483b7b40d738c4916b1783808a73b32054b8b17ae2bc83845a445ac/memory.usage_in_bytes`
-- `kubectl top` requires metrics server https://github.com/kubernetes-sigs/metrics-server/
-- kubeletctl:
-
-    ```bash
-    IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-worker)"
-    TOKEN="$(kubectl get secrets kubelet -o json | jq --raw-output '.data.token' | base64 -d)"
-    kubectl get secrets kubelet -o json | jq --raw-output '.data."ca.crt"' | base64 -d >ca.crt
-    kubeletctl --server ${IP} --cacert ca.crt --token ${TOKEN} metrics cadvisor | less
-    ```
-
-- `curl` against kubelet:
-
-    ```bash
-    IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kind-worker)"
-    TOKEN="$(kubectl get secrets kubelet -o json | jq --raw-output '.data.token' | base64 -d)"
-    kubectl get secrets kubelet -o json | jq --raw-output '.data."ca.crt"' | base64 -d >ca.crt
-    curl -skH "Authorization: Bearer ${TOKEN}" "https://${IP}:10250/metrics/cadvisor" | less
-    curl -skH "Authorization: Bearer ${TOKEN}" "https://${IP}:10250/metrics/cadvisor" | grep container_memory_usage_bytes | grep kube-proxy
-    ```
-
-Host metrics
-- OS/k8s reservations (managed k8s?)
-  - https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/
-  - CPU: 6% of first core, 1% of second core, 0.5% of third and fourth core, 0.25% per core > 4
-  - Memory AWS: 255MiB + 11MiB * MAX_PODS
-  - Memory others: 255MiB, 25% of 4GiB, 20% of next 4GiB, 10% of next 8GiB, 6% of next 112GiB, 2% of memory above 128GiB
-  - https://learnk8s.io/kubernetes-instance-calculator
-  - https://github.com/learnk8s/kubernetes-resource-inspector
-- node_exporter
 
 Cluster metrics
 - metrics-server https://github.com/kubernetes-sigs/metrics-server/
