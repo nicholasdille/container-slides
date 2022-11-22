@@ -198,6 +198,60 @@ curl -skH "Authorization: Bearer ${TOKEN}" \
 
 ---
 
+## OpenMetrics
+
+"...today's de-facto standard for transmitting cloud-native metrics at scale."
+
+### Types
+
+Gauge
+
+Counter
+
+Histogram
+
+### Tagging
+
+XXX
+
+### Example
+
+```plaintext
+# TYPE acme_http_router_request_seconds summary
+# UNIT acme_http_router_request_seconds seconds
+# HELP acme_http_router_request_seconds Latency though all of ACME's HTTP request router.
+acme_http_router_request_seconds_sum{path="/api/v1",method="GET"} 9036.32
+acme_http_router_request_seconds_count{path="/api/v1",method="GET"} 807283.0
+acme_http_router_request_seconds_created{path="/api/v1",method="GET"} 1605281325.0
+acme_http_router_request_seconds_sum{path="/api/v2",method="POST"} 479.3
+acme_http_router_request_seconds_count{path="/api/v2",method="POST"} 34.0
+acme_http_router_request_seconds_created{path="/api/v2",method="POST"} 1605281325.0
+# TYPE go_goroutines gauge
+# HELP go_goroutines Number of goroutines that currently exist.
+go_goroutines 69
+# TYPE process_cpu_seconds counter
+# UNIT process_cpu_seconds seconds
+# HELP process_cpu_seconds Total user and system CPU time spent in seconds.
+process_cpu_seconds_total 4.20072246e+06
+# EOF
+```
+
+---
+
+### Metrics Endpoint
+
+HTTP(S) server with(out) authentication
+
+https://openmetrics.io/
+
+Comment precedes metric with type and description
+
+Metrics should container tags and a value
+
+Time series through regular pull
+
+---
+
 ## Host metrics
 
 Are all resources available to containers? No!
@@ -273,13 +327,6 @@ Cluster metrics
   - https://www.datadoghq.com/blog/monitoring-kubernetes-performance-metrics/
   - `kubectl proxy`
   - `curl localhost:8001/api/v1/namespaces/kube-system/services/kube-state-metrics:http/proxy/metrics`
-
-Anatomy of metrics (endpoints)
-- HTTP(S) server with(out) authentication
-- https://openmetrics.io/
-- Comment precedes metric with type and description
-- Metrics should container tags and a value
-- Time series through regular pull
 
 Collection
 - Prometheus
