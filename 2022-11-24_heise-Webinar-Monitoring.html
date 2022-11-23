@@ -53,35 +53,43 @@ Nicholas Dille, Haufe.Group
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Agenda topics
 
-<i class="fa-duotone fa-binoculars"></i> Observability *o11y*
+- <span class="fa-li"><i class="fa-duotone fa-binoculars"></i></span> Observability *o11y*
+- <span class="fa-li"><i class="fa-duotone fa-person-dolly-empty"></i></span> Collection strategies
+- <span class="fa-li"><i class="fa-duotone fa-layer-group"></i></span> Layers of Monitoring
+- <span class="fa-li"><i class="fa-duotone fa-chart-line"></i></span> Visualization
+- <span class="fa-li"><i class="fa-duotone fa-person-chalkboard"></i></span> Lessons Learnt from Monitoring
 
-<i class="fa-duotone fa-person-dolly-empty"></i> Collection strategies
-
-<i class="fa-duotone fa-layer-group"></i> Layers of Monitoring
-
-<i class="fa-duotone fa-chart-line"></i> Visualization
-
-<i class="fa-duotone fa-person-chalkboard"></i> Lessons Learnt from Monitoring
+<!-- .element: class="fa-ul" -->
 
 ---
 
 ## o11y
 
-Observability consist of three pillars
+Observability helps understanding a system from the outside
 
-XXX image
+It consists of three pillars
 
-### Metrics <i class="fa-duotone fa-chart-line"></i>
+### <i class="fa-duotone fa-chart-line"></i> Metrics
 
-XXX
+Quantative measures of performance data
 
-### Logs <i class="fa-duotone fa-file-lines"></i>
+### <i class="fa-duotone fa-file-lines"></i> Logs
 
-XXX
+Protocol of status information and events during runtime
 
-### Tracing <i class="fa-duotone fa-shoe-prints"></i>
+### <i class="fa-duotone fa-shoe-prints"></i> Distributed Traces
 
-XXX
+Metadata for status information
+
+Connect protocols across services
+
+---
+
+## Metric sources
+
+![](100_monitoring/prometheus/layers.drawio.svg)<!-- .element: style="width: 50%;" -->
+
+<!-- .element: style="width: 90%;" -->
 
 ---
 
@@ -107,33 +115,61 @@ Example: Exporters and Prometheus
 
 ---
 
-## Cloud Native Monitoring
+## Scope
 
-XXX Prometheus
+![](100_monitoring/prometheus/logo.svg) <!-- .element: style="float: right; width: 4em;" -->
 
-XXX exporters
+Prometheus [](https://prometheus.io/) for cloud native monitoring
 
-XXX scraping
+Graduated project of CNCF [](https://www.cncf.io/projects/prometheus/)
 
-![](100_monitoring/prometheus/prometheus.drawio.svg) <!-- .element: style="width: 50%;" -->
+### Internals
+
+![](100_monitoring/prometheus/prometheus.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
+
+Exporters offer metrics for retrieval
+
+Prometheus scrapes data from exporters
+
+Metrics are stored in a time series database (TSDB)
+
+Query language PromQL
 
 ---
 
 ## Container metrics primer
 
+Collecting metrics for containers
+
 Containers are based on cgroups
 
-High level `docker stats`
+Start a container and retrieve ID:
 
-Low level `systemd-cgtop`
+```bash
+docker run -d --name nginx nginx
+ID="$(docker container inspect nginx | jq -r '.[].Id')""
+```
 
-Even lower level
-- `/sys/fs/cgroup/cpuacct/docker/<id>/cpuacct.usage`
-- `/sys/fs/cgroup/memory/docker/<id>/memory.usage_in_bytes`
+Using high-level tools:
+
+```bash
+docker stats
+systemd-cgtop
+```
+
+Directly from the kernel:
+
+```bash
+cat "/sys/fs/cgroup/pids/docker/${ID}/cgroup.procs"
+cat "/sys/fs/cgroup/cpuacct/docker/${ID}/cpuacct.usage"
+cat "/sys/fs/cgroup/memory/docker/${ID}/memory.usage_in_bytes"
+```
 
 ---
 
 ## Container metrics in Kubernetes
+
+Remember: `kubelet` is responsible for maintaining pods/containers on a node
 
 kubelet collects metrics
 
@@ -145,9 +181,7 @@ Published under /metrics/cadvisor/
 
 ## Demo: Container metrics in Kubernetes 1/
 
-XXX using `kubeletctl`
-
-XXX https://github.com/cyberark/kubeletctl
+Explore metrics using `kubeletctl` [](https://github.com/cyberark/kubeletctl)
 
 ```bash
 IP="$(
@@ -174,7 +208,7 @@ kubeletctl \
 
 ## Demo: Container metrics in Kubernetes 2/
 
-XXX using `curl`
+Explore metrics using `curl`
 
 ```bash
 IP="$(
@@ -198,23 +232,30 @@ curl -skH "Authorization: Bearer ${TOKEN}" \
 
 ---
 
-## OpenMetrics
+## OpenMetrics 1/
 
 "...today's de-facto standard for transmitting cloud-native metrics at scale."
 
 ### Types
 
-Gauge
 
-Counter
+- <span class="fa-li"><i class="fa-duotone fa-gauge-high"></i></span> Gauge
+- <span class="fa-li"><i class="fa-duotone fa-arrow-down-1-9"></i></span> Counter
+- <span class="fa-li"><i class="fa-duotone fa-chart-column"></i></span> Histogram
 
-Histogram
+<!-- .element: class="fa-ul" -->
 
-### Tagging
+XXX more?
 
-XXX
+### Metadata
 
-### Example
+Metrics can have labels
+
+Labels provide metadata for filtering
+
+---
+
+### OpenMetrics 2/2
 
 ```plaintext
 # TYPE acme_http_router_request_seconds summary
@@ -238,25 +279,17 @@ process_cpu_seconds_total 4.20072246e+06
 
 ---
 
-### Metrics Endpoint
-
-HTTP(S) server with(out) authentication
-
-https://openmetrics.io/
-
-Comment precedes metric with type and description
-
-Metrics should container tags and a value
-
-Time series through regular pull
-
----
-
 ## Host metrics
 
-Are all resources available to containers? No!
+Can containers use all resources? Yes, but they should not!
 
-OS and Kubernetes
+### Operating system
+
+XXX
+
+### Kubernetes
+
+XXX
 
 XXX image
 
@@ -270,101 +303,198 @@ https://github.com/learnk8s/kubernetes-resource-inspector
 
 ## CPU Reservations in Managed Kubernetes
 
-XXX AWS, Azure, Google agree
+Major cloud providers agree
 
-| Cores | Reservation    | Cumulative |
-|-------|---------------:|-----------:|
-| 1     |   60m          | 60m        |
-| 2     | + 10m          | 70m        |
-| 4     | + 10m          | 80m        |
-| 8     | + 10m          | 90m        |
+| Cores | Reservation    | Cumulative | Efficiency |
+|-------|---------------:|-----------:|-----------:|
+| 1     |   60m          | 60m        | 94.0%      |
+| 2     | + 10m          | 70m        | 96.5%      |
+| 4     | + 10m          | 80m        | 98.0%      |
+| 8     | + 10m          | 90m        | 99.0%      |
 
-XXX 6% of first core, 1% of second core, 0.5% of third and fourth core, 0.25% per core > 4
+### Rules
+
+6% of first core, 1% of second core, 0.5% of third and fourth core, 0.25% per core > 4
 
 ---
 
 ## Memory reservations in Managed Kubernetes
 
-XXX providers differ
+Most major cloud providers agree
 
-XXX AWS: 255MiB + 11MiB * MAX_PODS
+AWS uses: 255MiB + 11MiB * MAX_PODS
 
-| Memory | Reservation | Cumulative |
-|--------|------------:|-----------:|
-| 0      |   255MiB    | 255MiB     |
-| 4GiB   | + 800MiB    | 1055MiB    |
-| 8GiB   | + 800GiB    | 1855MiB    |
-| 112GiB | + 672MiB    | 2527MiB    |
-| 128GiB | + 256MiB    | 2783MiB    |
+| Memory | Reservation | Cumulative | Efficiency |
+|--------|------------:|-----------:|-----------:|
+| 0      |   255MiB    | 255MiB     |            |
+| 4GiB   | + 800MiB    | 1055MiB    | 73.7%      |
+| 8GiB   | + 800GiB    | 1855MiB    | 76,8%      |
+| 112GiB | + 672MiB    | 2527MiB    | 97.7%      |
+| 128GiB | + 256MiB    | 2783MiB    | 97.8%      |
 
-XXX 255MiB, 25% of 4GiB, 20% of next 4GiB, 10% of next 8GiB, 6% of next 112GiB, 2% of memory above 128GiB
+### Rules
+
+255MiB, 25% of 4GiB, 20% of next 4GiB, 10% of next 8GiB, 6% of next 112GiB, 2% of memory above 128GiB
 
 ---
 
-## Host metrics Collection
+## Host metrics collection
 
-node-exporter
+node-exporter collect metrics...
+
+...and exports them for scraping
+
+XXX what metrics
+
+### Demo
+
+Start Kubernetes API proxy:
+
+```bash
+kubectl proxy
+```
+
+Read metrics endpoint:
+
+```bash
+curl localhost:8001/api/v1/namespaces/kube-system/services/node-exporter-prometheus-node-exporter:metrics/proxy/metrics
+```
+
+---
+
+## Cluster metrics
+
+All components provide a metrics endpoint
+
+Prometheus should scrape all of them
+
+---
+
+## metrics-server [](https://github.com/kubernetes-sigs/metrics-server/)
+
+Required for `kubectl top`
+
+Collected metrics
+
+Required for Horizontal/Vertical Pod AutoScaler
+
+`kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes/kind-worker | jq`
+
+`kubectl get --raw /apis/metrics.k8s.io/v1beta1/namespaces/kube-system/pods/etcd-kind-control-plane | jq`
+
+`kubectl top`
+
+---
+
+### `kube-state-metrics` [](https://github.com/kubernetes/kube-state-metrics)
+
+New metrics about cluster
+
+https://www.datadoghq.com/blog/monitoring-kubernetes-performance-metrics/
 
 `kubectl proxy`
 
-`curl localhost:8001/api/v1/namespaces/kube-system/services/node-exporter-prometheus-node-exporter:metrics/proxy/metrics`
-</textarea></section>
+`curl localhost:8001/api/v1/namespaces/kube-system/services/kube-state-metrics:http/proxy/metrics`
 
-    <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-Notes
-- https://www.datadoghq.com/blog/how-to-collect-and-graph-kubernetes-metrics/
+---
 
-Cluster metrics
-- All cluster components provide a metrics endpoint
-- metrics-server https://github.com/kubernetes-sigs/metrics-server/
-  - Collected metrics
-  - Required for Horizontal/Vertical Pod AutoScaler
-  - `kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes/kind-worker | jq`
-  - `kubectl get --raw /apis/metrics.k8s.io/v1beta1/namespaces/kube-system/pods/etcd-kind-control-plane | jq`
-  - `kubectl top`
-- kube-state-metrics https://github.com/kubernetes/kube-state-metrics
-  - New metrics about cluster
-  - https://www.datadoghq.com/blog/monitoring-kubernetes-performance-metrics/
-  - `kubectl proxy`
-  - `curl localhost:8001/api/v1/namespaces/kube-system/services/kube-state-metrics:http/proxy/metrics`
+## Metrics collection
 
-Collection
-- Prometheus
-- Exporter
-- blackbox-exporter
-- Scrape configuration
-  - Read from app with metrics endpoints
-  - Read from central exporter which reads from app
-  - Read from app with exporter sidecar
-- Push gateway
-  - Helps with firewall traversal
-  - Accepts metrics from apps or agents
-  - Does not remove orphaned metrics
-  - No data?
-  - https://github.com/prometheus/pushgateway#command-line
-- Prometheus Operator
-- ServiceMonitor / PodMonitor
-  - Scraping-as-Code
-- https://github.com/kubernetes-monitoring/kubernetes-mixin
-- Blackbox Exporter
-  - https://github.com/prometheus/blackbox_exporter
-  - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter
-- JSON Exporter
-  - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-json-exporter
+XXX image with Prometheus, cluster components, metrics-server, kube-state-metrics, kubectl
 
-Visualization
-- Grafana
-- Datasource
-- PromQL
-  - Graph for memory
-  - Graph for CPU (usage)
-  - Count running containers
+---
+
+## Scrape configuration
+
+Read from app with metrics endpoints
+
+Read from central exporter which reads from app
+
+Read from app with exporter sidecar
+
+XXX
+
+---
+
+## Prometheus Operator
+
+XXX deploy
+
+XXX configure!
+
+ServiceMonitor / PodMonitor
+
+Scraping-as-Code
+
+## Demo
+
+Deploy
+
+(Pod|Service)Monitors for cluster components
+
+Targets
+
+Graph
+
+---
+
+## PromQL
+
+XXX
 
 promtool https://github.com/prometheus/prometheus/tree/main/cmd/promtool
 
 PromQL https://prometheus.io/docs/prometheus/latest/querying/basics/
 
 PromQL CLI https://github.com/nalbury/promql-cli
+
+---
+
+## Visualization
+
+Grafana
+
+Datasource
+
+PromQL
+
+### Demo
+
+Graph for memory
+
+Graph for CPU (usage)
+
+Count running containers
+
+https://github.com/kubernetes-monitoring/kubernetes-mixin
+
+---
+
+## Special exporters
+
+### `blackbox-exporter` [](https://github.com/prometheus/blackbox_exporter)
+
+XXX
+
+### `json-exporter` []()
+
+XXX
+
+### `pushgateway` [](https://github.com/prometheus/pushgateway)
+
+Helps with firewall traversal
+
+Accepts metrics from apps or agents
+
+Does not remove orphaned metrics
+
+No data?
+
+XXX https://github.com/prometheus/pushgateway#command-line
+
+---
+
+## Pod Quality-of-Service
 
 Pod Eviction
 
@@ -374,33 +504,39 @@ Resource requests/limits
 
 Scheduling/eviction
 
-Outlook
-- Aggregation of multiple clusters ([Federation](https://prometheus.io/docs/prometheus/latest/federation/))
-- Scaling
-  - [Thanos](https://thanos.io/)
-  - [Cortex](https://cortexmetrics.io/)
-  - [Mimir](https://github.com/grafana/mimir)
-- Log shipping (ElasticSearch, promtail/loki)
-- Tracing (Tempo etc.)
+---
 
-Alternative
-- [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus)
-- [prometheus-adapter](https://github.com/kubernetes-sigs/prometheus-adapter)
-    </textarea></section>
+## Outlook
+
+[Federation](https://prometheus.io/docs/prometheus/latest/federation/) of multiple clusters
+
+Scaling
+- [Thanos](https://thanos.io/)
+- [Cortex](https://cortexmetrics.io/)
+- [Mimir](https://grafana.com/oss/mimir/)
+
+Log shipping
+- [ElasticSearch](https://www.elastic.co/)
+- [Loki](https://grafana.com/oss/loki/)
+
+Tracing
+- [Sentry](https://sentry.io/)
+- [Jaeger](https://www.jaegertracing.io/)
+- [Tempo](https://grafana.com/oss/tempo/)
+</textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <ul class="fa-ul">
-<li><span class="fa-li"><i class="fa-solid fa-infinity"></i></span> GitLab covers the whole DevOps process</li>
-<li><span class="fa-li"><i class="fa-solid fa-ball-pile"></i></span> GitLab is packed with features</li>
-<li><span class="fa-li"><i class="fa-solid fa-gauge-min"></i></span> No plugins to support recurring tasks</li>
-<li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Useful security features even in free tier</li>
-<li><span class="fa-li"><i class="fa-solid fa-shield-check"></i></span> Useful security features even in free tier</li>
+<li><span class="fa-li"><i class="fa-duotone fa-chart-line"></i></span> Metrics are just one aspect of o11y</li>
+<li><span class="fa-li"><i class="fa-duotone fa-lightbulb-on"></i></span> Prometheus is a natural choice for Kubernetes</li>
+<li><span class="fa-li"><i class="fa-duotone fa-layer-group"></i></span> Metrics must be collected on many levels</li>
+<li><span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Pod resources can protect from eviction</li>
 
 ### Upcoming talks / other content
 
-2022-11-10 [Sicherheit im Kubernetes-Cluster](https://webinare.heise.de/kubernetes/security-im-kubernetes-cluster/)
+2022-12-01 [Sicherheit im Kubernetes-Cluster](https://webinare.heise.de/kubernetes/security-im-kubernetes-cluster/)
 
 Video-Kurs [Container-Orchestrierung mit Kubernetes leicht gemacht](https://shop.heise-academy.de/kubernetes-container-orchestrierung-leicht-gemacht)
 </ul>

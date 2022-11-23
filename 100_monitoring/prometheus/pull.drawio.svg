@@ -1,4 +1,4 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="521px" height="71px" viewBox="-0.5 -0.5 521 71" content="&lt;mxfile&gt;&lt;diagram id=&quot;VH-P36G9GRpd0Htny_6D&quot; name=&quot;Page-1&quot;&gt;3VZNc5swEP01XDMGJf44xnaSXjrpjA9tjgpag8YCMbKwob++K7RgCHaaTtLJtD54tG8l2H1v34iArbLqwfAi/aoFqCCaiCpg6yCKptEc/x1Qe2A2jzyQGCk8FJ6AjfwJBE4ILaWA/WCj1VpZWQzBWOc5xHaAcWP0cbhtq9XwrQVPYARsYq7G6HcpbOrReTQ74V9AJmn75nC68JmMt5upk33KhT72IHYXsJXR2vpVVq1AOe5aXvy5+wvZrjADuX3LAeL9wFVJvd0WBZVm67Zfo8tcgDsSBmx5TKWFTcFjlz2iwIilNlOU3kqlVlppg3Guc9y03Fujd9CCQcTum5/brHN7Dh/3Qa0dwFioehD19QA6A2tq3ELZ62vimIYsZBQfT5KFrQ5pT64pYZymJOkefSISF8TleV5nIw5B4AhRSLT0SMM2Tf0Dg0kbPLng6qYN11U/ua4p+nNmFX8GteTxLmlUfaHURd73ujQxtcLIctwkYAdz5Jp8VRsDilt5GProPUSz0QBvwOCQ/B8zHH3mDE//0RmGStquDFw/9dZNCY4xCl0NbOFLxPgbGIk8gaEjb7LDfGwH9ll2mI/tEON0g78MtzIpDb5Q5yNp8SIqvKwWfu+P5477x9Iq6WhvcMHN7hFPSduIezW5+SgzOc9IvIFvlUxyzGVSCNU8yn8dhItOrpG9zih4+dZ4Ybjo7xkOw9NF3+R6X0vs7hc=&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="521px" height="71px" viewBox="-0.5 -0.5 521 71" content="&lt;mxfile&gt;&lt;diagram id=&quot;VH-P36G9GRpd0Htny_6D&quot; name=&quot;Page-1&quot;&gt;3VZNc5swEP01XDMGJTY+xnaSXjLJjA9tjgpag8ZCYmRhoL++C1psCE2bfmQyrQ8evbcS7L63OyJg67y+s7zI7o0AFUQzUQdsE0TRPIrxvyUaTyziyBOplcJT4ZnYyq9A5IzYUgo4jDY6Y5STxZhMjNaQuBHHrTXVeNvOqPFbC57ChNgmXE3Zz1K4zLNxtDjzn0CmWf/mcL70kZz3m6mSQ8aFqQYUuwnY2hrj/Cqv16Ba7Xpd/LnbV6KnxCxo95YDpPuRq5Jquy4KSs01fb3WlFpAeyQM2KrKpINtwZM2WqHByGUuVxTeSaXWRhmLWBuNm1YHZ80eejKI2G33azcb7V7jyfcwRjyti0o9gnVQDyiq8w5MDs42uIWil5ekOTVdyAhXZwvD3pdsYN+cOE5dk54efRYWF6Tt93VeTDQFgS1FkGQaiIhl2uYLglkPnlpwcdXDTT0MbhpCv6604s+gVjzZp53LL5x7sw8HU9qESmM0ktym4EZ91hb9Q68sKO7kcTxnfyI8mzT4Fiw2zf/Z49FH9vj8H+1xqKU7pYHrp8G6S6FVjGCbA1v6FBE/gpWoE1g68lvjEk/HhX3UuMTTcUmw+8FfpjuZlhZfaPTEarzICm+zg5/Pz/PJi4fSKamBeMHt/gFPSdeZfTG7+lvD1s6QxBv8WslUYyyXQqjuUWTX8p1unRcDGb3fQCI8fzh0scHXF7v5Bg==&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
         <rect x="400" y="10" width="120" height="60" rx="9" ry="9" fill="none" stroke="#ffffff" pointer-events="all"/>
@@ -7,13 +7,13 @@
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 40px; margin-left: 401px;">
                         <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 App
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="460" y="44" fill="#FFFFFF" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                <text x="460" y="45" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
                     App
                 </text>
             </switch>
@@ -26,13 +26,13 @@
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 40px; margin-left: 201px;">
                         <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 Server
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="260" y="44" fill="#FFFFFF" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                <text x="260" y="45" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
                     Server
                 </text>
             </switch>
@@ -47,14 +47,14 @@
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 30px; margin-left: 1px;">
                         <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 Scrape configuration
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="60" y="34" fill="#FFFFFF" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Scrape configuration
+                <text x="60" y="35" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
+                    Scrape config...
                 </text>
             </switch>
         </g>
