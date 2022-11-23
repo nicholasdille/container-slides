@@ -5,6 +5,7 @@ docker-setup --tools=docker,docker-compose,buildx,kind,kubectl,helm,kubeletctl i
 
 # cluster
 kind create cluster --config kind.yaml
+kubectl apply -f kubelet.yaml
 
 # ingress
 curl --silent --location https://github.com/kubernetes/ingress-nginx/raw/main/deploy/static/provider/kind/deploy.yaml | kubectl apply -f -

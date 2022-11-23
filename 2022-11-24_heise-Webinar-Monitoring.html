@@ -95,13 +95,15 @@ Connect protocols across services
 
 ## Collection strategies
 
-XXX
+How metrics can be collected...
 
 ![](100_monitoring/prometheus/push.drawio.svg) <!-- .element: style="width: 45%; float: right;" -->
 
 ### Push <i class="fa-duotone fa-truck"></i>
 
 Metrics are delivered to database
+
+Usually involves an agent
 
 Example: Telegraf agent and InfluxDB
 
@@ -110,6 +112,8 @@ Example: Telegraf agent and InfluxDB
 ![](100_monitoring/prometheus/pull.drawio.svg) <!-- .element: style="width:45%; float: right;" -->
 
 Database scrapes metrics
+
+Either app-integrated or sidecar pattern
 
 Example: Exporters and Prometheus
 
@@ -186,7 +190,7 @@ Explore metrics using `kubeletctl` [](https://github.com/cyberark/kubeletctl)
 ```bash
 IP="$(
     docker inspect \
-        --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+        --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
         kind-worker
 )"
 TOKEN="$(
@@ -213,7 +217,7 @@ Explore metrics using `curl`
 ```bash
 IP="$(
     docker inspect \
-        --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+        --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'\
         kind-worker
 )"
 TOKEN="$(
@@ -234,7 +238,7 @@ curl -skH "Authorization: Bearer ${TOKEN}" \
 
 ## OpenMetrics 1/
 
-"...today's de-facto standard for transmitting cloud-native metrics at scale."
+"...today's de-facto standard for transmitting cloud-native metrics at scale." [](https://openmetrics.io/)
 
 ### Types
 
@@ -242,10 +246,9 @@ curl -skH "Authorization: Bearer ${TOKEN}" \
 - <span class="fa-li"><i class="fa-duotone fa-gauge-high"></i></span> Gauge
 - <span class="fa-li"><i class="fa-duotone fa-arrow-down-1-9"></i></span> Counter
 - <span class="fa-li"><i class="fa-duotone fa-chart-column"></i></span> Histogram
+- <span class="fa-li"><i class="fa-duotone fa-ball-pile"></i></span> and more [](https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md#metric-types)
 
 <!-- .element: class="fa-ul" -->
-
-XXX more?
 
 ### Metadata
 
@@ -255,7 +258,9 @@ Labels provide metadata for filtering
 
 ---
 
-### OpenMetrics 2/2
+## OpenMetrics 2/
+
+Example output of a metrics endpoint:
 
 ```plaintext
 # TYPE acme_http_router_request_seconds summary
@@ -274,7 +279,27 @@ go_goroutines 69
 # UNIT process_cpu_seconds seconds
 # HELP process_cpu_seconds Total user and system CPU time spent in seconds.
 process_cpu_seconds_total 4.20072246e+06
-# EOF
+```
+
+---
+
+## OpenMetrics
+
+Metrics in Kubernetes have labels for:
+
+- Namespace name
+- Pod name
+- Container name
+
+For example:
+
+```plaintext
+container_memory_usage_bytes{
+    namespace="kube-system",
+    pod="kube-proxy-68mp4",
+    container="kube-proxy",
+    # ...
+} 1.4917632e+07 1669235346213
 ```
 
 ---
@@ -283,21 +308,23 @@ process_cpu_seconds_total 4.20072246e+06
 
 Can containers use all resources? Yes, but they should not!
 
+Some reservations are necessary [](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/)
+
+![](100_monitoring/prometheus/reservations.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
+
 ### Operating system
 
-XXX
+Reserved for system services
 
 ### Kubernetes
 
-XXX
+Reserved for cluster components
 
-XXX image
+### Further resources
 
-https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/
+Instance calculator for cloud providers [](https://learnk8s.io/kubernetes-instance-calculator)
 
-https://learnk8s.io/kubernetes-instance-calculator
-
-https://github.com/learnk8s/kubernetes-resource-inspector
+Read reservations from managed cluster [](https://github.com/learnk8s/kubernetes-resource-inspector)
 
 ---
 
@@ -338,13 +365,44 @@ AWS uses: 255MiB + 11MiB * MAX_PODS
 
 ---
 
+## Configure Reservations
+
+`kubelet` flags:
+
+```plaintext
+--system-reserved=memory=500Mi,cpu=100m
+--kube-reserved=memory=500Mi,cpu=100m
+```
+
+Implementation depends on deployment
+
+For example in `kind`:
+
+```yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        system-reserved: memory=12Gi,cpu=2000m
+        kube-reserved: memory=100Mi,cpu=100m
+```
+
+---
+
 ## Host metrics collection
 
-node-exporter collect metrics...
+node-exporter [](https://github.com/prometheus/node_exporter) collects host metrics...
 
 ...and exports them for scraping
 
-XXX what metrics
+Metrics [](https://github.com/prometheus/node_exporter#collectors) include CPU, memory, disk, network and a lot more!
+
+Some are disabled by default [](https://github.com/prometheus/node_exporter#disabled-by-default)
 
 ### Demo
 
@@ -357,14 +415,24 @@ kubectl proxy
 Read metrics endpoint:
 
 ```bash
-curl localhost:8001/api/v1/namespaces/kube-system/services/node-exporter-prometheus-node-exporter:metrics/proxy/metrics
+NS=kube-system
+SVC=node-exporter-prometheus-node-exporter
+curl -s localhost:8001/api/v1/namespaces/${NS}/services/${SVC}:metrics/proxy/metrics \
+| grep node_cpu_seconds_total
 ```
 
 ---
 
 ## Cluster metrics
 
-All components provide a metrics endpoint
+All components provide a metrics endpoint:
+
+- kube-apiserver
+- coredns
+- kube-controller-manager
+- kube-proxy
+- kube-scheduler
+- kubelet
 
 Prometheus should scrape all of them
 
@@ -374,15 +442,33 @@ Prometheus should scrape all of them
 
 Required for `kubectl top`
 
-Collected metrics
+Provides an API for metrics collected by kubelet
 
 Required for Horizontal/Vertical Pod AutoScaler
 
-`kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes/kind-worker | jq`
+Get node state:
 
-`kubectl get --raw /apis/metrics.k8s.io/v1beta1/namespaces/kube-system/pods/etcd-kind-control-plane | jq`
+```bash
+kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes/kind-worker | jq
+```
 
-`kubectl top`
+Get pod state:
+
+```bash
+kubectl get --raw /apis/metrics.k8s.io/v1beta1/namespaces/kube-system/pods/etcd-kind-control-plane | jq
+```
+
+View table of all nodes:
+
+```bash
+kubectl top node
+```
+
+View table of all pods in the current namespace:
+
+```bash
+kubectl top pod
+```
 
 ---
 
@@ -400,109 +486,257 @@ https://www.datadoghq.com/blog/monitoring-kubernetes-performance-metrics/
 
 ## Metrics collection
 
-XXX image with Prometheus, cluster components, metrics-server, kube-state-metrics, kubectl
+![](100_monitoring/prometheus/cluster_scraping.drawio.svg) <!-- .element: style="width: 100%;" -->
 
 ---
 
 ## Scrape configuration
 
-Read from app with metrics endpoints
+Configure Prometheus to scrape targets [](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config)
 
-Read from central exporter which reads from app
+- Read from app with metrics endpoints
+- Read from central exporter which reads from app
+- Read from app with exporter sidecar
 
-Read from app with exporter sidecar
+Small scrape config:
 
-XXX
+```yaml
+scrape_configs:
+- job_name: 'example-target-1'
+  scrape_interval: 5s
+  static_configs:
+    - targets: ['localhost:8090']
+      labels:
+        group: 'dummy'
+- job_name: 'example-target-2'
+  metrics_path: /api/metrics
+  static_configs:
+    - targets: ['localhost:8080']
+      labels:
+        group: 'dummy-2'
+```
 
 ---
 
 ## Prometheus Operator
 
-XXX deploy
+...because scrape configs are not fun to maintain!
 
-XXX configure!
+Ships with multiple custom resource definitions:
 
-ServiceMonitor / PodMonitor
+- `Prometheus` for Prometheus instances
 
-Scraping-as-Code
+- `ServiceMonitor` for scraping pods behind a service
+
+- `PodMonitor` for scraping individual pods
 
 ## Demo
 
-Deploy
+Explore managed instances
 
-(Pod|Service)Monitors for cluster components
+Explore (Pod|Service)Monitors for cluster components
 
-Targets
+View targets in [Prometheus web UI](http://prometheus.inmylab.de)
 
-Graph
+Test graph in [Prometheus web UI](http://prometheus.inmylab.de)
 
 ---
 
 ## PromQL
 
-XXX
+Data types
 
-promtool https://github.com/prometheus/prometheus/tree/main/cmd/promtool
+- **Range vector** for many metrics over a range of timestamps
+- **Instant vector** for many metrics for a single timestamp
+- **Scalar**
+- **String**
 
-PromQL https://prometheus.io/docs/prometheus/latest/querying/basics/
+Many aggregators [](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators), e.g.
 
-PromQL CLI https://github.com/nalbury/promql-cli
+- `count`, `sum`, `min`, `max`, `avg`
+- `stddev`, `stdvar`, `quantile`
+- `topk`, `bottomk`
+
+Many builtin functions [](https://prometheus.io/docs/prometheus/latest/querying/functions/), e.g.
+
+- `rate()`
+- `round()`, `floor()`, `ceil()`
+
+Notes:
+promtool [](https://github.com/prometheus/prometheus/tree/main/cmd/promtool)
+PromQL CLI [](https://github.com/nalbury/promql-cli)
+
+---
+
+## PromQL: Working with gauges
+
+Gauges represents a value that can arbitrarly jump up and down
+
+Usually used for temperatures or memory usage
+
+Queries:
+
+```plaintext
+# Explore container memory
+container_memory_usage_bytes
+container_memory_usage_bytes{namespace="ingress-nginx"}
+container_memory_usage_bytes{namespace="ingress-nginx",container!=""}
+
+# Show memory usage per pod
+avg by (pod) (container_memory_usage_bytes{namespace="kube-system",container!=""})
+
+# Show memory usage for a namespace
+sum(container_memory_usage_bytes{namespace="kube-system",container!=""})
+
+# Show memory usage for all namespaces
+sum by (namespace) (container_memory_usage_bytes{container!=""})
+```
+
+---
+
+## PromQL: Working with counters
+
+Counters represent a cumulative value
+
+Usually used for the number of requests served or the CPU usage
+
+Queries:
+
+```plaintext
+# Explore counter
+container_cpu_usage_seconds_total{namespace="ingress-nginx",container!=""}
+
+# Show rate of change with different resolutions
+rate(container_cpu_usage_seconds_total{namespace="ingress-nginx",container!=""}[5m])
+rate(container_cpu_usage_seconds_total{namespace="ingress-nginx",container!=""}[10m])
+
+# Idle node CPU
+node_cpu_seconds_total{mode="idle"}
+rate(node_cpu_seconds_total{mode="idle"}[5m])
+sum by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m]))
+```
+
+---
+
+## PromQL: Fun with kube-state-metrics
+
+kube-state-metrics creates additional metrics from cluster state information
+
+Queries:
+
+```plaintext
+# Error reasons for pods
+count by (reason) (kube_pod_status_reason)
+count by (reason) (kube_pod_container_status_terminated_reason)
+
+# Number of replicas
+count by (exported_container) (kube_pod_container_status_ready)
+
+# Numer of running pods
+count(count by (exported_container) (kube_pod_container_status_running))
+
+# Pods referencing Helm chart
+count by (exported_pod) (
+    kube_pod_labels{label_chart!=""} or
+    kube_pod_labels{label_helm_sh_chart!=""}
+)
+```
+
+---
+
+## PromQL tips and tricks
+
+### container="POD"
+
+You are using `dockershim` (Docker runtime)
+
+Filter out sleeping POD container:
+
+```plaintext
+container_memory_usage_bytes{namespace="ingress-nginx",container!="",container!="POD"}
+```
+
+### `kube_pod_labels` is empty
+
+`kube-state-metrics` does not aggregate labels anymore [#1501](https://github.com/kubernetes/kube-state-metrics/issues/1501)
+
+Set `--metric-labels-allowlist=pods=[*]` in arguments
+
+Or `metricLabelsAllowlist` in Helm chart [](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-state-metrics/values.yaml#L184)
 
 ---
 
 ## Visualization
 
-Grafana
+Grafana is the most prominent tool to query, visualize and alert on metrics
 
-Datasource
+Supports many datasources including Prometheus
 
-PromQL
+Support datasource-specific query language
+
+Prometheus community offers pre-created dashcoards [](https://github.com/kubernetes-monitoring/kubernetes-mixin)
 
 ### Demo
 
-Graph for memory
+Quick intro to UI [](http://grafana.inmylab.de)
 
-Graph for CPU (usage)
+Graph for pod memory
 
-Count running containers
+Graph for pod CPU (usage)
 
-https://github.com/kubernetes-monitoring/kubernetes-mixin
+Graph for node memory
+
+Count running pods
 
 ---
 
 ## Special exporters
 
-### `blackbox-exporter` [](https://github.com/prometheus/blackbox_exporter)
+### `blackbox_exporter` [](https://github.com/prometheus/blackbox_exporter)
 
-XXX
+Probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC
 
-### `json-exporter` []()
+### `json_exporter` [](https://github.com/prometheus-community/json_exporter)
 
-XXX
+Scraping of remote JSON by JSONPath [](https://goessner.net/articles/JsonPath/)
 
 ### `pushgateway` [](https://github.com/prometheus/pushgateway)
 
 Helps with firewall traversal
 
-Accepts metrics from apps or agents
+Accepts metrics from apps or agents [](https://github.com/prometheus/pushgateway#command-line)
 
 Does not remove orphaned metrics
 
-No data?
-
-XXX https://github.com/prometheus/pushgateway#command-line
+Notes:
+http://push.inmylab.de/
 
 ---
 
 ## Pod Quality-of-Service
 
-Pod Eviction
+Kubernetes will try really hard to protect pods
 
-Pod QoS https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/
+### Pod eviction
 
-Resource requests/limits
+When resources on a node are depleted:
 
-Scheduling/eviction
+- `kube-scheduler` will stop scheduling pods to the node
+- `kubelet` will evict pods
+
+### How pods are "chosen"
+
+Pods have a quiality-of-service based on resource requests and limits [](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
+
+- Best effort: All container have resource identical requests and limits
+- Burstable: At least one container has resource requests or limits
+- Guaranteed: All container do not have resource requests or limits
+
+Scheduling uses resource requests to find suitable node
+
+Notes:
+Check pods for QoS
+`kubectl get pods -A -o json | jq -r '.items[] | "\(.metadata.name): \(.status.qosClass)"'`
 
 ---
 
@@ -523,6 +757,9 @@ Tracing
 - [Sentry](https://sentry.io/)
 - [Jaeger](https://www.jaegertracing.io/)
 - [Tempo](https://grafana.com/oss/tempo/)
+
+Notes:
+https://github.com/grafana/agent
 </textarea></section>
 
     <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
