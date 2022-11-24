@@ -474,13 +474,23 @@ kubectl top pod
 
 ### `kube-state-metrics` [](https://github.com/kubernetes/kube-state-metrics)
 
-New metrics about cluster
+Reads data from Kubernetes API about running pods and their deployments...
 
-https://www.datadoghq.com/blog/monitoring-kubernetes-performance-metrics/
+...and creates new metrics
 
-`kubectl proxy`
+### Demo
 
-`curl localhost:8001/api/v1/namespaces/kube-system/services/kube-state-metrics:http/proxy/metrics`
+Start Kubernetes API proxy:
+
+```bash
+kubectl proxy
+```
+
+Read from kube-state-metrics:
+
+```bash
+curl localhost:8001/api/v1/namespaces/kube-system/services/kube-state-metrics:http/proxy/metrics
+```
 
 ---
 
@@ -728,9 +738,9 @@ When resources on a node are depleted:
 
 Pods have a quiality-of-service based on resource requests and limits [](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
 
-- Best effort: All container have resource identical requests and limits
+- Best effort: All container do not have resource requests or limits
 - Burstable: At least one container has resource requests or limits
-- Guaranteed: All container do not have resource requests or limits
+- Guaranteed: All container have resource identical requests and limits
 
 Scheduling uses resource requests to find suitable node
 
