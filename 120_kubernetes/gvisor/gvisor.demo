@@ -1,0 +1,16 @@
+# gvisor in Kubernetes
+
+# Build node image with gvisor
+docker build --tag kindest/node:1.25.3-gvisor .
+
+# Create cluster
+kind create cluster --config kind.yaml --image kindest/node:1.25.3-gvisor
+
+# Create runtime class for gvisor
+kubectl apply -f runtime-class.yaml
+
+# Deploy using gvisor
+kubectl apply -f nginx.yaml
+
+# Check gvisor is really used for nginx
+echo TODO
