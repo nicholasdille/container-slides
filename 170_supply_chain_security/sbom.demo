@@ -10,3 +10,7 @@ echo TODO
 # Deploy vulnerability operator
 helm repo add ckotzbauer https://ckotzbauer.github.io/helm-charts
 helm install ckotzbauer/vulnerability-operator -f values-vulnerability-operator.yaml
+
+# XXX
+http://prometheus.inmylab.de/
+http://grafana.inmylab.de/

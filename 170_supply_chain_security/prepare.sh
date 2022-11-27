@@ -9,7 +9,7 @@ curl --silent --location https://github.com/kubernetes/ingress-nginx/raw/main/de
 kubectl apply -f ingress.yaml
 
 # prometheus-operator
-curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.60.1/bundle.yaml | kubectl create -f -
+curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/latest/download/bundle.yaml | kubectl create -f -
 kubectl apply -f prometheus.yaml
 
 # grafana
