@@ -1,0 +1,65 @@
+# Default values for sbom-operator.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: ghcr.io/ckotzbauer/sbom-operator
+  tag: ""
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+args:
+  targets: git
+  git-author-email: XXX
+  git-author-name: XXX
+  git-repository: https://github.com/XXX/XXX
+  git-path: dev-cluster/sboms
+  verbosity: debug
+  cron: "0 30 * * * *"
+
+envVars:
+  - name: SBOM_GIT_ACCESS_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: sbom-operator
+        key: accessToken
+
+podAnnotations: {}
+
+jobImageMode: false
+
+resources: {}
+#  requests:
+#    cpu: 500m
+#    memory: 1Gi
+#  limits:
+#    cpu: 100m
+#    memory: 100Mi
+
+securityContext:
+  privileged: false
+  runAsUser: 1001
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  seccompProfile:
+    type: RuntimeDefault
+  capabilities:
+    drop:
+      - ALL
+
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  create: true
+
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraVolumes: []

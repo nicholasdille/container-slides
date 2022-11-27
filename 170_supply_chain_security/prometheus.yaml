@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus-cluster
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - nodes/stats
+  - nodes/metrics
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources:
+  - configmaps
+  verbs: ["get"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-cluster
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus-cluster
+subjects:
+- kind: ServiceAccount
+  name: prometheus
+  namespace: kube-system
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: cluster
+  namespace: kube-system
+spec:
+  serviceAccountName: prometheus
+  serviceMonitorSelector: {}
+  serviceMonitorNamespaceSelector: {}
+  podMonitorSelector: {}
+  podMonitorNamespaceSelector: {}
+  enableAdminAPI: false
+  retention: 3d
