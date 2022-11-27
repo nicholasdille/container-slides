@@ -1,0 +1,12 @@
+name: mytests
+policies:
+- cosign.yaml
+resources:
+- rekor.yaml
+results:
+- policy: check-image
+  rule: check-image
+  namespace: default
+  kind: Deployment
+  resource: rekor-server
+  result: pass

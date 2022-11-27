@@ -7,3 +7,9 @@ helm --namespace kyverno upgrade --install --create-namespace kyverno kyverno/ky
 # Apply policy for cosign
 kubectl apply -f cosign.yaml
 
+# Test policy
+helm template rekor sigstore/rekor >rekor.yaml
+kyverno test .
+
+# Succeed to deploy rekor
+helm upgrade --install rekor sigstore/rekor
