@@ -1,0 +1,58 @@
+# Per-namespace pod security admission
+
+# Prepare namespace
+kubectl create namespace test
+kubectl label namespace test pod-security.kubernetes.io/enforce=restricted
+kubectl label namespace test pod-security.kubernetes.io/audit=restricted
+
+# Fail to deploy pod
+cat <<EOF | kubectl --namespace test apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-privileged
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: true
+EOF
+
+# Deploy pod
+cat <<EOF | kubectl --namespace test apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+EOF
+
+# Check metrics
+kubectl get --raw /metrics | grep pod_security_evaluations_total
+
+# Check audit log
+docker exec kind-control-plane cat /var/log/kubernetes/kube-apiserver-audit.log \
+| jq --compact-output 'select(.objectRef.name == "busybox-privileged")' \
+| while read -r LINE; do
+    echo "${LINE}" \
+    | jq . \
+    | less
+done

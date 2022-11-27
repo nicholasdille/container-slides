@@ -1,0 +1,53 @@
+# Cluster-wide pod security admission
+
+# Deploy cluster
+cat <<EOF > pod-security.yaml
+apiVersion: apiserver.config.k8s.io/v1
+kind: AdmissionConfiguration
+plugins:
+- name: PodSecurity
+  configuration:
+    apiVersion: pod-security.admission.config.k8s.io/v1beta1
+    kind: PodSecurityConfiguration
+    defaults:
+      enforce: "baseline"
+      enforce-version: "latest"
+      audit: "baseline"
+      audit-version: "latest"
+      warn: "restricted"
+      warn-version: "latest"
+      audit: "restricted"
+      audit-version: "latest"
+    exemptions:
+      # Array of authenticated usernames to exempt.
+      usernames: []
+      # Array of runtime class names to exempt.
+      runtimeClasses: []
+      # Array of namespaces to exempt.
+      namespaces: [kube-system]
+EOF
+cat <<EOF > kind-config.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+        # enable admission-control-config flag on the API server
+        extraArgs:
+          admission-control-config-file: /etc/kubernetes/policies/pod-security.yaml
+        # mount new file / directories on the control plane
+        extraVolumes:
+          - name: policies
+            hostPath: /etc/kubernetes/policies
+            mountPath: /etc/kubernetes/policies
+            readOnly: true
+            pathType: "DirectoryOrCreate"
+  # mount the local file on the control plane
+  extraMounts:
+  - hostPath: ./pod-security.yaml
+    containerPath: /etc/kubernetes/policies/pod-security.yaml
+    readOnly: true
+EOF
