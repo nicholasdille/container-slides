@@ -1,5 +1,8 @@
 # gvisor in Kubernetes
 
+# Install tools (https://github.com/nicholasdille/docker-setup)
+docker-setup --tools=docker,buildx,docker-compose,kind,helm,kubectl,gvisor install
+
 # Build node image with gvisor
 docker build --tag kindest/node:1.25.3-gvisor .
 
@@ -13,4 +16,6 @@ kubectl apply -f runtime-class.yaml
 kubectl apply -f nginx.yaml
 
 # Check gvisor is really used for nginx
-echo TODO
+docker exec -it kind-control-plane bash
+crictl ps -l
+crictl exec <id> dmesg
