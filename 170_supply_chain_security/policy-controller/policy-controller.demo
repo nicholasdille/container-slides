@@ -1,0 +1,13 @@
+# Sigstore policy controller
+
+# Deploy policy-controller
+helm repo add sigstore https://sigstore.github.io/helm-charts
+kubectl create namespace cosign-system
+helm upgrade --install --namespace cosign-system policy-controller sigstore/policy-controller --devel
+
+# Prepare namespace
+kubectl create namespace cosign-test
+kubectl label ns cosign-test policy.sigstore.dev/include=true
+
+# Fail to deploy rekor because of redis
+helm upgrade --install --namespace cosign-test rekor sigstore/rekor

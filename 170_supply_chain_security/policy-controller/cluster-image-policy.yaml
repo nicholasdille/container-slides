@@ -1,0 +1,13 @@
+---
+apiVersion: policy.sigstore.dev/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: image-policy
+spec:
+  images:
+  - glob: "gcr.io/projectsigstore/**"
+  authorities:
+  - keyless:
+      identities:
+      - issuer: https://accounts.google.com
+        subject: keyless@projectsigstore.iam.gserviceaccount.com
