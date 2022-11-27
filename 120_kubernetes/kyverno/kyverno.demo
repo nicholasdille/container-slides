@@ -1,0 +1,9 @@
+# Kyverno
+
+# Deploy
+helm repo add kyverno https://kyverno.github.io/kyverno/
+helm --namespace kyverno upgrade --install --create-namespace kyverno kyverno/kyverno --set replicaCount=3
+
+# Apply policy for cosign
+kubectl apply -f cosign.yaml
+
