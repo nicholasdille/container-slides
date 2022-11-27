@@ -1,15 +1,15 @@
 # SBoM (don't forget prepare.sh)
 
 # Deploy sbom-operator
+kubectl create namespace sbom-system
 helm repo add ckotzbauer https://ckotzbauer.github.io/helm-charts
-helm install ckotzbauer/sbom-operator -f values-sbom-operator.yaml
+helm upgrade --install --namespace sbom-system sbom-operator ckotzbauer/sbom-operator -f values-sbom-operator.yaml
 
 # Check git
 echo TODO
 
 # Deploy vulnerability operator
-helm repo add ckotzbauer https://ckotzbauer.github.io/helm-charts
-helm install ckotzbauer/vulnerability-operator -f values-vulnerability-operator.yaml
+helm upgrade --install --namespace sbom-system vuln-operator ckotzbauer/vulnerability-operator -f values-vulnerability-operator.yaml
 
 # XXX
 http://prometheus.inmylab.de/
