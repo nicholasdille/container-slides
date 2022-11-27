@@ -5,6 +5,15 @@ metadata:
   name: reader
   namespace: test
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: reader
+  namespace: test
+  annotations:
+    kubernetes.io/service-account.name: reader
+type: kubernetes.io/service-account-token
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -12,64 +21,12 @@ metadata:
   namespace: test
 rules:
 - apiGroups:
-  - ""
+  - "*"
   resources:
-  - "namespaces"
-  - "pods"
-  - "replicationcontrollers"
-  - "services"
-  - "endpoints"
-  - "ingresses"
+  - "*"
   verbs:
   - "get"
   - "list"
-- apiGroups:
-  - "apps"
-  resources:
-  - "deployments"
-  - "replicasets"
-  - "daemonsets"
-  - "statefulsets"
-  verbs:
-  - "get"
-  - "list"
-- apiGroups:
-  - "batch"
-  resources:
-  - "jobs"
-  - "cronjobs"
-  verbs:
-  - "get"
-  - "list"
-- apiGroups:
-  - "autoscaling"
-  resources:
-  - "horizontalpodautoscalers"
-  verbs:
-  - "get"
-  - "list"
-- apiGroups:
-  - "rbac.authorization.k8s.io"
-  resources:
-  - "roles"
-  - "rolebindings"
-  verbs:
-  - "get"
-  - "list"
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: admin-impersonator
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - "users"
-  verbs:
-  - "impersonate"
-  resourceNames:
-  - "test-admin"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -80,19 +37,6 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: reader
-subjects:
-- kind: ServiceAccount
-  name: reader
-  namespace: test
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: admin-impersonator
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: admin-impersonator
 subjects:
 - kind: ServiceAccount
   name: reader
