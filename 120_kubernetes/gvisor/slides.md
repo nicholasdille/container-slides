@@ -1,24 +1,41 @@
 ## Runtimes
 
-XXX runc, crun
+![](120_kubernetes/gvisor/runtime.drawio.svg) <!-- .element: style="float: right; width: 15%;" -->
 
-XXX gvisor
+OCI runtimes are responsible for interactive with the kernel
 
-XXX kata containers with qemu/kvm (or firecracker)
+They implement the OCI runtime spec
 
-XXX containerd with firecracker
+They are pluggable
+
+### Implementations
+
+Reference implementation by OCI (Go): runc [](https://github.com/opencontainers/runc)
+
+Lightweight implementation by RedHat (C): crun [](https://github.com/containers/crun)
+
+Application kernel by Google (Go): gvisor [](https://github.com/google/gvisor)
+
+Lightweight VMs using QEMU/KVM (Go): kata-containers [](https://github.com/kata-containers/kata-containers)
+
+Micro VMs by AWS (Rust): Firecracker [](https://github.com/firecracker-microvm/firecracker)
 
 ---
 
 ## gvisor
 
-XXX application kernel
+Application kernel that...
 
-XXX "implements a substantial portion of the Linux system call interface"
+"implements a substantial portion of the Linux system call interface"
 
-XXX https://gvisor.dev/
+### Binaries
 
-XXX https://gvisor.dev/docs/user_guide/install/#specific-release
+Ships with...
+
+- an OCI runtime `runsc`
+- a containerd shim `containerd-shim-runsc-v1`
+
+### Threat model (?)
 
 XXX https://gvisor.dev/docs/architecture_guide/security/
 
@@ -26,16 +43,30 @@ XXX https://gvisor.dev/docs/architecture_guide/security/
 
 ## Concepts
 
-![](120_kubernetes/gvisor/concepts.drawio.svg)
+![](120_kubernetes/gvisor/concepts.drawio.svg) <!-- .element: style="float: right; width: 65%;" -->
 
-XXX sentry: application kernel, intercepts system calls, started in restrited seccomp container without filesystem access
+Comparison to...
 
-XXX gofer: host process for every container, talks to sentry using 9P protocol
+Hardware virtualization
+
+Syscall filtering using seccomp, SELinux and AppArmor
+
+### Sentry
+
+Application kernel
+
+Intercepts system calls
+
+Starts in container w/ seccomp
+
+### Gofer
+
+Host process for every container
+
+Talks to Sentry using 9P
 
 ---
 
 ## Demo
 
-XXX https://github.com/gnmahanth/kind-runsc
-
-XXX https://kubernetes.io/docs/concepts/containers/runtime-class/
+gvisor in Kubernetes

@@ -1,0 +1,66 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="401px" height="131px" viewBox="-0.5 -0.5 401 131" content="&lt;mxfile&gt;&lt;diagram id=&quot;jseOE24beTc5TyUiqovE&quot; name=&quot;Page-1&quot;&gt;5ZVNc5swEIZ/Dcd0ALm2c/RHkl7azNSHtkdV2oAmQvII2UB/fSVrMWBMpzPO5BIfPOyjFdK+7+4QkU1RPxm6z79qDjJKY15HZBul6TxO3L8HTQCLZRpAZgQPKOnATvwBhDHSg+BQDhKt1tKK/RAyrRQwO2DUGF0N0160HJ66pxmMwI5ROaY/BLd5oMt00fEvILK8PTmZ34eVgrbJWEmZU66rHiIPEdkYrW14KuoNSK9dq0vY9zixer6YAWX/ZwPqfqTygLV9owWUe8oAL2ibtmqjD4qD35hEZF3lwsLulEi2lbPZsdwWEpdfhJQbLbVxsdLKJa1La/QrtDBKyePp55O1slMc3U+WLj6CscLZsJIiUw5a7U+lhmHSwkWclvn5kmM5UCH/Jqh7COV5Al2ANY1LOTdr2IGtmrTOVZ3xsxhZ3jedIKTYbNn51Z0f7gEtuW7P/cgE4K4TMURde6q7Mk3z0wVxG/zywafPbbit+4vbBqNLoacMmbZQ0t8g15S9Zqc2ubB+0odSHwzD0ghOMjUZYNYsIF/0P70yIKkVx+F43iI8Gc3Fd6D87llJf9wOzFEwWDHmarU3DsrN0l8ZtTfo++VF3y/GfZ/MrvT9/A3afjZSf8ULoT6I8iR+P+ld2H1sTmu9LzZ5+As=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="0" y="0" width="400" height="130" rx="9.1" ry="9.1" fill="none" stroke="#ffffff" stroke-dasharray="3 3" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 398px; height: 1px; padding-top: 7px; margin-left: 1px;">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Namespace
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="200" y="25" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
+                    Namespace
+                </text>
+            </switch>
+        </g>
+        <path d="M 160 80 L 233.63 80" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 238.88 80 L 231.88 83.5 L 233.63 80 L 231.88 76.5 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="20" y="50" width="140" height="60" rx="9" ry="9" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 138px; height: 1px; padding-top: 80px; margin-left: 21px;">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Read-Only ServiceAccount
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="90" y="85" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
+                    Read-Only Servic...
+                </text>
+            </switch>
+        </g>
+        <rect x="240" y="50" width="140" height="60" rx="9" ry="9" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 138px; height: 1px; padding-top: 80px; margin-left: 241px;">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Admin ServiceAccount
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="310" y="85" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
+                    Admin ServiceAcc...
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>
