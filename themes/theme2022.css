@@ -71,6 +71,13 @@
     font-style: italic;
 }
 
+.reveal mark {
+  font-weight: bold;
+  background-color: darkgrey;
+  border-radius: 8px;
+  color: black;
+}
+
 .reveal ul {
     list-style-type: circle;
 }
