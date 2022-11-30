@@ -4,11 +4,11 @@
 
 ### Use cases
 
-XXX inventory
+Inventory of libraries used in software artifact
 
-XXX vulnerabilities
+Scan for vulnerabilities
 
-XXX licenses
+Scan for licenses of libraries
 
 ### Formats
 

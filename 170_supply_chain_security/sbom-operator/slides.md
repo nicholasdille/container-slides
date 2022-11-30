@@ -6,13 +6,9 @@ XXX
 
 ---
 
-## ???
-
-XXX
+### Example workflow
 
 ![](170_supply_chain_security/sbom-operator/scanning.drawio.svg) <!-- .element: style="float: right; width: 45%;" -->
-
-### Example workflow
 
 `sbom-operator` [](https://github.com/ckotzbauer/sbom-operator) listens for events on pods <i class="fa fa-circle-1"></i>, generates an SBoM for an image...
 

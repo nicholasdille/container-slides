@@ -1,12 +1,16 @@
 ## Sigstore policy-controller
 
-XXX
+Signing container images is not enough
 
-XXX https://github.com/sigstore/policy-controller
+Verification is important as well
 
-XXX https://docs.sigstore.dev/policy-controller/installation/
+sigstore's `policy-controller` [](https://github.com/sigstore/policy-controller) is an admission controller
 
-XXX https://github.com/sigstore/helm-charts/tree/main/charts/policy-controller
+Operates namespaces with label `policy.sigstore.dev/include=true`
+
+Selected images must be signed...
+
+...by one or more subjects
 
 ---
 

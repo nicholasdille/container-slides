@@ -35,7 +35,7 @@ Ships with...
 - an OCI runtime `runsc`
 - a containerd shim `containerd-shim-runsc-v1`
 
-### Threat model (?)
+### Security model
 
 XXX https://gvisor.dev/docs/architecture_guide/security/
 
