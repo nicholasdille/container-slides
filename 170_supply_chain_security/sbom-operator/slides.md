@@ -2,7 +2,11 @@
 
 SBoMs can be used for vulnerability scanning
 
-XXX
+All components of an artifact are listed with version numbers
+
+Matching against CVE databases provides unfixed vulnerabilities
+
+Scan can be repeated at any time
 
 ---
 
@@ -24,4 +28,6 @@ Prometheus and Grafana can scrape <i class="fa fa-circle-4"></i> and visualize <
 
 ## Demo
 
-XXX https://github.com/nicholasdille/sbom-store
+See SBoMs in [git](https://github.com/nicholasdille/sbom-store)
+
+See metrics in [Grafana](http://grafana.inmylab.de)

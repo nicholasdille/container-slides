@@ -1,0 +1,16 @@
+# SBoM generation and scanning
+
+# Install tools
+docker-setup --tools=docker,buildx,docker-compose,kind,helm,kubectl,gvisor,cosign,kyverno,syft,grype,trivy install
+
+# Generate SBoM of trivy
+syft packages aquasec/trivy:0.34.0 --file trivy.json --output cyclonedx-json
+
+# Generate SBoM of alpine 3.16
+syft packages alpine:3.16 --file alpine-3.16.json --output cyclonedx-json
+
+# Scan trivy.json
+grype sbom:trivy.json
+
+# Scan alpine.json
+grype sbom:alpine-3.16.json

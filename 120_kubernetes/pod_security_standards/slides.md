@@ -1,4 +1,4 @@
-### Pod Security Standards
+## Pod Security Standards
 
 Three policies from highly-permissive to highly-restrictive
 
@@ -8,7 +8,7 @@ Baseline [](https://kubernetes.io/docs/concepts/security/pod-security-standards/
 <i class="fa fa-less-than"></i>
 Restricted [](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
 
-## Pod Security Admission
+### Pod Security Admission
 
 Built-in admission controller for pod security
 

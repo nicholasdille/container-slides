@@ -6,11 +6,17 @@ helm repo add ckotzbauer https://ckotzbauer.github.io/helm-charts
 helm upgrade --install --namespace sbom-system sbom-operator ckotzbauer/sbom-operator -f values-sbom-operator.yaml
 
 # Check git
-echo TODO
+https://github.com/nicholasdille/sbom-store
 
 # Deploy vulnerability operator
 helm upgrade --install --namespace sbom-system vuln-operator ckotzbauer/vulnerability-operator -f values-vulnerability-operator.yaml
 
-# XXX
+# Check targets
 http://prometheus.inmylab.de/
+
+# Check data
 http://grafana.inmylab.de/
+count by (image_id) (vuln_operator_cves)
+count by (severity) (vuln_operator_cves)
+count by (cve) (vuln_operator_cves)
+count by (package, version) (vuln_operator_cves)

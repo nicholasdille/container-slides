@@ -1,8 +1,8 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="551px" height="91px" viewBox="-0.5 -0.5 551 91" content="&lt;mxfile&gt;&lt;diagram id=&quot;Vu4ektz6ZEuqHXlncnei&quot; name=&quot;Page-1&quot;&gt;7VdNU4MwEP01XB0+pJarrR8XTz2ox0i2kDGwTAhC/fWmsClQquOMDjqOXJJ92SSb9zaTxQlWWXOjWJHeIQfp+C5vnGDt+L7nRuem2SM7QrzQ7ZBECU5YD2zEK9iphFaCQzly1IhSi2IMxpjnEOsRxpTCeuy2RTnetWAJTIBNzOQUvRdcpx269C96/BZEktqdvUXUjWTMOtNJypRxrAdQcOUEK4Wou17WrEDu2bO8dPOu3xk9BKYg15+ZQBGXemfPBtwclcwcc9NcpjqTxvJM1yyrdg/GcK3xuDfOQmuum+HgekfWFnNNOnpLslcoUbWbBtftZ/AunH0M7x6IoBIrFZNXSDnAVALktTiQadIQMAMTjXFRIJkWL+PVGaVDcvDrGTMdIu00gbT1C5MVLfqI1YRUhVXOgROJdSo0bArWhl+bOzLm+LNclVrhM5wa2QopLU4aUpigNDQfUzsljSYENmnp2gYLsuv+DnjWJx3kv/X7Cs+LUzwrg1QlqPJvEh7+JOHL357YBnfbz+CSPYG8ZPFz0gb0/VJER0pEMyoR/SsxUMJzj6RYziiFLUD+taDC5kiLizm18P9E7eLZAnZQvIQzFS927+mryqH4VY/qvGk947trzL7ab8cGP03B1Rs=&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="551px" height="91px" viewBox="-0.5 -0.5 551 91" content="&lt;mxfile&gt;&lt;diagram id=&quot;Vu4ektz6ZEuqHXlncnei&quot; name=&quot;Page-1&quot;&gt;7VfBbqMwEP0arivAIgnXJm330lMO3R69eAJWDYOMCWS/fh0YFwjpqlJXtKrKIfG8GeOZ92x58Ng2b+81L7MHFKC80Betx3ZeGEYxs79n4NQD69jvgVRL0UPBAOzlHyDQhdVSQDUJNIjKyHIKJlgUkJgJxrXGZhp2QDVdteQpzIB9wtUcfZTCZD26CdcD/hNkmrmVg1Xce3LugqmSKuMCmxHEbj221YimH+XtFtSZO8dLP+/uFe9LYhoK85YJlHFlTq42ELZUMgss7N9NZnJlrcAO7Wv16Zc1fGc8nY0fkTN37di5O5F1wMKQjsGG7C0q1N2i7K57LF4Zjc9wzTOvjIqtsNYJJR/RZuA6BYpa9dC5rNE0YuMeMAebpw3QoLiRx6nCnDZK+hI3cGkHROd1aimXI1c1vfQJ6xndGutCgCB6m0wa2Je8q6exZ2fK/vtZPEilHE7qvkrsEbSB9p+kkZe57Uznma3IbobTEbiYbHQyXNx7eF5d41lbpK5AV1+T8OgjCd989o1tcb97LK74b1A3PHlOu4T+vxTxhRLxgkrE30qMlAj8Cyk2C0rhWpNvLajludBivaQW4dfqagLX447amuij2hqXzPy+FVB+qut22Q2/4I1szeELofONPrPY7V8=&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
-        <path d="M 350 30 L 423.63 30" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 428.88 30 L 421.88 33.5 L 423.63 30 L 421.88 26.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 350 30 L 423.63 30" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 428.88 30 L 421.88 33.5 L 423.63 30 L 421.88 26.5 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
         <rect x="230" y="0" width="120" height="60" rx="9" ry="9" fill="none" stroke="#ffffff" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
@@ -88,8 +88,8 @@
                 </text>
             </switch>
         </g>
-        <path d="M 150 30 L 223.63 30" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 228.88 30 L 221.88 33.5 L 223.63 30 L 221.88 26.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 150 30 L 223.63 30" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 228.88 30 L 221.88 33.5 L 223.63 30 L 221.88 26.5 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
         <rect x="30" y="0" width="120" height="60" rx="9" ry="9" fill="#000000" stroke="#ffffff" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>

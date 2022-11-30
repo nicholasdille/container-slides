@@ -37,7 +37,7 @@ Ships with...
 
 ### Security model
 
-XXX https://gvisor.dev/docs/architecture_guide/security/
+Google provides a detailed analysis [](https://gvisor.dev/docs/architecture_guide/security/)
 
 ---
 

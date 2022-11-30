@@ -44,4 +44,6 @@ docker-setup --tags=sbom plan
 
 ## Demo
 
-XXX
+SBoM generation
+
+SBoM scanning

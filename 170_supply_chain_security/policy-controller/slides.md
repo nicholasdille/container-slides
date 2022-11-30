@@ -15,5 +15,3 @@ Selected images must be signed...
 ---
 
 ## Demo
-
-XXX

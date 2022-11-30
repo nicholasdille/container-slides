@@ -4,7 +4,7 @@ Supply chain [](https://en.wikipedia.org/wiki/Software_supply_chain) - all compo
 
 Supply chain security [](https://en.wikipedia.org/wiki/Digital_supply_chain_security) - efforts to enhance the security within the supply chain
 
-![](170_supply_chain_security/supply_chain.drawio.svg)
+![](170_supply_chain_security/supply_chain.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 Supply chain attack - exploit of a vulnerability to inject malicious code in the supply chain
 
