@@ -56,3 +56,5 @@ docker exec kind-control-plane cat /var/log/kubernetes/kube-apiserver-audit.log 
     | jq . \
     | less
 done
+
+# TODO: Namespace, rollout, label!!!

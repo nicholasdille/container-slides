@@ -19,3 +19,6 @@ kubectl apply -f nginx.yaml
 docker exec -it kind-control-plane bash
 crictl ps -l
 crictl exec <id> dmesg
+# TODO: Improve using kubectl exec
+
+# TODO: Additional demo without runtimeClass

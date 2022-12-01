@@ -43,7 +43,7 @@ Labels for all three modes for a single policy are supported
 
 kyverno, the Kubernetes-native policy controller [](https://kyverno.io/)
 
-OPA Gatekeeper, the general puepoe policy engine [](https://open-policy-agent.github.io/gatekeeper/website/docs/)
+OPA Gatekeeper, the general purpose policy engine [](https://open-policy-agent.github.io/gatekeeper/website/docs/)
 
 ### See also
 
