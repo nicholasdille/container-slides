@@ -15,7 +15,6 @@ args:
   git-repository: https://github.com/nicholasdille/sbom-store
   git-path: "2022-12-01"
   verbosity: debug
-  cron: "0 */10 * * * *"
 
 envVars:
   - name: SBOM_GIT_ACCESS_TOKEN

@@ -14,3 +14,9 @@ grype sbom:trivy.json
 
 # Scan alpine.json
 grype sbom:alpine-3.16.json
+
+# Scan from image using grype
+grype docker:nginx:latest
+
+# Scan from image using trivy
+trivy image --severity high,critical nginx:latest

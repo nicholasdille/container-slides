@@ -1,18 +1,12 @@
 ## Vulerability scanning
 
-SBoMs can be used for vulnerability scanning
+![](170_supply_chain_security/sbom-operator/scanning.drawio.svg) <!-- .element: style="float: right; width: 45%;" -->
 
-All components of an artifact are listed with version numbers
+### sbom-/vulnerability-operator
 
-Matching against CVE databases provides unfixed vulnerabilities
-
-Scan can be repeated at any time
-
----
+Open Source projects [`sbom-operator`](https://github.com/ckotzbauer/sbom-operator/) and [`vulnerability-operator`](https://github.com/ckotzbauer/vulnerability-operator)
 
 ### Example workflow
-
-![](170_supply_chain_security/sbom-operator/scanning.drawio.svg) <!-- .element: style="float: right; width: 45%;" -->
 
 `sbom-operator` [](https://github.com/ckotzbauer/sbom-operator) listens for events on pods <i class="fa fa-circle-1"></i>, generates an SBoM for an image...
 
