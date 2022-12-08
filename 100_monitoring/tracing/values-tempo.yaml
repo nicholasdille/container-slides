@@ -33,7 +33,7 @@ tempo:
   memBallastSizeMbs: 1024
   multitenancyEnabled: false
   # -- If true, enables Tempo's native search
-  searchEnabled: false
+  searchEnabled: true
   # -- If true, Tempo will report anonymous usage data about the shape of a deployment to Grafana Labs
   reportingEnabled: true
   metricsGenerator:

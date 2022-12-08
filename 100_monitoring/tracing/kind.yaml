@@ -2,3 +2,78 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 featureGates:
   KubeletTracing: true
+  APIServerTracing: true
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  - |
+    apiVersion: kubeadm.k8s.io/v1beta3
+    kind: ClusterConfiguration
+    apiServer:
+      extraArgs:
+        tracing-config-file: /etc/kubernetes/tracing/kube-apiserver-tracing-config.yaml
+      extraVolumes:
+      - name: tracing
+        hostPath: /etc/kubernetes/tracing/kube-apiserver-tracing-config.yaml
+        mountPath: /etc/kubernetes/tracing/kube-apiserver-tracing-config.yaml
+        readOnly: true
+        pathType: "File"
+    etcd:
+      local:
+        extraArgs:
+          experimental-enable-distributed-tracing: "true"
+          experimental-distributed-tracing-service-name: etcd
+          experimental-distributed-tracing-address: localhost:4317
+  - |
+    apiVersion: kubelet.config.k8s.io/v1beta1
+    kind: KubeletConfiguration
+    featureGates:
+      KubeletTracing: true
+    tracing:
+      samplingRatePerMillion: 1000
+      endpoint: localhost:4317
+  extraMounts:
+  - hostPath: ./kube-apiserver-tracing-config.yaml
+    containerPath: /etc/kubernetes/tracing/kube-apiserver-tracing-config.yaml
+  #- hostPath: ./resolv.conf
+  #  containerPath: /etc/resolv.conf
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    #listenAddress: 127.0.0.1
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    #listenAddress: 127.0.0.1
+    protocol: TCP
+- role: worker
+  kubeadmConfigPatches:
+  - |
+    apiVersion: kubelet.config.k8s.io/v1beta1
+    kind: KubeletConfiguration
+    featureGates:
+      KubeletTracing: true
+    tracing:
+      samplingRatePerMillion: 1000
+      endpoint: localhost:4317
+  #extraMounts:
+  #- hostPath: ./resolv.conf
+  #  containerPath: /etc/resolv.conf
+- role: worker
+  kubeadmConfigPatches:
+  - |
+    apiVersion: kubelet.config.k8s.io/v1beta1
+    kind: KubeletConfiguration
+    featureGates:
+      KubeletTracing: true
+    tracing:
+      samplingRatePerMillion: 1000
+      endpoint: localhost:4317
+  #extraMounts:
+  #- hostPath: ./resolv.conf
+  #  containerPath: /etc/resolv.conf

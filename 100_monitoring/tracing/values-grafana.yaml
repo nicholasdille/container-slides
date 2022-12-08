@@ -516,6 +516,19 @@ datasources:
       url: http://prometheus-operated:9090
       access: proxy
       isDefault: true
+      editable: true
+    - name: Loki
+      type: loki
+      url: http://loki.kube-system:3100
+      access: proxy
+      jsonData:
+        maxLines: 1000
+      editable: true
+    - name: Tempo
+      type: tempo
+      url: http://tempo.kube-system:3100
+      access: proxy
+      editable: true
 #    - name: CloudWatch
 #      type: cloudwatch
 #      access: proxy

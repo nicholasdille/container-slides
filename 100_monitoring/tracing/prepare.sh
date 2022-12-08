@@ -16,8 +16,14 @@ kubectl apply -f prometheus.yaml
 helm repo add grafana https://grafana.github.io/helm-charts
 helm --namespace kube-system upgrade --install tempo grafana/tempo --values values-tempo.yaml
 
+# loki
+helm --namespace kube-system upgrade --install loki grafana/loki --values values-loki.yaml
+
+# promtail
+#helm --namespace kube-system upgrade --install promtail grafana/promtail --values values-promtail.yaml
+
 # grafana
-helm repo update
+# TODO: https://grafana.com/docs/grafana/latest/datasources/tempo/#provision-the-data-source
 helm --namespace kube-system upgrade --install grafana grafana/grafana --values values-grafana.yaml
 kubectl --namespace kube-system get secret grafana -o json | jq -r '.data."admin-password"' | base64 -d
 
@@ -30,3 +36,6 @@ helm --namespace cert-manager upgrade --install cert-manager jetstack/cert-manag
 # install opentelemetry-operator
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
 helm --namespace kube-system upgrade --install opentelemetry-operator open-telemetry/opentelemetry-operator --values values-opentelemetry-operator.yaml
+
+# Collector
+kubectl --namespace kube-system apply -f collector.yaml
