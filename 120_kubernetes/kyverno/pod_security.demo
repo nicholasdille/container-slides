@@ -6,9 +6,10 @@ kubectl create namespace test
 # Rollout policy
 cat <<EOF | kubectl apply -f -
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
   name: psa
+  namespace: test
 spec:
   background: true
   validationFailureAction: Enforce
@@ -43,6 +44,9 @@ spec:
     securityContext:
       allowPrivilegeEscalation: true
 EOF
+
+# Check PolicyReport resource
+XXX
 
 # Deploy pod
 cat <<EOF | kubectl --namespace test apply -f -

@@ -13,6 +13,8 @@ Kubernetes-native policy management
 
 Policies are managed as Kubernetes resources
 
+Cluster-wide or namespaced policies
+
 ---
 
 ## Policies
