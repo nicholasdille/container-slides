@@ -1,0 +1,68 @@
+# Pod Security Standards
+
+# Prepare namespace
+kubectl create namespace test
+
+# Rollout policy
+cat <<EOF | kubectl apply -f -
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: psa
+spec:
+  background: true
+  validationFailureAction: Enforce
+  rules:
+  - name: restricted
+    match:
+      any:
+      - resources:
+          namespaces:
+          - test
+          kinds:
+          - Pod
+    validate:
+      podSecurity:
+        level: restricted
+        version: latest
+EOF
+
+# Fail to deploy pod
+cat <<EOF | kubectl --namespace test apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-privileged
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: true
+EOF
+
+# Deploy pod
+cat <<EOF | kubectl --namespace test apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+EOF

@@ -1,6 +1,6 @@
 ## kyverno
 
-![](120_kubernetes/kyverno/logo.svg) <!-- .element: style="float: right; width: 10%;" -->
+![](120_kubernetes/kyverno/logo.svg) <!-- .element: style="float: right; width: 15%;" -->
 
 Kubernetes-native policy management
 
@@ -31,10 +31,10 @@ Allowlist for image registries [](https://kyverno.io/policies/best-practices/res
 
 Require attestations of security scans [](https://kyverno.io/policies/other/require_vuln_scan/require-vulnerability-scan/)
 
+Keyless image signatures using sigstore [](https://kyverno.io/docs/writing-policies/verify-images/#keyless-signing-and-verification)
+
 ---
 
 ## Demo
 
-kyverno for the Pod Security Standards [](https://kubernetes.io/docs/concepts/security/pod-security-standards/) [](https://kyverno.io/docs/writing-policies/validate/#pod-security)
-
-Keyless image signatures using sigstore [](https://kyverno.io/docs/writing-policies/verify-images/#keyless-signing-and-verification)
+kyverno for the Pod Security Standards [](https://kyverno.io/docs/writing-policies/validate/#pod-security)

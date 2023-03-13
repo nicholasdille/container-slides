@@ -1,6 +1,8 @@
 ## Pod Security Standards
 
-Three policies from highly-permissive to highly-restrictive
+Successor of Pod Security Policies [](https://kubernetes.io/docs/concepts/security/pod-security-policy/)
+
+Three policies from highly-permissive to highly-restrictive [](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
 
 Privileged [](https://kubernetes.io/docs/concepts/security/pod-security-standards/#privileged)
 <i class="fa fa-less-than"></i>
@@ -8,19 +10,41 @@ Baseline [](https://kubernetes.io/docs/concepts/security/pod-security-standards/
 <i class="fa fa-less-than"></i>
 Restricted [](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
 
-### Pod Security Admission
+XXX Security Context [](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
+
+XXX example: k explain pod.spec.securityContext
+
+XXX example: k explain pod.spec.containers.securityContext
+
+---
+
+## Policies
+
+![](120_kubernetes/pod_security_standards/policies.drawio.svg) <!-- .element: style="width: 90%;" -->
+
+---
+
+## Pod Security Admission
 
 Built-in admission controller for pod security
 
+Enabled by default
+
 Cluster-wide enforcement of the Pod Security Standards [](https://kubernetes.io/docs/concepts/security/pod-security-admission/)
 
-Successor of Pod Security Policies [](https://kubernetes.io/docs/concepts/security/pod-security-policy/)
+| Modes   | Description                                                                                                  |
+|---------|--------------------------------------------------------------------------------------------------------------|
+| enforce | Violations cause a pod to be rejected                                                                        |
+| audit   | Violations will be recorded in the audit log [](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) |
+| warn    | Violations will trigger user-facing message                                                                  |
 
-| Modes  | Description                           |
-|--------|---------------------------------------|
-| enorce | Violations cause a pod to be rejected |
-| audit  | Violations will be recorded in the audit log [](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) |
-| warn   | Violations will trigger user-facing message |
+Enforce without audit or warn = fail quietly
+
+Enforce with audit or warn = fail with admin log or with user message
+
+Enforce with audit and warn = fail with both admin log and user message
+
+No enforce but audit = succeed but learn about possible outcome
 
 
 ---
@@ -36,17 +60,3 @@ pod-security.kubernetes.io/MODE: POLICY
 ```
 
 Labels for all three modes for a single policy are supported
-
----
-
-## Alternatives
-
-kyverno, the Kubernetes-native policy controller [](https://kyverno.io/)
-
-OPA Gatekeeper, the general purpose policy engine [](https://open-policy-agent.github.io/gatekeeper/website/docs/)
-
-### See also
-
-Sigstore policy-controller [](https://github.com/sigstore/policy-controller)
-
-Focuses on verification of image signatures
