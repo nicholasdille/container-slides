@@ -2,6 +2,34 @@
 
 Successor of Pod Security Policies [](https://kubernetes.io/docs/concepts/security/pod-security-policy/)
 
+Manages security context [](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) (among other things)
+
+```yaml
+spec:
+  securityContext:
+    fsGroup: <integer>
+    runAsGroup: <integer>
+    runAsNonRoot: <boolean>
+    runAsUser: <integer>
+```
+
+```yaml
+spec:
+  containers:
+  - securityContext:
+      allowPrivilegeEscalation: <boolean>
+      capabilities: <Object>
+      privileged: <boolean>
+      readOnlyRootFilesystem: <boolean>
+      runAsGroup: <integer>
+      runAsNonRoot: <boolean>
+      runAsUser: <integer>
+```
+
+---
+
+## Policies
+
 Three policies from highly-permissive to highly-restrictive [](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
 
 Privileged [](https://kubernetes.io/docs/concepts/security/pod-security-standards/#privileged)
@@ -9,16 +37,6 @@ Privileged [](https://kubernetes.io/docs/concepts/security/pod-security-standard
 Baseline [](https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline)
 <i class="fa fa-less-than"></i>
 Restricted [](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
-
-XXX Security Context [](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-
-XXX example: k explain pod.spec.securityContext
-
-XXX example: k explain pod.spec.containers.securityContext
-
----
-
-## Policies
 
 ![](120_kubernetes/pod_security_standards/policies.drawio.svg) <!-- .element: style="width: 90%;" -->
 
