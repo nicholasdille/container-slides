@@ -2,11 +2,11 @@ name: cosign-test
 policies:
 - cosign-policy.yaml
 resources:
-- rekor.yaml
+- cosign-pod.yaml
 results:
 - policy: check-image
   rule: check-image
   namespace: default
-  kind: Deployment
-  resource: rekor-server
+  kind: Pod
+  resource: cosign
   result: pass

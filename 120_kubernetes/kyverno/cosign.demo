@@ -3,10 +3,10 @@
 # Apply policy for cosign
 kubectl apply -f cosign-policy.yaml
 
-# Test policy
-helm repo add sigstore https://sigstore.github.io/helm-charts
-helm template rekor sigstore/rekor >rekor.yaml
-kyverno test --file-name cosign-test.yaml .
+# Deploy pod
+kubectl apply -f cosign-pod.yaml
+kubectl get policyreport
+kubectl get policyreport cpol-check-image -o yaml
 
-# Succeed to deploy rekor
-helm upgrade --install rekor sigstore/rekor
+# Test policy
+kyverno test --file-name cosign-test.yaml .
