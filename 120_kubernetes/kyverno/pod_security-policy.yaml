@@ -1,11 +1,13 @@
 ---
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
   name: psa
+  namespace: test
 spec:
   background: true
-  validationFailureAction: enforce
+  failurePolicy: Fail
+  validationFailureAction: Enforce
   rules:
   - name: restricted
     match:
@@ -17,8 +19,3 @@ spec:
       podSecurity:
         level: restricted
         version: latest
-        exclude:
-        - controlName: Seccomp
-        - controlName: Seccomp
-          images:
-          - '*'

@@ -1,13 +1,12 @@
 # cosign
 
 # Apply policy for cosign
-kubectl apply -f cosign.yaml
+kubectl apply -f cosign-policy.yaml
 
 # Test policy
+helm repo add sigstore https://sigstore.github.io/helm-charts
 helm template rekor sigstore/rekor >rekor.yaml
-kyverno test .
+kyverno test --file-name cosign-test.yaml .
 
 # Succeed to deploy rekor
 helm upgrade --install rekor sigstore/rekor
-
-# TODO: PSA

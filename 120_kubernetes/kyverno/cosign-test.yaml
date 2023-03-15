@@ -1,6 +1,6 @@
-name: mytests
+name: cosign-test
 policies:
-- cosign.yaml
+- cosign-policy.yaml
 resources:
 - rekor.yaml
 results:

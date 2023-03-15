@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cosign
+spec:
+  containers:
+  - name: cosign
+    image: gcr.io/projectsigstore/cosign:v2.0.0
+    args:
+    - sleep
+    - "1000000"

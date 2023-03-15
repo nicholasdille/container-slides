@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rabbitmq
+  namespace: test
+spec:
+  containers:
+  - name: rabbitmq
+    image: bitnami/rabbitmq:latest
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault

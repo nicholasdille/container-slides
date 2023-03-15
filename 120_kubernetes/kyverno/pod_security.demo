@@ -4,69 +4,25 @@
 kubectl create namespace test
 
 # Rollout policy
-cat <<EOF | kubectl apply -f -
-apiVersion: kyverno.io/v1
-kind: Policy
-metadata:
-  name: psa
-  namespace: test
-spec:
-  background: true
-  validationFailureAction: Enforce
-  rules:
-  - name: restricted
-    match:
-      any:
-      - resources:
-          namespaces:
-          - test
-          kinds:
-          - Pod
-    validate:
-      podSecurity:
-        level: restricted
-        version: latest
-EOF
+kubectl apply -f pod_security-policy.yaml
+
+# Explore CRD
+kubectl explain policy.spec
+kubectl explain clusterpolicy.spec
 
 # Fail to deploy pod
-cat <<EOF | kubectl --namespace test apply -f -
-apiVersion: v1
-kind: Pod
-metadata:
-  name: busybox-privileged
-spec:
-  containers:
-  - name: busybox
-    image: busybox
-    args:
-    - sleep
-    - "1000000"
-    securityContext:
-      allowPrivilegeEscalation: true
-EOF
+kubectl apply -f busybox-privileged.yaml
+
+# Deploy failing pod
+kubectl apply -f busybox.yaml
+
+# Successful deployment
+kubectl apply -f rabbitmq.yaml
+
+# Test without deployment
+kyverno test --file-name pod_security-test.yaml .
 
 # Check PolicyReport resource
-XXX
-
-# Deploy pod
-cat <<EOF | kubectl --namespace test apply -f -
-apiVersion: v1
-kind: Pod
-metadata:
-  name: busybox
-spec:
-  containers:
-  - name: busybox
-    image: busybox
-    args:
-    - sleep
-    - "1000000"
-    securityContext:
-      allowPrivilegeEscalation: false
-      capabilities:
-        drop:
-        - ALL
-      runAsNonRoot: true
-      seccompProfile:
-        type: RuntimeDefault
-EOF
+kubectl apply -f pod_security-policyreport.yaml
+kubectl --namespace test get policyreport
+kubectl --namespace test get policyreport pol-psa -o yaml

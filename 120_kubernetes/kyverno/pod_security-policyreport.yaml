@@ -1,0 +1,42 @@
+---
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: psa-audit
+  namespace: test
+spec:
+  background: true
+  failurePolicy: Fail
+  validationFailureAction: Audit
+  rules:
+  - name: restricted
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    validate:
+      podSecurity:
+        level: restricted
+        version: latest
+---
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: psa-enforce
+  namespace: test
+spec:
+  background: true
+  failurePolicy: Fail
+  validationFailureAction: Enforce
+  rules:
+  - name: baseline
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    validate:
+      podSecurity:
+        level: baseline
+        version: latest
