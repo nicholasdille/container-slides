@@ -10,7 +10,7 @@ Digital vernetzen und kommunizieren.
 
 Sicher und datensparsam, weltweit.
 
-Für Freiburg, die Regio, das 3-Ländereck <br>und alle, die sich mit der Region verbunden fühlen.
+Für Freiburg, die Regio, das 3-Ländereck <br/>und alle, die sich mit der Region verbunden fühlen.
 
 [<i class="fa fa-globe"></i>](https://wir.freiburg.social/) Homepage
 
@@ -20,4 +20,4 @@ Mastondon [<i class="fa-brands fa-mastodon"></i>](https://wir.freiburg.social/an
 
 Matrix [[m]](https://wir.freiburg.social/angebote/matrix/) statt kommerzieller Messenger
 
-(Karin Seyfarth und Olav Seyfarth <br>sind Urheber:innen des Ufos, <br>Imke Senst ist Urheberin des Logos) <!-- .element: style="font-size: 0.75em; color: grey; float: right;" -->
+(Karin Seyfarth und Olav Seyfarth <br/>sind Urheber:innen des Ufos, <br/>Imke Senst ist Urheberin des Logos) <!-- .element: style="font-size: 0.75em; color: grey; float: right;" -->
