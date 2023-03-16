@@ -64,7 +64,6 @@ Enforce with audit and warn = fail with both admin log and user message
 
 No enforce but audit = succeed but learn about possible outcome
 
-
 ---
 
 ## Demo
@@ -78,3 +77,5 @@ pod-security.kubernetes.io/MODE: POLICY
 ```
 
 Labels for all three modes for a single policy are supported
+
+See [here](https://github.com/nicholasdille/container-slides/tree/master/120_kubernetes/pod_security_standards) for demos

@@ -42,3 +42,5 @@ Keyless image signatures using sigstore [](https://kyverno.io/docs/writing-polic
 kyverno for the Pod Security Standards [](https://kyverno.io/docs/writing-policies/validate/#pod-security)
 
 kyverno for testing keyless image signatures
+
+See [here](https://github.com/nicholasdille/container-slides/tree/master/120_kubernetes/kyverno) for demos
