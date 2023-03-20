@@ -1,0 +1,122 @@
+include:
+- local: go.yaml
+- template: Security/Secret-Detection.gitlab-ci.yml
+- template: Security/SAST.gitlab-ci.yml
+
+stages:
+- check
+- build
+- test
+- deploy
+- package
+- trigger
+
+default:
+  image: golang:1.19.2
+
+renovate:
+  stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE'
+  image: renovate/renovate:32.236.0
+  variables:
+    LOG_LEVEL: debug
+  script: |
+    renovate --platform gitlab \
+        --endpoint https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4 \
+        --token ${RENOVATE_TOKEN} \
+        --autodiscover true
+
+lint:
+  stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+  - go vet .
+
+build:
+  stage: build
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends: .build-go
+
+test:
+  stage: test
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends: .test-go
+
+deploy:
+  stage: deploy
+  rules:
+  - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
+  environment:
+    name: ${CI_COMMIT_REF_NAME}
+  before_script:
+  - apt-get update
+  - apt-get -y install curl ca-certificates
+  script:
+  - |
+    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+        --fail \
+        --verbose \
+        --upload-file hello \
+        --user admin:${PASS}
+
+pages:
+  stage: deploy
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  image: registry.gitlab.com/gitlab-org/release-cli:v0.14.0
+  release:
+    tag_name: ${CI_PIPELINE_IID}
+    name: Release ${CI_PIPELINE_IID}
+    description: |
+      Some multi
+      line text
+    ref: ${CI_COMMIT_SHA}
+  script:
+  - cp hello-linux-amd64 public/hello
+  artifacts:
+    paths:
+    - public
+
+package:
+  image: docker:20.10.18
+  stage: package
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  services:
+  - name: docker:20.10.18-dind
+    command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+  variables:
+    DOCKER_HOST: tcp://127.0.0.1:2375
+  before_script:
+  - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
+  script:
+  - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .
+  - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
+  after_script:
+  - docker logout "${CI_REGISTRY}"
+
+trigger:
+  stage: trigger
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  script: |
+    curl https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4/projects/3/trigger/pipeline \
+        --request POST \
+        --fail \
+        -F token=${TRIGGER_BAZ} \
+        -F ref=dev
