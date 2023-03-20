@@ -5,6 +5,8 @@ stages:
 - check
 - build
 - test
+- deploy
+- trigger
 
 default:
   image: golang:1.19.2
@@ -31,3 +33,23 @@ test:
   image: alpine
   script:
   - ./hello
+
+deploy:
+  stage: deploy
+  environment:
+    name: ${CI_COMMIT_REF_NAME}
+  before_script:
+  - apt-get update
+  - apt-get -y install curl ca-certificates
+  script:
+  - |
+    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+        --fail \
+        --verbose \
+        --upload-file hello \
+        --user admin:${PASS}
+
+trigger:
+  stage: trigger
+  trigger:
+    include: child.yml
