@@ -1,10 +1,7 @@
-workflow:
-  rules:
-  - if: $CI_PIPELINE_SOURCE == 'api'
-    when: never
-  - if: $CI_PIPELINE_SOURCE == 'trigger'
-    when: never
-  - when: always
+include:
+- local: go.yaml
+- template: Security/Secret-Detection.gitlab-ci.yml
+- template: Security/SAST.gitlab-ci.yml
 
 stages:
 - check
@@ -14,31 +11,14 @@ stages:
 - package
 - trigger
 
-include:
-- project: workshop/template-go
-  ref: main
-  file: go.yaml
-- template: Security/Secret-Detection.gitlab-ci.yml
-- template: Security/SAST.gitlab-ci.yml
-
-.rules-main-or-mr:
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-  - if: '$CI_PIPELINE_SOURCE == "web"'
-
-.rules-dev-or-live:
-  rules:
-  - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
-
 default:
-  image: golang:1.18.2@sha256:02c05351ed076c581854c554fa65cb2eca47b4389fb79a1fc36f21b8df59c24f
+  image: golang:1.19.2
 
 renovate:
   stage: check
   rules:
   - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE'
-  image: renovate/renovate:32.236.0-slim
+  image: renovate/renovate:32.236.0
   variables:
     LOG_LEVEL: debug
   script: |
@@ -49,38 +29,44 @@ renovate:
 
 lint:
   stage: check
-  extends: .rules-main-or-mr
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   script:
   - go fmt .
 
 audit:
   stage: check
-  extends: .rules-main-or-mr
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   script:
   - go vet .
 
 build:
   stage: build
-  extends:
-  - .build-go
-  - .rules-main-or-mr
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends: .build-go
 
 test:
   stage: test
-  extends:
-  - .test-go
-  - .rules-main-or-mr
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends: .test-go
 
 deploy:
   stage: deploy
-  extends: .rules-dev-or-live
+  rules:
+  - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
   environment:
     name: ${CI_COMMIT_REF_NAME}
   before_script:
   - apt-get update
   - apt-get -y install curl ca-certificates
   script:
-  - test -n "${PASS}"
   - |
     curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
         --fail \
@@ -91,7 +77,6 @@ deploy:
 pages:
   stage: deploy
   rules:
-  # Only run when pushed to main branch
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
   image: registry.gitlab.com/gitlab-org/release-cli:v0.14.0
   release:
@@ -101,14 +86,8 @@ pages:
       Some multi
       line text
     ref: ${CI_COMMIT_SHA}
-    assets:
-      links:
-      - name: hello
-        url: https://workshop.gitlab.seat${SEAT_INDEX}.inmylab.de/hello-world/${CI_PIPELINE_IID}/hello
   script:
   - cp hello-linux-amd64 public/hello
-  - mkdir -p public/${CI_PIPELINE_IID}
-  - cp hello-linux-amd64 public/${CI_PIPELINE_IID}/hello
   artifacts:
     paths:
     - public
@@ -116,24 +95,28 @@ pages:
 package:
   image: docker:20.10.18
   stage: package
-  extends: .go-targets
   rules:
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-  variables:
-    DOCKER_BUILDKIT: 1
   services:
   - name: docker:20.10.18-dind
     command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+  variables:
+    DOCKER_HOST: tcp://127.0.0.1:2375
   before_script:
   - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
   script:
-  - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}-${GOOS}-${GOARCH}" .
-  - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}-${GOOS}-${GOARCH}"
+  - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .
+  - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
+  after_script:
+  - docker logout "${CI_REGISTRY}"
 
 trigger:
   stage: trigger
   rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-  trigger:
-    include:
-    - local: child.yml
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  script: |
+    curl https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4/projects/3/trigger/pipeline \
+        --request POST \
+        --fail \
+        -F token=${TRIGGER_BAZ} \
+        -F ref=dev
