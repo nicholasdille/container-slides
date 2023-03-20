@@ -1,8 +1,26 @@
-<!-- .slide: id="gitlab_traefik" class="vertical-center" -->
+<!-- .slide: id="gitlab_omnibus" class="vertical-center" -->
 
 <i class="fa-duotone fa-signs-post fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
-## Reverse Proxy
+## Installation and configuration
+
+---
+
+## GitLab Omnibus
+
+Highly standardized installation and configuration [](https://docs.gitlab.com/omnibus/)
+
+### Installation methods
+
+Linux package
+
+Helm Chart
+
+Docker
+
+### Identical configuration
+
+Template [](https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template)
 
 ---
 
@@ -49,7 +67,7 @@ docker compose --project-name gitlab exec gitlab
 
 ---
 
-## Starting fresh
+## Starting fresh (just in case)
 
 Stop running instance:
 
@@ -96,52 +114,3 @@ Configure GitLab to use Let's Encrypt [<i class="fa-solid fa-arrow-up-right-from
 Configure traefik to use Let's Encrypt with HTTP challenge [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-http/)
 
 Configure traefik to use Let's Encrypt with DNS challenge [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/)
-
----
-
-<i class="fa-duotone fa-display-code fa-4x fa-duotone-colors" style="float: right;"></i>
-
-## Local IDE
-
-Use local Visual Studio Code [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://code.visualstudio.com/) with Remote SSH plugin [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://code.visualstudio.com/docs/remote/ssh)
-
-1. Create SSH connection: F1 -> Remote-SSH: Open SSH Configuration File
-1. Select user file
-1. Add host:
-
-    ```
-    Host seat
-        HostName ${IP}
-        User root
-        StrictHostKeyChecking no
-        UserKnownHostsFile /dev/null
-    ```
-1. Connect to host: F1 -> Remote-SSH: Connect to Host
-1. Select host called `seat` and enter password
-
----
-
-## Hosted IDE
-
-Visual Studio Code Web [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://code.visualstudio.com/docs/editor/vscode-web) can be deployed as well
-
-Add code-server [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.com/coder/code-server) to running instance:
-
-```
-docker compose --project-name gitlab \
-    --file compose.yml \
-    --file compose.vscode.yml \
-    up -d
-```
-
-Accessible at http://vscode.seatN.inmylab.de
-
-Retrieve password:
-
-```
-docker compose --project-name gitlab \
-    --file compose.yml \
-    --file compose.vscode.yml \
-    exec vscode \
-        cat /root/.config/code-server/config.yaml
-```
