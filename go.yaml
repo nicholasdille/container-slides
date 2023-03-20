@@ -1,0 +1,30 @@
+.go-targets:
+  parallel:
+    matrix:
+    - GOOS: linux
+      GOARCH: amd64
+    - GOOS: linux
+      GOARCH: arm64
+
+.build-go:
+  extends:
+  - .go-targets
+  script:
+  - |
+    go build \
+        -o hello-${GOOS}-${GOARCH} \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+        .
+  artifacts:
+    paths:
+    - hello-${GOOS}-${GOARCH}
+
+.test-go:
+  extends:
+  - .go-targets
+  before_script:
+  - apt-get update
+  - apt-get -y install file
+  script:
+  - |
+    file hello-${GOOS}-${GOARCH}
