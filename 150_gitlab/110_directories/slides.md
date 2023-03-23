@@ -12,6 +12,12 @@
 
 GitLab uses a clean top level directory layout
 
+Explore:
+
+```
+docker compose --project-name gitlab exec gitlab bash
+```
+
 ### Configuration
 
 `/etc/gitlab`
@@ -45,9 +51,14 @@ Repository info for a hash can be found in...
 ```
 /var/opt/gitlab
   /git-data/repositories/
-    @hashed/ab/cd
-      /abcdefg0123456789.git
+    @hashed/ab/cd/abcdef0123456789.git
         /config
+```
+
+Hashed are generated from project ID:
+
+```
+echo -n "${CI_PROJECT_ID}" | sha256sum
 ```
 
 ---

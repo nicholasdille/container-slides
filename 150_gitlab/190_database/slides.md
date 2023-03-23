@@ -6,11 +6,9 @@
 
 ---
 
-## Database
+## Important database tables
 
 <i class="fa-duotone fa-database fa-4x fa-duotone-colors" style="float: right;"></i>
-
-Important tables:
 
 | Table        | Contents                                                                         |
 |--------------|----------------------------------------------------------------------------------|
@@ -21,3 +19,9 @@ Important tables:
 | ci_pipelines | CI Pipelines                                                                     |
 | ci_stages    | CI Stages                                                                        |
 | ci_runners   | CI Runners [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runner) |
+
+### Enter database
+
+```
+docker compose --project-name gitlab exec gitlab gitlab-psql
+```

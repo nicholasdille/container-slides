@@ -26,6 +26,10 @@ Switch GitLab into read-only mode [<i class="fa-solid fa-arrow-up-right-from-squ
 
 <i class="fa-brands fa-git-alt fa-4x" style="float: right;"></i>
 
+Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Repository
+
+### Settings
+
 Runs `git fsck` to find silent disk corruption
 
 Incremental `git repack` after 10 pushes

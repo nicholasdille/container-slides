@@ -43,21 +43,23 @@ Examples in this workshop use [`traefik`](https://traefik.io/traefik/)
 
 <i class="fa-duotone fa-signs-post fa-4x fa-duotone-colors" style="float: right;"></i>
 
-Services are reachable by...
-
-- `NAME.seatN.inmylab.de`
-- `NAME.IP.nip.io` (fallback)
-
 Deploy using `docker compose` v2:
 
 ```
+# Clone repository with slides and demos
+git clone https://github.com/nicholasdille/container-slides
+cd container-slides/150_gitlab/100_reverse_proxy
+
+# Remove existing instance of GitLab
 docker rm -f gitlab
+
+# Deploy new instance
 docker compose --project-name gitlab up -d
 ```
 
 Your VM has the necessary environment variables: `DOMAIN` and `IP`
 
-Extract password:
+Extract password (or [reset](#/gitlab_troubleshooting)):
 
 ```bash
 docker compose --project-name gitlab exec gitlab

@@ -40,14 +40,28 @@ Jobs select runners by specifying a tag
 
 Extensive configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
 
-### Hands-On
+### Heads-up
 
-Add runner to GitLab instance:
+New runner registration process [](https://docs.gitlab.com/ee/architecture/blueprints/runner_tokens/)
+
+Implementation completed by v15.11 (April 2023)
+
+Enforcement in v16.6 (November 2023)
+
+---
+
+## Hands-On
+
+Add runner to GitLab instance
 
 ```bash
-CI_SERVER_URL=http://gitlab.seatN.inmylab.de \
-REGISTRATION_TOKEN=<TOKEN> \
-RUNNER_EXECUTOR=docker \
+# Switch to directory for this topic
+cd ../160_runners
+
+# Deploy GitLab runner
+export CI_SERVER_URL=http://gitlab.seatN.inmylab.de
+export REGISTRATION_TOKEN=<TOKEN>
+export RUNNER_EXECUTOR=docker
 docker compose --project-name gitlab \
     --file ../100_reverse_proxy/compose.yml \
     --file compose.yml \

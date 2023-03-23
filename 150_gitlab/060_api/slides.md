@@ -36,6 +36,8 @@ Resources for every aspect of GitLab [<i class="fa-solid fa-arrow-up-right-from-
 
 Authentication [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#authentication) using a token (personal/group/project)
 
+Token requires `read_api` or `api` scope
+
 Send token in HTTP header using `Private-Token`:
 
 ```
@@ -97,7 +99,7 @@ Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 
 ### `glab`
 
-glab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://gitlab.com/gitlab-org/cli) is in the process of being adopted as the official CLI
+glab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://gitlab.com/gitlab-org/cli) was adopted as the official CLI in November 2022:
 
 1. Configure `glab`:
 

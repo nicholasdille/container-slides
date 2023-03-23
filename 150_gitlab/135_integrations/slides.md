@@ -40,13 +40,15 @@ Self-hosted deployment requires Kubernetes
 
 Render diagrams from textual descriptions [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/integration/kroki.html) using Kroki [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://kroki.io/)
 
-Many examples [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://kroki.io/examples.html)
-
 ### Hands-On
 
 Deploy in addition to GitLab:
 
 ```bash
+# Switch to directory for this topic
+cd ../135_integrations
+
+# Deploy kroki
 docker compose --project-name gitlab \
     --file ../100_reverse_proxy/compose.yml \
     --file compose.yml \

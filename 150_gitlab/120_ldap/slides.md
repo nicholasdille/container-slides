@@ -37,6 +37,10 @@ docker volume create keycloak_data
 Deploy additional components:
 
 ```bash
+# Switch to directory for this topics
+cd ../120_ldap/
+
+# Deploy components for LDAP
 docker compose --project-name gitlab \
     --file ../100_reverse_proxy/compose.yml \
     --file compose.yml \

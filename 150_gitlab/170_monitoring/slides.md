@@ -18,9 +18,15 @@ Grafana ships with custom dashboards
 
 ### Hands-On
 
-1. Enable link to integrated Grafana (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Monitoring and profiling <i class="fa-regular fa-arrow-right"></i> Metrics - Grafana)
+1. Enable link to integrated Grafana (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Metrics and profiling <i class="fa-regular fa-arrow-right"></i> Metrics - Grafana)
 
 1. Go to Grafana (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Monitoring <i class="fa-regular fa-arrow-right"></i> Metrics Dashboard)
+
+1. Log in to Grafana using GitLab
+
+--
+
+## If SSO to Grafana fails
 
 1. Reset password for Grafana [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/grafana.html#resetting-the-admin-password):
 
@@ -33,7 +39,7 @@ Grafana ships with custom dashboards
 
 ---
 
-## GitLab CI Pipeline Exporter (GCPE)
+## GitLab CI Pipelines Exporter (GCPE)
 
 <i class="fa-duotone fa-hose fa-4x fa-duotone-colors" style="float: right;"></i>
 

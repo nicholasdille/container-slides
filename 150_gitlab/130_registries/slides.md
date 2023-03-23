@@ -22,7 +22,7 @@ Authentication using personal/group/project/job token
 
 <i class="fa-duotone fa-flag fa-duotone-colors-inverted"></i> Alpha: debian, go, ruby
 
-<i class="fa-duotone fa-hand-holding-medical fa-duotone-colors"></i> Open for contributon: chef, cocoapods, conda, cran, opkg, p2, puppet, rpm, sbt, swift, vagrant
+<i class="fa-duotone fa-hand-holding-medical fa-duotone-colors"></i> Open for contribution: chef, cocoapods, conda, cran, opkg, p2, puppet, rpm, sbt, swift, vagrant
 
 ---
 

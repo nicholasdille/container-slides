@@ -30,7 +30,7 @@ Password length
 
 Domain allowlist and denylist
 
-Sign-up test
+Sign-up text
 
 ---
 
