@@ -7,7 +7,7 @@ fi
 
 source /etc/profile.d/ip.sh
 source /etc/profile.d/domain.sh
-source /etc/profile.d/seat_SEAT_INDEX.sh
+source /etc/profile.d/seat_index.sh
 source /etc/profile.d/seat_pass.sh
 source /etc/profile.d/seat_htpasswd.sh
 source /etc/profile.d/seat_htpasswd_only.sh
