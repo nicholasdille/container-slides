@@ -1,4 +1,4 @@
-FROM nginx:1.20.2
+FROM nginx:1.22.1
 
 RUN apt-get update \
  && apt-get -y install \
