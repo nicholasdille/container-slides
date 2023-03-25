@@ -99,7 +99,10 @@ docker compose up -d runner
 
 echo
 echo "### Starting remaining services on seat ${INDEX}"
-docker compose build --pull --build-arg "USER=seat" --build-arg "EMAIL=seat@seat${INDEX}.inmylab.de"
+docker compose build --pull \
+    --build-arg "USER=seat" \
+    --build-arg "EMAIL=seat@seat${INDEX}.inmylab.de" \
+    --build-arg "GIT_CRED=https://seat:${SEAT_PASS}@gitlab.seat${INDEX}.inmylab.de"
 docker compose up -d
 
 echo

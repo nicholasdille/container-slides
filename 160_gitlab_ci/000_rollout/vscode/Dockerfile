@@ -34,8 +34,10 @@ RUN docker-setup --tools=containerd install \
 
 ARG USER
 ARG EMAIL
+ARG GIT_CRED
 RUN git config --global user.name "${USER}" \
  && git config --global user.email "${EMAIL}" \
- && git config --global credential.helper store
+ && git config --global credential.helper store \
+ && echo "${GIT_CRED}" >"${HOME}/.git-credentials"
 
 USER coder
