@@ -28,6 +28,14 @@ RUN curl https://github.com/nicholasdille/docker-setup/raw/main/docker-setup \
         --location \
         --output /usr/local/bin/docker-setup \
  && chmod +x /usr/local/bin/docker-setup
-RUN docker-setup install
+# Workaround for https://github.com/nicholasdille/docker-setup/issues/5502
+RUN docker-setup --tools=containerd install \
+ && docker-setup --default install
+
+ARG USER
+ARG EMAIL
+RUN git config --global user.name "${USER}" \
+ && git config --global user.email "${EMAIL}" \
+ && git config --global credential.helper store
 
 USER coder

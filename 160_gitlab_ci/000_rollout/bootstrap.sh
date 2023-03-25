@@ -99,7 +99,7 @@ docker compose up -d runner
 
 echo
 echo "### Starting remaining services on seat ${INDEX}"
-docker compose build --pull
+docker compose build --pull --build-arg "USER=seat" --build-arg "EMAIL=seat@seat${INDEX}.inmylab.de"
 docker compose up -d
 
 echo
