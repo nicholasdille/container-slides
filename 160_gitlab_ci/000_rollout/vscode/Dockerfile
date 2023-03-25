@@ -28,8 +28,6 @@ RUN curl https://github.com/nicholasdille/docker-setup/raw/main/docker-setup \
         --location \
         --output /usr/local/bin/docker-setup \
  && chmod +x /usr/local/bin/docker-setup
-# Workaround for https://github.com/nicholasdille/docker-setup/issues/5502
-#RUN docker-setup --tools=containerd install
 RUN docker-setup --default install
 
 ARG USER
