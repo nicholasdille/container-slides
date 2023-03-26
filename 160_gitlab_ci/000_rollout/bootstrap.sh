@@ -123,6 +123,9 @@ git config --global user.name "seat"
 git config --global user.email "seat@seat${SEAT_INDEX}.inmylab.de"
 git config --global credential.helper store
 echo "https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de" >"${HOME}/.git-credentials"
+if test -d /tmp/demo; then
+    rm -rf /tmp/demo
+fi
 if ! git show-ref --quiet refs/heads/main; then
     (
         mkdir -p /tmp/demo
@@ -132,9 +135,8 @@ if ! git show-ref --quiet refs/heads/main; then
         git rm -rf .
         git commit --allow-empty -m "root commit"
         git push origin main
-        cd /tmp
-        rm -rf demo
     )
+    rm -rf /tmp/demo
 fi
 docker compose exec -T gitlab \
     curl \
