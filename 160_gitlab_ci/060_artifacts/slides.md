@@ -30,7 +30,7 @@ Add untracked files
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/060_artifacts/.gitlab-ci.yml "160_gitlab_ci/060_artifacts/.gitlab-ci.yml")
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/060_artifact "060_artifact")
 
 Test binary in a new job and stage
 
@@ -39,7 +39,11 @@ Test binary in a new job and stage
 1. Add new job in stage `test`
 1. Execute binary to test it
 
-(See new `.gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 060_artifact
+```
 
 ---
 
@@ -72,7 +76,7 @@ See GitLab API [](https://docs.gitlab.com/ee/api/job_artifacts.html#download-the
 
 ## Job dependencies using `needs` 1/
 
-`needs` [](https://docs.gitlab.com/ee/ci/yaml/#needs) can start jobs early...
+`needs` [](https://docs.gitlab.com/ee/ci/yaml/#needs) can start jobs from the next stage early...
 
 ```yaml
 job1:
@@ -80,8 +84,7 @@ job1:
   #...
 job2:
   stage: stage2
-  needs:
-  - job1
+  needs: job1
   #...
 ```
 
@@ -93,8 +96,7 @@ job1:
   #...
 job2:
   stage: test
-  needs:
-  - job1
+  needs: job1
   #...
 ```
 
@@ -128,7 +130,7 @@ job_name:
 
 ## Pro tip: When variables are enough
 
-Passing variables between jobs **is** possible
+Passing variables between jobs **is** possible (since GitLab 12.9)
 
 One job defined a `dotenv` artifact [](https://docs.gitlab.com/ee/ci/variables/index.html#pass-an-environment-variable-to-another-job):
 

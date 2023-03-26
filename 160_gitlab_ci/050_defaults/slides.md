@@ -17,10 +17,16 @@ Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml
 - `after_script`
 - and some more we will explore later <i class="fa-duotone fa-face-smile-halo fa-duotone-colors"></i>
 
-### Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/050_defaults/.gitlab-ci.yml "160_gitlab_ci/050_defaults/.gitlab-ci.yml")
+---
+
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/050_default "050_default")
 
 1. Add `default` for `image`
 1. Remove `image` from all jobs
 1. Check pipeline
 
-(See new `.gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 050_default
+```

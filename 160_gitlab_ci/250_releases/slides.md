@@ -26,7 +26,7 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/250_releases/.gitlab-ci.yml "160_gitlab_ci/250_releases/.gitlab-ci.yml")
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/250_releases "250_releases")
 
 1. Extends `pages` in `.gitlab-ci.yml`:
 
@@ -45,3 +45,9 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 
 1. Check pipeline
 1. Go to **Deployments > Releases**
+
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 250_releases
+```

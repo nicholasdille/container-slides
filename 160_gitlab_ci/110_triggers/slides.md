@@ -43,9 +43,11 @@ XXX
 
 ## Hands-On: Trigger tokens [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/110_triggers/.gitlab-ci.yml#L38 "160_gitlab_ci/110_triggers/.gitlab-ci.yml")
 
+XXX create tag `110_triggers/curl` and fix link above
+
 1. Create a new project (anywhere!)
 1. Add `trigger/.gitlab-ci.yml` to root of new project
-1. **Optionally, jump to next slide**
+1. **Optionally, jump to next demo/slide**
 1. Go to **Settings** > **CI/CD** and unfold **Pipeline triggers**
 1. Create a trigger and copy `curl` snippet
 1. Go back to previous project
@@ -56,7 +58,11 @@ XXX
 1. Fill in `REF_NAME` with branch name (probably `main`)
 1. Check pipeline
 
-(See new `.gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 110_triggers/curl
+```
 
 ---
 
@@ -91,9 +97,15 @@ Trigger owner must be able to either...
 
 1. Check pipeline
 
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 110_triggers/parent-child
+```
+
 ---
 
-## Hands-On: Parent-child pipelines [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/110_triggers/parent-child "160_gitlab_ci/110_triggers/parent-child")
+## Hands-On: Parent-child pipelines [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/110_triggers/parent-child "110_triggers/parent-child")
 
 1. Add `parent-child/child.yml` to root of first project
 1. Replace `project` and `branch` under `trigger` with `include` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_templates)

@@ -4,7 +4,7 @@
 
 <img src="images/NicholasDille.jpg" style="width: 20%; float: right; border-radius: 8px;" />
 
-**Husband, father, ops, automator, runner**
+**Husband, father, automator, runner, trumpeteer**
 
 - <span class="fa-li"><i class="fa fa-globe"></i></span> [Blogger][1] since 2003
 - <span class="fa-li"><i class="fa fa-microphone"></i></span> [Speaker][2] since 2009

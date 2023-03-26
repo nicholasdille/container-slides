@@ -26,7 +26,7 @@ Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_
 
 ---
 
-## Hands-On: Rules [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/130_rules "160_gitlab_ci/130_rules")
+## Hands-On: Rules [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/130_rules "130_rules")
 
 Run the `deploy` job only for the `main` branch
 
@@ -38,6 +38,12 @@ Run the `deploy` job only for the `main` branch
 1. Open URL for pages
 1. Create branch
 1. Check pipeline
+
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 130_rules
+```
 
 Also see GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index.html)
 

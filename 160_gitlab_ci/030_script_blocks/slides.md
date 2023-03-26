@@ -35,7 +35,7 @@ job_name:
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/030_script_blocks/.gitlab-ci.yml "160_gitlab_ci/030_script_blocks/.gitlab-ci.yml")
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/030_script_blocks "030_script_blocks")
 
 Separate `script` into...
 
@@ -45,6 +45,10 @@ Separate `script` into...
 
 Move `apk` operations into `before_script`
 
-(See new `.gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
 
-(Yes, this is still repetetive <i class="fa-duotone fa-face-smile-tongue fa-duotone-colors"></i>)
+```bash
+git checkout 030_script_blocks
+```
+
+Yes, this is still repetetive <i class="fa-duotone fa-face-smile-tongue fa-duotone-colors"></i>

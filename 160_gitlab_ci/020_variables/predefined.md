@@ -12,7 +12,15 @@ Some help interacting with the GitLab server
 
 ### Hands-On
 
+XXX create tag `020_variables/predefined` and link above
+
 1. Remove `variables` directive
+
+    ```bash
+    git checkout 020_variables/predefined
+    ```
+    <!-- .element: style="width: 35em;" -->
+
 1. Update build command:
 
     ```bash

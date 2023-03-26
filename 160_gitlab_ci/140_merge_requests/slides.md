@@ -23,7 +23,7 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 
 ---
 
-## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/140_merge_requests/.gitlab-ci.yml "160_gitlab_ci/140_merge_requests/.gitlab-ci.yml")
+## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/140_merge_requests "140_merge_requests")
 
 1. Enable jobs `lint`, `audit`, `build` and `test` for merge requests and pushes
 
@@ -48,7 +48,7 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 
 ---
 
-## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/140_merge_requests/.gitlab-ci.yml "160_gitlab_ci/140_merge_requests/.gitlab-ci.yml")
+## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/140_merge_requests "140_merge_requests")
 
 3. Prevent `trigger` in merge requests
 
@@ -66,4 +66,8 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 1. Create merge requests
 1. Check pipelines and merge requests
 
-(See new `.gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 140_merge_requests
+```

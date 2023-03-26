@@ -113,23 +113,46 @@ docker run --interactive --tty --rm \
 
 ---
 
-## Hands-On
+## Hands-On (1)
 
-Follow in web UI or IDE
-
-### First CI job [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/010_jobs_and_stages/src "160_gitlab_ci/010_jobs_and_stages/src")
+### First CI job [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/010_jobs_and_stages/build "010_jobs_and_stages/build")
 
 1. Create project
-1. Add files from `src/` to root of project
-1. Add `build/.gitlab-ci.yml` to root of project
+1. Add files to root of project:
+
+    ```bash
+    git checkout 010_jobs_and_stages/build
+    ```
+    <!-- .element: style="width: 40em;" -->
+
 1. Check pipeline
 
-### Add a stage [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/010_jobs_and_stages/lint "160_gitlab_ci/010_jobs_and_stages/lint")
+---
 
-1. Add `lint/.gitlab-ci.yml` to root of project
+## Hands-On (2)
+
+### Add a stage [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/010_jobs_and_stages/lint "010_jobs_and_stages/lint")
+
+1. Add `lint/.gitlab-ci.yml` to root of project:
+
+    ```bash
+    git checkout 010_jobs_and_stages/lint
+    ```
+    <!-- .element: style="width: 40em;" -->
+
 1. Check pipeline
 
-### Add parallel jobs [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/010_jobs_and_stages/parallel "160_gitlab_ci/010_jobs_and_stages/parallel")
+---
 
-1. Add `parallel/.gitlab-ci.yml` to root of project
+## Hands-On (3)
+
+### Add parallel jobs [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/010_jobs_and_stages/parallel "010_jobs_and_stages/parallel")
+
+1. Add `parallel/.gitlab-ci.yml` to root of project:
+
+    ```bash
+    git checkout 010_jobs_and_stages/parallel
+    ```
+    <!-- .element: style="width: 40em;" -->
+
 1. Check pipeline

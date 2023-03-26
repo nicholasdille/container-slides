@@ -12,6 +12,8 @@ Environments are deployment targets [](https://docs.gitlab.com/ee/ci/environment
 
 CI variables can be scoped to environments
 
+Environments are auto-created by the first job using them
+
 Your demo environment has hidden services
 
 ![](160_gitlab_ci/100_environments/webdav.drawio.svg) <!-- .element: style="width: 70%;" -->
@@ -20,9 +22,8 @@ WebDAV endpoints emulate deployment targets
 
 ---
 
-## Hands-On (1/2) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/100_environments/demo1/.gitlab-ci.yml "160_gitlab_ci/100_environments/demo1/.gitlab-ci.yml")
+## Hands-On (1/2) [<i class="fa fa-comment-code"></i>]((https://github.com/nicholasdille/container-slides/tree/100_environments/demo1 "100_environments/demo1")
 
-1. Optionally, create environments `dev` and `live`
 1. Retrieve passwords for dev and live environments:
 
     ```bash
@@ -31,14 +32,18 @@ WebDAV endpoints emulate deployment targets
     ```
     <!-- .element: style="width: 45em;" -->
 
-1. Create unprotected CI variable `PASS` twice with scope `dev`/`live`
+1. Create unprotected CI variable `PASS` twice with scope `dev` and `live`
 1. Create unprotected CI variable `SEAT_INDEX` with your seat number
 1. Add new stage and job called `deploy`
 1. Upload to WebDAV server `dev` using `curl`
 1. Download from https://dev.seatN.inmylab.de/hello
 1. Check environments
 
-(See new `demo1/gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 100_environments/demo1
+```
 
 ---
 
@@ -51,7 +56,7 @@ Branches can be used to represent target environments:
 
 ---
 
-## Hands-On (2/2) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/100_environments/demo2/.gitlab-ci.yml "160_gitlab_ci/100_environments/demo2/.gitlab-ci.yml")
+## Hands-On (2/2) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/100_environments/demo2 "100_environments/demo2")
 
 1. Create branch called `dev`
 1. Use environment `${CI_COMMIT_REF_NAME}`
@@ -59,4 +64,8 @@ Branches can be used to represent target environments:
 1. Create branch `live` from `dev`
 1. Download from https://dev.seatN.inmylab.de/hello and live equivalent
 
-(See new `demo2/.gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 100_environments/demo2
+```

@@ -24,7 +24,7 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 
 ---
 
-## Hands-On: Pipeline-integrated [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/270_renovate "160_gitlab_ci/270_renovate")
+## Hands-On: Pipeline-integrated [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/270_renovate "270_renovate")
 
 1. Create personal access token with scopes `api`, `read_user`, `write_repository`
 1. Add unprotected CI variable called `RENOVATE_TOKEN`
@@ -36,7 +36,11 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 1. Check pipelines
 1. Merge at least one change
 
-(See new `gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 270_renovate
+```
 
 (With proper configuration Renovate can also automerge tested merge requests.)
 

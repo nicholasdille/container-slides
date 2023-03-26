@@ -22,7 +22,7 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ---
 
-## Hands-On: Template and include [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/120_templates/inline/.gitlab-ci.yml#L21 "160_gitlab_ci/120_templates/inline/.gitlab-ci.yml")
+## Hands-On: Template and include [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/120_templates/inline "120_templates/inline")
 
 1. Create inline tmplate:
 
@@ -48,11 +48,15 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 1. Check pipeline
 
-(See `inline/.gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 120_templates/inline
+```
 
 ---
 
-## Hands-On: Local [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/120_templates/local "160_gitlab_ci/120_templates/local")
+## Hands-On: Local [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/120_templates/local "120_templates/local")
 
 1. Add `go.yaml` to root of project
 1. Include `go.yaml`:
@@ -68,16 +72,19 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 1. Check pipeline
 
-(See `local/.gitlab-ci.yml`)
+See new `.gitlab-ci.yml`:
+
+```bash
+git checkout 120_templates/local
+```
 
 ---
 
-## Hands-On: File [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/120_templates/file/.gitlab-ci.yml "160_gitlab_ci/120_templates/file/.gitlab-ci.yml")
+## Hands-On: File
 
-1. Remove `go.yaml` from project
 1. Create a new project, e.g. `template-go`
-1. Add `go.yaml` to the root of the new project
-1. Include `go.yaml`:
+1. Move (!) `go.yaml` to the root of the new project
+1. In original project, include `go.yaml`:
 
     ```yaml
     include:
@@ -87,8 +94,6 @@ See also the official development guide for templates [](https://docs.gitlab.com
     ```
 
 1. Check pipeline
-
-(See `file/.gitlab-ci.yml`)
 
 ---
 
