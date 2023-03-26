@@ -48,7 +48,8 @@ echo
 echo "### Creating PAT for root on seat ${SEAT_INDEX}"
 ROOT_TOKEN="$(openssl rand -hex 32)"
 if ! docker compose exec -T gitlab \
-        curl http://localhost/api/v4/user \
+        curl \
+            --url http://localhost/api/v4/user \
             --silent \
             --fail \
             --output /dev/null \
@@ -60,17 +61,20 @@ fi
 echo
 echo "### Disabling sign-up on seat ${SEAT_INDEX}"
 docker compose exec -T gitlab \
-    curl http://localhost/api/v4/application/settings?signup_enabled=false \
+    curl \
+        --url http://localhost/api/v4/application/settings?signup_enabled=false \
         --silent \
         --fail \
         --header "Private-Token: ${ROOT_TOKEN}" \
         --header "Content-Type: application/json" \
-        --request PUT
+        --request PUT \
+        --output /dev/null
 
 echo
 echo "### Creating user seat on seat ${SEAT_INDEX}"
 if ! docker compose exec -T gitlab \
-        curl http://localhost/api/v4/users \
+        curl \
+            --url http://localhost/api/v4/users \
             --silent \
             --fail \
             --header "Private-Token: ${ROOT_TOKEN}" \
@@ -89,7 +93,8 @@ echo
 echo "### Creating PAT for seat on seat ${SEAT_INDEX}"
 SEAT_TOKEN="$(openssl rand -hex 32)"
 if ! docker compose exec -T gitlab \
-        curl http://localhost/api/v4/user \
+        curl \
+            --url http://localhost/api/v4/user \
             --silent \
             --fail \
             --output /dev/null \
@@ -102,8 +107,8 @@ echo
 echo "### Creating project for demos"
 if ! docker compose exec -T gitlab \
     curl \
-         --silent \
          --url http://localhost/api/v4/users/seat/projects \
+         --silent \
          --header "Private-Token: ${SEAT_TOKEN}" \
     | jq --exit-status '.[] | select(.name == "demo")' >/dev/null; then
     docker compose exec -T gitlab \
