@@ -85,6 +85,55 @@ if ! docker compose exec -T gitlab \
             --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}"
 fi
 
+
+
+echo
+echo "### Creating PAT for seat on seat ${SEAT_INDEX}"
+SEAT_TOKEN="$(openssl rand -hex 32)"
+if ! docker compose exec -T gitlab \
+        curl http://localhost/api/v4/user \
+            --silent \
+            --fail \
+            --output /dev/null \
+            --header "Private-Token: ${SEAT_TOKEN}"; then
+    docker compose exec -T gitlab \
+        gitlab-rails runner -e production "user = User.find_by_username('seat'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository], name: 'demo'); token.set_token('${SEAT_TOKEN}'); token.save!"
+fi
+
+echo
+echo "### Creating project for demos"
+if ! docker compose exec -T gitlab \
+    curl \
+         --silent \
+         --url http://localhost/api/v4/users/seat/projects \
+         --header "Private-Token: ${SEAT_TOKEN}" \
+    | jq --exit-status '.[] | select(.name == "demo")' >/dev/null; then
+    docker compose exec -T gitlab \
+        curl \
+            --url "http://localhost/api/v4/projects" \
+            --request POST \
+            --header "Private-Token: ${SEAT_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data '{"name": "demo", "import_url": "https://github.com/nicholasdille/container-slides"}'
+fi
+(
+    mkdir -p /tmp/demo
+    cd /tmp/demo
+    git clone "https://gitlab.seat${SEAT_INDEX}.inmylab.de/seat/demo" .
+    git checkout --orphan main
+    git rm -rf .
+    git commit --allow-empty -m "root commit"
+    git push origin main
+    cd /tmp
+    rm -rf demo
+)
+docker compose exec -T gitlab \
+    curl \
+        --url "http://localhost/api/v4/projects/seat%2fdemo" \
+        --request PUT \
+        --header "Private-Token: ${SEAT_TOKEN}" \
+        --data 'default_branch=main'
+
 echo
 echo "### Retrieving runner registration token on seat ${SEAT_INDEX}"
 export REGISTRATION_TOKEN="$(
