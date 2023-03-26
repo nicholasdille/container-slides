@@ -85,8 +85,6 @@ if ! docker compose exec -T gitlab \
             --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}"
 fi
 
-
-
 echo
 echo "### Creating PAT for seat on seat ${SEAT_INDEX}"
 SEAT_TOKEN="$(openssl rand -hex 32)"
@@ -116,6 +114,10 @@ if ! docker compose exec -T gitlab \
             --header "Content-Type: application/json" \
             --data '{"name": "demo", "import_url": "https://github.com/nicholasdille/container-slides"}'
 fi
+git config --global user.name "seat"
+git config --global user.email "seat@seat${SEAT_INDEX}.inmylab.de"
+git config --global credential.helper store
+echo "https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de" >"${HOME}/.git-credentials"
 (
     mkdir -p /tmp/demo
     cd /tmp/demo
