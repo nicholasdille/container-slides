@@ -118,6 +118,20 @@ if ! docker compose exec -T gitlab \
             --header "Private-Token: ${SEAT_TOKEN}" \
             --header "Content-Type: application/json" \
             --data '{"name": "demo", "import_url": "https://github.com/nicholasdille/container-slides"}'
+    SECONDS=0
+    while ! docker-compose exec -T gitlab \
+                curl \
+                --url "https://gitlab.seat0.inmylab.de/api/v4/projects/seat%2fdemo" \
+                --silent \
+                --header "Private-Token: ${SEAT_TOKEN}" \
+            | jq --exit-status 'select(.import_status == "finished")' >/dev/null 2>&1; do
+        if test "${SECONDS}" -gt 60; then
+            echo "ERROR: Failed to import on seat ${SEAT_INDEX}"
+            exit 1
+        fi
+        echo "Waiting for import to finish..."
+        sleep 5
+    done
 fi
 git config --global user.name "seat"
 git config --global user.email "seat@seat${SEAT_INDEX}.inmylab.de"
