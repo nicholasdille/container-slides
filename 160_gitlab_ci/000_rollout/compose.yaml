@@ -241,9 +241,9 @@ services:
     - --proxy-domain
     - vscode.${DOMAIN:?You must supply DOMAIN}
     - --disable-telemetry
-    user: ${USER}
+    user: seat
     environment:
-      DOCKER_USER: ${USER}
+      DOCKER_USER: seat
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock
