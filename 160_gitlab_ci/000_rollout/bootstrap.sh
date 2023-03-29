@@ -114,6 +114,7 @@ if ! docker compose exec -T gitlab \
     docker compose exec -T gitlab \
         curl \
             --url "http://localhost/api/v4/projects" \
+            --silent \
             --request POST \
             --header "Private-Token: ${SEAT_TOKEN}" \
             --header "Content-Type: application/json" \
