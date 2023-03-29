@@ -10,9 +10,7 @@ Some describe the GitLab server
 
 Some help interacting with the GitLab server
 
-### Hands-On
-
-XXX create tag `020_variables/predefined` and link above
+### Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/020_variables/predefined "020_variables/predefined")
 
 1. Remove `variables` directive
 

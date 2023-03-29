@@ -16,9 +16,7 @@ Variables can be...
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/master/160_gitlab_ci/020_variables/src "160_gitlab_ci/020_variables/src")
-
-XXX create tag `020_variables/inline` and fix link above
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/020_variables/inline "020_variables/inline")
 
 1. Update files from `src/`:
 

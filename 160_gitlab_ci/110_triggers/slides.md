@@ -26,24 +26,9 @@ Use the `trigger` keyword [](https://docs.gitlab.com/ee/ci/yaml/index.html#trigg
 
 Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html)
 
---
-
-## Comparison of triggers
-
-XXX
-
-| What            | Trigger Tokens | Multi-project | Parent-child |
-|-----------------|----------------|---------------|--------------|
-| Traceability    |                |               |              |
-| External access |                |               |              |
-
-XXX
-
 ---
 
-## Hands-On: Trigger tokens [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/160_gitlab_ci/110_triggers/.gitlab-ci.yml#L38 "160_gitlab_ci/110_triggers/.gitlab-ci.yml")
-
-XXX create tag `110_triggers/curl` and fix link above
+## Hands-On: Trigger tokens [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/110_trigger/curl "110_trigger/curl
 
 1. Create a new project (anywhere!)
 1. Add `trigger/.gitlab-ci.yml` to root of new project

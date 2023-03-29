@@ -12,9 +12,7 @@ Careful with protected variables
 
 ---
 
-## Hands-On
-
-XXX create tag `020_variables/ci` and add link above
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/020_variables/ci "020_variables/ci")
 
 1. Go to **Settings** > **CI/CD** and unfold **Variables**
 1. Create unprotected variable `AUTHOR` and set to a value of your choice
