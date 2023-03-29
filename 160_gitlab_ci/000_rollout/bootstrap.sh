@@ -47,6 +47,7 @@ echo "GitLab ready after ${SECONDS} second(s)"
 echo
 echo "### Creating PAT for root on seat ${SEAT_INDEX}"
 ROOT_TOKEN="$(openssl rand -hex 32)"
+# TODO: Store token locally and reuse
 if ! docker compose exec -T gitlab \
         curl \
             --url http://localhost/api/v4/user \
@@ -92,6 +93,7 @@ fi
 echo
 echo "### Creating PAT for seat on seat ${SEAT_INDEX}"
 SEAT_TOKEN="$(openssl rand -hex 32)"
+# TODO: Store token locally and reuse
 if ! docker compose exec -T gitlab \
         curl \
             --url http://localhost/api/v4/user \
@@ -126,11 +128,11 @@ if ! docker compose exec -T gitlab \
                 --silent \
                 --header "Private-Token: ${SEAT_TOKEN}" \
             | jq --exit-status 'select(.import_status == "finished")' >/dev/null 2>&1; do
-        if test "${SECONDS}" -gt 120; then
+        if test "${SECONDS}" -gt 60; then
             echo "ERROR: Failed to import on seat ${SEAT_INDEX}"
             exit 1
         fi
-        echo "Waiting for import to finish... Status is:"
+        echo -n "Waiting for import to finish... Status is:"
         docker-compose exec -T gitlab \
             curl \
                 --url "http://localhost/api/v4/projects/seat%2fdemo" \
@@ -162,6 +164,7 @@ fi
 docker compose exec -T gitlab \
     curl \
         --url "http://localhost/api/v4/projects/seat%2fdemo" \
+        --silent \
         --request PUT \
         --header "Private-Token: ${SEAT_TOKEN}" \
         --data 'default_branch=main'
