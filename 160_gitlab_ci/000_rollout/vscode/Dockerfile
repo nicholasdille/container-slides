@@ -41,14 +41,15 @@ EOF
 RUN <<EOF
 useradd --user-group --create-home --shell /bin/bash --groups docker seat
 EOF
+USER seat
+WORKDIR /home/seat
 
 ARG GIT_USER
 ARG GIT_EMAIL
 ARG GIT_CRED
-USER ${GIT_USER}
 RUN <<EOF
 git config --global user.name "${GIT_USER}"
 git config --global user.email "${GIT_EMAIL}"
 git config --global credential.helper store
-echo "${GIT_CRED}" >"${HOME}/.git-credentials"
+echo "${GIT_CRED}" >.git-credentials
 EOF
