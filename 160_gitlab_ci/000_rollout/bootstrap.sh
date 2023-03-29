@@ -129,7 +129,12 @@ if ! docker compose exec -T gitlab \
             echo "ERROR: Failed to import on seat ${SEAT_INDEX}"
             exit 1
         fi
-        echo "Waiting for import to finish..."
+        echo "Waiting for import to finish... Status is:"
+        curl \
+                --url "https://gitlab.seat0.inmylab.de/api/v4/projects/seat%2fdemo" \
+                --silent \
+                --header "Private-Token: ${SEAT_TOKEN}" \
+            | jq --raw-output '.import_status'
         sleep 5
     done
 fi
