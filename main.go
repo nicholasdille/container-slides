@@ -1,7 +1,14 @@
 package main
 
-import "github.com/TwiN/go-color"
+import (
+	"fmt"
+	"github.com/TwiN/go-color"
+)
+
+var Author string = "unknown"
+var Version string = "none"
 
 func main() {
 	println(color.InGreen("hello world"))
+	fmt.Printf("version %s", Version)
 }
