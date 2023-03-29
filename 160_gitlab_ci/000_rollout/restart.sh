@@ -45,21 +45,6 @@ done
 echo "GitLab ready after ${SECONDS} second(s)"
 
 echo
-echo "### Creating PAT for root on seat ${SEAT_INDEX}"
-ROOT_TOKEN="$(openssl rand -hex 32)"
-# TODO: Store token locally and reuse
-if ! docker compose exec -T gitlab \
-        curl \
-            --url http://localhost/api/v4/user \
-            --silent \
-            --fail \
-            --output /dev/null \
-            --header "Private-Token: ${ROOT_TOKEN}"; then
-    docker compose exec -T gitlab \
-        gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty'); token.set_token('${ROOT_TOKEN}'); token.save!"
-fi
-
-echo
 echo "### Retrieving runner registration token on seat ${SEAT_INDEX}"
 export REGISTRATION_TOKEN="$(
     docker compose exec -T gitlab \
