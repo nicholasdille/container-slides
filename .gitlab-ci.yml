@@ -1,0 +1,30 @@
+stages:
+- check
+- build
+
+lint:
+  stage: check
+  script:
+  - apk update
+  - apk add go
+  - go fmt .
+
+audit:
+  stage: check
+  script:
+  - apk update
+  - apk add go
+  - go vet .
+
+build:
+  stage: build
+  variables:
+    version: dev
+  script:
+  - apk update
+  - apk add go
+  - |
+    go build \
+        -ldflags "-X main.Version=${version}" \
+        -o hello \
+        .
