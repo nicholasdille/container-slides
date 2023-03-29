@@ -147,18 +147,18 @@ echo "https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de" >"${HOME}/.
 if test -d /tmp/demo; then
     rm -rf /tmp/demo
 fi
-if ! git show-ref --quiet refs/heads/main; then
-    (
-        mkdir -p /tmp/demo
-        cd /tmp/demo
-        git clone "https://gitlab.seat${SEAT_INDEX}.inmylab.de/seat/demo" .
+(
+    mkdir -p /tmp/demo
+    cd /tmp/demo
+    git clone "https://gitlab.seat${SEAT_INDEX}.inmylab.de/seat/demo" .
+    if ! git show-ref --quiet refs/heads/main; then
         git checkout --orphan main
         git rm -rf .
         git commit --allow-empty -m "root commit"
         git push origin main
-    )
+    fi
     rm -rf /tmp/demo
-fi
+)
 docker compose exec -T gitlab \
     curl \
         --url "http://localhost/api/v4/projects/seat%2fdemo" \
@@ -181,8 +181,8 @@ docker compose up -d runner
 echo
 echo "### Starting remaining services on seat ${SEAT_INDEX}"
 docker compose build --pull \
-    --build-arg "USER=seat" \
-    --build-arg "EMAIL=seat@seat${SEAT_INDEX}.inmylab.de" \
+    --build-arg "GIT_USER=seat" \
+    --build-arg "GIT_EMAIL=seat@seat${SEAT_INDEX}.inmylab.de" \
     --build-arg "GIT_CRED=https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de"
 docker compose up -d
 
