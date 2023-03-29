@@ -121,7 +121,7 @@ if ! docker compose exec -T gitlab \
     SECONDS=0
     while ! docker-compose exec -T gitlab \
                 curl \
-                --url "https://gitlab.seat0.inmylab.de/api/v4/projects/seat%2fdemo" \
+                --url "http://localhost/api/v4/projects/seat%2fdemo" \
                 --silent \
                 --header "Private-Token: ${SEAT_TOKEN}" \
             | jq --exit-status 'select(.import_status == "finished")' >/dev/null 2>&1; do
@@ -130,8 +130,9 @@ if ! docker compose exec -T gitlab \
             exit 1
         fi
         echo "Waiting for import to finish... Status is:"
-        curl \
-                --url "https://gitlab.seat0.inmylab.de/api/v4/projects/seat%2fdemo" \
+        docker-compose exec -T gitlab \
+            curl \
+                --url "http://localhost/api/v4/projects/seat%2fdemo" \
                 --silent \
                 --header "Private-Token: ${SEAT_TOKEN}" \
             | jq --raw-output '.import_status'
