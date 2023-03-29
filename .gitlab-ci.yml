@@ -1,0 +1,49 @@
+stages:
+- check
+- build
+- test
+- deploy
+- trigger
+
+default:
+  image: golang:1.19.2
+
+lint:
+  stage: check
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  script:
+  - go vet .
+
+.build-go:
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+        -o hello \
+        .
+
+build:
+  stage: build
+  extends: .build-go
+  artifacts:
+    paths:
+    - hello
+
+test:
+  stage: test
+  image: alpine
+  script:
+  - ./hello
+
+trigger:
+  stage: trigger
+  script: |
+    curl https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4/projects/<PROJECT_ID>/trigger/pipeline \
+        --request POST \
+        --fail \
+        -F token=<TOKEN> \
+        -F ref=<BRANCH>
