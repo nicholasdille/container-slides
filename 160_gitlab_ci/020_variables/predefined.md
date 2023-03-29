@@ -15,7 +15,7 @@ Some help interacting with the GitLab server
 1. Remove `variables` directive
 
     ```bash
-    git checkout 020_variables/predefined
+    git checkout 020_variables/predefined -- '*'
     ```
     <!-- .element: style="width: 35em;" -->
 

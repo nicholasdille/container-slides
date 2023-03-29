@@ -70,5 +70,5 @@ Upload the previously built container image
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 240_registries
+git checkout 240_registries -- '*'
 ```

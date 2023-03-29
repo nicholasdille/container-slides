@@ -28,10 +28,10 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 
 ---
 
-## Hands-On: Trigger tokens [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/110_trigger/curl "110_trigger/curl
+## Hands-On: Trigger tokens [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/110_trigger/curl "110_trigger/curl")
 
 1. Create a new project (anywhere!)
-1. Add `trigger/.gitlab-ci.yml` to root of new project
+1. Add `trigger/.gitlab-ci.yml` to root of new project 
 1. **Optionally, jump to next demo/slide**
 1. Go to **Settings** > **CI/CD** and unfold **Pipeline triggers**
 1. Create a trigger and copy `curl` snippet
@@ -40,13 +40,12 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 1. Add new stage and job called `trigger`
 1. Add `curl` snippet in `script` block
 1. Store `TOKEN` as unprotected but masked CI variable [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_ci_variable)
-1. Fill in `REF_NAME` with branch name (probably `main`)
-1. Check pipeline
+1. Fill in `REF_NAME` with branch name (`main`)
 
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 110_triggers/curl
+git checkout 110_triggers/curl -- '*'
 ```
 
 ---
@@ -85,7 +84,7 @@ Trigger owner must be able to either...
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 110_triggers/parent-child
+git checkout 110_triggers/parent-child -- '*'
 ```
 
 ---

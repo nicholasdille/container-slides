@@ -46,12 +46,10 @@ See also the official development guide for templates [](https://docs.gitlab.com
     ```
     <!-- .element: style="width: 48em;" -->
 
-1. Check pipeline
-
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 120_templates/inline
+git checkout 120_templates/inline -- '*'
 ```
 
 ---
@@ -75,7 +73,7 @@ git checkout 120_templates/inline
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 120_templates/local
+git checkout 120_templates/local -- '*'
 ```
 
 ---

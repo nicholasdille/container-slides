@@ -34,6 +34,7 @@ GitLab automatically adds a job in the stage called `test`
     include:
     - template: Security/Secret-Detection.gitlab-ci.yml
     ```
+    <!-- .element: style="width: 35em;" -->
 
 1. Check pipeline
 1. Check report
@@ -50,6 +51,7 @@ GitLab automatically adds jobs in the stage called `test`
     include:
     - template: Security/SAST.gitlab-ci.yml
     ```
+    <!-- .element: style="width: 35em;" -->
 
 1. Check pipeline
 1. Check reports
@@ -57,5 +59,5 @@ GitLab automatically adds jobs in the stage called `test`
 See final `.gitlab-ci.yml`:
 
 ```bash
-git checkout 280_security
+git checkout 280_security -- '*'
 ```

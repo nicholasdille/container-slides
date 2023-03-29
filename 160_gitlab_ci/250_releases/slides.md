@@ -49,5 +49,5 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 250_releases
+git checkout 250_releases -- '*'
 ```

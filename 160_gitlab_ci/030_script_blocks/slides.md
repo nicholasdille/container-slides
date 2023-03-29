@@ -48,7 +48,7 @@ Move `apk` operations into `before_script`
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 030_script_blocks
+git checkout 030_script_blocks -- '*'
 ```
 
 Yes, this is still repetetive <i class="fa-duotone fa-face-smile-tongue fa-duotone-colors"></i>

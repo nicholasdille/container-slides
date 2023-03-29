@@ -18,10 +18,10 @@ Variables can be...
 
 ## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/020_variables/inline "020_variables/inline")
 
-1. Update files from `src/`:
+1. Update files:
 
     ```yaml
-    git checkout 020_variables/inline
+    git checkout 020_variables/inline -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 

@@ -30,5 +30,5 @@ Use `image` instead of `before_script`
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 040_image
+git checkout 040_image -- '*'
 ```

@@ -39,10 +39,10 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 270_renovate
+git checkout 270_renovate -- '*'
 ```
 
-(With proper configuration Renovate can also automerge tested merge requests.)
+(With proper configuration Renovate will automerge tested merge requests.)
 
 ---
 
@@ -52,16 +52,11 @@ Image is smaller and loads faster
 
 Tools are installed on-demand
 
-Docker is required
+Natively or using container sidecars
 
 ```yaml
 renovate:
   image: renovate/renovate:32.236.0-slim
-  variables:
-    DOCKER_HOST: tcp://127.0.0.1:2375
-  services:
-  - name: docker:20.10.18-dind
-    command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
   script: |
     renovate --platform gitlab \
         --endpoint https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4 \

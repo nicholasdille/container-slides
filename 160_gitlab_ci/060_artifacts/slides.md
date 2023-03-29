@@ -42,7 +42,7 @@ Test binary in a new job and stage
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 060_artifact
+git checkout 060_artifact -- '*'
 ```
 
 ---

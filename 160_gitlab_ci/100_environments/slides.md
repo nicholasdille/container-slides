@@ -42,7 +42,7 @@ WebDAV endpoints emulate deployment targets
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 100_environments/demo1
+git checkout 100_environments/demo1 -- '*'
 ```
 
 ---
@@ -67,5 +67,5 @@ Branches can be used to represent target environments:
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 100_environments/demo2
+git checkout 100_environments/demo2 -- '*'
 ```

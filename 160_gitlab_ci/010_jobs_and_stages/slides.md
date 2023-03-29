@@ -93,7 +93,7 @@ Special stages `.pre` and `.post`
 
 Based on Go [](https://go.dev/)
 
-See `src/main.go`
+See `main.go`
 
 Initialize dependency information: `go mod init`
 
@@ -121,7 +121,7 @@ docker run --interactive --tty --rm \
 1. Add files to root of project:
 
     ```bash
-    git checkout 010_jobs_and_stages/build
+    git checkout 010_jobs_and_stages/build -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 
@@ -136,7 +136,7 @@ docker run --interactive --tty --rm \
 1. Add `lint/.gitlab-ci.yml` to root of project:
 
     ```bash
-    git checkout 010_jobs_and_stages/lint
+    git checkout 010_jobs_and_stages/lint -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 
@@ -151,7 +151,7 @@ docker run --interactive --tty --rm \
 1. Add `parallel/.gitlab-ci.yml` to root of project:
 
     ```bash
-    git checkout 010_jobs_and_stages/parallel
+    git checkout 010_jobs_and_stages/parallel -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 

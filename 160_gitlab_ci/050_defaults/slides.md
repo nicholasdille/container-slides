@@ -28,5 +28,5 @@ Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 050_default
+git checkout 050_default -- '*'
 ```
