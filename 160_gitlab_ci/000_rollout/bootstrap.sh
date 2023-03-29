@@ -125,7 +125,7 @@ if ! docker compose exec -T gitlab \
                 --silent \
                 --header "Private-Token: ${SEAT_TOKEN}" \
             | jq --exit-status 'select(.import_status == "finished")' >/dev/null 2>&1; do
-        if test "${SECONDS}" -gt 60; then
+        if test "${SECONDS}" -gt 120; then
             echo "ERROR: Failed to import on seat ${SEAT_INDEX}"
             exit 1
         fi
