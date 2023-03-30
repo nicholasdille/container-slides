@@ -1,4 +1,5 @@
 Notes
+- Branches instead of tags
 - Add version and author
 - trailing line break in 030_script_blocks
 - call ./hello
