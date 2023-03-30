@@ -10,12 +10,12 @@ Some describe the GitLab server
 
 Some help interacting with the GitLab server
 
-### Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/020_variables/predefined "020_variables/predefined")
+### Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/020_variables/predefined "020_variables/predefined")
 
 1. Remove `variables` directive
 
     ```bash
-    git checkout 020_variables/predefined -- '*'
+    git checkout 160_gitlab_ci/020_variables/predefined -- '*'
     ```
     <!-- .element: style="width: 35em;" -->
 

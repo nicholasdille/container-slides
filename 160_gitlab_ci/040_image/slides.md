@@ -20,7 +20,7 @@ Avoid maintaining custom image
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/040_image "040_image")
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/040_image "040_image")
 
 Use `image` instead of `before_script`
 
@@ -30,5 +30,5 @@ Use `image` instead of `before_script`
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 040_image -- '*'
+git checkout 160_gitlab_ci/040_image -- '*'
 ```

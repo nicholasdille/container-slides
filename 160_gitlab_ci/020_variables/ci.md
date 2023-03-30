@@ -12,7 +12,7 @@ Careful with protected variables
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/020_variables/ci "020_variables/ci")
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/020_variables/ci "020_variables/ci")
 
 1. Go to **Settings** > **CI/CD** and unfold **Variables**
 1. Create unprotected variable `AUTHOR` and set to a value of your choice
@@ -32,7 +32,7 @@ Careful with protected variables
 1. Fetch change:
 
     ```bash
-    git checkout 020_variables/ci -- '*'
+    git checkout 160_gitlab_ci/020_variables/ci -- '*'
     ```
     <!-- .element: style="width: 47em;" -->
 

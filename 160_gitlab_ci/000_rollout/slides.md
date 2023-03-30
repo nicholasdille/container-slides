@@ -35,6 +35,12 @@ ABCDE;seatN.inmylab.de;seat;0123456789abcdef0123456789abcdef
 
 ---
 
+## Code
+
+XXX
+
+---
+
 ## Demos tell a story
 
 Demos focus on a single feature

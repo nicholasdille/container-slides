@@ -19,7 +19,7 @@ Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/050_default "050_default")
+## Hands-On [<i class="fa fa-comment-code"></i>]https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/050_default "050_default")
 
 1. Add `default` for `image`
 1. Remove `image` from all jobs
@@ -28,5 +28,5 @@ Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 050_default -- '*'
+git checkout 160_gitlab_ci/050_default -- '*'
 ```

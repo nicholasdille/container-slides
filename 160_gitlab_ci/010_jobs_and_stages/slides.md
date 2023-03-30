@@ -115,13 +115,13 @@ docker run --interactive --tty --rm \
 
 ## Hands-On (1)
 
-### First CI job [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/010_jobs_and_stages/build "010_jobs_and_stages/build")
+### First CI job [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/010_jobs_and_stages/build "010_jobs_and_stages/build")
 
 1. Create project
 1. Add files to root of project:
 
     ```bash
-    git checkout 010_jobs_and_stages/build -- '*'
+    git checkout 160_gitlab_ci/010_jobs_and_stages/build -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 
@@ -131,12 +131,12 @@ docker run --interactive --tty --rm \
 
 ## Hands-On (2)
 
-### Add a stage [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/010_jobs_and_stages/lint "010_jobs_and_stages/lint")
+### Add a stage [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/010_jobs_and_stages/lint "010_jobs_and_stages/lint")
 
 1. Add `lint/.gitlab-ci.yml` to root of project:
 
     ```bash
-    git checkout 010_jobs_and_stages/lint -- '*'
+    git checkout 160_gitlab_ci/010_jobs_and_stages/lint -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 
@@ -146,12 +146,12 @@ docker run --interactive --tty --rm \
 
 ## Hands-On (3)
 
-### Add parallel jobs [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/010_jobs_and_stages/parallel "010_jobs_and_stages/parallel")
+### Add parallel jobs [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/010_jobs_and_stages/parallel "010_jobs_and_stages/parallel")
 
 1. Add `parallel/.gitlab-ci.yml` to root of project:
 
     ```bash
-    git checkout 010_jobs_and_stages/parallel -- '*'
+    git checkout 160_gitlab_ci/010_jobs_and_stages/parallel -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 

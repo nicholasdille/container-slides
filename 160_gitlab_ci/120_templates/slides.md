@@ -22,7 +22,7 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ---
 
-## Hands-On: Template and include [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/120_templates/inline "120_templates/inline")
+## Hands-On: Template and include [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/120_templates/inline "120_templates/inline")
 
 1. Create inline tmplate:
 
@@ -49,12 +49,12 @@ See also the official development guide for templates [](https://docs.gitlab.com
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 120_templates/inline -- '*'
+git checkout 160_gitlab_ci/120_templates/inline -- '*'
 ```
 
 ---
 
-## Hands-On: Local [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/120_templates/local "120_templates/local")
+## Hands-On: Local [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/120_templates/local "120_templates/local")
 
 1. Add `go.yaml` to root of project
 1. Include `go.yaml`:
@@ -73,7 +73,7 @@ git checkout 120_templates/inline -- '*'
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 120_templates/local -- '*'
+git checkout 160_gitlab_ci/120_templates/local -- '*'
 ```
 
 ---

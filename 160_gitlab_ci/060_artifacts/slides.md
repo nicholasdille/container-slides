@@ -30,7 +30,7 @@ Add untracked files
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/060_artifact "060_artifact")
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/060_artifact "060_artifact")
 
 Test binary in a new job and stage
 
@@ -42,7 +42,7 @@ Test binary in a new job and stage
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 060_artifact -- '*'
+git checkout 160_gitlab_ci/060_artifact -- '*'
 ```
 
 ---

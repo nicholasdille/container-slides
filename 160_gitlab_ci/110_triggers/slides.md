@@ -28,7 +28,7 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 
 ---
 
-## Hands-On: Trigger tokens [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/110_trigger/curl "110_trigger/curl")
+## Hands-On: Trigger tokens [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/110_triggers/curl "110_trigger/curl")
 
 1. Create a new project (anywhere!)
 1. Add `trigger/.gitlab-ci.yml` to root of new project 
@@ -45,7 +45,7 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 110_triggers/curl -- '*'
+git checkout 160_gitlab_ci/110_triggers/curl -- '*'
 ```
 
 ---
@@ -84,12 +84,12 @@ Trigger owner must be able to either...
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 110_triggers/parent-child -- '*'
+git checkout 160_gitlab_ci/110_triggers/parent-child -- '*'
 ```
 
 ---
 
-## Hands-On: Parent-child pipelines [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/110_triggers/parent-child "110_triggers/parent-child")
+## Hands-On: Parent-child pipelines [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/110_triggers/parent-child "110_triggers/parent-child")
 
 1. Add `parent-child/child.yml` to root of first project
 1. Replace `project` and `branch` under `trigger` with `include` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_templates)
