@@ -38,7 +38,25 @@ Careful with protected variables
 
 ---
 
-## Pro tip: Protect masked variables
+## Pro tip: Masked variables for all values
+
+Many values are rejected by GitLab
+
+Store base64-encoded values
+
+Decode values before use:
+
+```yaml
+job_name:
+  script:
+  - echo "$( echo "${MASKED_VAR}" | base64 -d )"
+```
+
+Careful! Original value will not be masked!
+
+---
+
+## Pro tip 2: Protect masked variables
 
 Prevent project maintainers/owners to read masked CI variables:
 

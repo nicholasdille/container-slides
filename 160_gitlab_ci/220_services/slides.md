@@ -17,6 +17,8 @@ Services can be declared using the `services` keyword [](https://docs.gitlab.com
 
 Services are accessed using the `image` name (or an `alias`)
 
+Services are available for runners with Docker/Kubernetes executor
+
 GitLab only starts the service
 
 No guarantee of availability

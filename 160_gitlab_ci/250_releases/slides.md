@@ -51,3 +51,11 @@ See new `.gitlab-ci.yml`:
 ```bash
 git checkout 250_releases -- '*'
 ```
+
+---
+
+## Pro tip: Publish asset in package registry
+
+asset in package registry
+
+https://docs.gitlab.com/ee/user/packages/generic_packages/

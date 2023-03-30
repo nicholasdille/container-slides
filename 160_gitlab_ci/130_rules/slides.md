@@ -87,6 +87,18 @@ workflow:
 
 ---
 
+## Pro tip: Mind the order
+
+Rules are evaluated in-order
+
+First match determines result
+
+Adjust order from most specific...
+
+...to most general
+
+---
+
 ## Pro tip: Rule templates
 
 Pipelines often have many jobs

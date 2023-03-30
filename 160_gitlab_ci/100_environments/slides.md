@@ -69,3 +69,15 @@ See new `.gitlab-ci.yml`:
 ```bash
 git checkout 100_environments/demo2 -- '*'
 ```
+
+---
+
+## Pro tip: Disposable environments a.k.a. review apps
+
+XXX env actions https://docs.gitlab.com/ee/ci/yaml/#environmenton_stop
+
+XXX environment stop button => XXX (review apps) https://docs.gitlab.com/ee/ci/review_apps/
+
+XXX env teardown https://docs.gitlab.com/ee/ci/yaml/#environmenton_stop (example https://docs.gitlab.com/ee/ci/environments/index.html#example-of-setting-dynamic-environment-urls)
+
+XXX scheduled env teardown https://docs.gitlab.com/ee/ci/yaml/#environmentauto_stop_in

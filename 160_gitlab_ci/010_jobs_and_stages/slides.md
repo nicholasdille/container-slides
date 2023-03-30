@@ -156,3 +156,27 @@ docker run --interactive --tty --rm \
     <!-- .element: style="width: 40em;" -->
 
 1. Check pipeline
+
+---
+
+## Pro tip: Skip pipeline for push
+
+Sometimes a pipeline run is not desirable
+
+### Option 1
+
+Skip pipeline by prefixing the commit message:
+
+```plaintext
+[skip ci] My awesome commit message
+```
+
+### Option 2
+
+Leave commit message untouched
+
+Provide a push option:
+
+```bash
+git push -o ci.skip
+```

@@ -18,7 +18,7 @@ Get badges for pipelines status, coverage report and the latest release
 
 ### Auto DevOps
 
-Audo DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
+Auto DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
 
 ### Runners [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
 
