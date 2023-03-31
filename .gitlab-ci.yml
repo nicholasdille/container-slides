@@ -50,6 +50,7 @@ deploy:
         --verbose \
         --upload-file hello \
         --user admin:${PASS}
+
 trigger:
   stage: trigger
   trigger:
