@@ -5,7 +5,6 @@ import (
 	"github.com/TwiN/go-color"
 )
 
-var Author string = "unknown"
 var Version string = "none"
 
 func main() {
