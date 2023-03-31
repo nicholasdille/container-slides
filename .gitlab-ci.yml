@@ -26,3 +26,4 @@ build:
         -ldflags "-X main.Version=${CI_COMMIT_REF_NAME}" \
         -o hello \
         .
+  - ./hello
