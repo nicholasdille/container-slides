@@ -28,3 +28,4 @@ build:
         -ldflags "-X main.Version=${version}" \
         -o hello \
         .
+  - ./hello
