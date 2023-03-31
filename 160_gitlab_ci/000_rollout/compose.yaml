@@ -67,6 +67,8 @@ services:
       SEAT_PASS: ${SEAT_PASS:?You must supply SEAT_PASS}
       SEAT_CODE: ${SEAT_CODE:?You must supply SEAT_CODE}
       DOMAIN: ${DOMAIN:?You must supply DOMAIN}
+      WEBDAV_PASS_DEV: ${WEBDAV_PASS_DEV:?You must supply WEBDAV_PASS_DEV}
+      WEBDAV_PASS_LIVE: ${WEBDAV_PASS_LIVE:?You must supply WEBDAV_PASS_LIVE}
     labels:
       traefik.enable: "true"
       # Service port

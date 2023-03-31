@@ -31,3 +31,4 @@ COPY --chmod=0775 domain.sh /docker-entrypoint.d/
 
 COPY index.html /usr/share/nginx/html/
 COPY auth.html /usr/share/nginx/html/auth/index.html
+COPY webdav.html /usr/share/nginx/html/webdav/index.html

@@ -24,14 +24,7 @@ WebDAV endpoints emulate deployment targets
 
 ## Hands-On (1/2) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/100_environments/demo1 "100_environments/demo1")
 
-1. Retrieve passwords for dev and live environments:
-
-    ```bash
-    docker ps --filter "label=com.docker.compose.service=nginx" --quiet \
-    | xargs -I{} docker logs {} | grep "Password for "
-    ```
-    <!-- .element: style="width: 45em;" -->
-
+1. Retrieve passwords for dev and live environments from the info page
 1. Create unprotected CI variable `PASS` twice with scope `dev` and `live`
 1. Create unprotected CI variable `SEAT_INDEX` with your seat number
 1. Add new stage and job called `deploy`
