@@ -81,12 +81,6 @@ Trigger owner must be able to either...
 
 1. Check pipeline
 
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout 160_gitlab_ci/110_triggers/parent-child -- '*'
-```
-
 ---
 
 ## Hands-On: Parent-child pipelines [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/110_triggers/parent-child "110_triggers/parent-child")

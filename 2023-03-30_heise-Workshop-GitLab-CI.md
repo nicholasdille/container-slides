@@ -1,17 +1,5 @@
 Notes
-- Branches instead of tags
-- Add version and author
-- trailing line break in 030_script_blocks
-- call ./hello
-- GitLab extension?
 - publish WebDAV creds
 - WebDAV: admin => seat
-- CI vars for envs
-- env mit wildcards
-- fix trigger demo (has template, misses deploy)
-- multi-project: Kein Beispiel
-- parent-child: Falscher Tagname
-- main.Author mit einfachen Anführungszeichen 110_triggers/parent_child
-- Fix deploy with vars in main
-- Fix docker service !localhost
-- update 290
+
+- GitLab extension?
