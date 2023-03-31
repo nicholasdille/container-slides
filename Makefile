@@ -34,7 +34,7 @@ web-$(COMMIT):
 	if docker image ls web:$(COMMIT) | tr -s ' ' | grep -q "web $(COMMIT)"; then \
 		:; \
 	else \
-		DOCKER_BUILDKIT=1 docker build --tag web:$(COMMIT) .; \
+		DOCKER_BUILDKIT=1 docker build --tag web:$(COMMIT) --load .; \
 	fi
 
 %.pdf: %.html web-$(COMMIT)
