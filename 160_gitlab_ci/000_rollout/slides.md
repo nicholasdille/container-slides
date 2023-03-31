@@ -37,7 +37,13 @@ ABCDE;seatN.inmylab.de;seat;0123456789abcdef0123456789abcdef
 
 ## Code
 
-XXX
+The source for the slides as well as the demos are located in my repository called [container-slides](https://github.com/nicholasdille/container-slides)
+
+Please refer to the release matching the date of your workshop
+
+You should use the release tag to access the files in the repository
+
+The hands-on chapters have a link to the exact directory in the repository
 
 ---
 

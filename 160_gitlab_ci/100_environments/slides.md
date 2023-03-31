@@ -74,10 +74,8 @@ git checkout 160_gitlab_ci/100_environments/demo2 -- '*'
 
 ## Pro tip: Disposable environments a.k.a. review apps
 
-XXX env actions https://docs.gitlab.com/ee/ci/yaml/#environmenton_stop
+Additonal use of environments: disposable review apps
 
-XXX environment stop button => XXX (review apps) https://docs.gitlab.com/ee/ci/review_apps/
+Environments can have a [stop action](https://docs.gitlab.com/ee/ci/environments/index.html#stopping-an-environment) for disposal
 
-XXX env teardown https://docs.gitlab.com/ee/ci/yaml/#environmenton_stop (example https://docs.gitlab.com/ee/ci/environments/index.html#example-of-setting-dynamic-environment-urls)
-
-XXX scheduled env teardown https://docs.gitlab.com/ee/ci/yaml/#environmentauto_stop_in
+Environments can have an [expiration time](https://docs.gitlab.com/ee/ci/yaml/#environmentauto_stop_in)
