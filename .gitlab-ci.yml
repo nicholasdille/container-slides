@@ -99,7 +99,7 @@ package:
   - name: docker:20.10.18-dind
     command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
   variables:
-    DOCKER_HOST: tcp://127.0.0.1:2375
+    DOCKER_HOST: tcp://docker:2375
   before_script:
   - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
   script:
