@@ -3,3 +3,4 @@ build:
   - apk update
   - apk add go
   - go build -o hello .
+  - ./hello
