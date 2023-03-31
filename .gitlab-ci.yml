@@ -99,9 +99,5 @@ trigger:
   stage: trigger
   rules:
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  script: |
-    curl https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4/projects/3/trigger/pipeline \
-        --request POST \
-        --fail \
-        -F token=${TRIGGER_BAZ} \
-        -F ref=dev
+  trigger:
+    include: child.yaml
