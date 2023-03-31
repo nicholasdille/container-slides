@@ -26,7 +26,7 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/250_releases "250_releases")
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/250_releases "250_releases")
 
 1. Extends `pages` in `.gitlab-ci.yml`:
 
@@ -49,7 +49,7 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 250_releases -- '*'
+git checkout 160_gitlab_ci/250_releases -- '*'
 ```
 
 ---

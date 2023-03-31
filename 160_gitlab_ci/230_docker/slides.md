@@ -22,7 +22,7 @@ Alternatives: Rootless and or daeamonless builds using...
 
 ---
 
-## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/230_docker "230_docker")
+## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/230_docker "230_docker")
 
 Package binary in container image
 
@@ -41,7 +41,7 @@ Package binary in container image
 
 ---
 
-## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/230_docker "230_docker")
+## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/230_docker "230_docker")
 
 Package binary in container image
 
@@ -59,5 +59,5 @@ Package binary in container image
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 230_docker -- '*'
+git checkout 160_gitlab_ci/230_docker -- '*'
 ```

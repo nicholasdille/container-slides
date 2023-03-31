@@ -24,7 +24,7 @@ Available in all tiers:
 
 ---
 
-## Hands-On: Secret detection [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/280_security "280_security")
+## Hands-On: Secret detection [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/280_security "280_security")
 
 GitLab automatically adds a job in the stage called `test`
 
@@ -41,7 +41,7 @@ GitLab automatically adds a job in the stage called `test`
 
 ---
 
-## Hands-On: SAST [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/280_security "280_security")
+## Hands-On: SAST [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/280_security "280_security")
 
 GitLab automatically adds jobs in the stage called `test`
 
@@ -59,5 +59,5 @@ GitLab automatically adds jobs in the stage called `test`
 See final `.gitlab-ci.yml`:
 
 ```bash
-git checkout 280_security -- '*'
+git checkout 160_gitlab_ci/280_security -- '*'
 ```

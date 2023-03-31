@@ -24,7 +24,7 @@ Matrix variables can be used for...
 
 ---
 
-## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/150_matrix_jobs "150_matrix_jobs")
+## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/150_matrix_jobs "150_matrix_jobs")
 
 Cross-compile Go for multiple architectures
 
@@ -47,7 +47,7 @@ Cross-compile Go for multiple architectures
 
 ---
 
-## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/150_matrix_jobs "150_matrix_jobs")
+## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/150_matrix_jobs "150_matrix_jobs")
 
 2. Update the test job:
 
@@ -64,5 +64,5 @@ Cross-compile Go for multiple architectures
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 150_matrix_jobs -- '*'
+git checkout 160_gitlab_ci/150_matrix_jobs -- '*'
 ```

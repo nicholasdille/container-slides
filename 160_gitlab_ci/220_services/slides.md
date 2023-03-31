@@ -25,7 +25,7 @@ No guarantee of availability
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/220_services "220_services")
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/220_services "220_services")
 
 Recommendation: Implement in dedicated project
 
@@ -49,5 +49,5 @@ Recommendation: Implement in dedicated project
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 220_services -- '*'
+git checkout 160_gitlab_ci/220_services -- '*'
 ```
