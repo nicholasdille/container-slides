@@ -1,0 +1,1 @@
+Bild von <a href="https://pixabay.com/de/users/nikolayhg-3248/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=105709">Nikolay Georgiev</a> auf <a href="https://pixabay.com/de//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=105709">Pixabay</a>
