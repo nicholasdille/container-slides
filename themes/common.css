@@ -21,8 +21,6 @@ html.dimbg75 .slide-background {
 }
 
 .layout-double {
-    padding-left: 2em;
-    padding-right: 2em;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
