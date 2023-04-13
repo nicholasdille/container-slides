@@ -9,7 +9,7 @@ extract_links() {
 }
 extract_from_comments() {
     cat | while read LINE; do
-        echo ${LINE} | grep "data-background=" | sed -r 's/^.+\sdata-background="([^"]+)".+$/\1/'
+        echo ${LINE} | grep "data-background=" | sed -r 's/^.+\sdata-background="([^"]+)".*$/\1/'
     done
 }
 copy_to_target() {
