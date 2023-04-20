@@ -66,7 +66,7 @@ No enforce but audit = succeed but learn about possible outcome
 
 ---
 
-## Demo
+## Demo: Pod Security Standard
 
 Opt-in per namespace
 
