@@ -10,8 +10,6 @@ if test "$(docker container ls --filter name=registry | wc -l)" -eq 1; then
 fi
 regctl registry set 127.0.0.1:5000 --tls disabled
 
-trivy plugin install github.com/aquasecurity/trivy-plugin-referrer
-
 IMAGE=127.0.0.1:5000/ubuntu:22.04
 docker pull ubuntu:22.04
 docker tag ubuntu:22.04 "${IMAGE}"
