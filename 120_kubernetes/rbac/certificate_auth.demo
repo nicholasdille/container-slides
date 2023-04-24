@@ -1,0 +1,98 @@
+# Certificate authentication
+
+# Create key pair
+openssl genrsa -out save.key 4096
+
+# Create OpenSSL config
+cat <<EOF >csr.cnf
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = dn
+[dn]
+CN = dave
+O = dev
+[v3_ext]
+authorityKeyIdentifier=keyid,issuer:always
+basicConstraints=CA:FALSE
+keyUsage=keyEncipherment,dataEncipherment
+extendedKeyUsage=serverAuth,clientAuth
+EOF
+
+# Create local CSR
+openssl req -config ./csr.cnf -new -key dave.key -nodes -out dave.csr
+
+# Create cluster CSR
+export BASE64_CSR=$(cat ./dave.csr | base64 | tr -d '\n')
+
+cat <<EOF | envsubst | kubectl apply -f -
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: mycsr
+spec:
+  signerName: kubernetes.io/kube-apiserver-client
+  groups:
+  - system:authenticated
+  request: ${BASE64_CSR}
+  usages:
+  - digital signature
+  - key encipherment
+  - client auth
+EOF
+
+# Check CSR
+kubectl get csr
+
+# Approve CSR
+kubectl certificate approve mycsr
+
+# Check CSR
+kubectl get csr
+
+# Extract certificate from CSR
+kubectl get csr mycsr -o jsonpath='{.status.certificate}' | base64 --decode > dave.crt
+
+# Add user to kubeconfig
+kubectl config set-credentials dave --client-key=./dave.key --client-certificate=./dave.crt --embed-certs
+
+# Add context to kubeconfig
+kubectl config set-context dave --cluster=kind-kind --user=dave
+
+# Check connection using dave
+kubectl --context dave version
+
+# Add role for dave
+cat <<EOF | kubectl apply -f -
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services"]
+  verbs: ["create", "get", "update", "list", "delete"]
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["create", "get", "update", "list", "delete"]
+EOF
+
+# Add rolebinding for dave
+cat <<EOF | kubectl apply -f -
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev
+subjects:
+- kind: User
+  name: dave
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: dev
+  apiGroup: rbac.authorization.k8s.io
+EOF
+
+# Check permissions
+kubectl --context=dave get all
