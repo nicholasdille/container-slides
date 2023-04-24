@@ -1,18 +1,22 @@
 ## Pod Service Accounts
 
-XXX k8s API access
+Pods can access the Kubernetes API
 
-XXX sa `default` is automatically mounted
+XXX Demo: Show service? Show inside pod?
 
-XXX no roles or rolebindings
+Pods automatically mounts service account token
+
+By default, service account `default` is used
+
+Service account `default` does not have any (Cluster)Role
 
 ---
 
-## Prevent mounting for service account token
+## Prevent token mounting 1/
 
-XXX no pod sa
+No need to Kubernetes API? Disable token mounting in `Pod`:
 
-```yaml
+```yaml [2,7]
 apiVersion: v1
 kind: Pod
 metadata:
@@ -25,11 +29,13 @@ spec:
 
 ---
 
-## Prevent mounting of service account token
+## Prevent token mounting 2/2
 
-XXX
+Don't want the service account to be mounted?
 
-```yaml
+Disable token mounting in `ServiceAccount`:
+
+```yaml [2,5]
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -40,15 +46,23 @@ automountServiceAccountToken: false
 
 ---
 
-XXX custom sa
+## Custom service account
+
+XXX
 
 ---
 
 ## Service accounts now without token
 
-XXX sa without token since 1.24 [](https://kubernetes.io/docs/concepts/configuration/secret/#service-account-token-secrets)
+Service accounts are created without corresponding `Secret` [](https://kubernetes.io/docs/concepts/configuration/secret/#service-account-token-secrets)
 
-```bash
+Introduced in Kubernetes 1.24
+
+XXX mounting in pod?
+
+Create special secret to force token creation:
+
+```bash [2,7-9]
 kubectl create sa foo
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -60,3 +74,5 @@ metadata:
 type: kubernetes.io/service-account-token
 EOF
 ```
+
+Automounted service accounts always get a temporary token

@@ -6,9 +6,9 @@ Service accounts represent subjects
 
 (Cluster)Role specifies what to allow on which resources
 
-(Cluster)RoleBinding connects service accounts with one or more (Cluster)Roles
+(Cluster)RoleBinding connects service accounts with (Cluster)Roles
 
-![](120_kubernetes/rbac/rbac.drawio.svg) <!-- .element: style="width: 90%; margin-top: 0.5em; margin-bottom: 0.5em;" -->
+![](120_kubernetes/rbac/rbac.drawio.svg) <!-- .element: style="width: 65%; margin-top: 0.5em; margin-bottom: 0.5em;" -->
 
 Role and RoleBinding are namespaced
 

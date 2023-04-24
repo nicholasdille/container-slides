@@ -2,11 +2,11 @@
 
 (Cluster)Roles can allow impersonation [](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)
 
-One ServiceAccount can perform actions in the context of a second ServiceAccount
+Perform actions in the context of a second ServiceAccount
 
 ![](120_kubernetes/rbac/impersonation.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
 
-### Use case 1: Delegation of Namespaces
+### Delegation of Namespaces
 
 Useful for one cluster used by many teams
 
@@ -14,7 +14,7 @@ Read-only user per namespace
 
 Impersonation to admin per namespace
 
-### Use case 2: Protection from mistakes
+### Protection from mistakes
 
 Useful for one cluster used by a single team
 
@@ -28,7 +28,7 @@ Impersonation to admin per namespace
 
 ![](120_kubernetes/rbac/demo.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
 
-Use case 1
+Demonstrates delegation of namespace
 
 Namespace `test`
 

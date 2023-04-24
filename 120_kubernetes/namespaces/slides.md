@@ -2,20 +2,30 @@
 
 XXX
 
-XXX illustration
+### What they are
+
+Resources are logically grouped
+
+Prevents name conflicts
+
+DNS subdomain for services
+
+![](120_kubernetes/namespaces/namespaces.drawio.svg) <!-- .element: style="width: 50%;" -->
+
+### What they are not
+
+Network segmentation
 
 ---
 
 ## Demo: Namespaces
 
-XXX Create two namespaces with a deployment each
+Two namespaces...
 
-XXX Show contents
+...using the same pod names
 
-XXX Show IP connectivity
+![](120_kubernetes/namespaces/demo.drawio.svg) <!-- .element: style="width: 60%;" -->
 
-XXX Create service per namespace
+Pods are accessible using IP addresses
 
-XXX Show DNS between namespaces
-
-XXX Show DNS search suffixes
+Pods are accessible using DNS names (through services)

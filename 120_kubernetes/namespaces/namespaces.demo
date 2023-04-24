@@ -1,4 +1,85 @@
 # Namespaces
 
-# XXX
-echo
+# Create two namespaces
+kubectl create namespace test1
+kubectl create namespace test2
+kubectl get namespaces
+
+# Create pod in namespace test1
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+  namespace: test1
+  labels:
+    app: foo
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+EOF
+
+# Create pod in namespace test2
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+  namespace: test2
+  labels:
+    app: foo
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+EOF
+
+# Both pods use the same name
+kubectl --namespace test1 get pods --output wide
+kubectl --namespace test2 get pods --output wide
+
+# Connectivity between test1 and test2
+TEST1_IP="$(kubectl --namespace test1 get pod foo -o json | jq --raw-output '.status.podIP')"
+TEST2_IP="$(kubectl --namespace test2 get pod foo -o json | jq --raw-output '.status.podIP')"
+kubectl --namespace test1 exec -it foo -- curl -s "http://${TEST2_IP}"
+kubectl --namespace test2 exec -it foo -- curl -s "http://${TEST1_IP}"
+
+# Add services
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: foo
+  namespace: test1
+spec:
+  type: ClusterIP
+  selector:
+    app: foo
+  ports:
+  - name: 
+    port: 80
+    protocol: TCP
+    targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: foo
+  namespace: test2
+spec:
+  type: ClusterIP
+  selector:
+    app: foo
+  ports:
+  - name: 
+    port: 80
+    protocol: TCP
+    targetPort: 80
+EOF
+
+# DNS test between test1 and test2
+kubectl --namespace test1 exec -it foo -- curl -s http://foo
+kubectl --namespace test1 exec -it foo -- curl -s http://foo.test2
+kubectl --namespace test2 exec -it foo -- curl -s http://foo
+kubectl --namespace test2 exec -it foo -- curl -s http://foo.test1
