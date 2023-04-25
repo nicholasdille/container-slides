@@ -1,10 +1,8 @@
 ## Namespaces
 
-XXX
-
-### What they are
-
 Resources are logically grouped
+
+### What they offer
 
 Prevents name conflicts
 
@@ -12,7 +10,7 @@ DNS subdomain for services
 
 ![](120_kubernetes/namespaces/namespaces.drawio.svg) <!-- .element: style="width: 50%;" -->
 
-### What they are not
+### What they do not offer
 
 Network segmentation
 

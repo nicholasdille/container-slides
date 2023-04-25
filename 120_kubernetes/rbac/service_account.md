@@ -2,7 +2,7 @@
 
 Pods can access the Kubernetes API
 
-XXX Demo: Show service? Show inside pod?
+Special service called `kubernetes` present in every namespace
 
 Pods automatically mounts service account token
 
@@ -27,6 +27,8 @@ spec:
 #...
 ```
 
+### DEMO
+
 ---
 
 ## Prevent token mounting 2/2
@@ -44,11 +46,17 @@ automountServiceAccountToken: false
 #...
 ```
 
+### DEMO
+
 ---
 
-## Custom service account
+## Service account with custom permissions
 
-XXX
+Some services require specific permissions
+
+Use RBAC to provide only required permissions
+
+### DEMO
 
 ---
 
@@ -58,7 +66,7 @@ Service accounts are created without corresponding `Secret` [](https://kubernete
 
 Introduced in Kubernetes 1.24
 
-XXX mounting in pod?
+Automounted service accounts always get a temporary token
 
 Create special secret to force token creation:
 
@@ -75,4 +83,4 @@ type: kubernetes.io/service-account-token
 EOF
 ```
 
-Automounted service accounts always get a temporary token
+### DEMO
