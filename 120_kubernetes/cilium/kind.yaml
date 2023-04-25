@@ -28,5 +28,7 @@ nodes:
     containerPath: /etc/kubernetes/policies/audit-policy.yaml
     readOnly: true
 - role: worker
+- role: worker
+- role: worker
 networking:
   disableDefaultCNI: true
