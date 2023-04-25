@@ -1,0 +1,4 @@
+# Audit logging
+
+# Viewing the log
+docker exec -it kind-control-plane cat /var/log/kubernetes/kube-apiserver-audit.log
