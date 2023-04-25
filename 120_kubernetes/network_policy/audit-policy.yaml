@@ -1,0 +1,16 @@
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+- level: RequestResponse
+  resources:
+    - group: ""
+      resources: ["pods", "pods/ephemeralcontainers", "podtemplates", "replicationcontrollers"]
+    - group: "apps"
+      resources: ["daemonsets", "deployments", "replicasets", "statefulsets"]
+    - group: "batch"
+      resources: ["cronjobs", "jobs"]
+  verbs: ["create", "update"]
+  omitStages:
+    - "RequestReceived"
+    - "ResponseStarted"
+    - "Panic"
