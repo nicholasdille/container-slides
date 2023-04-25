@@ -1,20 +1,23 @@
 # https://docs.docker.com/compose/compose-file
 
 volumes:
-  gitlab_config:
-  gitlab_logs:
-  gitlab_data:
-  postgresql_data:
-  redis_data:
-  gitaly_config:
-  gitaly_data:
-  gitaly_gitlab:
-  gitaly_logs:
+  gitlab-etc:
+  gitlab-opt:
+  gitlab-log:
+  gitaly-etc:
+  gitaly-opt:
+  gitaly-log:
+  redis-etc:
+  redis-opt:
+  redis-log:
+  postgres-etc:
+  postgres-opt:
+  postgres-log:
 
 services:
 
   gitlab:
-    image: gitlab/gitlab-ce:15.4.1-ce.0
+    image: gitlab/gitlab-ee:15.10.3-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -51,9 +54,9 @@ services:
     shm_size: 256m
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - gitlab_config:/etc/gitlab
-    - gitlab_logs:/var/log/gitlab
-    - gitlab_data:/var/opt/gitlab
+    - gitlab-etc:/etc/gitlab
+    - gitlab-opt:/var/opt/gitlab
+    - gitlab-log:/var/log/gitlab
     labels:
       traefik.enable: "true"
       traefik.http.services.www.loadbalancer.server.port: 80
@@ -70,7 +73,7 @@ services:
       traefik.tcp.routers.ssh.service: ssh
 
   db:
-    image: gitlab/gitlab-ce:15.4.1-ce.0
+    image: gitlab/gitlab-ee:15.10.3-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -102,10 +105,12 @@ services:
         postgres_exporter['enable'] = true
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - gitlab_data:/var/opt/gitlab
+    - postgres-etc:/etc/gitlab
+    - postgres-opt:/var/opt/gitlab
+    - postgres-log:/var/log/gitlab
 
   redis:
-    image: gitlab/gitlab-ce:15.4.1-ce.0
+    image: gitlab/gitlab-ee:15.10.3-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -127,10 +132,12 @@ services:
         gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8','10.42.0.0/16']
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - redis_data:/var/opt/gitlab
+    - redis-etc:/etc/gitlab
+    - redis-opt:/var/opt/gitlab
+    - redis-log:/var/log/gitlab
 
   gitaly:
-    image: gitlab/gitlab-ce:15.4.1-ce.0
+    image: gitlab/gitlab-ee:15.10.3-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -158,16 +165,15 @@ services:
         gitaly['auth_token'] = "gitaly"
 
         gitaly['storage'] = [
-          { 'name' => 'default', 'path' => '/var/opt/gitlab-data/git-data/repositories' },
+          { 'name' => 'default', 'path' => '/var/opt/gitlab/git-data/repositories' },
         ]
-        git_data_dirs({ "default" => { "path" => "/var/opt/gitlab-data/git-data" } })
+        git_data_dirs({ "default" => { "path" => "/var/opt/gitlab/git-data" } })
 
         # monitoring
         gitaly['prometheus_listen_addr'] = "0.0.0.0:9236"
         gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8','10.42.0.0/16']
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - gitaly_config:/etc/gitlab
-    - gitaly_data:/var/opt/gitlab-data
-    - gitaly_gitlab:/var/opt/gitlab
-    - gitaly_logs:/var/log/gitlab
+    - gitaly-etc:/etc/gitlab
+    - gitaly-opt:/var/opt/gitlab
+    - gitaly-log:/var/log/gitlab

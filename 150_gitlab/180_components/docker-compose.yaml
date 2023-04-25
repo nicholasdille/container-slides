@@ -1,0 +1,259 @@
+# https://docs.docker.com/compose/compose-file
+
+volumes:
+  gitlab-redis-etc:
+  gitlab-redis-opt:
+  gitlab-redis-log:
+  gitlab-postgres-etc:
+  gitlab-postgres-opt:
+  gitlab-postgres-log:
+  gitlab-gitaly-etc:
+  gitlab-gitaly-opt:
+  gitlab-gitaly-log:
+  gitlab-app-etc:
+  gitlab-app-opt:
+  gitlab-app-log:
+  gitlab-pages-etc:
+  gitlab-pages-opt:
+  gitlab-pages-log:
+  gitlab-monitoring-etc:
+  gitlab-monitoring-opt:
+  gitlab-monitoring-log:
+
+services:
+
+  # https://doc.traefik.io/traefik/
+  traefik:
+    image: traefik:v2.9
+    command:
+    - --log=true
+    - --log.level=DEBUG
+    - --api=true
+    - --api.dashboard=true
+    - --entrypoints.http.address=:80
+    - --entrypoints.ssh.address=:2222
+    - --providers.docker=true
+    - --providers.docker.exposedByDefault=false
+    ports:
+    - 2222:2222
+    - 80:80
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /etc/localtime:/etc/localtime:ro
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "netstat -tunapl | grep LISTEN | grep :80"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  # https://docs.gitlab.com/ee/install/docker.html
+  redis:
+    image: gitlab/gitlab-ee:15.10.3-ee.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+        gitlab_rails['usage_ping_enabled'] = false
+        roles ['redis_master_role']
+        gitlab_sshd['enable'] = false
+        gitlab_rails['auto_migrate'] = false
+        redis['port'] = 6379
+        redis['bind'] = '0.0.0.0'
+        redis['password'] = 'redis-password'
+        gitlab_rails['redis_password'] = 'redis-password'
+    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    shm_size: 256m
+    healthcheck:
+      test: exit 0
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitlab-redis-etc:/etc/gitlab
+    - gitlab-redis-opt:/var/opt/gitlab
+    - gitlab-redis-log:/var/log/gitlab
+
+  # https://docs.gitlab.com/ee/install/docker.html
+  postgres:
+    image: gitlab/gitlab-ee:15.10.3-ee.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+        gitlab_rails['usage_ping_enabled'] = false
+        roles ['postgres_role']
+        gitlab_sshd['enable'] = false
+        gitlab_rails['auto_migrate'] = false
+        postgresql['listen_address'] = '0.0.0.0'
+        postgresql['port'] = 5432
+        postgresql['sql_user'] = "gitlab"
+        postgresql['sql_user_password'] = "84110b4ef64419fa0c35c0a42bc6434b"
+        postgresql['md5_auth_cidr_addresses'] = %w(0.0.0.0/0)
+        postgresql['trust_auth_cidr_addresses'] = %w(127.0.0.1/24)
+        #postgresql['hostssl'] = true
+        gitlab_rails['db_encoding'] = 'utf8'
+        gitlab_rails['db_database'] = 'gitlabhq_production'
+        gitlab_rails['db_username'] = 'gitlab'
+        gitlab_rails['db_password'] = 'postgres-password'
+        gitlab_rails['redis_host'] = 'redis'
+        gitlab_rails['redis_port'] = 6379
+        gitlab_rails['redis_password'] = 'redis-password'
+    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    shm_size: 256m
+    healthcheck:
+      test: exit 0
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitlab-postgres-etc:/etc/gitlab
+    - gitlab-postgres-opt:/var/opt/gitlab
+    - gitlab-postgres-log:/var/log/gitlab
+
+  # https://docs.gitlab.com/ee/install/docker.html
+  gitaly:
+    image: gitlab/gitlab-ee:15.10.3-ee.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+        gitlab_rails['usage_ping_enabled'] = false
+        # Avoid running unnecessary services on the gitaly server
+        postgresql['enable'] = false
+        redis['enable'] = false
+        nginx['enable'] = false
+        puma['enable'] = false
+        sidekiq['enable'] = false
+        gitlab_workhorse['enable'] = false
+        alertmanager['enable'] = false
+        grafana['enable'] = false
+        prometheus['enable'] = false
+        gitlab_rails['gitlab_kas_enabled'] = false
+        gitlab_kas['enable'] = false
+    
+        # Prevent database connections during 'gitlab-ctl reconfigure'
+        gitlab_rails['rake_cache_clear'] = false
+        gitlab_rails['auto_migrate'] = false
+    
+        # Configure the gitlab-shell API callback URL. Without this, `git push` will
+        # fail. This can be your 'front door' GitLab URL or an internal load
+        # balancer.
+        gitlab_rails['internal_api_url'] = 'http://gitlab.docker-setup.inmylab.de'
+    
+        # Fix for authentication against API
+        gitlab_workhorse['auth_backend'] = 'http://gitlab.docker-setup.inmylab.de'
+    
+        gitaly['configuration'] = {
+          listen_addr: "0.0.0.0:8075",
+          auth: {
+            token: "gitaly-password"
+          },
+          storage: [
+            {
+              name: 'default',
+              path: '/var/opt/gitlab-data/git-data/repositories',
+            },
+          ],
+        }
+
+        git_data_dirs({ "default" => { "path" => "/var/opt/gitlab-data/git-data" } })
+    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    shm_size: 256m
+    healthcheck:
+      test: exit 0
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitlab-gitaly-etc:/etc/gitlab
+    - gitlab-gitaly-opt:/var/opt/gitlab
+    - gitlab-gitaly-log:/var/log/gitlab
+
+  # https://docs.gitlab.com/ee/install/docker.html
+  application:
+    image: gitlab/gitlab-ee:15.10.3-ee.0
+    environment:
+      GITLAB_SKIP_UNMIGRATED_DATA_CHECK: true
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+        gitlab_rails['usage_ping_enabled'] = false
+        roles ['application_role']
+        gitaly['enable'] = false
+        gitlab_rails['gitlab_kas_enabled'] = false
+        gitlab_kas['enable'] = false
+        gitlab_rails['initial_root_password'] = "g1tl4b-p4s5w0rd"
+        external_url 'http://gitlab.docker-setup.inmylab.de'
+        puma['listen'] = '0.0.0.0'
+        gitlab_rails['db_adapter'] = 'postgresql'
+        #gitlab_rails['db_encoding'] = 'utf8'
+        gitlab_rails['db_host'] = 'postgres'
+        gitlab_rails['db_port'] = '5432'
+        gitlab_rails['db_database'] = 'gitlabhq_production'
+        gitlab_rails['db_username'] = 'gitlab'
+        gitlab_rails['db_password'] = 'postgres-password'
+        gitlab_rails['redis_host'] = 'redis'
+        gitlab_rails['redis_port'] = 6379
+        gitlab_rails['redis_password'] = 'redis-password'
+        gitlab_rails['gitaly_token'] = "gitaly-password"
+        git_data_dirs({
+          'default' => { 'gitaly_address' => 'tcp://gitaly:8075' },
+        })
+    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    shm_size: 256m
+    healthcheck:
+      test: exit 0
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitlab-app-etc:/etc/gitlab
+    - gitlab-app-opt:/var/opt/gitlab
+    - gitlab-app-log:/var/log/gitlab
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.www.loadbalancer.server.port: 8080
+      traefik.http.routers.www.entrypoints: http
+      traefik.http.routers.www.rule: Host(`gitlab.docker-setup.inmylab.de`)
+      traefik.http.routers.www.service: www
+
+  # https://docs.gitlab.com/ee/install/docker.html
+  pages:
+    image: gitlab/gitlab-ee:15.10.3-ee.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+        gitlab_rails['usage_ping_enabled'] = false
+        roles ['pages_role']
+        external_url 'http://gitlab.docker-setup.inmylab.de'
+        pages_external_url 'http://gitlab.docker-setup.inmylab.de'
+    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    shm_size: 256m
+    healthcheck:
+      test: exit 0
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitlab-pages-etc:/etc/gitlab
+    - gitlab-pages-opt:/var/opt/gitlab
+    - gitlab-pages-log:/var/log/gitlab
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.pages.loadbalancer.server.port: 80
+      traefik.http.routers.pages.entrypoints: http
+      traefik.http.routers.pages.rule: Host(`{subdomain:.+}.gitlab.docker-setup.inmylab.de`)
+      traefik.http.routers.pages.service: pages
+
+  # https://docs.gitlab.com/ee/install/docker.html
+  monitoring:
+    image: gitlab/gitlab-ee:15.10.3-ee.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+        gitlab_rails['usage_ping_enabled'] = false
+        roles ['monitoring_role']
+        gitlab_sshd['enable'] = false
+    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    shm_size: 256m
+    healthcheck:
+      test: exit 0
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitlab-monitoring-etc:/etc/gitlab
+    - gitlab-monitoring-opt:/var/opt/gitlab
+    - gitlab-monitoring-log:/var/log/gitlab
