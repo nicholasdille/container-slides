@@ -27,7 +27,7 @@ spec:
 #...
 ```
 
-### DEMO
+### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
 
@@ -46,7 +46,7 @@ automountServiceAccountToken: false
 #...
 ```
 
-### DEMO
+### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
 
@@ -56,11 +56,11 @@ Some services require specific permissions
 
 Use RBAC to provide only required permissions
 
-### DEMO
+### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
 
-## Service accounts now without token
+## Service accounts without token
 
 Service accounts are created without corresponding `Secret` [](https://kubernetes.io/docs/concepts/configuration/secret/#service-account-token-secrets)
 
@@ -83,4 +83,4 @@ type: kubernetes.io/service-account-token
 EOF
 ```
 
-### DEMO
+### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")

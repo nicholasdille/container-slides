@@ -14,7 +14,7 @@ Mind expiry of certificate and certificate authority
 
 ---
 
-## Demo
+## Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/certificate_auth.demo "certificate_auth.demo")
 
 Create certificate for existing cluster
 

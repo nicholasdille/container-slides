@@ -18,7 +18,7 @@ RoleBindings can reference a ClusteRole which is applied to a namespace
 
 ---
 
-## Demo: RBAC
+## Demo: RBAC [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/rbac.demo "rbac.demo")
 
 Show namespaced permissions
 
@@ -42,13 +42,7 @@ kubectl api-resources
 
 ### How to find verbs
 
-Accepted verbs [](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#determine-the-request-verb)
-
-- create
-- get, list, watch
-- update
-- patch
-- delete
+Accepted verbs [](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#determine-the-request-verb): Create, get, list, watch, update, patch, delete
 
 Find supported verbs for resources:
 
@@ -64,11 +58,11 @@ Subjects [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referr
 
 ### ServiceAccount
 
-Can be created: `kubectl create sa ...`
+Can be created: `kubectl create sa <name>`
 
 Token authentication maps to service accounts
 
-Internally referenced by `system:serviceaccount:<namespace>:<name>`
+Internally referenced by<br/>`system:serviceaccount:<namespace>:<name>`
 
 ### User / Group
 

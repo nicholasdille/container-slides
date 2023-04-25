@@ -16,13 +16,13 @@ Network segmentation
 
 ---
 
-## Demo: Namespaces
+## Demo: Namespaces [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/namespaces/namespaces.demo "namespaces.demo")
 
 Two namespaces...
 
 ...using the same pod names
 
-![](120_kubernetes/namespaces/demo.drawio.svg) <!-- .element: style="width: 60%;" -->
+![](120_kubernetes/namespaces/demo.drawio.svg) <!-- .element: style="width: 60%; padding-top: 0.5em; padding-bottom: 0.5em;" -->
 
 Pods are accessible using IP addresses
 

@@ -1,4 +1,33 @@
 # Audit logging
 
 # Viewing the log
-docker exec -it kind-control-plane cat /var/log/kubernetes/kube-apiserver-audit.log
+docker exec -i kind-control-plane cat /var/log/kubernetes/kube-apiserver-audit.log >audit.log
+cat audit.log | head -n 1 | jq
+
+# Attempt pod creation
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+EOF
+
+# Attempt pod creation with impersonation
+cat <<EOF | kubectl apply -f - --as=jane
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+EOF
+
+# Check audit log for resources named foo
+docker exec -i kind-control-plane cat /var/log/kubernetes/kube-apiserver-audit.log >audit.log
+cat audit.log | jq 'select(.objectRef.name == "foo")' | less

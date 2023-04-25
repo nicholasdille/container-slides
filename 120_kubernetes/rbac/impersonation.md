@@ -24,7 +24,7 @@ Impersonation to admin per namespace
 
 ---
 
-## Demo: Impersonation
+## Demo: Impersonation [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/impersonation.demo "impersonation.demo")
 
 ![](120_kubernetes/rbac/demo.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
 

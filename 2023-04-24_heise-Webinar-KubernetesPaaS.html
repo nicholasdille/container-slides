@@ -36,7 +36,7 @@
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: data-background="images/chuttersnap-fN603qcEA7g-unsplash.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
 
-# Kubernetes<br/>Platform-as-a-Service
+# Kubernetes Security<br/>Platform-as-a-Service
 
 *Nicholas Dille, Haufe Group*
 
@@ -52,62 +52,144 @@
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Kubernetes Platform
+
+Kubernetes is an ops platform
+
+Requires interface between dev and ops discipline
+
+![](120_kubernetes/security.drawio.svg) <!-- .element: style="width: 70%; padding-top: 0.5em;" -->
+
+### Flavours
+
+Cluster-as-a-Service
+
+Namespace-as-a-Service
+
+---
+
+## Operational responsibility
+
+Who owns the Kubernetes platform?
+
+![](120_kubernetes/ownership-product-team.drawio.svg) <!-- .element: style="float: right; width: 35%; padding-top: 0.5em;" -->
+
+### Inside team
+
+Vague separation of concerns
+
+Administrative permissions available to all team members
+
+![](120_kubernetes/ownership-platform-team.drawio.svg) <!-- .element: style="float: right; width: 35%; padding-top: 0.5em;" -->
+
+### Outside team
+
+Strict separation of concerns
+
+Delegation of necessary permissions
+
+---
+
 ## Security
 
-XXX
+<i class="fa-duotone fa-shield-keyhole fa-8x"></i> <!-- .element: style="float: right;" -->
+
+Omnipresent topic
+
+### Many aspects
+
+Separation of concerns
+
+Isolation of components
+
+Vulnerability tracking
+
+Automated updates
+
+Dependency updates
 
 ---
 
 ## Agenda
 
-Part 1: Kubernetes Platform-as-a-Service (2023-04-24)
+Part 1: Platform-as-a-Service (2023-04-24)
 
 - <span class="fa-li"><i class="fa-duotone fa-object-ungroup"></i></span> Namespaces
 - <span class="fa-li"><i class="fa-duotone fa-scale-balanced"></i></span> RBAC and <i class="fa-duotone fa-people-arrows"></i> Impersonation
-- <span class="fa-li"><i class="fa-duotone fa-walkie-talkie"></i></span> Default Service Accounts
+- <span class="fa-li"><i class="fa-duotone fa-user-police-tie"></i></span> Service Accounts
 - <span class="fa-li"><i class="fa-duotone fa-castle"></i></span> Pod Security Standards
 
 <!-- .element: class="fa-ul" -->
 
-Part 2: Kubernetes Network Policies (2023-05-03) <!-- .element: style="color: grey;" -->
+Part 2: Network Policies (2023-05-03) <!-- .element: style="color: grey;" -->
 
-Part 3: Kubernetes Policies (2023-05-10) <!-- .element: style="color: grey;" -->
+Part 3: Policies (2023-05-10) <!-- .element: style="color: grey;" -->
 
-Part 4: Kubernetes Supply Chain (2023-05-17) <!-- .element: style="color: grey;" -->
+Part 4: Supply Chain Security (2023-05-17) <!-- .element: style="color: grey;" -->
 
 ### Hourly breaks <i class="fa fa-mug-hot"></i>
 </textarea></section>
 
-<!-- DONE -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-object-ungroup"></i> Namespaces
+</textarea></section>
 <section data-markdown="120_kubernetes/namespaces/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!-- DONE -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-scale-balanced"></i> Role-Based Access Control
+</textarea></section>
 <section data-markdown="120_kubernetes/rbac/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!-- DONE -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-people-arrows"></i> RBAC Impersonation
+</textarea></section>
 <section data-markdown="120_kubernetes/rbac/impersonation.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!-- DONE -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-user-police-tie"></i> Service Accounts
+</textarea></section>
 <section data-markdown="120_kubernetes/rbac/service_account.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!-- DONE -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-file-certificate"></i> Certificate Authentication
+</textarea></section>
 <section data-markdown="120_kubernetes/rbac/certificate_auth.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!-- TODO -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-shoe-prints"></i> Auditing
+</textarea></section>
 <section data-markdown="120_kubernetes/rbac/audit.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!-- DONE -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-castle"></i> Pod Security Standards
+</textarea></section>
 <section data-markdown="120_kubernetes/pod_security_standards/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 - <span class="fa-li"><i class="fa-duotone fa-object-ungroup"></i></span> Namespaces do not provide hard boundaries
-- <span class="fa-li"><i class="fa-duotone fa-magnifying-glass"></i></span> RBAC is hard to control
-- <span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> RBAC impersonation protect from [Flüchtigkeitsfehler]
-- <span class="fa-li"><i class="fa-duotone fa-user-police-tie"></i></span> Pod Security can be enforced
+- <span class="fa-li"><i class="fa-duotone fa-scale-balanced"></i></span> RBAC is hard to control
+- <span class="fa-li"><i class="fa-duotone fa-people-arrows"></i></span> RBAC impersonation protect from mistakes
+- <span class="fa-li"><i class="fa-duotone fa-shoe-prints"></i></span> Auditing helps to find loop holes
+- <span class="fa-li"><i class="fa-duotone fa-castle"></i></span> Pod Security can be enforced
 
 <!-- .element: class="fa-ul" -->
+
+### Upcoming webinars
+
+2023-05-03 - Network Policies
+
+2023-05-10 - Policies
+
+2023-05-17 - Supply Chain Security
 </textarea></section>
 
 </div>

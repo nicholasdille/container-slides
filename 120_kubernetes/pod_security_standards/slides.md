@@ -66,7 +66,7 @@ No enforce but audit = succeed but learn about possible outcome
 
 ---
 
-## Demo: Pod Security Standard
+## Demo: Pod Security Standard [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/pod_security_standards/namespace.demo "namespace.demo")
 
 Opt-in per namespace
 
