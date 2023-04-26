@@ -1,4 +1,4 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="381px" height="111px" viewBox="-0.5 -0.5 381 111" content="&lt;mxfile&gt;&lt;diagram id=&quot;epBbZ81YE0jIulZV_Z3Y&quot; name=&quot;Page-1&quot;&gt;7VZNj5swEP01XCvAIeTaJPtxaVUph7ZHC0/AqmGQcQL019eEcQBBVrvabXvY5YCYNzPG894zicd2efOgeZl9QQHKC33ReGzvhWG0Wdl7B7Q9EDsg1VL0UDAAB/kbCPQJPUkB1aTQICojyymYYFFAYiYY1xrradkR1fStJU9hBhwSrubodylM1qObyB/wR5Bp5t4c+JTJuSsmoMq4wHoEsTuP7TSi6Z/yZgeq487x0vfd38heN6ahMM9pCPuGM1cnmu0rz6EqeQIdqVAZWrIyrZte46kQ0C0QeGxbZ9LA4dLA9rWV22KZyRWlj1KpHSrUNi6wsEXbymj8BQ70QnZ/ubpiLMwSfgZtpKX/s5JpYXMGS6ombwRrG89np7137dCMIOLiATAHo1tb4rKMdCFjhiuK60HmwMmcTSUme5G10uvaA/v2gQRYFmMzoxqE9R2FxN6IWzunbn/YwHfBzy74FLlw34yT+5aiWzQ/LcyzqK7wpBPafEQnk+sUqCruoW6sJ+XQoLiR5+lxew210czn31Bcjj6+zt8vN/PCifgbTl5FUydvFpwcLjg5egMjrz++KmMt2Pp/flXi92Z9Fv8769tw+LG+5Eb/eNjdHw==&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="381px" height="111px" viewBox="-0.5 -0.5 381 111" content="&lt;mxfile&gt;&lt;diagram id=&quot;epBbZ81YE0jIulZV_Z3Y&quot; name=&quot;Page-1&quot;&gt;5VZNU4MwEP01XB0gpe1VWz8uOs70oB4zZIWMgWVCWsBfbygbCwNWHb8O9tDhvd0N2bcvaT22yupLzYv0GgUoL/RF7bG1F4azxdJ+t0TjiKAjEi1FR/WIjXwGIn1it1JAOUg0iMrIYkjGmOcQmwHHtcZqmPaIavjWgicwIjYxV2P2TgqTduwy8g/8FcgkdW8OfIpk3CUTUaZcYNWj2LnHVhrRdE9ZvQLVaud06eou3oi+bkxDbj5SEHYFO6621NsNz6AseAytqFAaWrI0jete4zYX0C4QeOysSqWBzb6ArSs7bsulJlMUfpRKrVChtjjH3CadlUbjEzjSC9nF/tMmY26m+B1oI638p0omuY0ZLCibvBHMLR73Tntvy6HuUaTFJWAGRjc2xUUZzYWMGc4IV4cxB27M6XDEZC+yVvK69kF9+0ADmB7GciQ1COs7gqReT1vbp27uLfAdeGjBSeTguu4H1w2ht2Q+PpgPSV3iVse0+YhOJtcJUNaio9q2jo5Dg+JG7obH7SvSRiOf36LYH338mr8/b+aJE/ETTp5FQycvJ5wcTjg5+gYjz9+9VcL/dKuw+V/eKov/Zn22+D3rW3j4sd7Hev942PkL&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
         <rect x="0" y="0" width="150" height="110" rx="16.5" ry="16.5" fill="none" stroke="#ffffff" pointer-events="all"/>
@@ -44,13 +44,13 @@
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 148px; height: 1px; padding-top: 7px; margin-left: 231px;">
                         <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
                             <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
-                                Namespace test1
+                                Namespace test2
                             </div>
                         </div>
                     </div>
                 </foreignObject>
                 <text x="305" y="23" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle">
-                    Namespace test1
+                    Namespace test2
                 </text>
             </switch>
         </g>

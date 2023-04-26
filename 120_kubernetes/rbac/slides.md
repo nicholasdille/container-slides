@@ -14,7 +14,7 @@ Role and RoleBinding are namespaced
 
 ClusterRole and ClusterRoleBinding are cluster-wide
 
-RoleBindings can reference a ClusteRole which is applied to a namespace
+RoleBindings can reference a ClusterRole which is applied to a namespace
 
 ---
 

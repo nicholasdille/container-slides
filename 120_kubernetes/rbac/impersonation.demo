@@ -19,7 +19,7 @@ TOKEN="$(
     | base64 -d
 )"
 kubectl config set-credentials test-reader --token=${TOKEN}
-kubectl config set-context kind-test --user=test-reader
+kubectl config set-context kind-test --user=test-reader --cluster=kind-kind
 
 # Switch context
 kubectl config use-context kind-test

@@ -1,7 +1,7 @@
 # Certificate authentication
 
 # Create key pair
-openssl genrsa -out save.key 4096
+openssl genrsa -out dave.key 4096
 
 # Create OpenSSL config
 cat <<EOF >csr.cnf

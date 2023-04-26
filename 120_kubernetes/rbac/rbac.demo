@@ -5,8 +5,8 @@ cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: default
   name: pod-reader
+  namespace: default
 rules:
 - apiGroups:
   - ""
