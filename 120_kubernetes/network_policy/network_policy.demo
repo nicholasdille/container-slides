@@ -1,0 +1,201 @@
+# Network policy
+
+# Create two namespaces
+kubectl create namespace test1
+kubectl label namespace test1 app=test1
+kubectl create namespace test2
+kubectl label namespace test2 app=test2
+kubectl get namespaces
+
+# Create pods and services
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  namespace: test1
+  labels:
+    app: web
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: test1
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+  - name: 
+    port: 80
+    protocol: TCP
+    targetPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  namespace: test2
+  labels:
+    app: web
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: test2
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+  - name: 
+    port: 80
+    protocol: TCP
+    targetPort: 80
+EOF
+
+# Check pods and services
+kubectl --namespace test1 get all
+kubectl --namespace test2 get all
+
+# Test IP connectivity between test1 and test2
+TEST1_IP="$(kubectl --namespace test1 get pod web -o json | jq --raw-output '.status.podIP')"
+TEST2_IP="$(kubectl --namespace test2 get pod web -o json | jq --raw-output '.status.podIP')"
+kubectl --namespace test1 exec -it web -- curl -s "http://${TEST2_IP}"
+kubectl --namespace test2 exec -it web -- curl -s "http://${TEST1_IP}"
+
+# Test connectivity using DNS between test1 and test2
+kubectl --namespace test1 exec -it web -- curl -s http://web.test2
+kubectl --namespace test2 exec -it web -- curl -s http://web.test1
+
+# Create network policy
+cat <<EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test1-deny-ingress
+  namespace: test1
+spec:
+  podSelector: {}
+  policyTypes:
+  - Egress
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test1-http-test2
+  namespace: test1
+spec:
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          app: test2
+    ports:
+    - protocol: TCP
+      port: 80
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          app: test2
+    ports:
+    - protocol: TCP
+      port: 80
+EOF
+
+# Test connectivity between test1 and test2
+TEST1_IP="$(kubectl --namespace test1 get pod web -o json | jq --raw-output '.status.podIP')"
+TEST2_IP="$(kubectl --namespace test2 get pod web -o json | jq --raw-output '.status.podIP')"
+kubectl --namespace test1 exec -it web -- curl -s "http://${TEST2_IP}"
+kubectl --namespace test2 exec -it web -- curl -s "http://${TEST1_IP}"
+kubectl --namespace test1 exec -it web -- curl -s http://web.test2
+kubectl --namespace test2 exec -it web -- curl -s http://web.test1
+
+# Allow DNS requests
+cat <<EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test1-allow-dns
+  namespace: test1
+spec:
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+    - podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - protocol: UDP
+      port: 53
+EOF
+
+# Test connectivity between test1 and test2
+TEST1_IP="$(kubectl --namespace test1 get pod web -o json | jq --raw-output '.status.podIP')"
+TEST2_IP="$(kubectl --namespace test2 get pod web -o json | jq --raw-output '.status.podIP')"
+kubectl --namespace test1 exec -it web -- curl -s "http://${TEST2_IP}"
+kubectl --namespace test2 exec -it web -- curl -s "http://${TEST1_IP}"
+kubectl --namespace test1 exec -it web -- curl -s http://web.test2
+kubectl --namespace test2 exec -it web -- curl -s http://web.test1
+
+# Allow Kubernetes API
+cat <<EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test1-allow-k8s-api
+  namespace: test1
+spec:
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - ipBlock:         
+        cidr: 10.96.0.1/32
+    ports:     
+    - protocol: TCP       
+      port: 443
+  - to:
+    - ipBlock:
+        cidr: 172.18.0.5/32
+    ports:
+    - protocol: TCP
+      port: 6443
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+    - podSelector:
+        matchLabels:
+          component: kube-apiserver
+    ports:
+    - protocol: TCP
+      port: 6443
+EOF
+
+# Test connectivity between test1 and test2
+TEST1_IP="$(kubectl --namespace test1 get pod web -o json | jq --raw-output '.status.podIP')"
+TEST2_IP="$(kubectl --namespace test2 get pod web -o json | jq --raw-output '.status.podIP')"
+kubectl --namespace test1 exec -it web -- curl -s "http://${TEST2_IP}"
+kubectl --namespace test2 exec -it web -- curl -s "http://${TEST1_IP}"
+kubectl --namespace test1 exec -it web -- curl -s http://web.test2
+kubectl --namespace test2 exec -it web -- curl -s http://web.test1
