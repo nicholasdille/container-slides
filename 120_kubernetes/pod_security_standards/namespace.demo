@@ -22,7 +22,7 @@ spec:
       allowPrivilegeEscalation: true
 EOF
 
-# Deploy pod
+# Deploy pod (later runtime failure)
 cat <<EOF | kubectl --namespace test apply -f -
 apiVersion: v1
 kind: Pod
@@ -41,6 +41,33 @@ spec:
         drop:
         - ALL
       runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+EOF
+
+# Check that runtime fails
+kubectl get pods
+
+# Deploy pod with fix
+cat <<EOF | kubectl --namespace test apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      runAsUser: 1000
       seccompProfile:
         type: RuntimeDefault
 EOF

@@ -2,7 +2,9 @@
 
 Pods can access the Kubernetes API
 
-Special service called `kubernetes` present in every namespace
+Special service called `kubernetes` present in `default` namespace
+
+Pods get environment variables to find API endpoint
 
 Pods automatically mounts service account token
 
@@ -46,6 +48,8 @@ automountServiceAccountToken: false
 #...
 ```
 
+Can be overridden by specifying `automountServiceAccountToken: false` in the pod spec
+
 ### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
@@ -55,6 +59,16 @@ automountServiceAccountToken: false
 Some services require specific permissions
 
 Use RBAC to provide only required permissions
+
+Acces Kubernetes API using environment variables:
+
+```bash
+$ printenv | grep KUBERNETES_ | sort
+#...
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+```
 
 ### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
@@ -84,3 +98,19 @@ EOF
 ```
 
 ### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
+
+---
+
+## Deleting a service account
+
+Access to Kubernetes API stops working immediately
+
+Credentials remain accessible by pod
+
+### Recovery is not easy
+
+Not enough to create a new service account with the same name
+
+Issued token does not work for new service account
+
+Restart of pod is required

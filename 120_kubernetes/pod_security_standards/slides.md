@@ -20,7 +20,6 @@ spec:
       allowPrivilegeEscalation: <boolean>
       capabilities: <Object>
       privileged: <boolean>
-      readOnlyRootFilesystem: <boolean>
       runAsGroup: <integer>
       runAsNonRoot: <boolean>
       runAsUser: <integer>
