@@ -1,0 +1,44 @@
+# Headless service
+
+# Deploy pods and service
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: nginx:stable
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  clusterIP: None
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+EOF
+
+# Check DNS for service (could not resolve)
+kubectl get pod --selector app=web --output name | head -n 1 | xargs -I{} kubectl exec {} -- curl -sv http://web
+
+# Check DNS for pods
+kubectl get pod --selector app=web --output name | head -n 1 | cut -d/ -f2 | xargs -I{} kubectl exec {} -- curl -sv http://{}

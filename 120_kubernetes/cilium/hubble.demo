@@ -1,12 +1,10 @@
 # Hubble
 
-# Generate load
+# Generate load (check namespace default in hubble)
 curl --silent --location https://github.com/cilium/cilium/raw/main/examples/minikube/http-sw-app.yaml \
 | kubectl apply -f -
 kubectl exec xwing -- curl -s -XPOST deathstar.default.svc.cluster.local/v1/request-landing
 kubectl exec tiefighter -- curl -s -XPOST deathstar.default.svc.cluster.local/v1/request-landing
 
-# Port forwarding
-kubectl port-forward -n cilium-system svc/hubble-ui --address 0.0.0.0 --address :: 12000:80
-
-# XXX
+# Complex service map (check namespace cilium-test in hubble)
+cilium --namespace cilium-system connectivity test

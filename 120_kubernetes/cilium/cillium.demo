@@ -1,3 +1,7 @@
 # Cilium
 
-# XXX
+# Status
+cilium --namespace cilium-system status
+
+# View config
+cilium --namespace cilium-system config view

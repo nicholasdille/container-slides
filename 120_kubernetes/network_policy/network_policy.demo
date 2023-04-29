@@ -169,33 +169,12 @@ spec:
   - Egress
   egress:
   - to:
-    - ipBlock:         
-        cidr: 10.96.0.1/32
-    ports:     
-    - protocol: TCP       
-      port: 443
-  - to:
-    - ipBlock:
-        cidr: 172.18.0.5/32
-    ports:
-    - protocol: TCP
-      port: 6443
-  - to:
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: kube-system
-    - podSelector:
-        matchLabels:
-          component: kube-apiserver
+    #- ipBlock:
+    #    cidr: 172.18.0.5/24
     ports:
     - protocol: TCP
       port: 6443
 EOF
 
 # Test connectivity between test1 and test2
-TEST1_IP="$(kubectl --namespace test1 get pod web -o json | jq --raw-output '.status.podIP')"
-TEST2_IP="$(kubectl --namespace test2 get pod web -o json | jq --raw-output '.status.podIP')"
-kubectl --namespace test1 exec -it web -- curl -s "http://${TEST2_IP}"
-kubectl --namespace test2 exec -it web -- curl -s "http://${TEST1_IP}"
-kubectl --namespace test1 exec -it web -- curl -s http://web.test2
-kubectl --namespace test2 exec -it web -- curl -s http://web.test1
+kubectl --namespace test1 exec -it web -- bash -c 'curl -sv https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT_HTTPS}'
