@@ -72,55 +72,49 @@ Part 4: Supply Chain Security (2023-05-17) <!-- .element: style="color: grey;" -
 ### Hourly breaks <i class="fa fa-mug-hot"></i>
 </textarea></section>
 
-<section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-<!-- SLIDES -->
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-XXX access to Kubernetes API?
+## Why Network Policies
+
+Kubernetes does not control traffic inter-pod communication
+
+### Use cases for a cluster firewall
+
+Reduce attack surface
+
+XXX
+
+Prevent apps from calling home
 </textarea></section>
+
+<section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center" -->
 ## <i class="fa-duotone fa-chart-network"></i> Kubernetes Networking
 </textarea></section>
-<!-- DONE -->
 <section data-markdown="120_kubernetes/network/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<!-- DONE -->
 <section data-markdown="120_kubernetes/network/overlay.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center" -->
 ## <i class="fa-duotone fa-person-military-pointing"></i> DNS in Kubernetes
 </textarea></section>
-<!-- DONE -->
 <section data-markdown="120_kubernetes/dns/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<!-- TODO -->
-<section data-markdown="120_kubernetes/dns/tracee.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
+<!--<section data-markdown="120_kubernetes/dns/tracee.md" data-separator="^---$" data-separator-vertical="^--$"></section>-->
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center" -->
 ## <i class="fa-duotone fa-shield-check"></i> Network Policy
 </textarea></section>
-<!-- TODO -->
 <section data-markdown="120_kubernetes/network_policy/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center" -->
 ![](images/cilium.svg) <!-- .element: style="width: 25%" -->
 </textarea></section>
-<!-- TODO -->
 <section data-markdown="120_kubernetes/cilium/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-<!-- TODO -->
 <section data-markdown="120_kubernetes/cilium/network_policy.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-<!-- TODO -->
 <section data-markdown="120_kubernetes/cilium/hubble.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-
-<!-- TODO -->
 <section data-markdown="120_kubernetes/cilium/monitoring.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -130,7 +124,7 @@ XXX access to Kubernetes API?
 - <span class="fa-li"><i class="fa-duotone fa-puzzle-piece-simple"></i></span> Choosing a CNI plugin is hard
 - <span class="fa-li"><i class="fa-duotone fa-monitor-waveform"></i></span> No audit to understand network traffic
 - <span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Network policies allow traffic explicitly
-- <span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Cilium provides valuable features
+- <span class="fa-li"><img src="images/cilium.svg" style="height: 1em; width: 1em; object-fit: cover; object-position: left top;" /></span> Cilium provides valuable features
 
 <!-- .element: class="fa-ul" -->
 </textarea></section>

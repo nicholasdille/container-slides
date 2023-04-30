@@ -36,16 +36,20 @@ No audit logging
 
 ## CNI plugins
 
-XXX
+### No support for network policy
 
-### kubenet
-
-No support for network policies
+kubenet, [flannel](https://github.com/flannel-io/flannel)
 
 ### Calico
 
-XXX [](https://docs.tigera.io/calico/latest/network-policy/get-started/calico-policy/calico-network-policy)
+Pluggable data planes [](https://www.tigera.io/project-calico/) and extended network policies [](https://docs.tigera.io/calico/latest/network-policy/get-started/calico-policy/calico-network-policy)
+
+Calico the hard way [](https://docs.tigera.io/calico/latest/getting-started/kubernetes/hardway/overview)
+
+### Canel
+
+Flannel for networking and Calico for policy [](https://docs.tigera.io/calico/latest/getting-started/kubernetes/flannel/install-for-flannel#installing-calico-for-policy-and-flannel-aka-canal-for-networking)
 
 ### Cilium
 
-XXX [](https://docs.cilium.io/en/stable/security/policy/)
+Based on eBPF [](https://ebpf.io/) with extended network policies [](https://docs.cilium.io/en/stable/security/policy/) and observability [](https://docs.cilium.io/en/stable/gettingstarted/hubble_intro/)

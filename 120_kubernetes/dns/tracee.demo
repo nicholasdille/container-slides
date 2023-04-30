@@ -1,0 +1,12 @@
+# tracee
+
+# Trace all DNS requests/responses
+docker run --name tracee --rm -t \
+    --pid=host --cgroupns=host --privileged \
+    -v /etc/os-release:/etc/os-release-host \
+    -v /boot/config-$(uname -r):/boot/config-$(uname -r) \
+    -e LIBEBPFGO_OSRELEASE_FILE=/etc/os-release-host \
+    aquasec/tracee:$(uname -m) trace \
+        --trace event=net_packet_dns_request,net_packet_dns_response \
+        --output format:json \
+| jq -c

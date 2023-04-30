@@ -59,3 +59,9 @@ No cluster IP and no DNS record
 No load balancing
 
 DNS records for all matched pods [](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services)
+
+---
+
+## Demo: Headless Services [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/dns/headless.demo "headless.demo")
+
+Understand how they work
