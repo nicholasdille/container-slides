@@ -107,28 +107,13 @@ kubectl --namespace test2 exec -it web -- curl -s "http://${TEST1_IP}"
 kubectl --namespace test1 exec -it web -- curl -s http://web.test2
 kubectl --namespace test2 exec -it web -- curl -s http://web.test1
 
-# Check cilium policy enforcement (XXX FIX)
-kubectl --namespace cilium-system get pods --selector app.kubernetes.io/name=cilium-agent --output name \
-| head -n 1 \
+# Check correct cilium-agent
+NODE="$(kubectl --namespace test1 get pod web --output json | jq --raw-output '.spec.nodeName')"
+kubectl --namespace cilium-system get pod --selector app.kubernetes.io/name=cilium-agent --output json \
+| jq --raw-output --arg node "${NODE}" '.items[] | select(.spec.nodeName == $node) | .metadata.name' \
 | xargs -I{} \
-    kubectl --namespace cilium-system exec {} \
+    kubectl --namespace cilium-system exec {} -- \
         cilium endpoint list
-
-# Deny all
-cat <<EOF | kubectl apply -f -
-apiVersion: "cilium.io/v2"
-kind: CiliumNetworkPolicy
-metadata:
-  name: deny-all
-  namespace: test1
-spec:
-  endpointSelector:
-    matchLabels:
-      app: web
-      io.kubernetes.pod.namespace: test1
-  egress:
-  - {}
-EOF
 
 # Allow DNS
 cat <<EOF | kubectl apply -f -
@@ -143,17 +128,33 @@ spec:
       app: web
       io.kubernetes.pod.namespace: test1
   egress:
-  - toServices:
-    - k8sService:
-        serviceName: kube-dns
-        namespace: kube-system
-  - toPorts:
+  - toEndpoints:
+    - matchLabels:
+        k8s-app: kube-dns
+        io.kubernetes.pod.namespace: kube-system
+    toPorts:
     - ports:
       - port: "53"
         protocol: UDP
 EOF
 
-# Allow HTTP
+# Check correct cilium-agent
+NODE="$(kubectl --namespace test1 get pod web --output json | jq --raw-output '.spec.nodeName')"
+kubectl --namespace cilium-system get pod --selector app.kubernetes.io/name=cilium-agent --output json \
+| jq --raw-output --arg node "${NODE}" '.items[] | select(.spec.nodeName == $node) | .metadata.name' \
+| xargs -I{} \
+    kubectl --namespace cilium-system exec {} -- \
+        cilium endpoint list
+
+# Check correct cilium-agent
+NODE="$(kubectl --namespace test1 get pod web --output json | jq --raw-output '.spec.nodeName')"
+kubectl --namespace cilium-system get pod --selector app.kubernetes.io/name=cilium-agent --output json \
+| jq --raw-output --arg node "${NODE}" '.items[] | select(.spec.nodeName == $node) | .metadata.name' \
+| xargs -I{} \
+    kubectl --namespace cilium-system exec {} -- \
+        cilium monitor --type drop
+
+# Allow outgoing HTTP
 cat <<EOF | kubectl apply -f -
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
@@ -166,21 +167,100 @@ spec:
       app: web
       io.kubernetes.pod.namespace: test1
   egress:
-  - toServices:
-    - k8sService:
-        serviceName: web
-        namespace: test2
-  - toPorts:
+  - toEndpoints:
+    - matchLabels:
+        app: web
+        io.kubernetes.pod.namespace: test2
+    toPorts:
     - ports:
       - port: "80"
         protocol: TCP
 EOF
 
-# XXX http
-#
+# Allow incoming HTTP
+cat <<EOF | kubectl apply -f -
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-test2-to-test3
+  namespace: test3
+spec:
+  endpointSelector:
+    matchLabels:
+      app: web
+      io.kubernetes.pod.namespace: test3
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        app: web
+        io.kubernetes.pod.namespace: test2
+    toPorts:
+    - ports:
+      - port: "80"
+        protocol: TCP
+EOF
 
-# XXX DNS names
-#
+# Filter on layer7
+cat <<EOF | kubectl apply -f -
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-test2-to-test3
+  namespace: test3
+spec:
+  endpointSelector:
+    matchLabels:
+      app: web
+      io.kubernetes.pod.namespace: test3
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        app: web
+        io.kubernetes.pod.namespace: test2
+    toPorts:
+    - ports:
+      - port: "80"
+        protocol: TCP
+      rules:
+        http:
+        - method: GET
+          path: /
+EOF
+
+# Filter DNS requests
+kubectl -n test1 get cnp -o name | xargs -I{} kubectl -n test1 delete {}
+cat <<EOF | kubectl apply -f -
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-test1-test2
+  namespace: test1
+spec:
+  endpointSelector:
+    matchLabels:
+      app: web
+      io.kubernetes.pod.namespace: test1
+  egress:
+  - toEndpoints:
+    - matchLabels:
+        k8s-app: kube-dns
+        io.kubernetes.pod.namespace: kube-system
+    toPorts:
+    - ports:
+      - port: "53"
+        protocol: UDP
+      rules:
+        dns:
+        - matchName: "web.test2.svc.cluster.local"
+  - toEndpoints:
+    - matchLabels:
+        app: web
+        io.kubernetes.pod.namespace: test2
+    toPorts:
+    - ports:
+      - port: "80"
+        protocol: TCP
+EOF
 
 # XXX cluster-wide
 #

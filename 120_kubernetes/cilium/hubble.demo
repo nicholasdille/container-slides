@@ -1,10 +1,19 @@
 # Hubble
 
+# CLI
+kubectl --namespace cilium-system port-forward svc/hubble-relay 4245:80 &
+hubble observe
+hubble observe --http-method GET
+
+# Web UI
+xdg-open hubble
+
 # Generate load (check namespace default in hubble)
 curl --silent --location https://github.com/cilium/cilium/raw/main/examples/minikube/http-sw-app.yaml \
 | kubectl apply -f -
 kubectl exec xwing -- curl -s -XPOST deathstar.default.svc.cluster.local/v1/request-landing
 kubectl exec tiefighter -- curl -s -XPOST deathstar.default.svc.cluster.local/v1/request-landing
+kubectl exec tiefighter -- curl -s -XPUT deathstar.default.svc.cluster.local/v1/exhaust-port
 
 # Complex service map (check namespace cilium-test in hubble)
 cilium --namespace cilium-system connectivity test
