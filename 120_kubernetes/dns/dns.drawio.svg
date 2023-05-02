@@ -1,0 +1,87 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="201px" height="411px" viewBox="-0.5 -0.5 201 411" content="&lt;mxfile&gt;&lt;diagram id=&quot;-wUs2ldFOnnGUTSMFu_x&quot; name=&quot;Page-1&quot;&gt;zVZNc5swEP01HKvhwybJscFxe2nTGR/aHBVYg6YCUUkY3F9fASsDIXGZNO7EB1v7tLtCu+8tdoIobz5JWmZfRALc8d2kcYKN4/ue56/MT4scLbK66pFUsgSxAdix34Cgi2jFElATRy0E16ycgrEoCoj1BKNSinrqthd8empJU5gBu5jyOfqdJTrr0eu1O+CfgaWZPdlzcSen1hkBldFE1CMouHOCSAqh+1XeRMDb6tm69HHbF3ZPDyah0EsCsBNKH+3dMp1zs/Kc4NbkkMcfxnDJ2poPrWmNTTOxjmjtRaGxaV6IdiS4kN0Jwbb7GFxpKX7CczvQMD062FgP9pnMeji2Neyp/U0gmbVuqAVCSlQyRi8f6UNlCugVnPpgGAwiB3M34yKBU80O0+wUmZSe/IZimwXW+/na49EHyitM+k0kjh9y8xy3j9KsUt3da0BGjQp/VS1JuuJ+UF21PxoHLyybPgj3hzRb0LH5lqAEPxCjjX0X8ibZC5qDAnmANo3nkpuQuMTKdcQuKaoigQSbWWdMw66kXTNqMywMNuLfnnFu2VGIAs5S5iWSPSUjFh2khuY8UeYUwIAgxIvh/LpGsx5mgW8Vn43mwI3776QJLyHY81VdIuXXiS+Yi2/9n8QXzMQXCQmbr7vzAuwRog4xiXmlNEjChXkxtG8RKfL2ndPD3TP3d1VLUkYmqovv5dklKIVS7NH0eUH8vc5A1kwBIeQdqo7KGM0LafAkuL+J0Lt6AxWuZ+y5X0ScBUN4Nk/7wWumKfFJ8A5be4FmrpY28xUTtS3+6e9Vtzf6lxrc/QE=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 100 90 L 100 113.63" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 100 118.88 L 96.5 111.88 L 100 113.63 L 103.5 111.88 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="0" y="0" width="200" height="90" rx="13.5" ry="13.5" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 45px; margin-left: 1px;">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Pod
+                                <br/>
+                                <br style="font-size: 16px;"/>
+                                /etc/resolv.conf:
+                                <br style="font-size: 16px;"/>
+                                nameserver 10.96.0.10
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="50" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle">
+                    Pod...
+                </text>
+            </switch>
+        </g>
+        <path d="M 100 290 L 100 313.63" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 100 318.88 L 96.5 311.88 L 100 313.63 L 103.5 311.88 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="0" y="120" width="200" height="170" rx="10.2" ry="10.2" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 205px; margin-left: 1px;">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                CoreDNS
+                                <br/>
+                                <br/>
+                                .svc.cluster.local from cluster resources
+                                <br/>
+                                <br/>
+                                Custom resolver possible
+                                <br/>
+                                <br/>
+                                Otherwise...
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="210" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle">
+                    CoreDNS...
+                </text>
+            </switch>
+        </g>
+        <rect x="0" y="320" width="200" height="90" rx="13.5" ry="13.5" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 365px; margin-left: 1px;">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                OS
+                                <br/>
+                                <br/>
+                                /etc/resolv.conf:
+                                <br/>
+                                nameserver: 10.1.2.3
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="370" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle">
+                    OS...
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
+</svg>

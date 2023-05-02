@@ -1,8 +1,8 @@
 ## DNS in Kubernetes
 
-Kubernetes DNS model [](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
+![](120_kubernetes/dns/dns.drawio.svg) <!-- .element: style="float: right; width: 25%;" -->
 
-XXX IMAGE
+Kubernetes DNS model [](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 
 Usually CoreDNS is used for cluster DNS
 

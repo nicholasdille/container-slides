@@ -53,3 +53,13 @@ Flannel for networking and Calico for policy [](https://docs.tigera.io/calico/la
 ### Cilium
 
 Based on eBPF [](https://ebpf.io/) with extended network policies [](https://docs.cilium.io/en/stable/security/policy/) and observability [](https://docs.cilium.io/en/stable/gettingstarted/hubble_intro/)
+
+---
+
+## Demo
+
+![](120_kubernetes/network_policy/network_policy.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
+
+Filter connections between them
+
+XXX
