@@ -96,16 +96,26 @@ EOF
 # Check pods and services
 kubectl --namespace test1 get all
 kubectl --namespace test2 get all
+kubectl --namespace test3 get all
 
 # Test IP connectivity between test1 and test2
 TEST1_IP="$(kubectl --namespace test1 get pod web -o json | jq --raw-output '.status.podIP')"
 TEST2_IP="$(kubectl --namespace test2 get pod web -o json | jq --raw-output '.status.podIP')"
+TEST3_IP="$(kubectl --namespace test3 get pod web -o json | jq --raw-output '.status.podIP')"
 kubectl --namespace test1 exec -it web -- curl -s "http://${TEST2_IP}"
+kubectl --namespace test1 exec -it web -- curl -s "http://${TEST3_IP}"
 kubectl --namespace test2 exec -it web -- curl -s "http://${TEST1_IP}"
+kubectl --namespace test2 exec -it web -- curl -s "http://${TEST3_IP}"
+kubectl --namespace test3 exec -it web -- curl -s "http://${TEST1_IP}"
+kubectl --namespace test3 exec -it web -- curl -s "http://${TEST2_IP}"
 
 # Test connectivity using DNS between test1 and test2
 kubectl --namespace test1 exec -it web -- curl -s http://web.test2
+kubectl --namespace test1 exec -it web -- curl -s http://web.test3
 kubectl --namespace test2 exec -it web -- curl -s http://web.test1
+kubectl --namespace test2 exec -it web -- curl -s http://web.test3
+kubectl --namespace test3 exec -it web -- curl -s http://web.test1
+kubectl --namespace test3 exec -it web -- curl -s http://web.test2
 
 # Check correct cilium-agent
 NODE="$(kubectl --namespace test1 get pod web --output json | jq --raw-output '.spec.nodeName')"
@@ -261,6 +271,3 @@ spec:
       - port: "80"
         protocol: TCP
 EOF
-
-# XXX cluster-wide
-#

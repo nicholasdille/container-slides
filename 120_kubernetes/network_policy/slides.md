@@ -6,13 +6,13 @@ Must be implemented by CNI plugin
 
 ### Resource `NetworkPolicy`
 
-Allow all trafic without policies
+Allow all traffic without policies
 
 Deny by default when a policy exists
 
 Policies only allow traffic
 
-Supports layer 3 and 4
+Supports layer 3 and layer 4
 
 There is an editor [](https://editor.networkpolicy.io)
 
@@ -60,6 +60,12 @@ Based on eBPF [](https://ebpf.io/) with extended network policies [](https://doc
 
 ![](120_kubernetes/network_policy/network_policy.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
 
-Filter connections between them
+Filter connections between pods
 
-XXX
+### Egress
+
+Control HTTP from `test1` to `test2`
+
+Requires DNS to work
+
+Enable access to Kubernetes API

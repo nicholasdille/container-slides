@@ -14,12 +14,6 @@ Add DNS server for custom domains [](https://coredns.io/2017/05/08/custom-dns-en
 
 ---
 
-## Demo
-
-XXX https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
-
----
-
 ## Services Internals 1/
 
 Services hide infrastructure

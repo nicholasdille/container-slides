@@ -17,3 +17,7 @@ Host uses source network address translation (SNAT)
 Source IP is replaced by host IP
 
 New source port is selected for mapping to pod
+
+Mapping table for connections is maintained
+
+Response packets are translated back

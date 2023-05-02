@@ -12,4 +12,28 @@ Deny policies [](https://docs.cilium.io/en/stable/security/policy/language/#deny
 
 Host policies [](https://docs.cilium.io/en/stable/security/policy/language/#host-policies)
 
+---
+
 ### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/cilium/network_policy.demo "network_policy.demo")
+
+![](120_kubernetes/cilium/network_policy.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
+
+Check endpoints in cilium agent
+
+Check dropped packets
+
+### Egress
+
+Allow DNS from `test1`
+
+Allow HTTP from `test1` to `test2`
+
+### Ingress
+
+Allow HTTP from `test2` to `test3`
+
+Filter based on HTTP info
+
+### Other
+
+Filter DNS requests
