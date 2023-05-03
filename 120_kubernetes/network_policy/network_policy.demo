@@ -22,6 +22,18 @@ spec:
     image: nginx:stable
 ---
 apiVersion: v1
+kind: Pod
+metadata:
+  name: web2
+  namespace: test1
+  labels:
+    app: web2
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: web
@@ -43,6 +55,18 @@ metadata:
   namespace: test2
   labels:
     app: web
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web2
+  namespace: test1
+  labels:
+    app: web2
 spec:
   containers:
   - name: nginx
