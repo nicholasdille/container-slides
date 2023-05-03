@@ -8,7 +8,7 @@ Usually CoreDNS is used for cluster DNS
 
 DNS record (A) for a service:<br/>`<service>.<namespace>.svc.cluster.local`
 
-DNS record (A) for a pod:<br/>`<1-2-3-4>.<namespace>.pod.cluster.local`
+DNS record (A) for a pod with IP `1.2.3.4`:<br/>`<1-2-3-4>.<namespace>.pod.cluster.local`
 
 Add DNS server for custom domains [](https://coredns.io/2017/05/08/custom-dns-entries-for-kubernetes/)
 
@@ -48,14 +48,19 @@ For example, central database server
 
 ### `ClusterIP=None` (headless service)
 
-No cluster IP and no DNS record
+No cluster IP
 
 No load balancing
 
-DNS records for all matched pods [](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services)
+DNS A records for all matched pods [](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services)
 
 ---
 
 ## Demo: Headless Services [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/dns/headless.demo "headless.demo")
 
 Understand how they work
+
+| Type      | IP  | LB  | DNS                     |
+|-----------|-----|-----|-------------------------|
+| ClusterIP | Yes | No  | Resolves to cluster IP  |
+| None      | No  | Yes | Resolves to all pod IPs |

@@ -53,8 +53,11 @@ spec:
     targetPort: 80
 EOF
 
-# Check DNS for service (could not resolve)
-kubectl get pod --selector app=web --output name | head -n 1 | xargs -I{} kubectl exec {} -- curl -sv http://web
+# Install dig
+kubectl get pod --selector app=web --output name | xargs -I{} kubectl exec {} -- bash -c 'apt-get update && apt-get -y install dnsutils'
 
-# Check DNS for pods
-kubectl get pod --selector app=web --output name | head -n 1 | cut -d/ -f2 | xargs -I{} kubectl exec {} -- curl -sv http://{}
+# Check DNS service web (single A record for cluster IP)
+kubectl get pod --selector app=web --output name | head -n 1 | cut -d/ -f2 | xargs -I{} kubectl exec {} -- dig +short web
+
+# Check DNS service web-headless (one or more A records for pods)
+kubectl get pod --selector app=web --output name | head -n 1 | cut -d/ -f2 | xargs -I{} kubectl exec {} -- dig +short web-headless

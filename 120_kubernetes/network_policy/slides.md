@@ -4,13 +4,19 @@ Firewall for intra-cluster communication [](https://kubernetes.io/docs/concepts/
 
 Must be implemented by CNI plugin
 
-### Resource `NetworkPolicy`
+### Resource `NetworkPolicy` (namespaced)
+
+Network policies are enforced per namespace
 
 Allow all traffic without policies
 
 Deny by default when a policy exists
 
-Policies only allow traffic
+Policies can only allow traffic
+
+Policies are applied using label selector
+
+Ingress and egress are handled separately
 
 Supports layer 3 and layer 4
 

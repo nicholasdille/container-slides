@@ -19,5 +19,3 @@ Costs up to 15% performance
 Check flows from previous demos
 
 Check service map
-
-Filter flows
