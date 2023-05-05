@@ -4,25 +4,170 @@
 kubectl create namespace test
 
 # Rollout policy
-kubectl apply -f pod_security-policy.yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: psa
+  namespace: test
+spec:
+  background: true
+  failurePolicy: Fail
+  validationFailureAction: Enforce
+  rules:
+  - name: restricted
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    validate:
+      podSecurity:
+        level: restricted
+        version: latest
+EOF
 
 # Explore CRD
 kubectl explain policy.spec
 kubectl explain clusterpolicy.spec
 
 # Fail to deploy pod
-kubectl apply -f busybox-privileged.yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-privileged
+  namespace: test
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: true
+EOF
 
 # Deploy failing pod
-kubectl apply -f busybox.yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: test
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+EOF
 
 # Successful deployment
-kubectl apply -f rabbitmq.yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rabbitmq
+  namespace: test
+spec:
+  containers:
+  - name: rabbitmq
+    image: bitnami/rabbitmq:latest
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+EOF
 
 # Test without deployment
+cat <<EOF >pod_security-test.yaml
+name: pod_security-test
+policies:
+- pod_security-policy.yaml
+resources:
+- busybox-privileged.yaml
+- busybox.yaml
+- rabbitmq.yaml
+results:
+- policy: psa
+  rule: restricted
+  kind: Pod
+  resource: busybox-privileged
+  result: pass
+- policy: psa
+  rule: restricted
+  kind: Pod
+  resource: busybox
+  result: pass
+- policy: psa
+  rule: restricted
+  kind: Pod
+  resource: rabbitmq
+  result: pass
+EOF
 kyverno test --file-name pod_security-test.yaml .
 
 # Check PolicyReport resource
-kubectl apply -f pod_security-policyreport.yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: psa-audit
+  namespace: test
+spec:
+  background: true
+  failurePolicy: Fail
+  validationFailureAction: Audit
+  rules:
+  - name: restricted
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    validate:
+      podSecurity:
+        level: restricted
+        version: latest
+---
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: psa-enforce
+  namespace: test
+spec:
+  background: true
+  failurePolicy: Fail
+  validationFailureAction: Enforce
+  rules:
+  - name: baseline
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    validate:
+      podSecurity:
+        level: baseline
+        version: latest
+EOF
 kubectl --namespace test get policyreport
 kubectl --namespace test get policyreport pol-psa -o yaml
