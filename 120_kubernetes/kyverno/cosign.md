@@ -1,4 +1,4 @@
-## Kyverno with cosign
+## Kyverno for image signature validation
 
 XXX
 
