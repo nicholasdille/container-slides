@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-docker-setup --tools=docker,buildx,docker-compose,kind,helm,kubectl,gvisor,cosign,kyverno install
+docker-setup --tools=docker,buildx,docker-compose,kind,helm,kubectl,cosign,kyverno install
 
 kind create cluster
 

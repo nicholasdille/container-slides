@@ -1,24 +1,13 @@
 # Validation of latest tag
 
-# XXX
+# Enforce use of tag other than latest
 cat <<EOF | kubectl apply -f -
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
-  name: disallow-latest-tag
-  annotations:
-    policies.kyverno.io/title: Disallow Latest Tag
-    policies.kyverno.io/category: Best Practices
-    policies.kyverno.io/minversion: 1.6.0
-    policies.kyverno.io/severity: medium
-    policies.kyverno.io/subject: Pod
-    policies.kyverno.io/description: >-
-      The ':latest' tag is mutable and can lead to unexpected errors if the
-      image changes. A best practice is to use an immutable tag that maps to
-      a specific version of an application Pod. This policy validates that the image
-      specifies a tag and that it is not called `latest`.      
+  name: disallow-latest-tag   
 spec:
-  validationFailureAction: audit
+  validationFailureAction: Enforce
   background: true
   rules:
   - name: require-image-tag
@@ -45,4 +34,34 @@ spec:
         spec:
           containers:
           - image: "!*:latest"
+EOF
+
+# Fail to deploy pod
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+EOF
+
+# Succeed to deploy pod
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox:1.36
+    args:
+    - sleep
+    - "1000000"
 EOF

@@ -1,24 +1,13 @@
 # Mutation for Labels
 
-# XXX
+# Enforce labels
 cat <<EOF | kubectl apply -f -
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
   name: require-labels
-  annotations:
-    policies.kyverno.io/title: Require Labels
-    policies.kyverno.io/category: Best Practices
-    policies.kyverno.io/minversion: 1.6.0
-    policies.kyverno.io/severity: medium
-    policies.kyverno.io/subject: Pod, Label
-    policies.kyverno.io/description: >-
-      Define and use labels that identify semantic attributes of your application or Deployment.
-      A common set of labels allows tools to work collaboratively, describing objects in a common manner that
-      all tools can understand. The recommended labels describe applications in a way that can be
-      queried. This policy validates that the label `app.kubernetes.io/name` is specified with some value.      
 spec:
-  validationFailureAction: audit
+  validationFailureAction: Enforce
   background: true
   rules:
   - name: check-for-labels
@@ -28,9 +17,68 @@ spec:
           kinds:
           - Pod
     validate:
-      message: "The label `app.kubernetes.io/name` is required."
+      message: "The label app.kubernetes.io/name is required."
       pattern:
         metadata:
           labels:
             app.kubernetes.io/name: "?*"
+EOF
+
+# Fail to deploy pod
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+EOF
+
+# Succeed to deploy pod
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  labels:
+    app.kubernetes.io/name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+EOF
+
+# Enforce labels
+cat <<EOF | kubectl apply -f -
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: require-labels
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+  - name: check-for-labels
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    validate:
+      message: "The labels inmylab.de/app and inmylab.de/version are required. The annotation inmylab.de/ci-pipeline-link is required."
+      pattern:
+        metadata:
+          labels:
+            inmylab.de/app: "?*"
+            inmylab.de/version: "?*"
+          annotations:
+            inmylab.de/ci-pipeline-link: "?*"
 EOF
