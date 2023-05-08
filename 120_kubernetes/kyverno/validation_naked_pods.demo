@@ -3,12 +3,11 @@
 # Enforce that pods are created with lifecycle management
 cat <<EOF | kubectl apply -f -
 apiVersion: kyverno.io/v1
-kind: Policy
+kind: ClusterPolicy
 metadata:
   name: prevent-naked-pods
 spec:
   validationFailureAction: Enforce
-  background: true
   rules:
   - name: naked-pods
     match:

@@ -8,7 +8,6 @@ metadata:
   name: disallow-latest-tag   
 spec:
   validationFailureAction: Enforce
-  background: true
   rules:
   - name: require-image-tag
     match:

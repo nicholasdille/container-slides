@@ -60,9 +60,9 @@ Part 2: Network Policies (2023-05-03) <!-- .element: style="color: grey;" -->
 
 Part 3: Policies (2023-05-10)
 
-- <span class="fa-li"><i class="fa-duotone fa-clock"></i></span> Pre-deployment checks
 - <span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Enforcing security policies
-- <span class="fa-li"><i class="fa-duotone fa-ballot-check"></i></span> Enforcing best practices
+- <span class="fa-li"><i class="fa-duotone fa-file-certificate"></i></span> Standardization using policies
+- <span class="fa-li"><i class="fa-duotone fa-badge-check"></i></span> Implementing best practices
 
 <!-- .element: class="fa-ul" -->
 
@@ -73,32 +73,33 @@ Part 4: Supply Chain Security (2023-05-17) <!-- .element: style="color: grey;" -
 
 <section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<section data-visibility="hidden" data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-## Notes
-
-XXX mutation for pod security standards?
-
-XXX automount=false policy?
-
-XXX limitranges https://kubernetes.io/docs/concepts/policy/limit-range/
-</textarea></section>
-
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-## Policies
+## Motivation
 
-XXX
+Standardization leads to repetition
+
+Responsibility leads to XXX
+
+<i class="fa-duotone fa-ballot-check fa-4x"></i> <!-- .element: style="float: right;" -->
+
+### Policies to the rescue
+
+Separate deployment from...
+
+- Security settings
+- Best practices
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center" -->
-## <i class="fa-duotone fa-chart-network"></i> Kyverno
+## <i class="fa-duotone fa-shield-check"></i> Kyverno
 </textarea></section>
 <section data-markdown="120_kubernetes/kyverno/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/kyverno/pod_security.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center" -->
-## <i class="fa-duotone fa-chart-network"></i> Validation
+## <i class="fa-duotone fa-check-double"></i> Validation
 </textarea></section>
 <section data-markdown="120_kubernetes/kyverno/validation_labels.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/kyverno/validation_latest.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -106,18 +107,22 @@ XXX
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center" -->
-## <i class="fa-duotone fa-chart-network"></i> Mutation
+## <i class="fa-duotone fa-file-pen"></i> Mutation
 </textarea></section>
 <section data-markdown="120_kubernetes/kyverno/mutation.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/kyverno/mutation_securitycontext.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/kyverno/mutation_automountServiceAccountToken.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/kyverno/mutation_imagepullsecrets.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/kyverno/mutation_sidecar.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center" -->
-## <i class="fa-duotone fa-chart-network"></i> Back to Kyverno (?)
+## <i class="fa-duotone fa-ball-pile"></i> Alternatives
 </textarea></section>
 <section data-markdown="120_kubernetes/kyverno/why_not_opa.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/kyverno/why_not_kubewarden.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/kyverno/why_not_polaris.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/kyverno/why_not_jspolicy.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
@@ -125,7 +130,8 @@ XXX
 - <span class="fa-li"><i class="fa-duotone fa-clock"></i></span> Fail early by checking before deployment
 - <span class="fa-li"><i class="fa-duotone fa-engine"></i></span> Kyverno is a general purpose policy engine for Kubernetes
 - <span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Protect yourself by enforcing security policies
-- <span class="fa-li"><i class="fa-duotone fa-ballot-check"></i></span> Enforce standardized approaches
+- <span class="fa-li"><i class="fa-duotone fa-ballot-check"></i></span> Enforce standards and best practices
+- <span class="fa-li"><i class="fa-duotone fa-filter-circle-xmark"></i></span> Alternatives either require coding or are limited
 
 <!-- .element: class="fa-ul" -->
 

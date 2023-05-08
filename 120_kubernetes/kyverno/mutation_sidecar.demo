@@ -8,7 +8,6 @@ metadata:
   name: inject-sidecar
 spec:
   validationFailureAction: Enforce
-  background: true
   rules:
   - name: inject-sidecar
     match:

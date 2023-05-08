@@ -64,7 +64,6 @@ metadata:
   name: require-labels
 spec:
   validationFailureAction: Enforce
-  background: true
   rules:
   - name: check-for-labels
     match:

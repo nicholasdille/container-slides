@@ -37,8 +37,24 @@ Keyless image signatures using sigstore [](https://kyverno.io/docs/writing-polic
 
 ---
 
-## Introduction of policies
+## How to introduce policies
 
-XXX start with namespaced policies
+<i class="fa-duotone fa-burst fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX continue with cluster-wide policies and exclusions
+### Do not try a big bang
+
+This will most likely break something
+
+Things may seem fine at first
+
+Policies are enforced when changes occur
+
+<i class="fa-duotone fa-hand-holding-seedling fa-4x"></i> <!-- .element: style="float: right;" -->
+
+### Start small
+
+Start with namespaced policies
+
+Migrate to cluster-wide policies for well-tested settings
+
+Continue with cluster-wide policies and exclusions
