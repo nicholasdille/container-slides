@@ -1,0 +1,73 @@
+# Injection of sidecars
+
+# Add sidecar
+cat <<EOF | kubectl apply -f -
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: inject-sidecar
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+  - name: inject-sidecar
+    match:
+      any:
+      - resources:
+          kinds:
+          - Deployment
+    mutate:
+      patchStrategicMerge:
+        spec:
+          template:
+            metadata:
+              annotations:
+                (vault.hashicorp.com/agent-inject): "true"
+            spec:
+              volumes:
+              - name: vault-secret
+                emptyDir:
+                  medium: Memory
+              initContainers:
+              - name: vault-agent-init
+                image: vault:1.5.4
+                imagePullPolicy: IfNotPresent
+                volumeMounts:
+                - mountPath: /vault/secrets
+                  name: vault-secret
+              containers:
+              - name: vault-agent
+                image: vault:1.5.4
+                imagePullPolicy: IfNotPresent
+                volumeMounts:
+                - mountPath: /vault/secrets
+                  name: vault-secret
+EOF
+
+# Deploy pod
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+spec:
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        args:
+        - sleep
+        - "1000000"
+EOF
+
+# Check pod
+kubectl get pod busybox -o yaml | less

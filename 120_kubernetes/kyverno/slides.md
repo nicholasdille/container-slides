@@ -34,3 +34,11 @@ Allowlist for image registries [](https://kyverno.io/policies/best-practices/res
 Require attestations of security scans [](https://kyverno.io/policies/other/require_vuln_scan/require-vulnerability-scan/)
 
 Keyless image signatures using sigstore [](https://kyverno.io/docs/writing-policies/verify-images/#keyless-signing-and-verification)
+
+---
+
+## Introduction of policies
+
+XXX start with namespaced policies
+
+XXX continue with cluster-wide policies and exclusions
