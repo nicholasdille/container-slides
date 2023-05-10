@@ -11,3 +11,5 @@ Policies have validation rules builtin
 ### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/kyverno/pod_security.demo "pod_security.demo")
 
 kyverno for the Pod Security Standards [](https://kyverno.io/docs/writing-policies/validate/#pod-security)
+
+Ephemeral containers are subject to policies

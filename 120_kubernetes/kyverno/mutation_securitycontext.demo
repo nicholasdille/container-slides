@@ -34,7 +34,7 @@ metadata:
 spec:
   containers:
   - name: busybox
-    image: busybox
+    image: busybox:1.36
     args:
     - sleep
     - "1000000"
@@ -42,3 +42,63 @@ EOF
 
 # Check pod
 kubectl get pod busybox -o yaml | less
+
+# Deploy pod
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox:1.36
+    args:
+    - sleep
+    - "1000000"
+  securityContext:
+    runAsUser: 1001
+EOF
+
+# XXX
+cat <<EOF | kubectl apply -f -
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: add-default-securitycontext
+spec:
+  validationFailureAction: Enforce
+  rules:
+  - name: add-default-securitycontext
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    mutate:
+      patchStrategicMerge:
+        spec:
+          containers:
+          - name: busybox:
+            securityContext:
+              +(runAsNonRoot): true
+              +(runAsUser): 1000
+              +(runAsGroup): 3000
+EOF
+
+# Deploy pod
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: busybox:1.36
+    args:
+    - sleep
+    - "1000000"
+    securityContext:
+      runAsUser: 1001
+EOF

@@ -2,9 +2,13 @@
 
 <i class="fa-duotone fa-file-pen fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Automatically change requests
+Automatically change requests before resource creation
 
-XXX
+Add standard fields
+
+Add default security settings
+
+Add infrastructure requirements
 
 ### Options
 

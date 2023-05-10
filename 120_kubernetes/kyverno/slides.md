@@ -13,11 +13,13 @@ Kubernetes-native policy management [](https://kyverno.io/)
 
 Policies are managed as Kubernetes resources
 
+No coding required
+
 Cluster-wide or namespaced policies
 
 ---
 
-## Policies
+## Policy Samples
 
 Kyverno manages community policies [](https://kyverno.io/policies/)
 

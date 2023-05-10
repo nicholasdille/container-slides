@@ -4,7 +4,7 @@
 kubectl create namespace test
 
 # Rollout policy
-cat <<EOF | kubectl apply -f -
+cat <<EOF | tee pod_security-policy.yaml| kubectl apply -f -
 apiVersion: kyverno.io/v1
 kind: Policy
 metadata:
@@ -31,7 +31,7 @@ kubectl explain policy.spec
 kubectl explain clusterpolicy.spec
 
 # Fail to deploy pod
-cat <<EOF | kubectl apply -f -
+cat <<EOF | tee busybox-privileged.yaml | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -49,7 +49,7 @@ spec:
 EOF
 
 # Deploy failing pod
-cat <<EOF | kubectl apply -f -
+cat <<EOF | tee busybox.yaml | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -73,7 +73,7 @@ spec:
 EOF
 
 # Successful deployment (later runtime failure)
-cat <<EOF | kubectl apply -f -
+cat <<EOF | tee rabbitmq.yaml | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -101,7 +101,8 @@ cat <<EOF | kubectl --namespace test apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
-  name: busybox
+  name: busybox-fixed
+  namespace: test
 spec:
   containers:
   - name: busybox
@@ -194,3 +195,45 @@ spec:
 EOF
 kubectl --namespace test get policyreport
 kubectl --namespace test get policyreport pol-psa -o yaml
+
+
+
+
+# Deployment
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: test
+spec:
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: bitnami/rabbitmq:latest
+        args:
+        - sleep
+        - "1000000"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+EOF
+
+# Test ehpemeral containers
+POD_NAME="$(kubectl -n test get pods -l app=rabbitmq -o jsonpath='{.items[0].metadata.name}')"
+kubectl -n test debug -it --attach=false -c debugger --image=busybox "${POD_NAME}"
+
+# Attach to ephemeral container
+kubectl -n test exec -it -c debugger "${POD_NAME}" -- sh
