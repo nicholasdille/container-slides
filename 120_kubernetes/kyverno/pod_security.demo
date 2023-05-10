@@ -43,7 +43,7 @@ spec:
     image: busybox
     args:
     - sleep
-    - "1000000"
+    - infinity
     securityContext:
       allowPrivilegeEscalation: true
 EOF
@@ -61,7 +61,7 @@ spec:
     image: busybox
     args:
     - sleep
-    - "1000000"
+    - infinity
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
@@ -85,7 +85,7 @@ spec:
     image: bitnami/rabbitmq:latest
     args:
     - sleep
-    - "1000000"
+    - infinity
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
@@ -109,7 +109,7 @@ spec:
     image: busybox
     args:
     - sleep
-    - "1000000"
+    - infinity
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
