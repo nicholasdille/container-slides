@@ -2,7 +2,7 @@
 
 <i class="fa-duotone fa-tags fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Labels are an important contept in Kubernetes
+Labels are an important concept in Kubernetes
 
 Labels are used for selection of resources
 
