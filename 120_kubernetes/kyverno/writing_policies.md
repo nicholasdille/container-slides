@@ -54,21 +54,40 @@ Example:
 ```yaml
 rules:
 - preconditions:
+    any: | all:
+    - key:
+      operator:
+      value:
 ```
 
-XXX preconditions
+Preconditions are OR'ed / AND'ed when using `any` / `all`
+
+`key` supports JMESPath expressions [](https://kyverno.io/docs/writing-policies/jmespath/)
+
+Operators [](https://kyverno.io/docs/writing-policies/preconditions/#operators)
 
 ---
 
 ## Validate / Mutate
 
-XXX Mutation before validation
+Many examples/demos on the following slides
 
 ---
 
 ## ClusterPolicy
 
-validationFailureActionOverrides
+Cluster-wide policies are identical to namespaced policies
 
-.action
-.namespaces
+One additional field `validationFailureActionOverrides`
+
+Modify action (`Enforce` or `Audit`) for a list of namespaces:
+
+```yaml
+spec:
+  validationFailureActionOverrides:
+    action: Audit
+    namespaces:
+    - kube-system
+    - kube-public
+  rules:
+```
