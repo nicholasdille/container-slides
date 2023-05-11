@@ -63,6 +63,7 @@ Part 3: Policies (2023-05-10) <!-- .element: style="color: grey;" -->
 Part 4: Supply Chain Security (2023-05-17)
 
 - <span class="fa-li"><i class="fa-duotone fa-link-horizontal"></i></span> Supply Chain
+- <span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Protect your cluster and services
 - <span class="fa-li"><i class="fa-duotone fa-bug"></i></span> Identify vulnerabilities in your cluster
 - <span class="fa-li"><i class="fa-duotone fa-gauge-high"></i></span> Visualize security state
 
@@ -73,45 +74,30 @@ Part 4: Supply Chain Security (2023-05-17)
 
 <section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<section data-visibility="hidden" data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-## Supply Chain (Security)
+<section data-markdown="170_supply_chain_security/intro.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="170_supply_chain_security/approaches.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-XXX https://xkcd.com/2347/ (dependency)
-
-XXX https://tenor.com/view/this-is-fine-gif-24177057
-
-XXX https://deps.dev/
-
-XXX https://github.com/ossf/scorecard:
-
-```bash
-scorecard --repo=github.com/moby/moby
-```
-
-XXX https://github.com/ossf/scorecard#scorecard-checks
-
-XXX https://github.com/ossf/scorecard#public-data
-
-XXX scorecard REST API:
-
-```bash
-curl -s https://api.securityscorecards.dev/projects/github.com/moby/moby \
-| jq --raw-output '.checks[] | "\(.name): \(.score)"'
-```
-
-XXX https://sos.dev/
-
-XXX https://github.com/ossf/wg-best-practices-os-developers/blob/main/docs/Concise-Guide-for-Evaluating-Open-Source-Software.md#readme
-
-XXX https://github.com/ossf/wg-best-practices-os-developers/blob/main/docs/Concise-Guide-for-Developing-More-Secure-Software.md#readme
-
-XXX https://www.threatmodelingmanifesto.org/
-
-XXX https://en.wikipedia.org/wiki/Threat_model
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-ball-pile"></i> Dependencies / Vulnerabilites
 </textarea></section>
+<section data-markdown="170_supply_chain_security/vulnerabilities.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="170_supply_chain_security/sbom/quick.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="170_supply_chain_security/sbom-operator/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!-- SLIDES -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-ball-pile"></i> Signatures
+</textarea></section>
+<section data-markdown="170_supply_chain_security/cosign/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/kyverno/cosign.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="060_security/11_artifacts/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## <i class="fa-duotone fa-ball-pile"></i> Activity
+</textarea></section>
+<section data-markdown="170_supply_chain_security/activity.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
