@@ -1,6 +1,9 @@
 #!/bin/bash
 set -o errexit
 
+# tools
+docker-setup --tools=docker,buildx,docker-compose,kind,helm,kubectl,cosign install
+
 # cluster
 kind create cluster --config kind.yaml
 

@@ -210,7 +210,7 @@ ingress:
   pathType: Prefix
 
   hosts:
-    - grafana.inmylab.de
+    - grafana.docker-setup.inmylab.de
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*

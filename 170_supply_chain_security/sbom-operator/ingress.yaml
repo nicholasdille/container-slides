@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   rules:
-  - host: prometheus.inmylab.de
+  - host: prometheus.docker-setup.inmylab.de
     http:
       paths:
       - pathType: Prefix
