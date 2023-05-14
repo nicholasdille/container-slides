@@ -1,65 +1,51 @@
 # cosign
 
-# Apply policy for cosign
+# Apply policy control plane images
 cat <<EOF | kubectl apply -f -
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
-  name: check-image
+  name: verify-k8s-images
+  namespace: kube-system
 spec:
+  validationFailureAction: Audit
   background: true
-  failurePolicy: Fail
-  validationFailureAction: Enforce
   rules:
-  - name: check-image
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    verifyImages:
-    - imageReferences:
-      - "gcr.io/projectsigstore/*"
-      attestors:
-      - count: 1
-        entries:
-        - keyless:
-            rekor:
-              url: https://rekor.sigstore.dev
-            issuer: https://accounts.google.com
-            subject: keyless@projectsigstore.iam.gserviceaccount.com
+    - name: verify-k8s-images
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      verifyImages:
+      # verify kube-* and coredns/* images 
+      - imageReferences:
+        - registry.k8s.io/kube-*
+        - registry.k8s.io/coredns/*
+        verifyDigest: false
+        required: false
+        mutateDigest: false
+        attestors:
+        - entries:
+          - keyless:
+              issuer: https://accounts.google.com
+              subject: krel-trust@k8s-releng-prod.iam.gserviceaccount.com
+              rekor:
+                url: https://rekor.sigstore.dev
+      # verify etcd:* images
+      - imageReferences:
+        - registry.k8s.io/etcd:*
+        verifyDigest: false
+        required: false
+        mutateDigest: false
+        attestors:
+        - entries:
+          - keyless:
+              issuer: https://accounts.google.com
+              subject: k8s-infra-gcr-promoter@k8s-artifacts-prod.iam.gserviceaccount.com
+              rekor:
+                url: https://rekor.sigstore.dev
 EOF
 
-# Deploy pod
-cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: Pod
-metadata:
-  name: cosign
-spec:
-  containers:
-  - name: cosign
-    image: gcr.io/projectsigstore/cosign:v2.0.0
-    args:
-    - sleep
-    - "1000000"
-EOF
-kubectl get policyreport
-kubectl get policyreport cpol-check-image -o yaml
-
-# Test policy
-cat <<EOF >cosign-test.yaml
-name: cosign-test
-policies:
-- cosign-policy.yaml
-resources:
-- cosign-pod.yaml
-results:
-- policy: check-image
-  rule: check-image
-  namespace: default
-  kind: Pod
-  resource: cosign
-  result: pass
-EOF
-kyverno test --file-name cosign-test.yaml .
+# Check policy report
+kubectl -n kube-system get policyreport pol-verify-k8s-images

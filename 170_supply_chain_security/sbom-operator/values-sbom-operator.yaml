@@ -13,7 +13,7 @@ args:
   git-author-email: webmaster@inmylab.de
   git-author-name: Sbom Operator
   git-repository: https://github.com/nicholasdille/sbom-store
-  git-path: "2022-12-01"
+  git-path: "2023-05-17"
   verbosity: debug
 
 envVars:

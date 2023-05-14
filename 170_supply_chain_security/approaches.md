@@ -1,11 +1,39 @@
 ## What can I do?!
 
-XXX automated dependency updates
+<i class="fa-duotone fa-ballot-check fa-5x"></i> <!-- .element: style="float: right;" -->
+
+Follow the [Open Source Security Foundation](https://openssf.org/) (OSSF) [Concise Guide for developing more secure software](https://github.com/ossf/wg-best-practices-os-developers/blob/main/docs/Concise-Guide-for-Developing-More-Secure-Software.md#readme)
 
 XXX minimalism
 
-XXX avoid unmaintained dependencies
+Automated dependency updates
 
-XXX https://xkcd.com/2347/ (dependency)
+Generate a Software Bill of Materials (SBoM)
 
-XXX trust / proof
+Scan for vulnerabilities
+
+Scan for license compliance
+
+Sign artifacts
+
+Create attestations [](https://slsa.dev/attestation-model) (signed metadata for artifacts)
+
+Create provenence [](https://slsa.dev/provenance) (signed description of artifact creation)
+
+---
+
+## Unmaintained dependencies
+
+![](images/xkcd-2347-dependency.png) <!-- .element: style="float: right; width: 40%;" -->
+
+Let's say, you have done all of the above 
+
+How can you be sure that your dependencies are maintained?
+
+Will a vulnerability be fixed quickly?
+
+XXX risk!
+
+### XXX
+
+Follow the [Open Source Security Foundation](https://openssf.org/) (OSSF) [Concise Guide for evaluating open source software](https://github.com/ossf/wg-best-practices-os-developers/blob/main/docs/Concise-Guide-for-Evaluating-Open-Source-Software.md#readme)

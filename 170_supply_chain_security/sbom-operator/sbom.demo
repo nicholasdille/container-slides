@@ -11,10 +11,10 @@ https://github.com/nicholasdille/sbom-store
 helm upgrade --install --namespace sbom-system vuln-operator ckotzbauer/vulnerability-operator -f values-vulnerability-operator.yaml
 
 # Check targets
-http://prometheus.inmylab.de/
+http://prometheus.docker-setup.inmylab.de/
 
 # Check data
-http://grafana.inmylab.de/
+http://grafana.docker-setup.inmylab.de/
 count by (image_id) (vuln_operator_cves)
 count by (severity) (vuln_operator_cves)
 count by (cve) (vuln_operator_cves)
