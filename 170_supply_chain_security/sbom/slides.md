@@ -20,7 +20,7 @@ Linux Foundation's **Software Package Data Exchange (SPDX)** [](https://spdx.dev
 
 ---
 
-## Tools (Excerpt)
+## Tools (Excerpt) [](https://cyclonedx.org/tool-center/)
 
 ### SBoM generators
 
@@ -49,3 +49,39 @@ docker-setup --tags=sbom plan
 SBoM generation
 
 SBoM scanning
+
+---
+
+## Distribution of SBOMs
+
+<i class="fa-duotone fa-sparkles fa-6x"></i> <!-- .element: style="float: right;" -->
+
+No standard available yet
+
+### What is out there
+
+Download from website
+
+Release asset
+
+Separate container image with same digest and suffix
+
+Manifest list (BuiltKit)
+
+OCI 1.1 referrer
+
+---
+
+## SARIF
+
+OASIS [](https://www.oasis-open.org/) Static Analysis Results Interchange Format (SARIF) [](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=sarif)
+
+XXX junit?
+
+---
+
+## Demo: SARIF
+
+Generate SARIF report using `trivy`
+
+Generate SARIF report using `grype`

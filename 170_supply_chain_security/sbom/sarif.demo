@@ -1,0 +1,7 @@
+# SARIF
+
+# Using trivy
+trivy image ubuntu:22.04 --scanners vuln --format sarif --output sarif-trivy.json
+
+# Using grype
+grype ubuntu:22.04 --output sarif --file sarif-grype.json
