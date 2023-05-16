@@ -92,4 +92,4 @@ Separate container image with same digest and suffix
 
 Manifest list (BuiltKit)
 
-OCI 1.1 referrer
+OCI 1.1 referrer (more later)
