@@ -1,0 +1,31 @@
+# Cosign
+
+# Login for packages
+docker login
+
+# Build container image
+cat <<EOF >Dockerfile
+FROM ubuntu:22.04
+EOF
+docker build --tag ghcr.io/nicholasdille/container-slides/ubuntu:22.04 --push .
+
+# Check package
+https://github.com/users/nicholasdille/packages/container/package/container-slides%2Fubuntu
+
+# Keyless signature
+COSIGN_EXPERIMENTAL=1 cosign sign ghcr.io/nicholasdille/container-slides/ubuntu:22.04
+
+# Check manifest
+regctl manifest get ghcr.io/nicholasdille/container-slides/ubuntu:22.04
+
+# View signature
+DIGEST=???
+regctl manifest get ghcr.io/nicholasdille/container-slides/ubuntu:sha256-${DIGEST}.sig
+
+# Check signature
+https://search.sigstore.dev/
+
+# Verify signature
+EMAIL=???
+COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/nicholasdille/container-slides/ubuntu:22.04 --certificate-oidc-issuer https://github.com/login/oauth --cer
+tificate-identity ${EMAIL}

@@ -44,11 +44,35 @@ docker-setup --tags=sbom plan
 
 ---
 
-## Demo
+## Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/170_supply_chain_security/sbom/sbom.demo "sbom.demo")
 
 SBoM generation
 
 SBoM scanning
+
+---
+
+## SBOM Formats
+
+### CycloneDX
+
+Metadata
+
+Components
+
+### SPDX
+
+Packages and files
+
+Relationships (what is found where)
+
+### syft
+
+Metadata (source, distro, descriptor)
+
+Artifacts and files
+
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/170_supply_chain_security/sbom/formats.demo "formats.demo")
 
 ---
 
@@ -69,19 +93,3 @@ Separate container image with same digest and suffix
 Manifest list (BuiltKit)
 
 OCI 1.1 referrer
-
----
-
-## SARIF
-
-OASIS [](https://www.oasis-open.org/) Static Analysis Results Interchange Format (SARIF) [](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=sarif)
-
-XXX junit?
-
----
-
-## Demo: SARIF
-
-Generate SARIF report using `trivy`
-
-Generate SARIF report using `grype`

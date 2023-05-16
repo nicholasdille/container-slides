@@ -1,0 +1,54 @@
+# Referrers
+
+# Prepare OCI 1.1 compliant registry
+REGISTRY=127.0.0.1:5000
+docker container run --detach --name registry --publish "${REGISTRY}:5000" ghcr.io/oras-project/registry:v1.0.0-rc.4
+regctl registry set "${REGISTRY}" --tls disabled
+
+# Prepare test image
+REPOSITORY=ubuntu
+TAG=22.04
+IMAGE="${REGISTRY}/${REPOSITORY}:${TAG}"
+docker pull "${REPOSITORY}:${TAG}"
+docker tag "${REPOSITORY}:${TAG}" "${IMAGE}"
+docker push "${IMAGE}"
+
+# Create and link SBOM
+trivy image "${IMAGE}" --format cyclonedx --output cyclonedx.json
+cat cyclonedx.json \
+| regctl artifact put --subject "${IMAGE}" \
+    --artifact-type application/vnd.cyclonedx+json \
+    --file-media-type application/vnd.cyclonedx+json \
+    --annotation "created-by=trivy" \
+    --annotation "org.opencontainers.artifact.created=$(date -Iseconds)" \
+    --annotation "org.opencontainers.artifact.description=CycloneDX JSON SBOM"
+trivy referrer list "${IMAGE}"
+
+# Create and link SARIF report
+trivy image "${IMAGE}" --format sarif \
+| regctl artifact put --subject "${IMAGE}" \
+    --artifact-type application/json \
+    --file-media-type application/json \
+    --annotation "created-by=trivy" \
+    --annotation "org.opencontainers.artifact.created=$(date -Iseconds)" \
+    --annotation "org.opencontainers.artifact.description=SARIF JSON"
+trivy referrer list "${IMAGE}"
+
+# Sign container image
+COSIGN_EXPERIMENTAL=1 cosign sign -y --registry-referrers-mode oci-1-1 "${IMAGE}"
+
+# Sign SBOM
+SOURCE_CYCLONEDX="$(
+    regctl artifact tree --filter-artifact-type application/vnd.cyclonedx+json "${IMAGE}" --format "{{json .}}" \
+    | jq -r '.referrer | .[0].reference.Digest'
+)"
+COSIGN_EXPERIMENTAL=1 cosign sign -y --
+registry-referrers-mode oci-1-1 "${IMAGE}@${SOURCE_CYCLONEDX}"
+oras discover "${IMAGE}" --plain-http --output tree
+
+# Sign SARIF
+SOURCE_SARIF="$(
+    regctl artifact tree --filter-artifact-type application/sarif+json "${IMAGE}" --format "{{json .}}" \
+    | jq -r '.referrer | .[0].reference.Digest'
+)"
+COSIGN_EXPERIMENTAL=1 cosign sign -y --registry-referrers-mode oci-1-1 "${IMAGE}@${SOURCE_SARIF}"

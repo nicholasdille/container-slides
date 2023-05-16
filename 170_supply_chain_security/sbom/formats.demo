@@ -1,0 +1,10 @@
+# SBOM formats
+
+# CycloneDX
+syft ubuntu:22.04 --output cyclonedx-json --file ubuntu-22.04.cyclonedx.json
+
+# SPDX
+syft ubuntu:22.04 --output spdx-json --file ubuntu-22.04.spdx.json
+
+# Syft
+syft ubuntu:22.04 --output syft-json --file ubuntu-22.04.syft.json

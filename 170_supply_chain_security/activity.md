@@ -2,7 +2,17 @@
 
 Health metrics for Open Source projects using `scorecard` [](https://github.com/ossf/scorecard)
 
-XXX
+Prerequisite for funding via *Secure Open Source* (SOS) Rewards [](https://sos.dev/)
+
+### Checks (exerpt) [](https://github.com/ossf/scorecard#scorecard-checks)
+
+Branch protection
+
+Code Review in PRs
+
+Dependency update tool
+
+Signed releases
 
 ### Example
 
@@ -10,15 +20,13 @@ XXX
 scorecard --repo=github.com/moby/moby
 ```
 
-XXX https://github.com/ossf/scorecard#scorecard-checks
-
-XXX https://sos.dev/
-
 ---
 
 ## Scorecard data
 
-XXX [](https://github.com/ossf/scorecard#public-data)
+One million critical open source projects are scanned weekls [](https://github.com/ossf/scorecard#public-data)
+
+Data is shared publicly
 
 ### REST API
 
@@ -30,4 +38,6 @@ curl -s https://api.securityscorecards.dev/projects/${PROJECT} \
 
 ### Google BigQuery
 
-XXX
+Use web-based [BigQuery Explorer](http://console.cloud.google.com/bigquery)
+
+Use `bq` on the console (part of `gcloud`)

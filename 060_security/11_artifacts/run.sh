@@ -35,7 +35,13 @@ cat cyclonedx.json \
 #    ./cyclonedx.json:application/vnd.cyclonedx+json
 #cosign attach sbom ...
 trivy image "${IMAGE}" --format sarif \
-| trivy referrer put
+| regctl artifact put --subject "${IMAGE}" \
+    --artifact-type application/sarif+json \
+    --file-media-type application/sarif+json \
+    --annotation "created-by=trivy" \
+    --annotation "org.opencontainers.artifact.created=$(date -Iseconds)" \
+    --annotation "org.opencontainers.artifact.description=SARIF JSON"
+#| trivy referrer put
 
 trivy referrer list "${IMAGE}"
 trivy referrer list "${IMAGE}" --format table

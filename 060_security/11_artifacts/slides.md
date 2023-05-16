@@ -1,11 +1,34 @@
-## OCI artifacts
+## OCI artifacts and referrers
 
-XXX [](https://github.com/opencontainers/artifacts)
+Open Container Initiative (OCI) is responsible for multiple specifications:
 
-XXX OCI 1.1.0-rc.2 [](https://github.com/opencontainers/distribution-spec/blob/v1.1.0-rc.2/spec.md)
+- Runtime <span style="color: grey;">(how to talk to container runtime)</span> [](https://github.com/opencontainers/runtime-spec)
+- Image <span style="color: grey;">(how to store a container image)</span> [](https://github.com/opencontainers/image-spec)
+- Distribution <span style="color: grey;">(how to talk to image registries)</span> [](https://github.com/opencontainers/distribution-spec)
+- Artifact <span style="color: grey;">(how to store arbitraty data in registries)</span> [](https://github.com/opencontainers/artifacts)
 
-XXX [](https://github.com/opencontainers/distribution-spec/blob/v1.1.0-rc.2/spec.md#enabling-the-referrers-api)
+OCI is slowly replacing Docker media types
 
-XXX list [](https://github.com/opencontainers/distribution-spec/blob/v1.1.0-rc.2/spec.md#listing-referrers)
+Version 1.1 is in the making
 
-XXX https://github.com/aquasecurity/trivy-plugin-referrer
+Distribution spec 1.1.0-rc.2 [](https://github.com/opencontainers/distribution-spec/blob/v1.1.0-rc.2/spec.md) adds referrers
+
+Referrers add relationships between digests
+
+Implementations: [regclient](https://github.com/regclient/regclient/blob/main/docs/regctl.md#artifact-commands), [trivy](https://github.com/aquasecurity/trivy-plugin-referrer), [oras](https://oras.land/docs/cli/reference_types/#discovering-artifact-references), [distribution](https://github.com/oras-project/distribution)
+
+---
+
+## Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/060_security/11_artifacts/referrers.demo "referrers.demo")
+
+Upload demo image
+
+Link SBOM
+
+Link SARIF report (repeat daily)
+
+Sign image
+
+Sign SBOM
+
+Sign SARIF

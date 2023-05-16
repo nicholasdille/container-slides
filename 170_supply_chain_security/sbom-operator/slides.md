@@ -18,7 +18,7 @@ Prometheus can scrape <i class="fa fa-circle-4"></i> them and Grafana visualize 
 
 ---
 
-## Demo
+## Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/170_supply_chain_security/sbom-operator/sbom.demo "sbom.demo")
 
 See SBoMs in [git](https://github.com/nicholasdille/sbom-store)
 
