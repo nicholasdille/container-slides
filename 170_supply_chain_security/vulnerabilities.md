@@ -8,9 +8,6 @@ Linked to vendors/products/versions by<br/>*Common Platform Enumeration* (CPE) [
 
 Scored by<br/>*Common Vulnerability Scoring System* (CVSS) [](https://nvd.nist.gov/vuln-metrics/cvss)
 
-- Scale 0-10
-- Low, medium, high, critical
-
 Also scored by<br/>*Exploit Prediction Scoring System* (EPSS) [](https://www.first.org/epss/)
 
 ### Understand your dependencies [](https://deps.dev/)

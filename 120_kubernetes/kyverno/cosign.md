@@ -1,6 +1,6 @@
 ## Kyverno for Cosign
 
-Kyverno can verfiy image signatures
+Kyverno can verify image signatures
 
 Select images using wildcards
 

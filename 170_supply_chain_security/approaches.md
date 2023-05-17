@@ -10,7 +10,7 @@ Automated dependency updates
 
 Generate a Software Bill of Materials (SBoM)
 
-Scan for vulnerabilities
+Scan for vulnerabilities and audit
 
 Scan for license compliance
 

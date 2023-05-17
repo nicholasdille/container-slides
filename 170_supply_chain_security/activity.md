@@ -24,7 +24,7 @@ scorecard --repo=github.com/moby/moby
 
 ## Scorecard data
 
-One million critical open source projects are scanned weekls [](https://github.com/ossf/scorecard#public-data)
+One million critical open source projects are scanned weekly [](https://github.com/ossf/scorecard#public-data)
 
 Data is shared publicly
 

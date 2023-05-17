@@ -15,7 +15,7 @@ Distribution spec 1.1.0-rc.2 [](https://github.com/opencontainers/distribution-s
 
 Referrers add relationships between digests
 
-Implementations: [regclient](https://github.com/regclient/regclient/blob/main/docs/regctl.md#artifact-commands), [trivy](https://github.com/aquasecurity/trivy-plugin-referrer), [oras](https://oras.land/docs/cli/reference_types/#discovering-artifact-references), [distribution](https://github.com/oras-project/distribution)
+Implementations: [regclient](https://github.com/regclient/regclient/blob/main/docs/regctl.md#artifact-commands), [trivy](https://github.com/aquasecurity/trivy-plugin-referrer), [oras](https://oras.land/docs/cli/reference_types/#discovering-artifact-references), [distribution](https://github.com/oras-project/distribution), cosign [](https://github.com/sigstore/cosign/blob/v2.0.2/doc/cosign_sign.md?plain=1#L94)
 
 ---
 
