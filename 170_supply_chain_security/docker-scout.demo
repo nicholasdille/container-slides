@@ -1,0 +1,22 @@
+# Docker Scout
+
+# Console output
+docker container run \
+    --interactive \
+    --tty \
+    --volume "${HOME}/.docker:/root/.docker" \
+    docker/scout-cli cves ubuntu:22.04
+
+# SARIF output
+docker container run \
+    --interactive \
+    --tty \
+    --volume "${HOME}/.docker:/root/.docker" \
+    docker/scout-cli cves ubuntu:22.04 --format sarif
+
+# Recommendations
+docker container run \
+    --interactive \
+    --tty \
+    --volume "${HOME}/.docker:/root/.docker" \
+    docker/scout-cli recommendations ubuntu:22.04
