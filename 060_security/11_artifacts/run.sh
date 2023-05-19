@@ -23,7 +23,6 @@ trivy image "${IMAGE}" --format cyclonedx --output cyclonedx.json
 cat cyclonedx.json \
 | regctl artifact put --subject "${IMAGE}" \
     --artifact-type application/vnd.cyclonedx+json \
-    --file-media-type application/vnd.cyclonedx+json \
     --annotation "created-by=trivy" \
     --annotation "org.opencontainers.artifact.created=$(date -Iseconds)" \
     --annotation "org.opencontainers.artifact.description=CycloneDX JSON SBOM"
@@ -37,7 +36,6 @@ cat cyclonedx.json \
 trivy image "${IMAGE}" --format sarif \
 | regctl artifact put --subject "${IMAGE}" \
     --artifact-type application/sarif+json \
-    --file-media-type application/sarif+json \
     --annotation "created-by=trivy" \
     --annotation "org.opencontainers.artifact.created=$(date -Iseconds)" \
     --annotation "org.opencontainers.artifact.description=SARIF JSON"
