@@ -1,0 +1,7 @@
+# XXX
+
+# Go
+go version -m "$(which kubectl)"
+
+# Rust
+cargo audit "$(which foo)"

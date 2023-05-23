@@ -1,6 +1,8 @@
 #!/bin/bash
 set -o errexit
 
+# https://github.com/itaysk/kubeconeu23-oci-vuln
+
 REGISTRY=127.0.0.1:5000
 REPOSITORY=ubuntu
 TAG=22.04
