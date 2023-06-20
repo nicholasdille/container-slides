@@ -1,11 +1,9 @@
-# docker-setup
+## docker-setup
 
-```plaintext
-     _             _
-    | |           | |                                  _
-  __| | ___   ____| |  _ _____  ____ _____ ___ _____ _| |_ _   _ ____
- / _  |/ _ \ / ___) |_/ ) ___ |/ ___|_____)___) ___ (_   _) | | |  _ \
-( (_| | |_| ( (___|  _ (| ____| |        |___ | ____| | |_| |_| | |_| |
- \____|\___/ \____)_| \_)_____)_|        (___/|_____)  \__)____/|  __/
-                                                                |_|
-```
+XXX https://github.com/nicholasdille/docker-setup
+
+XXX value proposition
+
+XXX problem statement
+
+XXX https://docker-setupo.dille.io
