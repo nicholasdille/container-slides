@@ -1,9 +1,17 @@
 ## docker-setup
 
-XXX https://github.com/nicholasdille/docker-setup
+<i class="fa-duotone fa-6x fa-gears"></i> <!-- .element: style="float: right;" -->
 
-XXX value proposition
+Project home on GitHub [](https://github.com/nicholasdille/docker-setup)
 
-XXX problem statement
+Install and update tools
 
-XXX https://docker-setupo.dille.io
+## Problem statement
+
+Only well-known tools are available through package managers
+
+XXX configuration
+
+## XXX
+
+Discover tools on dedicated [website](https://docker-setupo.dille.io)
