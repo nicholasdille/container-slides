@@ -2,7 +2,7 @@
 
 ## Concepts
 
-![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 65%;" -->
+![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 90%;" -->
 
 ### Tools are defined by...
 
@@ -16,7 +16,7 @@
 
 ## Concepts
 
-![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 65%;" -->
+![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 90%;" -->
 
 ### Artifacts
 
@@ -30,7 +30,7 @@ Every tool is stored in a dedicated container image
 
 ## Concepts
 
-![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 65%;" -->
+![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 90%;" -->
 
 ### `docker-setup`
 
@@ -44,8 +44,10 @@ Statically linked Go binary
 
 ## Concepts
 
-![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 65%;" -->
+![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 90%;" -->
 
 ### Updates
 
 Renovate keeps tool versions up-to-date
+
+Changes are automatically tested and merged
