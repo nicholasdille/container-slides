@@ -46,4 +46,6 @@ Statically linked Go binary
 
 ![](110_ecosystem/docker-setup/architecture.drawio.svg) <!-- .element: style="width: 65%;" -->
 
+### Updates
+
 Renovate keeps tool versions up-to-date

@@ -10,7 +10,7 @@ Limited to a few distributions
 
 Been there for many months
 
-XXX
+Felt too much like programming
 
 ### Nix [](https://nixos.org/)
 
