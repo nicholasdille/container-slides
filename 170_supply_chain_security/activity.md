@@ -1,6 +1,6 @@
-## Open Source Security Foundation (OSSF)
+## Project activity
 
-Health metrics for Open Source projects using `scorecard` [](https://github.com/ossf/scorecard)
+Health metrics for Open Source projects using OSSF `scorecard` [](https://github.com/ossf/scorecard)
 
 Prerequisite for funding via *Secure Open Source* (SOS) Rewards [](https://sos.dev/)
 

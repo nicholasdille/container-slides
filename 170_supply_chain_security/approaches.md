@@ -2,7 +2,7 @@
 
 <i class="fa-duotone fa-ballot-check fa-5x"></i> <!-- .element: style="float: right;" -->
 
-Follow the [Open Source Security Foundation](https://openssf.org/) (OSSF) [Concise Guide for developing more secure software](https://github.com/ossf/wg-best-practices-os-developers/blob/main/docs/Concise-Guide-for-Developing-More-Secure-Software.md#readme)
+Follow the [Open Source Security Foundation](https://openssf.org/) (OSSF)<br/>[Concise Guide for developing more secure software](https://github.com/ossf/wg-best-practices-os-developers/blob/main/docs/Concise-Guide-for-Developing-More-Secure-Software.md#readme)
 
 Keep it simple and stupid (KISS) [](https://en.wikipedia.org/wiki/KISS_principle)
 

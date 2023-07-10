@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+
+<title>Kubernetes Supply Chain Security</title>
+
+<!-- https://gauger.io/fonticon/ -->
+<link rel="icon" href="images/kubernetes.ico"/>
+
+<link rel="stylesheet" href="media/reveal.js@4.5.0/dist/reveal.css"/>
+<link rel="stylesheet" href="media/source-sans-pro@19/source-sans-pro.css"/>
+<link rel="stylesheet" href="media/reveal.js@4.5.0/dist/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="themes/theme2022.css" id="theme"/>
+<link rel="stylesheet" href="themes/common.css"/>
+<link rel="stylesheet" href="media/highlight.js@11.7.0/styles/rainbow.css"/>
+
+<script>
+    var version = '6.4.0'
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    if (window.location.href.match(/^http(s)?:\/\/(.+\.)*dille.name/)) {
+        link.href = 'https://cdn.dille.name/fontawesome-pro@' + version + '/css/all.min.css';
+    } else {
+        link.href = 'media/fontawesome-pro@' + version + '/css/all.min.css';
+    }
+    document.head.appendChild(link);
+</script>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: data-background="images/nana-smirnova-IEiAmhXehwE-unsplash.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
+
+# Supply Chain Security<br/>with and for Kubernetes
+
+*Nicholas Dille, Haufe Group*
+
+<i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
+
+<i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> [@nicholasdille](https://twitter.com/nicholasdille)
+
+<i class="fa-brands fa-mastodon" style="width: 1.5em; text-align: center;"></i> [@nicholasdille@freiburg.social](https://freiburg.social/@nicholasdille)
+</textarea></section>
+
+<section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="170_supply_chain_security/intro.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Agenda
+
+### What will we cover today?
+
+![](170_supply_chain_security/supply_chain.drawio.svg) <!-- .element: style="width: 80%; margin-top: 1em; margin-bottom: 0.5em;" -->
+
+Choice of dependencies
+
+Authenticity and integrity of dependencies
+
+Activity of dependencies
+
+Visualizing security issues
+</textarea></section>
+<section data-markdown="170_supply_chain_security/vulnerabilities.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="170_supply_chain_security/approaches.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="170_supply_chain_security/cosign/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="170_supply_chain_security/activity.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="170_supply_chain_security/sbom-operator/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Summary
+
+<i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
+
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> Take responsibility for the supply chain
+- <span class="fa-li"><i class="fa-duotone fa-minimize"></i></span> Minimalism in your dependencies
+- <span class="fa-li"><i class="fa-duotone fa-file-certificate"></i></span> Test for authenticity
+- <span class="fa-li"><i class="fa fa-wave-pulse"></i></span> Ensure activity of dependencies
+- <span class="fa-li"><i class="fa-duotone fa-person-running-fast"></i></span> Update dependencies automatically
+
+<!-- .element: class="fa-ul" -->
+
+### Upcoming events
+
+One workshop and two talks at ContainerConf
+
+Planned: Workshops about GitLap Ops and GitLab CI
+
+Planned: Four webinars about Kubernetes
+</textarea></section>
+
+</div>
+</div>
+
+<script src="media/reveal.js@4.5.0/dist/reveal.js" type="application/javascript"></script>
+<script src="media/reveal.js@4.5.0/plugin/markdown/markdown.js" type="application/javascript"></script>
+<script src="media/reveal.js@4.5.0/plugin/highlight/highlight.js" type="application/javascript"></script>
+<script src="media/reveal.js@4.5.0/plugin/search/search.js" type="application/javascript"></script>
+<script src="media/reveal.js@4.5.0/plugin/zoom/zoom.js" type="application/javascript"></script>
+<script src="media/reveal.js@4.5.0/plugin/notes/notes.js" type="application/javascript"></script>
+<script>
+    var durationInMinutes = 20;
+    Reveal.initialize({
+        width: 1300,
+        height: 850,
+        margin: 0.05,
+        controlsTutorial: false,
+        showSlideNumber: false,
+        hash: true,
+        history: true,
+        keyboard: true,
+        overview: true,
+        center: false,
+        touch: false,
+        shuffle: false,
+        fragments: true,
+        fragmentInURL: true,
+        embedded: false,
+        help: true,
+        showNotes: false,
+        autoPlayMedia: null,
+        mouseWheel: false,
+        previewLinks: false,
+        transition: 'convex',
+        transitionSpeed: 'default',
+        backgroundTransition: 'fade',
+        hideInactiveCursor: true,
+        hideCursorTime: 3000,
+
+        totalTime: durationInMinutes * 60,
+        allottedTime: durationInMinutes * 60 * 1000,
+
+        barColor: 'rgb(200, 0, 0)',
+        pausedBarColor: 'rgba(200, 0, 0, .6)',
+
+        markdown: {
+            smartypants: true
+        },
+
+        keyboard: {
+            // pause/resume time when Enter is pressed
+            13: () => {
+                ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+            },
+            // reset timer when 'r' is pressed
+            82: () => {
+                ElapsedTimeBar.reset();
+            }
+        },
+
+        dependencies: [
+            { src: 'media/plugins/elapsed-time-bar@18feb15/elapsed-time-bar.js' }
+        ],
+
+        plugins: [
+            RevealMarkdown,
+            RevealHighlight,
+            RevealSearch,
+            RevealZoom,
+            RevealNotes
+        ]
+    });
+</script>
+
+</body>
+</html>
