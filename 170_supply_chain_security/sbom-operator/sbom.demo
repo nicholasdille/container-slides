@@ -19,3 +19,6 @@ count by (image_id) (vuln_operator_cves)
 count by (severity) (vuln_operator_cves)
 count by (cve) (vuln_operator_cves)
 count by (package, version) (vuln_operator_cves)
+
+# Add CVEs
+kubectl run --image=alpine:3.17.0 --command alpine-3.17 -- sleep 600

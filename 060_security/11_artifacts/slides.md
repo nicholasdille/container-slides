@@ -7,7 +7,7 @@ Open Container Initiative (OCI) is responsible for multiple specifications:
 - Distribution <span style="color: grey;">(how to talk to image registries)</span> [](https://github.com/opencontainers/distribution-spec)
 - Artifact <span style="color: grey;">(how to store arbitraty data in registries)</span> [](https://github.com/opencontainers/artifacts)
 
-OCI is slowly replacing Docker media types
+OCI is replacing Docker media types
 
 Version 1.1 is in the making
 

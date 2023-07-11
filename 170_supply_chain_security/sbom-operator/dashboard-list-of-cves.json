@@ -1,0 +1,322 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 4,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "container"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 196
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 192
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 20,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "enablePagination": true,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.0.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "vuln_operator_cves{severity=~\"($severity)\",type=~\"($type)\",package=~\"($package)\",fix_state=~\"($fixed)\"}",
+            "format": "table",
+            "instant": true,
+            "range": false,
+            "refId": "A"
+          }
+        ],
+        "title": "CVEs",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "Value": true,
+                "__name__": true,
+                "container": true,
+                "container_name": true,
+                "endpoint": true,
+                "instance": true,
+                "job": true,
+                "k8s_kind": true,
+                "namespace": true,
+                "pod": true,
+                "service": true
+              },
+              "indexByName": {
+                "Time": 12,
+                "Value": 20,
+                "__name__": 13,
+                "container": 14,
+                "container_name": 3,
+                "cve": 4,
+                "endpoint": 15,
+                "fix_state": 10,
+                "image_id": 6,
+                "instance": 16,
+                "job": 17,
+                "k8s_kind": 1,
+                "k8s_name": 2,
+                "k8s_namespace": 0,
+                "namespace": 18,
+                "package": 8,
+                "pod": 11,
+                "service": 19,
+                "severity": 5,
+                "type": 7,
+                "version": 9
+              },
+              "renameByName": {
+                "k8s_kind": "Kind",
+                "k8s_name": "Name",
+                "k8s_namespace": "Namespace"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": ".+",
+          "current": {
+            "selected": true,
+            "text": [
+              "Critical",
+              "High"
+            ],
+            "value": [
+              "Critical",
+              "High"
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "definition": "label_values(severity)",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Severity",
+          "multi": true,
+          "name": "severity",
+          "options": [],
+          "query": {
+            "query": "label_values(severity)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "allValue": ".+",
+          "current": {
+            "selected": true,
+            "text": [
+              "apk"
+            ],
+            "value": [
+              "apk"
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "definition": "label_values(vuln_operator_cves,type)",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Type",
+          "multi": true,
+          "name": "type",
+          "options": [],
+          "query": {
+            "query": "label_values(vuln_operator_cves,type)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "allValue": ".+",
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "definition": "label_values(vuln_operator_cves,package)",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Package",
+          "multi": true,
+          "name": "package",
+          "options": [],
+          "query": {
+            "query": "label_values(vuln_operator_cves,package)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "allValue": ".+",
+          "current": {
+            "selected": true,
+            "text": [
+              "fixed"
+            ],
+            "value": [
+              "fixed"
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "definition": "label_values(vuln_operator_cves,fix_state)",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Fixed",
+          "multi": true,
+          "name": "fixed",
+          "options": [],
+          "query": {
+            "query": "label_values(vuln_operator_cves,fix_state)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "List of CVEs",
+    "uid": "ecb0c026-3718-41eb-87bf-cfc864356cc4",
+    "version": 9,
+    "weekStart": ""
+  }

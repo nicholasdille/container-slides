@@ -2,13 +2,13 @@
 set -o errexit
 
 # tools
-docker-setup --tools=docker,buildx,docker-compose,kind,helm,kubectl,cosign install
+docker-setup install docker buildx docker-compose kind helm kubectl cosign
 
 # cluster
 kind create cluster --config kind.yaml
 
 # ingress
-curl --silent --location https://github.com/kubernetes/ingress-nginx/raw/main/deploy/static/provider/kind/deploy.yaml | kubectl apply -f -
+helm upgrade --install traefik traefik/traefik --values values-traefik.yaml
 kubectl apply -f ingress.yaml
 
 # prometheus-operator

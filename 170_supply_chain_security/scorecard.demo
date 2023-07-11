@@ -1,0 +1,10 @@
+# scorecard
+
+# On-demand scan
+GITHUB_TOKEN="$(pp github-nicholasdille)" scorecard --repo=github.com/moby/moby
+
+# Display existing data
+curl -url https://api.securityscorecards.dev/projects/github.com/moby/moby \
+    --silent \
+    --header "Authorization: token $(pp github-nicholasdille)" \
+| jq --raw-output '.checks[] | "\(.name): \(.score)"'

@@ -16,3 +16,23 @@ spec:
             name: prometheus-operated
             port:
               number: 9090
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: monitoring
+  namespace: kube-system
+spec:
+  entryPoints:
+  - web
+  routes:
+  - match: Host(`prometheus.docker-setup.inmylab.de`)
+    kind: Rule
+    services:
+    - name: prometheus-operated
+      port: 9090
+  - match: Host(`grafana.docker-setup.inmylab.de`)
+    kind: Rule
+    services:
+    - name: grafana
+      port: 80

@@ -39,7 +39,7 @@ cyclonedx-cli [](https://github.com/CycloneDX/cyclonedx-cli)
 Using `docker-setup` [](https://github.com/nicholasdille/docker-setup)
 
 ```bash
-docker-setup --tags=sbom plan
+docker-setup install --tags sbom --plan
 ```
 
 ---

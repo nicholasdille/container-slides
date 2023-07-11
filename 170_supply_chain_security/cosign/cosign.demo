@@ -26,17 +26,17 @@ regctl manifest get ghcr.io/nicholasdille/container-slides/ubuntu:sha256-${DIGES
 https://search.sigstore.dev/
 
 # Verify signature
-EMAIL=???
-COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/nicholasdille/container-slides/ubuntu:22.04 --certificate-oidc-issuer https://github.com/login/oauth --cer
-tificate-identity ${EMAIL}
+COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/nicholasdille/container-slides/ubuntu:22.04 \
+    --certificate-oidc-issuer https://github.com/login/oauth \
+    --certificate-identity-regexp 'nicholas.dille@.+'
 
 # Sign arbitrary artifact
-curl -sLO https://github.com/aquasecurity/trivy/releases/download/v0.41.0/trivy_0.41.0_Linux-64bit.tar.gz
-curl -sLO https://github.com/aquasecurity/trivy/releases/download/v0.41.0/trivy_0.41.0_Linux-64bit.tar.gz.pem
-curl -sLO https://github.com/aquasecurity/trivy/releases/download/v0.41.0/trivy_0.41.0_Linux-64bit.tar.gz.sig
-COSIGN_EXPERIMENTAL=1 cosign verify-blob trivy_0.41.0_Linux-64bit.tar.gz \
-    --certificate trivy_0.41.0_Linux-64bit.tar.gz.pem \
-    --signature trivy_0.41.0_Linux-64bit.tar.gz.sig \
+curl -sLO https://github.com/aquasecurity/trivy/releases/download/v0.43.1/trivy_0.43.1_Linux-64bit.tar.gz
+curl -sLO https://github.com/aquasecurity/trivy/releases/download/v0.43.1/trivy_0.43.1_Linux-64bit.tar.gz.pem
+curl -sLO https://github.com/aquasecurity/trivy/releases/download/v0.43.1/trivy_0.43.1_Linux-64bit.tar.gz.sig
+COSIGN_EXPERIMENTAL=1 cosign verify-blob trivy_0.43.1_Linux-64bit.tar.gz \
+    --certificate trivy_0.43.1_Linux-64bit.tar.gz.pem \
+    --signature trivy_0.43.1_Linux-64bit.tar.gz.sig \
     --certificate-oidc-issuer https://token.actions.githubusercontent.com \
     --certificate-identity-regexp 'https://github.com/aquasecurity/trivy/.github/workflows/reusable-release.yaml@refs/tags/v*' \
     --certificate-github-workflow-repository aquasecurity/trivy
