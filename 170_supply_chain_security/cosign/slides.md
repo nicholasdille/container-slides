@@ -6,6 +6,8 @@ Initiated by chainguard [](https://www.chainguard.dev/)
 
 Transforms key management problem into identity problem
 
+<span class="fragment">
+
 ![](170_supply_chain_security/cosign/keyless.drawio.svg) <!-- .element: style="float: right; width: 45%; margin-left: 1em; margin-right: -2em;" -->
 
 ### Keyless Signature Flow
@@ -17,6 +19,8 @@ The clients gets redirected to authenticate <i class="fa fa-circle-3"></i>, *ful
 *cosign* updates the transparency log *rekor* <i class="fa fa-circle-5"></i>
 
 After signing, the key pair as well as the certificate are deleted <i class="fa fa-circle-6"></i>.
+
+</span>
 
 ---
 

@@ -1,7 +1,7 @@
 # Cosign
 
 # Login for packages
-docker login
+docker login ghcr.io
 
 # Build container image
 cat <<EOF >Dockerfile

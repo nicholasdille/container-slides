@@ -41,3 +41,5 @@ curl -s https://api.securityscorecards.dev/projects/${PROJECT} \
 Use web-based [BigQuery Explorer](http://console.cloud.google.com/bigquery)
 
 Use `bq` on the console (part of `gcloud`)
+
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/170_supply_chain_security/scorecard.demo "scorecard.demo")
