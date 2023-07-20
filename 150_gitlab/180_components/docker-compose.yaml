@@ -24,7 +24,7 @@ services:
 
   # https://doc.traefik.io/traefik/
   traefik:
-    image: traefik:v2.9
+    image: traefik:v2.10
     command:
     - --log=true
     - --log.level=DEBUG
@@ -47,12 +47,17 @@ services:
       timeout: 5s
       retries: 3
       start_period: 5s
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.traefik.entrypoints: http
+      traefik.http.routers.traefik.rule: Host(`traefik.localhost`)
+      traefik.http.routers.traefik.service: api@internal
 
   # https://docs.gitlab.com/ee/install/docker.html
   redis:
-    image: gitlab/gitlab-ee:15.10.3-ee.0
+    image: gitlab/gitlab-ee:16.1.2-ee.0
     environment:
-      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/16.1.2+ee.0/files/gitlab-config-template/gitlab.rb.template#L1383
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
         gitlab_rails['usage_ping_enabled'] = false
@@ -63,7 +68,7 @@ services:
         redis['bind'] = '0.0.0.0'
         redis['password'] = 'redis-password'
         gitlab_rails['redis_password'] = 'redis-password'
-    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    # https://docs.gitlab.com/16.1/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
     shm_size: 256m
     healthcheck:
       test: exit 0
@@ -75,9 +80,9 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   postgres:
-    image: gitlab/gitlab-ee:15.10.3-ee.0
+    image: gitlab/gitlab-ee:16.1.2-ee.0
     environment:
-      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/16.1.2+ee.0/files/gitlab-config-template/gitlab.rb.template#L1229
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
         gitlab_rails['usage_ping_enabled'] = false
@@ -86,18 +91,27 @@ services:
         gitlab_rails['auto_migrate'] = false
         postgresql['listen_address'] = '0.0.0.0'
         postgresql['port'] = 5432
-        postgresql['sql_user'] = "gitlab"
-        postgresql['sql_user_password'] = "84110b4ef64419fa0c35c0a42bc6434b"
-        postgresql['md5_auth_cidr_addresses'] = %w(0.0.0.0/0)
-        postgresql['trust_auth_cidr_addresses'] = %w(127.0.0.1/24)
-        #postgresql['hostssl'] = true
+        #postgresql['sql_user'] = "gitlab"
+        postgresql['sql_user_password'] = "sql-user-password"
+        #postgresql['md5_auth_cidr_addresses'] = %w(0.0.0.0/0)
+        postgresql['trust_auth_cidr_addresses'] = %w(172.16.0.0/12)
         gitlab_rails['db_encoding'] = 'utf8'
         gitlab_rails['db_database'] = 'gitlabhq_production'
         gitlab_rails['db_username'] = 'gitlab'
         gitlab_rails['db_password'] = 'postgres-password'
-        gitlab_rails['redis_host'] = 'redis'
-        gitlab_rails['redis_port'] = 6379
-        gitlab_rails['redis_password'] = 'redis-password'
+        postgresql['max_connections'] = 50
+        postgresql['custom_pg_hba_entries'] = {}
+        #  WORKAROUND: [
+        #    {
+        #      type: local,
+        #      database: all,
+        #      user: all,
+        #      cidr: "",
+        #      method: peer,
+        #      option: ""
+        #    }
+        #  ]
+        #}
     # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
     shm_size: 256m
     healthcheck:
@@ -110,7 +124,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitaly:
-    image: gitlab/gitlab-ee:15.10.3-ee.0
+    image: gitlab/gitlab-ee:16.1.2-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -136,10 +150,10 @@ services:
         # Configure the gitlab-shell API callback URL. Without this, `git push` will
         # fail. This can be your 'front door' GitLab URL or an internal load
         # balancer.
-        gitlab_rails['internal_api_url'] = 'http://gitlab.docker-setup.inmylab.de'
+        gitlab_rails['internal_api_url'] = 'http://gitlab'
     
         # Fix for authentication against API
-        gitlab_workhorse['auth_backend'] = 'http://gitlab.docker-setup.inmylab.de'
+        gitlab_workhorse['auth_backend'] = 'http://gitlab'
     
         gitaly['configuration'] = {
           listen_addr: "0.0.0.0:8075",
@@ -167,7 +181,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   application:
-    image: gitlab/gitlab-ee:15.10.3-ee.0
+    image: gitlab/gitlab-ee:16.1.2-ee.0
     environment:
       GITLAB_SKIP_UNMIGRATED_DATA_CHECK: true
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
@@ -178,9 +192,14 @@ services:
         gitaly['enable'] = false
         gitlab_rails['gitlab_kas_enabled'] = false
         gitlab_kas['enable'] = false
+
         gitlab_rails['initial_root_password'] = "g1tl4b-p4s5w0rd"
-        external_url 'http://gitlab.docker-setup.inmylab.de'
-        puma['listen'] = '0.0.0.0'
+        external_url 'http://gitlab.localhost'
+        #puma['listen'] = '0.0.0.0'
+        gitlab_rails['trusted_proxies'] = [ '127.0.0.1' ]
+        gitlab_workhorse['listen_network'] = "tcp"
+        gitlab_workhorse['listen_addr'] = "0.0.0.0:8181"
+
         gitlab_rails['db_adapter'] = 'postgresql'
         #gitlab_rails['db_encoding'] = 'utf8'
         gitlab_rails['db_host'] = 'postgres'
@@ -188,9 +207,11 @@ services:
         gitlab_rails['db_database'] = 'gitlabhq_production'
         gitlab_rails['db_username'] = 'gitlab'
         gitlab_rails['db_password'] = 'postgres-password'
+
         gitlab_rails['redis_host'] = 'redis'
         gitlab_rails['redis_port'] = 6379
         gitlab_rails['redis_password'] = 'redis-password'
+
         gitlab_rails['gitaly_token'] = "gitaly-password"
         git_data_dirs({
           'default' => { 'gitaly_address' => 'tcp://gitaly:8075' },
@@ -206,14 +227,14 @@ services:
     - gitlab-app-log:/var/log/gitlab
     labels:
       traefik.enable: "true"
-      traefik.http.services.www.loadbalancer.server.port: 8080
+      traefik.http.services.www.loadbalancer.server.port: 8181
       traefik.http.routers.www.entrypoints: http
-      traefik.http.routers.www.rule: Host(`gitlab.docker-setup.inmylab.de`)
+      traefik.http.routers.www.rule: Host(`gitlab.localhost`)
       traefik.http.routers.www.service: www
 
   # https://docs.gitlab.com/ee/install/docker.html
   pages:
-    image: gitlab/gitlab-ee:15.10.3-ee.0
+    image: gitlab/gitlab-ee:16.1.2-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -235,12 +256,12 @@ services:
       traefik.enable: "true"
       traefik.http.services.pages.loadbalancer.server.port: 80
       traefik.http.routers.pages.entrypoints: http
-      traefik.http.routers.pages.rule: Host(`{subdomain:.+}.gitlab.docker-setup.inmylab.de`)
+      traefik.http.routers.pages.rule: Host(`{subdomain:.+}.gitlab.localhost`)
       traefik.http.routers.pages.service: pages
 
   # https://docs.gitlab.com/ee/install/docker.html
   monitoring:
-    image: gitlab/gitlab-ee:15.10.3-ee.0
+    image: gitlab/gitlab-ee:16.1.2-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
