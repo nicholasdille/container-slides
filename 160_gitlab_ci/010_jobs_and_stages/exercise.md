@@ -6,7 +6,9 @@
 
 ## Introduction
 
-XXX
+XXX **bold**
+
+XXX _italic_
 
 ``` mermaid
 graph LR
@@ -39,6 +41,12 @@ XXX
 
     - list item a
     - list item b
+
+XXX
+
+```bash
+docker run -it --rm --privileged docker:stable-dind
+```
 
 XXX
 

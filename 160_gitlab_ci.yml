@@ -1,26 +1,40 @@
 site_name: GitLab CI
 site_author: Nicholas Dille
-copyright: Copyright by Nicholas Dille
+site_description: Long description
+copyright: Copyright &copy; Nicholas Dille
 repo_url: https://github.com/nicholasdille/container-slides
 repo_name: nicholasdille/container-slides
-edit_uri: edit/main/160_gitlab_ci
+edit_uri: tree/master/160_gitlab_ci
 
 docs_dir: 160_gitlab_ci
 
 theme:
   name: material
+  icon:
+    logo: fontawesome/brands/gitlab
+    repo: fontawesome/brands/github
+    edit: fontawesome/regular/file-code
   language: en
   font: false
-  icon:
-    repo: fontawesome/brands/github
   features:
   - content.action.edit
-  - content.action.view
   - tabs
   - navigation.sections
+  - navigation.footer
   palette:
     primary: indigo
     scheme: slate
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nicholasdille/container-slides
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/squidfunk/mkdocs-material/
+    - icon: fontawesome/brands/mastodon
+      link: https://freiburg.social/@nicholasdille
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/nicholasdille
 
 #extra_css:
 #- ../media/source-sans-pro@19/source-sans-pro.css
@@ -34,6 +48,9 @@ plugins:
 #- macros
 
 markdown_extensions:
+- toc:
+    title: On this page
+    permalink: true
 - admonition
 - pymdownx.details
 - pymdownx.superfences:
@@ -41,11 +58,16 @@ markdown_extensions:
     - name: mermaid
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.highlight:
+    anchor_linenums: true
+    use_pygments: false
 - pymdownx.tabbed:
     alternate_style: true
 - pymdownx.emoji:
     emoji_index: !!python/name:materialx.emoji.twemoji
     emoji_generator: !!python/name:materialx.emoji.to_svg
+- pymdownx.snippets:
+    base_path: .
 
 nav:
 - Home: index.md
