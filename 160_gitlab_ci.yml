@@ -1,0 +1,64 @@
+site_name: GitLab CI
+site_author: Nicholas Dille
+copyright: Copyright by Nicholas Dille
+repo_url: https://github.com/nicholasdille/container-slides
+repo_name: nicholasdille/container-slides
+edit_uri: edit/main/160_gitlab_ci
+
+docs_dir: 160_gitlab_ci
+
+theme:
+  name: material
+  language: en
+  font: false
+  icon:
+    repo: fontawesome/brands/github
+  features:
+  - content.action.edit
+  - content.action.view
+  - tabs
+  - navigation.sections
+  palette:
+    primary: indigo
+    scheme: slate
+
+#extra_css:
+#- ../media/source-sans-pro@19/source-sans-pro.css
+
+plugins:
+- search:
+    lang:
+    - en
+- minify:
+    minify_html: false
+#- macros
+
+markdown_extensions:
+- admonition
+- pymdownx.details
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.emoji:
+    emoji_index: !!python/name:materialx.emoji.twemoji
+    emoji_generator: !!python/name:materialx.emoji.to_svg
+
+nav:
+- Home: index.md
+- Navigation: navigation.md
+- Preparation:
+  - GitLab: 000_rollout/exercise_gitlab.md
+  - IDE: 000_rollout/exercise_ide.md
+  - Project: 000_rollout/exercise_project.md
+- Basics:
+  - Jobs and Stages: 010_jobs_and_stages/exercise.md
+  - Variables: 020_variables/exercise.md
+  - Scriptblocks: 030_script_blocks/exercise.md
+  - Images: 040_image/exercise.md
+  - Defaults: 050_defaults/exercise.md
+- Legal:
+  - Impressum: impressum.md
