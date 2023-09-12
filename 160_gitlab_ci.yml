@@ -7,6 +7,7 @@ repo_name: nicholasdille/container-slides
 edit_uri: tree/master/160_gitlab_ci
 
 docs_dir: 160_gitlab_ci
+site_dir: site.160_gitlab_ci
 
 theme:
   name: material
@@ -17,7 +18,7 @@ theme:
   language: en
   font: false
   features:
-  - content.action.edit
+  #- content.action.edit
   - tabs
   - navigation.sections
   - navigation.footer

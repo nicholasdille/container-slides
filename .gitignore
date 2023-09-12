@@ -5,3 +5,4 @@ videos/**
 id_rsa_*
 **/*.final.md
 *.pdf
+/site.*
