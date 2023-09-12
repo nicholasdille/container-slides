@@ -31,7 +31,17 @@ export RUNNER_TAG_LIST
 : "${DOCKER_IMAGE:=alpine}"
 export DOCKER_IMAGE
 
-printenv
+# PREDEFINED: Concurrent jobs
+: "${CONCURRENT:=1}"
+export CONCURRENT
 
+echo "### UNREGISTER"
+gitlab-runner unregister --all-runners
+
+echo "### REGISTERING"
 gitlab-runner register --non-interactive
+sed -i "s/concurrent.*/concurrent = ${CONCURRENT}/" /etc/gitlab-runner/config.toml
+cat /etc/gitlab-runner/config.toml
+
+echo "### STARTING"
 exec gitlab-runner --debug run --user gitlab-runner
