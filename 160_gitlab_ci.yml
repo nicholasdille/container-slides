@@ -61,7 +61,8 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format
 - pymdownx.highlight:
     anchor_linenums: true
-    use_pygments: false
+    line_spans: __span
+    pygments_lang_class: true
 - pymdownx.tabbed:
     alternate_style: true
 - pymdownx.emoji:
@@ -83,5 +84,6 @@ nav:
   - Scriptblocks: 030_script_blocks/exercise.md
   - Images: 040_image/exercise.md
   - Defaults: 050_defaults/exercise.md
+  - Artifacts: 060_artifacts/exercise.md
 - Legal:
   - Impressum: impressum.md

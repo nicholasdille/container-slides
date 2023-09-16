@@ -20,15 +20,6 @@ Avoid maintaining custom image
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/040_image "040_image")
+## Hands-On
 
-Use `image` instead of `before_script`
-
-1. Add `image: golang:1.19.2` to all jobs
-1. Remove `before_script` from all jobs
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout 160_gitlab_ci/040_image -- '*'
-```
+XXX

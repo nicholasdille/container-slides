@@ -1,34 +1,13 @@
 # Jobs and stages
 
-!!! important "Goal"
+!!! tip "Goal"
     Learn how to...
+
     - create jobs
     - organize them in stages
+    - understand when jobs in different stages are executed
 
-## Introduction
-
-XXX **bold**
-
-XXX _italic_
-
-``` mermaid
-graph LR
-  A[Start] --> B{Error?};
-  B -->|Yes| C[Hmm...];
-  C --> D[Debug];
-  D --> B;
-  B ---->|No| E[Yay!];
-```
-
-!!! info "Hints"
-    - X
-    - Y
-
-## Preparation
-
-XXX
-
-## Task: Create a single job
+## Task 1: Create a single job
 
 Add a pipeline to build the code using the following commands:
 
@@ -39,16 +18,25 @@ go build -o hello .
 ./hello
 ```
 
-??? example "Hint (Click if you are stuck)"
+See the [official documentation about jobs](https://docs.gitlab.com/ee/ci/jobs/index.html).
+
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
+
+??? info "Hint (Click if you are stuck)"
     1. Add a file called `.gitlab-ci.yml` in the root of the project
     2. Add a job called `build`
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml
-    ---8<--- "010_jobs_and_stages/build/.gitlab-ci.yml"
+    ```yaml linenums="1"
+    build:
+      script:
+      - apk update
+      - apk add go
+      - go build -o hello .
+      - ./hello
     ```
 
-## Task: Add a stage
+## Task 2: Add a stage
 
 Modify the pipeline to consist of two stages called `check` and `build` where the `check` stage contains the following commands:
 
@@ -59,23 +47,71 @@ go fmt .
 go vet .
 ```
 
-??? example "Hint (Click if you are stuck)"
+See the [official documentation about stages](https://docs.gitlab.com/ee/ci/yaml/#stages).
+
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
+
+??? info "Hint (Click if you are stuck)"
     1. Define two stages using `stages`
     2. Add a job called `check` in the stage `check`
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml
-    ---8<--- "010_jobs_and_stages/lint/.gitlab-ci.yml"
+    ```yaml linenums="1" hl_lines="1-11"
+    stages:
+    - check
+    - build
+
+    lint:
+    stage: check
+      script:
+      - apk update
+      - apk add go
+      - go fmt .
+      - go vet .
+
+    build:
+      stage: build
+      script:
+      - apk update
+      - apk add go
+      - go build -o hello .
+      - ./hello
     ```
 
-## Task: Add parallel jobs
+## Task 3: Add parallel jobs
 
 Split the job `check` so that one job called `lint` executes `go fmt .` and another job called `audit` executes `go vet .`.
 
-??? example "Hint (Click if you are stuck)"
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
+
+??? info "Hint (Click if you are stuck)"
     Both jobs `lint` and `audit` must be in the stage `check`.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml
-    ---8<--- "010_jobs_and_stages/parallel/.gitlab-ci.yml"
+    ```yaml linenums="1" hl_lines="5-17"
+    stages:
+    - check
+    - build
+
+    lint:
+      stage: check
+      script:
+      - apk update
+      - apk add go
+      - go fmt .
+
+    audit:
+      stage: check
+      script:
+      - apk update
+      - apk add go
+      - go vet .
+
+    build:
+      stage: build
+      script:
+      - apk update
+      - apk add go
+      - go build -o hello .
+      - ./hello
     ```
