@@ -4,10 +4,10 @@
 <head>
 <meta charset="utf-8"/>
 
-<title>docker-setup</title>
+<title>Kubernetes automatisieren</title>
 
 <!-- https://gauger.io/fonticon/ -->
-<link rel="icon" href="images/docker.ico"/>
+<link rel="icon" href="images/kubernetes.ico"/>
 
 <link rel="stylesheet" href="media/reveal.js@4.5.0/dist/reveal.css"/>
 <link rel="stylesheet" href="media/source-sans-pro@19/source-sans-pro.css"/>
@@ -34,17 +34,13 @@
 <div class="slides">
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-<!-- .slide: data-background="images/nana-smirnova-IEiAmhXehwE-unsplash.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
+<!-- .slide: data-background="images/john-salvino-bqGBbLq_yfc-unsplash.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
 
-# docker-setup
-
-**The container tools installer and updater**
+# Kubernetes automatisieren
 
 *Nicholas Dille, Haufe Group*
 
 <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
-
-<i class="fa-brands fa-windows" style="width: 1.5em; text-align: center;"></i> Microsoft MVP
 
 <i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> [@nicholasdille](https://twitter.com/nicholasdille)
 
@@ -52,31 +48,30 @@
 </textarea></section>
 
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<section data-markdown="110_ecosystem/docker-setup/motivation.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="110_ecosystem/docker-setup/quickstart.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="110_ecosystem/docker-setup/concepts.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="110_ecosystem/docker-setup/stats.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="110_ecosystem/docker-setup/future.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="110_ecosystem/docker-setup/alternatives.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="110_ecosystem/docker-setup/history.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<!--
+    TODO: RBAC, Policies, Network Policies, SBoM, Supply Chain Security
+-->
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- <span class="fa-li"><i class="fa-duotone fa-face-sad-cry"></i></span> Many CLI tools cannot be installed automatically
-- <span class="fa-li"><i class="fa-duotone fa-gears"></i></span> `docker-setup` installs and updates community tools
-- <span class="fa-li"><i class="fa-duotone fa-ball-pile"></i></span> Not just container tools anymore
-- <span class="fa-li"><i class="fa-duotone fa-sparkles"></i></span> Always provides the latest versions
-- <span class="fa-li"><i class="fa-duotone fa-dolly"></i></span> Reasonable default configuration included, e.g. Docker
-- <span class="fa-li"><i class="fa-duotone fa-chart-network"></i></span> Integrations between tools included, e.g. containerd/gvisor
+- TODO
 
 <!-- .element: class="fa-ul" -->
 
-### Contributions are welcome
+### Upcoming events
+
+- Part 2-4
+- ContainerConf
+- GitLab Ops
+- GitLab CI
 </textarea></section>
+
+<section data-markdown="060_security/11_artifacts/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 </div>
 </div>
@@ -88,7 +83,7 @@
 <script src="media/reveal.js@4.5.0/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.5.0/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 20;
+    var durationInMinutes = 45;
     Reveal.initialize({
         width: 1300,
         height: 850,
