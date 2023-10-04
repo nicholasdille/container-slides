@@ -34,7 +34,7 @@
 <div class="slides">
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-<!-- .slide: data-background="images/john-salvino-bqGBbLq_yfc-unsplash.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
+<!-- .slide: data-background="images/diego-ph-fIq0tET6llw-unsplash.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
 
 # Kubernetes verstehen
 
@@ -50,28 +50,141 @@
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!--
-    TODO: Zentrale Konzepte, Aufbau von Ressourcenbeschreibungen, Pods, Labels, Lifecycle, Architektur, Kommunikation, Ingress (Controller)?
--->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
+## Concepts
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## What is a pod?
+
+![Pod consist of two containers](120_kubernetes/04_pods/pod.drawio.svg) <!-- .element: style="float: right; width: 35%;" -->
+
+One or more containers
+
+Single network namespace
+
+Smallest unit of deployment
+
+### Demo 1: Building pods with Docker
+
+Docker only knows containers
+
+XXX 120_kubernetes/02_pods_with_docker/pod.demo
+
+### Demo 2: Creating a pod
+
+XXX
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Imperative vs. declarative
+
+XXX
+
+XXX `docker run` vs. `docker compose`
+
+### Imperative: `kubectl run`
+
+XXX
+
+### Declarative: `kubectl apply`
+
+XXX
+
+XXX reconciliation
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Labels
+
+Add context to pods (and other resources)
+
+Labels do not cause reconciliation
+
+XXX
+
+### Filtering
+
+XXX labels in metadata
+
+XXX demo
+
+### Selection
+
+XXX services and label selectors
+
+XXX demo
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Lifecycle
+
+Updating pods (immutable fields)
+
+ReplicaSets (only creates copies of a pod)
+
+Deployments
+
+Further reading: StatefulSets, DaemonSets, Jobs, CronJobs
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Architecture
+
+Control Plane
+
+Workers
+
+Components (etcd, kube-proxy, kubelet, kube-apiserver, kube-scheduler, kube-controller-manager, cloud-controller-manager)
+
+Communication
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Accessing pods
+
+Port forwarding
+
+Node ports
+
+Host ports
+
+Load Balancer
+
+Ingress controller
+</textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- TODO
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
 
-<!-- .element: class="fa-ul" -->
+<!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 
 ### Upcoming events
 
-- Part 2-4
-- ContainerConf
-- GitLab Ops
-- GitLab CI
-</textarea></section>
+<span style="font-size: smaller;">
 
-<section data-markdown="060_security/11_artifacts/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+~~2023-10-11: Kubernetes [verstehen](https://heise-academy.de/webinare/kubernetes1023_konzepte)~~
+
+2023-10-18: Kubernetes [automatisieren](https://heise-academy.de/webinare/kubernetes1023_continous-deployment)
+
+2023-10-25: Kubernetes [überwachen](https://heise-academy.de/webinare/kubernetes1023_monitoring)
+
+2023-11-03: Kubernetes [absichern](https://heise-academy.de/webinare/kubernetes1023_security)
+
+2023-11-14: [ContainerConf](https://www.containerconf.de/): Workshop [GitLab CI](https://www.containerconf.de/veranstaltung-20671-0-ci-cd-mit-gitlab.html), Talk [OCI 1.1](https://www.containerconf.de/veranstaltung-21037-0-container-registries-als-generische-artefaktspeicher--was-oci-1.1-neues-bringt.html), Talk [Dependency Updates](https://www.containerconf.de/veranstaltung-21033-0-nie-wieder-veraltete-dependencies-wie-sich-sicherheitsluecken-von-selbst-schliessen.html)
+
+2023-11-23 / 2023-11-30 / 2023-11-07: Workshops [GitLab Ops](https://heise-academy.de/schulungen/einfuehrung-in-gitlab) (1 day) and [GitLab CI](https://heise-academy.de/schulungen/cicd-gitlab) (2 days)
+</span>
+</textarea></section>
 
 </div>
 </div>
@@ -83,7 +196,7 @@
 <script src="media/reveal.js@4.6.0/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="media/reveal.js@4.6.0/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 45;
+    var durationInMinutes = 4 * 60;
     Reveal.initialize({
         width: 1300,
         height: 850,
