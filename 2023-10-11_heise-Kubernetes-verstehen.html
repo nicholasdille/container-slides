@@ -42,7 +42,7 @@
 
 <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
 
-<i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> [@nicholasdille](https://twitter.com/nicholasdille)
+<i class="fa-brands fa-x-twitter" style="width: 1.5em; text-align: center;"></i> [@nicholasdille](https://twitter.com/nicholasdille)
 
 <i class="fa-brands fa-mastodon" style="width: 1.5em; text-align: center;"></i> [@nicholasdille@freiburg.social](https://freiburg.social/@nicholasdille)
 </textarea></section>
@@ -54,105 +54,49 @@
 <!-- .slide: class="center" -->
 ## Concepts
 </textarea></section>
+<section data-markdown="120_kubernetes/04_pods/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/02_pods_with_docker/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/04_pods/demo.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-## What is a pod?
-
-![Pod consist of two containers](120_kubernetes/04_pods/pod.drawio.svg) <!-- .element: style="float: right; width: 35%;" -->
-
-One or more containers
-
-Single network namespace
-
-Smallest unit of deployment
-
-### Demo 1: Building pods with Docker
-
-Docker only knows containers
-
-XXX 120_kubernetes/02_pods_with_docker/pod.demo
-
-### Demo 2: Creating a pod
-
-XXX
-</textarea></section>
-
-<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center" -->
 ## Imperative vs. declarative
-
-XXX
-
-XXX `docker run` vs. `docker compose`
-
-### Imperative: `kubectl run`
-
-XXX
-
-### Declarative: `kubectl apply`
-
-XXX
-
-XXX reconciliation
 </textarea></section>
+<section data-markdown="120_kubernetes/01_compose/declarative.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center"-->
 ## Labels
-
-Add context to pods (and other resources)
-
-Labels do not cause reconciliation
-
-XXX
-
-### Filtering
-
-XXX labels in metadata
-
-XXX demo
-
-### Selection
-
-XXX services and label selectors
-
-XXX demo
 </textarea></section>
+<section data-markdown="120_kubernetes/05_labels/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Lifecycle
 
 Updating pods (immutable fields)
-
-ReplicaSets (only creates copies of a pod)
-
-Deployments
-
-Further reading: StatefulSets, DaemonSets, Jobs, CronJobs
 </textarea></section>
+<section data-markdown="120_kubernetes/07_scale/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/08_update/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center"-->
 ## Architecture
-
-Control Plane
-
-Workers
-
-Components (etcd, kube-proxy, kubelet, kube-apiserver, kube-scheduler, kube-controller-manager, cloud-controller-manager)
-
-Communication
 </textarea></section>
+<section data-markdown="120_kubernetes/20_architecture/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center"-->
 ## Accessing pods
+</textarea></section>
+<section data-markdown="120_kubernetes/30_ingress/intro.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/30_ingress/port-forwarding.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/30_ingress/node-port.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/30_ingress/host-port.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/30_ingress/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Load balancer
 
-Port forwarding
-
-Node ports
-
-Host ports
-
-Load Balancer
-
-Ingress controller
+XXX
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -160,11 +104,11 @@ Ingress controller
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-tags"></i></span> Labels provide context and select resources
+- <span class="fa-li"><i class="fa-duotone fa-arrows-spin"></i></span> Pod lifecycle is managed my multiple resources
+- <span class="fa-li"><i class="fa-duotone fa-chart-network"></i></span> XXX Architecture
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> XXX Communication
+- <span class="fa-li"><i class="fa-duotone fa-dungeon"></i></span> Ingress controllers provide access to services
 
 <!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 

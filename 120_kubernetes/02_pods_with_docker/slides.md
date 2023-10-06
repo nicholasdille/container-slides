@@ -1,4 +1,4 @@
-## Pods
+## Building pods with Docker
 
 Pods consist of one or more containers
 
@@ -8,7 +8,9 @@ Docker only knows containers
 
 ### Use cases
 
-Processes seem to run on the same host
+Processes are isolated from each other...
+
+...but still seem to run on the same host
 
 ### Demo
 

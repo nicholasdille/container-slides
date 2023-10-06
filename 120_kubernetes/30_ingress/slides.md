@@ -1,44 +1,10 @@
-## User access
-
-How do users access the containerized services?
-
-### Remember container networking
-
-Containers are not accessible by default
-
-### Same challenges for Kubernetes
-
-Pods work in the same way
-
-No incoming route into pods by default
-
----
-
 ## Ingress Controller
 
 Responsible for routing requests to containers [](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
 
 Maintains rules for matching hosts and paths
 
-![](120_kubernetes/30_ingress/host_port.drawio.svg) <!-- .element: style="float: right; width: 30%;" -->
-
-### Option 1: Host ports
-
-Host port is directly forwarded to container
-
-One port per host per port
-
-Typical for self-hosted clusters without load balancer
-
-### Option 2: Node ports
-
-![](120_kubernetes/30_ingress/node_port.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
-
-`kube-proxy` opens port >30.000 on all nodes...
-
-...and forwards requests to a service
-
-Typical for hosted clusters with hosted load balancer
+XXX
 
 ---
 
@@ -94,7 +60,7 @@ Two pods `foo` and `bar` and...
 
 ### Request matching
 
-Match host inmylab.de
+Match host `inmylab.de`
 
 Match path prefix `/foo` and forward to service `foo-service`
 
@@ -104,11 +70,11 @@ Match path prefix `/bar` and forward to service `bar-service`
 
 ## Infrastructure-as-Code
 
+![](120_kubernetes/30_ingress/access.drawio.svg) <!-- .element: style="float: right; padding-left: 1em; width: 45%;" -->
+
 Manage user access automatically
 
 Define as code
-
-![](120_kubernetes/30_ingress/access.drawio.svg) <!-- .element: style="float: right; padding-left: 1em; width: 45%;" -->
 
 ### Concepts
 
@@ -118,8 +84,8 @@ Connections are secured using TLS (certificates managed by `cert-manager`)
 
 Use more flexible ingress controller, e.g. traefik [](https://traefik.io/traefik/) and many others
 
+### Outlook
+
 Shortcomings of `Ingress` resource: focused on HTTP(S), annotations [](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/) for advanced features
 
 Solved by custom resources in some ingress controllers, e.g. `IngressRoute` in traefik
-
-Outlook: Gateway API [](https://gateway-api.sigs.k8s.io/)

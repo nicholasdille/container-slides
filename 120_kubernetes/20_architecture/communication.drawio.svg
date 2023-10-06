@@ -1,4 +1,4 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="601px" height="161px" viewBox="-0.5 -0.5 601 161" content="&lt;mxfile&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;5Zffj6IwEID/Gh53IxR/Pa6e7L1ccomb7HOFERoLQ0pRuL/+pkdRODS7yWo2xmgM/TqFdr4poMOWafWqeJ78wgik442iymE/HM8bz2b0a0DdAG/uNiBWImpQB6zFH7BwZGkpIih6gRpRapH3YYhZBqHuMa4UHvphW5T9q+Y8hgFYh1wO6buIdNLQmTc98Z8g4qS9sjuZNz0pb4PtSoqER3joIah0gJm2U1xzLYpt7YxXidZmeS+OF9B3a0KeY8RYAs9F8RxiSjgsKCTY8lRIk9t2NJ2YrRy2VIi6OUqrJUgjpU14c/XgQu9xxQoy/ZkBXjNgz2Vpk7akGSs0Mb8lz8CuX9dtUhWWWQRmuOuwxSERGtY5D03vgaqIWKJTabu5Cm1ZUE2whcmGbXs+tfegtCBfL1LEGcENak35oUAh5RIlKoIZ0izYoqBZ7aCFjseCkfnYs3b4NNzwyLc8aFP8xhNMOdHgrc7NBGI6HmbLJtBMDKoOstl7BUxBKzI1sr2+LYe63zyc6u3Ikm6tTSzktoDi45lPtujACjsvjw3kvaPagbqqs8uO/pN5T86+Udp0II3uC08FqP1Xxd2vkPm452My9OGyMz78K+iYDXSADqNHFeHO+zvD9YYqZjcyMR+YKMIEolI+7r4Yf2zjyK6to32J6/jYlRuQoO/YxiD1ZwRdfmy4/oe3qdGtbLhnbTzlCqv6YYV8Zn+ce5Bfxcjw1VmVmRbpF1+Z71fHmPV13HB/UPP0H+lfX+cfLFv9BQ==&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="601px" height="161px" viewBox="-0.5 -0.5 601 161" content="&lt;mxfile&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;5Zhdb5swFIZ/DZet+AzJZZeW7mZSpVTqdunCCVg1GBmTwH797GADhqSr2lRblbaqfN7YBx8/r+0klrfOm3uGyuwHTYBYrp00lndruW6wXIr/Umg7IQxXnZAynHSSMwgb/BuUaCu1xglURkdOKeG4NMWYFgXE3NAQY3RvdttSYj61RCnMhE2MyFx9wgnPOnXphoP+HXCa6Sc7C1VfjnRnVUmVoYTuDQkaHtGCqyluEMfVtrWCu4xzWd6N5Ubibyu7XKeUpgRQiavrmOZCjivRJdqiHBO5tnq0SOzdWd6aUcq7Vt6sgUgoesG7p0cnXu0rZlDwNw1Q1ewQqdWqqYp5q5cRiuRG0hBRTFBV4djyvmU8J0JwRBMazH+Ktq3av2T7OlDRbTN66bbVQcFZ+1MnkEE3Kgx0PIw7RHpgxRl9gTUllB1m50WHH/HKvHS1GhWtWawt4SkfIpaC7uYroolhJ7Vg90BzEDMQHfaDiQK1btnIP1pjQATPnWlCpIyS9un6JzxQLGbs2mrbedphetd5tpmiq0eNGrOdJgrNRIvlJFG3CLNEojEqe5AO1jlhI+d8NnLeYyPbtNH7XVSJReF6ngUtQGsRltUfRr/Naf4Rp4X/ldP8idP84J1Oc71Joqllz+g0d+a0tThjGZWdHggSwKbGY7QuEkiUtfYZ5rAp0YHTXtx7pgsRi9VF5kjU8vxWseuLeAeMY3HD3BCcFkJ8ppyLE110FPbQfuptMzWZLX9V1pEexs8o8ZUe6UvhEWU0R0KNHttSTiDtrSdnAc3JI/+EqTT1CSsVjizXa2PPOQv7tL8MoK/R82b0nih7AXZWaKchTWh+JWj/kpo/oybey1xVwHYfJfd1iawC83KdA3G8I0D8c/AIZjyAx8mlknBW5t5w3DmL5WehWMxQVHEGSU0ud2cEf8fRa2fnEc54vNTPQIBfKg1fn96vHFT2Z9FYHqVxVTLatBcL5C3749hdfhYiqxkRVhcc5x982/x1cQSTzy6fuD9EOHyz0332Gb538+7+AA==&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs>
         <style type="text/css">
             /* latin */
@@ -12,6 +12,10 @@
         </style>
     </defs>
     <g>
+        <path d="M 360 80 L 191.28 51.08" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 186.1 50.19 L 193.59 47.92 L 191.28 51.08 L 192.41 54.82 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 185 40 L 367.63 40" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 372.88 40 L 365.88 43.5 L 367.63 40 L 365.88 36.5 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
         <rect x="0" y="0" width="240" height="160" rx="16" ry="16" fill="none" stroke="#f0f0f0" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>

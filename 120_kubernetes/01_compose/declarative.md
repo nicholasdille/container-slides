@@ -18,7 +18,7 @@ Engine makes adjustments to reach desired state
 
 **Example:** Manage containerized service
 
-![Imperative approach](120_kubernetes/01_compose/imperative.drawio.svg)
+![Imperative approach](120_kubernetes/01_compose/imperative.drawio.svg) <!-- .element: style="width: 75%;" -->
 
 ### Challenge
 
@@ -32,7 +32,7 @@ Apply new configuration
 
 **Example:** Manage containerized service
 
-![Declarative approach](120_kubernetes/01_compose/declarative.drawio.svg)
+![Declarative approach](120_kubernetes/01_compose/declarative.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 ### Challenges
 

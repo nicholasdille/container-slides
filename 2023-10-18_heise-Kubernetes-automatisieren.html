@@ -42,7 +42,7 @@
 
 <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
 
-<i class="fa-brands fa-twitter" style="width: 1.5em; text-align: center;"></i> [@nicholasdille](https://twitter.com/nicholasdille)
+<i class="fa-brands fa-x-twitter" style="width: 1.5em; text-align: center;"></i> [@nicholasdille](https://twitter.com/nicholasdille)
 
 <i class="fa-brands fa-mastodon" style="width: 1.5em; text-align: center;"></i> [@nicholasdille@freiburg.social](https://freiburg.social/@nicholasdille)
 </textarea></section>
@@ -50,20 +50,44 @@
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!--
-    TODO: Templating, Helm, imperativ vs. deklarativ, CIOps vs. GitOps
--->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center"-->
+## Templating
+</textarea></section>
+<section data-markdown="120_kubernetes/templating/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/kustomize/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center"-->
+## Helm
+</textarea></section>
+<section data-markdown="120_kubernetes/helm/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center"-->
+## CI/CD
+</textarea></section>
+<section data-markdown="120_kubernetes/ci_cd/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center"-->
+## GitOps
+</textarea></section>
+<section data-markdown="140_gitops/quote_keysey_hightower.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="140_gitops/definition.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="140_gitops/projects.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="140_gitops/argocd/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="140_gitops/tekton/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-ball-pile"></i></span> Templating resource definitions is painful
+- <span class="fa-li"><i class="fa-duotone fa-box-open"></i></span> Helm is **the** package manager for Kubernetes
+- <span class="fa-li"><i class="fa-duotone fa-person-dolly"></i></span> CI/CD pushes changes to Kubernetes
+- <span class="fa-li"><i class="fa-duotone fa-conveyor-belt-arm"></i></span> GitOps means Kubernetes pulls changes into the cluster
 
 <!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 

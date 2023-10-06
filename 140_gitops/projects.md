@@ -8,6 +8,10 @@ The GitOps reference project
 
 Created by [WeaveWorks](https://www.weave.works/), CNCF [sandbox project](https://www.cncf.io/sandbox-projects/)
 
+### [ArgoCD](https://argoproj.github.io/argo-cd/)
+
+XXX
+
 ### [tekton](https://tekton.dev/)
 
 Kubernetes native CI/CD
