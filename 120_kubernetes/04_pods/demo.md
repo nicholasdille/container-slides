@@ -12,4 +12,4 @@ Smallest unit of deployment
 
 ### Demo
 
-XXX
+Creating pods with `kubectl` [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/04_pods/pod.demo)

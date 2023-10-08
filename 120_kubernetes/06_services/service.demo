@@ -1,36 +1,30 @@
-# Service Discovery
+# Services and label selectors
 
-## Service anschauen
+## See resource description for a service
 cat service.yaml
 
-## Ausrollen des Services
+## Deploy a service
 kubectl apply -f service.yaml
 
-## Ergebnis anschauen
+## View services
 kubectl get services
 
-## Pod anschauen
-cat web.yaml
-
-## Ausrollen des Pods
+## Deploy a pod (match in label selector)
 kubectl apply -f web.yaml
 
-## Test aus Client (DNS beachten)
+## Test connection to pod through service
 kubectl run -it --image=cmd.cat/bash/curl --rm --command -- bash
 curl -s web
 exit
 
-## Zweiten Pod anschauen
-cat web2.yaml
-
-## Ausrollen des zweiten Pods
+## Deploy seconds pod
 kubectl apply -f web2.yaml
 
-## Test aus Client (Schleife)
+## Test connection to pods through service (note different servers)
 kubectl run -it --image=cmd.cat/bash/curl --rm --command -- bash
 curl -sv web | grep "< Server"
 exit
 
 ## Cleanup
-kubectl get pod -l "app=web" -o name | xargs kubectl delete
+kubectl delete pod --selector "app=web"
 kubectl delete service web

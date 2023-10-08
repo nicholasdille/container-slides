@@ -1,25 +1,25 @@
-# Vom Container zum Pod
+# Creating pods with Docker
 
-## Pod erstellen
+## Create pods resources
 docker run -d --name pod ubuntu bash -c 'sleep infinity'
 
-## Docker-in-Docker hinzufügen
-docker run -d --name dockerd --network container:pod --privileged docker:20-dind dockerd --host=tcp://0.0.0.0:2375
+## Add Docker-in-Docker
+docker run -d --name dockerd --network container:pod --privileged docker:dind dockerd --host=tcp://0.0.0.0:2375
 
-## Registry hinzufügen
+## Add registry
 docker run -d --name registry --network container:pod registry:2
 
-## Pod nutzen
+## Use the services in the pod
 docker run -it --network container:pod docker:stable
 
-## Prozesse anderer Container im Pod sind nicht sichtbar
+## Processes from other containers not visible
 ps faux
 
-## Nachinstallation einiger Tools
+## Add useful tools
 apk add curl jq
 
-## Testen der Verbindung zur Registry
+## Test connection to registry
 curl localhost:5000/v2/
 
-## Testen der Verbindung zum Docker-Daemon
-curl localhost:2375/version | jq
+## Test connection to Docker daemon
+curl -s localhost:2375/version | jq

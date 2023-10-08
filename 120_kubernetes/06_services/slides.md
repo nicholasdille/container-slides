@@ -15,3 +15,9 @@ DNS records for pods
 Services are a reverse proxy with a dedicated IP address
 
 Requests are distributed among pods
+
+Target pods are selected using labels
+
+### Demo
+
+XXX [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/06_services/service.demo)

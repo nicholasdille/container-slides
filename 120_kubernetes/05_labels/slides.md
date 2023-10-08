@@ -10,7 +10,7 @@ All resources can have labels...
 
 Labels provide context for resources
 
-Labels are used for selection
+Labels are used for selection (next section)
 
 Changing labels does not cause pod updates
 
@@ -31,31 +31,11 @@ metadata:
 
 ### Demo
 
-XXX start multiple pods with labels
+Start multiple pods with labels
 
-XXX filter pods by label(s)
+Filter pods by label(s)
 
----
-
-## Labels select resources
-
-Service provide load balancing and DNS
-
-Services reference pods by label selector
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-service
-spec:
-  selector:
-    app: my-app
-```
-
-### Demo
-
-XXX create service referencing some pods
+Commands [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/05_labels/labels.demo)
 
 ---
 
