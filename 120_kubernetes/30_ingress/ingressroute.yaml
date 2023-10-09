@@ -20,7 +20,7 @@ spec:
   entryPoints:
   - http
   routes:
-  - match: Host(`traefik.inmylab.de`)
+  - match: Host(`traefik.seat0.inmylab.de`)
     kind: Rule
     services:
     - name: traefik-dashboard
