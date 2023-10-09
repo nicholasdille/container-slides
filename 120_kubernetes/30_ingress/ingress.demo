@@ -14,7 +14,7 @@ kubectl wait --namespace ingress-nginx \
   --timeout=5m
 
 ## Deploy demo services
-kubectl apply -f demo.yaml
+kubectl apply -f ingress.yaml
 
 ## Test demo service 1
 curl --resolve inmylab.de:80:127.0.0.1 http://inmylab.de/foo

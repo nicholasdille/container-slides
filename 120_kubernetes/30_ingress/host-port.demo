@@ -1,0 +1,7 @@
+# Port with open host port
+
+## Deploy pod with host port
+kubectl apply -f host-port.yaml
+
+## Test connection
+curl 172.18.0.2:8080

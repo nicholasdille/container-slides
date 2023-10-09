@@ -4,11 +4,11 @@ Slides and demos live on GitHub [nicholasdille/container-slides](https://github.
 
 ### Slides
 
-HTML file (`YYYY-mm-dd_<type>_<title>`) includes markdown files
+Events have their own [release](https://github.com/nicholasdille/container-slides/releases)...
 
-Events have their own [release](https://github.com/nicholasdille/container-slides/releases) with tag for date of event (`YYYYmmdd`)
+...with tag for date of event (`YYYYmmdd`)
 
-Use tag to access files because...
+Use the release tag to access files because...
 
 ...slide decks will be removed after a few months
 
@@ -16,6 +16,6 @@ Use tag to access files because...
 
 Demos are linked from slides like this [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/impersonation.demo "impersonation.demo")
 
-Prepare environment using `prepare.sh` in the same directory
+Execute commands from linked `.demo` file
 
-Execute command from `.demo` file
+If available, check `prepare.sh` in the same directory

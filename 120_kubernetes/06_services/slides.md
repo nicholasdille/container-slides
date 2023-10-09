@@ -20,4 +20,4 @@ Target pods are selected using labels
 
 ### Demo
 
-XXX [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/06_services/service.demo)
+Test load balancing through a service [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/06_services/service.demo)

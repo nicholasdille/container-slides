@@ -1,0 +1,7 @@
+## Service of type NodePort
+
+# Deploy service and port
+kubectl apply -f node-port.yaml
+
+# Test connection to node port
+curl 172.18.0.2:32383

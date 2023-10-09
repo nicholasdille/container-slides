@@ -74,7 +74,18 @@
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Lifecycle
 
-Updating pods (immutable fields)
+Applications require lifecycle management:
+
+- Deploy / remove
+- Upgrade / downgrade
+- Scale up / down
+- Restart
+
+### Do not update pods directly
+
+Updating pods results in a container restart
+
+Essentially only the image can be updated
 </textarea></section>
 <section data-markdown="120_kubernetes/07_scale/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/08_update/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>

@@ -8,9 +8,7 @@ Applications are executed on worker nodes
 
 ![Cluster nodes](120_kubernetes/20_architecture/nodes.drawio.svg) <!-- .element: style="margin-top: 1em; width: 50%;" -->
 
-### Demo
-
-Check out nodes in the cluster:
+### Demo: Cluster nodes
 
 ```plaintext
 $ kubectl get nodes
@@ -39,9 +37,7 @@ The container runtime manages the individual containers
 
 ![Services on worker nodes](120_kubernetes/20_architecture/worker.drawio.svg) <!-- .element: style="margin-top: 1em; width: 50%;" -->
 
-### Demo
-
-Process tree shows the services running on a worker node
+### Demo: Process tree with running services
 
 ```plaintext
 $ docker exec -it kind-worker ps fxwwo pid,cmd
@@ -78,11 +74,7 @@ All cluster data is stored in `etcd`
 
 ## Control plane 2/2
 
-![Dienste der Control Plane](120_kubernetes/20_architecture/controller.drawio.svg) <!-- .element: style="margin-top: 1em; width: 50%;" -->
-
-### Demo
-
-Process tree shows the services running on a master node
+### Demo: Process tree with running services
 
 ```plaintext
 $ docker exec -it kind-control-plane ps fxwwo pid,cmd

@@ -1,16 +1,11 @@
 ---
-# Ressourcentyp
 apiVersion: v1
 kind: Service
-# Metadaten
 metadata:
   name: web
-# Spezifikation des Service
 spec:
-  # Wählt Pods anhand von Labels aus
   selector:
     app: web
-  # Definiert verfügbare Ports
   ports:
   - protocol: TCP
     port: 80
