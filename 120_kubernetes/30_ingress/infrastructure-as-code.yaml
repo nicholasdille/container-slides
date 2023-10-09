@@ -1,0 +1,39 @@
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: traefik-dashboard
+spec:
+  endpoints:
+  - dnsName: traefik.seat0.inmylab.de
+    recordTTL: 300
+    recordType: A
+    targets:
+    - lb.seat0.inmylab.de
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-dashboard
+spec:
+  secretName: traefik-dashboard
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+  - traefik.seat0.inmylab.de
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+spec:
+  entryPoints:
+  - http
+  routes:
+  - match: Host(`traefik.seat0.inmylab.de`)
+    kind: Rule
+    services:
+    - name: traefik-dashboard
+      port: 80
+      strategy: RoundRobin

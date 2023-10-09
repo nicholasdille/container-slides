@@ -2,15 +2,7 @@
 
 Responsible for routing requests to pods [](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
 
-Maintains rules for matching hosts and paths
-
-XXX
-
----
-
-## Ingress resource
-
-Ingress [](https://kubernetes.io/docs/concepts/services-networking/ingress/) defines rule to match requests and how to route them
+### Ingress resource
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -30,7 +22,9 @@ spec:
             port:
               number: 5678
 ```
-<!-- .element: style="float: right; width: 22em;" -->
+<!-- .element: style="float: right; width: 20em;" -->
+
+Ingress [](https://kubernetes.io/docs/concepts/services-networking/ingress/) defines rule to match requests and how to route them
 
 ### Request matching
 
@@ -80,17 +74,17 @@ Manage access automatically - as code
 
 ### Concepts
 
-`external-dns` manages DNS records pointing to ingress controller
+`external-dns` manages DNS records pointing to ingress controller [](https://doc.crds.dev/github.com/kubernetes-sigs/external-dns)
 
-`cert-manager` maintains certificates for TLS termination
+`cert-manager` maintains certificates for TLS termination [](https://doc.crds.dev/github.com/cert-manager/cert-manager)
 
-Flexible ingress controllers offer important features, e.g. `traefik`` [](https://traefik.io/traefik/) among others
+Flexible ingress controllers offer important features, e.g. `traefik` [](https://traefik.io/traefik/) among others
 
 ### Outlook
 
 `Ingress` resource: focused on HTTP(S), annotations [](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/) for advanced features
 
-Solved by custom resources, e.g. `IngressRoute` in traefik
+Solved by custom resources, e.g. `IngressRoute` in traefik [](https://doc.crds.dev/github.com/traefik/traefik)
 
 ---
 
