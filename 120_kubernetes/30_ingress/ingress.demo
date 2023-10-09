@@ -14,6 +14,9 @@ kubectl wait --namespace ingress-nginx \
   --timeout=5m
 
 ## Deploy demo services
+kubectl apply -f demo.yaml
+
+## Deploy ingress resource
 kubectl apply -f ingress.yaml
 
 ## Test demo service 1

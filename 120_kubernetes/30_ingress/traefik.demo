@@ -10,3 +10,6 @@ curl -sSLf https://github.com/traefik/traefik/raw/v2.10.4/docs/content/reference
 
 ## Deploy traefik
 kubectl apply -f traefik.yaml
+
+## Deploy demo services
+kubectl apply -f demo.yaml
