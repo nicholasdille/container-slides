@@ -2,10 +2,15 @@
 
 ![](120_kubernetes/30_ingress/host_port.drawio.svg) <!-- .element: style="float: right; width: 30%;" -->
 
-Host port is directly forwarded to container
+Host port is directly forwarded to pod
 
-One port per host per port
+Only available on the node where the pod is running
+
+Well-known ports can only be used once per node
 
 Typical for self-hosted clusters without load balancer
 
-XXX Host, path, TLS?
+Pod is responsible for request routing:
+
+- Filtering by host and port
+- TLS termination

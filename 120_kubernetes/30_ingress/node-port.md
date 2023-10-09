@@ -2,10 +2,15 @@
 
 ![](120_kubernetes/30_ingress/node_port.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
 
-`kube-proxy` opens port >30.000 on all nodes...
+Service is exposed on all nodes
 
-...and forwards requests to a service
+`kube-proxy` is responsible
 
-Typical for hosted clusters with hosted load balancer
+Only port >30.000
 
-XXX Host, path, TLS?
+Typical for managed clusters with hosted load balancer
+
+External load balancer is responsble for request routing:
+
+- Filter by host and path
+- TLS termination

@@ -1,6 +1,6 @@
 ## Ingress Controller
 
-Responsible for routing requests to containers [](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
+Responsible for routing requests to pods [](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
 
 Maintains rules for matching hosts and paths
 
@@ -66,26 +66,52 @@ Match path prefix `/foo` and forward to service `foo-service`
 
 Match path prefix `/bar` and forward to service `bar-service`
 
+### Demo commands
+
+Deploy ingress controller, services and test connectivity [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/30_ingress/ingress.demo)
+
 ---
 
 ## Infrastructure-as-Code
 
 ![](120_kubernetes/30_ingress/access.drawio.svg) <!-- .element: style="float: right; padding-left: 1em; width: 45%;" -->
 
-Manage user access automatically
-
-Define as code
+Manage access automatically - as code
 
 ### Concepts
 
-DNS records route requests to hosts running the ingress controller (managed by `external-dns`)
+`external-dns` manages DNS records pointing to ingress controller
 
-Connections are secured using TLS (certificates managed by `cert-manager`)
+`cert-manager` maintains certificates for TLS termination
 
-Use more flexible ingress controller, e.g. traefik [](https://traefik.io/traefik/) and many others
+Flexible ingress controllers offer important features, e.g. `traefik`` [](https://traefik.io/traefik/) among others
 
 ### Outlook
 
-Shortcomings of `Ingress` resource: focused on HTTP(S), annotations [](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/) for advanced features
+`Ingress` resource: focused on HTTP(S), annotations [](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/) for advanced features
 
-Solved by custom resources in some ingress controllers, e.g. `IngressRoute` in traefik
+Solved by custom resources, e.g. `IngressRoute` in traefik
+
+---
+
+## traefik
+
+Supports `Ingress` resource with annotations and `IngressRoute` resource
+
+Use with single node Docker for testing
+
+Supports HTTP(S) and TCP
+
+Resource definition `Middleware` to mutate requests and responses
+
+Dashboard to inspect active configuration
+
+### Demo
+
+Deploy traefik as ingress controller using a host port
+
+Deploy demo applications `foo` and `bar`
+
+Add `IngressRoute` resources
+
+Commands [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/30_ingress/traefik.demo)

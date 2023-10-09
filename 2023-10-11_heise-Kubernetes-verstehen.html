@@ -97,7 +97,29 @@ Updating pods (immutable fields)
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Load balancer
 
-XXX
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: LoadBalancer
+```
+<!-- .element: style="float: right; width: 15em;" -->
+
+Special type for a `Service`
+
+Requires integration with cloud provider
+
+External load balancer is responsible for routing traffic to services
+
+Annotations are used to configure external load balancer
+
+Requires flat network instead of overlay network
+
+### No demo
+
+Too much effort to setup :-(
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">

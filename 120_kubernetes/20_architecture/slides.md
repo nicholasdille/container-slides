@@ -145,11 +145,11 @@ All services on the worker nodes communicate with the `api-server`
 
 Clusters can be scaled in different ways
 
-| Type           | Controllers | Workers |
-|----------------|:-----------:|:-------:|
-| Ein Knoten     | 0,5         | 0,5     |
-| Mehrere Worker | 1           | 1+      |
-| Hochverfügbar  | 3           | 1+      |
+| Type             | Controllers | Workers |
+|------------------|:-----------:|:-------:|
+| Single node      | 0,5         | 0,5     |
+| Multiple workers | 1           | 1+      |
+| Highly available | 3+ (uneven) | 1+      |
 
 `etcd` can run as a container in the cluster
 
