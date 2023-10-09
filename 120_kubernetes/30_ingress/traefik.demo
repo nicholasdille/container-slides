@@ -1,2 +1,12 @@
 # traefik ingress controller
 
+## Deploy CRDs
+curl -sSLf https://github.com/traefik/traefik/raw/v2.10.4/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml \
+| kubectl apply -f -
+
+## Deploy RBAC
+curl -sSLf https://github.com/traefik/traefik/raw/v2.10.4/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml \
+| kubectl apply -f -
+
+## Deploy traefik
+kubectl apply -f traefik.yaml
