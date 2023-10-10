@@ -95,6 +95,32 @@ Essentially only the image can be updated
 ## Architecture
 </textarea></section>
 <section data-markdown="120_kubernetes/20_architecture/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: class="center"-->
+## Networking
+</textarea></section>
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Self-hosted cluster
+
+Overlay networking, e.g. IP-in-IP encapsulation
+
+Nodes have routable and private IP addresses
+
+Pods/services have private IP addresses
+
+![](120_kubernetes/network/overlay.drawio.svg) <!-- .element: style="margin-top: 0.5em; width: 90%;" -->
+</textarea></section>
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Managed cluster (cloud)
+
+Flat network
+
+Nodes, pods and services have routable IP addresses
+
+Pods and services are directly accessible from outside the cluster
+
+Integration with cloud services possible
+</textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center"-->

@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  selector:
+  template:
+    metadata:
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - name: http
+          containerPort: 80
+      volumes:
+      - name: config-volume
+        configMap:
+          name: my-cm
