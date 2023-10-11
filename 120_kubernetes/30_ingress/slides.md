@@ -96,16 +96,18 @@ Use with single node Docker for testing
 
 Supports HTTP(S) and TCP
 
-Resource definition `Middleware` to mutate requests and responses
+Resource definition `Middleware` to mutate requests and responses, e.g.
+
+- Redirect (permanently) using `RedirectRegEx`
+- Rewriting paths using `ReplacePathRegex`
+- Managing request and response headers using `Headers`
 
 Dashboard to inspect active configuration
 
-### Demo
+### Demo [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/30_ingress/traefik.demo)
 
 Deploy traefik as ingress controller using a host port
 
 Deploy demo applications `foo` and `bar`
 
 Add `IngressRoute` resources
-
-Commands [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/30_ingress/traefik.demo)

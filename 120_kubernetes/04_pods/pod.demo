@@ -1,10 +1,10 @@
 # Starting pods
 
 ## Starting a pod using kubectl
-kubectl run -it --image=alpine --rm --command -- bash
+kubectl run -it --image=alpine --rm --command -- sh
 
 ## Remove pod using kubectl
-kubectl delete pod bash
+kubectl delete pod sh
 
 ## View pods (pod is gone)
 

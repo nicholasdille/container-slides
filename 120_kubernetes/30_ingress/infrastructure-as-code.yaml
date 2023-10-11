@@ -5,9 +5,9 @@ metadata:
   name: traefik-dashboard
 spec:
   endpoints:
-  - dnsName: traefik.seat0.inmylab.de
+  - dnsName: ${DNS_NAME}
     recordTTL: 300
-    recordType: A
+    recordType: CNAME
     targets:
     - lb.seat0.inmylab.de
 ---
@@ -21,7 +21,7 @@ spec:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-  - traefik.seat0.inmylab.de
+  - ${DNS_NAME}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
@@ -29,11 +29,13 @@ metadata:
   name: traefik-dashboard
 spec:
   entryPoints:
-  - http
+  - https
   routes:
-  - match: Host(`traefik.seat0.inmylab.de`)
+  - match: Host(`${DNS_NAME}`)
     kind: Rule
     services:
     - name: traefik-dashboard
       port: 80
       strategy: RoundRobin
+  tls:
+    secretName: traefik-dashboard

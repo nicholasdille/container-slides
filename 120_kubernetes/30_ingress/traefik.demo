@@ -14,5 +14,8 @@ kubectl apply -f traefik.yaml
 ## Deploy demo services
 kubectl apply -f demo.yaml
 
+## Deploy IngressRoute
+kubectl apply -f ingressroute.yaml
+
 ## Test connection
 curl --silent --resolve traefik.seat0.inmylab.de:80:127.0.0.1 http://traefik.seat0.inmylab.de/dashboard/
