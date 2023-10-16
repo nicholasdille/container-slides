@@ -1,0 +1,5 @@
+apiVersion: v2
+name: ntpd
+description: A helm chart for ntpd
+type: application
+version: 1.0.0

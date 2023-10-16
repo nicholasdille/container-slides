@@ -1,16 +1,18 @@
 ## kustomize
 
-XXX https://github.com/kubernetes-sigs/kustomize
+Customize YAML files without templating
 
-XXX https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/
+Official project [](https://github.com/kubernetes-sigs/kustomize) by Kubernetes SIG-CLI [](https://github.com/kubernetes/community/blob/master/sig-cli/README.md)
+
+Official documentation [](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/)
 
 ### Demo
 
-XXX [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/kustomize/kustomize.demo)
+Create final resource descriptions from YAML [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/kustomize/kustomize.demo)
 
 ### (Dis)advantages
 
-| Advantages | Disadvantages |
-|------------|---------------|
-| Less broken references | More YAML |
-| Y | Resource are crippled |
+| Advantages             | Disadvantages         |
+|------------------------|-----------------------|
+| Less broken references | Resource are crippled |
+| More YAML              | More YAML             |

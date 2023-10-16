@@ -1,0 +1,48 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="441px" height="61px" viewBox="-0.5 -0.5 441 61" content="&lt;mxfile&gt;&lt;diagram id=&quot;i-Pu6LRYAd9IpHqwU30q&quot; name=&quot;Page-1&quot;&gt;zZRNb4MwDIZ/DXcgrB/XsraTpl3Ww84ZuBAtxCiEQvfrF4opMJi0aZ00Dog8fkPi15YdFmb1XvM8fcIYpOO7ce2we8f3F75n3w04t2C5XLcg0SJukdeDg3gHgi7RUsRQjIQGURqRj2GESkFkRoxrjdVYdkQ5PjXnCUzAIeJySl9EbNKWru7cnj+ASNLuZM+lSMY7MYEi5TFWA8S2Dgs1omm/sjoE2XjX+dLu230RvV5MgzLf2eC3G05clpQb3cucu2Q1liqGRu85bFOlwsAh51ETrWx1LUtNJil8FFKGKFHbtUJlRZvCaHyDDjo+212eRozKUHG9Fa3ndFyKRFkm4WiT2kxzpLRPoA3UA0Q57wEzMPpsJRQNyH7qP7aiddVXM+g06aCSC2KcGii5/rn32H6QzfOWs4nlz6VtU/0Pjb+B0+yz1eup1Z4/Y3VwA6uDidWP5StoBcZODzseZFmYPzee4M88nxg8U4bfdLfv3qa77bIfVpfYYOKz7Qc=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="0" y="0" width="440" height="60" rx="9" ry="9" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <rect x="300" y="10" width="120" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 30px; margin-left: 301px;">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Runner
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="360" y="35" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
+                    Runner
+                </text>
+            </switch>
+        </g>
+        <rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 30px; margin-left: 1px;">
+                        <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Kubernetes cluster
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="100" y="35" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
+                    Kubernetes cluster
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
+</svg>

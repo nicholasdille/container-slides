@@ -1,4 +1,4 @@
-## kustomize
+# kustomize
 
-# XXX
+# Create final YAML files
 kustomize build

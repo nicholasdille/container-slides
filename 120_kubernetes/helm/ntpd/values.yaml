@@ -1,0 +1,9 @@
+time_server: ntp.my-company.com
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 50Mi
+  limits:
+    cpu: 100m
+    memory: 100Mi

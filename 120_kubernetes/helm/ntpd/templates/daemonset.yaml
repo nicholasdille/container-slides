@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ include "application.fullname" . }}
+  labels:
+    {{- include "application.labels" $ | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "application.selectorLabels" $ | nindent 6 }}
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      name: {{ include "application.fullname" . }}
+      labels:
+        {{- include "application.selectorLabels" $ | nindent 8 }}
+    spec:
+      imagePullSecrets:
+      - name: registry.haufe.io
+      restartPolicy: Always
+      containers:
+      - name: ntpd
+        image: my-ntpd:235
+        command:
+        - sntpc
+        args:
+        - -v
+        - -i
+        - "60"
+        - {{ .Values.time_server }}
+        env:
+        {{- range .Values.env }}
+        - name: {{ .name }}
+          value: {{ .value }}
+        {{- end }}
+        securityContext:
+          privileged: true
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        volumeMounts:
+        - name: tz-config
+          mountPath: /etc/localtime
+      - name: exporter
+        image: ghcr.io/sapcc/ntp_exporter:v2.2.0
+        imagePullPolicy: Always
+        args:
+        - -ntp.server
+        - {{ .Values.time_server }}
+        ports:
+        - name: metrics
+          containerPort: 9559
+          protocol: TCP
+        volumeMounts:
+        - name: tz-config
+          mountPath: /etc/localtime
+      volumes:
+      - name: tz-config
+        hostPath:
+          path: /usr/share/zoneinfo/Europe/Berlin
