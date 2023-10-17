@@ -50,8 +50,6 @@ XXX
 
 ---
 
-## Horizontal pod autoscaler (HPA)
-
 ```yaml
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -64,23 +62,52 @@ spec:
    name: my-app
  minReplicas: 1
  maxReplicas: 10
- targetCPUUtilizationPercentage: 50
+ metrics:
+ - type: Resource
+   resource:
+     name: cpu
+     target:
+       type: Utilization
+       averageUtilization: 50
 ```
-<!-- .element: style="float: right; width: 22em;" -->
+<!-- .element: style="float: right; width: 18em; margin-top: 1em; margin-left: 1em;" -->
 
-Change replicas based on CPU consumption
+## Horizontal pod<br/>autoscaler (HPA) 1/
 
-XXX
+Manually scaling pods is time consuming
+
+HPA [](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) changes replicas automagically
+
+Supports CPU and memory usage
 
 ### Demo
 
-XXX deploy nginx
+Deploy nginx and HPA
 
-XXX add hpa
+Create load and watch hpa scale nginx
 
-XXX create load
+---
 
-XXX watch hpa scale nginx
+## Horizontal pod autoscaler (HPA) 2/2
+
+### Internals
+
+Prerequisites: metrics-server []()
+
+Checks every 15 seconds
+
+Calculates the required number of replicas:
+
+```plaintext
+desiredReplicas 
+= ceil[currentReplicas * (currentMetricValue / desiredMetricValue)]
+```
+<!-- .element: style="font-size: smaller; width: 40em;" -->
+
+Configurable behaviour:
+
+- Scaling policies [](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#configurable-scaling-behavior)
+- Stabilization window [](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#stabilization-window)
 
 ---
 
