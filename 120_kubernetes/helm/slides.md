@@ -1,5 +1,7 @@
 ## Helm
 
+![](images/helm-icon-white.svg) <!-- .element: style="float: right; width: 20%;" -->
+
 Package manager for Kubernetes [](https://helm.sh/)
 
 Separation of templates (called chart) and values
