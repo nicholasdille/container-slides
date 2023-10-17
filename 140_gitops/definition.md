@@ -10,11 +10,9 @@ Declarative infrastructure as desired state
 
 Automation is key
 
-Ops can learn from devs
-
 Invented by WeaveWorks in 2017
 
---
+---
 
 ## GitOps != DevOps
 
@@ -28,7 +26,7 @@ Tools can support but are not essential
 
 Technical implementation
 
---
+---
 
 ## How to do GitOps?
 
@@ -45,7 +43,7 @@ You decide
 - Development mode (trunk-based or gitflow)
 - Stages (one or more)
 
---
+---
 
 ## How to do GitOps?
 
@@ -65,9 +63,9 @@ Preached by WeaveWorks
 
 Smaller attack surface due to few permissions
 
---
+---
 
-## Do not be religious
+## Don't be religious
 
 ### Doing CIOps is just fine
 
@@ -79,6 +77,4 @@ Do fully automated deployments
 
 Redeploy regularly
 
-Calling it GitOps is also fine ;-)
-
-### *Official GitOps* may be an evolutionary step
+### *Official GitOps* will be an evolutionary step

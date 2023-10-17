@@ -1,4 +1,37 @@
 # Helm
 
-## XXX
-echo
+# Add repository
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+# Search for chart
+helm search repo bitnami/nginx
+
+# Search for chart versions
+helm search repo bitnami/nginx --versions
+
+# Install chart
+helm install my-nginx bitnami/nginx
+
+# Check release
+helm list
+
+# Check resources
+kubectl get all
+
+# Fix service
+helm upgrade my-nginx bitnami/nginx --set service.type=ClusterIP
+
+# Check service
+kubectl get service my-nginx -o yaml
+
+# Downgrade nginx to stable
+helm upgrade my-nginx bitnami/nginx --reuse-values --set image.tag=1.24.0
+
+# Check image tag
+kubectl get deployments.apps my-nginx -o yaml | grep image:
+
+# Read values from release
+helm get values my-nginx
+
+# Display release history
+helm history my-nginx

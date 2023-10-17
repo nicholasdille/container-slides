@@ -46,7 +46,7 @@ kubectl --namespace argocd rollout status deployment argocd-server
 
 # Install CLI
 if ! type argocd >/dev/null 2>&1; then
-    curl -sLo /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.0.3/argocd-linux-amd64
+    curl -sLo /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
     chmod +x /usr/local/bin/argocd
 fi
 eval "$(argocd completion bash)"

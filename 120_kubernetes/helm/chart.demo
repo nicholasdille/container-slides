@@ -1,0 +1,22 @@
+# Create chart
+
+# Check files
+cat Chart.yaml
+cat templates/daemonset.yaml
+cat templates/_helpers.tpl
+
+# Lint chart
+helm lint .
+
+# Create resources
+helm template my-ntpd .
+
+# Check resources
+helm template my-ntpd . \
+| kubectl apply --dry-run=server -f -
+
+# Package chart (upload to repository is manual)
+helm package .
+
+# Push to OCI registry
+helm push ntpd-1.0.0.tgz oci://nicholasdille/ntpd

@@ -1,11 +1,11 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="441px" height="61px" viewBox="-0.5 -0.5 441 61" content="&lt;mxfile&gt;&lt;diagram id=&quot;i-Pu6LRYAd9IpHqwU30q&quot; name=&quot;Page-1&quot;&gt;3VRNT4NAEP01XA2w9sOrtWpivNiDelxhChsXhkwHKf56Fxm+gjUmerKHhvfm7e7smwee2mTHG9JFeo8xWC/046OnrrwwXIaB+2+IuiVWq4uWSMjELRUMxM68g5C+sKWJ4TARMqJlU0zJCPMcIp5wmgirqWyPdnpqoROYEbtI2zn7aGJOW3a98Af+FkySdicHvlQy3YmFOKQ6xmpEqa2nNoTI7VN23IBtvOt8adddn6j2jRHk/JMFYbvgTdtS7nZXvgDlwM5fZ6AtDwwkvXLdGUBY5jE0ewSeuqxSw7ArdNRUKzdxx6WcWSnvjbUbtEgO55g70eWBCV+hI71QXX/+GjHmLAMP1oK/0knfQAzHk3cPekddEgEzYKqdRBacywwkhGopuBpGGnaDS0fj7HRaUpT0Ow9Guwfx+mvfz2eWQuwiJlBcGnnorkT10xg8O+CfLTp41VzK71Et6LTRbQPNqd/b55rEkiJRKXnbNCXAowjNTSawms3bdPffWKZmUX0o3ev9T8PZp/GbdAbh36TTweGL81kbfbbV9gM=&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="201px" height="121px" viewBox="-0.5 -0.5 201 121" content="&lt;mxfile&gt;&lt;diagram id=&quot;i-Pu6LRYAd9IpHqwU30q&quot; name=&quot;Page-1&quot;&gt;3ZTBboMwDIafhjuQrqXXsraTpl3Ww84ZuBAtYBRMoXv6hWIKiHbatNs4IPzZSfDvHxwRZs3eyCJ9wRi047tx44hHx/eXwcreW3DuwGq17kBiVNwhbwAH9QkMXaaViqGcFBKiJlVMYYR5DhFNmDQG62nZEfX01EImMAOHSOo5fVMxpR0NHtyBP4FK0v5kz+VMJvtiBmUqY6xHSGwdERpE6p6yJgTdatfr0q3b3cleX8xATj9Z4HcLTlJX3Ntz9Q4mB7L6WgF1VRIYflc69wIYrPIY2j08R2zqVBEcChm12dpO3LKUMs3po9I6RI3GxjnmtmhTksEP6KHji93laosxJx64F3B8q27eKPd+AkPQjBA3vgfMgMzZlnB2wTNgE4olx/UwUr8fXDoaZz9myS5KrjsPQtsH1vq27ouZpBBbi3HIKo00vC/YXSFKrEzEmwv+SKRJgCaTb4/9ViwDWpI6TZ3/l9bFzHKvlf1M/6nJgqnJ/PXcZJ5/w2SL35vMhsOP45Ib/X3F9gs=&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
-        <rect x="0" y="0" width="200" height="60" rx="9" ry="9" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <rect x="0" y="70" width="200" height="50" rx="7.5" ry="7.5" fill="none" stroke="#ffffff" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 30px; margin-left: 1px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 95px; margin-left: 1px;">
                         <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
                             <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 Kubernetes cluster
@@ -13,18 +13,18 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="100" y="35" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
+                <text x="100" y="100" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
                     Kubernetes cluster
                 </text>
             </switch>
         </g>
-        <path d="M 320 30 L 206.37 30" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 201.12 30 L 208.12 26.5 L 206.37 30 L 208.12 33.5 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="320" y="0" width="120" height="60" rx="9" ry="9" fill="none" stroke="#ffffff" pointer-events="all"/>
+        <path d="M 100 40 L 100 63.63" fill="none" stroke="#ffffff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 100 68.88 L 96.5 61.88 L 100 63.63 L 103.5 61.88 Z" fill="#ffffff" stroke="#ffffff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="40" y="0" width="120" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 30px; margin-left: 321px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 20px; margin-left: 41px;">
                         <div data-drawio-colors="color: #FFFFFF; " style="box-sizing: border-box; font-size: 0px; text-align: center;">
                             <div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 Runner
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="380" y="35" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
+                <text x="100" y="25" fill="#FFFFFF" font-family="Helvetica" font-size="18px" text-anchor="middle">
                     Runner
                 </text>
             </switch>

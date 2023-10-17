@@ -1,0 +1,25 @@
+# Horizontal Pod Autoscaler (HPA)
+
+# Deploy metrics-server
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm upgrade --install --namespace=kube-system metrics-server metrics-server/metrics-server \
+    --set args[0]=--kubelet-insecure-tls
+
+# Deploy nginx
+helm upgrade --install my-nginx bitnami/nginx \
+    --set service.type=ClusterIP \
+    --set resources.requests.cpu=50m \
+    --set autoscaling.enabled=true \
+    --set autoscaling.minReplicas=2 \
+    --set autoscaling.maxReplicas=10 \
+    --set autoscaling.targetCPU=20
+
+# Monitor replicas
+watch kubectl get pods
+
+# Monitor HPA
+watch kubectl get hpa
+
+# Create load
+kubectl run -it --rm --image=cmd.cat/bash/curl --command -- bash
+while true; do curl -so /dev/null http://my-nginx; done

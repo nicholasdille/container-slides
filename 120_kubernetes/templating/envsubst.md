@@ -35,6 +35,6 @@ envsubst '$PASSWORD' < manifest.yaml | kubectl apply -f -
 
 <!-- .slide: class="center" style="width: 80%; padding-left: 10%; padding-right: 10%;" -->
 
-> *Friends don't let friends<br/>use `envsubst` for templating*
+> *Friends don't let friends use `envsubst`<br/>for templating*
 >
-> --- <cite>Everyone ever</cite>
+> --- <cite>Unknown</cite>

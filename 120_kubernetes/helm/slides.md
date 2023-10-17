@@ -12,7 +12,9 @@ Based on go templates [](https://godoc.org/text/template) and sprig library [](h
 
 Many charts from the community on ArtifactHub [](https://artifacthub.io/)
 
-XXX chart, release, repository, artifacthub, namespace
+### Concepts
+
+![](120_kubernetes/helm/helm.drawio.svg) <!-- .element: style="width: 80%;" -->
 
 ---
 
@@ -47,25 +49,35 @@ XXX chart, release, repository, artifacthub, namespace
 
 ### Modify release
 
-1. Use nginx stable release [](https://hub.docker.com/r/bitnami/nginx/tags)
+1. Fix service type to `ClusterIP`
 
     ```bash
-    # When setting very few fields, use --set
-    helm upgrade my-nginx bitnami/nginx --set image.tag=1.24.0
-    # When settings many fields, use --values
-    helm update my-nginx bitnami/nginx --values values.yaml
+    helm upgrade my-nginx bitnami/nginx --set service.type=ClusterIP
     ```
     <!-- .element: style="width: 35em;" -->
 
-1. XXX
+1. Use nginx stable release [](https://hub.docker.com/r/bitnami/nginx/tags)
+
+    ```bash
+    helm upgrade my-nginx bitnami/nginx --reuse-values --set image.tag=1.24.0
+    ```
+    <!-- .element: style="width: 35em;" -->
+
+When setting very few fields, use `--set`
+
+When settings many fields, use `--values`:
+
+```bash
+helm update my-nginx bitnami/nginx --values values.yaml
+```
 
 ---
 
 ## Custom Helm Chart
 
-XXX clocks drift
+Clocks drift - even in VMs
 
-XXX time drift can cause auth issues
+Time drift can cause authentication issues
 
 ### Helm chart for ntp
 

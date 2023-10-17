@@ -9,12 +9,12 @@
 #                                 |
 
 # Create port forwarding
-kubectl port-forward --namespace argocd svc/argocd-server 8080:443
+kubectl port-forward svc/argocd-server --namespace argocd 8080:443 --address=0.0.0.0
 
 # Fetch authentication info
 PASSWORD=$(
-    kubectl --namespace argocd get pods --selector app.kubernetes.io/name=argocd-server --output name | \
-        cut -d'/' -f 2
+    kubectl -n argocd get secrets argocd-initial-admin-secret -o json \
+    | jq -r .data.password | base64 -d
 )
 echo Access https://localhost:8080 using admin:${PASSWORD}
 
@@ -34,6 +34,4 @@ watch kubectl get pods -A
 # Check app
 kubectl get app -A
 
-# Check browser
-kubectl port-forward service/podinfo 9898:9898
-# http://localhost:9898
+# Update to version 6.5.2

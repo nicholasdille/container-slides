@@ -2,13 +2,21 @@
 
 ![](images/automate_all_the_things.webp) <!-- .element: style="float: right; width: 40%;" -->
 
-XXX version control because YAML is text
+Handle Ops stuff like a developer would
 
-XXX separate instance for testing
+Everything in version control...
 
-XXX PR/MR for Ops changes
+...because YAML is text
 
-XXX automated tests
+Use branches for stages (e.g. dev, qa, live)
+
+Pipeline to deploy to stages
+
+Integrate changes using pull/merge requests
+
+Add automated tests to pipeline
+
+Changes are pushed into Kubernetes cluster
 
 ---
 
@@ -16,23 +24,15 @@ XXX automated tests
 
 Different approches to access the cluster from a pipeline
 
+![](120_kubernetes/ci_cd/inside.drawio.svg) <!-- .element: style="float: right; width: 20%; margin-top: 1em;" -->
+
 ### Inside cluster
 
 Pipeline runs inside the target cluster
 
-![](120_kubernetes/ci_cd/inside.drawio.svg) <!-- .element: style="width: 50%;" -->
-
 Direct API access with RBAC
 
-### Demo
-
-XXX
-
----
-
-## Cluster access 2/2
-
-Different approches to access the cluster from a pipeline
+![](120_kubernetes/ci_cd/side-by-side.drawio.svg) <!-- .element: style="float: right; width: 20%; margin-top: 1em;" -->
 
 ### Next to cluster
 
@@ -40,13 +40,38 @@ Pipeline runs somewhere else...
 
 ...or does not have direct access to Kubernetes API
 
-![](120_kubernetes/ci_cd/side-by-side.drawio.svg) <!-- .element: style="width: 50%;" -->
-
 Pipeline fetches (encrypted) kubeconfig
 
-### Demo
+---
 
-XXX
+## Useful tools
+
+Validate YAML using `yamllint` [](https://github.com/adrienverge/yamllint)
+
+```bash
+helm template my-ntpd ../helm/ntpd/ >ntpd.yaml
+yamllint ntpd.yaml
+cat <<EOF >.yamllint
+rules:
+  indentation:
+    indent-sequences: consistent
+EOF
+yamllint ntpd.yaml
+```
+
+Validate against official schemas using `kubeval` [](https://github.com/instrumenta/kubeval):
+
+```bash
+kubeval ntpd.yaml
+```
+
+Static analysis using `kube-linter` [](https://github.com/stackrox/kube-linter)
+
+```bash
+kube-linter lint ntpd.yaml
+kube-linter lint ../helm/ntpd/
+kube-linter checks list
+```
 
 ---
 
@@ -121,8 +146,6 @@ Resource requests are important for scheduling
 
 Limits are important for eviction
 
-XXX usage
-
 ### You want `(requests == limits)`
 
 Pods will not be evicted...
@@ -162,7 +185,10 @@ Next pipeline run will fail because resource already exists
 Instead create resource definition on-the-fly:
 
 ```bash
-kubectl create secret --dry-run=client \
+kubectl create secret generic foo \
+    --from-literal=bar=baz \
+    --dry-run=client \
+    --output=yaml \
 | kubectl apply -f -
 ```
 
@@ -179,8 +205,17 @@ Do not use sleep after apply, scale, delete
 Let `kubectl` do the waiting:
 
 ```bash
-kubectl wait --for=condition=ready pod/foo
-kubectl rollout status deployment bar --timeout=15m
+helm upgrade --install my-nginx bitnami/nginx \
+    --set service.type=ClusterIP
+kubectl rollout status deployment my-nginx --timeout=15m
+kubectl wait pods \
+    --for=condition=ready \
+    --selector app.kubernetes.io/instance=my-nginx
+```
+
+Works for jobs as well:
+
+```bash
 kubectl wait --for=condition=complete job/baz
 ```
 
@@ -195,13 +230,22 @@ Finding the pod name is error prone
 Filter by label:
 
 ```bash
-kubectl delete pod --selector app=foo,component=db
+helm upgrade --install my-nginx bitnami/nginx \
+    --set service.type=ClusterIP \
+    --set replicaCount=2
+kubectl delete pod --selector app.kubernetes.io/instance=my-nginx
 ```
 
-Show logs of a deployment with a single pod:
+Show logs of the first pod of a deployment:
 
 ```bash
-kubectl logs deployment/foo
+kubectl logs deployment/my-nginx
+```
+
+Show logs of multiple pods at once with stern [](https://github.com/stern/stern):
+
+```bash
+stern --selector app.kubernetes.io/instance=my-nginx
 ```
 
 ---
@@ -215,14 +259,23 @@ When a pod is broken, it can be investigated
 Remove a label to exclude it from `ReplicaSet`, `Deployment`, `Service`
 
 ```bash
-kubectl label pod foo-12345 app-
+helm upgrade --install my-nginx bitnami/nginx \
+    --set service.type=ClusterIP \
+    --set replicaCount=2
+kubectl get pods -l app.kubernetes.io/instance=my-nginx -o name \
+| head -n 1 \
+| xargs -I{} kubectl label {} app.kubernetes.io/instance-
 ```
 
 `ReplicaSet` replaces missing pod
 
-Pod `foo-12345` can be investigated
-
 Remove after troubleshooting
+
+```bash
+kubectl logs --selector '!app.kubernetes.io/instance'
+kubectl delete pod \
+    -l 'app.kubernetes.io/name=nginx,!app.kubernetes.io/instance'
+```
 
 ---
 
@@ -267,13 +320,3 @@ Doing updates regularly is easier
 Automerge for patches can help stay on top of things
 
 Automated tests help decide whether an update is safe
-
----
-
-## Lessons Learnt 7/7
-
-### Image tags
-
-XXX immutable tags
-
-XXX version pinning
