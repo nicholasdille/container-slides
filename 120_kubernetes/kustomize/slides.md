@@ -6,6 +6,8 @@ Official project [](https://github.com/kubernetes-sigs/kustomize) by Kubernetes 
 
 Official documentation [](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/)
 
+Run `kustomize` as part of `kubectl`: `kubectl apply -k .`
+
 ### Demo
 
 Create final resource descriptions from YAML [](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/kustomize/kustomize.demo)

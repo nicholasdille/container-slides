@@ -166,11 +166,27 @@ Force pods onto specific nodes
 
 Force pods on the same node or on different nodes
 
-### Tains / tolerations
+### Taints / tolerations
 
 Reserve nodes for specific pods (taints)
 
 Pods must accept taints (tolerations)
+
+---
+
+## Custom scheduling and autoscaling
+
+### Autoscaling
+
+Using custom metrics for HPA [](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-multiple-metrics-and-custom-metrics)
+
+NodeAffinity can use labels provided by cloud / hosting provider
+
+Kubernetes-based Event Driven Autoscaling (KEDA) [](https://github.com/kedacore/keda)
+
+### Scheduling
+
+Power Efficiency Aware Kubernetes Scheduler (PEAKS) [](https://github.com/sustainable-computing-io/peaks)
 
 ---
 
@@ -283,6 +299,8 @@ kubectl delete pod \
 
 ### Use plaintext in `Secret`
 
+Secret expect base64-encoded fields under `data`
+
 Templating becomes easier when inserting plaintext
 
 ```yaml
@@ -317,6 +335,29 @@ Let bots do the work for you
 
 Doing updates regularly is easier
 
+Pull/merge requests for every updates
+
 Automerge for patches can help stay on top of things
 
 Automated tests help decide whether an update is safe
+
+---
+
+## Lessons Learnt 7/7
+
+### Deployment history
+
+Deployments keep history of changes
+
+```bash
+kubectl rollout history deployment/my-nginx
+```
+
+### Populating `CHANGE-CAUSE`
+
+Add annotation `kubernetes.io/change-cause` before the change [](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#checking-rollout-history-of-a-deployment)
+
+```bash
+kubectl annotate deployment/my-nginx \
+    kubernetes.io/change-cause="image updated to 1.24.0"
+```

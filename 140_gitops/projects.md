@@ -4,7 +4,7 @@
 
 The GitOps reference project
 
-Created by [WeaveWorks](https://www.weave.works/), CNCF [sandbox project](https://www.cncf.io/sandbox-projects/)
+Created by WeaveWorks []](https://www.weave.works/), CNCF graduated project [](https://www.cncf.io/sandbox-projects/)
 
 ### [ArgoCD](https://argoproj.github.io/argo-cd/)
 
@@ -18,4 +18,4 @@ Kubernetes native CI/CD (Jenkins X builds on top)
 
 Part of the [cd.foundation](https://cd.foundation/)
 
-CNCF graduated project [](https://www.cncf.io/projects/flux/)
+cd.foundation graduated project [](https://www.cncf.io/projects/flux/)

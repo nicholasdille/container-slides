@@ -35,3 +35,6 @@ helm get values my-nginx
 
 # Display release history
 helm history my-nginx
+
+# Check templated resources
+helm template my-nginx bitnami/nginx
