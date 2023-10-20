@@ -1,15 +1,21 @@
-## Observability (o11y)
-
 <i class="far fa-eye fa-5x"></i><!-- .element: style="float: right;" -->
 
-### Three pillars
+## Observability (o11y)
 
-Metrics
+Observability helps understanding a system from the outside
 
-Logs
+It consists of three pillars
 
-Traces
+### <i class="fa-duotone fa-chart-line"></i> Metrics
 
-### Correlation
+Quantative measures of performance data
 
-Time based matching of events
+### <i class="fa-duotone fa-file-lines"></i> Logs
+
+Protocol of status information and events during runtime
+
+### <i class="fa-duotone fa-shoe-prints"></i> Distributed Traces
+
+Metadata for status information
+
+Connect protocols across services
