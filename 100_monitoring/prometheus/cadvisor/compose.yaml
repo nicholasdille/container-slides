@@ -1,0 +1,41 @@
+# https://compose-spec.io/
+# https://github.com/compose-spec/compose-spec/blob/master/spec.md
+
+services:
+
+  prometheus:
+    # https://hub.docker.com/r/prom/prometheus/tags
+    image: prom/prometheus:v2.47.2
+    container_name: prometheus
+    ports:
+    - 9090:9090
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+    - cadvisor
+
+  cadvisor:
+    # https://github.com/google/cadvisor/releases/
+    image: gcr.io/cadvisor/cadvisor:v0.47.2
+    container_name: cadvisor
+    command:
+    - --docker="unix:///var/run/docker.sock"
+    ports:
+    - 8080:8080
+    volumes:
+    #- /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+
+  redis:
+    # https://hub.docker.com/_/redis
+    image: redis:7.2.2
+    container_name: redis
+
+  nginx:
+    # https://hub.docker.com/_/nginx
+    image: nginx:1.24.0
+    container_name: nginx

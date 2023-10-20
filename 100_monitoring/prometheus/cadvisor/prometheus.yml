@@ -1,0 +1,11 @@
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['prometheus:9090']
+      labels:
+        alias: 'prometheus'
+  - job_name: 'cadvisor'
+    static_configs:
+    - targets: ['cadvisor:8080']
+      labels:
+        alias: 'cadvisor'

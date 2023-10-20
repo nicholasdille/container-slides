@@ -32,13 +32,11 @@ cat "/sys/fs/cgroup/memory/docker/${ID}/memory.usage_in_bytes"
 
 Remember: `kubelet` is responsible for maintaining pods/containers on a node
 
-kubelet collects metrics
+kubelet offers metrics
 
-XXX cadvisor
+kubelet ships with cadvisor [](https://github.com/google/cadvisor)
 
-Published under /metrics/cadvisor/
-
-`kubectl top` requires metrics server https://github.com/kubernetes-sigs/metrics-server/
+Published under `/metrics/cadvisor/`
 
 ---
 

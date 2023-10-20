@@ -26,6 +26,8 @@ kubectl top pod
 
 Provides an API for metrics collected by kubelet
 
+Builds on cadvisor (XXX link?)
+
 Required for `kubectl top`
 
 Required for Horizontal Pod AutoScaler

@@ -1,0 +1,10 @@
+# cadvisor
+
+# Start stack
+docker compose --project-directory cadvisor up -d
+
+# Check Prometheus
+http://localhost:9090
+
+# Check cadvisor
+http://localhost:8080
