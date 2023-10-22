@@ -51,7 +51,52 @@
 <section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <!--
-    TODO
+Motivation
+- Dependencies increase dev productivity
+- Dependency updates for new features and security
+- Autonomy vs. responsibility
+- Features vs. Security
+- Stability
+- Types of deps: libraries, os
+
+SBOM
+- Visibility
+- The world is on fire
+- Avoid auditing
+- Update dependencies quickly
+- (be prepared to) ship fast
+- Drive adoption of new verisons (auto-update, notifications)
+- Know about remaining vulnerabilities
+- Check options for mitigation
+
+Enter RenovateBot
+- Check everything for outdated vulnerabilities
+- Propose update in pull/merge requests
+- Illustration with platforms and modules
+- Self-hosted vs. GitHub App
+- Initially many and/or breaking updates
+- Once settled in, smaller incremental updates
+
+Demo: Renovate
+- Scan outdated repository
+- See updates for pipelines, libraries, os
+- Automated tests
+- Run scheduled, on push (selected paths), Renovate config updates
+
+Automerge
+- Identify updates with low impact, e.g. patches, well-tested packages
+- Create package rules for automerging
+- Do something useful with the time saved
+
+Demo: Automerge
+- Enable config options in rpeo
+
+Case study: uniget
+- uni(versal)get installer and updater for (container) tools
+- XXX list, search, install
+- 572 packages
+- Renovate runs every 8 hours
+- At least a dozen updates per day
 -->
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
