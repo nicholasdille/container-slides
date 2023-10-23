@@ -1,14 +1,14 @@
-## Scope
+## Prometheus
 
-![](100_monitoring/prometheus/logo.svg) <!-- .element: style="float: right; width: 4em;" -->
+![](images/logos/prometheus.svg) <!-- .element: style="float: right; width: 4em;" -->
 
-Prometheus [](https://prometheus.io/) for cloud native monitoring
+De facto standard [](https://prometheus.io/) for cloud native monitoring
 
 Graduated project of CNCF [](https://www.cncf.io/projects/prometheus/)
 
 ### Internals
 
-![](100_monitoring/prometheus/prometheus.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
+![](100_monitoring/prometheus/prometheus.drawio.svg) <!-- .element: style="float: right; width: 60%; margin-left: 1em;" -->
 
 Exporters offer metrics for retrieval
 
@@ -31,9 +31,9 @@ All components provide a metrics endpoint:
 - kube-scheduler
 - kubelet
 
-Prometheus should scrape all of them
+Prometheus should scrape all of them...
 
-XX but does not out-of-the-box
+...but does not out-of-the-box
 
 ---
 
@@ -43,9 +43,7 @@ Configure Prometheus to scrape targets [](https://prometheus.io/docs/prometheus/
 
 - Read from app with metrics endpoints
 - Read from central exporter which reads from app
-- Read from app with exporter sidecar
-
-Small scrape config:
+- Read from app with integrated exporter sidecar
 
 ```yaml
 scrape_configs:
@@ -62,12 +60,17 @@ scrape_configs:
       labels:
         group: 'dummy-2'
 ```
+<!-- .element: style="width: 45em;" -->
 
 ---
 
-## Prometheus Operator
+## Prometheus Operator [](https://github.com/prometheus-operator/prometheus-operator)
+
+![](images/logos/prometheus-operator.svg) <!-- .element: style="float: right; width: 4em;" -->
 
 ...because scrape configs are not fun to maintain!
+
+### Features
 
 Creates, updates and configures Prometheus automagically
 

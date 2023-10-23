@@ -30,21 +30,21 @@ cat "/sys/fs/cgroup/memory/docker/${ID}/memory.usage_in_bytes"
 
 ## Container metrics in Kubernetes
 
-Remember: `kubelet` is responsible for maintaining pods/containers on a node
+`kubelet` is responsible for maintaining pods/containers on a node
 
-kubelet offers metrics
+### Metrics...
 
-kubelet ships with cadvisor [](https://github.com/google/cadvisor)
+...are offered by `kubelet` as well
+
+`kubelet` ships with cadvisor [](https://github.com/google/cadvisor)
 
 Published under `/metrics/cadvisor/`
 
----
+### Demo: cadvisor with Docker
 
-## Demo: cadvisor with Docker
+Run `cadvisor` in `compose`
 
-XXX
-
-XXX docker-exporter?
+XXX docker-exporter https://github.com/0xERR0R/dex
 
 ---
 
@@ -72,6 +72,7 @@ kubeletctl \
     --token ${TOKEN} \
     metrics cadvisor | less
 ```
+<!-- .element: style="width: 46em;" -->
 
 ---
 
@@ -99,12 +100,15 @@ curl -skH "Authorization: Bearer ${TOKEN}" \
     "https://${IP}:10250/metrics/cadvisor" \
 | grep container_memory_usage_bytes | grep kube-proxy
 ```
+<!-- .element: style="width: 46em;" -->
 
 ---
 
 ## OpenMetrics 1/
 
-"...today's de-facto standard for transmitting cloud-native metrics at scale." [](https://openmetrics.io/)
+"...today's de-facto standard for transmitting cloud-native metrics at scale."
+
+Specification [](https://openmetrics.io/)
 
 ### Types
 
@@ -114,7 +118,7 @@ curl -skH "Authorization: Bearer ${TOKEN}" \
 - <span class="fa-li"><i class="fa-duotone fa-chart-column"></i></span> Histogram
 - <span class="fa-li"><i class="fa-duotone fa-ball-pile"></i></span> and more [](https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md#metric-types)
 
-<!-- .element: class="fa-ul" -->
+<!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 
 ### Metadata
 
@@ -146,12 +150,19 @@ go_goroutines 69
 # HELP process_cpu_seconds Total user and system CPU time spent in seconds.
 process_cpu_seconds_total 4.20072246e+06
 ```
+<!-- .element: style="width: 47em;" -->
 
 ---
 
 ## OpenMetrics
 
-Metrics in Kubernetes have labels for:
+Format:
+
+```plaintext
+name{labels} value [timestamp]
+```
+
+Labels provide context for...
 
 - Namespace name
 - Pod name
@@ -163,7 +174,6 @@ For example:
 container_memory_usage_bytes{
     namespace="kube-system",
     pod="kube-proxy-68mp4",
-    container="kube-proxy",
-    # ...
+    container="kube-proxy"
 } 1.4917632e+07 1669235346213
 ```

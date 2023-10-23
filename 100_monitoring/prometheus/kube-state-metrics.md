@@ -1,9 +1,30 @@
-### `kube-state-metrics` [](https://github.com/kubernetes/kube-state-metrics)
+## `kube-state-metrics`
 
-New metrics about cluster
+Metrics derived from cluster and resources
 
-https://www.datadoghq.com/blog/monitoring-kubernetes-performance-metrics/
+Project page [](https://github.com/kubernetes/kube-state-metrics)
 
-`kubectl proxy`
+### Exposed Metrics (exerpt)
 
-`curl localhost:8001/api/v1/namespaces/kube-system/services/kube-state-metrics:http/proxy/metrics`
+For every resources:
+
+- *_info
+- *_labels
+- *_annotations
+
+Full list of metrics [](https://github.com/kubernetes/kube-state-metrics/tree/main/docs#exposed-metrics)
+
+Very useful for joins against other metrics [](https://github.com/kubernetes/kube-state-metrics/tree/main/docs#join-metrics)
+
+---
+
+## Demo: `kube-state-metrics`
+
+```bash
+kubectl proxy
+
+H=localhost:8001
+NS=kube-system
+S=kube-state-metrics
+curl -s $H/api/v1/namespaces/$N/services/$S:http/proxy/metrics
+```

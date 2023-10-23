@@ -1,12 +1,12 @@
 ## Application Level Monitoring
 
-XXX many apps ship with exporters
+Many apps ship with integrated exporters
 
-XXX many FOSS services have an exporter
+Many FOSS services have an exporter
 
-XXX collection just like system services
+Collection works just like for system services
 
-XXX if not, use special exporters
+If nothing available, use generic exporters
 
 ### `blackbox_exporter` [](https://github.com/prometheus/blackbox_exporter)
 
@@ -16,13 +16,17 @@ Probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC
 
 Scraping of remote JSON by JSONPath [](https://goessner.net/articles/JsonPath/)
 
+Alternative: JSON API datasource [](https://grafana.com/grafana/plugins/marcusolsson-json-datasource/)
+
 ---
 
-## Application Location
+## Application on the network
 
-XXX network
+XXX datacenters, firewalls, policies
 
-XXX datacenters, firewalls, policies, pull vs. push
+Check whether scraping is possible
+
+Otherwise push metrics to gateway:
 
 ### `pushgateway` [](https://github.com/prometheus/pushgateway)
 
@@ -47,7 +51,7 @@ When resources on a node are depleted:
 
 ### How pods are "chosen"
 
-Pods have a quiality-of-service based on resource requests and limits [](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
+Pods have a quality-of-service based on resource requests and limits [](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
 
 - Best effort: All container have resource identical requests and limits
 - Burstable: At least one container has resource requests or limits
@@ -55,6 +59,13 @@ Pods have a quiality-of-service based on resource requests and limits [](https:/
 
 Scheduling uses resource requests to find suitable node
 
-Notes:
-Check pods for QoS
-`kubectl get pods -A -o json | jq -r '.items[] | "\(.metadata.name): \(.status.qosClass)"'`
+---
+
+## Pod Quality-of-Service
+
+### Check QoS
+
+```bash
+kubectl get pods --all-namespaces --output=json \
+| jq --raw-output '.items[] | "\(.metadata.name): \(.status.qosClass)"'
+```

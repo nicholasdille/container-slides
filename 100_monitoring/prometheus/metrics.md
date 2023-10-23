@@ -12,7 +12,7 @@ How metrics can be collected...
 
 ![](100_monitoring/prometheus/push.drawio.svg) <!-- .element: style="width: 45%; float: right;" -->
 
-### Push <i class="fa-duotone fa-truck"></i>
+### Push <i class="fa-duotone fa-person-dolly"></i>
 
 Metrics are delivered to database
 
@@ -20,7 +20,7 @@ Usually involves an agent
 
 Example: Telegraf agent and InfluxDB
 
-### Pull <i class="fa-duotone fa-hand-holding-heart"></i>
+### Pull <i class="fa-duotone fa-cart-shopping"></i>
 
 ![](100_monitoring/prometheus/pull.drawio.svg) <!-- .element: style="width:45%; float: right;" -->
 

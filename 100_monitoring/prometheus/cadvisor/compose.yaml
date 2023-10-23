@@ -22,14 +22,11 @@ services:
     container_name: cadvisor
     command:
     - --docker="unix:///var/run/docker.sock"
-    #- --containerd="unix:///var/run/docker/containerd/containerd.sock"
-    #- --containerd-namespace=docker
     ports:
     - 8080:8080
     volumes:
     - /:/rootfs:ro
     - /var/run:/var/run:rw
-    #- /var/run/docker/containerd/containerd.sock:/var/run/docker/containerd/containerd.sock
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
 

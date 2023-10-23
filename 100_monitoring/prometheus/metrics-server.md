@@ -1,10 +1,10 @@
+<!-- .slide: data-transition="fade" -->
+
 ## metrics-server [](https://github.com/kubernetes-sigs/metrics-server/)
 
-Provides an API for metrics collected by kubelet
+Provides an API for metrics collected by `kubelet`/`cadvisor`
 
-Required for `kubectl top`
-
-Required for Horizontal/Vertical Pod AutoScaler
+Required for `kubectl top` and Horizontal/Vertical Pod AutoScaler
 
 ### Demo 1/
 
@@ -22,15 +22,13 @@ kubectl top pod
 
 ---
 
+<!-- .slide: data-transition="fade" -->
+
 ## metrics-server [](https://github.com/kubernetes-sigs/metrics-server/)
 
-Provides an API for metrics collected by kubelet
+Provides an API for metrics collected by `kubelet`/`cadvisor`
 
-Builds on cadvisor (XXX link?)
-
-Required for `kubectl top`
-
-Required for Horizontal Pod AutoScaler
+Required for `kubectl top` and Horizontal/Vertical Pod AutoScaler
 
 ### Demo 2/2
 

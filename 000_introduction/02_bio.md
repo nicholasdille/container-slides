@@ -13,7 +13,7 @@
 - <span class="fa-li"><img src="images/TraefikLabs-icon-white.svg" style="height: 1em;" /></span> [tr&aelig;fik Ambassador][5] since 2021</li>
 - <span class="fa-li"><i class="fa fa-briefcase"></i></span> [Haufe Group][6] since 2016
 - <span class="fa-li"><i class="fa fa-person-chalkboard"></i></span> Self-employed [trainer][7] since 2020
-- <span class="fa-li"><i class="fa fa-person-chalkboard"></i></span> Initiator/maintainer of uniget[12] since 2023
+- <span class="fa-li"><i class="fa fa-user-helmet-safety"></i></span> Initiator/maintainer of [uniget][12] since 2021
 
 <!-- .element: class="fa-ul" style="line-height: 175%;" -->
 
