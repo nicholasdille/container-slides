@@ -22,7 +22,7 @@ Alternative: JSON API datasource [](https://grafana.com/grafana/plugins/marcusol
 
 ## Application on the network
 
-XXX datacenters, firewalls, policies
+Different datacenters or restrictive firewalls
 
 Check whether scraping is possible
 
@@ -53,9 +53,9 @@ When resources on a node are depleted:
 
 Pods have a quality-of-service based on resource requests and limits [](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
 
-- Best effort: All container have resource identical requests and limits
+- Guaranteed: All container have resource identical requests and limits
 - Burstable: At least one container has resource requests or limits
-- Guaranteed: All container do not have resource requests or limits
+- Best effort: All container do not have resource requests or limits
 
 Scheduling uses resource requests to find suitable node
 
