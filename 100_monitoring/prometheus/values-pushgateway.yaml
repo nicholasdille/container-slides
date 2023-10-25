@@ -149,7 +149,7 @@ ingress:
   ## Must be provided if Ingress is enabled.
   ##
   hosts:
-    - push.inmylab.de
+    - push.seat0.inmylab.de
 
   ## TLS configuration.
   ## Secrets must be manually created in the namespace.

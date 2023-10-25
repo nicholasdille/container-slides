@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   rules:
-  - host: prometheus.inmylab.de
+  - host: prometheus.seat0.inmylab.de
     http:
       paths:
       - pathType: Prefix
@@ -42,7 +42,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: app.inmylab.de
+  - host: app.seat0.inmylab.de
     http:
       paths:
       - pathType: Prefix

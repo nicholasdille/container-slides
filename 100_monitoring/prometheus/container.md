@@ -44,7 +44,7 @@ Published under `/metrics/cadvisor/`
 
 Run `cadvisor` in `compose`
 
-XXX docker-exporter https://github.com/0xERR0R/dex
+Alternative: [docker-exporter](https://github.com/0xERR0R/dex) (untested)
 
 ---
 
