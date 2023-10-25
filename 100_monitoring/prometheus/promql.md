@@ -76,10 +76,6 @@ sum by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m]))
 
 ## PromQL: Fun with kube-state-metrics
 
-kube-state-metrics creates additional metrics from cluster state information
-
-Queries:
-
 ```plaintext
 # Error reasons for pods
 count by (reason) (kube_pod_status_reason)
@@ -112,6 +108,8 @@ Filter out sleeping POD container:
 container_memory_usage_bytes{namespace="ingress-nginx",container!="",container!="POD"}
 ```
 
+This also removes the kumulative pod metrics
+
 ### `kube_pod_labels` is empty
 
 `kube-state-metrics` does not aggregate labels anymore [#1501](https://github.com/kubernetes/kube-state-metrics/issues/1501)
@@ -119,3 +117,27 @@ container_memory_usage_bytes{namespace="ingress-nginx",container!="",container!=
 Set `--metric-labels-allowlist=pods=[*]` in arguments
 
 Or `metricLabelsAllowlist` in Helm chart [](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-state-metrics/values.yaml#L184)
+
+---
+
+## PromQL: Joining metrics
+
+Metrics can be joined...
+
+...to add labels from another metric
+
+Joined metrics must have at least one common label
+
+### Example
+
+Node metrics only reference the instance and do not contain the nodename
+
+`node_uname_info` helps to get the nodename
+
+```plaintext
+node_memory_Active_bytes * on(instance) group_left(nodename) node_uname_info
+```
+
+Use label `instance` to join metrics
+
+Use all labels from left metrics (`group_left`) and add label `nodename`

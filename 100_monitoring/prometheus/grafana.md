@@ -6,7 +6,7 @@ Supports many datasources including Prometheus
 
 Supports datasource-specific query languages
 
-Prometheus community offers pre-created dashcoards [](https://github.com/kubernetes-monitoring/kubernetes-mixin)
+Prometheus community offers pre-created dashboards [](https://github.com/kubernetes-monitoring/kubernetes-mixin)
 
 ### Demo
 
