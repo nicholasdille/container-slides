@@ -1,7 +1,7 @@
 #!/bin/bsah
 set -o errexit
 
-docker-setup --tools=docker,docker-compose,buildx,kind,kubectl,helm,kubeletctl install
+uniget install docker docker-compose buildx kind kubectl helm kubeletctl
 
 # cluster
 kind create cluster --config kind.yaml
@@ -12,13 +12,13 @@ curl --silent --location https://github.com/kubernetes/ingress-nginx/raw/main/de
 kubectl apply -f ingress.yaml
 
 # prometheus-operator
-curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.60.1/bundle.yaml | kubectl create -f -
+curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/latest/download/bundle.yaml | kubectl create -f -
 kubectl apply -f prometheus.yaml
 
 # metrics server (https://github.com/kubernetes-sigs/kind/issues/398)
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
 helm repo update
-helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
+helm --namespace kube-system upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server
 
 # node-exporter
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -46,6 +46,7 @@ kubectl -n kube-system get secret grafana -o json | jq -r '.data."admin-password
 
 # postgresql
 helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
 helm upgrade --install postgresql bitnami/postgresql --values values-postgresql.yaml
 
 # blackbox exporter
