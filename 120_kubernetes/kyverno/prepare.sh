@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-docker-setup install docker buildx docker-compose kind helm kubectl cosign kyverno
+uniget install docker buildx docker-compose kind helm kubectl cosign kyverno
 
 kind create cluster
 

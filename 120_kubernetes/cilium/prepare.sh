@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-docker-setup --tools=docker,buildx,docker-compose,kind,helm,kubectl,cilium install
+uniget install docker buildx docker-compose kind helm kubectl cilium
 
 kind create cluster --config kind.yaml
 
@@ -23,7 +23,7 @@ helm upgrade --install cilium cilium/cilium \
     --set hubble.relay.enabled=true \
     --set hubble.ui.enabled=true \
     --set hubble.ui.ingress.enabled=true \
-    --set "hubble.ui.ingress.hosts[0]=hubble.docker-setup.inmylab.de" \
+    --set "hubble.ui.ingress.hosts[0]=hubble.seat0.inmylab.de" \
     --set prometheus.enabled=true \
     --set operator.prometheus.enabled=true \
     --set hubble.metrics.enableOpenMetrics=true \
@@ -43,7 +43,7 @@ metadata:
   namespace: cilium-monitoring
 spec:
   rules:
-  - host: prometheus.docker-setup.inmylab.de
+  - host: prometheus.seat0.inmylab.de
     http:
       paths:
       - backend:
@@ -61,7 +61,7 @@ metadata:
   namespace: cilium-monitoring
 spec:
   rules:
-  - host: grafana.docker-setup.inmylab.de
+  - host: grafana.seat0.inmylab.de
     http:
       paths:
       - backend:
