@@ -1,2 +1,5 @@
+.env.mk
+ssh*
 .terraform*
-terraform.*
+plan.out
+terraform.tfstate*
