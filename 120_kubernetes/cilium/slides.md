@@ -26,8 +26,6 @@ CNI chaining for policy features on top of other CNI plugins, e.g. AWS VPC CNI
 
 ## Cilium Internals
 
-![](120_kubernetes/cilium/agents.drawio.svg) <!-- .element: style="float: right; width: 45%;" -->
-
 Cilium agent manages the network
 
 All pods are an endpoint
@@ -35,3 +33,5 @@ All pods are an endpoint
 Endpoints are assigned an identity
 
 Identities have labels to describe them
+
+![](120_kubernetes/cilium/agents.drawio.svg) <!-- .element: style="width: 45%; margin-top: 0.5em;" -->

@@ -36,10 +36,10 @@ cyclonedx-cli [](https://github.com/CycloneDX/cyclonedx-cli)
 
 ### Installation
 
-Using `docker-setup` [](https://github.com/nicholasdille/docker-setup)
+Using `uniget` [](https://uniget.dev)
 
 ```bash
-docker-setup install --tags sbom --plan
+uniget install --tags sbom --plan
 ```
 
 ---
@@ -49,30 +49,6 @@ docker-setup install --tags sbom --plan
 SBoM generation
 
 SBoM scanning
-
----
-
-## SBOM Formats
-
-### CycloneDX
-
-Metadata
-
-Components
-
-### SPDX
-
-Packages and files
-
-Relationships (what is found where)
-
-### syft
-
-Metadata (source, distro, descriptor)
-
-Artifacts and files
-
-### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/170_supply_chain_security/sbom/formats.demo "formats.demo")
 
 ---
 

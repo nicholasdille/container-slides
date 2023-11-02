@@ -31,7 +31,7 @@ Usually enabled during cluster deployment
 
 ### Can be enabled later
 
-1. Add `/etc/kubernetes/policies/audit-policy.yaml`
+1. Add `/etc/kubernetes/policies/audit-policy.yaml` [](https://kubernetes.io/docs/reference/config-api/apiserver-audit.v1/#audit-k8s-io-v1-Policy)
 
 2. Patch `/etc/kubernetes/manifests/kube-apiserver.yaml`
 
@@ -56,7 +56,7 @@ Usually enabled during cluster deployment
 
 ![](120_kubernetes/rbac/audit.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
 
-Send audit events to sink
+Send audit events to sink, e.g. [kubernetes-event-exporter](https://github.com/resmoio/kubernetes-event-exporter)
 
 Search for failed/malicious events
 

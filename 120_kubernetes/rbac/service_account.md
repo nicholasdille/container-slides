@@ -54,7 +54,7 @@ Can be overridden by specifying `automountServiceAccountToken: false` in the pod
 
 ---
 
-## Service account with custom permissions
+## Accessing the Kubernetes API<br/>from pods
 
 Some services require specific permissions
 

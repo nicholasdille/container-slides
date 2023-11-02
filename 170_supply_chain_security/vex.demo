@@ -1,0 +1,56 @@
+# VEX
+
+# Create SBOM using syft
+syft packages ghcr.io/uniget-org/tools/diffoci:0.1.2 \
+    --output cyclonedx-json=diffoci.sbom
+
+# Scan SBOM using grype
+grype sbom:diffoci.sbom | grep grpc
+
+# Create OpenVEX document
+vexctl create \
+    --product pkg:golang/google.golang.org/grpc@v1.57.0 \
+    --vuln GHSA-m425-mq94-257g \
+    --status not_affected \
+    --justification vulnerable_code_not_in_execute_path \
+    --file diffoci-grpc.vex
+
+# grype ignores VEX document
+grype ghcr.io/uniget-org/tools/diffoci:0.1.2 --vex diffoci-grpc.vex | grep grpc
+
+# trivy chokes on VEX document
+trivy sbom diffoci.sbom --vex diffoci-grpc.vex --severity HIGH
+
+# Fix OpenVEX document for trivy
+cat <<EOF >diffoci-grpc.vex
+{
+  "@context": "https://openvex.dev/ns",
+  "@id": "https://openvex.dev/docs/public/vex-eddf7dd60f274e3846e972ecef4b9097fe586d1bc160f0e123c66a4f9a83a18f",
+  "author": "Unknown Author",
+  "role": "Document Creator",
+  "timestamp": "2023-10-31T17:46:32.549867824+01:00",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": { "name": "GHSA-m425-mq94-257g" },
+      "products": [
+        { "$id": "pkg:golang/google.golang.org/grpc@v1.57.0" }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    }
+  ]
+}
+EOF
+
+# trivy ignores VEX document
+trivy sbom diffoci.sbom --vex diffoci-grpc.vex --severity HIGH
+
+# Check output
+trivy sbom diffoci.sbom --severity HIGH
+
+# Create SARIF output
+trivy sbom diffoci.sbom --format sarif --output diffoci.sarif
+
+# Filter SARIF
+vexctl filter diffoci.sarif diffoci-grpc.vex

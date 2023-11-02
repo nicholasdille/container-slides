@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 
-<title>Kubernetes automatisieren</title>
+<title>Kubernetes absichern</title>
 
 <!-- https://gauger.io/fonticon/ -->
 <link rel="icon" href="images/kubernetes.ico"/>
@@ -50,7 +50,7 @@
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<section data-markdown="120_kubernetes/00_intro/kubernetes-verstehen.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/00_intro/kubernetes-absichern.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center"-->
@@ -85,7 +85,7 @@
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: class="center"-->
-## Network Policies
+## Supply Chain Security
 </textarea></section>
 <section data-markdown="170_supply_chain_security/intro.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="170_supply_chain_security/sbom/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -93,20 +93,16 @@
 <section data-markdown="170_supply_chain_security/vex.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="170_supply_chain_security/sbom-operator/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!--
-TODO: RBAC finden von sub-resources pod/exec
--->
-
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-lock-keyhole"></i></span> RBAC secures access to the Kubernetes API
+- <span class="fa-li"><i class="fa-duotone fa-list-check"></i></span> Policies help to enforce best practices
+- <span class="fa-li"><i class="fa-duotone fa-arrows-repeat-1"></i></span> Policies can remove repetition
+- <span class="fa-li"><i class="fa-duotone fa-chart-network"></i></span> Network policies secure communication between pods
+- <span class="fa-li"><i class="fa-duotone fa-link"></i></span> Supply chain security is omnipresent
 
 <!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 

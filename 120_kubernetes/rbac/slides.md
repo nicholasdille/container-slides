@@ -50,6 +50,14 @@ Find supported verbs for resources:
 kubectl api-resources --output wide
 ```
 
+### XXX
+
+XXX find verbs for subresources, e.g. pod/exec
+
+```bash
+XXX
+```
+
 ---
 
 ## How to specify subjects

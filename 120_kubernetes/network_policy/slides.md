@@ -64,9 +64,9 @@ Based on eBPF [](https://ebpf.io/) with extended network policies [](https://doc
 
 ## Demo
 
-![](120_kubernetes/network_policy/network_policy.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
-
 Filter connections between pods
+
+![](120_kubernetes/network_policy/network_policy.drawio.svg) <!-- .element: style="width: 50%; margin-top: 0.5em;" -->
 
 ### Egress
 
