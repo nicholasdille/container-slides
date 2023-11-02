@@ -1,10 +1,12 @@
--include ../.env.mk
+-include .env.mk
 
-TERRAFORM_BACKEND="terraform-backend-git git --repository https://github.com/nicholasdille/terraform-state --ref main --state demo/state.json"
+REPOSITORY_URL    := https://github.com/nicholasdille/terraform-state
+REPOSITORY_BRANCH := main
+TERRAFORM_BACKEND := terraform-backend-git git --repository $(REPOSITORY_URL) --ref $(REPOSITORY_BRANCH) --state demo/state.json
 
 .PHONY:
 clean:
-	@rm -rf plan.out terraform.tfstate* ssh*
+	@rm -rf plan.out terraform.tfstate* ssh* .terraform*
 
 .PHONY:
 show:
@@ -18,7 +20,12 @@ output:
 init: .terraform.lock.hcl
 
 .terraform.lock.hcl:
-	@$(TERRAFORM_BACKEND) \
+	@\
+	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
+	export TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD); \
+	export GIT_USERNAME=$(GIT_USERNAME); \
+	export GIT_PASSWORD=$(GIT_PASSWORD); \
+	$(TERRAFORM_BACKEND) \
 		terraform init
 
 ssh:
@@ -28,14 +35,32 @@ ssh:
 plan: plan.out
 
 plan.out: *.tf ssh .terraform.lock.hcl
-	@terraform plan -out=plan.out -var="hcloud_token=$(HCLOUD_TOKEN)" -var="hetznerdns_token=$(HETZNERDNS_TOKEN)"
+	@\
+	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
+	export TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD); \
+	export GIT_USERNAME=$(GIT_USERNAME); \
+	export GIT_PASSWORD=$(GIT_PASSWORD); \
+	$(TERRAFORM_BACKEND) \
+		terraform plan -out=plan.out -var="hcloud_token=$(HCLOUD_TOKEN)" -var="hetznerdns_token=$(HETZNERDNS_TOKEN)"
 
 .PHONY:
 apply: plan.out
-	@terraform apply -auto-approve -state=terraform.tfstate plan.out
+	@\
+	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
+	export TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD); \
+	export GIT_USERNAME=$(GIT_USERNAME); \
+	export GIT_PASSWORD=$(GIT_PASSWORD); \
+	$(TERRAFORM_BACKEND) \
+		terraform apply -auto-approve -state=terraform.tfstate plan.out
 	@rm -f plan.out
 
 .PHONY:
-destroy: terraform.tfstate
-	@terraform destroy -auto-approve -state=terraform.tfstate -var="hcloud_token=$(HCLOUD_TOKEN)" -var="hetznerdns_token=$(HETZNERDNS_TOKEN)"
+destroy:
+	@\
+	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
+	export TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD); \
+	export GIT_USERNAME=$(GIT_USERNAME); \
+	export GIT_PASSWORD=$(GIT_PASSWORD); \
+	$(TERRAFORM_BACKEND) \
+		terraform destroy -auto-approve -state=terraform.tfstate -var="hcloud_token=$(HCLOUD_TOKEN)" -var="hetznerdns_token=$(HETZNERDNS_TOKEN)"
 	@rm -f terraform.tfstate*
