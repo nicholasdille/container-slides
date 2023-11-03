@@ -24,6 +24,9 @@ kubectl config set-context kind-test --user=test-reader --cluster=kind-kind
 # Switch context
 kubectl config use-context kind-test
 
+# XXX
+kubectl auth can-i --list --namespace test
+
 # Succeed to access to namespace test
 kubectl -n test get all
 

@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   rules:
-  - host: prometheus.docker-setup.inmylab.de
+  - host: prometheus.seat0.inmylab.de
     http:
       paths:
       - pathType: Prefix
@@ -26,12 +26,12 @@ spec:
   entryPoints:
   - web
   routes:
-  - match: Host(`prometheus.docker-setup.inmylab.de`)
+  - match: Host(`prometheus.seat0.inmylab.de`)
     kind: Rule
     services:
     - name: prometheus-operated
       port: 9090
-  - match: Host(`grafana.docker-setup.inmylab.de`)
+  - match: Host(`grafana.seat0.inmylab.de`)
     kind: Rule
     services:
     - name: grafana

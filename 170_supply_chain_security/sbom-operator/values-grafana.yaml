@@ -90,7 +90,7 @@ image:
   #   - myRegistrKeySecretName
 
 testFramework:
-  enabled: true
+  enabled: false
   image: "bats/bats"
   tag: "v1.4.1"
   imagePullPolicy: IfNotPresent
@@ -210,7 +210,7 @@ ingress:
   pathType: Prefix
 
   hosts:
-    - grafana.docker-setup.inmylab.de
+    - grafana.seat0.inmylab.de
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*

@@ -90,3 +90,4 @@ EOF
 # Check ClusterRole and RoleBinding
 kubectl auth can-i get secrets --as jane
 kubectl auth can-i get secrets --as dave
+kubectl auth can-i get secrets --namespace kube-system --as dave
