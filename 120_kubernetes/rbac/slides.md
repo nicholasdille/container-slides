@@ -28,6 +28,8 @@ Show mixed permissions
 
 Using `kubectl auth can-i` to check RBAC [](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#checking-api-access)
 
+Demonstrate [rakkess](https://github.com/corneliusweig/rakkess) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/rakkess.demo "rakkess.demo")
+
 ---
 
 ## How to write roles

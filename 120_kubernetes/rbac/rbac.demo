@@ -33,8 +33,9 @@ roleRef:
 EOF
 
 # Check Role and RoleBinding
-kubectl auth can-i get pods --as jane
+kubectl auth can-i get pods --namespace default --as jane
 kubectl auth can-i get pods --namespace kube-system --as jane
+kubectl auth can-i --namespace default --list --as jane
 
 # Create ClusteRole and ClusterRoleBinding
 cat <<EOF | kubectl apply -f -
@@ -88,6 +89,6 @@ roleRef:
 EOF
 
 # Check ClusterRole and RoleBinding
-kubectl auth can-i get secrets --as jane
-kubectl auth can-i get secrets --as dave
+kubectl auth can-i get secrets --namespace default --as jane
+kubectl auth can-i get secrets --namespace default --as dave
 kubectl auth can-i get secrets --namespace kube-system --as dave

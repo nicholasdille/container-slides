@@ -1,9 +1,2 @@
-- Fix RBAC image
-- can-i namespace
-- krew, https://github.com/corneliusweig/rakkess
-- kubectl auth can-i --list --as jane
 - automountServiceAccountToken: false
 - kyverno: fix and note automountServiceAccountToken
-- kindnet no netpol
-- syft deprecated
-- docker-setup

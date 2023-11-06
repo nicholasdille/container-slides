@@ -1,0 +1,7 @@
+# rakkess (access-matrix)
+
+# Install
+krew install access-matrix
+
+# Check jane
+kubectl access-matrix resource pod --namespace default --as jane

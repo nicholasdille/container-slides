@@ -44,7 +44,7 @@ No audit logging
 
 ### No support for network policy
 
-kubenet, [flannel](https://github.com/flannel-io/flannel)
+kubenet, [flannel](https://github.com/flannel-io/flannel), [kindnet](https://github.com/aojea/kindnet)
 
 ### Calico
 
