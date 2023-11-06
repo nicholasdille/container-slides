@@ -18,6 +18,8 @@ oras
 helm
 kubectl
 kind
+kyverno
+cilium
 
 # security
 syft

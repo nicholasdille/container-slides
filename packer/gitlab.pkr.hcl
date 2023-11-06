@@ -16,31 +16,29 @@ locals {
   nginx_version = "1.24.0"
 }
 
-source "hcloud" "uniget" {
-  image = "ubuntu-22.04"
-  #image_filter {
-  #  with_selector = [ "os_flavor=ubuntu" ]
-  #  most_recent = true
-  #}
+source "hcloud" "gitlab" {
+  image_filter {
+    with_selector = [
+      "os-flavor=ubuntu",
+      "type=uniget"
+    ]
+    most_recent = true
+  }
   location = "nbg1"
   server_type = "cx11"
   ssh_username = "root"
   snapshot_name = "uniget-{{ timestamp }}"
+  snapshot_labels = {
+    os-flavor = "ubuntu"
+    type = "gitlab"
+  }
 }
 
 build {
-  sources = ["source.hcloud.uniget"]
-
-  provisioner "file" {
-    source = "uniget"
-    destination = "/tmp/uniget"
-  }
+  sources = ["source.hcloud.gitlab"]
 
   provisioner "shell" {
     inline = [
-        "curl -sLf https://github.com/uniget-org/cli/releases/latest/download/uniget_linux_$(uname -m).tar.gz | tar -xzC /usr/local/bin uniget",
-        "uniget update", "uniget install --file /tmp/uniget", "rm /tmp/uniget",
-        "while ! docker version; do sleep 2; done",
         "docker pull gitlab/gitlab-ce:${local.gitlab_version}-ce.0",
         "docker pull traefik:${local.traefik_version}",
         "docker pull portainer/portainer-ce:${local.portainer_version}-alpine",

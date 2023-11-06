@@ -6,7 +6,7 @@ TERRAFORM_BACKEND := terraform-backend-git git --repository $(REPOSITORY_URL) --
 
 .PHONY:
 clean:
-	@rm -rf plan.out terraform.tfstate* ssh* .terraform*
+	@rm -rf plan.out terraform.tfstate* ssh ssh.pub .terraform*
 
 .PHONY:
 show:
@@ -19,22 +19,19 @@ output:
 .PHONY:
 init: .terraform.lock.hcl
 
-.terraform.lock.hcl:
+.terraform.lock.hcl: *.tf
 	@\
 	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
 	export TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD); \
 	export GIT_USERNAME=$(GIT_USERNAME); \
 	export GIT_PASSWORD=$(GIT_PASSWORD); \
 	$(TERRAFORM_BACKEND) \
-		terraform init
-
-ssh:
-	@ssh-keygen -t ed25519 -f ssh -N ''
+		terraform init -upgrade
 
 .PHONY:
 plan: plan.out
 
-plan.out: *.tf ssh .terraform.lock.hcl
+plan.out: *.tf .terraform.lock.hcl
 	@\
 	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
 	export TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD); \

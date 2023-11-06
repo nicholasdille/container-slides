@@ -6,16 +6,26 @@ provider "hetznerdns" {
   apitoken = var.hetznerdns_token
 }
 
+resource "tls_private_key" "demo" {
+  algorithm = "ED25519"
+  rsa_bits  = 4096
+}
+
 resource "hcloud_ssh_key" "demo" {
   name       = "demo"
-  public_key = file("./ssh.pub")
+  public_key = tls_private_key.demo.public_key_openssh
+}
+
+data "hcloud_image" "demo" {
+  with_selector = "type=uniget"
+  most_recent = true
 }
 
 resource "hcloud_server" "demo" {
   name        = "demo"
   location    = "nbg1"
   server_type = "cx41"
-  image       = "ubuntu-22.04"
+  image       = data.hcloud_image.demo.id
   ssh_keys    = [
     hcloud_ssh_key.demo.name
   ]
@@ -46,4 +56,26 @@ resource "hetznerdns_record" "wildcard-demo" {
   value = hetznerdns_record.demo.name
   type = "CNAME"
   ttl= 120
+}
+
+resource "local_file" "ssh" {
+  content = tls_private_key.demo.private_key_openssh
+  filename = pathexpand("~/.ssh/demo_ssh")
+  file_permission = "0600"
+}
+
+resource "local_file" "ssh_pub" {
+  content = tls_private_key.demo.public_key_openssh
+  filename = pathexpand("~/.ssh/demo_ssh.pub")
+  file_permission = "0644"
+}
+
+resource "local_file" "ssh_config_file" {
+  content = templatefile("ssh_config.tpl", {
+    node = "demo",
+    node_ip = hcloud_server.demo.ipv4_address
+    ssh_key_file = local_file.ssh.filename
+  })
+  filename = pathexpand("~/.ssh/config.d/demo")
+  file_permission = "0644"
 }

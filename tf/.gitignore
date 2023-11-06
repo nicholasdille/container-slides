@@ -1,5 +1,7 @@
 .env.mk
-ssh*
-.terraform*
+ssh
+ssh.pub
+.terraform
+.terraform.lock.hcl
 plan.out
-terraform.tfstate*
+ssh_config

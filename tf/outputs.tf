@@ -5,3 +5,7 @@ output "public_ip4" {
 output "status" {
   value = "${hcloud_server.demo.status}"
 }
+
+output "public_key" {
+  value = "${tls_private_key.demo.public_key_openssh}"
+}
