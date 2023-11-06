@@ -48,7 +48,7 @@ automountServiceAccountToken: false
 #...
 ```
 
-Can be overridden by specifying `automountServiceAccountToken: false` in the pod spec
+Can be overridden by specifying `automountServiceAccountToken: true` in the pod spec
 
 ### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 

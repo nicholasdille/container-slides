@@ -1,2 +1,0 @@
-- automountServiceAccountToken: false
-- kyverno: fix and note automountServiceAccountToken

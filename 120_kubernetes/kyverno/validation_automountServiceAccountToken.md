@@ -10,6 +10,6 @@ Unwanted Kubernetes API access can leak to privilege escalation
 
 Those pods should not mount service account
 
-### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/kyverno/mutation_automountServiceAccountToken.demo "mutation_automountServiceAccountToken.demo")
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/kyverno/validation_automountServiceAccountToken.demo "validation_automountServiceAccountToken.demo")
 
-Add `automountServiceAccountToken` to pods
+Deny pods without `automountServiceAccountToken` when `serviceAccountName` is not specified or equals `default`
