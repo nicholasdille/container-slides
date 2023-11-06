@@ -1,0 +1,27 @@
+# shell
+gojq
+yq
+
+# cloud
+hcloud
+
+# containerization
+docker
+docker-compose
+buildx
+regclient
+cosign
+dive
+oras
+
+# kubernetes
+helm
+kubectl
+kind
+
+# security
+syft
+grype
+trivy
+docker-scout
+vexctl
