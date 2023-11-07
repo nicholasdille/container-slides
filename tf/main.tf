@@ -36,6 +36,12 @@ resource "hcloud_server" "demo" {
   labels = {
     "purpose" : "demo"
   }
+  user_data = <<EOF
+grep security /etc/apt/sources.list >/etc/apt/sources.list.d/security.list
+apt-get update -o Dir::Etc::SourceList=/etc/apt/false -o Dir::Etc::SourceParts=/etc/apt/sources.list.d
+apt-get upgrade -y
+rm -f /etc/apt/sources.list.d/security.list
+EOF
 }
 
 data "hetznerdns_zone" "inmylab" {
