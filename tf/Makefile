@@ -19,6 +19,26 @@ output:
 .PHONY:
 init: .terraform.lock.hcl
 
+.PHONY:
+init-reconfigure:
+	@\
+	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
+	export TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD); \
+	export GIT_USERNAME=$(GIT_USERNAME); \
+	export GIT_PASSWORD=$(GIT_PASSWORD); \
+	$(TERRAFORM_BACKEND) \
+		terraform init -reconfigure
+
+.PHONY:
+init-migrate-state:
+	@\
+	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
+	export TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD); \
+	export GIT_USERNAME=$(GIT_USERNAME); \
+	export GIT_PASSWORD=$(GIT_PASSWORD); \
+	$(TERRAFORM_BACKEND) \
+		terraform init -migrate-state
+
 .terraform.lock.hcl: *.tf
 	@\
 	export TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME); \
