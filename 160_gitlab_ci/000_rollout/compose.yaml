@@ -12,7 +12,7 @@ services:
 
   # https://doc.traefik.io/traefik/
   traefik:
-    image: traefik:v2.10.4
+    image: traefik:v2.10.5
     command:
     - --log=true
     - --log.level=DEBUG
@@ -30,7 +30,7 @@ services:
     - 443:443
     volumes:
     - ./traefik.d:/etc/traefik/conf.d:ro
-    - /root/ssl:/etc/traefik/ssl:ro
+    - /etc/ssl:/etc/traefik/ssl:ro
     - /var/run/docker.sock:/var/run/docker.sock:ro
     - /etc/localtime:/etc/localtime:ro
     restart: always
@@ -111,7 +111,7 @@ services:
       traefik.http.routers.live-s.tls: "true"
 
   portainer:
-    image: portainer/portainer-ce:2.19.0-alpine
+    image: portainer/portainer-ce:2.19.1-alpine
     command:
     - --admin-password=${SEAT_HTPASSWD_ONLY}
     - --host=unix:///var/run/docker.sock
@@ -138,11 +138,13 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
-    image: gitlab/gitlab-ce:16.3.2-ce.0
+    image: gitlab/gitlab-ce:16.5.1-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
+
+        gitlab_rails['initial_root_password'] = "${GITLAB_ADMIN_PASS:?You must supply GITLAB_ADMIN_PASS}"
 
         gitlab_rails['usage_ping_enabled'] = false
 

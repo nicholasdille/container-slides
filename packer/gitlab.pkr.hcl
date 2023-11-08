@@ -27,7 +27,7 @@ source "hcloud" "gitlab" {
   location = "nbg1"
   server_type = "cx11"
   ssh_username = "root"
-  snapshot_name = "uniget-{{ timestamp }}"
+  snapshot_name = "gitlab-{{ timestamp }}"
   snapshot_labels = {
     os-flavor = "ubuntu"
     type = "gitlab"

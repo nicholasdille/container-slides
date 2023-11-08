@@ -1,4 +1,5 @@
 locals {
+    domain       = "inmylab.de"
+    location     = "nbg1"
     server_type  = "cx41"
-    server_image = "ubuntu-22.04"
 }

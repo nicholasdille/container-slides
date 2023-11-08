@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.5.2
 
-FROM codercom/code-server:4.16.1
+FROM codercom/code-server:4.18.0
 USER root
 
 RUN <<EOF
@@ -30,12 +30,9 @@ apt-get -y install --no-install-recommends \
 EOF
 
 RUN <<EOF
-curl https://github.com/nicholasdille/docker-setup/raw/main/docker-setup \
-    --silent \
-    --location \
-    --output /usr/local/bin/docker-setup
-chmod +x /usr/local/bin/docker-setup
-docker-setup --default install
+curl -sLf https://github.com/uniget-org/cli/releases/latest/download/uniget_linux_$(uname -m).tar.gz \
+| sudo tar -xzC /usr/local/bin uniget
+uniget install --default
 EOF
 
 RUN <<EOF
