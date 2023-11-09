@@ -51,7 +51,19 @@
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
-# What you can expect
+## What this is about
+
+build <i class="fa-duotone fa-user-helmet-safety"></i>
+
+image <i class="fa-duotone fa-database"></i>
+
+push <i class="fa-duotone fa-person-dolly"></i>
+
+registry <i class="fa-duotone fa-warehouse-full"></i>
+
+artifacts <i class="fa-duotone fa-box-open-full"></i>
+
+spec <i class="fa-duotone fa-file-certificate"></i>
 
 We are using container registries (aaS, self-hosted)
 
@@ -62,48 +74,108 @@ Store more than container images
 Spec is flexible
 
 Store generic artifacts
-
-XXX ORaS
-
-XXX how and why
 </textarea></section>
+
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
-# OCI
+## OCI
 
 XXX link
 
 XXX specs
 
-XXX scope of this Talk
+XXX scope of this talk
 
 XXX contents 1.0
 
 XXX contents 1.1
 </textarea></section>
+
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
-# Why generic artifacts
+## How registries work
 
-XXX oras
+![](110_ecosystem/oci/oci_registry.drawio.svg) <!-- .element: style="width: 100%;" -->
 
-XXX existing implementations
+---
 
-XXX extension of image index for SBOM by Docker
+## Media types
 
-XXX tag-sha by sigstore
+XXX
 
-XXX helm charts (+ demo)
+| What           | OCI                             | Docker                                        |
+|----------------|---------------------------------|-----------------------------------------------|
+| Image Index    | vnd.oci.image.index.v1+json     | vnd.docker.distribution.manifest.list.v2+json |
+| Image Manifest | vnd.oci.image.manifest.v1+json  | vnd.docker.distribution.manifest.v2+json      |
+| Image Config   | vnd.oci.image.config.v1+json    | vnd.docker.container.image.v1+json            |
+| Image Layer    | vnd.oci.image.layer.v1.tar+gzip | vnd.docker.image.rootfs.diff.tar.gzip         |
 
-XXX policies (opa?)
+<!-- .element: style="width: 105%; font-size: xx-large;" -->
 
-XXX compose (docker/app, archived)
+---
 
-XXX need: SBoM, signatures etc.
+## Accept multiple media types
+
+XXX
 </textarea></section>
+
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
-# Generic artifacts in OCI registries
+## How it started
+
+XXX ORaS / OCI artifacts
+
+XXX very low-level
+
+XXX [](https://github.com/opencontainers/image-spec/blob/main/manifest.md#guidelines-for-artifact-usage)
+
+XXX demo oras.demo
+
+---
+
+## How it's going
+
+### Existing implementations
+
+XXX compose (docker/app, archived) [](https://github.com/docker/app)
+
+XXX CNAB [](https://cnab.io/)
+
+XXX extension of image index for SBOM by Docker (buildkit.demo)
+
+```
+Name:                            localhost:5000/test:oci-sbom
+MediaType:                       application/vnd.oci.image.index.v1+json
+Digest:                          sha256:cb961fc14f51de08aea804a4bc1aac3cea32421f6dc87b96a6050917c22f31d4
+
+Manifests:
+
+  Name:                          localhost:5000/test:oci-sbom@sha256:326d32b66725c5007dedc9515be190fc491d37a918ce61df41f9bd6556b79ff5
+  Digest:                        sha256:326d32b66725c5007dedc9515be190fc491d37a918ce61df41f9bd6556b79ff5
+  MediaType:                     application/vnd.oci.image.manifest.v1+json
+  Platform:                      linux/amd64
+
+  Name:                          localhost:5000/test:oci-sbom@sha256:7fa02a66b3e93c2be01521b1bb8383c8128077c3353be20f95a68a07b1288f6c
+  Digest:                        sha256:7fa02a66b3e93c2be01521b1bb8383c8128077c3353be20f95a68a07b1288f6c
+  MediaType:                     application/vnd.oci.image.manifest.v1+json
+  Platform:                      unknown/unknown
+  Annotations:
+    vnd.docker.reference.digest: sha256:326d32b66725c5007dedc9515be190fc491d37a918ce61df41f9bd6556b79ff5
+    vnd.docker.reference.type:   attestation-manifest
+```
+
+XXX tag-sha used by cosign (cosign.demo)
+
+XXX helm charts (helm.demo) [](https://helm.sh/docs/topics/registries/)
+
+XXX OPA policies using CLI [](https://github.com/opcr-io/policy#demo-videosrecordings)
+
+XXX possibly more
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- 110_ecosystem/oci/slides.md -->
+## Generic artifacts in OCI registries
 
 XXX OCI 1.1
 
@@ -114,30 +186,39 @@ XXX referrers
 XXX tree of linked artifacts
 
 XXX tooling: oras, trivy, regclient
-</textarea></section>
-<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-<!-- 110_ecosystem/oci/slides.md -->
-# Adaption of OCI 1.1
+
+---
+
+## Adaption of OCI 1.1
 
 XXX Test results
-</textarea></section>
-<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-<!-- 110_ecosystem/oci/slides.md -->
-# Workaround / Fallback
+
+---
+
+## Workaround / Fallback
 
 XXX subject
 
 XXX tag-sha
 </textarea></section>
+
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
-# Demo
+## Demo
 
-XXX generic artifacts with oras
+XXX image push
 
-XXX cosign signature
+XXX sign image and link to image
 
-XXX upload and link sbom (trivy? oras? regctl?)
+XXX sbom push and link to image
+
+XXX sbom sign, push and link to sbom
+
+XXX sarif push and link to image
+
+XXX sarif sign, push and link to sarif
+
+XXX trivy? oras? regctl?
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">

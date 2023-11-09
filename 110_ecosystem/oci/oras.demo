@@ -1,0 +1,45 @@
+# oras
+
+# Start OCI registry
+docker run -d -p 127.0.0.1:5000:5000 registry
+
+# Create artifact
+echo "hello world" >artifact.txt
+
+# Push artifact into OCI registry
+oras push localhost:5000/hello-artifact:v1 \
+    --artifact-type application/vnd.inmylab.hello.config \
+    ./artifact.txt
+
+# Show artifact in registry
+regctl manifest get localhost:5000/hello-artifact:v1
+
+# Adding a config file
+echo "{\"name\":\"foo\",\"value\":\"bar\"}" > config.json
+
+# Push artifact and config
+oras push localhost:5000/hello-artifact:v2 \
+    --artifact-type application/vnd.inmylab.hello.config \
+    --config config.json:application/vnd.inmylab.hello.config.v1+json \
+    artifact.txt:text/plain
+
+# Show artifact in registry
+regctl manifest get localhost:5000/hello-artifact:v
+
+# Create more data
+mkdir docs
+echo "Docs on this artifact" > ./docs/readme.md
+echo "More content for this artifact" > ./docs/readme2.md
+
+# Create config
+echo "{\"doc\":\"readme.md\"}" > config.json
+
+# Push different media types
+oras push localhost:5000/hello-artifact:v3 \
+    --artifact-type application/vnd.inmylab.hello.config \
+    --config config.json:application/vnd.inmylab.hello.config.v1+json \
+    artifact.txt:text/plain \
+    ./docs/:application/vnd.inmylab.hello.layer.v1+tar
+
+# Show artifact in registry
+regctl manifest get localhost:5000/hello-artifact:v3
