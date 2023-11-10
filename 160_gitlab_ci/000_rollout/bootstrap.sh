@@ -116,7 +116,7 @@ GITLAB_USER_ID="$(
             --silent \
             --show-error \
             --fail \
-            --header "Private-Token: SEAT_GITLAB_TOKEN" \
+            --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
     | jq '.id'
 )"
 echo "    Got ${GITLAB_USER_ID}"
