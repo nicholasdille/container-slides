@@ -14,10 +14,9 @@ export GIT_USER=seat
 export GIT_EMAIL="seat@seat${SEAT_INDEX}.inmylab.de"
 export GIT_CRED="https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de"
 
-#echo
-#echo "### Removing previous deployment on seat ${SEAT_INDEX}"
-#docker compose version
-#docker compose down --volumes
+echo
+echo "### Removing previous deployment on seat ${SEAT_INDEX}"
+docker compose down --volumes
 
 cat /etc/ssl/tls.crt /etc/ssl/tls.chain >/etc/ssl/tls.full
 
@@ -49,7 +48,6 @@ echo "GitLab ready after ${SECONDS} second(s)"
 
 echo
 echo "### PAT for root on seat ${SEAT_INDEX}"
-# TODO: Store token locally and reuse
 if ! docker compose exec -T gitlab \
         curl \
             --url http://localhost/api/v4/user \
@@ -93,19 +91,12 @@ if ! docker compose exec -T gitlab \
             --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
             --header "Content-Type: application/json" \
             --request POST \
-            --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}" \
-    >/tmp/gitlab_create_user.json
+            --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}"
     echo "done."
-
-    GITLAB_USER_ID="$(
-        jq --raw-output '.id' </tmp/gitlab_create_user.json
-    )"
-    echo "    Got user ID ${GITLAB_USER_ID}."
 fi
 
 echo
 echo "### PAT for seat on seat ${SEAT_INDEX}"
-# TODO: Store token locally and reuse
 if ! docker compose exec -T gitlab \
         curl \
             --url http://localhost/api/v4/user \
@@ -114,18 +105,24 @@ if ! docker compose exec -T gitlab \
             --output /dev/null \
             --header "Private-Token: ${SEAT_GITLAB_TOKEN}"; then
     echo -n "    Creating..."
-    curl \
-        --silent \
-        --show-error \
-        --fail \
-        --request POST \
-        --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
-        --data "name=mytoken" \
-        --data "expires_at=2023-12-31" \
-        --data "scopes[]=api,write_repository" \
-        "https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4/users/2/personal_access_tokens"
+    docker compose exec -T gitlab \
+        gitlab-rails runner -e production "user = User.find_by_username('seat'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository], name: 'demo', expires_at: 365.days.from_now); token.set_token('${SEAT_GITLAB_TOKEN}'); token.save!"
     echo "done."
 fi
+
+echo
+echo "### Fetching user ID for seat on seat ${SEAT_INDEX}..."
+GITLAB_USER_ID="$(
+    docker compose exec -T gitlab \
+        curl \
+            --url http://localhost/api/v4/user \
+            --silent \
+            --show-error \
+            --fail \
+            --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
+    | jq '.id'
+)"
+echo "    Got ${GITLAB_USER_ID}"
 
 echo
 echo "### Project for demos"
