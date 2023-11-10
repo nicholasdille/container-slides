@@ -26,7 +26,11 @@ export REGISTRATION_TOKEN=foo
 GITLAB_MAX_WAIT=300
 SECONDS=0
 while ! docker compose exec -T gitlab \
-        curl -sSfo /dev/null http://localhost/-/readiness?all=1; do
+        curl \
+            --silent \
+            --fail \
+            --output /dev/null \
+            http://localhost/-/readiness?all=1; do
     if test "${SECONDS}" -gt "${GITLAB_MAX_WAIT}"; then
         echo "ERROR: Timeout waiting for GitLab to become ready."
         exit 1
@@ -39,18 +43,16 @@ echo "GitLab ready after ${SECONDS} second(s)"
 
 echo
 echo "### Creating PAT for root on seat ${SEAT_INDEX}"
-ROOT_TOKEN="$(openssl rand -hex 32)"
 # TODO: Store token locally and reuse
 if ! docker compose exec -T gitlab \
         curl \
             --url http://localhost/api/v4/user \
             --silent \
-            --show-error \
             --fail \
             --output /dev/null \
-            --header "Private-Token: ${ROOT_TOKEN}"; then
+            --header "Private-Token: ${GITLAB_ADMIN_TOKEN}"; then
     docker compose exec -T gitlab \
-        gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty', expires_at: 365.days.from_now); token.set_token('${ROOT_TOKEN}'); token.save!"
+        gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty', expires_at: 365.days.from_now); token.set_token('${GITLAB_ADMIN_TOKEN}'); token.save!"
 fi
 
 echo
@@ -59,9 +61,8 @@ docker compose exec -T gitlab \
     curl \
         --url http://localhost/api/v4/application/settings?signup_enabled=false \
         --silent \
-        --show-error \
         --fail \
-        --header "Private-Token: ${ROOT_TOKEN}" \
+        --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
         --header "Content-Type: application/json" \
         --request PUT \
         --output /dev/null
@@ -72,16 +73,15 @@ if ! docker compose exec -T gitlab \
         curl \
             --url http://localhost/api/v4/users \
             --silent \
-            --show-error \
             --fail \
-            --header "Private-Token: ${ROOT_TOKEN}" \
+            --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
      | jq --exit-status '.[] | select(.username == "seat")' >/dev/null; then
     docker compose exec -T gitlab \
         curl http://localhost/api/v4/users \
             --silent \
             --show-error \
             --fail \
-            --header "Private-Token: ${ROOT_TOKEN}" \
+            --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
             --header "Content-Type: application/json" \
             --request POST \
             --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}"
@@ -89,18 +89,16 @@ fi
 
 echo
 echo "### Creating PAT for seat on seat ${SEAT_INDEX}"
-SEAT_TOKEN="$(openssl rand -hex 32)"
 # TODO: Store token locally and reuse
 if ! docker compose exec -T gitlab \
         curl \
             --url http://localhost/api/v4/user \
             --silent \
-            --show-error \
             --fail \
             --output /dev/null \
-            --header "Private-Token: ${SEAT_TOKEN}"; then
+            --header "Private-Token: ${SEAT_GITLAB_TOKEN}"; then
     docker compose exec -T gitlab \
-        gitlab-rails runner -e production "user = User.find_by_username('seat'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository], name: 'demo', expires_at: 365.days.from_now); token.set_token('${SEAT_TOKEN}'); token.save!"
+        gitlab-rails runner -e production "user = User.find_by_username('seat'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository], name: 'demo', expires_at: 365.days.from_now); token.set_token('${SEAT_GITLAB_TOKEN}'); token.save!"
 fi
 
 echo
@@ -109,8 +107,7 @@ if ! docker compose exec -T gitlab \
     curl \
         --url http://localhost/api/v4/users/seat/projects \
         --silent \
-        --show-error \
-        --header "Private-Token: ${SEAT_TOKEN}" \
+        --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
     | jq --exit-status '.[] | select(.name == "demo")' >/dev/null; then
     docker compose exec -T gitlab \
         curl \
@@ -118,7 +115,7 @@ if ! docker compose exec -T gitlab \
             --silent \
             --show-error \
             --request POST \
-            --header "Private-Token: ${SEAT_TOKEN}" \
+            --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
             --header "Content-Type: application/json" \
             --data '{"name": "demo", "import_url": "https://github.com/nicholasdille/container-slides"}'
     SECONDS=0
@@ -126,8 +123,7 @@ if ! docker compose exec -T gitlab \
                 curl \
                 --url "http://localhost/api/v4/projects/seat%2fdemo" \
                 --silent \
-                --show-error \
-                --header "Private-Token: ${SEAT_TOKEN}" \
+                --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
             | jq --exit-status 'select(.import_status == "finished")' >/dev/null 2>&1; do
         if test "${SECONDS}" -gt 60; then
             echo "ERROR: Failed to import on seat ${SEAT_INDEX}"
@@ -139,7 +135,7 @@ if ! docker compose exec -T gitlab \
                 --url "http://localhost/api/v4/projects/seat%2fdemo" \
                 --silent \
                 --show-error \
-                --header "Private-Token: ${SEAT_TOKEN}" \
+                --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
             | jq --raw-output '.import_status'
         sleep 5
     done
@@ -169,7 +165,7 @@ docker compose exec -T gitlab \
         --silent \
         --show-error \
         --request PUT \
-        --header "Private-Token: ${SEAT_TOKEN}" \
+        --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
         --data 'default_branch=main'
 
 echo
