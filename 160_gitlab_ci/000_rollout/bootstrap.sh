@@ -140,29 +140,8 @@ if ! docker compose exec -T gitlab \
             --request POST \
             --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
             --header "Content-Type: application/json" \
-            --data '{"name": "demo", "import_url": "https://github.com/nicholasdille/container-slides"}'
+            --data '{"name": "demo"}'
     echo "done."
-    SECONDS=0
-    while ! docker-compose exec -T gitlab \
-                curl \
-                --url "http://localhost/api/v4/projects/seat%2fdemo" \
-                --silent \
-                --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
-            | jq --exit-status 'select(.import_status == "finished")' >/dev/null 2>&1; do
-        if test "${SECONDS}" -gt 60; then
-            echo "ERROR: Failed to import on seat ${SEAT_INDEX}"
-            exit 1
-        fi
-        echo -n "Waiting for import to finish... Status is:"
-        docker-compose exec -T gitlab \
-            curl \
-                --url "http://localhost/api/v4/projects/seat%2fdemo" \
-                --silent \
-                --show-error \
-                --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
-            | jq --raw-output '.import_status'
-        sleep 5
-    done
 fi
 git config --global user.name "seat"
 git config --global user.email "seat@seat${SEAT_INDEX}.inmylab.de"
@@ -174,12 +153,23 @@ fi
 (
     mkdir -p /tmp/demo
     cd /tmp/demo
-    git clone "https://gitlab.seat${SEAT_INDEX}.inmylab.de/seat/demo" .
+    git clone https://github.com/nicholasdille/container-slides .
+    git remote add downstream "https://gitlab.seat${SEAT_INDEX}.inmylab.de/seat/demo"
+    git branch --remotes --list \
+    | grep -v downstream \
+    | grep -v dependabot \
+    | grep -v renovate \
+    | grep -v '\->' \
+    | while read remote; do
+        git branch --track "${remote#origin/}" "$remote"
+    done
+    git push downstream
+    git push downstream --tags
     if ! git show-ref --quiet refs/heads/main; then
         git checkout --orphan main
         git rm -rf .
         git commit --allow-empty -m "root commit"
-        git push origin main
+        git push downstream main
     fi
     rm -rf /tmp/demo
 )
@@ -193,6 +183,7 @@ docker compose exec -T gitlab \
         --data 'default_branch=main'
 
 # TODO: Modernize
+# https://docs.gitlab.com/ee/api/users.html#create-a-runner
 echo
 echo "### Retrieving runner registration token on seat ${SEAT_INDEX}"
 export REGISTRATION_TOKEN="$(
