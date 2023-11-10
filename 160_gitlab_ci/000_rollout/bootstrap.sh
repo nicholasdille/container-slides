@@ -78,7 +78,7 @@ if ! docker compose exec -T gitlab \
             --fail \
             --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
         | jq --exit-status '.[] | select(.username == "seat")' >/dev/null; then
-    echo -e "    Creating..."
+    echo -n "    Creating..."
     docker compose exec -T gitlab \
         curl http://localhost/api/v4/users \
             --silent \
@@ -101,11 +101,25 @@ if ! docker compose exec -T gitlab \
             --fail \
             --output /dev/null \
             --header "Private-Token: ${SEAT_GITLAB_TOKEN}"; then
-    echo -e "    Creating..."
+    echo -n "    Creating..."
     docker compose exec -T gitlab \
         gitlab-rails runner -e production "user = User.find_by_username('seat'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository], name: 'demo', expires_at: 365.days.from_now); token.set_token('${SEAT_GITLAB_TOKEN}'); token.save!"
     echo "done."
 fi
+
+echo
+echo "### Fetching user ID for seat on seat ${SEAT_INDEX}..."
+GITLAB_USER_ID="$(
+    docker compose exec -T gitlab \
+        curl \
+            --url http://localhost/api/v4/user \
+            --silent \
+            --show-error \
+            --fail \
+            --header "Private-Token: SEAT_GITLAB_TOKEN" \
+    | jq '.id'
+)"
+echo "    Got ${GITLAB_USER_ID}"
 
 echo
 echo "### Project for demos"
@@ -115,10 +129,10 @@ if ! docker compose exec -T gitlab \
             --silent \
             --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
         | jq --exit-status '.[] | select(.name == "demo")' >/dev/null; then
-    echo -e "    Creating..."
+    echo -n "    Creating..."
     docker compose exec -T gitlab \
         curl \
-            --url "http://localhost/api/v4/projects" \
+            --url "http://localhost/api/v4/projects/user/${GITLAB_USER_ID}" \
             --silent \
             --show-error \
             --request POST \
@@ -176,6 +190,7 @@ docker compose exec -T gitlab \
         --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
         --data 'default_branch=main'
 
+# TODO: Modernize
 echo
 echo "### Retrieving runner registration token on seat ${SEAT_INDEX}"
 export REGISTRATION_TOKEN="$(
