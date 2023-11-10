@@ -15,6 +15,8 @@ fi
 #docker compose version
 #docker compose down --volumes
 
+cat /etc/ssl/tls.crt /etc/ssl/tls.chain >/etc/ssl/tls.full
+
 echo
 echo "### Pulling images on seat ${SEAT_INDEX}"
 docker compose pull traefik gitlab
