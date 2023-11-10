@@ -49,7 +49,7 @@ if ! docker compose exec -T gitlab \
             --output /dev/null \
             --header "Private-Token: ${ROOT_TOKEN}"; then
     docker compose exec -T gitlab \
-        gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty'); token.set_token('${ROOT_TOKEN}'); token.save!"
+        gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty', expires_at: 365.days.from_now); token.set_token('${ROOT_TOKEN}'); token.save!"
 fi
 
 echo
@@ -95,7 +95,7 @@ if ! docker compose exec -T gitlab \
             --output /dev/null \
             --header "Private-Token: ${SEAT_TOKEN}"; then
     docker compose exec -T gitlab \
-        gitlab-rails runner -e production "user = User.find_by_username('seat'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository], name: 'demo'); token.set_token('${SEAT_TOKEN}'); token.save!"
+        gitlab-rails runner -e production "user = User.find_by_username('seat'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository], name: 'demo'token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty', expires_at: 365.days.from_now); token.set_token('${SEAT_TOKEN}'); token.save!"
 fi
 
 echo
