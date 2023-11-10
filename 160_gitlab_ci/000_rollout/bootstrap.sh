@@ -42,7 +42,7 @@ done
 echo "GitLab ready after ${SECONDS} second(s)"
 
 echo
-echo "### Creating PAT for root on seat ${SEAT_INDEX}"
+echo "### PAT for root on seat ${SEAT_INDEX}"
 # TODO: Store token locally and reuse
 if ! docker compose exec -T gitlab \
         curl \
@@ -51,8 +51,10 @@ if ! docker compose exec -T gitlab \
             --fail \
             --output /dev/null \
             --header "Private-Token: ${GITLAB_ADMIN_TOKEN}"; then
+    echo -n "    Creating..."
     docker compose exec -T gitlab \
         gitlab-rails runner -e production "user = User.find_by_username('root'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository, :sudo], name: 'almighty', expires_at: 365.days.from_now); token.set_token('${GITLAB_ADMIN_TOKEN}'); token.save!"
+    echo "done."
 fi
 
 echo
@@ -68,14 +70,15 @@ docker compose exec -T gitlab \
         --output /dev/null
 
 echo
-echo "### Creating user seat on seat ${SEAT_INDEX}"
+echo "### User seat on seat ${SEAT_INDEX}"
 if ! docker compose exec -T gitlab \
         curl \
             --url http://localhost/api/v4/users \
             --silent \
             --fail \
             --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
-     | jq --exit-status '.[] | select(.username == "seat")' >/dev/null; then
+        | jq --exit-status '.[] | select(.username == "seat")' >/dev/null; then
+    echo -e "    Creating..."
     docker compose exec -T gitlab \
         curl http://localhost/api/v4/users \
             --silent \
@@ -85,10 +88,11 @@ if ! docker compose exec -T gitlab \
             --header "Content-Type: application/json" \
             --request POST \
             --data "{\"username\": \"seat\", \"name\": \"seat\", \"email\": \"seat@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\", \"admin\": \"true\"}"
+    echo "done."
 fi
 
 echo
-echo "### Creating PAT for seat on seat ${SEAT_INDEX}"
+echo "### PAT for seat on seat ${SEAT_INDEX}"
 # TODO: Store token locally and reuse
 if ! docker compose exec -T gitlab \
         curl \
@@ -97,18 +101,21 @@ if ! docker compose exec -T gitlab \
             --fail \
             --output /dev/null \
             --header "Private-Token: ${SEAT_GITLAB_TOKEN}"; then
+    echo -e "    Creating..."
     docker compose exec -T gitlab \
         gitlab-rails runner -e production "user = User.find_by_username('seat'); token = user.personal_access_tokens.create(scopes: [:api, :read_api, :read_user, :read_repository, :write_repository], name: 'demo', expires_at: 365.days.from_now); token.set_token('${SEAT_GITLAB_TOKEN}'); token.save!"
+    echo "done."
 fi
 
 echo
-echo "### Creating project for demos"
+echo "### Project for demos"
 if ! docker compose exec -T gitlab \
-    curl \
-        --url http://localhost/api/v4/users/seat/projects \
-        --silent \
-        --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
-    | jq --exit-status '.[] | select(.name == "demo")' >/dev/null; then
+        curl \
+            --url http://localhost/api/v4/users/seat/projects \
+            --silent \
+            --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
+        | jq --exit-status '.[] | select(.name == "demo")' >/dev/null; then
+    echo -e "    Creating..."
     docker compose exec -T gitlab \
         curl \
             --url "http://localhost/api/v4/projects" \
@@ -118,6 +125,7 @@ if ! docker compose exec -T gitlab \
             --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
             --header "Content-Type: application/json" \
             --data '{"name": "demo", "import_url": "https://github.com/nicholasdille/container-slides"}'
+    echo "done."
     SECONDS=0
     while ! docker-compose exec -T gitlab \
                 curl \
