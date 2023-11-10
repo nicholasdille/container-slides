@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.5.2
+#syntax=docker/dockerfile:1.6.0
 
 FROM codercom/code-server:4.18.0
 USER root
@@ -6,7 +6,6 @@ USER root
 RUN <<EOF
 code-server --install-extension redhat.vscode-yaml
 code-server --install-extension golang.go
-code-server --install-extension ms-azuretools.vscode-docker
 code-server --install-extension gitlab.gitlab-workflow
 EOF
 
@@ -15,14 +14,11 @@ apt-get update
 apt-get -y install --no-install-recommends \
     curl \
     ca-certificates \
-    iptables \
     git \
     tzdata \
     unzip \
     ncurses-bin \
-    asciinema \
     time \
-    jq \
     less \
     bash-completion \
     gettext-base \
@@ -32,21 +28,21 @@ EOF
 RUN <<EOF
 curl -sLf https://github.com/uniget-org/cli/releases/latest/download/uniget_linux_$(uname -m).tar.gz \
 | sudo tar -xzC /usr/local/bin uniget
-uniget install --default
+uniget install \
+    gojq \
+    go \
+    glab
 EOF
 
+# See https://github.com/coder/code-server/issues/5177
+ENV ENTRYPOINTD=/opt/entrypoint.d
 RUN <<EOF
-useradd --user-group --create-home --shell /bin/bash --groups docker seat
+mkdir -p "${ENTRYPOINTD}"
+EOF
+COPY --chmod=0755 git.sh ${ENTRYPOINTD}
+
+RUN <<EOF
+useradd --user-group --create-home --shell /bin/bash seat
 EOF
 USER seat
 WORKDIR /home/seat
-
-ARG GIT_USER
-ARG GIT_EMAIL
-ARG GIT_CRED
-RUN <<EOF
-git config --global user.name "${GIT_USER}"
-git config --global user.email "${GIT_EMAIL}"
-git config --global credential.helper store
-echo "${GIT_CRED}" >.git-credentials
-EOF

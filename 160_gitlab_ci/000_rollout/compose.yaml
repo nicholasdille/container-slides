@@ -246,6 +246,10 @@ services:
     - --proxy-domain
     - vscode.${DOMAIN:?You must supply DOMAIN}
     - --disable-telemetry
+    environment:
+      GIT_USER: "${GIT_USER}"
+      GIT_EMAIL: "${GIT_EMAIL}"
+      GIT_CRED: "${GIT_CRED}"
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock

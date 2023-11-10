@@ -155,16 +155,17 @@ fi
     cd /tmp/demo
     git clone https://github.com/nicholasdille/container-slides .
     git remote add downstream "https://gitlab.seat${SEAT_INDEX}.inmylab.de/seat/demo"
+    CURRENT_BRANCH="$(git branch --show-current)"
     git branch --remotes --list \
     | grep -v downstream \
     | grep -v dependabot \
     | grep -v renovate \
     | grep -v '\->' \
-    | while read remote; do
-        git branch --track "${remote#origin/}" "$remote"
+    | grep -v "${CURRENT_BRANCH}" \
+    | while read branch; do
+        git branch --track "${branch#origin/}" "$branch" || true
     done
-    git push downstream
-    git push downstream --tags
+    git push downstream --all
     if ! git show-ref --quiet refs/heads/main; then
         git checkout --orphan main
         git rm -rf .
@@ -187,8 +188,17 @@ docker compose exec -T gitlab \
 echo
 echo "### Retrieving runner registration token on seat ${SEAT_INDEX}"
 export REGISTRATION_TOKEN="$(
-    docker compose exec -T gitlab \
-        gitlab-rails runner -e production "puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token"
+#    docker compose exec -T gitlab \
+#        gitlab-rails runner -e production "puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token"
+    curl \
+        --url "https://gitlab.seat${SEAT_INDEX}/api/v4/user/runners" \
+        --silent \
+        --show-error \
+        --request POST \
+        --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
+        --header "Content-Type: application/json" \
+        --data '{"runner_type": "instance_type", "run_untagged": true}' \
+    | jq --raw-output '.token'
 )"
 
 echo
@@ -198,10 +208,10 @@ docker compose up -d runner
 
 echo
 echo "### Starting remaining services on seat ${SEAT_INDEX}"
-docker compose build --pull \
-    --build-arg "GIT_USER=seat" \
-    --build-arg "GIT_EMAIL=seat@seat${SEAT_INDEX}.inmylab.de" \
-    --build-arg "GIT_CRED=https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de"
+docker compose build --pull
+export GIT_USER=seat
+export GIT_EMAIL="seat@seat${SEAT_INDEX}.inmylab.de"
+export GIT_CRED="https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de"
 docker compose up -d
 
 echo
