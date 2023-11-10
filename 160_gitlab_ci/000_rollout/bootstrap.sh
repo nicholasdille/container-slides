@@ -138,7 +138,7 @@ if ! docker compose exec -T gitlab \
             --silent \
             --show-error \
             --request POST \
-            --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
+            --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
             --header "Content-Type: application/json" \
             --data '{"name": "demo", "import_url": "https://github.com/nicholasdille/container-slides"}'
     echo "done."
