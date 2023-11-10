@@ -5,14 +5,7 @@ if test "$(dirname "$0")" != "${PWD}"; then
     pushd "$(dirname "$0")"
 fi
 
-source /etc/profile.d/ip.sh
-source /etc/profile.d/domain.sh
-source /etc/profile.d/seat_index.sh
-source /etc/profile.d/seat_pass.sh
-source /etc/profile.d/seat_htpasswd.sh
-source /etc/profile.d/seat_htpasswd_only.sh
-source /etc/profile.d/seat_code.sh
-source /etc/profile.d/seat_code_htpasswd.sh
+source /etc/profile.d/vars.sh
 if test -f .env; then
     source .env
 fi
