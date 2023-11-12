@@ -16,6 +16,23 @@ Variables [](https://docs.gitlab.com/ee/ci/yaml/#variables) can be...
 
 ---
 
-## Hands-On
+## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/020_variables/inline "020_variables/inline")
 
-XXX
+1. Update files:
+
+    ```yaml
+    git checkout 160_gitlab_ci/020_variables/inline -- '*'
+    ```
+    <!-- .element: style="width: 40em;" -->
+
+1. `variables` in definition:
+
+    ```yaml
+    job_name:
+      variables:
+        version: dev
+      script:
+      #...
+      - go build -o hello -ldflags "-X main.Version=${version}" .
+    ```
+    <!-- .element: style="width: 40em;" -->

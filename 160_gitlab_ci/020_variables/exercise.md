@@ -3,7 +3,9 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - add local variable to your pipeline
+    - consume pre-defined variables
+    - add secrets in the UI
 
 ## Task 1: Create a job variable
 

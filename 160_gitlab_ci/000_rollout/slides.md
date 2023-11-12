@@ -24,7 +24,7 @@ If your credentials are not working:
 
 1. Go to https://seatN.inmylab.de
 1. Click on "Show username and password"
-1. Authenticate using the user **seat** and your code
+1. Authenticate using the user `seat` and your code
 
 The code was provided as part of your credentials:
 

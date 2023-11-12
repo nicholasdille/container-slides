@@ -1,10 +1,6 @@
 # Workshop: GitLab CI
 
-XXX
-
-XXX link to slides?
-
-XXX link to env?
+This site contains the exercises to learn about GitLab CI.
 
 ## Audience
 
@@ -12,7 +8,7 @@ Software developers and system administrators who want to learn how to use GitLa
 
 ## Duration
 
-Two days (one week apart)
+One day
 
 ## Expected knowledge
 
@@ -20,10 +16,14 @@ XXX
 
 ## Goals
 
-XXX
+Learn about the features of GitLab CI and how to use then in a software development project.
 
 ## Style
 
-x% theoretical introduction
+20% theoretical introduction
 
-y% practical exercises
+80% practical exercises
+
+## Environment
+
+XXX GitLab

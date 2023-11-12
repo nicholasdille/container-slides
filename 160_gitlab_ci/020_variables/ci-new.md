@@ -12,29 +12,9 @@ Careful with protected variables
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/020_variables/ci "020_variables/ci")
+## Hands-On
 
-1. Go to **Settings** > **CI/CD** and unfold **Variables**
-1. Create unprotected variable `AUTHOR` and set to a value of your choice
-1. Update build command and add `AUTHOR`:
-
-    ```bash
-    build:
-      script: |
-      - go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} 
-                      -X 'main.Author=${AUTHOR}'" \
-            -o hello \
-            .
-    ```
-    <!-- .element: style="width: 47em;" -->
-
-1. Fetch change:
-
-    ```bash
-    git checkout 160_gitlab_ci/020_variables/ci -- '*'
-    ```
-    <!-- .element: style="width: 47em;" -->
+XXX
 
 ---
 
