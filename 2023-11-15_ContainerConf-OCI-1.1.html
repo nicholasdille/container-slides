@@ -53,38 +53,44 @@
 <!-- 110_ecosystem/oci/slides.md -->
 ## What this is about
 
-build <i class="fa-duotone fa-user-helmet-safety"></i>
+We build <i class="fa-duotone fa-user-helmet-safety"></i> container images <i class="fa-duotone fa-database"></i> and...
 
-image <i class="fa-duotone fa-database"></i>
+...push <i class="fa-duotone fa-person-dolly"></i> them into a registry <i class="fa-duotone fa-warehouse-full"></i>
 
-push <i class="fa-duotone fa-person-dolly"></i>
+Registries are self-hosted <i class="fa-duotone fa-server"></i> or...
 
-registry <i class="fa-duotone fa-warehouse-full"></i>
+...consumed as-a-Service <i class="fa-duotone fa-square-phone"></i>
 
-artifacts <i class="fa-duotone fa-box-open-full"></i>
-
-spec <i class="fa-duotone fa-file-certificate"></i>
-
-We are using container registries (aaS, self-hosted)
-
-Registries follow specs
+All of them follow a flexible spec <i class="fa-duotone fa-file-certificate"></i>
 
 Store more than container images
 
-Spec is flexible
-
-Store generic artifacts
+Store generic artifacts <i class="fa-duotone fa-box-open-full"></i>
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
-## OCI
+## Open Container Initiative
 
-XXX link
+OCI [](https://opencontainers.org/)
 
-XXX specs
+Specifications:
 
-XXX scope of this talk
+- Runtime [](https://github.com/opencontainers/runtime-spec)
+- Image [](https://github.com/opencontainers/image-spec)
+- Distribution [](https://github.com/opencontainers/distribution-spec)
+
+runc [](https://github.com/opencontainers/runc) - reference implementation of runtime spec
+
+XXX history
+
+XXX members
+
+XXX TOC
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Scope of this talk
 
 XXX contents 1.0
 
@@ -101,7 +107,9 @@ XXX contents 1.1
 
 ## Media types
 
-XXX
+OCI defines new media types
+
+Widespread adoption of OCI media types
 
 | What           | OCI                             | Docker                                        |
 |----------------|---------------------------------|-----------------------------------------------|
@@ -112,65 +120,53 @@ XXX
 
 <!-- .element: style="width: 105%; font-size: xx-large;" -->
 
+XXX `Accept` header
+
 ---
 
 ## Accept multiple media types
 
-XXX
+`Accept` header can also list multiple media types
+
+XXX example
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
 ## How it started
 
-XXX ORaS / OCI artifacts
+### <span style="font-size: larger;">O</span>CI <span style="font-size: larger;">R</span>egistries <span style="font-size: larger;">a</span>s <span style="font-size: larger;">S</span>torage (ORaS)
 
-XXX very low-level
+Initial project to store artifacts in OCI registries
 
-XXX [](https://github.com/opencontainers/image-spec/blob/main/manifest.md#guidelines-for-artifact-usage)
+Very low-level
 
-XXX demo oras.demo
+Official guidance for artifacts [](https://github.com/opencontainers/image-spec/blob/main/manifest.md#guidelines-for-artifact-usage)
+
+### Demo
+
+XXX demo oras.demo [](https://github.com/nicholasdille/container-slides/blob/master/110_ecosystem/oci/oras.demo)
 
 ---
 
 ## How it's going
 
-### Existing implementations
+### Existing implementations (excerpt)
 
-XXX compose (docker/app, archived) [](https://github.com/docker/app)
+Docker App [](https://github.com/docker/app) (archived)
 
-XXX CNAB [](https://cnab.io/)
+Cloud Native Application Bundles (CNAB) [](https://cnab.io/)
+- porter [](https://github.com/getporter/porter)
 
-XXX extension of image index for SBOM by Docker (buildkit.demo)
+SBOM for container images [](https://github.com/moby/buildkit/blob/master/docs/attestations/sbom.md)
+- BuildKit [](https://github.com/moby/buildkit) >=0.11.0
+- buildx [](https://github.com/docker/buildx) >=0.10.0
 
-```
-Name:                            localhost:5000/test:oci-sbom
-MediaType:                       application/vnd.oci.image.index.v1+json
-Digest:                          sha256:cb961fc14f51de08aea804a4bc1aac3cea32421f6dc87b96a6050917c22f31d4
+Container signatures using sigstore's cosign [](https://www.sigstore.dev/)
 
-Manifests:
+Helm charts [](https://helm.sh/docs/topics/registries/)
 
-  Name:                          localhost:5000/test:oci-sbom@sha256:326d32b66725c5007dedc9515be190fc491d37a918ce61df41f9bd6556b79ff5
-  Digest:                        sha256:326d32b66725c5007dedc9515be190fc491d37a918ce61df41f9bd6556b79ff5
-  MediaType:                     application/vnd.oci.image.manifest.v1+json
-  Platform:                      linux/amd64
-
-  Name:                          localhost:5000/test:oci-sbom@sha256:7fa02a66b3e93c2be01521b1bb8383c8128077c3353be20f95a68a07b1288f6c
-  Digest:                        sha256:7fa02a66b3e93c2be01521b1bb8383c8128077c3353be20f95a68a07b1288f6c
-  MediaType:                     application/vnd.oci.image.manifest.v1+json
-  Platform:                      unknown/unknown
-  Annotations:
-    vnd.docker.reference.digest: sha256:326d32b66725c5007dedc9515be190fc491d37a918ce61df41f9bd6556b79ff5
-    vnd.docker.reference.type:   attestation-manifest
-```
-
-XXX tag-sha used by cosign (cosign.demo)
-
-XXX helm charts (helm.demo) [](https://helm.sh/docs/topics/registries/)
-
-XXX OPA policies using CLI [](https://github.com/opcr-io/policy#demo-videosrecordings)
-
-XXX possibly more
+OPA policies [](https://github.com/opcr-io/policy#demo-videosrecordings)
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
