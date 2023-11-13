@@ -116,6 +116,10 @@
     max-height: 30em;
 }
 
+.reveal table td {
+    font-size: 0.9em;
+}
+
 .notyf-toast-success {
     font-family: var(--r-code-font);
 }

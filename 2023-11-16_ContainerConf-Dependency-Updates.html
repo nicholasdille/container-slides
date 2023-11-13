@@ -34,83 +34,210 @@
 <div class="slides">
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-<!-- .slide: data-background="images/diego-ph-fIq0tET6llw-unsplash.jpg" class="vertical-center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 90%; margin: auto;" -->
+<!-- .slide: data-background="images/barn-raising-unsplash.jpg" class="center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;" -->
+# Automated<br/>Dependency Updates <!-- .element: style="font-size: 1.5em;" -->
 
-# Automated Dependency Updates<br/>Closing vulnerabilities as they appear
+## Closing vulnerabilities<br/>as they appear <!-- .element: style="font-size: 1.2em; text-transform: none;" -->
 
 *Nicholas Dille, Haufe Group*
 
 <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
-
-<i class="fa-brands fa-x-twitter" style="width: 1.5em; text-align: center;"></i> [@nicholasdille](https://twitter.com/nicholasdille)
-
-<i class="fa-brands fa-mastodon" style="width: 1.5em; text-align: center;"></i> [@nicholasdille@freiburg.social](https://freiburg.social/@nicholasdille)
 </textarea></section>
 
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="000_introduction/05_container_slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!--
-Motivation
-- Dependencies increase dev productivity
-- Devs write business logic a.k.a. glue code for dependencies
-- Dependency updates for new features and security
-- Autonomy vs. responsibility
-- Features vs. Security
-- Stability
-- Types of deps: libraries, os
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- 170_supply_chain_security/renovate/slides.md -->
+## Motivation
 
-SBOM
-- Visibility
-- The world is on fire
-- Avoid auditing
-- Update dependencies quickly
-- (be prepared to) ship fast
-- Drive adoption of new verisons (auto-update, notifications)
-- Know about remaining vulnerabilities
-- Check options for mitigation
+Dependencies increase productivity
 
-Enter RenovateBot
-- Check everything for outdated vulnerabilities
-- Propose update in pull/merge requests
-- Illustration with platforms and modules
-- Self-hosted vs. GitHub App
-- Initially many and/or breaking updates
-- Once settled in, smaller incremental updates
+Dependency updates for new features and security
 
-Demo: Renovate
-- Scan outdated repository
-- See updates for pipelines, libraries, os
-- Automated tests
-- Run scheduled, on push (selected paths), Renovate config updates
+Autonomy vs. responsibility
 
-Automerge
-- Identify updates with low impact, e.g. patches, well-tested packages
-- Create package rules for automerging
-- Do something useful with the time saved
+Features vs. Security
 
-Demo: Automerge
-- Enable config options in rpeo
+Stability
 
-Case study: uniget
-- uni(versal)get installer and updater for (container) tools
-- XXX list, search, install
-- 572 packages
-- Since 2023-10-29: >6.800 merged PRs, 10 PRs per day on average, 90% merged after ~1min, 98% merged after ~5min
-- Renovate runs every 8 hours
-- At least a dozen updates per day
--->
+Types of deps: libraries, os
+
+Devs write business logic a.k.a. glue code for dependencies
+
+---
+
+## Dev dependencies
+
+| Ecosystem        | Dependencies                           |
+|:-----------------|:---------------------------------------|
+| NodeJS           | `package.json`                         |
+| Java (Maven)     | `pom.xml`                              |
+| Java (Gradle)    | `build.gradle`                         |
+| Go               | `go.mod`                               |
+| Python           | `setup.py`                             |
+| Python (peotry)  | `pyproject.toml`                       |
+| Ruby             | `Gemfile`                              |
+| Rust             | `Cargo.toml`                           |
+| Docker           | `Dockerfile`, `[docker-]compose.ya?ml` |
+
+...any many more!
+
+---
+
+## Ops dependencies
+
+### The good...
+
+| Ecosystem  | Dependencies                           |
+|:-----------|:---------------------------------------|
+| Docker     | `Dockerfile`, `[docker-]compose.ya?ml` |
+| Kubernetes | `*.yaml`                               |
+| Helm       | `Chart.yaml`                           |
+
+...any many more!
+
+### The bad...
+
+Required tools, e.g. downloaded from GitHub releases
+
+### And the ugly
+
+Versions stored in variables in scripts
+
+---
+
+## Security
+
+XXX all dependencies can introduce vulnerabilities
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- 170_supply_chain_security/renovate/slides.md -->
+## Software Bill of Materials
+
+Visibility
+
+The world is on fire
+
+Avoid auditing
+
+Update dependencies quickly
+
+(be prepared to) ship fast
+
+Drive adoption of new verisons (auto-update, notifications)
+
+Know about remaining vulnerabilities
+
+Evaluate contextual analysis
+
+Check options for mitigation
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- 170_supply_chain_security/renovate/slides.md -->
+## Automated Dependency updates
+
+Manual updates...
+
+- are too slow
+- prevent other tasks
+- are not fun
+- are ignored until necessary
+
+XXX automation is key
+
+XXX little work once established
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- 170_supply_chain_security/renovate/slides.md -->
+## Renovate
+
+Checks repository for outdated vulnerabilities
+
+Searches for many known places with dependencies
+
+Propose update in pull/merge requests
+
+XXX illustration with platforms and modules
+
+Self-hosted vs. GitHub App
+
+Initially many and/or breaking updates
+
+Once settled in, smaller incremental updates
+
+---
+
+## Demo
+
+Scan outdated repository
+
+See updates for pipelines, libraries, os
+
+Automated tests
+
+Run scheduled, on push (selected paths), Renovate config updates
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- 170_supply_chain_security/renovate/slides.md -->
+## Automerge
+
+Renovate can automatically merge
+- Requires configuration
+- Requires automated tests
+
+### How to automerge
+
+Identify updates with low impact, e.g. patches, well-tested packages
+
+Create package rules for automerging
+
+Do something useful with the time saved
+
+---
+
+## Demo
+
+XXX
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- 170_supply_chain_security/renovate/slides.md -->
+## Case study: uniget
+
+uni(versal)get installer and updater for (container) tools
+
+591 packages
+
+Uses Renovate at scale
+
+Custom implementation of automerge to reduce API calls
+
+Since 2022-06-13
+- over 5.700 merged PRs
+- ~9 PRs per day
+- 90% merged after ~1min, 98% merged after ~6min
+
+### Lessons learned
+
+Name changes in GitHub release asset (50 in 10 months)
+
+Detector for GitHub glitches / outages
+</textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> Ops and Devs require many dependencies
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> Dependencies introduce (additional) security issues
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> Automated updates help stay on top
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> Automerging takes the load off devs/ops...
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> ...but requires thorough testing
 
 <!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 
