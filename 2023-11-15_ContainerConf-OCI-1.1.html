@@ -92,15 +92,19 @@ Technical oversight commitee from 8 companies
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Scope of this talk
 
-XXX
+Overview of OCI specs w.r.t. image distribution
 
 ### How does an OCI registry work
 
-XXX v1.0
+How images are stored
+
+How to interact with OCI registries
 
 ### What does the future hold
 
-XXX v1.1
+How are generic artifacts enabled
+
+What features support them
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -121,7 +125,7 @@ Typical workflow interacting with a container registry
 
 ## Media types
 
-OCI defines new media types
+OCI defines new media types [](https://github.com/opencontainers/image-spec/blob/main/media-types.md)
 
 Widespread adoption of OCI media types
 
@@ -138,19 +142,23 @@ Widespread adoption of OCI media types
 
 ## Accept header
 
-XXX
+Tell registry which content to return
+
+Manifests can only be image index or image manifest
 
 ### Single Accept header
 
-XXX
-
-XXX demo
+Content type must be known beforehand
 
 ### Multiple Accept headers
 
-XXX multiple media types
+Content types will be checked in order
 
-XXX demo
+### Demo
+
+XXX
+
+XXX media type conflicts [](https://github.com/opencontainers/image-spec/blob/main/media-types.md#media-type-conflicts)
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -205,17 +213,17 @@ OCI 1.1 addresses generic artifacts...
 
 OCI 1.1 not released yet [](https://github.com/opencontainers/distribution-spec/releases/tag/v1.1.0-rc.3)
 
-XXX subject
+Artifact must set `.subject` in manifest to parent
 
-XXX referrers
+Referrers API records all links from artifacts to parent
 
-XXX tree of linked artifacts
+XXX tag-sha present when referrers are supported?
 
 ### Tooling
 
 XXX https://github.com/oras-project/distribution
 
-XXX tooling: oras, trivy, regclient
+XXX tooling: oras, trivy, trivy-plugin-referrer [](https://github.com/aquasecurity/trivy-plugin-referrer), regclient
 
 ---
 
@@ -239,9 +247,13 @@ XXX test?
 
 XXX [](https://github.com/opencontainers/distribution-spec/blob/v1.1.0-rc.3/spec.md#backwards-compatibility)
 
-XXX subject
+Subject must be present in artifacts
 
-XXX tag-sha
+Artifacts are stored with tag `sha256-&lt;sha256&gt;`
+
+Find linked artifacts:
+1. Enumerate all tags `sha256-*`
+1. Read `subject` from manifest
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">

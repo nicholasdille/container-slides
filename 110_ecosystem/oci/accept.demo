@@ -1,0 +1,34 @@
+# Accept header
+
+# Start registry
+docker run -d -p 127.0.0.1:5000:5000 registry
+
+# Configure regctl
+regctl registry set 127.0.0.1:5000 --tls=disabled
+
+# Push image manifest
+docker build --tag localhost:5000/ubuntu:22.04 --provenance=false --output=type=registry,oci-mediatypes=true .
+
+# Check registry (find image manifest)
+regctl manifest get 127.0.0.1:5000/ubuntu:22.04
+
+# Use Accept header to fetch image manifest
+curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" http://127.0.0.1:5000/v2/ubuntu/manifests/22.04
+
+# Use Accept header and try to fetch image index
+curl -sH "Accept: application/vnd.oci.image.index.v1+json" http://127.0.0.1:5000/v2/ubuntu/manifests/22.04
+
+# Use multiple Accept headers
+curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" -H "Accept: application/vnd.oci.image.index.v1+json" http://127.0.0.1:5000/v2/ubuntu/manifests/22.04
+
+# Push image index
+docker build --tag localhost:5000/ubuntu:22.04 --output=type=registry,oci-mediatypes=true .
+
+# Use Accept header to fetch image index
+curl -sH "Accept: application/vnd.oci.image.index.v1+json" http://127.0.0.1:5000/v2/ubuntu/manifests/22.04
+
+# Use Accept header and try to fetch image manifest
+curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" http://127.0.0.1:5000/v2/ubuntu/manifests/22.04
+
+# Use multiple Accept headers
+curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" -H "Accept: application/vnd.oci.image.index.v1+json" http://127.0.0.1:5000/v2/ubuntu/manifests/22.04
