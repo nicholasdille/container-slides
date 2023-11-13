@@ -63,9 +63,7 @@ Registries are self-hosted <i class="fa-duotone fa-server"></i> or...
 
 All of them follow a flexible spec <i class="fa-duotone fa-file-certificate"></i>
 
-Store more than container images
-
-Store generic artifacts <i class="fa-duotone fa-box-open-full"></i>
+They can store generic artifacts <i class="fa-duotone fa-box-open-full"></i>
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -82,26 +80,42 @@ Specifications:
 
 runc [](https://github.com/opencontainers/runc) - reference implementation of runtime spec
 
-XXX history
+Founded in 2015 by leaders in the container industry
 
-XXX members
+Version 1.0 was release in 2020
 
-XXX TOC
+Currently 29 members
+
+Technical oversight commitee from 8 companies
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Scope of this talk
 
-XXX contents 1.0
+XXX
 
-XXX contents 1.1
+### How does an OCI registry work
+
+XXX v1.0
+
+### What does the future hold
+
+XXX v1.1
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
 ## How registries work
 
-![](110_ecosystem/oci/oci_registry.drawio.svg) <!-- .element: style="width: 100%;" -->
+Typical workflow interacting with a container registry
+
+![](110_ecosystem/oci/container_image_registry.drawio.svg) <!-- .element: style="width: 60%; margin-top: 1em;" -->
+
+---
+
+## How registries work internally
+
+![](110_ecosystem/oci/oci_registry.drawio.svg) <!-- .element: style="width: 100%; margin-top: 1em;" -->
 
 ---
 
@@ -120,20 +134,30 @@ Widespread adoption of OCI media types
 
 <!-- .element: style="width: 105%; font-size: xx-large;" -->
 
-XXX `Accept` header
-
 ---
 
-## Accept multiple media types
+## Accept header
 
-`Accept` header can also list multiple media types
+XXX
 
-XXX example
+### Single Accept header
+
+XXX
+
+XXX demo
+
+### Multiple Accept headers
+
+XXX multiple media types
+
+XXX demo
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
 ## How it started
+
+What if we used new media types?!
 
 ### <span style="font-size: larger;">O</span>CI <span style="font-size: larger;">R</span>egistries <span style="font-size: larger;">a</span>s <span style="font-size: larger;">S</span>torage (ORaS)
 
@@ -145,7 +169,7 @@ Official guidance for artifacts [](https://github.com/opencontainers/image-spec/
 
 ### Demo
 
-XXX demo oras.demo [](https://github.com/nicholasdille/container-slides/blob/master/110_ecosystem/oci/oras.demo)
+Upload generic artifacts to OCI registry [](https://github.com/nicholasdille/container-slides/blob/master/110_ecosystem/oci/oras.demo)
 
 ---
 
@@ -173,13 +197,23 @@ OPA policies [](https://github.com/opcr-io/policy#demo-videosrecordings)
 <!-- 110_ecosystem/oci/slides.md -->
 ## Generic artifacts in OCI registries
 
-XXX OCI 1.1
+![](110_ecosystem/oci/referrers.drawio.svg) <!-- .element: style="float: right; width: 35%;" -->
 
-XXX distribution spec 1.1 still RC
+OCI 1.1 addresses generic artifacts...
+
+...as well as linking them
+
+OCI 1.1 not released yet [](https://github.com/opencontainers/distribution-spec/releases/tag/v1.1.0-rc.3)
+
+XXX subject
 
 XXX referrers
 
 XXX tree of linked artifacts
+
+### Tooling
+
+XXX https://github.com/oras-project/distribution
 
 XXX tooling: oras, trivy, regclient
 
@@ -187,11 +221,23 @@ XXX tooling: oras, trivy, regclient
 
 ## Adaption of OCI 1.1
 
-XXX Test results
+| Registry          | State |
+|:------------------|:-----:|
+| Distribution      | <i class="fa-duotone fa-square-question"></i> |
+| AWS ECR           | <i class="fa-duotone fa-square-question"></i> |
+| Azure ACR         | <i class="fa-duotone fa-square-question"></i> |
+| Harbor            | <i class="fa-duotone fa-square-question"></i> |
+| Jfrog Artifactory | <i class="fa-duotone fa-square-question"></i> |
+
+Legend: <i class="fa-duotone fa-square-question"></i> unknown, <i class="fa-duotone fa-square-exclamation" style="color: yellow"></i> underway, <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i> supported, <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i> unsupported
+
+XXX test?
 
 ---
 
 ## Workaround / Fallback
+
+XXX [](https://github.com/opencontainers/distribution-spec/blob/v1.1.0-rc.3/spec.md#backwards-compatibility)
 
 XXX subject
 
@@ -202,19 +248,21 @@ XXX tag-sha
 <!-- 110_ecosystem/oci/slides.md -->
 ## Demo
 
-XXX image push
+![](110_ecosystem/oci/referrers-demo.drawio.svg) <!-- .element: style="float: right; width: 35%;" -->
 
-XXX sign image and link to image
+Push image
 
-XXX sbom push and link to image
+Sign image, push signature and refer to image
 
-XXX sbom sign, push and link to sbom
+Create SBOM, push it and refer to image
 
-XXX sarif push and link to image
+Sign SBOM, push signature and refer to image
 
-XXX sarif sign, push and link to sarif
+Create sarif report, push it and refer to SBOM
 
-XXX trivy? oras? regctl?
+Sign sarif report, push signature and refer to sarif report
+
+XXX decide which tool to use: trivy? oras? regctl?
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -222,11 +270,11 @@ XXX trivy? oras? regctl?
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa-duotone fa-thumbs-up"></i></span> Distribution spec does not prevent generic artifacts
+- <span class="fa-li"><i class="fa-duotone fa-rocket"></i></span> ORaS project has initiated efforts
+- <span class="fa-li"><i class="fa-duotone fa-person-running-fast"></i></span> Ecosystem is already adopting OCI registries as storage
+- <span class="fa-li"><i class="fa-duotone fa-hand-holding-box"></i></span> OCI 1.1 will add support for referrers
+- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> Client tools already support OCI 1.1
 
 <!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 
