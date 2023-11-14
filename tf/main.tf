@@ -68,7 +68,6 @@ resource "acme_certificate" "certificate" {
   }
 }
 
-# TODO: https://stackoverflow.com/a/62407671
 resource "null_resource" "wait_for_ssh" {
   provisioner "remote-exec" {
     connection {
@@ -78,15 +77,6 @@ resource "null_resource" "wait_for_ssh" {
     }
 
     inline = ["echo 'connected!'"]
-  }
-
-  provisioner "local-exec" {
-    command = <<EOF
-while [ ! -f /var/lib/cloud/instance/boot-finished ]; do
-  echo -e "\033[1;36mWaiting for cloud-init..."
-  sleep 2
-done
-EOF
   }
 }
 
@@ -160,98 +150,3 @@ resource "local_file" "ssh_pub" {
   filename = pathexpand("~/.ssh/${var.name}_ssh.pub")
   file_permission = "0644"
 }
-
-resource "local_file" "ssh_config_file" {
-  content = templatefile("ssh_config.tpl", {
-    node = var.name,
-    node_ip = hcloud_server.vm.ipv4_address
-    ssh_key_file = local_file.ssh.filename
-  })
-  filename = pathexpand("~/.ssh/config.d/${var.name}")
-  file_permission = "0644"
-}
-
-resource "remote_file" "vars" {
-  conn {
-    host        = hcloud_server.vm.ipv4_address
-    port        = 22
-    user        = "root"
-    private_key = tls_private_key.ssh_private_key.private_key_openssh
-  }
-
-  path = "/etc/profile.d/vars.sh"
-  content = <<EOF
-export SEAT_USER="${var.name}"
-export SEAT_INDEX="${var.index}"
-export SEAT_PASS="${var.password}"
-export SEAT_HTPASSWD="$(htpasswd -nbB seat "$${SEAT_PASS}" | sed -e 's/\$/\\\$/g')"
-export SEAT_HTPASSWD_ONLY="$(echo "$${SEAT_HTPASSWD}" | cut -d: -f2)"
-export SEAT_CODE="${var.code}"
-export SEAT_CODE_HTPASSWD="$(htpasswd -nbB seat "$${SEAT_CODE}" | sed -e 's/\$/\\\$/g')"
-export DOMAIN="${var.name}.${local.domain}"
-export IP="${hcloud_server.vm.ipv4_address}"
-export WEBDAV_PASS_DEV="${var.webdav_pass_dev}"
-export WEBDAV_PASS_LIVE="${var.webdav_pass_live}"
-export GITLAB_ADMIN_PASS="${var.gitlab_admin_password}"
-export GITLAB_ADMIN_TOKEN="${var.gitlab_admin_token}"
-EOF
-  permissions = "0755"
-}
-
-resource "remote_file" "bootstrap_sh" {
-  conn {
-    host        = hcloud_server.vm.ipv4_address
-    port        = 22
-    user        = "root"
-    private_key = tls_private_key.ssh_private_key.private_key_openssh
-  }
-
-  path        = "/opt/bootstrap.sh"
-  content = file("bootstrap.sh")
-  permissions = "0700"
-}
-
-resource "ssh_resource" "bootstrap" {
-  count = 0
-  depends_on = [
-    remote_file.vars,
-    remote_file.bootstrap_sh
-  ]
-  when = "create"
-  host = hcloud_server.vm.ipv4_address
-  user = "root"
-  private_key = tls_private_key.ssh_private_key.private_key_openssh
-  timeout = "2m"
-  retry_delay = "5s"
-  commands = [
-    remote_file.bootstrap_sh.path
-  ]
-}
-
-#provider "gitlab" {
-#  token = var.gitlab_admin_token
-#  base_url = "https://gitlab.${var.name}.${local.domain}/api/v4/"
-#}
-#
-#resource "gitlab_user" "seat" {
-#  depends_on = [
-#    ssh_resource.bootstrap
-#  ]
-#  name              = "Seat User"
-#  username          = var.user
-#  password          = var.password
-#  email             = "gitlab@user.create"
-#  skip_confirmation = true
-#}
-#
-#resource "gitlab_personal_access_token" "seat" {
-#  user_id    = gitlab_user.seat.id
-#  name       = "seat"
-#  expires_at = "2023-12-31"
-#
-#  scopes = [
-#    "api",
-#    "read_user",
-#    "write_repository"
-#  ]
-#}

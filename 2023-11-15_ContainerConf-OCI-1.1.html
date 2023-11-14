@@ -53,9 +53,17 @@
 <!-- 110_ecosystem/oci/slides.md -->
 ## What this is about
 
-We build <i class="fa-duotone fa-user-helmet-safety"></i> container images <i class="fa-duotone fa-database"></i> and...
+### What we do
 
-...push <i class="fa-duotone fa-person-dolly"></i> them into a registry <i class="fa-duotone fa-warehouse-full"></i>
+We build <i class="fa-duotone fa-user-helmet-safety"></i>
+
+container images <i class="fa-duotone fa-database"></i>
+
+and push them <i class="fa-duotone fa-person-dolly"></i> 
+
+into a registry <i class="fa-duotone fa-warehouse-full"></i>
+
+### What we use
 
 Registries are self-hosted <i class="fa-duotone fa-server"></i> or...
 
@@ -68,9 +76,9 @@ They can store generic artifacts <i class="fa-duotone fa-box-open-full"></i>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- 110_ecosystem/oci/slides.md -->
-## Open Container Initiative
+## Standards
 
-OCI [](https://opencontainers.org/)
+Open Container Initiative (OCI) [](https://opencontainers.org/)
 
 Specifications:
 
@@ -96,15 +104,15 @@ Overview of OCI specs w.r.t. image distribution
 
 ### How does an OCI registry work
 
-How images are stored
+Image storage
 
-How to interact with OCI registries
+APIs
 
 ### What does the future hold
 
-How are generic artifacts enabled
+Generic artifacts
 
-What features support them
+Relationships between artifacts
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -156,9 +164,7 @@ Content types will be checked in order
 
 ### Demo
 
-XXX
-
-XXX media type conflicts [](https://github.com/opencontainers/image-spec/blob/main/media-types.md#media-type-conflicts)
+Control which media type is returned
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -207,53 +213,67 @@ OPA policies [](https://github.com/opcr-io/policy#demo-videosrecordings)
 
 ![](110_ecosystem/oci/referrers.drawio.svg) <!-- .element: style="float: right; width: 35%;" -->
 
+OCI 1.0 already supports artifacts with custom media types
+
 OCI 1.1 addresses generic artifacts...
 
 ...as well as linking them
 
-OCI 1.1 not released yet [](https://github.com/opencontainers/distribution-spec/releases/tag/v1.1.0-rc.3)
+OCI 1.1 is not released yet [](https://github.com/opencontainers/distribution-spec/releases/tag/v1.1.0-rc.3)
 
-Artifact must set `.subject` in manifest to parent
+Artifacts must include `subject` field in manifest mentioning the parent
 
-Referrers API records all links from artifacts to parent
-
-XXX tag-sha present when referrers are supported?
+New referrers API manages links to parent artifact
 
 ### Tooling
 
-XXX https://github.com/oras-project/distribution
+Initial implementation in distribution by [ORaS](https://github.com/oras-project/distribution)
 
-XXX tooling: oras, trivy, trivy-plugin-referrer [](https://github.com/aquasecurity/trivy-plugin-referrer), regclient
+Client tools: [oras](https://oras.land), [trivy](https://trivy.dev), [trivy-plugin-referrer](https://github.com/aquasecurity/trivy-plugin-referrer), [regclient](https://github.com/regclient/regclient)
 
 ---
 
 ## Adaption of OCI 1.1
 
-| Registry          | State |
-|:------------------|:-----:|
-| Distribution      | <i class="fa-duotone fa-square-question"></i> |
-| AWS ECR           | <i class="fa-duotone fa-square-question"></i> |
-| Azure ACR         | <i class="fa-duotone fa-square-question"></i> |
-| Harbor            | <i class="fa-duotone fa-square-question"></i> |
-| Jfrog Artifactory | <i class="fa-duotone fa-square-question"></i> |
+[Data][0] as of 2023-01-05 using OCI v1.1.0-rc.1 ([diff to v1.1.0-rc.3](https://github.com/opencontainers/distribution-spec/compare/v1.1.0-rc1...v1.1.0-rc.3))
+
+| Registry                 | State                                                                     | Remarks |
+|:-------------------------|:-------------------------------------------------------------------------:|:--------|
+| Distribution             | <i class="fa-duotone fa-square-exclamation" style="color: yellow"></i>  | [oras-project/distribution#59](https://github.com/oras-project/distribution/issues/59) |
+| Docker Hub               | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
+| AWS ECR                  | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
+| Azure ACR                | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>   | [announcement](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-container-registry-the-first-cloud-registry-to-support-the/ba-p/3708998) |
+| GitHub GCR               | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
+| Google GAR               | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
+| Harbor                   | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
+| Jfrog Artifactory        | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
+| Quay                     | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
+| zot                      | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>   | |
+
+<!-- .element: style="font-size: 0.8em;" -->
 
 Legend: <i class="fa-duotone fa-square-question"></i> unknown, <i class="fa-duotone fa-square-exclamation" style="color: yellow"></i> underway, <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i> supported, <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i> unsupported
 
-XXX test?
+[0]: https://toddysm.com/2023/01/05/oci-artifct-manifests-oci-referrers-api-and-their-support-across-registries-part-1/
+[1]: https://azure.microsoft.com/en-us/products/container-registry/
 
 ---
 
-## Workaround / Fallback
+## Backwards compatibility
 
-XXX [](https://github.com/opencontainers/distribution-spec/blob/v1.1.0-rc.3/spec.md#backwards-compatibility)
+OCI 1.1 accomodates for slow adoption [](https://github.com/opencontainers/distribution-spec/blob/v1.1.0-rc.3/spec.md#backwards-compatibility)
 
-Subject must be present in artifacts
-
-Artifacts are stored with tag `sha256-&lt;sha256&gt;`
+Artifacts are stored...
+- in the same repository as the parent
+- with the tag `sha256-&lt;sha256&gt;`
 
 Find linked artifacts:
 1. Enumerate all tags `sha256-*`
 1. Read `subject` from manifest
+
+### Demo
+
+Referrers work even without support for OCI 1.1
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -273,8 +293,6 @@ Sign SBOM, push signature and refer to image
 Create sarif report, push it and refer to SBOM
 
 Sign sarif report, push signature and refer to sarif report
-
-XXX decide which tool to use: trivy? oras? regctl?
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -284,9 +302,9 @@ XXX decide which tool to use: trivy? oras? regctl?
 
 - <span class="fa-li"><i class="fa-duotone fa-thumbs-up"></i></span> Distribution spec does not prevent generic artifacts
 - <span class="fa-li"><i class="fa-duotone fa-rocket"></i></span> ORaS project has initiated efforts
-- <span class="fa-li"><i class="fa-duotone fa-person-running-fast"></i></span> Ecosystem is already adopting OCI registries as storage
 - <span class="fa-li"><i class="fa-duotone fa-hand-holding-box"></i></span> OCI 1.1 will add support for referrers
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> Client tools already support OCI 1.1
+- <span class="fa-li"><i class="fa-duotone fa-person-running-fast"></i></span> Client tools already support OCI 1.1
+- <span class="fa-li"><i class="fa-duotone fa-turtle"></i></span> Backwards compatibility mitigates slow adopting
 
 <!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 

@@ -1,4 +1,20 @@
 # cosign
 
-# XXX
-echo
+# Start registry
+docker container run --detach --name registry --publish 127.0.0.1:5000:5000 registry
+
+# Configure regctl for registry
+regctl registry set 127.0.0.1:5000 --tls=disabled
+
+# Build and push
+docker build --tag localhost:5000/ubuntu:22.04 --output=type=registry,oci-mediatypes=true .
+
+# Create temporary cosign key pair
+export COSIGN_PASSWORD="$(openssl rand -hex 32)"
+cosign generate-key-pair
+
+# Sign image
+COSIGN_EXPERIMENTAL=1 cosign sign --yes --key=cosign.key 127.0.0.1:5000/ubuntu:22.04
+
+# Inspect tags
+regctl tag ls 127.0.0.1:5000/ubuntu:22.04
