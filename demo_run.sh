@@ -41,8 +41,8 @@ read
 for DIR in ${DIRS}; do
     pushd ${PWD}
     clear
-    #echo
-    #echo -e "${YELLOW}### Demo for ${DIR}${DEFAULT}"
+    echo
+    echo -e "${YELLOW}### Demo for ${DIR}${DEFAULT}"
     NAME=${DIR////-}
     NAME=${NAME//_/}
     BASEDIR=$(pwd)
