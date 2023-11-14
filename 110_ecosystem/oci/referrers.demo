@@ -1,5 +1,8 @@
 # Referrers
 
+# Remove registry
+docker rm -f registry
+
 # Start registry without support for referrers
 docker container run --detach --name registry --publish 127.0.0.1:5000:5000 ghcr.io/oras-project/registry:v1.0.0-rc.4
 

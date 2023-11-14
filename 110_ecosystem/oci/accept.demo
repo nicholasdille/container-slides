@@ -1,7 +1,10 @@
 # Accept header
 
+# Remove registry
+docker rm -f registry
+
 # Start registry
-docker run -d -p 127.0.0.1:5000:5000 registry
+docker run --detach --name registry --publish 127.0.0.1:5000:5000 registry
 
 # Configure regctl
 regctl registry set 127.0.0.1:5000 --tls=disabled

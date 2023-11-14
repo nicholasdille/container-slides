@@ -1,5 +1,8 @@
 # buildkit
 
+# Remove registry
+docker rm -f registry
+
 # Start registry
 docker container run --detach --name registry --publish 127.0.0.1:5000:5000 registry
 
