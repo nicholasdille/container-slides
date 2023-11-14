@@ -1,10 +1,9 @@
 # oras
 
-# Remove registry
+# Prepare registry
 docker rm -f registry
-
-# Start OCI registry
 docker run -d -p 127.0.0.1:5000:5000 registry
+regctl registry set 127.0.0.1:5000 --tls=disabled
 
 # Create artifact
 echo "hello world" >artifact.txt
@@ -15,7 +14,7 @@ oras push localhost:5000/hello-artifact:v1 \
     ./artifact.txt
 
 # Show artifact in registry
-regctl manifest get localhost:5000/hello-artifact:v1
+regctl manifest get 127.0.0.1:5000/hello-artifact:v1
 
 # Adding a config file
 echo "{\"name\":\"foo\",\"value\":\"bar\"}" > config.json
@@ -27,7 +26,7 @@ oras push localhost:5000/hello-artifact:v2 \
     artifact.txt:text/plain
 
 # Show artifact in registry
-regctl manifest get localhost:5000/hello-artifact:v
+regctl manifest get 127.0.0.1:5000/hello-artifact:v
 
 # Create more data
 mkdir docs
@@ -45,4 +44,4 @@ oras push localhost:5000/hello-artifact:v3 \
     ./docs/:application/vnd.inmylab.hello.layer.v1+tar
 
 # Show artifact in registry
-regctl manifest get localhost:5000/hello-artifact:v3
+regctl manifest get 127.0.0.1:5000/hello-artifact:v3

@@ -1,16 +1,12 @@
 # buildkit
 
-# Remove registry
+# Prepare registry
 docker rm -f registry
-
-# Start registry
 docker container run --detach --name registry --publish 127.0.0.1:5000:5000 registry
-
-# Configure regctl for registry
 regctl registry set 127.0.0.1:5000 --tls=disabled
 
 # Build and push
 docker build --tag localhost:5000/ubuntu:22.04 --output=type=registry,oci-mediatypes=true .
 
 # Inspect image
-regctl manifest get localhost:5000/ubuntu:22.04
+regctl manifest get 127.0.0.1:5000/ubuntu:22.04

@@ -1,12 +1,8 @@
 # helm
 
-# Remove registry
+# Prepare registry
 docker rm -f registry
-
-# Start registry
 docker container run --detach --name registry --publish 127.0.0.1:5000:5000 registry
-
-# Configure regctl for registry
 regctl registry set 127.0.0.1:5000 --tls=disabled
 
 # Enable support in helm
@@ -20,6 +16,7 @@ helm pull traefik/traefik --version 25.0.0
 helm push traefik-25.0.0.tgz oci://localhost:5000/helm-charts
 
 # Inspect helm chart in registry
-regctl repo ls 127.0.0.1:5000
-regctl tag ls 127.0.0.1:5000/helm-charts/traefik
 regctl manifest get 127.0.0.1:5000/helm-charts/traefik:25.0.0
+
+# Find existing versions
+regctl tag ls 127.0.0.1:5000/helm-charts/traefik

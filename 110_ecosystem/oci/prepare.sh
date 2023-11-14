@@ -2,4 +2,7 @@
 
 uniget install \
     oras \
-    regclient
+    regclient \
+    helm \
+    cosign \
+    trivy
