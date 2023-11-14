@@ -184,6 +184,11 @@ docker compose exec -T gitlab \
         --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
         --data 'default_branch=main'
 
+# TODO: Add instance-level CI variables
+#       - SEAT_INDEX
+#       - DOMAIN
+#       https://docs.gitlab.com/ee/api/instance_level_ci_variables.html#create-instance-variable
+
 echo
 echo "### Retrieving runner registration token on seat ${SEAT_INDEX}"
 export REGISTRATION_TOKEN="$(
