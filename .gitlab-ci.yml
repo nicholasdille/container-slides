@@ -47,7 +47,7 @@ deploy:
         --fail \
         --verbose \
         --upload-file hello \
-        --user admin:${PASS}
+        --user seat:${PASS}
 
 trigger:
   stage: trigger
