@@ -21,7 +21,7 @@ Variables [](https://docs.gitlab.com/ee/ci/yaml/#variables) can be...
 1. Update files:
 
     ```yaml
-    git checkout 160_gitlab_ci/020_variables/inline -- '*'
+    git checkout origin/160_gitlab_ci/020_variables/inline -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 

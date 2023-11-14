@@ -59,5 +59,5 @@ Package binary in container image
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/230_docker -- '*'
+git checkout origin/160_gitlab_ci/230_docker -- '*'
 ```

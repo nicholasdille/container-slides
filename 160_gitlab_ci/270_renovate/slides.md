@@ -39,7 +39,7 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/270_renovate -- '*'
+git checkout origin/160_gitlab_ci/270_renovate -- '*'
 ```
 
 (With proper configuration Renovate will automerge tested merge requests.)

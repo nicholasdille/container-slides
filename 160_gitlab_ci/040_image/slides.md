@@ -18,6 +18,10 @@ Do not use community images
 
 Avoid maintaining custom image
 
+### Image allowlist
+
+XXX [](https://docs.gitlab.com/runner/executors/kubernetes.html#restrict-docker-images-and-services)
+
 ---
 
 ## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/040_image "040_image")
@@ -30,5 +34,5 @@ Use `image` instead of `before_script`
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/040_image -- '*'
+git checkout origin/160_gitlab_ci/040_image -- '*'
 ```

@@ -11,8 +11,8 @@ if test -f .env; then
 fi
 
 export GIT_USER=seat
-export GIT_EMAIL="seat@seat${SEAT_INDEX}.inmylab.de"
-export GIT_CRED="https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de"
+export GIT_EMAIL="seat@seat${SEAT_INDEX}.${DOMAIN}"
+export GIT_CRED="https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.${DOMAIN}"
 
 echo
 echo "### Removing previous deployment on seat ${SEAT_INDEX}"
@@ -145,9 +145,9 @@ if ! docker compose exec -T gitlab \
     echo "done."
 fi
 git config --global user.name "seat"
-git config --global user.email "seat@seat${SEAT_INDEX}.inmylab.de"
+git config --global user.email "seat@seat${SEAT_INDEX}.${DOMAIN}"
 git config --global credential.helper store
-echo "https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.inmylab.de" >"${HOME}/.git-credentials"
+echo "https://seat:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.${DOMAIN}" >"${HOME}/.git-credentials"
 if test -d /tmp/demo; then
     rm -rf /tmp/demo
 fi
@@ -155,7 +155,7 @@ fi
     mkdir -p /tmp/demo
     cd /tmp/demo
     git clone https://github.com/nicholasdille/container-slides .
-    git remote add downstream "https://gitlab.seat${SEAT_INDEX}.inmylab.de/seat/demo"
+    git remote add downstream "https://gitlab.seat${SEAT_INDEX}.${DOMAIN}/seat/demo"
     CURRENT_BRANCH="$(git branch --show-current)"
     git branch --remotes --list \
     | grep -v downstream \
@@ -188,7 +188,7 @@ echo
 echo "### Retrieving runner registration token on seat ${SEAT_INDEX}"
 export REGISTRATION_TOKEN="$(
     curl \
-        --url "https://gitlab.seat${SEAT_INDEX}/api/v4/user/runners" \
+        --url "https://gitlab.seat${SEAT_INDEX}.${DOMAIN}/api/v4/user/runners" \
         --silent \
         --show-error \
         --request POST \

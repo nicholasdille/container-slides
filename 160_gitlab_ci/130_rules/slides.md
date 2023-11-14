@@ -42,7 +42,7 @@ Run the `deploy` job only for the `main` branch
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/130_rules -- '*'
+git checkout origin/160_gitlab_ci/130_rules -- '*'
 ```
 
 Also see GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index.html)
@@ -116,4 +116,29 @@ job_name:
   extends:
   - .rule-only-web
   #...
+```
+
+---
+
+## Pro tip: Use CI_DEPLOY_FREEZE with rules
+
+Disable pipeline:
+
+```yaml
+workflow:
+  rules:
+  - if: '$CI_DEPLOY_FREEZE'
+    when: manual
+  - when: on_success
+```
+
+Template to disable job:
+
+```yaml
+.freeze-deployment:
+  rules:
+  - if: '$CI_DEPLOY_FREEZE'
+    when: manual
+    allow_failure: true
+  - when: on_success
 ```

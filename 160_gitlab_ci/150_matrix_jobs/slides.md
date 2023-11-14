@@ -64,5 +64,5 @@ Cross-compile Go for multiple architectures
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/150_matrix_jobs -- '*'
+git checkout origin/160_gitlab_ci/150_matrix_jobs -- '*'
 ```

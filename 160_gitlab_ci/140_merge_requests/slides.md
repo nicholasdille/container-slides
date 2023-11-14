@@ -69,5 +69,5 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/140_merge_requests -- '*'
+git checkout origin/160_gitlab_ci/140_merge_requests -- '*'
 ```

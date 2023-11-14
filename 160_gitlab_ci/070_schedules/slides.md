@@ -18,6 +18,10 @@ Scheduled pipelines run on a specific branch...
 
 Creator is referenced and shown as the triggerer
 
+Creator must have role Developer or have merge permissions on protected branches
+
+Maximum frequency configured during instance rollout [](https://docs.gitlab.com/ee/administration/cicd.html#change-maximum-scheduled-pipeline-frequency)
+
 ### Hands-On
 
 1. Schedule pipeline to run in 5 minutes

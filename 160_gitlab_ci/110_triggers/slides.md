@@ -12,7 +12,7 @@ Ability to split automation across multiple pipeline
 
 ### Trigger tokens
 
-Trigger pipelines using trigger tokens [](https://docs.gitlab.com/ee/ci/triggers/)
+Trigger pipelines through the API [](https://docs.gitlab.com/ee/ci/triggers/)
 
 Fire and forget
 
@@ -45,7 +45,7 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/110_triggers/curl -- '*'
+git checkout origin/160_gitlab_ci/110_triggers/curl -- '*'
 ```
 
 ---
@@ -104,7 +104,7 @@ Included file can also be generated before job start [](https://docs.gitlab.com/
 
 ---
 
-## Pro tip: Variable inheritence
+## Pro tip 1: Variable inheritence
 
 Downstream pipelines inherit some variables [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
 
@@ -127,3 +127,101 @@ job_name:
 ```
 
 Do not redefined masked variables - **they will not be masked**
+
+---
+
+## Pro tip 2: Wait for downstream pipeline
+
+Upstream pipeline only waits for successful trigger
+
+Wait for successul downstream pipeline using `strategy` [](https://docs.gitlab.com/ee/ci/yaml/#triggerstrategy)
+
+```yaml
+job_name:
+  trigger:
+    include: child.ymal
+    strategy: depend
+```
+
+---
+
+## Dynamic includes
+
+Include can be generated on-demand:
+
+```yaml
+generate:
+  script:
+  - |
+    cat <<EOF >child.yaml
+    test:
+      script:
+      - printenv
+    EOF
+  artifacts:
+    paths:
+    - child.yaml
+
+use:
+  trigger:
+    include:
+    - artifact: child.yaml
+      job: generate
+```
+
+---
+
+## Pro tip: Artifacts from parent pipeline
+
+Generate artifact and trigger child pipeline:
+
+```yaml
+build_artifacts:
+  stage: build
+  script: echo "This is a test artifact!" >> artifact.txt
+  artifacts:
+    paths:
+    - artifact.txt
+
+deploy:
+  stage: deploy
+  trigger:
+    include:
+    - local: path/to/child-pipeline.yml
+  variables:
+    PARENT_PIPELINE_ID: $CI_PIPELINE_ID
+```
+
+<!-- .element: style="font-size: medium;" -->
+
+Fetch artifact from parent pipeline
+
+```yaml
+test:
+  stage: test
+  script: cat artifact.txt
+  needs:
+  - pipeline: $PARENT_PIPELINE_ID
+    job: build_artifacts
+```
+<!-- .element: style="font-size: medium;" -->
+
+---
+
+## Pro tip: Do not pass global variables
+
+Only allow job variables to be passed to downstream pipelines:
+
+```yaml
+variables:
+  GLOBAL_VAR: value
+
+trigger-job:
+  inherit:
+    variables: false
+  variables:
+    JOB_VAR: value
+  trigger:
+    include:
+    - local: path/to/child-pipeline.yml
+```

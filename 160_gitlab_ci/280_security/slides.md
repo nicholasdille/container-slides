@@ -59,5 +59,5 @@ GitLab automatically adds jobs in the stage called `test`
 See final `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/280_security -- '*'
+git checkout origin/160_gitlab_ci/280_security -- '*'
 ```

@@ -217,10 +217,10 @@ services:
       traefik.http.routers.registry-s.service: registry
       traefik.http.routers.registry-s.tls: "true"
       # SSH: service port
-      traefik.tcp.services.ssh.loadbalancer.server.port: 2222
+      traefik.tcp.services.ssh.loadbalancer.server.port: 22
       # SSH: TLS passthrough
       traefik.tcp.routers.ssh.entrypoints: ssh
-      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`)
+      traefik.tcp.routers.ssh.rule: HostSNI(`*`)
       traefik.tcp.routers.ssh.service: ssh
       traefik.tcp.routers.ssh.tls.passthrough: "true"
 

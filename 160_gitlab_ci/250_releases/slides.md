@@ -49,7 +49,7 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/250_releases -- '*'
+git checkout origin/160_gitlab_ci/250_releases -- '*'
 ```
 
 ---

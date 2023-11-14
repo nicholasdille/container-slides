@@ -49,7 +49,7 @@ See also the official development guide for templates [](https://docs.gitlab.com
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/120_templates/inline -- '*'
+git checkout origin/160_gitlab_ci/120_templates/inline -- '*'
 ```
 
 ---
@@ -73,7 +73,7 @@ git checkout 160_gitlab_ci/120_templates/inline -- '*'
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/120_templates/local -- '*'
+git checkout origin/160_gitlab_ci/120_templates/local -- '*'
 ```
 
 ---

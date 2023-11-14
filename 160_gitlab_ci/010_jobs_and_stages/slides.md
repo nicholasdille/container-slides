@@ -121,7 +121,7 @@ docker run --interactive --tty --rm \
 1. Add files to root of project:
 
     ```bash
-    git checkout 160_gitlab_ci/010_jobs_and_stages/build -- '*'
+    git checkout origin/160_gitlab_ci/010_jobs_and_stages/build -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 
@@ -136,7 +136,7 @@ docker run --interactive --tty --rm \
 1. Add `lint/.gitlab-ci.yml` to root of project:
 
     ```bash
-    git checkout 160_gitlab_ci/010_jobs_and_stages/lint -- '*'
+    git checkout origin/160_gitlab_ci/010_jobs_and_stages/lint -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 
@@ -151,7 +151,7 @@ docker run --interactive --tty --rm \
 1. Add `parallel/.gitlab-ci.yml` to root of project:
 
     ```bash
-    git checkout 160_gitlab_ci/010_jobs_and_stages/parallel -- '*'
+    git checkout origin/160_gitlab_ci/010_jobs_and_stages/parallel -- '*'
     ```
     <!-- .element: style="width: 40em;" -->
 

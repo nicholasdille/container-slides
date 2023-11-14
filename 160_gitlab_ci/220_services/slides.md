@@ -49,5 +49,5 @@ Recommendation: Implement in dedicated project
 See new `.gitlab-ci.yml`:
 
 ```bash
-git checkout 160_gitlab_ci/220_services -- '*'
+git checkout origin/160_gitlab_ci/220_services -- '*'
 ```
