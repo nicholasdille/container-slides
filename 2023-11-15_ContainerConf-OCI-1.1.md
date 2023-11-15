@@ -1,3 +1,0 @@
-- Move slides to directory
-- Blog post
-- Tweet
