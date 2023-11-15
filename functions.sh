@@ -43,7 +43,7 @@ demo() {
     split ${DEMO}
 
     clear
-    for COMMAND in $(ls ${DEMO}-*.command); do
+    for COMMAND in $(ls ${DEMO}-*.command | sort -V); do
         echo
         PREFIX="\$"
         cat ${COMMAND} | grep -vE '^\s*$' | sed 's|\\|\\\\|g' | while read; do
