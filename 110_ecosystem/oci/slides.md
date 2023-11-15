@@ -172,27 +172,27 @@ Sign sarif report, push signature and refer to sarif report
 
 ## Adaption of OCI 1.1
 
-[Data][0] as of 2023-01-05 using OCI v1.1.0-rc.1 ([diff to v1.1.0-rc.3](https://github.com/opencontainers/distribution-spec/compare/v1.1.0-rc1...v1.1.0-rc.3))
+[Data][0] as of 2023-01-05 using OCI v1.1.0-rc.1 ([diff to v1.1.0-rc.3][1]) updated 2023-11-15 with research
 
 | Registry                 | State                                                                     | Remarks |
 |:-------------------------|:-------------------------------------------------------------------------:|:--------|
-| Distribution             | <i class="fa-duotone fa-square-exclamation" style="color: yellow"></i>  | [oras-project/distribution#59](https://github.com/oras-project/distribution/issues/59) |
-| Docker Hub               | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
-| AWS ECR                  | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
-| Azure ACR                | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>   | [announcement](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-container-registry-the-first-cloud-registry-to-support-the/ba-p/3708998) |
-| GitHub GCR               | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
-| Google GAR               | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
-| Harbor                   | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
-| Jfrog Artifactory        | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
-| Quay                     | <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i>    | |
-| zot                      | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>   | |
+| Distribution             | <i class="fa-duotone fa-square-exclamation" style="color: yellow"></i>    | [oras-project/distribution#59](https://github.com/oras-project/distribution/issues/59) |
+| Docker Hub               | <i class="fa-duotone fa-square-question"></i>                             | |
+| AWS ECR                  | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>     | [looks like it](https://github.com/aws/containers-roadmap/issues/43) |
+| Azure ACR                | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>     | [announcement](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-container-registry-the-first-cloud-registry-to-support-the/ba-p/3708998) |
+| GitHub GCR               | <i class="fa-duotone fa-square-question"></i>                             | |
+| Google GAR               | <i class="fa-duotone fa-square-question"></i>                             | |
+| Harbor                   | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>     | [since v2.9.0](https://github.com/goharbor/harbor/releases/tag/v2.9.0) |
+| Jfrog Artifactory        | <i class="fa-duotone fa-square-question"></i>                             | |
+| Quay                     | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>     | [since v3.8.6](https://github.com/quay/quay/pull/1809) |
+| zot                      | <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i>     | [since v1.3.4](https://github.com/project-zot/zot/releases/tag/v1.3.4) |
 
 <!-- .element: style="font-size: 0.8em;" -->
 
 Legend: <i class="fa-duotone fa-square-question"></i> unknown, <i class="fa-duotone fa-square-exclamation" style="color: yellow"></i> underway, <i class="fa-duotone fa-square-check" style="color: lightgreen;"></i> supported, <i class="fa-duotone fa-square-xmark" style="color: orangered;"></i> unsupported
 
 [0]: https://toddysm.com/2023/01/05/oci-artifct-manifests-oci-referrers-api-and-their-support-across-registries-part-1/
-[1]: https://azure.microsoft.com/en-us/products/container-registry/
+[1]: https://github.com/opencontainers/distribution-spec/compare/v1.1.0-rc1...v1.1.0-rc.3
 
 ---
 
