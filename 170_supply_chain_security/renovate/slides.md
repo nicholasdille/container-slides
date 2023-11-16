@@ -156,15 +156,17 @@ Proposes update in pull/merge requests
 
 Custom Managers for special use cases
 
-**Deployment options**:
-- GitHub App
-- Self-hosted
+**Deployment options**: GitHub App, Self-hosted
 
 Powerful but complex
 
 Initially many and/or breaking updates
 
 Once settled in, smaller incremental updates
+
+Merge Confidence [](https://docs.renovatebot.com/merge-confidence/) supports merge decisions for many languages
+
+Integration with GitHub and Dependabot to show updates addressing security alerts [](https://docs.renovatebot.com/configuration-options/#vulnerabilityalerts)
 
 ---
 
@@ -230,6 +232,26 @@ Ships with regex to match comment above and configure Renovate
     ],
 }
 ```
+
+---
+
+## Alternatives
+
+### Dependabot
+
+Now owned by GitHub
+
+Tightly integrated but can run without GitHub
+
+Detailed comparison [](https://docs.renovatebot.com/bot-comparison/)
+
+### Other tools lack...
+
+...focus on a single language
+
+...broad support for languages
+
+...is integrated in a specific platform
 
 ---
 
