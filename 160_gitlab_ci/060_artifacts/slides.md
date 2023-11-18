@@ -28,24 +28,11 @@ Add untracked files
 
 `artifacts` can be in `default` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_default)
 
-Circular dependencies are detected
-
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/060_artifact "060_artifact")
+## Hands-On
 
-Test binary in a new job and stage
-
-1. Create artifact from `hello` binary
-1. Add new stage called `test`
-1. Add new job in stage `test`
-1. Execute binary to test it
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/060_artifact -- '*'
-```
+XXX
 
 ---
 

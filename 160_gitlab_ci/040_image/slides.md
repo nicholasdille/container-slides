@@ -18,21 +18,8 @@ Do not use community images
 
 Avoid maintaining custom image
 
-### Image allowlist
-
-XXX [](https://docs.gitlab.com/runner/executors/kubernetes.html#restrict-docker-images-and-services)
-
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/040_image "040_image")
+## Hands-On
 
-Use `image` instead of `before_script`
-
-1. Add `image: golang:1.19.2` to all jobs
-1. Remove `before_script` from all jobs
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/040_image -- '*'
-```
+XXX

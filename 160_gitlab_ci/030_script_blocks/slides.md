@@ -33,24 +33,8 @@ job_name:
 
 `after_script` runs even if the job failed (useful for cleanup)
 
-Beware of collapsed multi-line commands in the job log
-
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/030_script_blocks "030_script_blocks")
+## Hands-On
 
-Separate `script` into...
-
-- Preparation
-- Core steps
-- Cleanup
-
-Move `apk` operations into `before_script`
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/030_script_blocks -- '*'
-```
-
-Yes, this is still repetetive <i class="fa-duotone fa-face-smile-tongue fa-duotone-colors"></i>
+XXX

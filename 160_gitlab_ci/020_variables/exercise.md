@@ -105,7 +105,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Task 3: Add a CI variable in the UI
 
-Read the [official documentation about CI variables](https://docs.gitlab.com/ee/ci/variables/#define-a-cicd-variable-in-the-ui) and extends the build command to provide `main.Author`.
+Read the [official documentation about CI variables](https://docs.gitlab.com/ee/ci/variables/#define-a-cicd-variable-in-the-ui) and extend the build command to provide `main.Author`.
 
 XXX update `go.main`
 

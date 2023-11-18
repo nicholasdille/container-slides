@@ -6,10 +6,18 @@ XXX
 
 :fontawesome-regular-hand-point-left:
 
-XXX
+XXX Structure
+
+XXX Chapters
+
+XXX small screens: Use Burger menu
 
 ## Section 2: Page contents on the right
 
 :fontawesome-regular-hand-point-right:
 
 XXX
+
+XXX Section of the current chapter
+
+XXX hidden on small screens

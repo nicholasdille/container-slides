@@ -29,3 +29,9 @@ Caches require an object store...
 ... with an S3-compatible API
 
 Self-hosted option using MinIO [<i class="fa-brands fa-github"></i>](https://github.com/minio/minio) [<i class="fa-duotone fa-globe fa-duotone-colors"></i>](https://min.io/)
+
+XXX https://docs.gitlab.com/ee/ci/caching/#where-the-caches-are-stored
+
+XXX https://docs.gitlab.com/runner/executors/docker.html#configure-directories-for-the-container-build-and-cache
+
+XXX https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-runnersdocker-section

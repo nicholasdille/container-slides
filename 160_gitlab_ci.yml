@@ -85,5 +85,22 @@ nav:
   - Images: 040_image/exercise.md
   - Defaults: 050_defaults/exercise.md
   - Artifacts: 060_artifacts/exercise.md
+  - Job Dependencies: 065_job_dependencies/exercise.md
+  - Unit Tests: 090_unit_tests/exercise.md
+- Advanced:
+  - Environments: 100_environments/exercise.md
+  - Triggers: 110_triggers/exercise.md
+  - Templates: 120_templates/exercise.md
+  - Rules: 130_rules/exercise.md
+  - Merge Requests: 140_merge_requests/exercise.md
+  - Matrix Jobs: 150_matrix_jobs/exercise.md
+- Expert:
+  - Caches: 210_caches/exercise.md
+  - Services: 220_services/exercise.md
+  - Docker: 230_docker/exercise.md
+  - Registries: 240_registries/exercise.md
+  - Releases: 250_releases/exercise.md
+  - Renovate: 270_renovate/exercise.md
+  - Security: 280_security/exercise.md
 - Legal:
   - Impressum: impressum.md

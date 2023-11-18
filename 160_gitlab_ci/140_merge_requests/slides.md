@@ -17,6 +17,8 @@ Commits to a branch with a merge request cause multiple events:
 1. Push event to branch
 1. Merge request event
 
+XXX difference
+
 Use rules [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) to decide which jobs to run when
 
 GitLab offers `$CI_PIPELINE_SOURCE` with event name

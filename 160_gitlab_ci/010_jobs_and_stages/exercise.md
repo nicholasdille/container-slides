@@ -7,6 +7,10 @@
     - organize them in stages
     - understand when jobs in different stages are executed
 
+## Preparation
+
+XXX checkout sample program
+
 ## Task 1: Create a single job
 
 Add a pipeline to build the code using the following commands:

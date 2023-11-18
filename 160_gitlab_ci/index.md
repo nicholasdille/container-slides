@@ -8,11 +8,12 @@ Software developers and system administrators who want to learn how to use GitLa
 
 ## Duration
 
-One day
+Two days
 
 ## Expected knowledge
 
-XXX
+- Basic under standing of another CI/CD server, like GitHub, Jenkins and the like
+- XXX
 
 ## Goals
 
