@@ -4,7 +4,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   vscode:
-    image: codercom/code-server:4.7.0
+    image: codercom/code-server:4.18.0
     #volumes:
     #- /root/.config:/home/coder/.config
     #- ${PWD}:/home/coder/project

@@ -44,9 +44,11 @@ Extensive configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 
 New runner registration process [](https://docs.gitlab.com/ee/architecture/blueprints/runner_tokens/)
 
-Implementation completed by v15.11 (April 2023)
+New default in v16.0 (May 2023)
 
 Enforcement in v16.6 (November 2023)
+
+Removal of old runne registration in v17.0 (May 2024)
 
 ---
 
