@@ -3,9 +3,10 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - execute unit tests
+    - publish results in GitLab
 
-## Task: XXX
+## Task: Publish unit test results
 
 XXX https://docs.gitlab.com/ee/ci/testing/unit_test_reports.html
 
@@ -13,14 +14,12 @@ The following commands execute unit tests and automatically convert the results 
 
 ```bash
 go install gotest.tools/gotestsum@latest
-gotestsum --junitfile report.xml --format testname
+gotestsum --junitfile report.xml
 ```
 
 XXX https://docs.gitlab.com/ee/ci/yaml/artifacts_reports.html#artifactsreportsjunit
 
-Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
-
-XXX test results in web UI
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run which shows the unit test results on the tab in the overview.
 
 ??? info "Hint (Click if you are stuck)"
     GitLab has published an [example](https://docs.gitlab.com/ee/ci/testing/unit_test_report_examples.html#go). The unit test report is published using a special type of artifact:
@@ -59,7 +58,7 @@ XXX test results in web UI
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -83,3 +82,7 @@ XXX test results in web UI
       script:
       - ./hello
     ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    git checkout origin/160_gitlab_ci/090_unit_tests -- '*'

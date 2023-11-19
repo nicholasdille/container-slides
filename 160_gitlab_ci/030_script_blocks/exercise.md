@@ -46,12 +46,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apk add go
       script:
       - |
-          go build \
-              -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
-              -o hello \
-              .
+        go build \
+            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -o hello \
+            .
       - ./hello
     ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    git checkout origin/160_gitlab_ci/030_script_blocks -- '*'
 
 Cleanup commands can be move to `after_script` ([official documentation](https://docs.gitlab.com/ee/ci/yaml/#after_script)) but we have no use for this in the current example.
 

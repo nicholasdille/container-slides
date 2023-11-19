@@ -31,6 +31,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     2. Add a job called `build`
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+
     ```yaml linenums="1"
     build:
       script:
@@ -38,6 +40,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apk add go
       - go build -o hello .
       - ./hello
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/010_jobs_and_stages/build -- '*'
     ```
 
 ## Task 2: Add a stage
@@ -60,13 +68,15 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     2. Add a job called `check` in the stage `check`
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yaml`:
+
     ```yaml linenums="1" hl_lines="1-11"
     stages:
     - check
     - build
 
     lint:
-    stage: check
+      stage: check
       script:
       - apk update
       - apk add go
@@ -80,6 +90,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apk add go
       - go build -o hello .
       - ./hello
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/010_jobs_and_stages/lint -- '*'
     ```
 
 ## Task 3: Add parallel jobs
@@ -118,4 +134,10 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apk add go
       - go build -o hello .
       - ./hello
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/010_jobs_and_stages/parallel -- '*'
     ```

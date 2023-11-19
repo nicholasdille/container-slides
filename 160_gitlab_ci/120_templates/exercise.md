@@ -258,4 +258,4 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         include: child.yaml
     ```
 
-This was just a demonstration. The changes will not be preseved in the following chapters.
+This was just a demonstration. The changes will not be preserved in the following chapters.

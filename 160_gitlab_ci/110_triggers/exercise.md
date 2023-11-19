@@ -105,7 +105,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - XXX
     ```
 
-This was just a demonstration. The changes will not be preseved in the following chapters.
+This was just a demonstration. The changes will not be preserved in the following chapters.
 
 ## Task 2: Using a multi-project pipeline
 
@@ -187,7 +187,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         XXX
     ```
 
-This was just a demonstration. The changes will not be preseved in the following chapters.
+This was just a demonstration. The changes will not be preserved in the following chapters.
 
 ## Task 3: Using a parent-child pipeline
 

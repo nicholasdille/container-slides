@@ -68,6 +68,10 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       script:
       - ./hello
     ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    git checkout origin/160_gitlab_ci/060_artifact -- '*'
 
 ## Bonus 1: Define from which jobs to receive artifacts
 
@@ -176,4 +180,4 @@ XXX https://docs.gitlab.com/ee/ci/variables/index.html#pass-an-environment-varia
       - ./${BINARY_NAME}
     ```
 
-This was just a demonstration. The changes will not be preseved in the following chapters.
+This was just a demonstration. The changes will not be preserved in the following chapters.

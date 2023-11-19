@@ -47,8 +47,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             .
       - ./hello
     ```
+    
+    If you want to jump to the solution, execute the following command:
 
-## Bonus: Override defaults
+    git checkout origin/160_gitlab_ci/050_default -- '*'
+
+## Bonus 1: Override defaults
 
 Jobs can still choose to use an image different from the default:
 
@@ -56,3 +60,7 @@ Jobs can still choose to use an image different from the default:
 1. Add an `image` directory to the new job
 1. Specify a different image
 1. Check out how the executation environment changes
+
+## Bonus 2: Default values for variables
+
+XXX `variables` outside `default`

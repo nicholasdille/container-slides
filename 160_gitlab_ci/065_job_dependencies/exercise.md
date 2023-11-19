@@ -55,7 +55,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - ./hello
     ```
 
-This was just a demonstration. The changes will not be preseved in the following chapters.
+This was just a demonstration. The changes will not be preserved in the following chapters.
 
 ## Bonus: Start the lint job late
 
@@ -109,4 +109,4 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - ./hello
     ```
 
-This was just a demonstration. The changes will not be preseved in the following chapters.
+This was just a demonstration. The changes will not be preserved in the following chapters.

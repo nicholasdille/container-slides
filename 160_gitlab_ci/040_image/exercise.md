@@ -49,6 +49,10 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             .
       - ./hello
     ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    git checkout origin/160_gitlab_ci/040_image -- '*'
 
 ## Bonus: Test different images
 
