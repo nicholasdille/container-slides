@@ -2,6 +2,9 @@ services:
 
   grafana:
     image: grafana/grafana:10.2.2
+    environment:
+      GF_SECURITY_ADMIN_USER: seat
+      GF_SECURITY_ADMIN_PASSWORD: "${SEAT_PASS:?You must supply SEAT_PASS}"
     labels:
       traefik.enable: "true"
       traefik.http.services.grafana.loadbalancer.server.port: 3000
