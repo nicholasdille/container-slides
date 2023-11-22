@@ -87,12 +87,6 @@ docker volume rm gitlab_data
 
 A fresh instance has a new initial root password
 
-```
-docker exec -it gitlab cat /etc/gitlab/initial_root_password \
-| grep ^Password \
-| cut -d' ' -f2
-```
-
 ---
 
 ## TLS
@@ -111,8 +105,10 @@ Configure GitLab with key and certificate [<i class="fa-solid fa-arrow-up-right-
 
 Configure GitLab to use Let's Encrypt [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/ssl.html#lets-encrypt-integration)
 
-### traefik with Let's Encrypt <i class="fa-duotone fa-traffic-light-go" style="--fa-secondary-color: green;"></i>
+### Reverse proxy with custom certificate <i class="fa-duotone fa-traffic-light-slow" style="--fa-secondary-color: yellow;"></i>
 
-Configure traefik to use Let's Encrypt with HTTP challenge [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-http/)
+Configure traefik to use custom certificate [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/https/tls/#user-defined)
+
+### Reverse proxy with Let's Encrypt <i class="fa-duotone fa-traffic-light-go" style="--fa-secondary-color: green;"></i>
 
 Configure traefik to use Let's Encrypt with DNS challenge [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/)

@@ -69,6 +69,10 @@ services:
 
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
+
+        # https://docs.gitlab.com/ee/administration/monitoring/prometheus/index.html#configuring-prometheus
+        prometheus_monitoring['enable'] = true
+        prometheus['listen_address'] = ':9090'
     # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
     shm_size: 256m
     volumes:
@@ -86,8 +90,8 @@ services:
       traefik.http.routers.pages.entrypoints: http
       traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostRegexp(`{subdomain:.+}gitlab.${IP:?You must supply IP}.nip.io`)
       traefik.http.routers.pages.service: pages
-      traefik.tcp.services.ssh.loadbalancer.server.port: 2222
+      traefik.tcp.services.ssh.loadbalancer.server.port: 22
       traefik.tcp.routers.ssh.entrypoints: ssh
-      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.tcp.routers.ssh.rule: HostSNI(`*`)
       traefik.tcp.routers.ssh.service: ssh
       traefik.tcp.routers.ssh.tls.passthrough: true

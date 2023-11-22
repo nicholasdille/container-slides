@@ -122,4 +122,24 @@ glab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://gitlab.com
     ```
     <!-- .element: style="width: 32em;" -->
 
+---
 
+## Token expiry and rotation
+
+### Expiry
+
+Token without expiry are a security threat [](https://about.gitlab.com/blog/2023/10/25/access-token-lifetime-limits/)
+
+GitLab 16.0 (May 2023) sets a 1-year lifetime on such tokens
+
+### Rotation
+
+Rotation API introduced in GitLab 16.0 (May 2023)
+
+- Personal Access Tokens [](https://docs.gitlab.com/ee/api/personal_access_tokens.html#rotate-a-personal-access-token)
+- Group Acces Tokens [](https://docs.gitlab.com/ee/api/group_access_tokens.html#rotate-a-group-access-token)
+- Project Access Tokens [](https://docs.gitlab.com/ee/api/project_access_tokens.html#rotate-a-project-access-token)
+
+Automatic reuse detection [](https://docs.gitlab.com/ee/api/personal_access_tokens.html#automatic-reuse-detection) prevents use of rotated tokens:
+
+- Use of old tokens result in revocation of latest token
