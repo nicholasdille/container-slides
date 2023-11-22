@@ -1,0 +1,10 @@
+services:
+
+  grafana:
+    image: grafana/grafana:10.2.2
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.grafana.loadbalancer.server.port: 3000
+      traefik.http.routers.grafana.entrypoints: http
+      traefik.http.routers.grafana.rule: Host(`grafana.${DOMAIN:?You must supply DOMAIN}`) || Host(`grafana.${IP:?You must supply IP}.nip.io`)
+      traefik.http.routers.grafana.service: grafana
