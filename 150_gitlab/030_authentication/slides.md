@@ -52,3 +52,27 @@ Project Deploy SSH Key (read-write) [<i class="fa-solid fa-arrow-up-right-from-s
 
 1. Create a project deploy token
 1. Use it to clone the repository
+
+---
+
+## Caveats
+
+### Token creation can be tricky
+
+Role defines the permission level
+
+Scope specified available "features", e.g.
+
+- `(read_)?api`
+- `(read|write)_repository`
+- `create_runner` ([more](#/gitlab_runner) later)
+
+Expiration defines how long
+
+### Example
+
+Role: Developer
+
+Scope: `read_repository`
+
+User can pull but not push

@@ -60,7 +60,7 @@ Some services require specific permissions
 
 Use RBAC to provide only required permissions
 
-Acces Kubernetes API using environment variables:
+Access Kubernetes API using environment variables:
 
 ```bash
 $ printenv | grep KUBERNETES_ | sort

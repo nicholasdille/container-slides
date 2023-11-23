@@ -31,7 +31,7 @@ Template [](https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitla
 Central service for...
 
 - Request routing
-- SSL offloading
+- TLS offloading
 
 Examples in this workshop use [`traefik`](https://traefik.io/traefik/)
 
