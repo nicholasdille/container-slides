@@ -40,7 +40,7 @@ One token per instance, per group and per project
 
 Credential leak causes a lot of work
 
-### New process
+### New process [](https://docs.gitlab.com/ee/ci/runners/new_creation_workflow.html)
 
 Create a runner through the UI or the API
 
@@ -82,7 +82,7 @@ docuum [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.c
 
     # Deploy GitLab runner
     export CI_SERVER_URL=http://gitlab.seatN.inmylab.de
-    export REGISTRATION_TOKEN=<TOKEN>
+    export CI_SERVER_TOKEN=<TOKEN>
     export RUNNER_EXECUTOR=docker
     docker compose --project-name gitlab \
         --file ../100_reverse_proxy/compose.yml \

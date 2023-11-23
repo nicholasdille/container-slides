@@ -6,7 +6,7 @@ services:
     build:
       context: $PWD
     environment:
-      REGISTRATION_TOKEN: ${REGISTRATION_TOKEN:?You must supply REGISTRATION_TOKEN}
+      CI_SERVER_TOKEN: ${CI_SERVER_TOKEN:?You must supply CI_SERVER_TOKEN}
       CI_SERVER_URL: ${CI_SERVER_URL}
       RUNNER_EXECUTOR: ${RUNNER_EXECUTOR:-shell}
     volumes:

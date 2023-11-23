@@ -2,8 +2,8 @@
 set -o errexit
 
 # REQUIRED: Registration token from runners page
-if test -z "${REGISTRATION_TOKEN}"; then
-    echo "ERROR: Registration token must be supplied in REGISTRATION_TOKEN."
+if test -z "${CI_SERVER_TOKEN}"; then
+    echo "ERROR: Registration token must be supplied in CI_SERVER_TOKEN."
     exit 1
 fi
 
