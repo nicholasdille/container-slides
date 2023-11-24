@@ -69,6 +69,12 @@ Debug SSH connection and authentication:
 ssh -Tvvv -i id_rsa git@gitlab.<DOMAIN>
 ```
 
+Find user for given SSH key fingerprint:
+
+```bash
+curl --silent --header "Private-Token: admin-private-token" https://gitlab.haufedev.systems/api/v4/keys?fingerprint=d0:6d:2e:bb:fb:27:f1:6e:80:6c:16:b2:be:c6:d8:00 | jq
+```
+
 ---
 
 ## Tokens

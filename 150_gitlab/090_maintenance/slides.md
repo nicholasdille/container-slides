@@ -12,9 +12,11 @@
 
 ### Messages
 
-Show a banner announcing maintenance work
+Show a banner announcing maintenance work [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/broadcast_messages.html)
 
 Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Messages
+
+Can also show up in git response
 
 ### Maintenance Mode (Premium feature)
 
@@ -26,14 +28,9 @@ Switch GitLab into read-only mode [<i class="fa-solid fa-arrow-up-right-from-squ
 
 <i class="fa-brands fa-git-alt fa-4x" style="float: right;"></i>
 
-Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Repository
+Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Repository <i class="fa-regular fa-arrow-right"></i> Repository Maintenance
 
-### Settings
-
-Runs `git fsck` to find silent disk corruption
-
-Incremental `git repack` after 10 pushes
-
-Full `git repack` after 50 pushes
-
-`git gc` after 200 pushes
+Regular execution of...
+- `git fsck`
+- `git repack` (incremental and full)
+- `git gc`

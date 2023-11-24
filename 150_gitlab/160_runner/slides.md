@@ -32,7 +32,7 @@ New default in 16.0 (May 2023)
 
 Enforcement in 16.6 (November 2023)
 
-Removal of old runne registration in 17.0 (May 2024)
+Removal of old runner registration in 17.0 (May 2024)
 
 ### Old process
 
