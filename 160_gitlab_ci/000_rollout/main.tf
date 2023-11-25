@@ -27,7 +27,7 @@ data "hcloud_image" "packer" {
 }
 
 resource "hcloud_server" "gitlab" {
-  name        = "${var.name}-gitlab"
+  name        = "gitlab"
   location    = local.location
   server_type = local.server_type_gitlab
   image       = data.hcloud_image.packer.id
@@ -44,7 +44,7 @@ resource "hcloud_server" "gitlab" {
 }
 
 resource "hcloud_server" "runner" {
-  name        = "${var.name}-runner"
+  name        = "runner"
   location    = local.location
   server_type = local.server_type_runner
   image       = data.hcloud_image.packer.id
@@ -61,7 +61,7 @@ resource "hcloud_server" "runner" {
 }
 
 resource "hcloud_server" "vscode" {
-  name        = "${var.name}-vscode"
+  name        = "vscode"
   location    = local.location
   server_type = local.server_type_vscode
   image       = data.hcloud_image.packer.id
@@ -88,7 +88,7 @@ resource "acme_registration" "reg" {
 
 resource "acme_certificate" "gitlab" {
   account_key_pem           = acme_registration.reg.account_key_pem
-  common_name               = "${var.name}.${local.domain}"
+  common_name               = "gitlab.${local.domain}"
   subject_alternative_names = [
     "traefik.${local.domain}",
     "code.${local.domain}",
@@ -109,9 +109,9 @@ resource "acme_certificate" "gitlab" {
 
 resource "acme_certificate" "vscode" {
   account_key_pem           = acme_registration.reg.account_key_pem
-  common_name               = "${var.name}.${local.domain}"
+  common_name               = "vscode.${local.domain}"
   subject_alternative_names = [
-    "*.vscode.${var.name}.${local.domain}"
+    "*.vscode.${local.domain}"
   ]
 
   dns_challenge {
@@ -249,6 +249,14 @@ resource "hetznerdns_record" "gitlab" {
   ttl= 120
 }
 
+resource "hetznerdns_record" "gitlab_wildcard" {
+  zone_id = data.hetznerdns_zone.main.id
+  name = "*.gitlab"
+  value = hetznerdns_record.gitlab.name
+  type = "CNAME"
+  ttl= 120
+}
+
 resource "hetznerdns_record" "gitlab_traefik" {
   zone_id = data.hetznerdns_zone.main.id
   name = "traefik"
@@ -265,19 +273,51 @@ resource "hetznerdns_record" "gitlab_code" {
   ttl= 120
 }
 
-resource "hetznerdns_record" "gitlab_wildcard" {
+resource "hetznerdns_record" "webdav_dev" {
   zone_id = data.hetznerdns_zone.main.id
-  name = "*.gitlab"
-  value = hetznerdns_record.gitlab.name
+  name = "dev.webdav"
+  value = hcloud_server.gitlab.ipv4_address
+  type = "A"
+  ttl= 120
+}
+
+resource "hetznerdns_record" "webdav_dev_wildcard" {
+  zone_id = data.hetznerdns_zone.main.id
+  name = "*.dev.webdav"
+  value = hetznerdns_record.webdav_dev.name
+  type = "CNAME"
+  ttl= 120
+}
+
+resource "hetznerdns_record" "webdav_live" {
+  zone_id = data.hetznerdns_zone.main.id
+  name = "live.webdav"
+  value = hcloud_server.gitlab.ipv4_address
+  type = "A"
+  ttl= 120
+}
+
+resource "hetznerdns_record" "webdav_live_wildcard" {
+  zone_id = data.hetznerdns_zone.main.id
+  name = "*.live.webdav"
+  value = hetznerdns_record.webdav_live.name
   type = "CNAME"
   ttl= 120
 }
 
 resource "hetznerdns_record" "vscode" {
   zone_id = data.hetznerdns_zone.main.id
-  name = "*.vscode"
+  name = "vscode"
   value = hcloud_server.vscode.ipv4_address
   type = "A"
+  ttl= 120
+}
+
+resource "hetznerdns_record" "vscode_wildcard" {
+  zone_id = data.hetznerdns_zone.main.id
+  name = "*.vscode"
+  value = hetznerdns_record.vscode.name
+  type = "CNAME"
   ttl= 120
 }
 

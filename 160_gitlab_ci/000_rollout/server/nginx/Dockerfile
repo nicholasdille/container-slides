@@ -24,10 +24,11 @@ EOF
 
 #COPY default.conf /etc/nginx/conf.d/
 COPY webdav.conf /etc/nginx/conf.d/
-COPY --chmod=0775 webdav.sh /docker-entrypoint.d/
-COPY --chmod=0775 seat-index.sh /docker-entrypoint.d/
-COPY --chmod=0775 seat-pass.sh /docker-entrypoint.d/
-COPY --chmod=0775 domain.sh /docker-entrypoint.d/
+COPY --chmod=0755 00-index.sh /docker-entrypoint.d/
+#COPY --chmod=0775 webdav.sh /docker-entrypoint.d/
+#COPY --chmod=0775 seat-index.sh /docker-entrypoint.d/
+#COPY --chmod=0775 seat-pass.sh /docker-entrypoint.d/
+#COPY --chmod=0775 domain.sh /docker-entrypoint.d/
 
 COPY index.html /usr/share/nginx/html/
 COPY auth.html /usr/share/nginx/html/auth/index.html

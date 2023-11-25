@@ -1,0 +1,16 @@
+# https://docs.docker.com/compose/compose-file
+
+services:
+
+  runner:
+    build:
+      context: runner
+    environment:
+      REGISTRATION_TOKEN: ${REGISTRATION_TOKEN}
+      CI_SERVER_URL: https://gitlab.${DOMAIN:?You must supply DOMAIN}
+      RUNNER_EXECUTOR: docker
+      DOCKER_PRIVILEGED: "true"
+      CONCURRENT: "4"
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/run/docker.sock:/var/run/docker.sock

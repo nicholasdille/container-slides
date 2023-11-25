@@ -7,3 +7,5 @@ ssh.pub
 plan.out
 errored.tfstate
 ssh_config
+seats.json
+seats.txt
