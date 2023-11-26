@@ -22,14 +22,11 @@ chown www-data \
     /data.live
 EOF
 
-#COPY default.conf /etc/nginx/conf.d/
-COPY webdav.conf /etc/nginx/conf.d/
+COPY default.conf /etc/nginx/conf.d/
 COPY --chmod=0755 00-index.sh /docker-entrypoint.d/
-#COPY --chmod=0775 webdav.sh /docker-entrypoint.d/
-#COPY --chmod=0775 seat-index.sh /docker-entrypoint.d/
-#COPY --chmod=0775 seat-pass.sh /docker-entrypoint.d/
-#COPY --chmod=0775 domain.sh /docker-entrypoint.d/
+COPY --chmod=0755 10-code.sh /docker-entrypoint.d/
+COPY --chmod=0755 20-webdav.sh /docker-entrypoint.d/
 
+COPY code.html /tmp/
+COPY webdav.conf /tmp/
 COPY index.html /usr/share/nginx/html/
-COPY auth.html /usr/share/nginx/html/auth/index.html
-COPY webdav.html /usr/share/nginx/html/webdav/index.html

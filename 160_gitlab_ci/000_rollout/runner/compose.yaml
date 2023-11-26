@@ -6,11 +6,11 @@ services:
     build:
       context: runner
     environment:
-      REGISTRATION_TOKEN: ${REGISTRATION_TOKEN}
-      CI_SERVER_URL: https://gitlab.${DOMAIN:?You must supply DOMAIN}
+      CI_SERVER_TOKEN: ${CI_SERVER_TOKEN}
+      CI_SERVER_URL: http://gitlab
       RUNNER_EXECUTOR: docker
       DOCKER_PRIVILEGED: "true"
-      CONCURRENT: "4"
+      CONCURRENT: "10"
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock

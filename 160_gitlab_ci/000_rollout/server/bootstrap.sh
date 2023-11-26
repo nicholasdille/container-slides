@@ -85,16 +85,19 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                 --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
             | jq --exit-status --arg user "seat${SEAT_INDEX}" '.[] | select(.username == $user)' >/dev/null; then
         echo -n "    Creating user..."
-        docker compose exec -T gitlab \
-            curl http://localhost/api/v4/users \
-                --silent \
-                --show-error \
-                --fail \
-                --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
-                --header "Content-Type: application/json" \
-                --request POST \
-                --data "{\"username\": \"seat${SEAT_INDEX}\", \"name\": \"seat${SEAT_INDEX}\", \"email\": \"seat${SEAT_INDEX}@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\"}"
-        echo "done."
+        GITLAB_USER_ID="$(
+            docker compose exec -T gitlab \
+                curl http://localhost/api/v4/users \
+                    --silent \
+                    --show-error \
+                    --fail \
+                    --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
+                    --header "Content-Type: application/json" \
+                    --request POST \
+                    --data "{\"username\": \"seat${SEAT_INDEX}\", \"name\": \"seat${SEAT_INDEX}\", \"email\": \"seat${SEAT_INDEX}@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\"}" \
+                | jq --raw-output '.id'
+        )"
+        echo " user ID ${GITLAB_USER_ID}"
     fi
 
     echo
@@ -115,22 +118,97 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
     fi
 
     echo
-    echo "### Fetching user ID for seat on seat ${SEAT_INDEX}..."
-    GITLAB_USER_ID="$(
-        docker compose exec -T gitlab \
+    echo "### Project for demos"
+    if ! docker compose exec -T gitlab \
             curl \
-                --url http://localhost/api/v4/user \
+                --url "http://localhost/api/v4/users/seat${SEAT_INDEX}/projects" \
                 --silent \
-                --show-error \
                 --fail \
                 --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
-        | jq --raw-output '.id'
-    )"
-    echo "    Got ${GITLAB_USER_ID}"
+            | jq --exit-status '.[] | select(.name == "demo")' >/dev/null; then
+        echo -n "    Creating..."
+        docker compose exec -T gitlab \
+            curl \
+                --url "http://localhost/api/v4/projects/user/${GITLAB_USER_ID}" \
+                --silent \
+                --show-error \
+                --request POST \
+                --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
+                --header "Content-Type: application/json" \
+                --data '{"name": "demo"}'
+        echo "done."
+
+        git config --global user.name "seat${SEAT_INDEX}"
+        git config --global user.email "seat${SEAT_INDEX}@.${DOMAIN}"
+        git config --global credential.helper store
+        echo "https://seat${SEAT_INDEX}:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.${DOMAIN}" >"${HOME}/.git-credentials"
+        if test -d /tmp/demo; then
+            rm -rf /tmp/demo
+        fi
+        (
+            mkdir -p /tmp/demo
+            cd /tmp/demo
+            git clone https://github.com/nicholasdille/container-slides .
+            git remote add downstream "https://gitlab.${DOMAIN}/seat${SEAT_INDEX}/demo"
+            CURRENT_BRANCH="$(git branch --show-current)"
+            git branch --remotes --list \
+            | grep -v downstream \
+            | grep -v dependabot \
+            | grep -v renovate \
+            | grep -v '\->' \
+            | grep -v "${CURRENT_BRANCH}" \
+            | while read branch; do
+                git branch --track "${branch#origin/}" "$branch" || true
+            done
+            git push downstream --all
+            if ! git show-ref --quiet refs/heads/main; then
+                git checkout --orphan main
+                git rm -rf .
+                git commit --allow-empty -m "root commit"
+                git push downstream main
+            fi
+            rm -rf /tmp/demo
+        )
+        docker compose exec -T gitlab \
+            curl \
+                --url "http://localhost/api/v4/projects/seat${SEAT_INDEX}%2fdemo" \
+                --silent \
+                --show-error \
+                --request PUT \
+                --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
+                --data 'default_branch=main'
+    fi
+
+    break
 done
 
-# - Create project for each user (import and create new default branch main)
-
 # nginx
-# - Create variables SEATx_CODE_HTPASSWD
-# - Provide seats.json
+echo -n >seats.env
+for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
+
+    SEAT_CODE="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .code' seats.json )"
+    VAR_NAME="SEAT${SEAT_INDEX}_CODE_HTPASSWD"
+    declare -n $VAR_NAME=SEAT_CODE_HTPASSWD
+    SEAT_CODE_HTPASSWD="$( htpasswd -nbB "seat${SEAT_INDEX}" "${SEAT_CODE}" | sed -e 's/\$/\$/g' )"
+    echo "${VAR_NAME}='${!VAR_NAME}'" >>seats.env
+
+    SEAT_PASS="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .password' seats.json )"
+    VAR_NAME="SEAT${SEAT_INDEX}_PASS"
+    declare -n $VAR_NAME=SEAT_PASS
+    SEAT_PASS="${!VAR_NAME}"
+    echo "${VAR_NAME}='${!VAR_NAME}'" >>seats.env
+
+    SEAT_WEBDAV_DEV="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .webdav_pass_dev' seats.json )"
+    VAR_NAME="SEAT${SEAT_INDEX}_WEBDAV_DEV"
+    declare -n $VAR_NAME=SEAT_WEBDAV_DEV
+    SEAT_WEBDAV_DEV="${!VAR_NAME}"
+    echo "${VAR_NAME}='${!VAR_NAME}'" >>seats.env
+
+    SEAT_WEBDAV_LIVE="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .webdav_pass_live' seats.json )"
+    VAR_NAME="SEAT${SEAT_INDEX}_WEBDAV_LIVE"
+    declare -n $VAR_NAME=SEAT_WEBDAV_LIVE
+    SEAT_WEBDAV_LIVE="${!VAR_NAME}"
+    echo "${VAR_NAME}='${!VAR_NAME}'" >>seats.env
+done
+# TODO: Pass SEAT_COUNT
+docker compose --file compose.yaml --file compose.nginx.yaml --env-file seats.env up --build --detach nginx

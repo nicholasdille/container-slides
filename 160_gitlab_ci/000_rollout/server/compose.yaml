@@ -51,7 +51,8 @@ services:
       traefik.http.routers.traefik-s.service: api@internal
       traefik.http.routers.traefik-s.rule: Host(`traefik.${DOMAIN}`)
       traefik.http.routers.traefik-s.tls: "true"
-      traefik.http.routers.traefik-s.middlewares: seat-auth
+      # TODO: Fix auth
+      #traefik.http.routers.traefik-s.middlewares: seat-auth
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
