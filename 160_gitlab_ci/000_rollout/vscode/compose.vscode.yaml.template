@@ -24,6 +24,8 @@
       start_period: 5s
     labels:
       traefik.enable: "true"
+      # Auth
+      traefik.http.middlewares.vscode${SEAT_INDEX}-auth.basicauth.users: ${SEAT${SEAT_INDEX}_HTPASSWD}
       # Service port
       traefik.http.services.vscode${SEAT_INDEX}.loadbalancer.server.port: 8080
       # Redirection to HTTPS
@@ -35,6 +37,5 @@
       traefik.http.routers.vscode${SEAT_INDEX}-s.entrypoints: https
       traefik.http.routers.vscode${SEAT_INDEX}-s.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN}`)
       traefik.http.routers.vscode${SEAT_INDEX}-s.service: vscode${SEAT_INDEX}
-      # TODO: Fix auth
-      #traefik.http.routers.vscode${SEAT_INDEX}-s.middlewares: vscode${SEAT_INDEX}-auth
+      traefik.http.routers.vscode${SEAT_INDEX}-s.middlewares: vscode${SEAT_INDEX}-auth
       traefik.http.routers.vscode${SEAT_INDEX}-s.tls: "true"

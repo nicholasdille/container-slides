@@ -16,16 +16,25 @@ cat /etc/ssl/tls.crt /etc/ssl/tls.chain >/etc/ssl/tls.full
 
 # Get variables
 DOMAIN="$( jq --raw-output '.domain' seats.json )"
+GITLAB_ADMIN_PASS="$( jq --raw-output '.gitlab_admin_password' seats.json )"
 export DOMAIN
 
-docker build --tag vscode vscode
+TRAEFIK_HTPASSWD="$( htpasswd -nbB admin "${GITLAB_ADMIN_PASS}" )"
+export TRAEFIK_HTPASSWD
 
 echo "services:" >compose.vscode.yaml
+echo -n >vscode.env
 for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
     echo "seat${SEAT_INDEX}"
     SEAT_PASS="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .password' seats.json )"
     export SEAT_INDEX
     export SEAT_PASS
+
+    SEAT_PASS="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .password' seats.json )"
+    VAR_NAME="SEAT${SEAT_INDEX}_HTPASSWD"
+    declare -n $VAR_NAME=SEAT_HTPASSWD
+    SEAT_HTPASSWD="$( htpasswd -nbB "seat${SEAT_INDEX}" "${SEAT_PASS}" )"
+    echo "${VAR_NAME}='${!VAR_NAME}'" >>vscode.env
 
     export GIT_USER="seat${SEAT_INDEX}"
     export GIT_EMAIL="seat${SEAT_INDEX}@.${DOMAIN}"
@@ -36,4 +45,5 @@ for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
     >>compose.vscode.yaml
 done
 
+docker build --tag vscode vscode
 docker compose --file compose.yaml --file compose.vscode.yaml up --detach
