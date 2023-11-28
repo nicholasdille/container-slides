@@ -44,12 +44,12 @@ services:
       # traefik dashboard: redirection to HTTPS
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.rule: Host(`traefik.gitlab.${DOMAIN}`)
+      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN}`)
       traefik.http.routers.traefik.middlewares: redirect-to-https
       # traefik dashboard: authenticated endpoint
       traefik.http.routers.traefik-s.entrypoints: https
       traefik.http.routers.traefik-s.service: api@internal
-      traefik.http.routers.traefik-s.rule: Host(`traefik.gitlab.${DOMAIN}`)
+      traefik.http.routers.traefik-s.rule: Host(`traefik.${DOMAIN}`)
       traefik.http.routers.traefik-s.tls: "true"
       # TODO: Fix auth
       #traefik.http.routers.traefik-s.middlewares: seat-auth
