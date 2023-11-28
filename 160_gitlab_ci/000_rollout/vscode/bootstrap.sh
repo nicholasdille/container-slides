@@ -31,7 +31,7 @@ for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
     export SEAT_PASS
 
     SEAT_HTPASSWD="$( htpasswd -nbB "seat${SEAT_INDEX}" "${SEAT_PASS}" )"
-    echo "${VAR_NAME}='${SEAT_HTPASSWD}'" >>vscode.env
+    echo "SEAT${SEAT_INDEX}_HTPASSWD='${SEAT_HTPASSWD}'" >>vscode.env
 
     export GIT_USER="seat${SEAT_INDEX}"
     export GIT_EMAIL="seat${SEAT_INDEX}@.${DOMAIN}"
@@ -43,4 +43,4 @@ for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
 done
 
 docker build --tag vscode vscode
-docker compose --file compose.yaml --file compose.vscode.yaml up --detach
+docker compose --file compose.yaml --file compose.vscode.yaml --env-file vscode.env up --detach
