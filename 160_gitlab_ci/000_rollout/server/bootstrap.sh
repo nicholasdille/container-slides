@@ -156,7 +156,7 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
         git config --global user.name "seat${SEAT_INDEX}"
         git config --global user.email "seat${SEAT_INDEX}@.${DOMAIN}"
         git config --global credential.helper store
-        echo "https://seat${SEAT_INDEX}:${SEAT_PASS}@gitlab.seat${SEAT_INDEX}.${DOMAIN}" >"${HOME}/.git-credentials"
+        echo "https://seat${SEAT_INDEX}:${SEAT_PASS}@gitlab.${DOMAIN}" >"${HOME}/.git-credentials"
         if test -d /tmp/demo; then
             rm -rf /tmp/demo
         fi
