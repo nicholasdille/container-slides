@@ -149,7 +149,8 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                 --request POST \
                 --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
                 --header "Content-Type: application/json" \
-                --data '{"name": "demo"}'
+                --data '{"name": "demo"}' \
+                --output /dev/null
         echo "done."
 
         git config --global user.name "seat${SEAT_INDEX}"
