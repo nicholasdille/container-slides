@@ -100,8 +100,19 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                     --data "{\"username\": \"seat${SEAT_INDEX}\", \"name\": \"seat${SEAT_INDEX}\", \"email\": \"seat${SEAT_INDEX}@${DOMAIN}\", \"password\": \"${SEAT_PASS}\", \"skip_confirmation\": \"true\"}" \
                 | jq --raw-output '.id'
         )"
-        echo " user ID ${GITLAB_USER_ID}"
+    else
+        echo "    Already have user"
+        GITLAB_USER_ID="$(
+            docker compose exec -T gitlab \
+                curl http://localhost/api/v4/users?username=seat${SEAT_INDEX} \
+                    --silent \
+                    --show-error \
+                    --fail \
+                    --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
+                | jq --raw-output '.[0].id'
+        )"
     fi
+    echo " user ID ${GITLAB_USER_ID}"
 
     echo
     echo "### PAT for user seat${SEAT_INDEX}"
