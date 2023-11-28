@@ -20,9 +20,11 @@ export GITLAB_ADMIN_TOKEN
 echo
 echo "### Retrieving runner registration token on seat ${SEAT_INDEX}"
 if test -f CI_SERVER_TOKEN; then
+    echo "    Importing token from previous run"
     CI_SERVER_TOKEN="$( cat CI_SERVER_TOKEN )"
 
 else
+    echo "    Retrieving token from GitLab"
     CI_SERVER_TOKEN="$(
         curl \
             --url "https://gitlab.${DOMAIN}/api/v4/user/runners" \
@@ -36,9 +38,8 @@ else
     )"
 fi
 export CI_SERVER_TOKEN
-echo "  Got ${CI_SERVER_TOKEN}."
 
 echo
 echo "### Starting runner on seat ${SEAT_INDEX}"
 docker compose build runner
-docker compose --project-name server --file ../server/compose.yaml --file compose.yaml up -d runner
+docker compose up -d runner
