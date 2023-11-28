@@ -53,7 +53,7 @@ if ! test -f seats.json; then
 fi
 scp seats.json runner:/root/container-slides/160_gitlab_ci/000_rollout/runner/
 # Run 160/000/runner/bootstrap.sh
-ssh gitlab env -C /root/container-slides/160_gitlab_ci/000_rollout/runner/ bash bootstrap.sh
+ssh runner env -C /root/container-slides/160_gitlab_ci/000_rollout/runner/ bash bootstrap.sh
 
 echo "######################"
 echo "###                ###"
@@ -80,4 +80,4 @@ if ! test -f seats.json; then
 fi
 scp seats.json vscode:/root/container-slides/160_gitlab_ci/000_rollout/vscode/
 # Run 160/000/vscode/bootstrap.sh
-ssh gitlab env -C /root/container-slides/160_gitlab_ci/000_rollout/vscode/ bash bootstrap.sh
+ssh vscode env -C /root/container-slides/160_gitlab_ci/000_rollout/vscode/ bash bootstrap.sh
