@@ -112,7 +112,7 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                 | jq --raw-output '.[0].id'
         )"
     fi
-    echo " user ID ${GITLAB_USER_ID}"
+    echo "    User ID ${GITLAB_USER_ID}"
 
     echo
     echo "### PAT for user seat${SEAT_INDEX}"
