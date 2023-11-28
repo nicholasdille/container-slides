@@ -25,16 +25,16 @@
     labels:
       traefik.enable: "true"
       # Service port
-      traefik.http.services.vscode.loadbalancer.server.port: 8080
+      traefik.http.services.vscode${SEAT_INDEX}.loadbalancer.server.port: 8080
       # Redirection to HTTPS
-      traefik.http.routers.vscode.entrypoints: http
-      traefik.http.routers.vscode.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN}`)
-      traefik.http.routers.vscode.service: vscode
-      traefik.http.routers.vscode.middlewares: redirect-to-https
+      traefik.http.routers.vscode${SEAT_INDEX}.entrypoints: http
+      traefik.http.routers.vscode${SEAT_INDEX}.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN}`)
+      traefik.http.routers.vscode${SEAT_INDEX}.service: vscode${SEAT_INDEX}
+      traefik.http.routers.vscode${SEAT_INDEX}.middlewares: redirect-to-https
       # Authenticated endpoint
-      traefik.http.routers.vscode-s.entrypoints: https
-      traefik.http.routers.vscode-s.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN}`)
-      traefik.http.routers.vscode-s.service: vscode
+      traefik.http.routers.vscode${SEAT_INDEX}-s.entrypoints: https
+      traefik.http.routers.vscode${SEAT_INDEX}-s.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN}`)
+      traefik.http.routers.vscode${SEAT_INDEX}-s.service: vscode${SEAT_INDEX}
       # TODO: Fix auth
-      #traefik.http.routers.vscode-s.middlewares: seat-auth
-      traefik.http.routers.vscode-s.tls: "true"
+      #traefik.http.routers.vscode${SEAT_INDEX}-s.middlewares: vscode${SEAT_INDEX}-auth
+      traefik.http.routers.vscode${SEAT_INDEX}-s.tls: "true"
