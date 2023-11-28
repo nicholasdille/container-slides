@@ -11,6 +11,9 @@ if ! test -f seats.json; then
     fi
 fi
 
+# Fix certificate
+cat /etc/ssl/tls.crt /etc/ssl/tls.chain >/etc/ssl/tls.full
+
 # Get variables
 DOMAIN="$( jq --raw-output '.domain' seats.json )"
 export DOMAIN
@@ -30,7 +33,7 @@ for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
 
     cat compose.vscode.yaml.template \
     | envsubst '$SEAT_INDEX,$SEAT_PASS,$GIT_USER,$GIT_EMAIL,$GIT_CRED' \
-    >>"compose.vscode.yaml"
+    >>compose.vscode.yaml
 done
 
 docker compose --file compose.yaml --file compose.vscode.yaml up --detach
