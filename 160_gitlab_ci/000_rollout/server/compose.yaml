@@ -30,7 +30,7 @@ services:
     - /etc/ssl:/etc/traefik/ssl:ro
     - /var/run/docker.sock:/var/run/docker.sock:ro
     - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "netstat -tunapl | grep LISTEN | grep :80"]
       interval: 10s
@@ -101,6 +101,7 @@ services:
     - gitlab_config:/etc/gitlab
     - gitlab_logs:/var/log/gitlab
     - gitlab_data:/var/opt/gitlab
+    restart: unless-stopped
     labels:
       traefik.enable: "true"
       # Web UI: service port

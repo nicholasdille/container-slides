@@ -9,6 +9,7 @@ services:
     - seats.env
     volumes:
     - ./seats.json:/tmp/seats.json
+    restart: unless-stopped
     labels:
       traefik.enable: "true"
       # Service port

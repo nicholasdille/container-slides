@@ -27,7 +27,7 @@ services:
     - /etc/ssl:/etc/traefik/ssl:ro
     - /var/run/docker.sock:/var/run/docker.sock:ro
     - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "netstat -tunapl | grep LISTEN | grep :80"]
       interval: 10s

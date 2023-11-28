@@ -11,6 +11,7 @@ services:
       RUNNER_EXECUTOR: docker
       DOCKER_PRIVILEGED: "true"
       CONCURRENT: "10"
+    restart: unless-stopped
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock

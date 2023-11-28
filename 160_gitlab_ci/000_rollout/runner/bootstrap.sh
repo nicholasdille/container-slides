@@ -36,6 +36,7 @@ else
             --data '{"runner_type": "instance_type", "run_untagged": true}' \
         | jq --raw-output '.token'
     )"
+    echo "${CI_SERVER_TOKEN}" >CI_SERVER_TOKEN
 fi
 export CI_SERVER_TOKEN
 
