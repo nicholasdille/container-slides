@@ -7,7 +7,7 @@ services:
       context: runner
     environment:
       CI_SERVER_TOKEN: ${CI_SERVER_TOKEN}
-      CI_SERVER_URL: http://gitlab
+      CI_SERVER_URL: https://gitlab.${DOMAIN}
       RUNNER_EXECUTOR: docker
       DOCKER_PRIVILEGED: "true"
       CONCURRENT: "10"
