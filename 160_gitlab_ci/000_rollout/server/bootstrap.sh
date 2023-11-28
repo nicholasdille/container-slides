@@ -11,6 +11,9 @@ if ! test -f seats.json; then
     fi
 fi
 
+# Fix certificate
+cat /etc/ssl/tls.crt /etc/ssl/tls.chain >/etc/ssl/tls.full
+
 # Get variables
 DOMAIN="$( jq --raw-output '.domain' seats.json )"
 GITLAB_ADMIN_PASS="$( jq --raw-output '.gitlab_admin_password' seats.json )"
@@ -178,8 +181,6 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                 --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
                 --data 'default_branch=main'
     fi
-
-    break
 done
 
 # nginx
