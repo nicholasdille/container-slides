@@ -40,7 +40,6 @@ RUN <<EOF
 mkdir -p "${ENTRYPOINTD}"
 EOF
 COPY --chmod=0755 git.sh ${ENTRYPOINTD}
-COPY --chmod=0755 repository.sh ${ENTRYPOINTD}
 
 RUN <<EOF
 useradd --user-group --create-home --shell /bin/bash seat
