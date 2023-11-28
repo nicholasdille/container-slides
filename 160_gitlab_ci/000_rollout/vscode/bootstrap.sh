@@ -34,7 +34,7 @@ for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
     echo "SEAT${SEAT_INDEX}_HTPASSWD='${SEAT_HTPASSWD}'" >>vscode.env
 
     export GIT_USER="seat${SEAT_INDEX}"
-    export GIT_EMAIL="seat${SEAT_INDEX}@.${DOMAIN}"
+    export GIT_EMAIL="seat${SEAT_INDEX}@${DOMAIN}"
     export GIT_CRED="https://seat${SEAT_INDEX}:${SEAT_PASS}@gitlab.${DOMAIN}"
 
     cat compose.vscode.yaml.template \
