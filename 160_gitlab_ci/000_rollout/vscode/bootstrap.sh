@@ -30,11 +30,8 @@ for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
     export SEAT_INDEX
     export SEAT_PASS
 
-    SEAT_PASS="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .password' seats.json )"
-    VAR_NAME="SEAT${SEAT_INDEX}_HTPASSWD"
-    declare -n $VAR_NAME=SEAT_HTPASSWD
     SEAT_HTPASSWD="$( htpasswd -nbB "seat${SEAT_INDEX}" "${SEAT_PASS}" )"
-    echo "${VAR_NAME}='${!VAR_NAME}'" >>vscode.env
+    echo "${VAR_NAME}='${SEAT_HTPASSWD}'" >>vscode.env
 
     export GIT_USER="seat${SEAT_INDEX}"
     export GIT_EMAIL="seat${SEAT_INDEX}@.${DOMAIN}"
