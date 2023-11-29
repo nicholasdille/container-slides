@@ -81,7 +81,7 @@ docuum [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.c
     cd ../160_runners
 
     # Deploy GitLab runner
-    export CI_SERVER_URL=http://gitlab.seatN.inmylab.de
+    export CI_SERVER_URL=https://gitlab.inmylab.de
     export CI_SERVER_TOKEN=<TOKEN>
     export RUNNER_EXECUTOR=docker
     docker compose --project-name gitlab \

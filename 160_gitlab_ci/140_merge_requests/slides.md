@@ -25,51 +25,6 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 
 ---
 
-## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/140_merge_requests "140_merge_requests")
+## Hands-On
 
-1. Enable jobs `lint`, `audit`, `build` and `test` for merge requests and pushes
-
-    ```yaml
-    job_name:
-      rules:
-      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-      - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      #...
-    ```
-    <!-- .element: style="width: 45em;" -->
-
-1. Prevent `deploy` in merge requests
-
-    ```yaml
-    job_name:
-      rules:
-      - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
-      #...
-    ```
-    <!-- .element: style="width: 45em;" -->
-
----
-
-## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/140_merge_requests "140_merge_requests")
-
-3. Prevent `trigger` in merge requests
-
-    ```yaml
-    job_name:
-      rules:
-      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-      #...
-    ```
-    <!-- .element: style="width: 45em;" -->
-
-1. Check pipeline
-1. Create new branch
-1. Make dummy change in new branch
-1. Create merge requests
-1. Check pipelines and merge requests
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/140_merge_requests -- '*'
-```
+See chapter [Merge requests](/hands-on/20231130/140_merge_requests/exercise/)

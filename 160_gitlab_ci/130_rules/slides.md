@@ -26,24 +26,9 @@ Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_
 
 ---
 
-## Hands-On: Rules [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/130_rules "130_rules")
+## Hands-On: Rules
 
-Run the `deploy` job only for the `main` branch
-
-1. Create folder `public` in repository
-1. Add files from `public/` to new folder `public`
-1. Update `.gitlab-ci.yml`
-1. Check pipeline
-1. Go to **Settings** > **Pages**
-1. Open URL for pages
-1. Create branch
-1. Check pipeline
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/130_rules -- '*'
-```
+See chapter [Rules](/hands-on/20231130/130_rules/exercise/)
 
 Also see GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index.html)
 
@@ -84,6 +69,8 @@ workflow:
   - if: $CI_PIPELINE_SOURCE == 'trigger'
     when: never
 ```
+
+See chapter [Rules](/hands-on/20231130/130_rules/exercise/)
 
 ---
 

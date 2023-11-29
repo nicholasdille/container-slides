@@ -24,23 +24,9 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 
 ---
 
-## Hands-On: Pipeline-integrated [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/270_renovate "270_renovate")
+## Hands-On
 
-1. Create personal access token with scopes `api`, `read_user`, `write_repository`
-1. Add unprotected CI variable called `RENOVATE_TOKEN`
-1. Add `renovate.json` to root of project
-1. Add new job called `renovate`
-1. Create schedule with non-empty variable `RENOVATE`
-1. Check job logs
-1. Check merge requests
-1. Check pipelines
-1. Merge at least one change
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/270_renovate -- '*'
-```
+See chapter [Renovate](/hands-on/20231130/270_renovate/exercise/)
 
 (With proper configuration Renovate will automerge tested merge requests.)
 
@@ -56,10 +42,10 @@ Natively or using container sidecars
 
 ```yaml
 renovate:
-  image: renovate/renovate:32.236.0-slim
+  image: renovate/renovate:slim
   script: |
     renovate --platform gitlab \
-        --endpoint https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4 \
+        --endpoint https://gitlab.inmylab.de/api/v4 \
         --token ${RENOVATE_TOKEN} \
         --autodiscover true
   #...

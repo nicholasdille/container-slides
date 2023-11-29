@@ -24,45 +24,6 @@ Matrix variables can be used for...
 
 ---
 
-## Hands-On 1/ [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/150_matrix_jobs "150_matrix_jobs")
+## Hands-On
 
-Cross-compile Go for multiple architectures
-
-1. Extend template to support `GOOS` and `GOARCH`:
-
-    ```yaml
-    .build-go:
-      #...
-      parallel:
-        matrix:
-        - GOOS: linux
-          GOARCH: amd64
-        - GOOS: linux
-          GOARCH: arm64
-      script:
-      - go build -o hello-${GOOS}-${GOARCH} . \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'"
-    ```
-    <!-- .element: style="width: 47em;" -->
-
----
-
-## Hands-On 2/2 [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/150_matrix_jobs "150_matrix_jobs")
-
-2. Update the test job:
-
-    ```yaml
-    test:
-      #...
-      script:
-      - ./hello-linux-amd64
-    ```
-    <!-- .element: style="width: 30em;" -->
-
-1. Check pipeline
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/150_matrix_jobs -- '*'
-```
+See chapter [Matrix jobs](/hands-on/20231130/150_matrix_jobs/exercise/)

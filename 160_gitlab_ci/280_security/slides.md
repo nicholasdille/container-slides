@@ -24,40 +24,10 @@ Available in all tiers:
 
 ---
 
-## Hands-On: Secret detection [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/280_security "280_security")
+## Hands-On
 
-GitLab automatically adds a job in the stage called `test`
+See chapter [Security](/hands-on/20231130/280_security/exercise/)
 
-1. Add include:
+### Secret detection
 
-    ```yaml
-    include:
-    - template: Security/Secret-Detection.gitlab-ci.yml
-    ```
-    <!-- .element: style="width: 35em;" -->
-
-1. Check pipeline
-1. Check report
-
----
-
-## Hands-On: SAST [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/280_security "280_security")
-
-GitLab automatically adds jobs in the stage called `test`
-
-1. Enable SAST:
-
-    ```yaml
-    include:
-    - template: Security/SAST.gitlab-ci.yml
-    ```
-    <!-- .element: style="width: 35em;" -->
-
-1. Check pipeline
-1. Check reports
-
-See final `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/280_security -- '*'
-```
+### SAST

@@ -26,31 +26,9 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/250_releases "250_releases")
+## Hands-On
 
-1. Extends `pages` in `.gitlab-ci.yml`:
-
-    ```yaml
-    pages:
-      #...
-      release:
-        tag_name: ${CI_PIPELINE_IID}
-        name: Release ${CI_PIPELINE_IID}
-        description: |
-          Some multi
-          line text
-        ref: ${CI_COMMIT_SHA}
-    ```
-    <!-- .element: style="width: 30em;" -->
-
-1. Check pipeline
-1. Go to **Deployments > Releases**
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/250_releases -- '*'
-```
+See chapter [Jobs and stages](/hands-on/20231130/250_releases/exercise/)
 
 ---
 

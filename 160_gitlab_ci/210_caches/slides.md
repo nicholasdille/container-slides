@@ -24,7 +24,7 @@ Examples for many programming languages [](https://docs.gitlab.com/ee/ci/caching
 
 Runner local cache requires persistent volume for Docker executor [](https://docs.gitlab.com/ee/ci/caching/#where-the-caches-are-stored)
 
-Caches require an object store...
+Cross-runner caches require an object store...
 
 ... with an S3-compatible API
 

@@ -37,4 +37,4 @@ job_name:
 
 ## Hands-On
 
-XXX
+See chapter [Variables](/hands-on/20231130/030_script_blocks/exercise/)

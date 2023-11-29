@@ -62,4 +62,4 @@ job_name:
 
 ## Hands-On
 
-XXX
+See chapter [Job dependencies](/hands-on/20231130/065_job_dependencies/exercise/)

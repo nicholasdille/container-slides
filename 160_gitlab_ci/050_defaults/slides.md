@@ -21,4 +21,4 @@ Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml
 
 ## Hands-On
 
-XXX
+See chapter [Variables](/hands-on/20231130/050_defaults/exercise/)

@@ -25,29 +25,6 @@ No guarantee of availability
 
 ---
 
-## Hands-On [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/220_services "220_services")
+## Hands-On
 
-Recommendation: Implement in dedicated project
-
-1. Add top-level service based on `nginx`
-
-    ```yaml
-    services:
-    - nginx:1.20.2
-    ```
-
-1. Access service from job
-
-    ```yaml
-    test:
-      script:
-      - curl -s http://nginx
-    ```
-
-1. Check pipeline
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/220_services -- '*'
-```
+See chapter [Services](/hands-on/20231130/220_services/exercise/)

@@ -28,4 +28,4 @@ golang:
 
 ## Hands-On
 
-XXX
+See chapter [Unit tests](/hands-on/20231130/090_unit_tests/exercise/)

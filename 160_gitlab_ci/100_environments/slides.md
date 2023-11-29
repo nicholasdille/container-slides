@@ -22,21 +22,9 @@ WebDAV endpoints emulate deployment targets
 
 ---
 
-## Hands-On (1/2) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/100_environments/demo1 "100_environments/demo1")
+## Hands-On (1/2)
 
-1. Retrieve passwords for dev and live environments from the info page
-1. Create unprotected CI variable `PASS` twice with scope `dev` and `live`
-1. Create unprotected CI variable `SEAT_INDEX` with your seat number
-1. Add new stage and job called `deploy`
-1. Upload to WebDAV server `dev` using `curl`
-1. Download from https://dev.seatN.inmylab.de/hello
-1. Check environments
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/100_environments/demo1 -- '*'
-```
+See chapter [Environments](/hands-on/20231130/100_environments/exercise/)
 
 ---
 
@@ -49,19 +37,9 @@ Branches can be used to represent target environments:
 
 ---
 
-## Hands-On (2/2) [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/100_environments/demo2 "100_environments/demo2")
+## Hands-On (2/2)
 
-1. Create branch called `dev`
-1. Use environment `${CI_COMMIT_REF_NAME}`
-1. Commit and check pipeline
-1. Create branch `live` from `dev`
-1. Download from https://dev.seatN.inmylab.de/hello and live equivalent
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/100_environments/demo2 -- '*'
-```
+See chapter [Environments](/hands-on/20231130/100_environments/exercise/)
 
 ---
 

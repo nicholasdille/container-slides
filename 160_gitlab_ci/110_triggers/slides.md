@@ -28,25 +28,9 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 
 ---
 
-## Hands-On: Trigger tokens [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/110_triggers/curl "110_trigger/curl")
+## Hands-On: Trigger tokens
 
-1. Create a new project (anywhere!)
-1. Add `trigger/.gitlab-ci.yml` to root of new project 
-1. **Optionally, jump to next demo/slide**
-1. Go to **Settings** > **CI/CD** and unfold **Pipeline triggers**
-1. Create a trigger and copy `curl` snippet
-1. Go back to previous project
-1. Switch to branch `main`
-1. Add new stage and job called `trigger`
-1. Add `curl` snippet in `script` block
-1. Store `TOKEN` as unprotected but masked CI variable [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_ci_variable)
-1. Fill in `REF_NAME` with branch name (`main`)
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/110_triggers/curl -- '*'
-```
+See chapter [Triggers](/hands-on/20231130/110_triggers/exercise/)
 
 ---
 
@@ -69,30 +53,13 @@ Trigger owner must be able to either...
 
 ## Hands-On: Multi-project pipelines
 
-1. Replace `script` with `trigger` keyword
-1. Specify project and branch:
-
-    ```yaml
-    job_name:
-      trigger:
-        project: foo/bar
-        branch: main
-    ```
-
-1. Check pipeline
+See chapter [Triggers](/hands-on/20231130/110_triggers/exercise/)
 
 ---
 
-## Hands-On: Parent-child pipelines [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/110_triggers/parent-child "110_triggers/parent-child")
+## Hands-On: Parent-child pipelines
 
-1. Add `parent-child/child.yml` to root of first project
-1. Replace `project` and `branch` under `trigger` with `include` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_templates)
-
-    ```yaml
-    job_name:
-      trigger:
-        include: child.yml
-    ```
+See chapter [Triggers](/hands-on/20231130/110_triggers/exercise/)
 
 Child pipeline can be made from multiple files
 

@@ -14,7 +14,7 @@ Careful with protected variables
 
 ## Hands-On
 
-XXX
+See chapter [Variables](/hands-on/20231130/020_variables/exercise/)
 
 ---
 

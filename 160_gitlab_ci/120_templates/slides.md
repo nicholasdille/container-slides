@@ -22,76 +22,15 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ---
 
-## Hands-On: Template and include [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/120_templates/inline "120_templates/inline")
+## Hands-On
 
-1. Create inline tmplate:
+See chapter [Templates](/hands-on/20231130/120_templates/exercise/)
 
-    ```yaml
-    .build-go:
-      script:
-      - |
-        go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
-            -o hello \
-            .
-    ```
-    <!-- .element: style="width: 48em;" -->
+### Template and include
 
-1. Use in build job
+### Local
 
-    ```yaml
-    build:
-      extends: .build-go
-      #...
-    ```
-    <!-- .element: style="width: 48em;" -->
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/120_templates/inline -- '*'
-```
-
----
-
-## Hands-On: Local [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/tree/160_gitlab_ci/120_templates/local "120_templates/local")
-
-1. Add `go.yaml` to root of project
-1. Include `go.yaml`:
-
-    ```yaml
-    include:
-    - local: go.yaml
-
-    build:
-      extends: .build-go
-      #...
-    ```
-
-1. Check pipeline
-
-See new `.gitlab-ci.yml`:
-
-```bash
-git checkout origin/160_gitlab_ci/120_templates/local -- '*'
-```
-
----
-
-## Hands-On: File
-
-1. Create a new project, e.g. `template-go`
-1. Move (!) `go.yaml` to the root of the new project
-1. In original project, include `go.yaml`:
-
-    ```yaml
-    include:
-    - project: <GROUP>/template-go
-      ref: main
-      file: go.yaml
-    ```
-
-1. Check pipeline
+### File
 
 ---
 

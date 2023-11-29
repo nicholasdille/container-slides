@@ -32,7 +32,7 @@ Add untracked files
 
 ## Hands-On
 
-XXX
+See chapter [Artifacts](/hands-on/20231130/060_artifacts/exercise/)
 
 ---
 

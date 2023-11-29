@@ -18,4 +18,4 @@ Variables [](https://docs.gitlab.com/ee/ci/yaml/#variables) can be...
 
 ## Hands-On
 
-XXX
+See chapter [Variables](/hands-on/20231130/020_variables/exercise/)

@@ -23,7 +23,7 @@ renovate:
     LOG_LEVEL: debug
   script: |
     renovate --platform gitlab \
-        --endpoint https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4 \
+        --endpoint https://gitlab.inmylab.de/api/v4 \
         --token ${RENOVATE_TOKEN} \
         --autodiscover true
 lint:

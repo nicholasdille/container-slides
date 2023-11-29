@@ -22,4 +22,4 @@ Avoid maintaining custom image
 
 ## Hands-On
 
-XXX
+See chapter [Variables](/hands-on/20231130/040_image/exercise/)
