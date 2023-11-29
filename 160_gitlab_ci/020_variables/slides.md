@@ -14,8 +14,6 @@ Variables [](https://docs.gitlab.com/ee/ci/yaml/#variables) can be...
 - predefined by GitLab
 - defined in the UI
 
----
-
-## Hands-On
+### Hands-On
 
 See chapter [Variables](/hands-on/20231130/020_variables/exercise/)

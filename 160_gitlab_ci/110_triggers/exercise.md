@@ -5,12 +5,15 @@
 
     - XXX
 
+!!! info "Heads up"
+    Checkout the branch `main` to make sure that the following exercises are based on the correct code base.
+
 ## Preparation
 
-XXX
+Triggering another pipeline requires a seconds project:
 
 1. Create a new project (anywhere!)
-1. Add `.gitlab-ci.yml` with the following content to root of new project:
+1. Add `.gitlab-ci.yml` with the following content to the root of new project:
     ```yaml
     test:
       script:
@@ -19,23 +22,28 @@ XXX
 
 ## Task 1: Using a trigger token
 
-XXX
+The trigger token allows pipelines to be triggered using the API. Let's give this a try!
 
-1. In second project, go to **Settings** > **CI/CD** and unfold **Pipeline triggers**
-1. Create a trigger and copy token as well as `curl` snippet
-1. Go back to first project
-1. Store `TOKEN` as unprotected but masked CI variable [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_ci_variable)
-1. Add new stage and job called `trigger`
+In the web UI:
+
+1. In the second project, go to **Settings** > **CI/CD** and unfold **Pipeline trigger tokens**
+1. Create a trigger token and copy the token as well as the `curl` snippet
+1. Go back to `demo` project
+1. Create an unprotected but masked CI variable called `TOKEN`
+
+In your pipeline:
+
+1. Add new stage `trigger` as well as a job `trigger`
 1. Add `curl` snippet in `script` block
-1. Fill in `REF_NAME` with branch name (`main`)
+1. Replace `TOKEN` with the variable `$TOKEN`
+1. Replace `REF_NAME` with branch name (`main`)
 
-Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
-
-??? info "Hint (Click if you are stuck)"
-    XXX
+Afterwards check the pipeline in both projects in the GitLab UI. You should see successful pipeline runs.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml linenums="1" hl_lines="6 64-67"
+    `.gitlab-ci.yml`:
+    
+    ```yaml linenums="1" hl_lines="6 64-72"
     stages:
     - check
     - build
@@ -102,22 +110,29 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     trigger:
       stage: trigger
       script:
-      - XXX
+      - |
+        curl -X POST \
+            --fail \
+            -F token=$TOKEN \
+            -F ref=main \
+            https://gitlab.inmylab.de/api/v4/projects/9999/trigger/pipeline
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
 
 ## Task 2: Using a multi-project pipeline
 
-XXX
+The second option for triggering a pipeline in another project, are multi-project pipelines. They come with a handy syntax in `gitlab-ci.yaml` by using the [`trigger`](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger) keyword.
 
-Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to expand the downstream pipeline to see the jobs and their status.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    Replace the `script` keyword with the `trigger` keyword.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml linenums="1" hl_lines="64-67"
+    `.gitlab-ci.yml`:
+    
+    ```yaml linenums="1" hl_lines="64-66"
     stages:
     - check
     - build
@@ -183,23 +198,40 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     
     trigger:
       stage: trigger
-      trigger:
-        XXX
+      trigger: <path-to-project>
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
 
 ## Task 3: Using a parent-child pipeline
 
-XXX
+A parent-child pipeline executes a downstream pipeline from a YAML file. Modify the contents of the `trigger` keyword to use [`include`](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html) to execute a pipeline with the same content as in the first task.
 
-Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to expand the downstream pipeline to see the jobs and their status.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    Create the file `child.yaml` with the following pipeline:
+
+    ```yaml
+    test:
+      script:
+      - printenv
+    ```
+
+    Use `trigger` > `include` to call the pipeline from this file.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml linenums="1" hl_lines="22-23"
+    `child.yaml`:
+    
+    ```yaml
+    test:
+      script:
+      - printenv
+    ```
+
+    `.gitlab-ci.yml`:
+
+    ```yaml linenums="1" hl_lines="67"
     stages:
     - check
     - build
@@ -268,3 +300,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       trigger:
         include: child.yaml
     ```
+
+<!-- TODO: variable inheritence -->
+<!-- TODO: dynamic child pipelines -->
+<!-- TODO: pull artifact from upstream pipeline -->

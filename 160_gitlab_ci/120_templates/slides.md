@@ -8,6 +8,10 @@
 
 ## Make jobs reusable
 
+Templates contain required keywords
+
+Templates must not be well-formed jobs
+
 Job templates begin with a dot to prevent execution
 
 Templates can be located in the same `.gitlab-ci.yml` (inline)
@@ -22,15 +26,24 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ---
 
-## Hands-On
+## Templates
+
+Example:
+
+```yaml
+.template:
+  image: alpine
+  script: pwd
+
+job_name:
+  extends: .template
+```
+
+Keywords from `job_name` are applied after keywords from `.template`
+
+### Hands-On
 
 See chapter [Templates](/hands-on/20231130/120_templates/exercise/)
-
-### Template and include
-
-### Local
-
-### File
 
 ---
 

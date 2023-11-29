@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_unit_tests" class="vertical-center" -->
 
-<i class="fa-duotone fa-cubes fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-magnifying-glass-chart fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
 
 ## Unit tests
 
@@ -8,9 +8,13 @@
 
 ## Unit Tests
 
-XXX https://docs.gitlab.com/ee/ci/testing/unit_test_reports.html
+GitLab is able to consume JUnit formatted reports [](https://docs.gitlab.com/ee/ci/testing/unit_test_reports.html)
 
-XXX example https://docs.gitlab.com/ee/ci/testing/unit_test_report_examples.html#go
+Reports must be prepared and defined as a special type of artifact
+
+Reports will be displayed in the summary view of a pipeline
+
+The following example is based on [this one](https://docs.gitlab.com/ee/ci/testing/unit_test_report_examples.html#go):
 
 ```yaml
 golang:
@@ -24,8 +28,6 @@ golang:
       junit: report.xml
 ```
 
----
-
-## Hands-On
+### Hands-On
 
 See chapter [Unit tests](/hands-on/20231130/090_unit_tests/exercise/)

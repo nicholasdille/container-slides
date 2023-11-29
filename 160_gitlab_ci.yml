@@ -89,6 +89,7 @@ nav:
   - GitLab: 000_rollout/exercise_gitlab.md
   - IDE: 000_rollout/exercise_ide.md
   - Project: 000_rollout/exercise_project.md
+  - You are ready: you_are_ready.md
 - Basics:
   - Jobs and Stages: 010_jobs_and_stages/exercise.md
   - Variables: 020_variables/exercise.md
@@ -97,6 +98,7 @@ nav:
   - Defaults: 050_defaults/exercise.md
   - Artifacts: 060_artifacts/exercise.md
   - Job Dependencies: 065_job_dependencies/exercise.md
+  - Schedules: 070_schedules/exercise.md
   - Unit Tests: 090_unit_tests/exercise.md
 - Advanced:
   - Environments: 100_environments/exercise.md

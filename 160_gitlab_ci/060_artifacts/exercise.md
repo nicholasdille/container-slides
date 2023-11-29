@@ -31,6 +31,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="4 27-35"
     stages:
     - check
@@ -75,11 +77,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Bonus 1: Define from which jobs to receive artifacts
 
-Usually, artifacts are received from all job in the previous stages. Decide from which jobs to receive artifacts using the `dependencies` directive. See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#dependencies).
+Usually, artifacts are received from all jobs in the previous stages. Decide from which jobs to receive artifacts using the `dependencies` keyword. See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#dependencies).
 
-XXX
+Modify the job `test` to consume artifacts only from the job `build`.
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="34-35"
     stages:
     - check
@@ -122,7 +126,9 @@ XXX
 
 ## Bonus 2: Passing environment variables
 
-XXX https://docs.gitlab.com/ee/ci/variables/index.html#pass-an-environment-variable-to-another-job
+In some situations, artifacts are to heavy-weight and passing a variable would be enough. Read the documentation for [passing environment variables](https://docs.gitlab.com/ee/ci/variables/index.html#pass-an-environment-variable-to-another-job) and implement this between two jobs of your choice.
+
+The following hint and solution are a working example.
 
 ??? info "Hint (Click if you are stuck)"
     Example for creating an artifact for environment variables:
@@ -137,6 +143,8 @@ XXX https://docs.gitlab.com/ee/ci/variables/index.html#pass-an-environment-varia
     ```
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="21-22 27 29 33-34 40"
     stages:
     - check

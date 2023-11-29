@@ -39,3 +39,5 @@ Prevent unintentional deployments using Deploy Freeze [](https://docs.gitlab.com
 Job scripts must implement freeze
 
 Use `$CI_DEPLOY_FREEZE` to check for active deploy freeze
+
+We will come back to this later!

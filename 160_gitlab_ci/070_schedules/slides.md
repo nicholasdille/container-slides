@@ -8,7 +8,7 @@
 
 ## Schedules
 
-Execute pipelines on a `schedule` [](https://docs.gitlab.com/ee/ci/pipelines/schedules.html)
+Execute pipelines on a schedule [](https://docs.gitlab.com/ee/ci/pipelines/schedules.html)
 
 Schedule is specified using cron syntax <i class="fa-duotone fa-face-hand-peeking fa-duotone-colors"></i>
 
@@ -24,5 +24,4 @@ Maximum frequency configured during instance rollout [](https://docs.gitlab.com/
 
 ### Hands-On
 
-1. Schedule pipeline to run in 5 minutes
-1. Check pipeline
+See chapter [Schedules](/hands-on/20231130/070_schedules/exercise/)

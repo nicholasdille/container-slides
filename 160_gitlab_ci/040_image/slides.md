@@ -18,8 +18,6 @@ Do not use community images
 
 Avoid maintaining custom image
 
----
-
-## Hands-On
+### Hands-On
 
 See chapter [Variables](/hands-on/20231130/040_image/exercise/)

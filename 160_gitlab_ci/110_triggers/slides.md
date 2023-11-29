@@ -28,13 +28,21 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 
 ---
 
-## Hands-On: Trigger tokens
+## Nomenclature
+
+The preceding pipeline is upstream
+
+The following pipeline is downstream
+
+![](160_gitlab_ci/110_triggers/upstream_downstream.drawio.svg) <!-- .element: style="width: 50%; margin-top: 0.5em;" -->
+
+### Hands-On: Trigger tokens
 
 See chapter [Triggers](/hands-on/20231130/110_triggers/exercise/)
 
 ---
 
-## Heads-up
+## Heads-up for trigger tokens
 
 ### Visibility of trigger tokens
 
@@ -51,7 +59,13 @@ Trigger owner must be able to either...
 
 ---
 
-## Hands-On: Multi-project pipelines
+## Multi-project pipelines
+
+Launch pipeline in separate project [](https://docs.gitlab.com/ee/ci/pipelines/multi_project_pipelines.html)
+
+Use the `trigger` keyword [](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger)
+
+### Hands-On
 
 See chapter [Triggers](/hands-on/20231130/110_triggers/exercise/)
 

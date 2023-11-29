@@ -8,8 +8,6 @@
 
 ## Task: Publish unit test results
 
-XXX https://docs.gitlab.com/ee/ci/testing/unit_test_reports.html
-
 The following commands execute unit tests and automatically convert the results to JUnit using [gotestsum](https://github.com/gotestyourself/gotestsum):
 
 ```bash
@@ -17,7 +15,7 @@ go install gotest.tools/gotestsum@latest
 gotestsum --junitfile report.xml
 ```
 
-XXX https://docs.gitlab.com/ee/ci/yaml/artifacts_reports.html#artifactsreportsjunit
+See the official documentation for [special artifacts and specifically reports](https://docs.gitlab.com/ee/ci/yaml/artifacts_reports.html#artifactsreportsjunit).
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run which shows the unit test results on the tab in the overview.
 
@@ -35,6 +33,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+
     ```yaml linenums="1" hl_lines="22-23"
     stages:
     - check
@@ -85,4 +85,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     
     If you want to jump to the solution, execute the following command:
 
+    ```bash
     git checkout origin/160_gitlab_ci/090_unit_tests -- '*'
+    ```

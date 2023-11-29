@@ -4,15 +4,13 @@
     Learn how to...
 
     - specify which container image to use for a job
-    - XXX
+    - tailor the execution environment to your needs
 
 ## Task: Simplify using container images
 
 In the previous exampes, we called `apk` at the beginning of every job to install Go. This had to be repeated for every job because Go was not present. Choosing an image for a job using the `image` directive, time is saved by avoiding commands to install required tools. See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#image).
 
 Replace the calls to `apk` with the container image `golang:1.19.2`.
-
-XXX version bump for `golang` image
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -21,6 +19,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - Add `image: golang:1.19.2` instead
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="7 13 19"
     stages:
     - check

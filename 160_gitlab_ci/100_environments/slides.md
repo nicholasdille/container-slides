@@ -35,9 +35,7 @@ Branches can be used to represent target environments:
 - `dev` for development branch
 - `live` for production code
 
----
-
-## Hands-On (2/2)
+### Hands-On (2/2)
 
 See chapter [Environments](/hands-on/20231130/100_environments/exercise/)
 

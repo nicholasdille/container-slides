@@ -3,18 +3,18 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - ignore stages
+    - start jobs as soon as dependencies are met
 
-## Task: Start the build job early
+## Task: Start a job early
 
-XXX start `build` after `audit` without waiting for `lint`
+Start the job `build` as soon as the job `audit` completes without waiting for other job of the stage `check` to finish. Check out the official documentation of [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs).
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
-??? info "Hint (Click if you are stuck)"
-    XXX
-
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+
     ```yaml linenums="1" hl_lines="21-22"
     stages:
     - check
@@ -57,16 +57,15 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
 
-## Bonus: Start the lint job late
+## Bonus: Start a job late
 
-XXX start `lint` after `audit`
+If two jobs in the same stage should not be executed at the same time, the [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs) keyword can also delay a job until the dependencies are met. Modify the job `lint` so that it waits for the job `audit` to finish.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
-??? info "Hint (Click if you are stuck)"
-    XXX
-
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="11-12"
     stages:
     - check

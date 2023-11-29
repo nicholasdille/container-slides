@@ -18,6 +18,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     Move calls to `apk` to the `before_script`.
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="7-9 15-17 23-25"
     stages:
     - check

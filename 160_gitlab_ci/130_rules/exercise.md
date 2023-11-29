@@ -3,27 +3,50 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - define when to run jobs (and when not)
+    - how (workflow) rules can apply to whole pipelines
+    - how to use [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/index.html) to publish static web pages
+
+In this exercise we will publish a static web page to download the `hello` binary.
 
 ## Preparation
 
-XXX
+Add a file `public/index.html` to your project using the following command:
 
-1. XXX `public/`
-1. XXX `public/index.html`
+```bash
+git checkout origin/160_gitlab_ci/130_rules -- 'public/index.html'
+```
 
 ## Task 1: Prevent a job from running
 
-XXX https://docs.gitlab.com/ee/ci/yaml/#rules
+Add a job `pages` to the stage `deploy` with the following content:
+
+```yaml
+pages:
+  stage: deploy
+  script:
+  - cp hello public/
+  artifacts:
+    paths:
+    - public
+```
+
+Review the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword to limit the job `pages` to run when...
+
+- the pipeline wastriggered by a push event
+- the change applied to the default branch
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
-XXX also see GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index.html)
+??? info "Hint 1 (Click if you are stuck)"
+    In [pre-defined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) see `$CI_PIPELINE_SOURCE` for trigger events, `$CI_COMMIT_REF_NAME` for the current Git reference and `$CI_DEFAULT_BRANCH` for the default branch.
 
-??? info "Hint (Click if you are stuck)"
-    XXX
+??? info "Hint 2 (Click if you are stuck)"
+    See [complex rules](https://docs.gitlab.com/ee/ci/jobs/job_control.html#complex-rules) for combining conditions using and (`&&`) and or (`||`).
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yaml`:
+
     ```yaml linenums="1" hl_lines="63-71"
     include:
     - local: go.yaml
@@ -105,14 +128,22 @@ XXX also see GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index
 
 ## Task 2: Prevent a pipeline from running
 
-XXX https://docs.gitlab.com/ee/ci/yaml/#workflowrules
+Rules can also be placed under the global [`workflow`](https://docs.gitlab.com/ee/ci/yaml/#workflowrules) keyword to apply to the whole pipeline instead of individual jobs.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    The syntax of `workflow` looks like this:
+
+    ```yaml
+    workflow:
+      rules:
+      #...
+    ```
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yaml`:
+
     ```yaml linenums="1" hl_lines="1-11"
     workflow:
       rules:
@@ -208,16 +239,21 @@ This was just a demonstration. The changes will not be preserved in the followin
 
 ## Task 3: Use deploy freeze
 
-XXX https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze
+Projects can define a [deploy freeze](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze) to prevent pipelines to run but the settings only results in an environment varialbe `$CI_DEPLOY_FREEZE`. Rules as well as workflow rules can be used to enforce deploy freezes.
 
-XXX `$CI_DEPLOY_FREEZE`
+Modify the pipeline to prevent the execution when `$CI_DEPLOY_FREEZE` is not empty.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
-??? info "Hint (Click if you are stuck)"
-    XXX
+??? info "Hint 1 (Click if you are stuck)"
+    Simply enter the variable into a rule to check if it is not empty.
+
+??? info "Hint 2 (Click if you are stuck)"
+    Checkout the [`when`](https://docs.gitlab.com/ee/ci/yaml/#when) keyword under [`if`](https://docs.gitlab.com/ee/ci/yaml/#rulesif) to control whether to start a pipeline/job or not.
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="3-4"
     workflow:
       rules:
@@ -312,3 +348,5 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
+
+<!-- TODO: reuse rules with templates (https://docs.gitlab.com/ee/ci/jobs/job_control.html#reuse-rules-in-different-jobs) -->

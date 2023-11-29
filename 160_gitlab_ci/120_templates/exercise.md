@@ -3,20 +3,31 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - create templates
+    - make jobs reusable
+    - load templates from different locations
 
 ## Task 1: Create a template inline
 
-XXX https://docs.gitlab.com/ee/ci/yaml/#include
-
-XXX https://docs.gitlab.com/ee/development/cicd/templates.html
+Create a template for compiling a go binary from the job `build` and use it in the job `build`. See the official documentation for [templates](https://docs.gitlab.com/ee/development/cicd/templates.html) for guidance.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
     XXX
 
+    ```yaml
+    .build-go:
+      script:
+      #...
+    
+    build:
+      extends: #...
+    ```
+
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+
     ```yaml linenums="1" hl_lines="31-37 41-42"
     stages:
     - check
@@ -91,14 +102,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         include: child.yaml
     ```
 
+    You decide whether `artifacts` is part of the template or not!
+
 ## Task 2: Loading templates from a local file
 
-XXX
+Move the template into a separate file `go.yaml` and use the [`include`](https://docs.gitlab.com/ee/ci/yaml/#include) keyword to import the template.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX `go.yaml`
+    `go.yaml`:
 
     ```yaml
     .build-go:
@@ -111,6 +124,20 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
 ??? example "Solution (Click if you are stuck)"
+    `go.yaml`:
+
+    ```yaml
+    .build-go:
+      script:
+      - |
+        go build \
+            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -o hello \
+            .
+    ```
+
+    `.gitlab-ci.yml`:
+
     ```yaml linenums="1" hl_lines="1-2"
     include:
     - local: go.yaml
@@ -182,11 +209,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Task 3: Loading templates from another project
 
-XXX
+Create a new project anywhere (!), move `go.yaml` there and fix the `include` keyword. See the extended syntax of the [`include`](https://docs.gitlab.com/ee/ci/yaml/#include) keyword to import templates from another project.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yaml`:
+
     ```yaml linenums="1" hl_lines="1-4"
     include:
     - project: seat/template-go
@@ -259,3 +288,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
+
+<!-- TODO: multiple inheritence -->
+<!-- TODO: reference tags -->

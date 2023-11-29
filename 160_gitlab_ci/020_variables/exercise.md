@@ -30,6 +30,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     2. Replace the build command with the one provided above
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+
     ```yaml linenums="1" hl_lines="21-22 26-30"
     stages:
     - check
@@ -79,6 +81,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     2. Replace the variable `${version}` with the predefined variable `${CI_COMMIT_REF_NAME}`
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="25-28"
     stages:
     - check
@@ -137,6 +141,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     The `-ldflags` option needs to be extended with `-X 'main.Author=${AUTHOR}'`
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="25-28"
     stages:
     - check
@@ -172,3 +178,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     git checkout origin/160_gitlab_ci/020_variables/ci -- '*'
+
+<!-- TODO: masked variables -->
+
+<!-- TODO: protected variables -->

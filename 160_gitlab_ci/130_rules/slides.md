@@ -24,13 +24,9 @@ Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) wh
 
 Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
 
----
-
-## Hands-On: Rules
+### Hands-On
 
 See chapter [Rules](/hands-on/20231130/130_rules/exercise/)
-
-Also see GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/index.html)
 
 ---
 

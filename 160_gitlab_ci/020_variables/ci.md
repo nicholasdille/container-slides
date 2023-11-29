@@ -10,9 +10,7 @@ Available in project-, group- and instance-level
 
 Careful with protected variables
 
----
-
-## Hands-On
+### Hands-On
 
 See chapter [Variables](/hands-on/20231130/020_variables/exercise/)
 

@@ -3,8 +3,8 @@
 !!! tip "Goal"
     Learn how to...
 
-    - Avoid repetition in jobs
-    - Specify defaults are the top of your pipeline
+    - avoid repetition in jobs
+    - specify defaults are the top of your pipeline
 
 ## Task: Don't repeat yourself
 
@@ -19,6 +19,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     1. Add `default` with the `image` directive at the top
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="5-6"
     stages:
     - check
@@ -63,4 +65,7 @@ Jobs can still choose to use an image different from the default:
 
 ## Bonus 2: Default values for variables
 
-XXX `variables` outside `default`
+See the official documentation for [`default`](https://docs.gitlab.com/ee/ci/yaml/#default) as well as [`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables) and check how they are related.
+
+??? example "Solution (Click if you are stuck)"
+    Global variables are not located under `default` but under the global `variables` keyword.

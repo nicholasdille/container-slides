@@ -112,6 +112,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     Both jobs `lint` and `audit` must be in the stage `check`.
 
 ??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
     ```yaml linenums="1" hl_lines="5-17"
     stages:
     - check

@@ -17,8 +17,6 @@ Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml
 - `after_script`
 - and some more we will explore later <i class="fa-duotone fa-face-smile-halo fa-duotone-colors"></i>
 
----
-
-## Hands-On
+### Hands-On
 
 See chapter [Variables](/hands-on/20231130/050_defaults/exercise/)
