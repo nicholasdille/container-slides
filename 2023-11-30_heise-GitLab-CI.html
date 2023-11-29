@@ -38,7 +38,7 @@
 
 ![](150_gitlab/media/gitlab-icon-rgb.svg) <!-- .element: style="width: 40%; float: left; margin: 0 -25px 0 -60px;" -->
 
-# GitLab CI - Day 2
+# GitLab CI
 
 *Nicholas Dille, Haufe Group*
 
@@ -70,7 +70,7 @@
 
 ### Fundamentals
 
-[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Image](#/gitlab_image) - [Before and after script](#/gitlab_script_blocks) - [Defaults](#/gitlab_default) - [Artifacts and dependencies](#/gitlab_artifacts) - [Schedules](#/gitlab_schedules) - [Configuration](#/gitlab_ci_configuration)
+[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Image](#/gitlab_image) - [Before and after script](#/gitlab_script_blocks) - [Defaults](#/gitlab_default) - [Artifacts and dependencies](#/gitlab_artifacts) - [Job dependencies](#/gitlab_job_deps) - [Schedules](#/gitlab_schedules) - [Configuration](#/gitlab_ci_configuration) - [Unit tests](#/gitlab_unit_tests)
 
 ### Advanced
 
@@ -126,6 +126,19 @@
 
 <section data-markdown="160_gitlab_ci/000_rollout/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
+<section data-markdown="160_gitlab_ci/010_jobs_and_stages/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/020_variables/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/020_variables/predefined.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/020_variables/ci.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/030_script_blocks/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/040_image/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/050_defaults/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/060_artifacts/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/065_job_dependencies/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/070_schedules/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/080_configuration/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="160_gitlab_ci/090_unit_tests/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
 <section data-markdown="160_gitlab_ci/100_environments/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="160_gitlab_ci/110_triggers/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="160_gitlab_ci/120_templates/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -152,25 +165,34 @@
 
 Download the final pipeline from [160_gitlab_ci/290_final/.gitlab-ci.yml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/.gitlab-ci.yml) as well as the template from [160_gitlab_ci/290_final/go.yaml](https://github.com/nicholasdille/container-slides/raw/20220519.1/160_gitlab_ci/290_final/go.yaml)
 </textarea></section>
-
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-## Summary - Day 1
+## Summary
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
-- <span class="fa-li"><i class="fa-duotone fa-handshake-simple"></i></span> TODO
+- <span class="fa-li"><i class="fa fa-infinity"></i></span> GitLab covers the whole DevOps process
+- <span class="fa-li"><i class="fa fa-ball-pile"></i></span> GitLab is packed with features
+- <span class="fa-li"><i class="fa fa-gauge-min"></i></span> No plugins to support recurring tasks
+- <span class="fa-li"><i class="fa fa-shield-check"></i></span> Useful security features even in free tier
 
-<!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
+<!-- .element: class="fa-ul" -->
 
 ### Upcoming events
 
-~~2023-11-23: Workshop [GitLab Ops](https://heise-academy.de/schulungen/einfuehrung-in-gitlab) (1 day)~~
-
-~~2023-11-30 / 2023-11-07: Workshop [GitLab CI](https://heise-academy.de/schulungen/cicd-gitlab) (2 days)~~
+Christmas
+<i class="fa-duotone fa-star-christmas"></i>
+<i class="fa-duotone fa-angel"></i>
+<i class="fa-duotone fa-lights-holiday"></i>
+<i class="fa-duotone fa-candy-cane"></i>
+<i class="fa-duotone fa-bells"></i>
+<i class="fa-duotone fa-tree-christmas"></i>
+<i class="fa-duotone fa-mistletoe"></i>
+<i class="fa-duotone fa-ornament"></i>
+<i class="fa-duotone fa-sleigh"></i>
+<i class="fa-duotone fa-hat-santa"></i>
+<i class="fa-duotone fa-stocking"></i>
+<i class="fa-duotone fa-gifts"></i>
+</span>
 </textarea></section>
 
 </div>

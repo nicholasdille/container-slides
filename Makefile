@@ -62,6 +62,17 @@ media/fontawesome-pro@%:
 		curl -so $@/webfonts/fa-$${style}.ttf https://cdn.dille.name/fontawesome-pro@$*/webfonts/fa-$${style}.ttf; \
 	done
 
+mkdocs:
+	shiv --output-file ./mkdocs --console-script mkdocs \
+		mkdocs \
+		mkdocs-material \
+		mkdocs-material-extensions \
+		pymdown-extensions \
+		mkdocs-minify-plugin \
+		mkdocs-macros-plugin \
+		mkdocs-redirects \
+		regex
+
 .PHONY:
 clean:
 	@rm -fv *.final.md *.command

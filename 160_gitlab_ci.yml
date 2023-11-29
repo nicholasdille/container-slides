@@ -7,6 +7,17 @@ repo_name: nicholasdille/container-slides
 edit_uri: tree/master/160_gitlab_ci
 
 docs_dir: 160_gitlab_ci
+exclude_docs: |
+  */slides.md
+  020_variables/ci.md
+  020_variables/predefined.md
+  260_runners/local.md
+  260_runners/shared.md
+  260_runners/specific.md
+  280_security/semgrep.md
+  280_security/syft.md
+  280_security/trivy.md
+  000_rollout/.terraform/*
 site_dir: site.160_gitlab_ci
 
 theme:
@@ -102,5 +113,3 @@ nav:
   - Releases: 250_releases/exercise.md
   - Renovate: 270_renovate/exercise.md
   - Security: 280_security/exercise.md
-- Legal:
-  - Impressum: impressum.md

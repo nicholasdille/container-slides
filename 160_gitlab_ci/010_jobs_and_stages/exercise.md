@@ -9,7 +9,11 @@
 
 ## Preparation
 
-XXX checkout sample program
+This workshop is based on an example hello world application written in Go. Get the code using the following command:
+
+```bash
+git checkout origin/160_gitlab_ci/example_app -- '*'
+```
 
 ## Task 1: Create a single job
 

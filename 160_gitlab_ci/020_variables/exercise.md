@@ -117,15 +117,15 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Task 3: Add a CI variable in the UI
 
-This exercise requires an updates version of our hello world program:
+This exercise requires an updates version of our hello world application:
 
 ```bash
 git checkout origin/160_gitlab_ci/020_variables/ci -- main.go
 ```
 
-Read the [official documentation about CI variables](https://docs.gitlab.com/ee/ci/variables/#define-a-cicd-variable-in-the-ui) and extend the build command to provide `main.Author`.
+The application now also prints the name of the author which must be supplied during compilation as well.
 
-XXX
+Read the [official documentation about CI variables](https://docs.gitlab.com/ee/ci/variables/#define-a-cicd-variable-in-the-ui) and extend the build command to provide `main.Author` through a CI variable called `AUTHOR`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 

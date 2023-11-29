@@ -12,8 +12,7 @@ Two days
 
 ## Expected knowledge
 
-- Basic under standing of another CI/CD server, like GitHub, Jenkins and the like
-- XXX
+Basic under standing of another CI/CD server, e.g. GitHub and Jenkins
 
 ## Goals
 
@@ -25,6 +24,4 @@ Learn about the features of GitLab CI and how to use then in a software developm
 
 80% practical exercises
 
-## Environment
-
-XXX GitLab
+The instructure will provide an introduction to a topic. Participants will then work on exercises. The instructor will be available to answer questions and provide hints. The instructor will also demonstrate solutions to the exercises.
