@@ -6,6 +6,16 @@
     - execute unit tests
     - publish results in GitLab
 
+This exercise adds a unit test to the hello world application.
+
+## Preparation
+
+Let's update the code:
+
+```bash
+git chechout origin/160_gitlab_ci/090_unit_tests -- main_test.go go.mod go.sum
+```
+
 ## Task: Publish unit test results
 
 The following commands execute unit tests and automatically convert the results to JUnit using [gotestsum](https://github.com/gotestyourself/gotestsum):
