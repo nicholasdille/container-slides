@@ -27,7 +27,7 @@ gotestsum --junitfile report.xml
 
 See the official documentation for [special artifacts and specifically reports](https://docs.gitlab.com/ee/ci/yaml/artifacts_reports.html#artifactsreportsjunit).
 
-XXX
+Add a job `unit_test` to the stage `check` containing the above commands. The job needs to define a special artifact from the file `report.xml` so that GitLab recognizes it as as JUnit XML report.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run which shows the unit test results on the tab in the overview.
 
