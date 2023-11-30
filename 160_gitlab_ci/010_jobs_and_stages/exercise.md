@@ -72,7 +72,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     2. Add a job called `check` in the stage `check`
 
 ??? example "Solution (Click if you are stuck)"
-    `.gitlab-ci.yaml`:
+    `.gitlab-ci.yml`:
 
     ```yaml linenums="1" hl_lines="1-11"
     stages:
@@ -147,3 +147,5 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout origin/160_gitlab_ci/010_jobs_and_stages/parallel -- '*'
     ```
+
+<!-- TODO: error handling (if, || true etc.) -->

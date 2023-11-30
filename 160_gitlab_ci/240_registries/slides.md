@@ -29,4 +29,4 @@ CI jobs receive environment variables:
 
 ## Hands-On
 
-See chapter [Registries](/hands-on/20231130/240_registries/exercise/)
+See chapter [Registries](/hands-on/2023-11-30/240_registries/exercise/)

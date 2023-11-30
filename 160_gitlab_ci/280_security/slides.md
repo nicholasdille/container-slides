@@ -26,7 +26,7 @@ Available in all tiers:
 
 ## Hands-On
 
-See chapter [Security](/hands-on/20231130/280_security/exercise/)
+See chapter [Security](/hands-on/2023-11-30/280_security/exercise/)
 
 ### Secret detection
 

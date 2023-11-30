@@ -45,7 +45,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     See [complex rules](https://docs.gitlab.com/ee/ci/jobs/job_control.html#complex-rules) for combining conditions using and (`&&`) and or (`||`).
 
 ??? example "Solution (Click if you are stuck)"
-    `.gitlab-ci.yaml`:
+    `.gitlab-ci.yml`:
 
     ```yaml linenums="1" hl_lines="63-71"
     include:
@@ -104,7 +104,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -142,7 +142,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
 ??? example "Solution (Click if you are stuck)"
-    `.gitlab-ci.yaml`:
+    `.gitlab-ci.yml`:
 
     ```yaml linenums="1" hl_lines="1-11"
     workflow:
@@ -213,7 +213,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -325,7 +325,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \

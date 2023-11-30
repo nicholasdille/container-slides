@@ -90,7 +90,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -195,7 +195,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -214,7 +214,7 @@ Create a new project anywhere (!), move `go.yaml` there and fix the `include` ke
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? example "Solution (Click if you are stuck)"
-    `.gitlab-ci.yaml`:
+    `.gitlab-ci.yml`:
 
     ```yaml linenums="1" hl_lines="1-4"
     include:
@@ -275,7 +275,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \

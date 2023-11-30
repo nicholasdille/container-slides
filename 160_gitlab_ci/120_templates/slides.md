@@ -26,9 +26,9 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ---
 
-## Templates
+## Templates 1/
 
-Example:
+The following pipeline...
 
 ```yaml
 .template:
@@ -39,11 +39,79 @@ job_name:
   extends: .template
 ```
 
+...result in the following job:
+
+```yaml
+job_name:
+  image: alpine
+  script: pwd
+```
+
 Keywords from `job_name` are applied after keywords from `.template`
 
-### Hands-On
+---
 
-See chapter [Templates](/hands-on/20231130/120_templates/exercise/)
+## Templates 2/
+
+The following pipeline...
+
+```yaml
+.template:
+  image: alpine
+  script: pwd
+
+job_name:
+  extends: .template
+  script: ls -l
+```
+
+...result in the following job:
+
+```yaml
+job_name:
+  image: alpine
+  script: ls -l
+```
+
+Keywords from `job_name` are applied after keywords from `.template`
+
+---
+
+## Templates 3/3
+
+The following pipeline...
+
+```yaml
+.template:
+  image: alpine
+  variables:
+    foo: bar
+  script: pwd
+
+job_name:
+  extends: .template
+  variables:
+    bar: baz
+```
+
+...result in the following job:
+
+```yaml
+job_name:
+  image: alpine
+  variables:
+    foo: bar
+    bar: baz
+  script: pwd
+```
+
+Variables are merged!
+
+---
+
+## Hands-On
+
+See chapter [Templates](/hands-on/2023-11-30/120_templates/exercise/)
 
 ---
 

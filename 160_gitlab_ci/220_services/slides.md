@@ -27,4 +27,4 @@ No guarantee of availability
 
 ## Hands-On
 
-See chapter [Services](/hands-on/20231130/220_services/exercise/)
+See chapter [Services](/hands-on/2023-11-30/220_services/exercise/)

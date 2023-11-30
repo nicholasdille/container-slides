@@ -24,4 +24,4 @@ Alternatives: Rootless and or daeamonless builds using...
 
 ## Hands-On
 
-See chapter [Jobs and stages](/hands-on/20231130/230_docker/exercise/)
+See chapter [Jobs and stages](/hands-on/2023-11-30/230_docker/exercise/)

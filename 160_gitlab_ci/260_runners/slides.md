@@ -25,3 +25,19 @@ Jobs are executed in a dedicated container
 ### Kubernetes
 
 Jobs are executed in a dedicated pod
+
+---
+
+## Using containers
+
+![](160_gitlab_ci/260_runners/containers.drawio.svg) <!-- .element: style="float: right; width: 25%" -->
+
+Dedicated container/pod per job
+
+Executor talks to Docker / Kubernetes:
+
+1. Creates volume for working directory
+1. Run helper container for checkout into volume
+1. Run build container for build using volume
+
+Services are executed in separate containers next to build container

@@ -24,10 +24,6 @@ Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) wh
 
 Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
 
-### Hands-On
-
-See chapter [Rules](/hands-on/20231130/130_rules/exercise/)
-
 ---
 
 ## Make pipelines conditional
@@ -48,7 +44,7 @@ Conditions are also used in workflow rules
 
 ---
 
-## Hands-On: Workflow rules
+## Workflow rules
 
 Disable execution for some trigger types
 
@@ -66,8 +62,6 @@ workflow:
     when: never
 ```
 
-See chapter [Rules](/hands-on/20231130/130_rules/exercise/)
-
 ---
 
 ## Pro tip: Mind the order
@@ -79,27 +73,6 @@ First match determines result
 Adjust order from most specific...
 
 ...to most general
-
----
-
-## Pro tip: Rule templates
-
-Pipelines often have many jobs
-
-Rules will be repeated multiple times
-
-Combine rules with templates to prevent repetition
-
-```yaml
-.rule-only-web:
-  rules:
-  - if: $CI_PIPELINE_SOURCE == 'web'
-
-job_name:
-  extends:
-  - .rule-only-web
-  #...
-```
 
 ---
 
@@ -124,4 +97,31 @@ Template to disable job:
     when: manual
     allow_failure: true
   - when: on_success
+```
+
+---
+
+## Hands-On
+
+See chapter [Rules](/hands-on/2023-11-30/130_rules/exercise/)
+
+---
+
+## Pro tip: Rule templates
+
+Pipelines often have many jobs
+
+Rules will be repeated multiple times
+
+Combine rules with templates to prevent repetition
+
+```yaml
+.rule-only-web:
+  rules:
+  - if: $CI_PIPELINE_SOURCE == 'web'
+
+job_name:
+  extends:
+  - .rule-only-web
+  #...
 ```

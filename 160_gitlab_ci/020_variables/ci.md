@@ -12,7 +12,7 @@ Careful with protected variables
 
 ### Hands-On
 
-See chapter [Variables](/hands-on/20231130/020_variables/exercise/)
+See chapter [Variables](/hands-on/2023-11-30/020_variables/exercise/)
 
 ---
 
@@ -48,5 +48,5 @@ But masked values can always be leaked through a pipeline:
 ```yaml
 job_name:
   script:
-  - echo "${MASKED_VAR}" | base64
+  - echo "${MASKED_VAR}" | base64 -d
 ```

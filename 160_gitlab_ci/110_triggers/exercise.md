@@ -101,7 +101,7 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -190,7 +190,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -289,7 +289,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \

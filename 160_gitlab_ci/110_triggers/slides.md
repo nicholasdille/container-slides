@@ -30,15 +30,22 @@ Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/c
 
 ## Nomenclature
 
-The preceding pipeline is upstream
+The preceding pipeline is **upstream**
 
-The following pipeline is downstream
+The following pipeline is **downstream**
 
-![](160_gitlab_ci/110_triggers/upstream_downstream.drawio.svg) <!-- .element: style="width: 50%; margin-top: 0.5em;" -->
+The pipeline triggering you is the **upstream pipeline**
 
-### Hands-On: Trigger tokens
+The pipeline you trigger is the **downstream pipeline**
 
-See chapter [Triggers](/hands-on/20231130/110_triggers/exercise/)
+![](160_gitlab_ci/110_triggers/upstream_downstream.drawio.svg) <!-- .element: style="width: 70%; margin-top: 0.5em;" -->
+
+Relationship between pipelines in the above picture:
+
+- Pipeline 1 is upstream of pipeline 2
+- Pipeline 2 is downstream of pipeline 1
+- Pipeline 2 is upstream of pipeline 3
+- Pipeline 3 is downstream of pipeline 2
 
 ---
 
@@ -61,19 +68,26 @@ Trigger owner must be able to either...
 
 ## Multi-project pipelines
 
+Modern alternative to trigger tokens
+
 Launch pipeline in separate project [](https://docs.gitlab.com/ee/ci/pipelines/multi_project_pipelines.html)
 
 Use the `trigger` keyword [](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger)
 
-### Hands-On
+### Example
 
-See chapter [Triggers](/hands-on/20231130/110_triggers/exercise/)
+```yaml
+job_name:
+  trigger:
+    project: <path-to-project>
+    branch: main
+```
+
+`trigger.branch` is optional
 
 ---
 
-## Hands-On: Parent-child pipelines
-
-See chapter [Triggers](/hands-on/20231130/110_triggers/exercise/)
+## Parent-child pipelines
 
 Child pipeline can be made from multiple files
 
@@ -81,7 +95,26 @@ Child pipeline can be made from multiple files
 
 Use `project`/`ref`/`file` for files in other repositories
 
-Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
+### Example
+
+```yaml
+job_name:
+  trigger:
+    include: <relative-path-to-file>
+
+job_name2:
+  trigger:
+    include:
+    - project: <path-to-project>
+      ref: main
+      file: <relative-path-to-file>
+```
+
+---
+
+## Hands-On
+
+See chapter [Triggers](/hands-on/2023-11-30/110_triggers/exercise/)
 
 ---
 
@@ -128,7 +161,7 @@ job_name:
 
 ## Dynamic includes
 
-Include can be generated on-demand:
+Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
 
 ```yaml
 generate:

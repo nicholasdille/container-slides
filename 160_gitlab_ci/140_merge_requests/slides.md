@@ -14,10 +14,8 @@ Pipelines can automatically test merge requests [](https://docs.gitlab.com/ee/ci
 
 Commits to a branch with a merge request cause multiple events:
 
-1. Push event to branch
-1. Merge request event
-
-XXX difference
+1. Push event to branch -> **branch pipeline**
+1. Merge request event -> **merge request pipeline**
 
 Use rules [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) to decide which jobs to run when
 
@@ -25,6 +23,18 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 
 ---
 
+## Merge request pipelines
+
+### What make them different
+
+Only run when configured using the `rules` keyword [](https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html#use-rules-to-add-jobs)
+
+Have access to more pre-defined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines)
+
+Do not have access to protected variables
+
+---
+
 ## Hands-On
 
-See chapter [Merge requests](/hands-on/20231130/140_merge_requests/exercise/)
+See chapter [Merge requests](/hands-on/2023-11-30/140_merge_requests/exercise/)

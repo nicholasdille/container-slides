@@ -26,4 +26,4 @@ Matrix variables can be used for...
 
 ## Hands-On
 
-See chapter [Matrix jobs](/hands-on/20231130/150_matrix_jobs/exercise/)
+See chapter [Matrix jobs](/hands-on/2023-11-30/150_matrix_jobs/exercise/)

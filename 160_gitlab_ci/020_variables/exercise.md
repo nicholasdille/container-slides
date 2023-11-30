@@ -182,3 +182,5 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 <!-- TODO: masked variables -->
 
 <!-- TODO: protected variables -->
+
+<!-- TODO: default values and descriptions -->

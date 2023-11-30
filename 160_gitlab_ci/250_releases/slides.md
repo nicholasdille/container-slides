@@ -28,7 +28,7 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 
 ## Hands-On
 
-See chapter [Jobs and stages](/hands-on/20231130/250_releases/exercise/)
+See chapter [Releases](/hands-on/2023-11-30/250_releases/exercise/)
 
 ---
 

@@ -19,7 +19,7 @@ Create CI variables for use in the following exercises:
 Add a new stage `deploy` with a job called `deploy` and use the following commands to upload the binary to the dev environment:
 
 ```bash
-curl https://seat${SEAT_INDEX}.dev.inmylab.de/ \
+curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
     --fail \
     --verbose \
     --upload-file hello \
@@ -33,7 +33,7 @@ apt-get update
 apt-get -y install curl ca-certificates
 ```
 
-Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to download the `hello` binary from `https://seatN.dev.inmylab.de/hello`.
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to download the `hello` binary from `https://seatN.dev.webdav.inmylab.de/hello`.
 
 ??? info "Hint (Click if you are stuck)"
     Install `curl` in a `before_script` to separate the preparation from the core steps:
@@ -107,7 +107,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \

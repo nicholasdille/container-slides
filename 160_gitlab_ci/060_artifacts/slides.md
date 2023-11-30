@@ -30,12 +30,6 @@ Add untracked files
 
 ---
 
-## Hands-On
-
-See chapter [Artifacts](/hands-on/20231130/060_artifacts/exercise/)
-
----
-
 ## Dependencies
 
 Jobs can restrict which job artifacts to receive
@@ -85,3 +79,9 @@ job_name2:
 ```
 
 `dependencies` as well as `needs` limit from which jobs they are consumed
+
+---
+
+## Hands-On
+
+See chapter [Artifacts](/hands-on/2023-11-30/060_artifacts/exercise/)

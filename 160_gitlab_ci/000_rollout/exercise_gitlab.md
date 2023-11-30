@@ -22,24 +22,6 @@ Go to [https://gitlab.inmylab.de](https://gitlab.inmylab.de) and login with your
 
     Your password is a long, random string which is displayed on the web pages access in the previous task.
 
-??? example "Solution (Click if you are stuck)"
-    `.gitlab-ci.yml`:
-
-    ```yaml linenums="1"
-    build:
-      script:
-      - apk update
-      - apk add go
-      - go build -o hello .
-      - ./hello
-    ```
-    
-    If you want to jump to the solution, execute the following command:
-
-    ```bash
-    git checkout origin/160_gitlab_ci/010_jobs_and_stages/build -- '*'
-    ```
-
 ## Task 3: Access the demo project
 
 A personal project has been provisioned for you to follow this workshop. It is called `demo`. Let's find it!

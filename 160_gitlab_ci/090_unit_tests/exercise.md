@@ -13,7 +13,7 @@ This exercise adds a unit test to the hello world application.
 Let's update the code:
 
 ```bash
-git chechout origin/160_gitlab_ci/090_unit_tests -- main_test.go go.mod go.sum
+git checkout origin/160_gitlab_ci/090_unit_tests -- main_test.go go.mod go.sum
 ```
 
 ## Task: Publish unit test results
@@ -26,6 +26,8 @@ gotestsum --junitfile report.xml
 ```
 
 See the official documentation for [special artifacts and specifically reports](https://docs.gitlab.com/ee/ci/yaml/artifacts_reports.html#artifactsreportsjunit).
+
+XXX
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run which shows the unit test results on the tab in the overview.
 

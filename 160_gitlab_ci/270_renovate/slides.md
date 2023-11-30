@@ -26,7 +26,7 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 
 ## Hands-On
 
-See chapter [Renovate](/hands-on/20231130/270_renovate/exercise/)
+See chapter [Renovate](/hands-on/2023-11-30/270_renovate/exercise/)
 
 (With proper configuration Renovate will automerge tested merge requests.)
 

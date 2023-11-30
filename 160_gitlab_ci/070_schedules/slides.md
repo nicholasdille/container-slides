@@ -24,4 +24,4 @@ Maximum frequency configured during instance rollout [](https://docs.gitlab.com/
 
 ### Hands-On
 
-See chapter [Schedules](/hands-on/20231130/070_schedules/exercise/)
+See chapter [Schedules](/hands-on/2023-11-30/070_schedules/exercise/)

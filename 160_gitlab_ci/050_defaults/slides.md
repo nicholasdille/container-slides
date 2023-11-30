@@ -17,6 +17,16 @@ Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml
 - `after_script`
 - and some more we will explore later <i class="fa-duotone fa-face-smile-halo fa-duotone-colors"></i>
 
+### Example
+
+```yaml
+default:
+  image: alpine
+  before_script: echo "Welcome to this job"
+job_name:
+  #...
+```
+
 ### Hands-On
 
-See chapter [Variables](/hands-on/20231130/050_defaults/exercise/)
+See chapter [Defaults](/hands-on/2023-11-30/050_defaults/exercise/)

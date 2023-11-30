@@ -14,6 +14,8 @@ CI variables can be scoped to environments
 
 Environments are auto-created by the first job using them
 
+### Our environments
+
 Your demo environment has hidden services
 
 ![](160_gitlab_ci/100_environments/webdav.drawio.svg) <!-- .element: style="width: 70%;" -->
@@ -22,9 +24,9 @@ WebDAV endpoints emulate deployment targets
 
 ---
 
-## Hands-On (1/2)
+## Hands-On
 
-See chapter [Environments](/hands-on/20231130/100_environments/exercise/)
+See chapter [Environments](/hands-on/2023-11-30/100_environments/exercise/)
 
 ---
 
@@ -34,10 +36,6 @@ Branches can be used to represent target environments:
 
 - `dev` for development branch
 - `live` for production code
-
-### Hands-On (2/2)
-
-See chapter [Environments](/hands-on/20231130/100_environments/exercise/)
 
 ---
 
