@@ -111,7 +111,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seat:${PASS}
+            --user seatN:${PASS}
 
     pages:
       stage: deploy
@@ -237,7 +237,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seat:${PASS}
+            --user seatN:${PASS}
 
     pages:
       stage: deploy

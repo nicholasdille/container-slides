@@ -131,7 +131,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello-linux-amd64 \
-            --user seat:${PASS}
+            --user seatN:${PASS}
 
     pages:
       stage: deploy

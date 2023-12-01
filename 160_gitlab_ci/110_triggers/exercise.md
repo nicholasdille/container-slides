@@ -105,7 +105,7 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
             --fail \
             --verbose \
             --upload-file hello \
-            --user seat:${PASS}
+            --user seatN:${PASS}
 
     trigger:
       stage: trigger
@@ -194,7 +194,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seat:${PASS}
+            --user seatN:${PASS}
     
     trigger:
       stage: trigger
@@ -293,7 +293,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seat:${PASS}
+            --user seatN:${PASS}
     
     trigger:
       stage: trigger
