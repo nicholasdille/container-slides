@@ -48,4 +48,4 @@ deploy:
         --fail \
         --verbose \
         --upload-file hello \
-        --user seat:${PASS}
+        --user seat${SEAT_INDEX}:${PASS}
