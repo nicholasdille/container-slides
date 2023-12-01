@@ -44,7 +44,7 @@ deploy:
   - apt-get -y install curl ca-certificates
   script:
   - |
-    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+    curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
         --fail \
         --verbose \
         --upload-file hello \
