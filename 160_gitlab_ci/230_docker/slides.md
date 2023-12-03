@@ -14,14 +14,33 @@ Use `docker:dind` for containerized Docker daemon
 
 The GitLab runner must be configured to run privileged container
 
-Alternatives: Rootless and or daeamonless builds using...
+```yaml
+job_name:
+  services:
+  - name: docker:dind
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+  script: docker build .
+```
+
+### Hands-On
+
+See chapter [Jobs and stages](/hands-on/2023-11-30/230_docker/exercise/)
+
+---
+
+## Security implications
+
+Privileged containers enable host breakouts
+
+Mitigate using gvisor, kata-containers, sysbox
+
+### Alternatives to Docker-in-Docker
+
+Rootless and/or daeamonless builds using...
 
 - kaniko [](https://github.com/GoogleContainerTools/kaniko)
 - podman/buildah [](https://github.com/containers/buildah)
 - BuildKit [](https://github.com/moby/buildkit)
 
----
-
-## Hands-On
-
-See chapter [Jobs and stages](/hands-on/2023-11-30/230_docker/exercise/)
+Question of security vs. usability

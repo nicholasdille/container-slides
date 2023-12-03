@@ -10,13 +10,15 @@
 
 Automated updates of dependencies [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) [<i class="fa-brands fa-github"></i>](https://github.com/renovatebot/renovate) [<i class="fa-solid fa-book"></i>](https://docs.renovatebot.com/)
 
+XXX more motivation
+
 Container image available [](https://hub.docker.com/r/renovate/renovate)
 
 Not tightly integrated into GitLab
 
 ### Options
 
-Pipeline-integrated optionally with official template [](https://gitlab.com/renovate-bot/renovate-runner)
+Pipeline job - optionally with official template [](https://gitlab.com/renovate-bot/renovate-runner)
 
 Cron job running separate from GitLab instance
 

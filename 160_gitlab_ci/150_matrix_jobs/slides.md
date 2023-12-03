@@ -16,11 +16,37 @@ Inputs are specified using environment variables
 
 The `matrix` keyword under `parallel` defines variables sets
 
+### Example
+
+```yaml
+job_name:
+  parallel:
+    matrix:
+    - FOO: bar
+    - FOO: baz
+    - FOO: [ABC CED FGH]
+```
+
+---
+
+## Using matrix inputs
+
 Matrix variables can be used for...
 
 - Script blocks
 - Runner tags
 - Image
+
+### Example
+
+```yaml
+job_name:
+  parallel:
+    matrix:
+    - STAGE: [ qa, live ]
+  image: reg.comp.org/${STAGE}/image:tag
+  script: echo "${STAGE}"
+```
 
 ---
 

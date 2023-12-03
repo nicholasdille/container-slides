@@ -25,3 +25,17 @@ Maximum frequency configured during instance rollout [](https://docs.gitlab.com/
 ### Hands-On
 
 See chapter [Schedules](/hands-on/2023-11-30/070_schedules/exercise/)
+
+---
+
+## Heads-Up: Maximum frequency
+
+The internal pipeline schedule worker is configured with...
+
+```plaintext
+3-59/10 * * * *
+```
+
+Scheduled pipelines cannot run more often
+
+Adjust the masximum frequency for schedules pipelines [](https://docs.gitlab.com/ee/administration/cicd.html#change-maximum-scheduled-pipeline-frequency)

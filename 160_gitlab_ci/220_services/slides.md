@@ -25,6 +25,26 @@ No guarantee of availability
 
 ---
 
-## Hands-On
+## Example
+
+### Services for the whole pipeline
+
+```yaml
+services:
+- name: nginx:stable
+job_name:
+  script: curl -sv http://nginx
+```
+
+### Services for a single job
+
+```yaml
+job_name:
+  services:
+  - name: nginx:stable
+  script: curl -sv http://nginx
+```
+
+### Hands-On
 
 See chapter [Services](/hands-on/2023-11-30/220_services/exercise/)

@@ -2,13 +2,22 @@
 - Code auth ohne Benutzer?
 - Vorwissen... Linux/bash
 
-- Artifact conflict?! Last writer wins!
-- Artifact size https://docs.gitlab.com/ee/administration/settings/continuous_integration.html#maximum-artifacts-size
-- scheduler frequency https://docs.gitlab.com/ee/administration/cicd.html#change-maximum-scheduled-pipeline-frequency
 - Wartungsmodus in Bezahlversion https://docs.gitlab.com/ee/administration/maintenance_mode/index.html
 
 - registry auth als dotenv?
-- email?!
 
 - Exkurs? Struktur von Gruppen und Berechtigungen
 - Exkurs? Runner Setup
+
+- TODO
+  - Exercises starting with 140_merge_requests
+  - Caches: Runner-local cache -> Demo/exercise and slides
+  - Releases: Generic asset in package registry -> slides
+  - Error handling: slides
+  - Runners: Compare instance/group/project
+  - Runners: More about configuration
+  - Renovate: More motivation
+  - Renovate: More pro tips?
+  - Security: Slides for features
+  - Security: Slides for syft/grype/trivy/semgrep?
+  - Deckblatt for final pipeline slides

@@ -85,3 +85,23 @@ job_name2:
 ## Hands-On
 
 See chapter [Artifacts](/hands-on/2023-11-30/060_artifacts/exercise/)
+
+---
+
+## Maximum artifact size
+
+By default, artifacts can not be larger tham 100MB [](https://docs.gitlab.com/ee/administration/settings/continuous_integration.html#maximum-artifacts-size)
+
+Can be configured...
+
+- for the whole instance
+- per group
+- per project
+
+---
+
+## Conflicting artifact names
+
+When two jobs produce an artifact with the same name...
+
+...the last job to finish wins

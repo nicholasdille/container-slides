@@ -14,6 +14,8 @@ Pipeline jobs can create releases [](https://docs.gitlab.com/ee/user/project/rel
 
 Release assets can be linked but must be stored elsewhere
 
+### `release-cli` required
+
 `release-cli` [](https://gitlab.com/gitlab-org/release-cli) must be available
 
 Container images are publicly available [](https://gitlab.com/gitlab-org/release-cli/container_registry)
@@ -36,4 +38,4 @@ See chapter [Releases](/hands-on/2023-11-30/250_releases/exercise/)
 
 asset in package registry
 
-https://docs.gitlab.com/ee/user/packages/generic_packages/
+XXX https://docs.gitlab.com/ee/user/packages/generic_packages/

@@ -43,5 +43,5 @@ job_name:
   script:
   - |
     git config --global \
-        url."https://gerrit.yyy/".insteadOf "ssh://gerrit.yyy"
+        url."https://gitlab.inmylab.de/".insteadOf "ssh://git@gitlab.inmylab.de/"
 ```

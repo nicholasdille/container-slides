@@ -20,7 +20,9 @@ Subsequent jobs can pull from the cache to hit the ground running
 
 Examples for many programming languages [](https://docs.gitlab.com/ee/ci/caching/#common-use-cases-for-caches)
 
-### No hands-on because...
+---
+
+## No hands-on for caches
 
 Runner local cache requires persistent volume for Docker executor [](https://docs.gitlab.com/ee/ci/caching/#where-the-caches-are-stored)
 
