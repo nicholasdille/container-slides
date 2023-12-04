@@ -1,0 +1,77 @@
+include:
+- local: go.yaml
+
+stages:
+- check
+- build
+- test
+- deploy
+- trigger
+
+default:
+  image: golang:1.19.2
+
+lint:
+  stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+  - go vet .
+
+build:
+  stage: build
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends: .build-go
+
+test:
+  stage: test
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends: .test-go
+
+deploy:
+  stage: deploy
+  rules:
+  - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
+  environment:
+    name: ${CI_COMMIT_REF_NAME}
+  before_script:
+  - apt-get update
+  - apt-get -y install curl ca-certificates
+  script:
+  - |
+    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+        --fail \
+        --verbose \
+        --upload-file hello \
+        --user seat:${PASS}
+
+pages:
+  stage: deploy
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  image: alpine
+  script:
+  - cp hello-linux-amd64 public/hello
+  artifacts:
+    paths:
+    - public
+
+trigger:
+  stage: trigger
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  trigger:
+    include: child.yaml
