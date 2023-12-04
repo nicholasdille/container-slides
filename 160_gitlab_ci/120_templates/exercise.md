@@ -94,7 +94,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
     
     trigger:
       stage: trigger
@@ -103,6 +103,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
     You decide whether `artifacts` is part of the template or not!
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/120_templates/inline -- '*'
+    ```
 
 ## Task 2: Loading templates from a local file
 
@@ -199,12 +205,18 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
     
     trigger:
       stage: trigger
       trigger:
         include: child.yaml
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/120_templates/local -- '*'
     ```
 
 ## Task 3: Loading templates from another project
@@ -279,7 +291,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
     
     trigger:
       stage: trigger

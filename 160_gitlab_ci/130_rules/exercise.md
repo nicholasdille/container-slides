@@ -33,7 +33,7 @@ pages:
 
 Review the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword to limit the job `pages` to run when...
 
-- the pipeline wastriggered by a push event
+- the pipeline was triggered by a push event
 - the change applied to the default branch
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
@@ -108,7 +108,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
 
     pages:
       stage: deploy
@@ -124,6 +124,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: trigger
       trigger:
         include: child.yaml
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/130_templates -- '*'
     ```
 
 ## Task 2: Prevent a pipeline from running
@@ -217,7 +223,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
 
     pages:
       stage: deploy
@@ -234,8 +240,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       trigger:
         include: child.yaml
     ```
+    
+    If you want to jump to the solution, execute the following command:
 
-This was just a demonstration. The changes will not be preserved in the following chapters.
+    ```bash
+    git checkout origin/160_gitlab_ci/130_rules_workflow -- '*'
+    ```
 
 ## Task 3: Use deploy freeze
 
@@ -329,7 +339,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
 
     pages:
       stage: deploy

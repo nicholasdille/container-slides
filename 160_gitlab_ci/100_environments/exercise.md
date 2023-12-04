@@ -23,7 +23,7 @@ curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
     --fail \
     --verbose \
     --upload-file hello \
-    --user seatN:${PASS}
+    --user seat${SEAT_INDEX}:${PASS}
 ```
 
 Mind that `curl` is not available in the default image `golang:1.19.2` but must be installed using the following commands. Apply what you learned about script blocks as well as separating commands into preparation, core steps and cleanup.
@@ -111,7 +111,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/100_environments/demo1 -- '*'
     ```
 
 ## Task 2: Add deployment to development environment
@@ -182,7 +188,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/100_environments/demo2 -- '*'
     ```
 
 This was just a demonstration. The changes will not be preseved in the following chapters.

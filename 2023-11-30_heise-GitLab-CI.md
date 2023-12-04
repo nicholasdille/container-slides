@@ -10,7 +10,7 @@
 - Exkurs? Runner Setup
 
 - TODO
-  - Exercises starting with 140_merge_requests
+  - Finish exercises starting with 140_merge_requests
   - Caches: Runner-local cache -> Demo/exercise and slides
   - Releases: Generic asset in package registry -> slides
   - Error handling: slides

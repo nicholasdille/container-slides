@@ -105,7 +105,7 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
 
     trigger:
       stage: trigger
@@ -116,6 +116,12 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
             -F token=$TOKEN \
             -F ref=main \
             https://gitlab.inmylab.de/api/v4/projects/9999/trigger/pipeline
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/110_triggers/curl -- '*'
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
@@ -194,7 +200,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
     
     trigger:
       stage: trigger
@@ -293,12 +299,18 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
     
     trigger:
       stage: trigger
       trigger:
         include: child.yaml
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/110_triggers/parent-child -- '*'
     ```
 
 <!-- TODO: variable inheritence -->

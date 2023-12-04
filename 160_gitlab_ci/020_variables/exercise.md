@@ -177,7 +177,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     
     If you want to jump to the solution, execute the following command:
 
+    ```bash
     git checkout origin/160_gitlab_ci/020_variables/ci -- '*'
+    ```
 
 <!-- TODO: masked variables -->
 

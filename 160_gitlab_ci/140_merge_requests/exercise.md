@@ -3,15 +3,20 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - run pipelines in the context of a merge request using rules
+    - use template to avoid repetition when using rules
 
 ## Task 1: Use rules to run in merge request context
 
-XXX run on push to main and MR: `lint`, `audit`, `unit_tests`, `build`, `test`
+In the last chapter about `rules`, you learned how to use `$CI_PIPELINE_SOURCE` to restrict execution to specific events. You will need this now.
 
-XXX run only on push to main: `trigger`
+On the branch `main`, add rules to the jobs to specify when to run them:
 
-XXX keep rules on `pages`
+1. For the jobs `lint`, `audit`, `unit_tests`, `build` and `test`, add rules so that the jobs are executed when...
+    1. pushing to the default branch
+    1. running in merge request context
+1. Run the job `trigger` only when pushing to the default branch
+1. Do not modify the existing rules for the job `pages`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -111,7 +116,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
 
     pages:
       stage: deploy
@@ -130,15 +135,40 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       trigger:
         include: child.yaml
     ```
+    
+    If you want to jump to the solution, execute the following command:
 
-## Task 2: Avoid repetition using rule templates
+    ```bash
+    git checkout origin/160_gitlab_ci/140_merge_requests -- '*'
+    ```
 
-XXX
+## Task 2: Create a merge request
+
+Now we want to check which jobs are executed in the context of a merge request:
+
+1. Create a new branch based on `main`
+1. Create a merge request into `main`
+
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
+
+## Bonus: Explore additional predefined variables
+
+On the branch of the merge request, add a job and run `printenv` to get a list of variables available to the pipeline. Check out additional variables specific to merge request pipelines. See also the [official documentation](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines).
+
+## Task 3: Avoid repetition using rule templates
+
+In the first task we have implemented the same set of rules for multiple jobs. By combining rules with templates, this repetition can be avoided.
+
+1. Create an inline template called `.run-on-push-to-default` with the corresponding rule(s)
+1. Create a second inline template called `.run-on-push-and-mr` with the corresponding rule(s)
+1. Modify the jobs to use the rule templates
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    Use `extends` to use the rule template in a job.
+
+    Remember that only `variables` are kumulative. All other keywords overwrite each other in the order of appearance.
 
 ??? example "Solution (Click if you are stuck)"
     ```yaml linenums="1" hl_lines="18-25 39-40 46-47 53-55 65-66 75-76 83-84 100-101 110-111"
@@ -237,7 +267,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --fail \
             --verbose \
             --upload-file hello \
-            --user seatN:${PASS}
+            --user seat${SEAT_INDEX}:${PASS}
 
     pages:
       stage: deploy
@@ -255,4 +285,10 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - .run-on-push-to-default-branch
       trigger:
         include: child.yaml
+    ```
+    
+    If you want to jump to the solution, execute the following command:
+
+    ```bash
+    git checkout origin/160_gitlab_ci/140_merge_requests_rule_templates -- '*'
     ```
