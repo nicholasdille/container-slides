@@ -1,0 +1,29 @@
+# crictl: CNI
+
+# Create bridge configuration
+cat <<EOF >/etc/cni/net.d/10-bridge.conf
+{
+  "cniVersion": "0.3.1",
+  "name": "mynet",
+  "type": "bridge",
+  "bridge": "cni0",
+  "isGateway": true,
+  "ipMasq": true,
+  "ipam": {
+    "type": "host-local",
+    "subnet": "10.42.0.0/16",
+    "routes": [
+      { "dst": "0.0.0.0/0" }
+    ]
+  }
+}
+EOF
+
+# Create loopback configuration
+cat <<EOF >/etc/cni/net.d/99-loopback.conf
+{
+  "cniVersion": "0.3.1",
+  "name": "lo",
+  "type": "loopback"
+}
+EOF

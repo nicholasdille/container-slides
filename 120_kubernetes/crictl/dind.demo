@@ -1,0 +1,52 @@
+# crictl: dind
+
+# Create pod definition
+cat <<EOF >pod.json
+{
+    "metadata": {
+        "name": "dind",
+        "namespace": "default",
+        "attempt": 1,
+        "uid": "hdishd83djaidwnduwk28bcsb"
+    },
+    "linux": {
+        "security_context": {
+            "privileged": true
+         }
+    },
+    "log_directory": "/tmp"
+}
+EOF
+
+# Create container definition
+cat <<EOF >container.json
+{
+    "metadata": {
+        "name": "dind"
+    },
+    "image":{
+        "image": "docker.io/library/docker:dind"
+    },
+    "command": [
+        "sh", "-c", "while true; do sleep 10; done"
+    ],
+    "log_path":"nginx.0.log",
+    "linux": {
+        "security_context": {
+            "privileged": true
+        }
+    }
+}
+EOF
+
+# Create pod
+POD="$( crictl runp --runtime runsc sandbox.json )"
+
+# Create container
+CONTAINER="$( crictl create ${POD} pod.json container.json )"
+
+# Stop pod
+crictl stopp ${POD}
+
+# Remove pod
+crictl rmp ${POD}

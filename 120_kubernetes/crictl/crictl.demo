@@ -1,0 +1,41 @@
+# crictl: nginx
+
+# Create pod definition
+cat <<EOF >pod.json
+{
+    "metadata": {
+        "name": "nginx",
+        "namespace": "default",
+        "attempt": 1,
+        "uid": "hdishd83djaidwnduwk28bcsb"
+    },
+    "linux": {},
+    "log_directory": "/tmp"
+}
+EOF
+
+# Create container definition
+cat <<EOF >container.json
+{
+    "metadata": {
+        "name": "dind"
+    },
+    "image":{
+        "image": "docker.io/library/nginx:stable"
+    },
+    "log_path":"nginx.0.log",
+    "linux": {}
+}
+EOF
+
+# Create pod
+POD="$( crictl runp --runtime runsc sandbox.json )"
+
+# Create container
+CONTAINER="$( crictl create ${POD} pod.json container.json )"
+
+# Stop pod
+crictl stopp ${POD}
+
+# Remove pod
+crictl rmp ${POD}
