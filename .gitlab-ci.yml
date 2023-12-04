@@ -1,5 +1,28 @@
+workflow:
+  rules:
+  - if: $CI_DEPLOY_FREEZE
+    when: never
+  - if: $CI_PIPELINE_SOURCE == 'push'
+  - if: $CI_PIPELINE_SOURCE == 'web'
+  - if: $CI_PIPELINE_SOURCE == 'schedule'
+  - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  - if: $CI_PIPELINE_SOURCE == 'pipeline'
+  - if: $CI_PIPELINE_SOURCE == 'api'
+    when: never
+  - if: $CI_PIPELINE_SOURCE == 'trigger'
+    when: never
+  
 include:
 - local: go.yaml
+
+.run-on-push-to-default-branch:
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+
+.run-on-push-and-in-mr:
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 stages:
 - check
@@ -13,33 +36,29 @@ default:
 
 lint:
   stage: check
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends:
+  - .run-on-push-and-in-mr
   script:
   - go fmt .
 
 audit:
   stage: check
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends:
+  - .run-on-push-and-in-mr
   script:
   - go vet .
 
 build:
   stage: build
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-  extends: .build-go
+  extends:
+  - .run-on-push-and-in-mr
+  - .build-go
 
 test:
   stage: test
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-  extends: .test-go
+  extends:
+  - .run-on-push-and-in-mr
+  - .test-go
 
 deploy:
   stage: deploy
@@ -60,8 +79,8 @@ deploy:
 
 pages:
   stage: deploy
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  extends:
+  - .run-on-push-to-default-branch
   image: alpine
   script:
   - cp hello-linux-amd64 public/hello
@@ -71,7 +90,7 @@ pages:
 
 trigger:
   stage: trigger
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  extends:
+  - .run-on-push-to-default-branch
   trigger:
     include: child.yaml
