@@ -16,14 +16,14 @@ renovate:
   stage: check
   rules:
   - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE'
-  image: renovate/renovate:32.236.0
+  image: renovate/renovate
   variables:
     LOG_LEVEL: debug
   script: |
     renovate --platform gitlab \
-        --endpoint https://gitlab.seat${SEAT_INDEX}.inmylab.de/api/v4 \
-        --token ${RENOVATE_TOKEN} \
-        --autodiscover true
+        --endpoint ${CI_API_V4_URL} \
+        --token ${CI_JOB_TOKEN} \
+        ${CI_PROJECT_PATH}
 
 lint:
   stage: check
