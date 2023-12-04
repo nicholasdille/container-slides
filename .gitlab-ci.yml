@@ -74,7 +74,7 @@ deploy:
     curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
         --fail \
         --verbose \
-        --upload-file hello \
+        --upload-file hello-linux-amd64 \
         --user seat${SEAT_INDEX}:${PASS}
 
 pages:
