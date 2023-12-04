@@ -1,5 +1,28 @@
+workflow:
+  rules:
+  - if: $CI_DEPLOY_FREEZE
+    when: never
+  - if: $CI_PIPELINE_SOURCE == 'push'
+  - if: $CI_PIPELINE_SOURCE == 'web'
+  - if: $CI_PIPELINE_SOURCE == 'schedule'
+  - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  - if: $CI_PIPELINE_SOURCE == 'pipeline'
+  - if: $CI_PIPELINE_SOURCE == 'api'
+    when: never
+  - if: $CI_PIPELINE_SOURCE == 'trigger'
+    when: never
+  
 include:
 - local: go.yaml
+
+.run-on-push-to-default-branch:
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+
+.run-on-push-and-in-mr:
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 stages:
 - check
@@ -11,6 +34,9 @@ stages:
 
 default:
   image: golang:1.19.2
+
+services:
+- nginx:1.20.2
 
 renovate:
   stage: check
@@ -27,33 +53,36 @@ renovate:
 
 lint:
   stage: check
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends:
+  - .run-on-push-and-in-mr
   script:
   - go fmt .
 
 audit:
   stage: check
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  extends:
+  - .run-on-push-and-in-mr
   script:
   - go vet .
 
 build:
   stage: build
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-  extends: .build-go
+  extends:
+  - .run-on-push-and-in-mr
+  - .build-go
 
 test:
   stage: test
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-  extends: .test-go
+  extends:
+  - .run-on-push-and-in-mr
+  - .test-go
+
+test-service:
+  stage: test
+  extends:
+  - .run-on-push-to-default-branch
+  script:
+  - curl -s http://nginx
 
 deploy:
   stage: deploy
@@ -66,16 +95,16 @@ deploy:
   - apt-get -y install curl ca-certificates
   script:
   - |
-    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+    curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
         --fail \
         --verbose \
-        --upload-file hello \
-        --user seat:${PASS}
+        --upload-file hello-linux-amd64 \
+        --user seat${SEAT_INDEX}:${PASS}
 
 pages:
   stage: deploy
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  extends:
+  - .run-on-push-to-default-branch
   image: registry.gitlab.com/gitlab-org/release-cli:v0.14.0
   release:
     tag_name: ${CI_PIPELINE_IID}
@@ -93,8 +122,8 @@ pages:
 package:
   image: docker:20.10.18
   stage: package
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  extends:
+  - .run-on-push-to-default-branch
   services:
   - name: docker:20.10.18-dind
     command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
@@ -110,7 +139,7 @@ package:
 
 trigger:
   stage: trigger
-  rules:
-  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == "main"'
+  extends:
+  - .run-on-push-to-default-branch
   trigger:
     include: child.yaml
