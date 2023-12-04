@@ -1,0 +1,7 @@
+.build-go:
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+        -o hello \
+        .
