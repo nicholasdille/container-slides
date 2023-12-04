@@ -29,6 +29,7 @@ stages:
 - build
 - test
 - deploy
+- package
 - trigger
 
 default:
