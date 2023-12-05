@@ -3,16 +3,25 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - detect secrets in your code
+    - detect vulnerabilities in your code
 
-## Task 1: XXX
+## Task: Add integrated security scans
 
-XXX
+GitLab offers multiple security scanners in the community edition:
+
+1. Checkout the [official documentation](https://docs.gitlab.com/ee/user/application_security/secret_detection/index.html) for secret detection and integrate it into your pipeline
+1. Checkout the [official documentation](https://docs.gitlab.com/ee/user/application_security/sast/index.html) for static application security testing and integrate it into your pipeline
+1. Checkout the [official documentation](https://docs.gitlab.com/ee/user/application_security/container_scanning/index.html) for container scanning and integrate it into your pipeline
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    The following templates are available for the above features:
+
+    - Secret detection: `Security/Secret-Detection.gitlab-ci.yml`
+    - Static application security testing: `Security/SAST.gitlab-ci.yml`
+    - Container scanning: `Security/Container-Scanning.gitlab-ci.yml`
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
@@ -36,6 +45,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - local: go.yaml
     - template: Security/Secret-Detection.gitlab-ci.yml
     - template: Security/SAST.gitlab-ci.yml
+    - template: Security/Container-Scanning.gitlab-ci.yml
+
+    container_scanning:
+      variables:
+        CS_DEFAULT_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
     
     .run-on-push-to-default-branch:
       rules:
@@ -172,3 +186,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout origin/160_gitlab_ci/280_security -- '*'
     ```
+
+!!! tip "Heads-Up"
+    You can also [select a different scanner for container scanning](https://docs.gitlab.com/ee/user/application_security/container_scanning/index.html#change-scanners) using the variable `$CS_ANALYZER_IMAGE`. The following values are available:
+
+    | Scanner         | Image                                                            |
+    |-----------------|------------------------------------------------------------------|
+    | Default (trivy) | registry.gitlab.com/security-products/container-scanning:6       |
+    | Grype           | registry.gitlab.com/security-products/container-scanning/grype:6 |
+    | Trivy           | registry.gitlab.com/security-products/container-scanning/trivy:6 |

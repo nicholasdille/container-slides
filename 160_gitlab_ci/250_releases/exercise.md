@@ -8,12 +8,32 @@
 
 ## Task: Create a release
 
-XXX release, release-cli
+GitLab can create [releases](https://docs.gitlab.com/ee/user/project/releases/index.html) based on a Git tag. The release can contain a description and links to assets. The assets must be stored elsewhere.
+
+1. Check out the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#release) about the `release` keyword
+1. Modify the job `pages` to create a release in addition to the script block
+1. The release should be based on the current commit hash (`$CI_COMMIT_SHA`)
+1. Use the unique pipeline ID (`$CI_PIPELINE_IID`) as the tag name
+1. Set an arbitrary name and description
+
+For the `release` keyword to work, the `release-cli` binary must be present in the execution environment of the job:
+
+1. Set `image` to `registry.gitlab.com/gitlab-org/release-cli:v0.14.0`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    Your release should look similar to this:
+
+    ```yaml
+    release:
+      tag_name: ${CI_PIPELINE_IID}
+      name: Release ${CI_PIPELINE_IID}
+      description: |
+        Some multi
+        line text
+      ref: ${CI_COMMIT_SHA}
+    ```
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:

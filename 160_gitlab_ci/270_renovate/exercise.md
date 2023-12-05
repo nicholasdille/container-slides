@@ -3,16 +3,29 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - discover dependencies used in your code and pipeline
+    - get update proposals for outdated dependencies
 
-## Task: XXX
+We will be using [Renovate](https://github.com/renovatebot/renovate) to discover and update dependencies.
 
-XXX
+## Task: Add Renovate to your pipeline
+
+The easiest way to get Renovate on GitLab is to integrated it into your pipeline:
+
+1. Add a job `renovate` to the stage `check`
+1. Limit execution to a) scheduled pipelines and b) if the variable `$RENOVATE` is set
+1. Use the image `renovate/renovate`
+1. Set the variable `LOG_LEVEL` to `debug`
+1. Use the following script to execute Renovate:
+    ```bash
+    renovate --platform gitlab \
+        --endpoint ${CI_API_V4_URL} \
+        --token ${CI_JOB_TOKEN} \
+        ${CI_PROJECT_PATH}
+    ```
+1. Create a scheduled pipeline and define a variable `RENOVATE` with the value `true`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
-
-??? info "Hint (Click if you are stuck)"
-    XXX
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
