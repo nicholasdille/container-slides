@@ -21,7 +21,7 @@ On the branch `main`, add rules to the jobs to specify when to run them:
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    `$CI_PIPELINE_SOURCE` can take the values `push` and `merge_request_event` in this context. `$CI_COMMIT_REF_NAME` contains the name of the Git reference (e.g. branch) the pipeline is running on. `$CI_DEFAULT_BRANCH` contains the name of the default branch of the repository in the current project. You can use the logical operator `&&` to combine multiple conditions.
 
 ??? example "Solution (Click if you are stuck)"
     ```yaml linenums="1" hl_lines="30-32 38-40 46-48 59-61 70-72 79-80 106-107"

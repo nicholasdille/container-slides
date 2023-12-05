@@ -8,7 +8,7 @@
 
 ## Preparation
 
-XXX
+Building a container image requires a `Dockerfile` which can be fetched with the following command:
 
 ```bash
 git checkout origin/160_gitlab_ci/230_docker -- Dockerfile
@@ -16,12 +16,31 @@ git checkout origin/160_gitlab_ci/230_docker -- Dockerfile
 
 ## Task: Build a container image
 
-XXX Dockerfile, service, privileged
+For building a container image, you will need to...
+
+1. Add a new stage `package` to the pipeline
+1. Add a new job `package` to the pipeline
+1. Use the image `docker:20.10.18` for the job
+1. Add a rule to limit execution to pushes to the default branch
+1. Add a service to the job:
+    1. using the image `docker:20.10.18-dind`
+    1. using the `command` set to `[ "dockerd", "--host", "tcp://0.0.0.0:2375" ]`
+1. Add a job variable `DOCKER_HOST` with value `tcp://docker:2375`
+1. Execute the command `docker build --tag hello .`
+
+!!! tip "Heads-Up"
+    The GitLab runner must be configured to run services in privileged mode so that the Docker daemon is able to start.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    The service should be set to:
+
+    ```yaml
+    services:
+    - name: docker:20.10.18-dind
+      command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+    ```
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:

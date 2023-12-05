@@ -70,3 +70,15 @@ Talks to Sentry using 9P
 ## Demo
 
 gvisor in Kubernetes
+
+### Heads-Up
+
+Docker-in-Docker does not work correctly in gvisor
+
+Containers must run in host network mode
+
+`iptables` must be disabled
+
+Prevents multiple containers listening on the same port
+
+Probably breaks `docker/compose`

@@ -3,16 +3,29 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - authenticate to the GitLab container registry
+    - push a container image to the registry
 
 ## Task: Push a container image
 
-XXX job, variables
+GitLab include a container registry. In this task you will push a container image to the registry. If the container registry is enabled, GitLab automatically provides predefined variables to access and authenticate to the registry:
+
+- `$CI_REGISTRY`: The registry URL
+- `$CI_REGISTRY_IMAGE`: The registry URL with the project name
+- `$CI_REGISTRY_USER`: The username to use to push
+- `$CI_REGISTRY_PASSWORD`: The password to use to push
+
+Modify the job `package`:
+
+1. Update the build command to use the variables above: `docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .`
+1. Add the push command directly after the build command: `docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"`
+1. Login to the registry before building: `docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"`
+1. Logout from the registry after pushing: `docker logout "${CI_REGISTRY}"`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    Use `before_script` for logging in and `after_script` after logging out.
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:

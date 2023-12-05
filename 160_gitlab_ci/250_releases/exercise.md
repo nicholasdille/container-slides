@@ -3,9 +3,10 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - create a release on GitLab
+    - use the GitLab `release-cli`
 
-## Task: XXX
+## Task: Create a release
 
 XXX release, release-cli
 
@@ -157,3 +158,5 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout origin/160_gitlab_ci/250_releases -- '*'
     ```
+
+<!-- TODO: create the release when a tag is created -->
