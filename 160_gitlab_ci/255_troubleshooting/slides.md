@@ -1,6 +1,24 @@
-<!-- .slide: id="gitlab_local_testing" -->
+<!-- .slide: id="gitlab_error_handling" class="vertical-center" -->
 
-## Pro tip: Testing pipelines locally
+<i class="fa-duotone fa-bug fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+
+## Troubleshooting
+
+---
+
+## Troubleshooting
+
+XXX
+
+---
+
+## Error Handling
+
+XXX
+
+---
+
+## Testing locally
 
 ### gitlab-runner
 

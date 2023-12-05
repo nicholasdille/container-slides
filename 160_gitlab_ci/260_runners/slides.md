@@ -43,3 +43,43 @@ Jobs are executed in a dedicated container
 ### Kubernetes
 
 Jobs are executed in a dedicated containers in a pod per pipeline
+
+---
+
+## Runner scopes
+
+## Instance runners
+
+Shared across all projects
+
+Managed from admin area
+
+Reserved for instance administrators
+
+Can run untagged jobs
+
+## Group/project runners
+
+Runners can also be connected to groups or projects
+
+Accessible to members with **Owner** role
+
+Shared runners can be disabled on group- and project-level
+
+Can also run untagged jobs
+
+---
+
+## Comparison
+
+| Topic      | Instance      | Group/project       |
+|------------|---------------|---------------------|
+| Managed by | Administrator | Group/project owner |
+
+---
+
+## Configuration
+
+XXX
+
+XXX tagging

@@ -10,9 +10,7 @@
 - Exkurs? Runner Setup
 
 - TODO
-  - Finish exercises starting with 140_merge_requests
   - Caches: Runner-local cache -> Demo/exercise and slides
-  - Releases: Generic asset in package registry -> slides
   - Error handling: slides
   - Runners: Compare instance/group/project
   - Runners: More about configuration
@@ -20,4 +18,3 @@
   - Renovate: More pro tips?
   - Security: Slides for features
   - Security: Slides for syft/grype/trivy/semgrep?
-  - Deckblatt for final pipeline slides

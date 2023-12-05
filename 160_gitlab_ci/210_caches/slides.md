@@ -22,7 +22,7 @@ Examples for many programming languages [](https://docs.gitlab.com/ee/ci/caching
 
 ---
 
-## No hands-on for caches
+## Hands-on for runner local cache
 
 Runner local cache requires persistent volume for Docker executor [](https://docs.gitlab.com/ee/ci/caching/#where-the-caches-are-stored)
 
