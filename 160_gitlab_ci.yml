@@ -18,6 +18,9 @@ exclude_docs: |
   280_security/syft.md
   280_security/trivy.md
   000_rollout/.terraform/*
+  000_rollout/server/*
+  000_rollout/runner/*
+  000_rollout/vscode/*
 site_dir: site.160_gitlab_ci
 
 theme:
