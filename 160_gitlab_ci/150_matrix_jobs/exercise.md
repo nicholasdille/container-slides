@@ -50,7 +50,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="63-68 76 92 100"
+    ```yaml linenums="1" hl_lines="63-67 75 91 100"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -107,7 +107,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - .run-on-push-and-in-mr
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -132,13 +132,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       extends:
       - .run-on-push-to-default-branch
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello-linux-amd64 \
@@ -148,12 +148,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       extends:
       - .run-on-push-to-default-branch
+      image: alpine
       script:
       - cp hello-linux-amd64 public/hello
       artifacts:
         paths:
         - public
-    
+
     trigger:
       stage: trigger
       extends:
@@ -228,7 +229,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="61"
+    ```yaml linenums="1" hl_lines="73"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -242,55 +243,67 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         when: never
       - if: $CI_PIPELINE_SOURCE == 'trigger'
         when: never
-      
+
     include:
     - local: go.yaml
-    
+
     .run-on-push-to-default-branch:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-    
+
     .run-on-push-and-in-mr:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    
+
     stages:
     - check
     - build
     - test
     - deploy
     - trigger
-    
+
     default:
       image: golang:1.19.2
-    
+
     lint:
       stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go fmt .
-    
+
     audit:
       stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go vet .
-    
+
+    unit_tests:
+      stage: check
+      extends:
+      - .run-on-push-and-in-mr
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
+
     build:
       stage: build
       extends:
       - .run-on-push-and-in-mr
       - .build-go
-    
+
     test:
       stage: test
       extends:
       - .run-on-push-and-in-mr
       - .test-go
-    
+
     deploy:
       stage: deploy
       rules:
@@ -307,7 +320,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --verbose \
             --upload-file hello-linux-amd64 \
             --user seat${SEAT_INDEX}:${PASS}
-    
+
     pages:
       stage: deploy
       extends:
@@ -318,7 +331,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       artifacts:
         paths:
         - public
-    
+
     trigger:
       stage: trigger
       extends:

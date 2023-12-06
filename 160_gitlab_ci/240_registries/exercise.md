@@ -30,7 +30,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="112-113 115-118"
+    ```yaml linenums="1" hl_lines="114-120"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -47,16 +47,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       
     include:
     - local: go.yaml
-    
+
     .run-on-push-to-default-branch:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-    
+
     .run-on-push-and-in-mr:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    
+
     stages:
     - check
     - build
@@ -64,46 +64,48 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - deploy
     - package
     - trigger
-    
+
     default:
       image: golang:1.19.2
-    
-    services:
-    - nginx:1.20.2
-    
+
     lint:
       stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go fmt .
-    
+
     audit:
       stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go vet .
-    
+
+    unit_tests:
+      stage: check
+      extends:
+      - .run-on-push-and-in-mr
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
+
     build:
       stage: build
       extends:
       - .run-on-push-and-in-mr
       - .build-go
-    
+
     test:
       stage: test
       extends:
       - .run-on-push-and-in-mr
       - .test-go
-    
-    test-service:
-      stage: test
-      extends:
-      - .run-on-push-to-default-branch
-      script:
-      - curl -s http://nginx
-    
+
     deploy:
       stage: deploy
       rules:
@@ -120,7 +122,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --verbose \
             --upload-file hello-linux-amd64 \
             --user seat${SEAT_INDEX}:${PASS}
-    
+
     pages:
       stage: deploy
       extends:
@@ -131,7 +133,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       artifacts:
         paths:
         - public
-    
+
     package:
       image: docker:20.10.18
       stage: package
@@ -149,7 +151,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
       after_script:
       - docker logout "${CI_REGISTRY}"
-    
+
     trigger:
       stage: trigger
       extends:

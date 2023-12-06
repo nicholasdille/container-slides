@@ -47,7 +47,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="63-71"
+    ```yaml linenums="1" hl_lines="63-72"
     include:
     - local: go.yaml
 
@@ -75,7 +75,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -98,13 +98,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     deploy:
       stage: deploy
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -116,11 +116,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       image: alpine
       script:
-      - cp hello public/
+      - cp hello public
       artifacts:
         paths:
         - public
-    
+
     trigger:
       stage: trigger
       trigger:
@@ -191,7 +191,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -236,7 +236,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       artifacts:
         paths:
         - public
-    
+
     trigger:
       stage: trigger
       trigger:
@@ -308,7 +308,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -353,7 +353,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       artifacts:
         paths:
         - public
-    
+
     trigger:
       stage: trigger
       trigger:

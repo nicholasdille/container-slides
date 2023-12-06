@@ -24,7 +24,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     `$CI_PIPELINE_SOURCE` can take the values `push` and `merge_request_event` in this context. `$CI_COMMIT_REF_NAME` contains the name of the Git reference (e.g. branch) the pipeline is running on. `$CI_DEFAULT_BRANCH` contains the name of the default branch of the repository in the current project. You can use the logical operator `&&` to combine multiple conditions.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml linenums="1" hl_lines="30-32 38-40 46-48 59-61 70-72 79-80 106-107"
+    ```yaml linenums="1" hl_lines="30-32 38-40 46-48 59-61 70-72 79-80 107-108"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -75,7 +75,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -106,13 +106,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -122,12 +122,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+      image: alpine
       script:
       - cp hello public/
       artifacts:
         paths:
         - public
-    
+
     trigger:
       stage: trigger
       rules:
@@ -171,7 +172,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     Remember that only `variables` are kumulative. All other keywords overwrite each other in the order of appearance.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml linenums="1" hl_lines="18-25 39-40 46-47 53-55 65-66 75-76 83-84 100-101 110-111"
+    ```yaml linenums="1" hl_lines="18-25 39-40 46-47 53-54 65-66 74-75 82-83 99-100 110-111"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -228,7 +229,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - .run-on-push-and-in-mr
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -256,13 +257,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       extends:
       - .run-on-push-to-default-branch
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -272,12 +273,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       extends:
       - .run-on-push-to-default-branch
+      image: alpine
       script:
       - cp hello public/
       artifacts:
         paths:
         - public
-    
+
     trigger:
       stage: trigger
       extends:

@@ -53,7 +53,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -84,18 +84,18 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     deploy:
       stage: deploy
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
-    
+
     trigger:
       stage: trigger
       trigger:
@@ -172,7 +172,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -195,18 +195,18 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     deploy:
       stage: deploy
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
-    
+
     trigger:
       stage: trigger
       trigger:

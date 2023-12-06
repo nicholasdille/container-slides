@@ -72,7 +72,7 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -99,13 +99,13 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
     deploy:
       stage: deploy
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -167,7 +167,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -194,13 +194,13 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     deploy:
       stage: deploy
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -266,7 +266,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: check
       script:
       - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml --format testname
+      - gotestsum --junitfile report.xml
       artifacts:
         when: always
         reports:
@@ -293,18 +293,18 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     deploy:
       stage: deploy
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       before_script:
       - apt-get update
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
-    
+
     trigger:
       stage: trigger
       trigger:

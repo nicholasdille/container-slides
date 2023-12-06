@@ -30,7 +30,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="37-38 66-71"
+    ```yaml linenums="1" hl_lines="37-38 78-83"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -44,65 +44,77 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         when: never
       - if: $CI_PIPELINE_SOURCE == 'trigger'
         when: never
-      
+
     include:
     - local: go.yaml
-    
+
     .run-on-push-to-default-branch:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-    
+
     .run-on-push-and-in-mr:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    
+
     stages:
     - check
     - build
     - test
     - deploy
     - trigger
-    
+
     default:
       image: golang:1.19.2
-    
+
     services:
     - nginx:1.20.2
-    
+
     lint:
       stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go fmt .
-    
+
     audit:
       stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go vet .
-    
+
+    unit_tests:
+      stage: check
+      extends:
+      - .run-on-push-and-in-mr
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
+
     build:
       stage: build
       extends:
       - .run-on-push-and-in-mr
       - .build-go
-    
+
     test:
       stage: test
       extends:
       - .run-on-push-and-in-mr
       - .test-go
-    
+
     test-service:
       stage: test
       extends:
       - .run-on-push-to-default-branch
       script:
       - curl -s http://nginx
-    
+
     deploy:
       stage: deploy
       rules:
@@ -119,7 +131,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --verbose \
             --upload-file hello-linux-amd64 \
             --user seat${SEAT_INDEX}:${PASS}
-    
+
     pages:
       stage: deploy
       extends:
@@ -130,7 +142,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       artifacts:
         paths:
         - public
-    
+
     trigger:
       stage: trigger
       extends:
@@ -154,7 +166,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="48-49"
+    ```yaml linenums="1" hl_lines="67-68"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
