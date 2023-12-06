@@ -42,9 +42,6 @@ stages:
 default:
   image: golang:1.19.2
 
-services:
-- nginx:1.20.2
-
 renovate:
   stage: check
   rules:
@@ -96,13 +93,6 @@ test:
   extends:
   - .run-on-push-and-in-mr
   - .test-go
-
-test-service:
-  stage: test
-  extends:
-  - .run-on-push-to-default-branch
-  script:
-  - curl -s http://nginx
 
 deploy:
   stage: deploy
