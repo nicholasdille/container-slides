@@ -21,9 +21,20 @@ audit:
   script:
   - go vet .
 
+unit_tests:
+  stage: check
+  script:
+  - go install gotest.tools/gotestsum@latest
+  - gotestsum --junitfile report.xml --format testname
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+
 build:
   stage: build
-  extends: .build-go
+  extends:
+  - .build-go
   artifacts:
     paths:
     - hello
@@ -37,19 +48,19 @@ test:
 deploy:
   stage: deploy
   environment:
-    name: ${CI_COMMIT_REF_NAME}
+    name: dev
   before_script:
   - apt-get update
   - apt-get -y install curl ca-certificates
   script:
   - |
-    curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+    curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
         --fail \
         --verbose \
         --upload-file hello \
-        --user seat:${PASS}
+        --user seat${SEAT_INDEX}:${PASS}
 
 trigger:
   stage: trigger
   trigger:
-    include: child.yml
+    include: child.yaml
