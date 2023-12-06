@@ -18,6 +18,10 @@ include:
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Container-Scanning.gitlab-ci.yml
 
+container_scanning:
+  variables:
+    CS_DEFAULT_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+
 .run-on-push-to-default-branch:
   rules:
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
