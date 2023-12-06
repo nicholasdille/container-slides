@@ -76,13 +76,13 @@ deploy:
   rules:
   - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
   environment:
-    name: ${CI_COMMIT_REF_NAME}
+    name: dev
   before_script:
   - apt-get update
   - apt-get -y install curl ca-certificates
   script:
   - |
-    curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
+    curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
         --fail \
         --verbose \
         --upload-file hello-linux-amd64 \
