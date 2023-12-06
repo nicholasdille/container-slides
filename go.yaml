@@ -6,9 +6,21 @@
     - GOOS: linux
       GOARCH: arm64
 
+.go-cache:
+  variables:
+    GOPATH: $CI_PROJECT_DIR/.go
+  before_script:
+  - mkdir -p .go
+  cache:
+    key: ${CI_PROJECT_PATH_SLUG}
+    policy: pull-push
+    paths:
+    - .go/pkg/mod/
+
 .build-go:
   extends:
   - .go-targets
+  - .go-cache
   script:
   - |
     go build \
