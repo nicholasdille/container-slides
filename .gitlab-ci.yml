@@ -16,6 +16,7 @@ include:
 - local: go.yaml
 - template: Security/Secret-Detection.gitlab-ci.yml
 - template: Security/SAST.gitlab-ci.yml
+- template: Security/Container-Scanning.gitlab-ci.yml
 
 .run-on-push-to-default-branch:
   rules:
