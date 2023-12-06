@@ -50,36 +50,16 @@ Jobs are executed in a dedicated containers in a pod per pipeline
 
 ## Instance runners
 
-Shared across all projects
-
-Managed from admin area
+Shared across all groups and projects
 
 Reserved for instance administrators
 
-Can run untagged jobs
+Managed from admin area
 
 ## Group/project runners
 
-Runners can also be connected to groups or projects
+Shared across a group or a project
 
 Accessible to members with **Owner** role
 
-Shared runners can be disabled on group- and project-level
-
-Can also run untagged jobs
-
----
-
-## Comparison
-
-| Topic      | Instance      | Group/project       |
-|------------|---------------|---------------------|
-| Managed by | Administrator | Group/project owner |
-
----
-
-## Configuration
-
-XXX
-
-XXX tagging
+Shared runners can be disabled

@@ -10,11 +10,4 @@
 - Exkurs? Runner Setup
 
 - TODO
-  - Caches: Runner-local cache -> Demo/exercise and slides
-  - Error handling: slides
-  - Runners: Compare instance/group/project
-  - Runners: More about configuration
-  - Renovate: More motivation
-  - Renovate: More pro tips?
-  - Security: Slides for features
   - Security: Slides for syft/grype/trivy/semgrep?
