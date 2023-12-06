@@ -8,6 +8,3 @@
 
 - Exkurs? Struktur von Gruppen und Berechtigungen
 - Exkurs? Runner Setup
-
-- TODO
-  - Security: Slides for syft/grype/trivy/semgrep?

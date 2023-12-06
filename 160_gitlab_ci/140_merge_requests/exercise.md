@@ -238,7 +238,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: build
       extends:
       - .run-on-push-and-in-mr
-      extends:
       - .build-go
       artifacts:
         paths:

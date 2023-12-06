@@ -114,6 +114,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+      image: alpine
       script:
       - cp hello public/
       artifacts:
@@ -229,6 +230,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+      image: alpine
       script:
       - cp hello public/
       artifacts:
@@ -345,6 +347,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+      image: alpine
       script:
       - cp hello public/
       artifacts:

@@ -3,7 +3,11 @@
 !!! tip "Goal"
     Learn how to...
 
-    - XXX
+    - trigger pipelines in other projects
+    - learn about upstream and downstream pipelines
+    - use trigger tokens
+    - use multi-project pipelines
+    - use parent-child pipelines
 
 !!! info "Heads up"
     Checkout the branch `main` to make sure that the following exercises are based on the correct code base.
@@ -12,7 +16,7 @@
 
 Triggering another pipeline requires a seconds project:
 
-1. Create a new project (anywhere!)
+1. Create a new project, e.g. a private project called `trigger`
 1. Add `.gitlab-ci.yml` with the following content to the root of new project:
     ```yaml
     test:
@@ -101,7 +105,7 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
@@ -109,13 +113,13 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
 
     trigger:
       stage: trigger
-      script:
-      - |
-        curl -X POST \
+      script: |
+        curl https://gitlab.inmylab.de/api/v4/projects/seat${SEAT_INDEX}%2ftrigger/trigger/pipeline \
+            --request POST \
+            --silent \
             --fail \
-            -F token=$TOKEN \
-            -F ref=main \
-            https://gitlab.inmylab.de/api/v4/projects/9999/trigger/pipeline
+            -F "token=${TOKEN}" \
+            -F "ref=main"
     ```
     
     If you want to jump to the solution, execute the following command:
@@ -196,12 +200,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install curl ca-certificates
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://dev.seat${SEAT_INDEX}.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
-    
+
     trigger:
       stage: trigger
       trigger: <path-to-project>
@@ -211,7 +215,7 @@ This was just a demonstration. The changes will not be preserved in the followin
 
 ## Task 3: Using a parent-child pipeline
 
-A parent-child pipeline executes a downstream pipeline from a YAML file. Modify the contents of the `trigger` keyword to use [`include`](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html) to execute a pipeline with the same content as in the first task.
+A parent-child pipeline executes a downstream pipeline from a YAML file. Modify the contents of the `trigger` keyword to use [`include`](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html) to execute a pipeline with the same content as in the first task but - this time - from a local file `child.yaml`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to expand the downstream pipeline to see the jobs and their status.
 

@@ -117,7 +117,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: build
       extends:
       - .run-on-push-and-in-mr
-      extends:
       - .build-go
 
     test:
@@ -209,8 +208,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       script:
       - |
         go build \
-            -o hello-${GOOS}-${GOARCH} \
             -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -o hello-${GOOS}-${GOARCH} \
             .
       artifacts:
         paths:
