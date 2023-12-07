@@ -45,8 +45,8 @@ renovate:
   script: |
     renovate --platform gitlab \
         --endpoint ${CI_API_V4_URL} \
-        --token ${CI_JOB_TOKEN} \
-        ${CI_PROJECT_PATH}
+        --token ${RENOVATE_TOKEN} \
+        --autodiscover true
 
 lint:
   stage: check
