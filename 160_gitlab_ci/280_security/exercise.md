@@ -48,8 +48,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - template: Security/Container-Scanning.gitlab-ci.yml
 
     container_scanning:
+      stage: trigger
       variables:
         CS_DEFAULT_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+        CI_APPLICATION_REPOSITORY: ${CI_REGISTRY_IMAGE}
+        CI_APPLICATION_TAG: ${CI_COMMIT_REF_NAME}
 
     .run-on-push-to-default-branch:
       rules:
@@ -81,8 +84,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       script: |
         renovate --platform gitlab \
             --endpoint ${CI_API_V4_URL} \
-            --token ${CI_JOB_TOKEN} \
-            ${CI_PROJECT_PATH}
+            --token ${RENOVATE_TOKEN} \
+            --autodiscover true
 
     lint:
       stage: check
@@ -186,7 +189,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/280_security -- '*'
+    git checkout upstream/160_gitlab_ci/280_security -- '*'
     ```
 
 !!! tip "Heads-Up"

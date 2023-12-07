@@ -107,7 +107,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/120_templates/inline -- '*'
+    git checkout upstream/160_gitlab_ci/120_templates/inline -- '*'
     ```
 
 ## Task 2: Loading templates from a local file
@@ -216,7 +216,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/120_templates/local -- '*'
+    git checkout upstream/160_gitlab_ci/120_templates/local -- '*'
     ```
 
 ## Task 3: Loading templates from another project
@@ -230,7 +230,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     ```yaml linenums="1" hl_lines="1-4"
     include:
-    - project: seat/template-go
+    - project: seat1/template-go
       ref: main
       file: go.yaml
 

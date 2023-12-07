@@ -35,6 +35,45 @@ Do not have access to protected variables
 
 ---
 
+## Rule templates
+
+Pipelines often have many jobs
+
+Rules will be repeated multiple times
+
+Combine rules with templates to prevent repetition
+
+```yaml
+.rule-only-web:
+  rules:
+  - if: $CI_PIPELINE_SOURCE == 'web'
+
+job_name:
+  extends:
+  - .rule-only-web
+  #...
+```
+
+---
+
 ## Hands-On
 
 See chapter [Merge requests](/hands-on/2023-11-30/140_merge_requests/exercise/)
+
+---
+
+## Integration with SonarQube
+
+### Merge request decoration
+
+Write scan results into merge request [](https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/gitlab-integration/)
+
+Requires Developer Edition
+
+### Quality Gates
+
+Wait for quality gates:
+
+```bash
+sonar-scanner -Dsonar.qualitygate.wait=true
+```

@@ -45,3 +45,7 @@ job_name:
     git config --global \
         url."https://gitlab.inmylab.de/".insteadOf "ssh://git@gitlab.inmylab.de/"
 ```
+
+### Alternative
+
+Use `ssh-agent` on GitLab runner machine

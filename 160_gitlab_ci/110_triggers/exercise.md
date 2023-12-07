@@ -125,7 +125,7 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/110_triggers/curl -- '*'
+    git checkout upstream/160_gitlab_ci/110_triggers/curl -- '*'
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
@@ -314,7 +314,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/110_triggers/parent-child -- '*'
+    git checkout upstream/160_gitlab_ci/110_triggers/parent-child -- '*'
     ```
 
 <!-- TODO: variable inheritence -->

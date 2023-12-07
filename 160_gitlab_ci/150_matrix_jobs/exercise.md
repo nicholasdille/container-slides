@@ -166,7 +166,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/150_matrix_jobs_demo1 -- '*'
+    git checkout upstream/160_gitlab_ci/150_matrix_jobs_demo1 -- '*'
     ```
 
 ## Task 2: Test an alternative to specify the same inputs
@@ -343,5 +343,5 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/150_matrix_jobs_demo2 -- '*'
+    git checkout upstream/160_gitlab_ci/150_matrix_jobs_demo2 -- '*'
     ```

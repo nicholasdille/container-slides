@@ -39,7 +39,8 @@ Mitigate using gvisor, kata-containers, sysbox
 
 Rootless and/or daeamonless builds using...
 
-- kaniko [](https://github.com/GoogleContainerTools/kaniko)
+- kaniko [](https://github.com/GoogleContainerTools/kaniko) (official example [](https://docs.gitlab.com/ee/ci/docker/using_kaniko.html
+))
 - podman/buildah [](https://github.com/containers/buildah)
 - BuildKit [](https://github.com/moby/buildkit)
 

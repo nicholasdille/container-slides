@@ -86,7 +86,7 @@ renovate:
   script: |
     renovate --platform gitlab \
         --endpoint ${CI_API_V4_URL} \
-        --token ${CI_JOB_TOKEN} \
+        --token ${RENOVATE_TOKEN} \
         ${CI_PROJECT_PATH}
   #...
 ```

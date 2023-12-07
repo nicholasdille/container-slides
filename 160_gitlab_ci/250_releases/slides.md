@@ -34,13 +34,17 @@ See chapter [Releases](/hands-on/2023-11-30/250_releases/exercise/)
 
 ---
 
-## Pro tip: Publish asset in package registry
+## Pro tip: Publish asset in package registry 1/
 
 Release binaries can be published to generic package registry [](https://docs.gitlab.com/ee/user/packages/generic_packages/)
 
 Base URL for package registry: `https://gitlab.inmylab.de/api/v4/projects/<PROJECT-ID>/packages/generic/`
 
 Use `$CI_JOB_TOKEN` to authenticate
+
+---
+
+## Pro tip: Publish asset in package registry 2/2
 
 ### Upload a file
 

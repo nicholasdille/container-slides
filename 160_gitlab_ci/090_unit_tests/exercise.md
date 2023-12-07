@@ -13,7 +13,7 @@ This exercise adds a unit test to the hello world application.
 Let's update the code:
 
 ```bash
-git checkout origin/160_gitlab_ci/090_unit_tests -- main_test.go go.mod go.sum
+git checkout upstream/160_gitlab_ci/090_unit_tests -- main_test.go go.mod go.sum
 ```
 
 ## Task: Publish unit test results
@@ -98,5 +98,5 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/090_unit_tests -- '*'
+    git checkout upstream/160_gitlab_ci/090_unit_tests -- '*'
     ```

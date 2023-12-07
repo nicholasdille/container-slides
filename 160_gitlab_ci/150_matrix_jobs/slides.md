@@ -23,8 +23,11 @@ job_name:
   parallel:
     matrix:
     - FOO: bar
+      BAR: meh
     - FOO: baz
+      BAR: [moo meh]
     - FOO: [ABC CED FGH]
+      BAR: ruff
 ```
 
 ---
@@ -36,6 +39,8 @@ Matrix variables can be used for...
 - Script blocks
 - Runner tags
 - Image
+
+Maximum of 200 parallel jobs
 
 ### Example
 
@@ -53,3 +58,34 @@ job_name:
 ## Hands-On
 
 See chapter [Matrix jobs](/hands-on/2023-11-30/150_matrix_jobs/exercise/)
+
+---
+
+## Pro tip: Matrix jobs and `needs`
+
+XXX [](https://docs.gitlab.com/ee/ci/yaml/#needsparallelmatrix)
+
+XXX extended syntax
+
+```yaml
+linux:build:
+  stage: build
+  script: echo "Building linux..."
+  parallel:
+    matrix:
+      - PROVIDER: aws
+        STACK:
+          - monitoring
+          - app1
+          - app2
+
+linux:rspec:
+  stage: test
+  needs:
+    - job: linux:build
+      parallel:
+        matrix:
+          - PROVIDER: aws
+            STACK: app1
+  script: echo "Running rspec on linux..."
+```

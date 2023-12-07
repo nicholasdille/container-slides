@@ -12,6 +12,8 @@ We will be using [Renovate](https://github.com/renovatebot/renovate) to discover
 
 The easiest way to get Renovate on GitLab is to integrated it into your pipeline:
 
+1. Create a new project access token `renovate` with role `Developer` and scopes `api`, `read_repository`, `read_registry`
+1. Add project access token `renovate` to CI variable `RENOVATE_TOKEN`
 1. Add a job `renovate` to the stage `check`
 1. Limit execution to a) scheduled pipelines and b) if the variable `$RENOVATE` is set
 1. Use the image `renovate/renovate`
@@ -20,7 +22,7 @@ The easiest way to get Renovate on GitLab is to integrated it into your pipeline
     ```bash
     renovate --platform gitlab \
         --endpoint ${CI_API_V4_URL} \
-        --token ${CI_JOB_TOKEN} \
+        --token ${RENOVATE_TOKEN} \
         ${CI_PROJECT_PATH}
     ```
 1. Create a scheduled pipeline and define a variable `RENOVATE` with the value `true`
@@ -79,7 +81,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         renovate --platform gitlab \
             --endpoint ${CI_API_V4_URL} \
             --token ${CI_JOB_TOKEN} \
-            ${CI_PROJECT_PATH}
+            --autodiscover true
 
     lint:
       stage: check
@@ -183,5 +185,5 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/270_renovate -- '*'
+    git checkout upstream/160_gitlab_ci/270_renovate -- '*'
     ```

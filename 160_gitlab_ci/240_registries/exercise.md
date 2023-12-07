@@ -22,7 +22,7 @@ Modify the job `package`:
 1. Login to the registry before building: `docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"`
 1. Logout from the registry after pushing: `docker logout "${CI_REGISTRY}"`
 
-Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run. Check the web UI under **Deploy** -> **Container Registry**.
 
 ??? info "Hint (Click if you are stuck)"
     Use `before_script` for logging in and `after_script` after logging out.
@@ -163,5 +163,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/240_registries -- '*'
+    git checkout upstream/160_gitlab_ci/240_registries -- '*'
     ```
+
+<!-- TODO: --password-stdin -->

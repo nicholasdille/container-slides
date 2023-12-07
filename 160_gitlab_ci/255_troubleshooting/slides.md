@@ -20,7 +20,7 @@ job_name:
             -sSLf \
             -H "Private-Token: ${CI_JOB_TOKEN}"; then
         echo "ERROR: Failed to access API using CI_JOB_TOKEN."
-        false1
+        false
     fi
 ```
 
@@ -47,3 +47,5 @@ Works for more executors: shell, ssh, docker-ssh and more!
 ### gitlab-ci-local
 
 Run whole pipelines locally using `gitlab-ci-local` [](https://github.com/firecow/gitlab-ci-local)
+
+Supports shell and Docker executor

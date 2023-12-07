@@ -16,6 +16,7 @@ On the branch `main`, add rules to the jobs to specify when to run them:
     1. pushing to the default branch
     1. running in merge request context
 1. Run the job `trigger` only when pushing to the default branch
+1. Run the job `deploy` only when on the branches `dev` and `live`
 1. Do not modify the existing rules for the job `pages`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
@@ -104,7 +105,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     deploy:
       stage: deploy
       rules:
-      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+      - if: $CI_COMMIT_REF_NAME == "dev"
+      - if: $CI_COMMIT_REF_NAME == "live"
       environment:
         name: ${CI_COMMIT_REF_NAME}
       before_script:
@@ -140,7 +142,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/140_merge_requests -- '*'
+    git checkout upstream/160_gitlab_ci/140_merge_requests -- '*'
     ```
 
 ## Task 2: Create a merge request
@@ -291,5 +293,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/140_merge_requests_rule_templates -- '*'
+    git checkout upstream/160_gitlab_ci/140_merge_requests_rule_templates -- '*'
     ```
+
+<!-- TODO: merge request decoration? -->

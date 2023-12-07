@@ -12,7 +12,7 @@
 This exercise requires an updates version of our hello world program:
 
 ```bash
-git checkout origin/160_gitlab_ci/020_variables/inline -- main.go
+git checkout upstream/160_gitlab_ci/020_variables/inline -- main.go
 ```
 
 Add a variable called `version` to the job called `build` and modify the build command as follows:
@@ -68,7 +68,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     
     If you want to jump to the solution, execute the following command:
 
-    git checkout origin/160_gitlab_ci/020_variables/inline -- '*'
+    git checkout upstream/160_gitlab_ci/020_variables/inline -- '*'
 
 ## Task 2: Use a predefined variable
 
@@ -117,14 +117,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     
     If you want to jump to the solution, execute the following command:
 
-    git checkout origin/160_gitlab_ci/020_variables/predefined -- '*'
+    git checkout upstream/160_gitlab_ci/020_variables/predefined -- '*'
 
 ## Task 3: Add a CI variable in the UI
 
 This exercise requires an updates version of our hello world application:
 
 ```bash
-git checkout origin/160_gitlab_ci/020_variables/ci -- main.go
+git checkout upstream/160_gitlab_ci/020_variables/ci -- main.go
 ```
 
 The application now also prints the name of the author which must be supplied during compilation as well.
@@ -178,7 +178,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/020_variables/ci -- '*'
+    git checkout upstream/160_gitlab_ci/020_variables/ci -- '*'
     ```
 
 <!-- TODO: masked variables -->

@@ -178,7 +178,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/250_releases -- '*'
+    git checkout upstream/160_gitlab_ci/250_releases -- '*'
     ```
 
 <!-- TODO: create the release when a tag is created -->

@@ -43,3 +43,16 @@ CI jobs receive environment variables:
 ### Hands-On
 
 See chapter [Registries](/hands-on/2023-11-30/240_registries/exercise/)
+
+---
+
+## Pro tip: Cleanup Policy
+
+Configure how container images are removed
+
+Define...
+
+- How many tags are kept per image
+- Which tags are not removed
+- How old image can be
+- Which tags are removed

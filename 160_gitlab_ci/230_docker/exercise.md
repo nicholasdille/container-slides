@@ -11,7 +11,7 @@
 Building a container image requires a `Dockerfile` which can be fetched with the following command:
 
 ```bash
-git checkout origin/160_gitlab_ci/230_docker -- Dockerfile
+git checkout upstream/160_gitlab_ci/230_docker -- Dockerfile
 ```
 
 ## Task: Build a container image
@@ -173,7 +173,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/230_docker -- '*'
+    git checkout upstream/160_gitlab_ci/230_docker -- '*'
     ```
 
 <!-- TODO: multu-arch build -->
+<!-- TODO: rootless Docker -->

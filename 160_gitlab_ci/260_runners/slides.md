@@ -48,7 +48,7 @@ Jobs are executed in a dedicated containers in a pod per pipeline
 
 ## Runner scopes
 
-## Instance runners
+### Instance runners
 
 Shared across all groups and projects
 
@@ -56,10 +56,34 @@ Reserved for instance administrators
 
 Managed from admin area
 
-## Group/project runners
+### Group/project runners
 
 Shared across a group or a project
 
 Accessible to members with **Owner** role
 
 Shared runners can be disabled
+
+---
+
+## Runner tags
+
+Runners can have tags
+
+Tags specify features based on...
+
+- Networking locations
+- Hardware
+- Runner configuration
+
+### Selecting runners in pipelines
+
+Each can use a different runner:
+
+```yaml
+job_name:
+  tags:
+  - foo
+```
+
+All features work across different runners

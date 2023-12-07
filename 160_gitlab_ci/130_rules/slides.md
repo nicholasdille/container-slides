@@ -104,24 +104,3 @@ Template to disable job:
 ## Hands-On
 
 See chapter [Rules](/hands-on/2023-11-30/130_rules/exercise/)
-
----
-
-## Pro tip: Rule templates
-
-Pipelines often have many jobs
-
-Rules will be repeated multiple times
-
-Combine rules with templates to prevent repetition
-
-```yaml
-.rule-only-web:
-  rules:
-  - if: $CI_PIPELINE_SOURCE == 'web'
-
-job_name:
-  extends:
-  - .rule-only-web
-  #...
-```

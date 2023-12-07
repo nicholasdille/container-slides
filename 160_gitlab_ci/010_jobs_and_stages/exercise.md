@@ -12,7 +12,7 @@
 This workshop is based on an example hello world application written in Go. Get the code using the following command:
 
 ```bash
-git checkout origin/160_gitlab_ci/example_app -- '*'
+git checkout upstream/160_gitlab_ci/example_app -- '*'
 ```
 
 ## Task 1: Create a single job
@@ -49,7 +49,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/010_jobs_and_stages/build -- '*'
+    git checkout upstream/160_gitlab_ci/010_jobs_and_stages/build -- '*'
     ```
 
 ## Task 2: Add a stage
@@ -99,7 +99,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/010_jobs_and_stages/lint -- '*'
+    git checkout upstream/160_gitlab_ci/010_jobs_and_stages/lint -- '*'
     ```
 
 ## Task 3: Add parallel jobs
@@ -145,7 +145,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/010_jobs_and_stages/parallel -- '*'
+    git checkout upstream/160_gitlab_ci/010_jobs_and_stages/parallel -- '*'
     ```
 
 <!-- TODO: error handling (if, || true etc.) -->

@@ -52,6 +52,8 @@ job_name:
     whoami
 ```
 
+Use this for commands with URLs or the colon will break parsing
+
 Shell here documents:
 
 ```yaml

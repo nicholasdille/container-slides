@@ -14,7 +14,7 @@ In this exercise we will publish a static web page to download the `hello` binar
 Add a file `public/index.html` to your project using the following command:
 
 ```bash
-git checkout origin/160_gitlab_ci/130_rules -- 'public/index.html'
+git checkout upstream/160_gitlab_ci/130_rules -- 'public/index.html'
 ```
 
 ## Task 1: Prevent a job from running
@@ -130,12 +130,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/130_templates -- '*'
+    git checkout upstream/160_gitlab_ci/130_templates -- '*'
     ```
 
 ## Task 2: Prevent a pipeline from running
 
 Rules can also be placed under the global [`workflow`](https://docs.gitlab.com/ee/ci/yaml/#workflowrules) keyword to apply to the whole pipeline instead of individual jobs.
+
+Allow the pipeline to run for the triggers `push`, `merge_request_event`, `web`, `schedule` and `pipeline` and prevent the pipeline for triggers `api` and `trigger`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -246,7 +248,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/130_rules_workflow -- '*'
+    git checkout upstream/160_gitlab_ci/130_rules_workflow -- '*'
     ```
 
 ## Task 3: Use deploy freeze

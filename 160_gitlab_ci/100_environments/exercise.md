@@ -117,7 +117,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/100_environments/demo1 -- '*'
+    git checkout upstream/160_gitlab_ci/100_environments/demo1 -- '*'
     ```
 
 ## Task 2: Add deployment to development environment
@@ -194,7 +194,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/100_environments/demo2 -- '*'
+    git checkout upstream/160_gitlab_ci/100_environments/demo2 -- '*'
     ```
 
 This was just a demonstration. The changes will not be preseved in the following chapters.

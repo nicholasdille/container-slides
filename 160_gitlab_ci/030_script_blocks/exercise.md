@@ -58,7 +58,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout origin/160_gitlab_ci/030_script_blocks -- '*'
+    git checkout upstream/160_gitlab_ci/030_script_blocks -- '*'
     ```
 
 Cleanup commands can be move to `after_script` ([official documentation](https://docs.gitlab.com/ee/ci/yaml/#after_script)) but we have no use for this in the current example.
