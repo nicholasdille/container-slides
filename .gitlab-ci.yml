@@ -24,6 +24,8 @@ container_scanning:
   - package
   variables:
     CS_DEFAULT_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+    CI_APPLICATION_REPOSITORY: ${CI_REGISTRY_IMAGE}
+    CI_APPLICATION_TAG: ${CI_COMMIT_REF_NAME}
 
 .run-on-push-to-default-branch:
   rules:
