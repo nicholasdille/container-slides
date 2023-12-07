@@ -66,7 +66,6 @@ unit_tests:
   stage: check
   extends:
   - .run-on-push-and-in-mr
-  - .go-cache
   script:
   - go install gotest.tools/gotestsum@latest
   - gotestsum --junitfile report.xml
