@@ -102,7 +102,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: check
       extends:
       - .run-on-push-and-in-mr
-      - .go-cache
       script:
       - go install gotest.tools/gotestsum@latest
       - gotestsum --junitfile report.xml
