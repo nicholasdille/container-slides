@@ -19,9 +19,7 @@ include:
 - template: Security/Container-Scanning.gitlab-ci.yml
 
 container_scanning:
-  stage: package
-  needs:
-  - package
+  stage: trigger
   variables:
     CS_DEFAULT_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
     CI_APPLICATION_REPOSITORY: ${CI_REGISTRY_IMAGE}
