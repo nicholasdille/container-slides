@@ -12,7 +12,9 @@ Two days
 
 ## Expected knowledge
 
-Basic under standing of another CI/CD server, e.g. GitHub and Jenkins
+Basic understanding of another CI/CD server, e.g. GitHub and Jenkins
+
+Basic understanding of bash
 
 ## Goals
 

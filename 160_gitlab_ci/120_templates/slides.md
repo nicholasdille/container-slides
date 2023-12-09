@@ -165,3 +165,15 @@ job_name:
   - !reference[.template1, script]
   - !reference[.template2, script]
 ```
+
+---
+
+## Pro tip 3: Public Template Library
+
+Project to help building professional pipelines [](https://to-be-continuous.gitlab.io/doc/)
+
+Pipeline generator [](https://to-be-continuous.gitlab.io/kicker/)
+
+Documentation [](https://to-be-continuous.gitlab.io/doc/intro/)
+
+Source code [](https://gitlab.com/to-be-continuous)

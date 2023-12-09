@@ -16,10 +16,8 @@ Otherwise it will break the job/pipeline
 job_name:
   script:
   - |
-    if ! curl "${CI_API_V4_URL}/version" \
-            -sSLf \
-            -H "Private-Token: ${CI_JOB_TOKEN}"; then
-        echo "ERROR: Failed to access API using CI_JOB_TOKEN."
+    if ! command; then
+        echo "ERROR: Failed to run command."
         false
     fi
 ```

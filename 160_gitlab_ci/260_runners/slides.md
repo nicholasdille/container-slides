@@ -72,9 +72,10 @@ Runners can have tags
 
 Tags specify features based on...
 
-- Networking locations
-- Hardware
-- Runner configuration
+- Operating system, e.g. linux, windows
+- Networking locations, e.g. datacenter, aws, azure
+- Hardware, e.g. compute, gpu
+- Runner configuration, e.g. cache
 
 ### Selecting runners in pipelines
 
@@ -87,3 +88,23 @@ job_name:
 ```
 
 All features work across different runners
+
+---
+
+## Pro tip: Special purpose executors
+
+May builtin executors [](https://docs.gitlab.com/runner/executors/)
+
+### Instance executor (builtin)
+
+On-demand creation of VM [](https://docs.gitlab.com/runner/executors/instance.html)
+
+Beta support for AWS
+
+Experimantal support for Azure and GCP
+
+### Custom executor
+
+DIY [](https://docs.gitlab.com/runner/executors/custom.html)
+
+Examples: libvirt [](https://docs.gitlab.com/runner/executors/custom_examples/libvirt.html), LXD [](https://docs.gitlab.com/runner/executors/custom_examples/lxd.html), AWS Fargate [](https://gitlab.com/gitlab-org/ci-cd/custom-executor-drivers/fargate)

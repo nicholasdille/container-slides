@@ -73,6 +73,8 @@ docker compose exec -T gitlab \
         --request PUT \
         --output /dev/null
 
+# TODO: Disable Auto DevOps
+
 # Create users
 for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
     echo
@@ -133,6 +135,7 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
 
     echo
     echo "### Project for demos"
+    # TODO: Create empty project with default branch main
     if ! docker compose exec -T gitlab \
             curl \
                 --url "http://localhost/api/v4/users/seat${SEAT_INDEX}/projects" \
