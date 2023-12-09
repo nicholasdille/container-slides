@@ -1,0 +1,75 @@
+repositories:
+- name: traefik
+  url: https://traefik.github.io/charts
+- name: grafana
+  url: https://grafana.github.io/helm-charts
+- name: ckotzbauer
+  url: https://ckotzbauer.github.io/helm-charts
+
+releases:
+- name: traefik
+  namespace: default
+  chart: traefik/traefik
+  set:
+  - name: ports.web.hostPort
+    value: 80
+- name: grafana
+  namespace: kube-system
+  chart: grafana/grafana
+  set: 
+  - name: serviceMonitor.enabled
+    value: true
+  - name: datasources
+    value:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+        - name: Prometheus
+          type: prometheus
+          url: http://prometheus-operated:9090
+          access: proxy
+          isDefault: true
+- name: sbom-operator
+  namespace: sbom-system
+  chart: ckotzbauer/sbom-operator
+  set:
+  - name: args.targets
+    value: git
+  - name: git-author-email
+    value: webmaster@inmylab.de
+  - name: git-author-name
+    value: Sbom Operator
+  - name: git-repository
+    value: https://github.com/nicholasdille/sbom-store
+  - name: git-path
+    value: 2023-11-03
+  - name: envVars
+    value:
+    - name: SBOM_GIT_ACCESS_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: sbom-operator
+          key: accessToken
+- name: vulnerability-operator
+  namespace: sbom-system
+  chart: ckotzbauer/vulnerability-operator
+  set:
+  - name: args.targets
+    value: metrics
+  - name: min-severity
+    value: low
+  - name: git-repository
+    value: https://github.com/nicholasdille/sbom-store
+  - name: git-path
+    value: 2023-11-03
+  - name: cron
+    value: "0 */5 * * * *"
+  - name: envVars
+    value:
+    - name: VULN_GIT_ACCESS_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: sbom-operator
+          key: accessToken
+  - name: servicemonitor.enabled
+    value: true

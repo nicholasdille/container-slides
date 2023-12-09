@@ -1,14 +1,7 @@
 # SBoM (don't forget prepare.sh)
 
-# Deploy sbom-operator
-helm repo add ckotzbauer https://ckotzbauer.github.io/helm-charts
-helm upgrade --install --namespace sbom-system sbom-operator ckotzbauer/sbom-operator -f values-sbom-operator.yaml
-
 # Check git
 https://github.com/nicholasdille/sbom-store
-
-# Deploy vulnerability operator
-helm upgrade --install --namespace sbom-system vuln-operator ckotzbauer/vulnerability-operator -f values-vulnerability-operator.yaml
 
 # Check targets
 http://prometheus.docker-setup.inmylab.de/
