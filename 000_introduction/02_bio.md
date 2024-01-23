@@ -2,7 +2,7 @@
 
 ## Nicholas Dille
 
-<img src="images/NicholasDille.jpg" style="width: 20%; float: right; border-radius: 8px;" />
+<img src="images/NicholasDille.jpg" style="width: 25%; float: right; border-radius: 8px;" />
 
 **Husband, father, automator, runner, trumpeteer**
 

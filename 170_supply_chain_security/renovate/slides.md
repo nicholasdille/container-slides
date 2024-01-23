@@ -82,7 +82,7 @@ Check options for mitigation
 
 ## Outdated dependencies
 
-All dependencies can an will introduce vulnerabilities
+All dependencies can and will introduce vulnerabilities
 
 Younger version receive security updates
 
@@ -140,7 +140,7 @@ Commercial offering by Mend [](https://www.mend.io/renovate/)
 
 Clones repository and loads configuration
 
-Searches in numerous places for well-known dependencies
+Searches in numerous places for dependencies
 
 Proposes update in pull/merge requests
 
@@ -206,6 +206,12 @@ Enable automerge for them
 
 ---
 
+## Monitoring
+
+XXX
+
+---
+
 ## Custom Managers
 
 Special use cases
@@ -247,8 +253,6 @@ Detailed comparison [](https://docs.renovatebot.com/bot-comparison/)
 
 ### Other tools lack...
 
-...focus on a single language
-
 ...broad support for languages
 
 ...is integrated in a specific platform
@@ -257,15 +261,15 @@ Detailed comparison [](https://docs.renovatebot.com/bot-comparison/)
 
 ## Case study: uniget
 
-### uni(versal)get installer and updater for (container) tools
+### Installer and updater for (container) tools
 
 Checkout uniget.dev [](https://uniget.dev)
 
-Offers 591 packages
+Offers 632 packages
 
 Uses Renovate at scale
 
-### Since 2022-06-13
+### 2022-06-13 -- 2023-11-15
 
 over 5.700 merged PRs
 
