@@ -269,15 +269,17 @@ Offers 632 packages
 
 Uses Renovate at scale
 
-### 2022-06-13 -- 2023-11-15
+### 2022-06-13 -- 2024-01-22
 
-over 5.700 merged PRs
+over 6.725 merged PRs
 
 ~9 PRs per day
 
-90% merged after ~1min
+90% merged after ~1min (~6.050 PRs)
 
-98% merged after ~6min
+95% merged after ~3min (~6.390 PRs)
+
+98% merged after ~10min (~6.590 PRs)
 
 ---
 
@@ -293,7 +295,7 @@ Mitigation: Custom implementation of automerge
 
 Name changes in GitHub release asset
 
-Found 50 times in 10 months
+Found 70 times in 12 months
 
 ### Stability issues of GitHub
 
