@@ -164,10 +164,6 @@ Initially many and/or breaking updates
 
 Once settled in, smaller incremental updates
 
-Merge Confidence [](https://docs.renovatebot.com/merge-confidence/) supports merge decisions for many languages
-
-Integration with GitHub and Dependabot to show updates addressing security alerts [](https://docs.renovatebot.com/configuration-options/#vulnerabilityalerts)
-
 ---
 
 ## Demo
@@ -210,6 +206,18 @@ Enable automerge for them
 
 XXX
 
+### Operations
+
+XXX filter log for errors / failures
+
+### Up-to-dateness
+
+XXX
+
+### Security
+
+XXX SBOM
+
 ---
 
 ## Custom Managers
@@ -238,6 +246,42 @@ Ships with regex to match comment above and configure Renovate
     ],
 }
 ```
+
+---
+
+## Vulnerability Alerts
+
+XXX
+
+XXX Integration with GitHub and Dependabot to show updates addressing security alerts [](https://docs.renovatebot.com/configuration-options/#vulnerabilityalerts)
+
+### Requirements
+
+https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#enabling-the-dependency-graph
+
+https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository
+
+---
+
+## Merge Confidence
+
+XXX
+
+XXX Merge Confidence [](https://docs.renovatebot.com/merge-confidence/) supports merge decisions for many languages
+
+XXX collect data from countless PRs
+
+XXX supported languages: go, javascript/npm, java/maven, python/pypi, .NET/nuget, PHP/packagist, ruby/rubygems
+
+### Information
+
+XXX age of the package
+
+XXX adoption: percentage of Renovate users with this release
+
+XXX passing: percentage of updates with successful checks
+
+XXX confidence: result of proprietary algorithm
 
 ---
 
