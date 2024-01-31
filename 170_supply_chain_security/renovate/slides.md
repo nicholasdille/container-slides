@@ -104,7 +104,7 @@ Regular small updates over seldom large updates
 <!-- .slide: data-transition="fade" -->
 ### Demo
 
-Check repository [](https://github.com/nicholasdille/clc23-renovate-demo)
+Check repository [](https://github.com/nicholasdille/renovate-demo-devsmeetup)
 
 Can you spot possible updates?
 
@@ -112,7 +112,7 @@ Can you spot possible updates?
 <!-- .slide: data-transition="fade" -->
 ### Demo
 
-Check repository [](https://github.com/nicholasdille/clc23-renovate-demo)
+Check repository [](https://github.com/nicholasdille/renovate-demo-devsmeetup)
 
 Can you spot possible updates?
 
