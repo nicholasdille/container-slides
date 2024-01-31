@@ -62,9 +62,11 @@ Versions stored in variables in scripts
 
 ![](images/tenor-this-is-fine-gif-24177057.gif) <!-- .element: style="float: right; width: 40%;" -->
 
-### Provides visibility
+SBOM is an inventory of dependencies
 
-The world is on fire
+Provides visibility
+
+Can be matched against known vulnerabilities
 
 ### Auditing is the last resort
 
@@ -130,6 +132,8 @@ Outdated requirements.txt for Python tools
 
 ## Automated dependency updates
 
+![](images/logos/renovate.png) <!-- .element: style="float: right;" -->
+
 ### Enter Renovate
 
 Open Source implemented in TypeScript [](https://github.com/renovatebot/renovate)
@@ -150,13 +154,17 @@ Proposes update in pull/merge requests
 
 ## Renovate Features
 
-**Platforms**: Azure DevOps (Server), BitBucket, AWS CodeCommit, Gitea/Forgjo, GitHub, GitLab
+![](images/logos/renovate.png) <!-- .element: style="float: right;" -->
+
+**Platforms**: Azure DevOps (Server), BitBucket, AWS CodeCommit, Gitea/Forgejo, GitHub, GitLab
 
 **Datasources**: crate, docker, git-tags, gitea-releases, github-releases, gitlab-releases, go, helm, maven, npm, nuget, pypi, rubygems (and dozens more)
 
 Custom Managers for special use cases
 
 **Deployment options**: GitHub App, Self-hosted
+
+### Implications
 
 Powerful but complex
 
@@ -204,19 +212,23 @@ Enable automerge for them
 
 ## Monitoring
 
-XXX
+Nothing out-of-the-box
 
 ### Operations
 
-XXX filter log for errors / failures
+Filter log for errors / failures for...
+
+- Configuration errors
+- Permission issues
+- Rate limits
 
 ### Up-to-dateness
 
-XXX
+Failures will show in the log
 
 ### Security
 
-XXX SBOM
+Create and analyze SBOM
 
 ---
 
@@ -249,39 +261,37 @@ Ships with regex to match comment above and configure Renovate
 
 ---
 
-## Vulnerability Alerts
+## Merge Confidence
 
-XXX
+Merge Confidence [](https://docs.renovatebot.com/merge-confidence/) supports merge decisions
 
-XXX Integration with GitHub and Dependabot to show updates addressing security alerts [](https://docs.renovatebot.com/configuration-options/#vulnerabilityalerts)
+Based on data collect from countless PRs on GitHub
 
-### Requirements
+Supported ecosystems: Go, JavaScript, Java, Python, .NET, PHP, Ruby
 
-https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#enabling-the-dependency-graph
+### Information provided
 
-https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository
+**Age** of the package
+
+**Adoption** percentage for other Renovate users with this release
+
+**Passing** percentage of updates with successful checks
+
+**Confidence** calculated by proprietary algorithm
 
 ---
 
-## Merge Confidence
+## Vulnerability Alerts
 
-XXX
+Show updates addressing security alerts [](https://docs.renovatebot.com/configuration-options/#vulnerabilityalerts)
 
-XXX Merge Confidence [](https://docs.renovatebot.com/merge-confidence/) supports merge decisions for many languages
+Integrates with GitHub and Dependabot
 
-XXX collect data from countless PRs
+### Requirements
 
-XXX supported languages: go, javascript/npm, java/maven, python/pypi, .NET/nuget, PHP/packagist, ruby/rubygems
+Enable GitHub Dependency Grapg [](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#enabling-the-dependency-graph)
 
-### Information
-
-XXX age of the package
-
-XXX adoption: percentage of Renovate users with this release
-
-XXX passing: percentage of updates with successful checks
-
-XXX confidence: result of proprietary algorithm
+Enable alert from Dependabot [](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)
 
 ---
 
@@ -319,11 +329,11 @@ over 6.725 merged PRs
 
 ~9 PRs per day
 
-90% merged after ~1min (~6.050 PRs)
+90% merged after ~1min (6.050 PRs)
 
-95% merged after ~3min (~6.390 PRs)
+95% merged after ~3min (6.390 PRs)
 
-98% merged after ~10min (~6.590 PRs)
+98% merged after ~10min (6.590 PRs)
 
 ---
 
