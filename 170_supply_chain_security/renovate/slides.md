@@ -68,7 +68,7 @@ Provides visibility
 
 Can be matched against known vulnerabilities
 
-### Auditing is the last resort
+### Evaluation is the last resort
 
 Update dependencies quickly
 
@@ -222,6 +222,8 @@ Filter log for errors / failures for...
 - Permission issues
 - Rate limits
 
+XXX open PRs
+
 ### Up-to-dateness
 
 Failures will show in the log
@@ -287,11 +289,21 @@ Show updates addressing security alerts [](https://docs.renovatebot.com/configur
 
 Integrates with GitHub and Dependabot
 
+XXX new feature... open issue?
+
 ### Requirements
 
-Enable GitHub Dependency Grapg [](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#enabling-the-dependency-graph)
+Enable GitHub Dependency Graph [](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#enabling-the-dependency-graph)
 
 Enable alert from Dependabot [](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository)
+
+---
+
+## Testing the Renovate configuration
+
+XXX isolate change in separate repo
+
+XXX `--platform=local`
 
 ---
 
@@ -314,6 +326,8 @@ Detailed comparison [](https://docs.renovatebot.com/bot-comparison/)
 ---
 
 ## Case study: uniget
+
+XXX improve value proposition
 
 ### Installer and updater for (container) tools
 
