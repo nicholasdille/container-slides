@@ -46,6 +46,10 @@ clean-all:
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a" -v "$${EVENT}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a/@href" -v "$${LINK}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:img/@src" -v "$${LOGO}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -a "/x:html/x:body//x:section[@id='title']" -t elem -n section \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -a "/x:html/x:body//x:section[not(@id)]" -t attr -n id -v "FOO" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -a "/x:html/x:body//x:section[@id='FOO']" -t attr -n data-separator -v "^---$$" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -a "/x:html/x:body//x:section[@id='FOO']" -t attr -n data-separator-vertical -v "^--$$" \
 	>$@
 
 .PHONY:
