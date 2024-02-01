@@ -28,6 +28,26 @@ clean-all:
 	echo "Generating $$(basename $@)"; \
 	include $*
 
+%.html: template.html %.yaml
+	@\
+	TITLE="$$(yq eval '.metadata.title' $*.yaml)"; \
+	SUBTITLE="$$(yq eval '.metadata.subtitle' $*.yaml)"; \
+	FAVICON="$$(yq eval '.metadata.favicon' $*.yaml)"; \
+	BACKGROUND="$$(yq eval '.metadata.background' $*.yaml)"; \
+	EVENT="$$(yq eval '.event.name' $*.yaml)"; \
+	LINK="$$(yq eval '.event.link' $*.yaml)"; \
+	LOGO="$$(yq eval '.event.logo' $*.yaml)"; \
+	cat template.html \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:head/x:title" -v "$${TITLE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:head/x:link[@rel='icon']/@href" -v "$${FAVICON}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']/@data-background" -v "$${BACKGROUND}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:h1" -v "$${TITLE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:h2" -v "$${SUBTITLE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a" -v "$${EVENT}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a/@href" -v "$${LINK}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:img/@src" -v "$${LOGO}" \
+	>$@
+
 .PHONY:
 web-$(COMMIT):
 	@\
