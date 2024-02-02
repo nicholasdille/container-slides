@@ -9,9 +9,11 @@ event:
   name: heise devSec
   logo: images/logos/heise-devsec_ohnetext.svg
   link: https://www.heise-devsec.de/
+
 slides:
 - 000_introduction/02_bio.md
 - 170_supply_chain_security/renovate/slides.md
+
 summary:
 - icon: link
   text: Ops and Devs require many dependencies
@@ -23,6 +25,7 @@ summary:
   text: Automerging takes the load off dev and ops...
 - icons: magnifying-glass-chart
   text: ...but requires thorough testing
+
 events:
 - date: 2024-03-06
   name: heise devSec
