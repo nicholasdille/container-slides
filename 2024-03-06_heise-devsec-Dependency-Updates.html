@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta charset="utf-8" />
+<head>
+<meta charset="utf-8"/>
 
 <title>Automated Dependency Updates</title>
 
 <!-- https://gauger.io/fonticon/ -->
-<link rel="icon" href="images/favicons/renovate.ico" />
+<link rel="icon" href="images/favicons/renovate.ico"/>
 
-<link rel="stylesheet" href="media/reveal.js@5.0.4/dist/reveal.css" />
-<link rel="stylesheet" href="media/source-sans@3.052/font.css" />
-<link rel="stylesheet" href="media/reveal.js@5.0.4/dist/theme/black.css" id="theme" />
-<link rel="stylesheet" href="themes/theme2022.css" id="theme" />
-<link rel="stylesheet" href="themes/common.css" />
-<link rel="stylesheet" href="media/highlight.js@11.9.0/styles/rainbow.css" />
+<link rel="stylesheet" href="media/reveal.js@5.0.4/dist/reveal.css"/>
+<link rel="stylesheet" href="media/source-sans@3.052/font.css"/>
+<link rel="stylesheet" href="media/reveal.js@5.0.4/dist/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="themes/theme2022.css" id="theme"/>
+<link rel="stylesheet" href="themes/common.css"/>
+<link rel="stylesheet" href="media/highlight.js@11.9.0/styles/rainbow.css"/>
 
 <script>
     var version = '6.5.1'
@@ -33,29 +33,43 @@
 <div class="reveal">
 <div class="slides">
 
-<section id="title" data-separator="^---$" data-separator-vertical="^--$" data-background="images/barn-raising-unsplash.jpg" class="center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;">
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: data-background="images/barn-raising-unsplash.jpg" class="center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;" -->
+# Automated<br/>Dependency Updates <!-- .element: style="font-size: 1.5em; color: white;" -->
 
-<h1 style="font-size: 1.5em; color: white;">Automated Dependency Updates</h1>
+## Closing vulnerabilities<br/>as they appear <!-- .element: style="font-size: 1.2em; text-transform: none; color: white;" -->
 
-<h2 style="font-size: 1.2em; text-transform: none; color: white;">Closing vulnerabilities as they appear</h2>
-
-<p><i>Nicholas Dille, Haufe Group</i></p>
+*Nicholas Dille, Haufe Group*
 
 <p><img src="images/logos/heise-devsec_ohnetext.svg" style="height: 1em;" /> <a href="https://www.heise-devsec.de/">heise devSec</a></p>
-</section><section id="FOO" data-separator="^---$" data-separator-vertical="^--$"></section>
+</textarea></section>
 
-<section id="summary" data-separator="^---$" data-separator-vertical="^--$">
-<h2>Summary</h2>
+<section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="170_supply_chain_security/renovate/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Summary
 
-<ul id="bullets" class="fa-ul" style="line-height: 1.5em;">
-<li><span class="fa-li"><i class="fa-duotone fa-link"></i></span> First item</li>
-<li><span class="fa-li"><i class="fa-duotone fa-lock-keyhole"></i></span> Second item</li>
-</ul>
+<i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-<h3 id="events">Upcoming events</h3>
-</section>
+- <span class="fa-li"><i class="fa-duotone fa-link"></i></span> Ops and Devs require many dependencies
+- <span class="fa-li"><i class="fa-duotone fa-lock-keyhole"></i></span> Dependencies introduce (additional) security issues
+- <span class="fa-li"><i class="fa-duotone fa-arrows-rotate"></i></span> Automated updates help stay on top
+- <span class="fa-li"><i class="fa-duotone fa-crosshairs"></i></span> Automerging takes the load off dev and ops...
+- <span class="fa-li"><i class="fa-duotone fa-magnifying-glass-chart"></i></span> ...but requires thorough testing
+
+<!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
+
+### Upcoming events
+
+~~2024-03-06 [heise devSec](https://www.heise-devsec.de) - [Nie wieder veraltete Dependencies](https://www.heise-devsec.de/veranstaltung-21977-se-0-nie-wieder-veraltete-dependencies--wie-sich-sicherheitsluecken-von-selbst-schliessen.html)~~
+
+2024-04-10 heise Workshop: [Einführung in GitLab](https://heise-academy.de/schulungen/einfuehrung-in-gitlab)
+
+2024-04-16 [Mastering GitOps](https://www.mastering-gitops.de) - [GitOps und RenovateBot](https://www.mastering-gitops.de/veranstaltung-21902-se-0-gitops-und-renovatebot-die-zukunft-der-automatisierten-promotion.html)
+
+2024-04-17+24 heise Workshop: [CI/CD mit GitLab](https://heise-academy.de/schulungen/cicd-gitlab)
+</textarea></section>
 
 </div>
 </div>
@@ -104,6 +118,21 @@
         markdown: {
             smartypants: true
         },
+
+        keyboard: {
+            // pause/resume time when Enter is pressed
+            13: () => {
+                ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+            },
+            // reset timer when 'r' is pressed
+            82: () => {
+                ElapsedTimeBar.reset();
+            }
+        },
+
+        dependencies: [
+            { src: 'media/plugins/elapsed-time-bar@18feb15/elapsed-time-bar.js' }
+        ],
 
         plugins: [
             RevealMarkdown,
