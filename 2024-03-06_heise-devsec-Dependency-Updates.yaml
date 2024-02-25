@@ -17,13 +17,13 @@ slides:
 summary:
 - icon: link
   text: Ops and Devs require many dependencies
-- icons: lock-keyhole
+- icon: lock-keyhole
   text: Dependencies introduce (additional) security issues
-- icons: arrows-rotate
+- icon: arrows-rotate
   text: Automated updates help stay on top
-- icons: crosshairs
+- icon: crosshairs
   text: Automerging takes the load off dev and ops...
-- icons: magnifying-glass-chart
+- icon: magnifying-glass-chart
   text: ...but requires thorough testing
 
 events:

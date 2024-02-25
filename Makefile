@@ -28,7 +28,9 @@ clean-all:
 	echo "Generating $$(basename $@)"; \
 	include $*
 
-%.html: template.html %.yaml
+SOURCES=$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xargs -I{} basename {} .yaml)
+
+$(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	@\
 	TITLE="$$(yq eval '.metadata.title' $*.yaml)"; \
 	SUBTITLE="$$(yq eval '.metadata.subtitle' $*.yaml)"; \
@@ -46,11 +48,34 @@ clean-all:
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a" -v "$${EVENT}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a/@href" -v "$${LINK}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:img/@src" -v "$${LOGO}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -a "/x:html/x:body//x:section[@id='title']" -t elem -n section \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -a "/x:html/x:body//x:section[not(@id)]" -t attr -n id -v "FOO" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -a "/x:html/x:body//x:section[@id='FOO']" -t attr -n data-separator -v "^---$$" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -a "/x:html/x:body//x:section[@id='FOO']" -t attr -n data-separator-vertical -v "^--$$" \
-	>$@
+	>$@; \
+	yq eval '.slides[]' $*.yaml \
+	| while read -r FILE; do \
+		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
+			--insert '/x:html/x:body//x:section[@id="summary"]' --type elem --name section \
+			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-markdown --value "$${FILE}" \
+			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-separator --value "^---$$" \
+			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-vertical-separator --value "^--$$" \
+			--insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
+			$@; \
+	done; \
+	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
+	    --insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
+		$@; \
+	yq eval '.summary[] | "<li><span class=\"fa-li\"><i class=\"fa-duotone fa-" + .icon + "\"></i></span> " + .text + ")</li>"' $*.yaml \
+	| while read -r LINE; do \
+		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
+			--subnode '/x:html/x:body//x:section[@id="summary"]/x:ul[@id="bullets"]' --type text --name "" --value "$${LINE}" \
+			--subnode '/x:html/x:body//x:section[@id="summary"]/x:ul[@id="bullets"]' --type text --name "" --value $$'\n' \
+			$@; \
+	done; \
+	yq eval '.events | reverse | .[] | .date + "<a href=\"" + .homepage + "\">" + .name + "</a>: <a href=\"" + .title + "\">" + .title + "</a>"' $*.yaml \
+	| while read -r LINE; do \
+		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
+			--append '/x:html/x:body//x:section[@id="summary"]/x:h3[@id="events"]' --type text --name "" --value "$${LINE}" \
+			--append '/x:html/x:body//x:section[@id="summary"]/x:h3[@id="events"]' --type text --name "" --value $$'\n' \
+			$@; \
+	done
 
 .PHONY:
 web-$(COMMIT):
