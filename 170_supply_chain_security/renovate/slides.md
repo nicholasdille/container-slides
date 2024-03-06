@@ -1,6 +1,6 @@
 ## Motivation
 
-![](170_supply_chain_security/renovate/dependencies_stability_features.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
+![](170_supply_chain_security/renovate/forces.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
 
 Dependencies add reusable components
 
@@ -222,13 +222,13 @@ Filter log for errors / failures for...
 - Permission issues
 - Rate limits
 
-XXX open PRs
+Check for failed pipelines
 
-### Up-to-dateness
+Check for failed automerges
+
+### Up-to-dateness / Security
 
 Failures will show in the log
-
-### Security
 
 Create and analyze SBOM
 
@@ -287,9 +287,7 @@ Supported ecosystems: Go, JavaScript, Java, Python, .NET, PHP, Ruby
 
 Show updates addressing security alerts [](https://docs.renovatebot.com/configuration-options/#vulnerabilityalerts)
 
-Integrates with GitHub and Dependabot
-
-XXX new feature... open issue?
+Requires GitHub and Dependabot
 
 ### Requirements
 
@@ -301,9 +299,21 @@ Enable alert from Dependabot [](https://docs.github.com/en/repositories/managing
 
 ## Testing the Renovate configuration
 
-XXX isolate change in separate repo
+Configuration changes *will*  break Renovate
 
-XXX `--platform=local`
+### Isolate the change
+
+Factor out the change
+
+Test in a separate repository
+
+(Optionally) run Renovate manually for speed
+
+### Test locally
+
+Do not commit changes
+
+Run Renovate locally using `--platform=local`
 
 ---
 
@@ -326,8 +336,6 @@ Detailed comparison [](https://docs.renovatebot.com/bot-comparison/)
 ---
 
 ## Case study: uniget
-
-XXX improve value proposition
 
 ### Installer and updater for (container) tools
 
