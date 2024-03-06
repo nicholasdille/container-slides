@@ -70,6 +70,10 @@ Can be matched against known vulnerabilities
 
 ### Evaluation is the last resort
 
+Choose dependencies wisely
+
+- scorecard [](https://github.com/ossf/scorecard), OSSF [](https://best.openssf.org/Concise-Guide-for-Evaluating-Open-Source-Software)
+
 Update dependencies quickly
 
 (Be prepared to) ship fast
