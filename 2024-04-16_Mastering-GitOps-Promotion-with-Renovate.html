@@ -4,10 +4,10 @@
 <head>
 <meta charset="utf-8"/>
 
-<title>Dependency Updates</title>
+<title>Automated Promotion</title>
 
 <!-- https://gauger.io/fonticon/ -->
-<link rel="icon" href="images/kubernetes.ico"/>
+<link rel="icon" href="images/favicons/renovate.ico"/>
 
 <link rel="stylesheet" href="media/reveal.js@5.0.4/dist/reveal.css"/>
 <link rel="stylesheet" href="media/source-sans@3.052/font.css"/>
@@ -37,17 +37,27 @@
 <!-- .slide: data-background="images/barn-raising-unsplash.jpg" class="center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;" -->
 # Automated<br/>Dependency Updates <!-- .element: style="font-size: 1.5em; color: white;" -->
 
-## Closing vulnerabilities<br/>as they appear <!-- .element: style="font-size: 1.2em; text-transform: none; color: white;" -->
+## GitOps and Renovate<br/>The future of automated promotion? <!-- .element: style="font-size: 1.2em; text-transform: none; color: white;" -->
 
 *Nicholas Dille, Haufe Group*
 
-<i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
+<p>Mastering GitOps 2024</p>
 </textarea></section>
 
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="170_supply_chain_security/renovate/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<!-- Monitoring -->
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Notes
+
+1. How Renovate works -> requires software development workflow
+  a. Find dependencies, e.g. `requirements.txt` lists `cowsay`
+  b. Map to datasources, e.g. `pypi`
+  c. Check for updates, e.g. `cowsay` updated to `v6`
+1. Relevant datasources in Renovate: `github-tags`, `github-releases`, `gitlab-tags`, `gitlab-releases`, `git-tags`
+1. Promotion requires testing
+1. Software development workflow
+1. How to use Renovate with GitOps
+</textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
@@ -57,14 +67,14 @@
 - <span class="fa-li"><i class="fa-duotone fa-link"></i></span> Ops and Devs require many dependencies
 - <span class="fa-li"><i class="fa-duotone fa-lock-keyhole"></i></span> Dependencies introduce (additional) security issues
 - <span class="fa-li"><i class="fa-duotone fa-arrows-rotate"></i></span> Automated updates help stay on top
-- <span class="fa-li"><i class="fa-duotone fa-crosshairs"></i></span> Automerging takes the load off devs/ops...
+- <span class="fa-li"><i class="fa-duotone fa-crosshairs"></i></span> Automerging takes the load off dev and ops...
 - <span class="fa-li"><i class="fa-duotone fa-magnifying-glass-chart"></i></span> ...but requires thorough testing
 
 <!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 
 ### Upcoming events
 
-~~2024-04-16 [Mastering GitOps](https://www.mastering-gitops.de) - [GitOps und RenovateBot: Die Zukunft der automatisierten Promotion?](https://www.mastering-gitops.de/veranstaltung-21902-se-0-gitops-und-renovatebot-die-zukunft-der-automatisierten-promotion.html)~~
+~~2024-04-16 [Mastering GitOps](https://www.mastering-gitops.de) - [GitOps und RenovateBot](https://www.mastering-gitops.de/veranstaltung-21902-se-0-gitops-und-renovatebot-die-zukunft-der-automatisierten-promotion.html)~~
 
 2024-04-17+24 heise Workshop: [CI/CD mit GitLab](https://heise-academy.de/schulungen/cicd-gitlab)
 </textarea></section>
@@ -79,7 +89,7 @@
 <script src="media/reveal.js@5.0.4/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="media/reveal.js@5.0.4/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 4 * 60;
+    var durationInMinutes = 45;
     Reveal.initialize({
         width: 1300,
         height: 850,
