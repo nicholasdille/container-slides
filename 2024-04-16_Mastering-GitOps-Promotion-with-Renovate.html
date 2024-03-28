@@ -35,24 +35,76 @@
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 <!-- .slide: data-background="images/barn-raising-unsplash.jpg" class="center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;" -->
-# Automated<br/>Dependency Updates <!-- .element: style="font-size: 1.5em; color: white;" -->
+# Automated Promotion <!-- .element: style="font-size: 1.5em; color: white;" -->
 
-## GitOps and Renovate<br/>The future of automated promotion? <!-- .element: style="font-size: 1.2em; text-transform: none; color: white;" -->
+## GitOps and Renovate <!-- .element: style="font-size: 1.2em; text-transform: none; color: white;" -->
 
 *Nicholas Dille, Haufe Group*
 
 <p>Mastering GitOps 2024</p>
 </textarea></section>
 
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Setting the stage
+
+![](images/logos/opengitops-icon-color.svg) <!-- .element: style="float: right; width: 5em;" -->
+
+### GitOps [](https://opengitops.dev/)
+
+Declarative
+
+Versioned and immutable
+
+Pulled automatically
+
+Continuously reconciled
+
+![](images/logos/renovate.png) <!-- .element: style="float: right; width: 4em;" -->
+
+### Renovate [](https://www.mend.io/renovate/)
+
+Automated dependency updates
+
+Proposes pull / merge requests
+
+All platforms, all ecosystems
+
+---
+
+<!-- .slide: class="center" -->
+
+## ![](images/logos/opengitops-icon-color.svg) <!-- .element: style="width: 5em;" --> <i class="fa-solid fa-plus"></i> ![](images/logos/renovate.png) <!-- .element: style="width: 4em;" --> <i class="fa-solid fa-equals"></i> <i class="fa-solid fa-heart fa-4x"></i> <i class="fa-solid fa-question"></i>
+</textarea></section>
+
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## How Renovate works
+    
+![](140_gitops/renovate/renovate.drawio.svg) <!-- .element: style="width: 100%; margin-top: 1em;" -->
+
+---
+
+## How Renovate works - Example
+    
+![](140_gitops/renovate/renovate_example.drawio.svg) <!-- .element: style="width: 65%; margin-top: 1em;" -->
+
+---
+
+## How Renovate works - Updates
+
+XXX concept of releases <i class="fa-duotone fa-sparkles"></i>
+- mark code in git
+- publish to ecosystem
+
+XXX versions <i class="fa-duotone fa-arrow-down-1-9"></i>
+- semver
+- comparable
+</textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Notes
 
-1. How Renovate works -> requires software development workflow
-  a. Find dependencies, e.g. `requirements.txt` lists `cowsay`
-  b. Map to datasources, e.g. `pypi`
-  c. Check for updates, e.g. `cowsay` updated to `v6`
 1. Relevant datasources in Renovate: `github-tags`, `github-releases`, `gitlab-tags`, `gitlab-releases`, `git-tags`
 1. Promotion requires testing
 1. Software development workflow
