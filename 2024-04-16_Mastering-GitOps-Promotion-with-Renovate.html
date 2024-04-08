@@ -47,7 +47,7 @@
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Setting the stage
 
-![](images/logos/opengitops-icon-color.svg) <!-- .element: style="float: right; width: 5em;" -->
+![](images/logos/opengitops-icon-color.svg) <!-- .element: style="float: right; width: 5em; margin-right: 3em;" -->
 
 ### GitOps [](https://opengitops.dev/)
 
@@ -59,7 +59,7 @@ Pulled automatically
 
 Continuously reconciled
 
-![](images/logos/renovate.png) <!-- .element: style="float: right; width: 4em;" -->
+![](images/logos/renovate.png) <!-- .element: style="float: right; width: 4em; margin-right: 3em;" -->
 
 ### Renovate [](https://www.mend.io/renovate/)
 
@@ -81,7 +81,7 @@ All platforms, all ecosystems
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## How Renovate works
     
-![](140_gitops/renovate/renovate.drawio.svg) <!-- .element: style="width: 100%; margin-top: 1em;" -->
+![](140_gitops/renovate/renovate.drawio.svg) <!-- .element: class="fragment" style="width: 100%; margin-top: 1em;" -->
 
 ---
 
@@ -93,13 +93,15 @@ All platforms, all ecosystems
 
 ## How Renovate works - Updates
 
-XXX concept of releases <i class="fa-duotone fa-sparkles"></i>
-- mark code in git
-- publish to ecosystem
+Requires concept of a releases <i class="fa-duotone fa-sparkles"></i>
+- Mark code in version control
+- Publish release artifact to...
+  - Ecosystem
+  - Release on development platform
 
-XXX versions <i class="fa-duotone fa-arrow-down-1-9"></i>
-- semver
-- comparable
+Requires versions <i class="fa-duotone fa-arrow-down-1-9"></i>
+- Preferably semantic versioning
+- Versions must be comparable
 
 ---
 
@@ -110,21 +112,158 @@ XXX versions <i class="fa-duotone fa-arrow-down-1-9"></i>
 ## Renovate focuses on
 
 ## software development
+
+---
+
+<!-- .slide: class="center" -->
+
+## <i class="fa-duotone fa-crystal-ball fa-4x"></i> <!-- .element: style="float: left; margin-right: 0.5em;" -->
+
+## Map GitOps to
+
+## Software development workflow
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+## Software development workflow
+
+How does it work?
+
+![](140_gitops/renovate/process.drawio.svg) <!-- .element: style="width: 100%; margin-top: 1em;" -->
+
+Is this really so different from GitOps? <i class="fa-duotone fa-face-thinking"></i>
+
+---
+
+## Commonalities and Differences
+
+<i class="fa-duotone fa-scale-balanced fa-4x"></i> <!-- .element: style="float: right;" -->
+
+- <span class="fa-li"><i class="fa-duotone fa-water"></i></span> Both have a stream of updates
+- <span class="fa-li"><i class="fa-duotone fa-hand-holding-seedling"></i></span> GitOps has no ecosystem
+- <span class="fa-li"><i class="fa-duotone fa-bullseye-arrow"></i></span> GitOps has no releases...
+- <span class="fa-li"><i class="fa-duotone fa-notes-medical"></i></span> ...but knows about health/convergence
+- <span class="fa-li"><i class="fa-duotone fa-badge-check"></i></span> Promotion - like a release - is a concious decision
+    - Based on promised features OR
+    - Based on time
+- <span class="fa-li"><i class="fa-duotone fa-list-check"></i></span> Automated promotion requires successful testing
+    - Health and monitoring instead of automated tests
+
+<!-- .element: class="fa-ul" style="line-height: 1.8em;" -->
+
+---
+
 ## ???
 
-![](140_gitops/renovate/process.drawio.svg) <!-- .element: style="width: 80%;" -->
+XXX
+
+![](140_gitops/renovate/process_gitops.drawio.svg) <!-- .element: style="width: 100%; margin-top: 1em;" -->
+
+---
+
+## Creating an artifact in GitOps
+
+XXX question of state: `HEAD` vs. `tag` vs. `release`
+
+XXX tag -> preview env
+
+XXX wait for healthy
+
+XXX create release
+
+XXX promote to next stage
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-## Notes
+## GitOps Patterns
 
-1. Relevant datasources in Renovate: `github-tags`, `github-releases`, `gitlab-tags`, `gitlab-releases`, `git-tags`
-1. Promotion requires testing
-1. Software development workflow
-1. How to use Renovate with GitOps
+<i class="fa-duotone fa-code-branch fa-4x"></i> <!-- .element: style="float: right;" -->
+
+### Operator Deployment Patterns [](https://cloudogu.com/de/blog/gitops-repository-patterns-teil-2-operator-deployment-patterns)
+
+Instance per cluster
+
+Hub and spoke
+
+### Irrelevant for Renovate
+
+XXX
+
+---
+
+## GitOps Patterns
+
+<i class="fa-duotone fa-code-branch fa-4x"></i> <!-- .element: style="float: right;" -->
+
+### Repository Patterns [](https://cloudogu.com/de/blog/gitops-repository-patterns-teil-3-repository-patterns)
+
+Monorepo
+
+Repo per Team
+
+Repo per App
+
+### Irrelevant for Renovate
+
+Updates can occur in any file
+
+---
+
+## GitOps Patterns
+
+<i class="fa-duotone fa-badge-check fa-4x"></i> <!-- .element: style="float: right;" -->
+
+### Promotion Patterns [](https://cloudogu.com/de/blog/gitops-repository-patterns-teil-4-promotion-patterns)
+
+Branch per Environment
+
+Folder per Environment
+
+### Highly relevant for Renovate
+
+Datasources must be tags/releases in repositories
+
+Folders in the same branch cannot be treated differently
+
+@TODO: Package rules as a workaround?
+
+---
+
+## GitOps Patterns
+
+### Templating
+
+Considering templating
+- Helm: Use umbrella chart with pinned dependencies
+- Kustomize: ???
+
+---
+
+## GitOps Patterns
+
+### Wiring Patterns [](https://cloudogu.com/de/blog/gitops-repository-patterns-teil-5-verdrahtungs-patterns)
+
+Considering artifacts (nesting)
+- Flux [](https://fluxcd.io/flux/)
+  - `GitRepository` should point to revision instead of `HEAD` and `Kustomization`???
+  - `HelmRepository` remains unchanged but `HelmRelease` should point to revision
+- ArgoCD [](https://argo-cd.readthedocs.io)
+  - `Application` [](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#applications) should point to revision instead of `HEAD`
+  - Releases per app
+  - ArgoCD App of Apps [](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/)???
+
+---
+
+## Renovate lacks support for CRDs
+
+XXX custom managers of type regex
+
+XXX custom datasource with jsonata
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+Caveats:
+- Loose state in stage in stream of releases (more commits pollute state in stage during testing) --> Preview Env
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
