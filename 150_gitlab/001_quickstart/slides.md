@@ -20,7 +20,7 @@ docker run -d --name gitlab \
     --volume gitlab_logs:/var/log/gitlab \
     --volume gitlab_data:/var/opt/gitlab \
     --publish 80:80 \
-    gitlab/gitlab-ce:16.5.2-ce.0
+    gitlab/gitlab-ce:16.9.1-ce.0
 ```
 
 Wait for container to finish starting:

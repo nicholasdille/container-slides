@@ -8,11 +8,11 @@ packer {
 }
 
 locals {
-  gitlab_version = "16.5.1"
-  gitlab_runner_version = "16.5.0"
-  traefik_version = "2.10.5"
-  portainer_version = "2.19.1"
-  code_server_version = "4.18.0"
+  gitlab_version = "16.9.1"
+  gitlab_runner_version = "16.9.1"
+  traefik_version = "2.10.7"
+  portainer_version = "2.19.4"
+  code_server_version = "4.23.0"
   nginx_version = "1.24.0"
 }
 
