@@ -114,3 +114,13 @@ Not enough to create a new service account with the same name
 Issued token does not work for new service account
 
 Restart of pod is required
+
+--
+
+## New
+
+Short-lived JWTs [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount)
+
+Immutable secrets [](https://kubernetes.io/docs/concepts/configuration/secret/#secret-immutable)
+
+What is `kubernetes.io/enforce-mountable-secrets`? [](https://kubernetes.io/docs/concepts/security/service-accounts/#enforce-mountable-secrets)
