@@ -46,8 +46,50 @@ gitlab.com: 5GB storage [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 
 ### Premium [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/premium/) ($29/user/month)
 
-Faster code reviews, advanced CI/CD, enterprise agile planning, release controls, support
+**CI/CD-focused:** Faster code reviews, advanced CI/CD, enterprise agile planning, release controls, support, higher limits
 
 ### Ultimate [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/ultimate/) ($99/user/month)
 
-Advanced security testing, security risk mitigation, compliance, portfolio management, value stream management, free guest users
+**Security-focused:** Advanced security testing, security risk mitigation, compliance, portfolio management, value stream management, free guest users
+
+---
+
+## GitLab Dedicated
+
+<i class="fa-duotone fa-fence fa-4x"></i> <!--.element: style="float: right; margin-right: 1em;" -->
+
+Single-tenant SaaS deployment [](https://about.gitlab.com/dedicated/)
+
+Fully managed and deployed by GitLab
+
+No maintenance overhead
+
+Available in 30+ AWS regions [](https://docs.gitlab.com/ee/subscriptions/gitlab_dedicated/#aws-regions-not-supported)
+
+Bring your own encryption key for data at rest
+
+Ultimate features
+
+Pricing available on inquiry
+
+---
+
+## GitLab Duo
+
+<i class="fa-duotone fa-microchip-ai fa-4x"></i> <!--.element: style="float: right; margin-right: 1em;" -->
+
+Add AI features to our development process [](https://about.gitlab.com/gitlab-duo/)
+
+AI Transparency Center [](https://about.gitlab.com/ai-transparency-center/)
+
+### Pro ($19/user/month)
+
+Available for Premium and Ultimate
+
+Code suggestions, chat
+
+### Enterprise ($39/user/month)
+
+Available for Ultimate
+
+Summarization, templating, vulnerability explanation, root cause analysis

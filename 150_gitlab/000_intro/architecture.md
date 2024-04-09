@@ -11,3 +11,5 @@ Consists of multiple services internally
 GitLab offers reference architectures [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/reference_architectures/)
 
 Sizing information included <i class="fa-duotone fa-stars fa-duotone-colors"></i>
+
+(Grafana was unbundled in GitLab 16.3.0 [](https://docs.gitlab.com/ee/update/deprecations.html?removal_milestone=16.3#bundled-grafana-deprecated-and-disabled))

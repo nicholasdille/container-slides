@@ -12,9 +12,11 @@
 
 GitLab ships with Prometheus [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/grafana.html)
 
-Grafana was removed in 16.0 (May 2023)
+Grafana was removed in 16.3.0 (May 2023) [](https://docs.gitlab.com/ee/update/deprecations.html?removal_milestone=16.3#bundled-grafana-deprecated-and-disabled)
 
 All components expose metrics
+
+GitLab includes Prometheus exporters for all components
 
 GitLab provides custom dashboards for import into Grafana [](https://gitlab.com/gitlab-org/grafana-dashboards)
 
@@ -33,7 +35,7 @@ GitLab provides custom dashboards for import into Grafana [](https://gitlab.com/
         up -d
     ```
 
-1. Create datasource of type Prometheus with URL `http://gitlab:9090`
+1. Create datasource of type Prometheus with URL<br/>`http://gitlab:9090`
 
 1. Import dashboard with ID 5774 [](https://grafana.com/grafana/dashboards/5774-gitlab-omnibus/)
 
