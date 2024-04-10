@@ -83,7 +83,7 @@ User can pull but not push
 
 Deploy keys belong to a user who can be blocked <i class="fa-solid fa-face-scream"></i> [gitlab-org/gitlab#35779](https://gitlab.com/gitlab-org/gitlab/-/issues/35779)
 
-Find and fix deploy keys using Ruby code in rals console [](https://docs.gitlab.com/ee/user/project/deploy_keys/#identify-deploy-keys-associated-with-non-member-and-blocked-users)
+Find and fix deploy keys using Ruby code in rails console [](https://docs.gitlab.com/ee/user/project/deploy_keys/#identify-deploy-keys-associated-with-non-member-and-blocked-users)
 
 ```ruby
 DeployKeysProject.with_write_access.find_each do |deploy_key_mapping|
@@ -107,7 +107,7 @@ end
 
 ## Comparison
 
-| | Password | Personal Access Token | Personal SSH Key | Group Access Token | Group Deploy Token | Project Access Token | Project Deploy Token | Project SSH Key (0) |
+| | Password | Personal Access Token | Personal SSH Key | Group Access Token | Group Deploy Token | Project Access Token | Project Deploy Token | Project SSH Key |
 |-|-|-|-|-|-|-|-|-|
 | Access to Web UI            | Yes          | No      | No       | No          | No          | No      | No      | No          |
 | Access to API               | Indirect (1) | Yes     | No       | Yes (2)     | No          | Yes (3) | No      | No          |
@@ -115,22 +115,18 @@ end
 | Write git repository        | Yes          | Yes     | Yes      | Yes         | No          | Yes     | No      | No          |
 | Access CI variables         | Yes          | Yes (4) | No       | Yes (4)     | No          | Yes (4) | No      | No          |
 | Access scope                | User         | User    | User     | Group       | Group       | Project | Project | Project     |
+| Employee layoffs            | Yes          | Yes     | Yes      | No          | No          | No      | No      | Yes         |
 | Credential reuse (5)        | Possible     | No      | Possible | No          | No          | No      | No      | Possible    |
 | Impact of security incident | High         | High    | High     | Medium      | Medium      | Low     | Low     | Medium      |
 | Recommendation              | No           | No      | No       | Limited (6) | Limited (6) | Yes     | Yes     | Limited (6) |
 
 <!-- .element: style="font-size: large;" -->
 
-(0) XXX
+- (1) Username and password can be used to retrieve a personal access token
+- (2) Group only
+- (3) Project only
+- (4) API only
+- (5) Can be used for multiple accounts and on multiple systems
+- (6) Acceptable for automation to avoid many project credentials
 
-(1) Username and password can be used to retrieve a personal access token
-
-(2) Group only
-
-(3) Project only
-
-(4) API only
-
-(5) Can be used for multiple accounts and on multiple systems
-
-(6) Acceptable for automation to avoid many project credentials
+<!-- .element: style="font-size: smaller;" -->

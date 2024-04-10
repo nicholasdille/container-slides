@@ -45,6 +45,8 @@
 <i class="fa fa-briefcase" style="width: 1.5em; text-align: center;"></i>Haufe Group
 
 <i class="fa-brands fa-docker" style="width: 1.5em; text-align: center;"></i> Docker Captain
+
+![](images/logos/heise-academy.svg) <!-- .element: style="float: right; height: 1em;" -->
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -132,7 +134,7 @@ git clone https://github.com/nicholasdille/container-slides
 
 ### Part 2 - Configuration
 
-[Omnibus](#/gitlab_omnibus) - [Reverse Proxy](#/gitlab_omnibus) - [Directories](#/gitlab_directories) - [LDAP](#/gitlab_ldap) - [SMTP](#/gitlab_smtp) - [Registries](#/gitlab_registries) - [Integrations](#/gitlab_integrations) - [Troubleshooting](#/gitlab_troubleshooting) - [Update](#/gitlab_update) - [Runner](#/gitlab_runner) - [Pages](#/gitlab_pages) - [Monitoring](#/gitlab_monitoring) - [Resources](#/gitlab_components) - [Storage](#/gitlab_storage) - [Database](#/gitlab_database)
+[Omnibus](#/gitlab_omnibus) - [Reverse Proxy](#/gitlab_omnibus) - [Directories](#/gitlab_directories) - [LDAP](#/gitlab_ldap) - [SMTP](#/gitlab_smtp) - [Registries](#/gitlab_registries) - [Integrations](#/gitlab_integrations) - [Troubleshooting](#/gitlab_troubleshooting) - [Update](#/gitlab_update) - [Runner](#/gitlab_runner) - [Pages](#/gitlab_pages) - [Monitoring](#/gitlab_monitoring) - [Resources](#/gitlab_components) - [Storage](#/gitlab_storage) - [Database](#/gitlab_database) - [Enterprise](#/gitlab_enterprise) - [Usage Ping](#/gitlab_usage_ping)
 </textarea></section>
 
 <section data-markdown="150_gitlab/000_intro/product.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -179,6 +181,52 @@ git clone https://github.com/nicholasdille/container-slides
 <section data-markdown="150_gitlab/190_database/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: id="gitlab_enterprise" -->
+## Enterprise Editions
+
+<i class="fa-duotone fa-building-flag fa-4x"></i> <!-- .element: style="float: right;" -->
+
+Requires for GitLab Premium and Ultimate
+
+Containerized deployment can be converted to EE<br/>by switching images [](https://docs.gitlab.com/ee/install/docker.html#convert-community-edition-to-enterprise-edition)
+- From: `gitlab/gitlab-ce:16.9.1-ce.0`
+- To: `gitlab/gitlab-ee:16.9.1-ee.0`
+
+Deployments with Linux packages are EE by default [](https://about.gitlab.com/install/)
+
+Install a license [](https://docs.gitlab.com/ee/administration/license.html)
+
+Understand billable users [](https://docs.gitlab.com/ee/subscriptions/self_managed/#billable-users) and "over license" [](https://about.gitlab.com/pricing/licensing-faq/#what-does-users-over-license-mean)
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
+<!-- .slide: id="gitlab_usage_ping" -->
+## Usage Ping
+
+<i class="fa-duotone fa-square-poll-horizontal fa-4x"></i> <!-- .element: style="float: right;" -->
+
+Weekly paylod sent to GitLab [](https://docs.gitlab.com/ee/administration/settings/usage_statistics.html)
+
+Help GitLab to understand usage and improve product
+
+Enabled/disabled through UI or deployment configuration
+
+### Advantages when sending usage ping
+
+Registration Features Program [](https://docs.gitlab.com/ee/administration/settings/usage_statistics.html#registration-features-program)
+
+Activation of specific paid features
+
+Enabled next to usage ping
+
+### Contents
+
+Example payload [](https://docs.gitlab.com/ee/development/internal_analytics/service_ping/index.html#example-service-ping-payload)
+
+Actual payload available from UI [](https://docs.gitlab.com/ee/administration/settings/usage_statistics.html#view-the-service-ping-payload)
+</textarea></section>
+
+<section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Summary
 
 <ul class="fa-ul">
@@ -194,7 +242,7 @@ git clone https://github.com/nicholasdille/container-slides
 
 ~~2023-11-23: Workshop [GitLab Ops](https://heise-academy.de/schulungen/einfuehrung-in-gitlab) (1 day)~~
 
-2023-11-30 / 2023-12-07: Workshop [GitLab CI](https://heise-academy.de/schulungen/cicd-gitlab) (2 days)
+~~2024-04-16 [Mastering GitOps](https://www.mastering-gitops.de) - [GitOps und RenovateBot](https://www.mastering-gitops.de/veranstaltung-21902-se-0-gitops-und-renovatebot-die-zukunft-der-automatisierten-promotion.html)~~
 </textarea></section>
 </div>
 </div>

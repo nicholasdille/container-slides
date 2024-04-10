@@ -92,7 +92,7 @@ For example: repository, issues etc.
 
 ### Members
 
-Invite other users
+Invite users/groups
 
 Control role
 

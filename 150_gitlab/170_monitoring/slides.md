@@ -12,7 +12,7 @@
 
 GitLab ships with Prometheus [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/grafana.html)
 
-Grafana was removed in 16.3.0 (May 2023) [](https://docs.gitlab.com/ee/update/deprecations.html?removal_milestone=16.3#bundled-grafana-deprecated-and-disabled)
+Grafana was removed in 16.3.0 (August 2023) [](https://docs.gitlab.com/ee/update/deprecations.html?removal_milestone=16.3#bundled-grafana-deprecated-and-disabled)
 
 All components expose metrics
 

@@ -24,15 +24,17 @@ Jobs select runners by specifying a tag
 
 ---
 
-## Heads-up
+## Heads-up: New runner registration
 
-New runner registration process [](https://docs.gitlab.com/ee/architecture/blueprints/runner_tokens/)
+<i class="fa-duotone fa-person-running fa-4x fa-duotone-colors" style="float: right;"></i>
+
+Available since 15.10 [](https://docs.gitlab.com/ee/architecture/blueprints/runner_tokens/)
 
 New default in 16.0 (May 2023)
 
-Enforcement in 16.6 (November 2023)
+Old runner registration behind disabled feature flag in 17.0
 
-Removal of old runner registration in 17.0 (May 2024)
+Removal of old runner registration in 18.0 (May 2025)
 
 ### Old process
 
@@ -42,7 +44,7 @@ Credential leak causes a lot of work
 
 ### New process [](https://docs.gitlab.com/ee/ci/runners/new_creation_workflow.html)
 
-Create a runner through the UI or the API
+Create a runner through the UI [](https://docs.gitlab.com/ee/ci/runners/runners_scope.html) or the API [](https://docs.gitlab.com/ee/api/users.html#create-a-runner-linked-to-a-user)
 
 One token per runner
 
@@ -81,7 +83,7 @@ docuum [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.c
     cd ../160_runners
 
     # Deploy GitLab runner
-    export CI_SERVER_URL=https://gitlab.inmylab.de
+    export CI_SERVER_URL=https://gitlab.seat<N>.inmylab.de
     export CI_SERVER_TOKEN=<TOKEN>
     export RUNNER_EXECUTOR=docker
     docker compose --project-name gitlab \

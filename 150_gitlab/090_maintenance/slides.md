@@ -28,9 +28,11 @@ Switch GitLab into read-only mode [<i class="fa-solid fa-arrow-up-right-from-squ
 
 <i class="fa-brands fa-git-alt fa-4x" style="float: right;"></i>
 
-Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Repository <i class="fa-regular fa-arrow-right"></i> Repository Maintenance
+Automatically optimize git repositories [](https://docs.gitlab.com/ee/administration/housekeeping.html), especially...
+- Compress objects and revisions
+- Remove unreachable objects
 
-Regular execution of...
-- `git fsck`
-- `git repack` (incremental and full)
-- `git gc`
+Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Repository <i class="fa-regular fa-arrow-right"></i> Repository Maintenance
+- Enable repository checks (default)
+- Enable housekeeping (default)
+- Configure optimization period (default: 10 pushes)

@@ -41,7 +41,8 @@ But you have access to the console
 Use `gitlab-rake`:
 
 ```bash
-docker exec -it gitlab gitlab-rake "gitlab:password:reset[root]"
+docker exec -it gitlab \
+    gitlab-rake "gitlab:password:reset[root]"
 ```
 
 ---
@@ -72,7 +73,9 @@ ssh -Tvvv -i id_rsa git@gitlab.<DOMAIN>
 Find user for given SSH key fingerprint:
 
 ```bash
-curl --silent --header "Private-Token: admin-private-token" https://gitlab.haufedev.systems/api/v4/keys?fingerprint=d0:6d:2e:bb:fb:27:f1:6e:80:6c:16:b2:be:c6:d8:00 | jq
+curl --silent --header "Private-Token: admin-private-token" \
+    https://gitlab.example.com/api/v4/keys?fingerprint=d0:6d:2e:bb:fb:27:f1:6e:80:6c:16:b2:be:c6:d8:00 \
+| jq
 ```
 
 ---
@@ -96,10 +99,11 @@ curl -sH "Private-Token: <TOKEN>" http://gitlab.<DOMAIN>/api/v4/user \
 Example for group access token (group ID 6):
 
 ```bash
-curl -sH "Private-Token: <TOKEN>" http://gitlab.<DOMAIN>/api/v4/user | jq -r .username
+curl -sH "Private-Token: <TOKEN>" http://gitlab.<DOMAIN>/api/v4/user \
+| jq -r .username
 group_6_bot
 ```
 
 ### Deploy Token
 
-No known way to find group or project
+No known way to find group or project... except for log parsing for requests

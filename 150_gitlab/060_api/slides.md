@@ -142,4 +142,4 @@ Rotation API introduced in GitLab 16.0 (May 2023)
 
 Automatic reuse detection [](https://docs.gitlab.com/ee/api/personal_access_tokens.html#automatic-reuse-detection) prevents use of rotated tokens:
 
-- Use of old tokens result in revocation of latest token
+- Use of old tokens for rotation results in revocation of whole token family

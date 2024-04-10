@@ -3,7 +3,7 @@
 services:
 
   kroki:
-    image: yuzutech/kroki:0.17.0
+    image: yuzutech/kroki:0.25.0
     environment:
       KROKI_BLOCKDIAG_HOST: blockdiag
       KROKI_MERMAID_HOST: mermaid
@@ -11,13 +11,13 @@ services:
       KROKI_EXCALIDRAW_HOST: excalidraw
 
   blockdiag:
-    image: yuzutech/kroki-blockdiag:0.17.0
+    image: yuzutech/kroki-blockdiag:0.25.0
 
   mermaid:
-    image: yuzutech/kroki-mermaid:0.17.0
+    image: yuzutech/kroki-mermaid:0.25.0
 
   bpmn:
-    image: yuzutech/kroki-bpmn:0.17.0
+    image: yuzutech/kroki-bpmn:0.25.0
 
   excalidraw:
-    image: yuzutech/kroki-excalidraw:0.17.0
+    image: yuzutech/kroki-excalidraw:0.25.0

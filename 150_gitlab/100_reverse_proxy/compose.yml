@@ -60,11 +60,12 @@ services:
 
         gitlab_pages['enable'] = true
         pages_external_url 'http://gitlab.${DOMAIN:?You must supply DOMAIN}'
-        # Required due to https://gitlab.com/gitlab-org/gitlab-pages/issues/129
-        gitlab_pages['inplace_chroot'] = true
         # Set listen-proxy when behind reverse proxy. see https://docs.gitlab.com/ee/administration/pages/#configure-listener-for-reverse-proxy-requests
         gitlab_pages['listen_proxy'] = "0.0.0.0:8090"
-        # Fix for https://gitlab.com/gitlab-org/gitlab-pages/-/issues/534
+        # Required due to https://gitlab.com/gitlab-org/gitlab-pages/issues/129
+        # "chroot bind mount breaks containerised Omnibus deployment"
+        gitlab_pages['inplace_chroot'] = true
+        # Fix for https://gitlab.com/gitlab-org/gitlab-pages/-/issues/534 causing failed DNS queries
         gitlab_pages['internal_gitlab_server'] = "http://127.0.0.1"
 
         # Prevent conflict with host SSH port
