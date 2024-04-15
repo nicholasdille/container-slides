@@ -91,15 +91,21 @@ All platforms, all ecosystems
 
 ---
 
-## How Renovate works - Updates
+## How Renovate works
 
-Requires concept of a releases <i class="fa-duotone fa-sparkles"></i>
-- Mark code in version control
-- Publish release artifact to...
+<i class="fa-duotone fa-sparkles fa-3x"></i> <!-- .element: style="float: right;" -->
+
+### Requires concept of a releases
+
+Mark code in version control
+
+Publish release artifact to...
   - Ecosystem
   - Release on development platform
 
-Requires versions <i class="fa-duotone fa-arrow-down-1-9"></i>
+<i class="fa-duotone fa-arrow-down-1-9 fa-3x"></i> <!-- .element: style="float: right;" -->
+
+### Requires versions
 - Preferably semantic versioning
 - Versions must be comparable
 
@@ -107,7 +113,7 @@ Requires versions <i class="fa-duotone fa-arrow-down-1-9"></i>
 
 <!-- .slide: class="center" -->
 
-## <i class="fa-duotone fa-code-merge fa-4x"></i> <!-- .element: style="float: left; margin-right: 0.5em;" -->
+<i class="fa-duotone fa-code-merge fa-7x"></i> <!-- .element: style="float: left; margin-right: 0.5em;" -->
 
 ## Renovate focuses on
 
@@ -117,17 +123,17 @@ Requires versions <i class="fa-duotone fa-arrow-down-1-9"></i>
 
 <!-- .slide: class="center" -->
 
-## <i class="fa-duotone fa-crystal-ball fa-4x"></i> <!-- .element: style="float: left; margin-right: 0.5em;" -->
+<i class="fa-duotone fa-crystal-ball fa-6x"></i> <!-- .element: style="float: left; margin-right: 0.5em;" -->
 
-## Map GitOps to
+## Treat GitOps like
 
-## Software development workflow
+## Software development
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## Software development workflow
 
-How does it work?
+### How does it work?
 
 ![](140_gitops/renovate/process.drawio.svg) <!-- .element: style="width: 100%; margin-top: 1em;" -->
 
@@ -144,40 +150,96 @@ Is this really so different from GitOps? <i class="fa-duotone fa-face-thinking">
 - <span class="fa-li"><i class="fa-duotone fa-bullseye-arrow"></i></span> GitOps has no releases...
 - <span class="fa-li"><i class="fa-duotone fa-notes-medical"></i></span> ...but knows about health/convergence
 - <span class="fa-li"><i class="fa-duotone fa-badge-check"></i></span> Promotion - like a release - is a concious decision
-    - Based on promised features OR
+    - Based on planned features OR
     - Based on time
 - <span class="fa-li"><i class="fa-duotone fa-list-check"></i></span> Automated promotion requires successful testing
-    - Health and monitoring instead of automated tests
+    - Health instead of automated tests
 
 <!-- .element: class="fa-ul" style="line-height: 1.8em;" -->
 
 ---
 
-## ???
+## Align with Software Development
 
-XXX
+### Bringing artifacts to GitOps
 
-![](140_gitops/renovate/process_gitops.drawio.svg) <!-- .element: style="width: 100%; margin-top: 1em;" -->
+![](140_gitops/renovate/process_gitops.drawio.svg) <!-- .element: style="width: 100%;" -->
 
 ---
 
-## Creating an artifact in GitOps
+## Artifacts in GitOps
 
-XXX question of state: `HEAD` vs. `tag` vs. `release`
+![](140_gitops/renovate/artifacts.drawio.svg) <!-- .element: style="width: 100%;" -->
 
-XXX tag -> preview env
+---
 
-XXX wait for healthy
+## Artifacts in GitOps
 
-XXX create release
+![](140_gitops/renovate/artifacts.drawio.svg) <!-- .element: style="width: 100%;" -->
 
-XXX promote to next stage
+### App Package
+
+Helm or Kustomize
+
+Transiton to fully versioned project
+
+Establish process for creating releases
+
+Implement health checks for release process
+
+Treat as software project
+
+---
+
+## Artifacts in GitOps
+
+![](140_gitops/renovate/artifacts.drawio.svg) <!-- .element: style="width: 100%;" -->
+
+### GitOps Application
+
+ArgoCD `Application` [](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#applications)
+
+Flux `HelmRelease` [](https://fluxcd.io/flux/components/helm/helmreleases/) or `Kustomization` [](https://fluxcd.io/flux/components/kustomize/kustomizations/)
+
+Both reference repo URL and revision
+
+Point to application package
+
+Version maintained by Renovate
+
+---
+
+## Artifacts in GitOps
+
+![](140_gitops/renovate/artifacts.drawio.svg) <!-- .element: style="width: 100%;" -->
+
+### Nested Applications
+
+Can help to tie a release across applications
+
+Must be able to reference a specific revision
+
+---
+
+### Release process
+
+Each app package has its own release process
+
+Infrastructure release consists of multiple app packages
+
+Health checks determine release version of an app package
+
+![](140_gitops/renovate/release_process.drawio.svg) <!-- .element: style="width: 100%; margin-top: 2em;" -->
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
 ## GitOps Patterns
 
-<i class="fa-duotone fa-code-branch fa-4x"></i> <!-- .element: style="float: right;" -->
+---
+
+## GitOps Patterns
+
+<i class="fa-duotone fa-person-military-pointing fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ### Operator Deployment Patterns [](https://cloudogu.com/de/blog/gitops-repository-patterns-teil-2-operator-deployment-patterns)
 
@@ -187,7 +249,9 @@ Hub and spoke
 
 ### Irrelevant for Renovate
 
-XXX
+Renovate operates on repositories...
+
+...regardless which instance consumes them
 
 ---
 
@@ -207,11 +271,15 @@ Repo per App
 
 Updates can occur in any file
 
+Monorepo for app packages
+- Different releases in the same repository
+- Prefix with app name: `app-name/v1.2.3`
+
 ---
 
 ## GitOps Patterns
 
-<i class="fa-duotone fa-badge-check fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa-duotone fa-badge-check fa-3x"></i> <!-- .element: style="float: right;" -->
 
 ### Promotion Patterns [](https://cloudogu.com/de/blog/gitops-repository-patterns-teil-4-promotion-patterns)
 
@@ -219,51 +287,116 @@ Branch per Environment
 
 Folder per Environment
 
-### Highly relevant for Renovate
+### Relevant for Renovate
 
-Datasources must be tags/releases in repositories
+Separate app packages from GitOps applications
 
-Folders in the same branch cannot be treated differently
-
-@TODO: Package rules as a workaround?
+Otherwise Renovate must use same repository as datasource
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 ## GitOps Patterns
+
+<i class="fa-duotone fa-box-taped fa-3x"></i> <!-- .element: style="float: right;" -->
 
 ### Templating
 
-Considering templating
-- Helm: Use umbrella chart with pinned dependencies
-- Kustomize: ???
+Considering support for collections of applications
+
+### Helm
+
+Is aware of versioned releases
+
+Can contain versioned dependencies
+
+### Kustomize
+
+No concept of packages
+
+No concept of dependencies
+
+Workaround using clever directory layout and overlays
 
 ---
 
 ## GitOps Patterns
 
+<i class="fa-duotone fa-box-taped fa-3x"></i> <!-- .element: style="float: right;" -->
+
 ### Wiring Patterns [](https://cloudogu.com/de/blog/gitops-repository-patterns-teil-5-verdrahtungs-patterns)
 
-Considering artifacts (nesting)
-- Flux [](https://fluxcd.io/flux/)
-  - `GitRepository` should point to revision instead of `HEAD` and `Kustomization`???
-  - `HelmRepository` remains unchanged but `HelmRelease` should point to revision
-- ArgoCD [](https://argo-cd.readthedocs.io)
-  - `Application` [](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#applications) should point to revision instead of `HEAD`
-  - Releases per app
-  - ArgoCD App of Apps [](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/)???
+Both Flux and ArgoCD support versioned sources
+- Source Controller [](https://fluxcd.io/flux/components/source/)
+- ArgoCD Application [](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#applications)
+
+Nesting is hard for both tools
+
+### Helm
+
+Supports versioned releases
+
+Supports versioned dependencies
+
+### Kustomize
+
+No concept of packages and dependencies
+
+Notes:
+
+- Kustomize: Workaround using clever directory layout and overlays
 
 ---
 
 ## Renovate lacks support for CRDs
 
-XXX custom managers of type regex
+Updates must be maintained in resource definitions
 
-XXX custom datasource with jsonata
+<i class="fa-duotone fa-user-tie-hair fa-3x"></i> <!-- .element: style="float: right;" -->
+
+### Enter Custom Managers
+
+Type RegEx
+
+Identify dependencies in resource definitions
+
+Extract package information and current version
+
+Inject new version
+
+### Example
+
+```Dockerfile
+FROM ubuntu:24.04
+# renovate: datasource=github-releases depName=helm/helm
+ARG HELM_VERSION=3.14.4
+#...
+```
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
-Caveats:
-- Loose state in stage in stream of releases (more commits pollute state in stage during testing) --> Preview Env
+## Caveats
+
+<i class="fa-duotone fa-block-brick fa-3x"></i> <!-- .element: style="float: right;" -->
+
+### Fast progress in stage
+
+How to keep track of release candidates? Apply semantic versioning
+
+Use preview environment tied to specific commit
+
+### Asynchronous updates
+
+Make sure releases are triggered when apps are healthy
+
+### Release of multiple apps
+
+Tied multiple app packages to a single release
+
+Use Helm chart with pinned dependencies
+
+Kustomize?! <i class="fa-duotone fa-face-thinking"></i>
 </textarea></section>
 
 <section data-markdown="" data-separator="^---$" data-separator-vertical="^--$"><textarea data-template="">
@@ -271,11 +404,11 @@ Caveats:
 
 <i class="fa-duotone fa-4x fa-lightbulb-on"></i> <!-- .element: style="float: right;" -->
 
-- <span class="fa-li"><i class="fa-duotone fa-link"></i></span> Ops and Devs require many dependencies
-- <span class="fa-li"><i class="fa-duotone fa-lock-keyhole"></i></span> Dependencies introduce (additional) security issues
-- <span class="fa-li"><i class="fa-duotone fa-arrows-rotate"></i></span> Automated updates help stay on top
-- <span class="fa-li"><i class="fa-duotone fa-crosshairs"></i></span> Automerging takes the load off dev and ops...
-- <span class="fa-li"><i class="fa-duotone fa-magnifying-glass-chart"></i></span> ...but requires thorough testing
+- <span class="fa-li"><i class="fa-duotone fa-sparkles"></i></span> GitOps is a modern approach to operations
+- <span class="fa-li"><i class="fa-duotone fa-rocket-launch"></i></span> Renovate enables automated dependency updates
+- <span class="fa-li"><i class="fa-duotone fa-infinity"></i></span> GitOps must follow software development patterns
+- <span class="fa-li"><i class="fa-duotone fa-crosshairs"></i></span> Versions and releases are key to automated promotion
+- <span class="fa-li"><i class="fa-duotone fa-stethoscope"></i></span> Automated promotion requires reliable health checks
 
 <!-- .element: class="fa-ul" style="line-height: 1.5em;" -->
 
@@ -283,7 +416,11 @@ Caveats:
 
 ~~2024-04-16 [Mastering GitOps](https://www.mastering-gitops.de) - [GitOps und RenovateBot](https://www.mastering-gitops.de/veranstaltung-21902-se-0-gitops-und-renovatebot-die-zukunft-der-automatisierten-promotion.html)~~
 
-2024-04-17+24 heise Workshop: [CI/CD mit GitLab](https://heise-academy.de/schulungen/cicd-gitlab)
+2024-11-07 heise Workshop: [Einführung in GitLab](https://heise-academy.de/schulungen/einfuehrung-in-gitlab) (1 day)
+
+2024-11-21/28 heise Workshop: [CI/CD mit GitLab](https://heise-academy.de/schulungen/cicd-gitlab) (2 days)
+
+2024-11-13/14: ContainerConf?
 </textarea></section>
 
 </div>

@@ -1,4 +1,0 @@
-- Enforce DNS record
-- seatctl: list should check DNS
-- Image for demo env
-- Pre-create external users?!
