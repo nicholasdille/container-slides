@@ -1,0 +1,43 @@
+date: 2024-04-08
+metadata:
+  title: Kubernetes RBAC
+  title_slug: kubernetes-rbac
+  subtitle: Tricks and Caveats
+  favicon: images/favicons/kubernetes.ico
+  background:
+    image: images/laila-gebhard-PcdMVvTQ0zw-unsplash.jpg
+    size: 100%
+    positon: left 50% top 50%
+event:
+  name: DevOps Meetup
+  logo: ""
+  link: https://www.meetup.com/de-DE/devops-freiburg/
+
+slides:
+- 000_introduction/02_bio.md
+
+summary:
+- icon: link
+  text: Ops and Devs require many dependencies
+- icon: lock-keyhole
+  text: Dependencies introduce (additional) security issues
+- icon: arrows-rotate
+  text: Automated updates help stay on top
+- icon: crosshairs
+  text: Automerging takes the load off dev and ops...
+- icon: magnifying-glass-chart
+  text: ...but requires thorough testing
+
+events:
+- date: 2024-11-07
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab Ops
+  link: https://heise-academy.de/schulungen/einfuehrung-in-gitlab
+- date: 2024-11-21
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab CI
+  link: https://heise-academy.de/schulungen/cicd-gitlab

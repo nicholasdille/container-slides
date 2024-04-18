@@ -35,14 +35,18 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	TITLE="$$(yq eval '.metadata.title' $*.yaml)"; \
 	SUBTITLE="$$(yq eval '.metadata.subtitle' $*.yaml)"; \
 	FAVICON="$$(yq eval '.metadata.favicon' $*.yaml)"; \
-	BACKGROUND="$$(yq eval '.metadata.background' $*.yaml)"; \
+	BACKGROUND_IMAGE="$$(yq eval '.metadata.background.image' $*.yaml)"; \
+	BACKGROUND_SIZE="$$(yq eval '.metadata.background.size' $*.yaml)"; \
+	BACKGROUND_POSITION="$$(yq eval '.metadata.background.position' $*.yaml)"; \
 	EVENT="$$(yq eval '.event.name' $*.yaml)"; \
 	LINK="$$(yq eval '.event.link' $*.yaml)"; \
 	LOGO="$$(yq eval '.event.logo' $*.yaml)"; \
 	cat template.html \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:head/x:title" -v "$${TITLE}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:head/x:link[@rel='icon']/@href" -v "$${FAVICON}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']/@data-background" -v "$${BACKGROUND}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']/@data-background" -v "$${BACKGROUND_IMAGE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']/@data-background-size" -v "$${BACKGROUND_SIZE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']/@data-background-position" -v "$${BACKGROUND_POSITION}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:h1" -v "$${TITLE}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:h2" -v "$${SUBTITLE}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a" -v "$${EVENT}" \
@@ -69,13 +73,14 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 			--subnode '/x:html/x:body//x:section[@id="summary"]/x:ul[@id="bullets"]' --type text --name "" --value $$'\n' \
 			$@; \
 	done; \
-	yq eval '.events | reverse | .[] | .date + "<a href=\"" + .homepage + "\">" + .name + "</a>: <a href=\"" + .title + "\">" + .title + "</a>"' $*.yaml \
+	yq eval '.events | reverse | .[] | "<p>" + (.date | tostring) + " - <a href=\"" + .homepage + "\">" + .name + "</a> " + .type + " <a href=\"" + .link + "\">" + .title + "</a></p>"' $*.yaml \
 	| while read -r LINE; do \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
 			--append '/x:html/x:body//x:section[@id="summary"]/x:h3[@id="events"]' --type text --name "" --value "$${LINE}" \
 			--append '/x:html/x:body//x:section[@id="summary"]/x:h3[@id="events"]' --type text --name "" --value $$'\n' \
 			$@; \
-	done
+	done; \
+	sed -i 's/&lt;/</g; s/&gt;/>/g' $@
 
 .PHONY:
 web-$(COMMIT):
