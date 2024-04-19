@@ -82,7 +82,7 @@ Introduced in Kubernetes 1.24
 
 Automounted service accounts always get a temporary token
 
-Create special secret to force token creation:
+Create special secret to obtain long-lived token:
 
 ```bash [2,7-9]
 kubectl create sa foo
@@ -115,11 +115,52 @@ Issued token does not work for new service account
 
 Restart of pod is required
 
+---
+
+## Short-lived tokens
+
+Short-lived JWTs [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount)
+
+XXX kubectl create token
+
+XXX --duration
+
+XXX bind to lifetime of another resource: --bound-object-kind, --bound-object-name
+
+---
+
+## Add Image Pull Secrets to a Service Account
+
+XXX https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account
+
+1. Create secret with image pull secrets
+1. Create service account
+1. Add image pull secrets to service account
+1. Use service account in pod
+
+---
+
+## Service Account Token Volume Projection
+
+XXX https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection
+
+XXX https://kubernetes.io/docs/concepts/storage/projected-volumes/#serviceaccounttoken
+
+---
+
+## Downward API to avoid Service Accounts
+
+XXX https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/
+
+XXX pod fields
+
+XXX container fields
+
 --
 
 ## New
 
-Short-lived JWTs [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount)
+Secret types [](https://kubernetes.io/docs/concepts/configuration/secret/#secret-types)
 
 Immutable secrets [](https://kubernetes.io/docs/concepts/configuration/secret/#secret-immutable)
 

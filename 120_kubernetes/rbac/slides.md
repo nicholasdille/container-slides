@@ -1,20 +1,24 @@
 ## Role-Based Access Control (RBAC)
 
-Control access to resources in a cluster [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+## (Cluster)Role(Binding) <i class="fa fa-face-smile-wink"></i>
 
-Service accounts represent subjects
+Role(Binding) only exist in one namespace
 
-(Cluster)Role specifies what to allow on which resources
+ClusterRole(Binding) apply to the entire cluster
 
-(Cluster)RoleBinding connects service accounts with (Cluster)Roles
+### ClusterRole(Binding)
+
+The rights apply in all namespaces
+
+### ClusterRole with RoleBinding
+
+This enables the reuse of roles
+
+The role is available in the entire cluster
+
+The rights apply in the namespace of the RoleBinding
 
 ![](120_kubernetes/rbac/rbac.drawio.svg) <!-- .element: style="width: 65%; margin-top: 0.5em; margin-bottom: 0.5em;" -->
-
-Role and RoleBinding are namespaced
-
-ClusterRole and ClusterRoleBinding are cluster-wide
-
-RoleBindings can reference a ClusterRole which is applied to a namespace
 
 ---
 

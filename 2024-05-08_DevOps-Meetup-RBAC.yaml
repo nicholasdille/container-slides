@@ -15,6 +15,14 @@ event:
 
 slides:
 - 000_introduction/02_bio.md
+- 120_kubernetes/rbac/slides.md
+- 120_kubernetes/rbac/risks.md
+- 120_kubernetes/rbac/impersonation.md
+- 120_kubernetes/rbac/service_account.md
+- 120_kubernetes/rbac/certificate_auth.md
+- 120_kubernetes/rbac/audit.md
+- 120_kubernetes/kyverno/slides.md
+- 120_kubernetes/kyverno/validation_automountServiceAccountToken.md
 
 summary:
 - icon: link
