@@ -1,6 +1,6 @@
 ## Role-Based Access Control (RBAC)
 
-## (Cluster)Role(Binding) <i class="fa fa-face-smile-wink"></i>
+### (Cluster)Role(Binding) <i class="fa fa-face-smile-wink"></i>
 
 Role(Binding) only exist in one namespace
 
@@ -10,6 +10,12 @@ ClusterRole(Binding) apply to the entire cluster
 
 The rights apply in all namespaces
 
+![](120_kubernetes/rbac/rbac.drawio.svg) <!-- .element: style="width: 65%; margin-top: 0.5em; margin-bottom: 0.5em;" -->
+
+---
+
+## Role-Based Access Control (RBAC)
+
 ### ClusterRole with RoleBinding
 
 This enables the reuse of roles
@@ -18,7 +24,7 @@ The role is available in the entire cluster
 
 The rights apply in the namespace of the RoleBinding
 
-![](120_kubernetes/rbac/rbac.drawio.svg) <!-- .element: style="width: 65%; margin-top: 0.5em; margin-bottom: 0.5em;" -->
+![](120_kubernetes/rbac/rbac2.drawio.svg) <!-- .element: style="width: 65%; margin-top: 0.5em; margin-bottom: 0.5em;" -->
 
 ---
 
