@@ -2,11 +2,17 @@
 
 Kubernetes supports multiple types of authentication
 
+![](120_kubernetes/rbac/certificate_auth.drawio.svg) <!-- .element: style="float: right; width: 20%;" -->
+
+### Tokens
+
 Token authentication is very prominent (due to service accounts)
 
-Certificate authentication is integrated as well
-
 Token authentication maps to service account
+
+### Certificates
+
+Certificate authentication is integrated as well
 
 Certificate authentication maps to user in Common Name
 

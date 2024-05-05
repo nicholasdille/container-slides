@@ -66,7 +66,7 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
 	    --insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
 		$@; \
-	yq eval '.summary[] | "<li><span class=\"fa-li\"><i class=\"fa-duotone fa-" + .icon + "\"></i></span> " + .text + ")</li>"' $*.yaml \
+	yq eval '.summary[] | "<li><span class=\"fa-li\"><i class=\"fa-duotone fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
 	| while read -r LINE; do \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
 			--subnode '/x:html/x:body//x:section[@id="summary"]/x:ul[@id="bullets"]' --type text --name "" --value "$${LINE}" \

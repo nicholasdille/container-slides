@@ -2,6 +2,8 @@
 
 Pods can access the Kubernetes API
 
+![](120_kubernetes/rbac/service_account.drawio.svg) <!-- .element: style="float: right; width: 15%" -->
+
 Special service called `kubernetes` present in `default` namespace
 
 Pods get environment variables to find API endpoint
@@ -16,7 +18,9 @@ Service account `default` does not have any (Cluster)Role
 
 ## Prevent token mounting 1/
 
-No need to Kubernetes API? Disable token mounting in `Pod`:
+No need to access Kubernetes API?
+
+Disable token mounting in `Pod`:
 
 ```yaml [2,7]
 apiVersion: v1
@@ -35,7 +39,7 @@ spec:
 
 ## Prevent token mounting 2/2
 
-Don't want the service account to be mounted?
+Don't want a service account to be mounted?
 
 Disable token mounting in `ServiceAccount`:
 
@@ -45,10 +49,18 @@ kind: ServiceAccount
 metadata:
   name: foo
 automountServiceAccountToken: false
-#...
 ```
 
-Can be overridden by specifying `automountServiceAccountToken: true` in the pod spec
+Can be overridden in the pod spec:
+
+```yaml [2,6]
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+spec:
+  automountServiceAccountToken: false
+```
 
 ### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
@@ -103,6 +115,8 @@ EOF
 
 ## Deleting a service account
 
+![](120_kubernetes/rbac/recovery.drawio.svg) <!-- .element: style="float: right; width: 20%;" -->
+
 Access to Kubernetes API stops working immediately
 
 Credentials remain accessible by pod
@@ -119,49 +133,128 @@ Restart of pod is required
 
 ## Short-lived tokens
 
-Short-lived JWTs [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount)
+Avoid long-lived tokens
 
-XXX kubectl create token
+Create short-lived tokens on-demand [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount)
 
-XXX --duration
+```bash
+kubectl create token <sa>
+```
 
-XXX bind to lifetime of another resource: --bound-object-kind, --bound-object-name
+Specify lifetime of token:
 
----
+```bash
+kubectl create token <sa> --duration 1h
+```
 
-## Add Image Pull Secrets to a Service Account
+Bind lifetime of token to another resource:
 
-XXX https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account
+```bash
+kubectl create token <sa> \
+    --bound-object-kind <kind> \
+    --bound-object-name <name>
+```
 
-1. Create secret with image pull secrets
-1. Create service account
-1. Add image pull secrets to service account
-1. Use service account in pod
-
----
-
-## Service Account Token Volume Projection
-
-XXX https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection
-
-XXX https://kubernetes.io/docs/concepts/storage/projected-volumes/#serviceaccounttoken
+XXX DEMO?
 
 ---
 
-## Downward API to avoid Service Accounts
+## Image Pull Secrets
 
-XXX https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/
+Usually added to pods description
+
+### Tied to Service Account
+
+Add image pull secret(s) to service account [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account):
+
+```yaml[2,5-6]
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: foo
+imagePullSecrets:
+- name: my_reg_secret_name
+```
+
+Mount service account to a pod and check:
+
+```bash
+kubectl get pod bar -o=jsonpath='{.spec.imagePullSecrets[0].name}{"\n"}'
+```
+
+XXX DEMO?
+
+---
+
+## Avoid Service Accounts 1/2
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dapi-envars-fieldref
+spec:
+  containers:
+  - name: foo
+    image: nginx
+    env:
+    - name: MY_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    - name: MY_POD_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
+    - name: MY_POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+```
+
+<!-- .element: style="float: right; width: 24em;" -->
+
+XXX
+
+Also supports `resourceFieldRef`
+
+XXX DEMO?
+
+---
+
+## Avoid Service Accounts 2/2
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+spec:
+  containers:
+  - volumeMounts:
+    - name: podinfo
+      mountPath: /etc/podinfo
+  volumes:
+  - name: podinfo
+    image: nginx
+    downwardAPI:
+      items:
+      - path: "labels"
+        fieldRef:
+          fieldPath: metadata.labels
+      - path: "annotations"
+        fieldRef:
+          fieldPath: metadata.annotations
+```
+
+<!-- .element: style="float: right; width: 25em;" -->
+
+Downward API [](https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/)
+
+Volume of type `downwardAPI` provides pod information
 
 XXX pod fields
 
 XXX container fields
 
---
-
-## New
-
-Secret types [](https://kubernetes.io/docs/concepts/configuration/secret/#secret-types)
-
-Immutable secrets [](https://kubernetes.io/docs/concepts/configuration/secret/#secret-immutable)
-
-What is `kubernetes.io/enforce-mountable-secrets`? [](https://kubernetes.io/docs/concepts/security/service-accounts/#enforce-mountable-secrets)
+XXX DEMO?

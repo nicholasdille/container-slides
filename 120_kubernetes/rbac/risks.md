@@ -10,7 +10,7 @@ XXX show secrets
 
 ## RBAC Risks
 
-### Workflod creation
+### Workload creation
 
 XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#workload-creation
 
@@ -20,11 +20,7 @@ XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#workload-c
 
 ### Escalate verb
 
-XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#escalate-verb
-
-XXX https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-creation-or-update
-
-XXX escalate on (cluster)roles allow changing them
+Verb `escalate` on (Cluster)Role allows changing it [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#escalate-verb) [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-creation-or-update)
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -41,7 +37,7 @@ rules:
   - escalate
 ```
 
-XXX https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6
+Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6)
 
 ---
 
@@ -49,9 +45,7 @@ XXX https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-k
 
 ### Bind verb
 
-XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#bind-verb
-
-XXX bind on (cluster)roles allows creating bindings
+Verb `bind` on (Cluster)Roles allows creating (Cluster)RoleBindings [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#bind-verb)
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -68,7 +62,7 @@ rules:
   - bind
 ```
 
-XXX https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6
+Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6)
 
 ---
 
@@ -76,9 +70,7 @@ XXX https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-k
 
 ### Impersonate verb
 
-XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#impersonate-verb
-
-XXX impersonate on service accounts allows impersonating
+Verb `impersonate` on service accounts allows impersonating [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#impersonate-verb)
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -94,7 +86,7 @@ rules:
   - impersonate
 ```
 
-XXX https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6
+Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6)
 
 ---
 

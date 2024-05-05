@@ -42,15 +42,23 @@ Demonstrate [rakkess](https://github.com/corneliusweig/rakkess) [<i class="fa fa
 
 ---
 
-## How to write roles
+## How to write roles 1/
 
-(Cluster)Roles require verbs and resources
+(Cluster)Roles require verbs and (sub)resources
 
 ### How to find resources
+
+Find supported resources:
 
 ```bash
 kubectl api-resources
 ```
+
+---
+
+## How to write roles 2/
+
+(Cluster)Roles require verbs and (sub)resources
 
 ### How to find verbs
 
@@ -62,11 +70,26 @@ Find supported verbs for resources:
 kubectl api-resources --output wide
 ```
 
+---
+
+## How to write roles 3/3
+
+(Cluster)Roles require verbs and (sub)resources
+
 ### Subresources
 
 Some resources have subresources, e.g. `pods/exec`
 
-No known solution to find verbs for subresources
+Find supported verbs for subresources:
+
+```bash
+kubectl get --raw / | jq --raw-output '.paths[]' | grep "^/apis/" \
+| while read -r API; do
+    echo "=== ${API}"
+    kubectl get --raw "${API}" \
+    | jq --raw-output 'select(.resources != null) | .resources[].name'
+done
+```
 
 ---
 
@@ -80,7 +103,7 @@ Can be created: `kubectl create sa <name>`
 
 Token authentication maps to service accounts
 
-Internally referenced by<br/>`system:serviceaccount:<namespace>:<name>`
+Internally referenced by `system:serviceaccount:<ns>:<name>`
 
 ### User / Group
 

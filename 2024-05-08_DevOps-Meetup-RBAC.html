@@ -46,9 +46,10 @@
 
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-vertical-separator="^--$"></section>
 <section data-markdown="120_kubernetes/rbac/slides.md" data-separator="^---$" data-vertical-separator="^--$"></section>
+<section data-markdown="120_kubernetes/rbac/certificate_auth.md" data-separator="^---$" data-vertical-separator="^--$"></section>
+<section data-markdown="120_kubernetes/rbac/risks.md" data-separator="^---$" data-vertical-separator="^--$"></section>
 <section data-markdown="120_kubernetes/rbac/impersonation.md" data-separator="^---$" data-vertical-separator="^--$"></section>
 <section data-markdown="120_kubernetes/rbac/service_account.md" data-separator="^---$" data-vertical-separator="^--$"></section>
-<section data-markdown="120_kubernetes/rbac/certificate_auth.md" data-separator="^---$" data-vertical-separator="^--$"></section>
 <section data-markdown="120_kubernetes/rbac/audit.md" data-separator="^---$" data-vertical-separator="^--$"></section>
 <section data-markdown="120_kubernetes/kyverno/slides.md" data-separator="^---$" data-vertical-separator="^--$"></section>
 <section data-markdown="120_kubernetes/kyverno/validation_automountServiceAccountToken.md" data-separator="^---$" data-vertical-separator="^--$"></section>
@@ -59,15 +60,16 @@
 <i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em;">
-<li><span class="fa-li"><i class="fa-duotone fa-link"></i></span> Ops and Devs require many dependencies)</li>
-<li><span class="fa-li"><i class="fa-duotone fa-lock-keyhole"></i></span> Dependencies introduce (additional) security issues)</li>
-<li><span class="fa-li"><i class="fa-duotone fa-arrows-rotate"></i></span> Automated updates help stay on top)</li>
-<li><span class="fa-li"><i class="fa-duotone fa-crosshairs"></i></span> Automerging takes the load off dev and ops...)</li>
-<li><span class="fa-li"><i class="fa-duotone fa-magnifying-glass-chart"></i></span> ...but requires thorough testing)</li>
+<li><span class="fa-li"><i class="fa-duotone fa-id-card-clip"></i></span> RBAC is well documented in the ecosystem</li>
+<li><span class="fa-li"><i class="fa-duotone fa-engine-warning"></i></span> Little known verbs are a risk</li>
+<li><span class="fa-li"><i class="fa-duotone fa-user-police-tie"></i></span> Impersonation can improve security</li>
+<li><span class="fa-li"><i class="fa-duotone fa-magnifying-glass"></i></span> Service account tokens must be managed</li>
+<li><span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Policy management - e.g. Kyverno - for the rescue</li>
 </ul>
 
 <h3 id="events">Upcoming events</h3>
 <p>2024-11-07 - <a href="https://heise-academy.de/">heise Academy</a> Workshop <a href="https://heise-academy.de/schulungen/einfuehrung-in-gitlab">GitLab Ops</a></p>
+<p>2024-11-13 - <a href="https://containerconf.de/">ContainerConf</a> hopefully <a href=""> </a></p>
 <p>2024-11-21 - <a href="https://heise-academy.de/">heise Academy</a> Workshop <a href="https://heise-academy.de/schulungen/cicd-gitlab">GitLab CI</a></p>
 </section>
 
