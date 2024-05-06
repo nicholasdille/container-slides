@@ -12,6 +12,8 @@ If nothing available, use generic exporters
 
 Probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC
 
+XXX DEMO
+
 ### `json_exporter` [](https://github.com/prometheus-community/json_exporter)
 
 Scraping of remote JSON by JSONPath [](https://goessner.net/articles/JsonPath/)
