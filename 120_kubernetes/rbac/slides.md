@@ -110,3 +110,17 @@ Internally referenced by `system:serviceaccount:<ns>:<name>`
 Authentication backends can add users and groups
 
 Certificate authentication maps to users
+
+---
+
+## Convenience XXX in `kubectl`
+
+XXX `kubectl create role` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-role)
+
+XXX `kubectl create clusterrole` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-clusterrole)
+
+XXX `kubectl create rolebinding` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-rolebinding)
+
+XXX `kubectl create clusterrolebinding` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-clusterrolebinding)
+
+XXX `kubectl auth reconcile` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-auth-reconcile)
