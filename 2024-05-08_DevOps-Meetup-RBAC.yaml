@@ -24,6 +24,7 @@ slides:
 - 120_kubernetes/rbac/audit.md
 - 120_kubernetes/kyverno/slides.md
 - 120_kubernetes/kyverno/validation_automountServiceAccountToken.md
+- 120_kubernetes/kyverno/mutation_imagepullsecrets.md
 
 summary:
 - icon: id-card-clip

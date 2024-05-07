@@ -193,7 +193,7 @@ Use field references in environment variables:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: dapi-envars-fieldref
+  name: foo
 spec:
   containers:
   - name: foo
@@ -215,11 +215,9 @@ spec:
 
 <!-- .element: style="float: right; width: 24em;" -->
 
-XXX
+Also supports `resourceFieldRef` to access resource requests and limits
 
-Also supports `resourceFieldRef`
-
-XXX DEMO?
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
 
@@ -231,7 +229,11 @@ Use downward API to expose pod information:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: foo
+  name: bar
+  labels:
+    app: demo
+    components: frontend
+    version: "1"
 spec:
   containers:
   - volumeMounts:
@@ -239,15 +241,11 @@ spec:
       mountPath: /etc/podinfo
   volumes:
   - name: podinfo
-    image: nginx
     downwardAPI:
       items:
       - path: "labels"
         fieldRef:
           fieldPath: metadata.labels
-      - path: "annotations"
-        fieldRef:
-          fieldPath: metadata.annotations
 ```
 
 <!-- .element: style="float: right; width: 25em;" -->
@@ -256,8 +254,4 @@ Downward API [](https://kubernetes.io/docs/tasks/inject-data-application/downwar
 
 Volume of type `downwardAPI` provides pod information
 
-XXX pod fields
-
-XXX container fields
-
-XXX DEMO?
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
