@@ -2,17 +2,21 @@
 
 ### Secrets
 
-XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#listing-secrets
+Verb `get`, `list` and `watch` disclose the contents [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#listing-secrets)
 
-XXX show secrets
-
----
-
-## RBAC Risks
+Be very careful when allowing access to secrets
 
 ### Workload creation
 
-XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#workload-creation
+New pods can use existing service accounts [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#workload-creation)
+
+Pods obtain permissions of service accounts ...even without `pods/exec`
+
+### Namespace modification
+
+Verb `patch` on namespace allows chaning labels [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#namespace-modification)...
+
+...and disabling of pod security admission as well as network policies
 
 ---
 
@@ -20,7 +24,7 @@ XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#workload-c
 
 ### Escalate verb
 
-Verb `escalate` on (Cluster)Role allows changing it [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#escalate-verb) [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-creation-or-update)
+Allows changing (Cluster)Roles [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#escalate-verb) [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-creation-or-update)
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -45,7 +49,7 @@ Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-ve
 
 ### Bind verb
 
-Verb `bind` on (Cluster)Roles allows creating (Cluster)RoleBindings [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#bind-verb)
+Allows creating (Cluster)RoleBindings (Cluster)Roles [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#bind-verb)
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -92,6 +96,20 @@ Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-ve
 
 ## RBAC Risks
 
-### Token creation
+### Verbs
 
-XXX https://kubernetes.io/docs/concepts/security/rbac-good-practices/#token-request
+Wildcard `*` for verb allows `escalate`, `bind` and `impersonate` as well
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: bind
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - "*"
+  verbs:
+  - "*"
+```

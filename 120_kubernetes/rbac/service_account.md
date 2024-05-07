@@ -188,6 +188,8 @@ XXX DEMO?
 
 ## Avoid Service Accounts 1/2
 
+Use field references in environment variables:
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -223,6 +225,8 @@ XXX DEMO?
 ---
 
 ## Avoid Service Accounts 2/2
+
+Use downward API to expose pod information:
 
 ```yaml
 apiVersion: v1

@@ -113,14 +113,29 @@ Certificate authentication maps to users
 
 ---
 
-## Convenience XXX in `kubectl`
+## Resource names
 
-XXX `kubectl create role` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-role)
+XXX
 
-XXX `kubectl create clusterrole` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-clusterrole)
+---
 
-XXX `kubectl create rolebinding` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-rolebinding)
+## Convenience subcommands in `kubectl`
 
-XXX `kubectl create clusterrolebinding` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-clusterrolebinding)
+### Create resources from the command line
 
-XXX `kubectl auth reconcile` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-auth-reconcile)
+- `kubectl create role` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-role)
+- `kubectl create clusterrole` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-clusterrole)
+- `kubectl create rolebinding` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-rolebinding)
+- `kubectl create clusterrolebinding` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-clusterrolebinding)
+
+### XXX
+
+`kubectl auth reconcile` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-auth-reconcile)
+
+XXX
+
+XXX `--remove-extra-permissions`
+
+XXX `--remove-extra-subjects`
+
+XXX `--dry-run=client`

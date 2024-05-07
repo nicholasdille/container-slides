@@ -1,21 +1,6 @@
 ## Aggregating ClusterRoles
 
-XXX [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: monitoring-endpoints
-  labels:
-    rbac.example.com/aggregate-to-monitoring: "true"
-rules:
-- apiGroups: [""]
-  resources: ["services", "endpointslices", "pods"]
-  verbs: ["get", "list", "watch"]
-```
-
-XXX
+Automagically aggregate rules into new ClusterRoles [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -25,15 +10,34 @@ metadata:
 aggregationRule:
   clusterRoleSelectors:
   - matchLabels:
-      rbac.example.com/aggregate-to-monitoring: "true"
+      aggregate-to-monitoring: "true"
 rules: []
 ```
+
+<!-- .element: style="float: left; width: 24em;" -->
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: monitoring-endpoints
+  labels:
+    aggregate-to-monitoring: "true"
+rules:
+- apiGroups: [""]
+  resources: ["services", "endpointslices", "pods"]
+  verbs: ["get", "list", "watch"]
+```
+
+<!-- .element: style="float: right; width: 25em;" -->
+
+XXX DEMO?!
 
 ---
 
 ## Aggregation in user-facing rules
 
-XXX [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
+HEavily used in builtin ClusterRoles [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 
 ```yaml
 #...
