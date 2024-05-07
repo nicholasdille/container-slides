@@ -15,9 +15,9 @@ event:
 
 slides:
 - 000_introduction/02_bio.md
+- 2024-05-08_DevOps-Meetup-RBAC.md
 - 120_kubernetes/rbac/slides.md
 - 120_kubernetes/rbac/aggregation.md
-- 120_kubernetes/rbac/certificate_auth.md
 - 120_kubernetes/rbac/risks.md
 - 120_kubernetes/rbac/impersonation.md
 - 120_kubernetes/rbac/service_account.md

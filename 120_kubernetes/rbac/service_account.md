@@ -187,8 +187,6 @@ kubectl get pod bar -o=jsonpath='{.spec.imagePullSecrets[0].name}{"\n"}'
 
 ## Avoid Service Accounts 1/2
 
-Use field references in environment variables:
-
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -215,6 +213,8 @@ spec:
 
 <!-- .element: style="float: right; width: 24em;" -->
 
+Use field references in environment variables
+
 Also supports `resourceFieldRef` to access resource requests and limits
 
 ### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
@@ -222,8 +222,6 @@ Also supports `resourceFieldRef` to access resource requests and limits
 ---
 
 ## Avoid Service Accounts 2/2
-
-Use downward API to expose pod information:
 
 ```yaml
 apiVersion: v1
@@ -250,7 +248,7 @@ spec:
 
 <!-- .element: style="float: right; width: 25em;" -->
 
-Downward API [](https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/)
+Use downward API [](https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/) to expose pod information
 
 Volume of type `downwardAPI` provides pod information
 
