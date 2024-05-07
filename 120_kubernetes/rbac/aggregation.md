@@ -2,7 +2,7 @@
 
 Automagically aggregate rules into new ClusterRoles [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)
 
-```yaml
+```yaml [5-8]
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -16,7 +16,7 @@ rules: []
 
 <!-- .element: style="float: left; width: 24em;" -->
 
-```yaml
+```yaml [5-6]
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -31,20 +31,14 @@ rules:
 
 <!-- .element: style="float: right; width: 25em;" -->
 
-XXX DEMO?!
+Heavily used in builtin ClusterRoles [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
+
+- `rbac.authorization.k8s.io/aggregate-to-(admin|editview)`
 
 ---
 
-## Aggregation in user-facing rules
+## Demo  [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/aggregation.demo "aggregation.demo")
 
-HEavily used in builtin ClusterRoles [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
+Inspect builtin ClusterRoles with aggregation
 
-```yaml
-#...
-metadata:
-  labels:
-    rbac.authorization.k8s.io/aggregate-to-admin: "true"
-    rbac.authorization.k8s.io/aggregate-to-edit: "true"
-    rbac.authorization.k8s.io/aggregate-to-view: "true"
-#...
-```
+Create custom aggregation

@@ -26,7 +26,7 @@ Verb `patch` on namespace allows chaning labels [](https://kubernetes.io/docs/co
 
 Allows changing (Cluster)Roles [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#escalate-verb) [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-creation-or-update)
 
-```yaml
+```yaml [8-12]
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -51,7 +51,7 @@ Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-ve
 
 Allows creating (Cluster)RoleBindings (Cluster)Roles [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#bind-verb)
 
-```yaml
+```yaml [8-12]
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -76,7 +76,7 @@ Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-ve
 
 Verb `impersonate` on service accounts allows impersonating [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#impersonate-verb)
 
-```yaml
+```yaml [8-11]
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -100,7 +100,7 @@ Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-ve
 
 Wildcard `*` for verb allows `escalate`, `bind` and `impersonate` as well
 
-```yaml
+```yaml [10-11]
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -113,3 +113,5 @@ rules:
   verbs:
   - "*"
 ```
+
+<i class="fa-duotone fa-triangle-exclamation"></i> Do not use wildcards at all

@@ -1,0 +1,48 @@
+# Aggregated ClusterRoles
+
+# Inspect receiving ClusterRole view
+kubectl get clusterrole view -o yaml
+
+# Inspect individual ClusterRoles
+kubectl get clusterrole -l rbac.authorization.k8s.io/aggregate-to-view=true
+
+# Create first ClusterRole
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: monitoring-endpoints
+  labels:
+    aggregate-to-monitoring: "true"
+rules:
+- apiGroups: [""]
+  resources: ["services", "endpointslices", "pods"]
+  verbs: ["get", "list", "watch"]
+EOF
+
+# Create second ClusterRole
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: monitoring-endpoints
+  labels:
+    aggregate-to-monitoring: "true"
+rules:
+- apiGroups: [""]
+  resources: ["services", "endpointslices", "pods"]
+  verbs: ["get", "list", "watch"]
+EOF
+
+# Create receiving ClusterRole
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: monitoring
+aggregationRule:
+  clusterRoleSelectors:
+  - matchLabels:
+      aggregate-to-monitoring: "true"
+rules: []
+EOF

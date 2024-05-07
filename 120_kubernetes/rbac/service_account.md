@@ -41,8 +41,6 @@ spec:
 
 Don't want a service account to be mounted?
 
-Disable token mounting in `ServiceAccount`:
-
 ```yaml [2,5]
 apiVersion: v1
 kind: ServiceAccount
@@ -59,7 +57,8 @@ kind: Pod
 metadata:
   name: foo
 spec:
-  automountServiceAccountToken: false
+  serviceAccountName: foo
+  automountServiceAccountToken: true
 ```
 
 ### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
@@ -96,7 +95,7 @@ Automounted service accounts always get a temporary token
 
 Create special secret to obtain long-lived token:
 
-```bash [2,7-9]
+```bash [1-2,4,7-9]
 kubectl create sa foo
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -109,13 +108,13 @@ type: kubernetes.io/service-account-token
 EOF
 ```
 
-### DEMO [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
 
 ## Deleting a service account
 
-![](120_kubernetes/rbac/recovery.drawio.svg) <!-- .element: style="float: right; width: 20%;" -->
+![](120_kubernetes/rbac/recovery.drawio.svg) <!-- .element: style="float: right; width: 15%;" -->
 
 Access to Kubernetes API stops working immediately
 
@@ -155,7 +154,7 @@ kubectl create token <sa> \
     --bound-object-name <name>
 ```
 
-XXX DEMO?
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
 
@@ -182,7 +181,7 @@ Mount service account to a pod and check:
 kubectl get pod bar -o=jsonpath='{.spec.imagePullSecrets[0].name}{"\n"}'
 ```
 
-XXX DEMO?
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
 

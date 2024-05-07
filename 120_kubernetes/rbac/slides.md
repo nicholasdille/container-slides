@@ -113,29 +113,39 @@ Certificate authentication maps to users
 
 ---
 
-## Resource names
+## How to specify resource names
 
-XXX
+Limit access to specific resources using `resourceNames`
+
+```yaml [9]
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: configmap-updater
+rules:
+- apiGroups: [""]
+  resources: ["configmaps"]
+  resourceNames: ["my-configmap"]
+  verbs: ["update", "get"]
+```
 
 ---
 
 ## Convenience subcommands in `kubectl`
 
-### Create resources from the command line
-
+Create resources from the command line
 - `kubectl create role` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-role)
 - `kubectl create clusterrole` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-clusterrole)
 - `kubectl create rolebinding` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-rolebinding)
 - `kubectl create clusterrolebinding` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-create-clusterrolebinding)
 
-### XXX
+### Apply resources from a file
 
 `kubectl auth reconcile` [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#kubectl-auth-reconcile)
 
-XXX
+Creates and updates RBAC ... including referenced namespaces
 
-XXX `--remove-extra-permissions`
+Full sync with `--remove-extra-permissions` and `--remove-extra-subjects`
 
-XXX `--remove-extra-subjects`
-
-XXX `--dry-run=client`
+Use `--dry-run=client` to investigate changes
