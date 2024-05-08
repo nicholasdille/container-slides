@@ -1,20 +1,38 @@
 ## Role-Based Access Control (RBAC)
 
-XXX
+Method of regulating access
+
+Based on roles of individual users
+
+### Kubernetes
+
+Roles are made of permissions for resources
+
+Roles are defined ...
+- in a namespace using resource `Role`
+- for the whole cluster using resource `ClusterRole`
+
+Roles are applied ...
+- in a namespace using resource `RoleBinding`
+- for the whole cluster using resource `ClusterRoleBinding`
+
+Subjects are mostly service accounts
 
 ---
 
 ## Role-Based Access Control (RBAC)
 
-### (Cluster)Role(Binding) <i class="fa fa-face-smile-wink"></i>
+### In one namespace
 
-Role(Binding) only exist in one namespace
+`Role` defines permissions for the namespace
 
-ClusterRole(Binding) apply to the entire cluster
+`RoleBinding` assigns the role to a subject
 
-### ClusterRole(Binding)
+### For the whole cluster
 
-The rights apply in all namespaces
+`ClusterRole` defines permissions
+
+`ClusterRoleBinding` assigns the role to a subject
 
 ![](120_kubernetes/rbac/rbac.drawio.svg) <!-- .element: style="width: 65%; margin-top: 0.5em; margin-bottom: 0.5em;" -->
 
@@ -22,13 +40,17 @@ The rights apply in all namespaces
 
 ## Role-Based Access Control (RBAC)
 
-### ClusterRole with RoleBinding
+### Mix and match
 
-This enables the reuse of roles
+`ClusterRole` can be used in `RoleBinding`
+
+This enables the reuse of cluster-wide roles
 
 The role is available in the entire cluster
 
 The rights apply in the namespace of the RoleBinding
+
+Useful for pre-defined roles by a platform team
 
 ![](120_kubernetes/rbac/rbac2.drawio.svg) <!-- .element: style="width: 65%; margin-top: 0.5em; margin-bottom: 0.5em;" -->
 
