@@ -12,7 +12,7 @@ Pods should not mount service account by default
 
 ### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/kyverno/validation_automountServiceAccountToken.demo "validation_automountServiceAccountToken.demo")
 
-Deny pods...l
+Deny pods...
 - without `automountServiceAccountToken`
 - when `serviceAccountName` is...
   - not specified or

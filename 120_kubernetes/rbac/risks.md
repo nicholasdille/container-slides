@@ -14,7 +14,7 @@ Pods obtain permissions of service accounts ...even without `pods/exec`
 
 ### Namespace modification
 
-Verb `patch` on namespace allows chaning labels [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#namespace-modification)...
+Verb `patch` on namespace allows changing labels [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#namespace-modification)...
 
 ...and disabling of pod security admission as well as network policies
 

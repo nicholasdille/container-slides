@@ -181,6 +181,8 @@ Mount service account to a pod and check:
 kubectl get pod bar -o=jsonpath='{.spec.imagePullSecrets[0].name}{"\n"}'
 ```
 
+Works regardless of `automountServiceAccountToken`
+
 ### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---

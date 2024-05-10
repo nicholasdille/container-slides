@@ -33,7 +33,7 @@ rules:
 
 Heavily used in builtin ClusterRoles [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 
-- `rbac.authorization.k8s.io/aggregate-to-(admin|editview)`
+- `rbac.authorization.k8s.io/aggregate-to-(admin|edit|view)`
 
 ---
 
