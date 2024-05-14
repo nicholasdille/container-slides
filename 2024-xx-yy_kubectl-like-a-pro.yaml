@@ -1,0 +1,65 @@
+date: 2024-xx-yy
+metadata:
+  title: kubectl like a pro
+  title_slug: kubectl-like-a-pro
+  subtitle: Tips and Tricks
+  favicon: images/favicons/kubernetes.ico
+  background:
+    image: images/laila-gebhard-PcdMVvTQ0zw-unsplash.jpg
+    size: 100%
+    positon: left 50% top 50%
+event:
+  name: ""
+  logo: ""
+  link: ""
+
+slides:
+- 000_introduction/02_bio.md
+
+#- kubectl explain
+#- kubectl apply -f ./dir
+#- kubectl wait?
+#- kubectl rollout status?
+#- kubectl create secret --dry-run | kubectl apply -f -
+#- jsonpath https://kubernetes.io/docs/reference/kubectl/jsonpath/
+#- --output https://kubernetes.io/docs/reference/kubectl/#output-options
+#- kubectl exec -it deployment/foo -- bash
+#- kubectl get pod -o custom-columns=NAME:.metadata.name,STATUS:.status.phase
+#- kubectl ... | xargs ...
+#- kubectl patch
+#- kubectl edit
+#- kubectl get pod,svc,secrets,cm
+#- Plugins!
+#- completion
+
+summary:
+- icon: id-card-clip
+  text: RBAC is well documented in the ecosystem
+- icon: engine-warning
+  text: Little known verbs are a risk
+- icon: user-police-tie
+  text: Impersonation can improve security
+- icon: magnifying-glass
+  text: Service account tokens must be managed
+- icon: shield-check
+  text: Policy management - e.g. Kyverno - for the rescue
+
+events:
+- date: 2024-11-07
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab Ops
+  link: https://heise-academy.de/schulungen/einfuehrung-in-gitlab
+- date: 2024-11-13
+  name: ContainerConf
+  homepage: https://containerconf.de/
+  type: hopefully
+  title: " "
+  link:
+- date: 2024-11-21
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab CI
+  link: https://heise-academy.de/schulungen/cicd-gitlab
