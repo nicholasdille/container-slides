@@ -16,6 +16,32 @@ DJs verwenden kleine Auschnitt immer wieder
 
 ---
 
+<!-- .slide: class="center" -->
+
+https://qr.dille.io/asg-scratch <!-- .element: style="color: white; font-size: 2em;" -->
+
+---
+
+## Tag 1
+
+### Führt Marco oder Sofia durch ein Abenteuer <!-- .element: style="color: white;" -->
+
+https://runmarco.com/
+
+### Zeichnen <!-- .element: style="color: white;" -->
+
+https://app.code-it-studio.de/course/step/12/118
+
+### Ein Jump'N'Run mit Flappy <!-- .element: style="color: white;" -->
+
+http://studio.code.org/s/flappy/reset
+
+### Diesmal bist Du der Computer <!-- .element: style="color: white;" -->
+
+https://compute-it.toxicode.fr/
+
+---
+
 ## Code.org
 
 ![](990_scratch/code.org-logo-rgb.png) <!-- .element: style="float: right; width: 15%;" -->
@@ -36,26 +62,6 @@ Einstündige Einführungen in die Informatik
 Sortiert nach Altersstufe, Programmiersprachen und gesprochener Sprache
 
 Webseite: https://hourofcode.com/de/learn
-
----
-
-## Tag 1 - Teil 1
-
-### Führt Marco oder Sofia durch ein Abenteuer <!-- .element: style="color: white;" -->
-
-https://runmarco.com/
-
-### Zeichnen <!-- .element: style="color: white;" -->
-
-https://app.code-it-studio.de/course/step/12/118
-
-### Ein Jump'N'Run mit Flappy <!-- .element: style="color: white;" -->
-
-http://studio.code.org/s/flappy/reset
-
-### Diesmal bist Du der Computer <!-- .element: style="color: white;" -->
-
-https://compute-it.toxicode.fr/
 
 ---
 
