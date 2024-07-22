@@ -51,14 +51,12 @@ Oder auch Programmierer, Software Engineer, Developer, Development Engineer
 Schreiben Programme als Text
 
 ```plaintext
-vorwärts()
+moveForward(10)
 ```
 
 <!-- .element: style="float: right; width: 10em;" -->
 
-Block "vorwärts"
-
-XXX
+![](990_scratch/gehe.png) <!-- .element: style="width: 15%; padding-bottom: 0.5em;" -->
 
 ```plaintext
 for index := 0; index <= 10; i++ {}
@@ -66,9 +64,7 @@ for index := 0; index <= 10; i++ {}
 
 <!-- .element: style="float: right; width: 22em;" -->
 
-Block "wiederholen"
-
-XXX
+![](990_scratch/wiederhole.png) <!-- .element: style="width: 15%;" -->
 
 ```plaintext
 if () {}
@@ -76,9 +72,7 @@ if () {}
 
 <!-- .element: style="float: right; width: 10em;" -->
 
-Block "wenn"
-
-XXX
+![](990_scratch/falls.png) <!-- .element: style="width: 13%;" -->
 
 Es gibt viele Programmiersprachen, z.B.
 
