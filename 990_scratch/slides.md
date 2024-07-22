@@ -22,7 +22,7 @@ https://qr.dille.io/asg-scratch <!-- .element: style="color: white; font-size: 2
 
 ---
 
-## Tag 1
+## Tag 1 - Teil 1
 
 ### Führt Marco oder Sofia durch ein Abenteuer <!-- .element: style="color: white;" -->
 
@@ -189,6 +189,10 @@ Nicht nur Entwicklung von Frontend und Backend...
 ---
 
 ## Echter Programmcode
+
+### Abenteuer mit Python
+
+https://www.ozaria.com/play/chapter-1-sky-mountain?hour_of_code=true
 
 ### Einführung in Python
 
