@@ -84,13 +84,13 @@ Python, C/C++, Go, C#, Java, JavaScript, PHP
 
 Viele Programme sind zu groß für einen Entwickler
 
-### Der Editor RAKETE
+### Der Editor <i class="fa-duotone fa-solid fa-rocket-launch"></i>
 
 Integrated Development Environment (IDE)
 
 Bietet viele Hilfen an
 
-### Das Entwicklungsteam HÄNDE
+### Das Entwicklungsteam <i class="fa-duotone fa-solid fa-handshake"></i>
 
 Software wird gemeinsam entwickelt
 
@@ -108,7 +108,7 @@ Früher wurde monatelang an der nächsten Version gearbeitet
 
 Heute werde kleinere Verbesserungen schneller veröffentlich
 
-### Scrum KREIS
+### Scrum <i class="fa-duotone fa-solid fa-arrows-spin"></i>
 
 Es wird in Zwei-Wochen-Zyklen geplant und gearbeitet
 
@@ -128,11 +128,11 @@ Die Entwicklung ist nur ein Teil der Arbeit
 
 Der Dienst muss auch laufen und funktionieren
 
-### Dev vs. Ops
+### Dev vs. Ops <i class="fa-duotone fa-solid fa-heart-crack"></i>
 
 Früher waren Entwicklung und Betrieb getrennte Abteilungen
 
-### Dev <-> Ops
+### Dev und Ops <i class="fa-duotone fa-solid fa-heart-pulse"></i>
 
 Heute arbeiten Entwicklung und Betrieb eng zusammen
 
@@ -142,7 +142,7 @@ Probleme werden gemeinsam behoben
 
 ---
 
-## Tag 2
+## Tag 1 - Teil 2
 
 Scratch mit Minecraft: https://code.org/minecraft
 
@@ -176,7 +176,7 @@ Die Schnittstelle zum Benutzer
 
 ### Backend
 
-Die Logik
+Die eigentliche Logik
 
 ### Sonderfall Spiele-Entwicklung
 
@@ -185,6 +185,18 @@ Es braucht eine spannende Geschichte
 Nicht nur Entwicklung von Frontend und Backend...
 
 ...sondern auch Grafik und Musik gehören dazu
+
+---
+
+## Echter Programmcode
+
+### Einführung in Python
+
+https://silentteacher.toxicode.fr/hour_of_code.html
+
+### Eine Burg mit Python
+
+https://pytamaro.si.usi.ch/hoc/castle
 
 ---
 
