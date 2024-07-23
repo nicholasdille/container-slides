@@ -190,17 +190,21 @@ Nicht nur Entwicklung von Frontend und Backend...
 
 ## Echter Programmcode
 
-### Abenteuer mit Python
+### Abenteuer mit Python <!-- .element: style="color: white;" -->
 
 https://www.ozaria.com/play/chapter-1-sky-mountain?hour_of_code=true
 
-### Einführung in Python
+### Einführung in Python <!-- .element: style="color: white;" -->
 
 https://silentteacher.toxicode.fr/hour_of_code.html
 
-### Eine Burg mit Python
+### Eine Burg mit Python <!-- .element: style="color: white;" -->
 
 https://pytamaro.si.usi.ch/hoc/castle
+
+### Erstelle ein Arcade-Spiel <!-- .element: style="color: white;" -->
+
+https://codecombat.com/play/game-dev-hoc-2?hour_of_code=true
 
 ---
 
