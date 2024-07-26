@@ -206,6 +206,10 @@ https://pytamaro.si.usi.ch/hoc/castle
 
 https://codecombat.com/play/game-dev-hoc-2?hour_of_code=true
 
+### Giftiger Dschungel <!-- .element: style="color: white;" -->
+
+https://www.tynker.com/hour-of-code/toxic-jungle
+
 ---
 
 ## Code.org
