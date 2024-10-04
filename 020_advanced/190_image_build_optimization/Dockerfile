@@ -73,7 +73,7 @@ EOF
 USER nobody
 
 # parallel
-FROM ubuntu:21.04 AS step8-base
+FROM ubuntu:hirsute-20220113 AS step8-base
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache \
     --mount=type=cache,target=/var/log \
