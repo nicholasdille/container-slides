@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.6.0
 
-FROM gitlab/gitlab-runner:v16.9.1
+FROM gitlab/gitlab-runner:v16.11.3
 
 RUN <<EOF
 mkdir /builds
