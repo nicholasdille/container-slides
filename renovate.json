@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    ":dependencyDashboard",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":ignoreModulesAndTests",
+    ":pinVersions",
+    ":separateMajorReleases",
+    ":separatePatchReleases",
+    ":automergeRequireAllStatusChecks",
+    ":semanticCommits"
+  ],
+  "timezone": "Europe/Berlin",
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "platformAutomerge": true,
+  "rebaseWhen": "conflicted",
+  "rebaseLabel": "renovate/rebase",
+  "stopUpdatingLabel": "renovate/stop-updating",
+  "major":  { "labels": [ "bump/major", "type/renovate" ] },
+  "minor":  { "labels": [ "bump/minor", "type/renovate" ] },
+  "patch":  { "labels": [ "bump/patch", "type/renovate" ] },
+  "pin":    { "labels": [ "bump/pin",   "type/renovate" ] },
+  "digest": { "labels": [ "bump/digest", "type/renovate" ] }
+}
