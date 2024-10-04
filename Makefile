@@ -120,6 +120,20 @@ media/fontawesome-pro@%:
 		curl -so $@/webfonts/fa-$${style}.ttf https://cdn.dille.name/fontawesome-pro@$*/webfonts/fa-$${style}.ttf; \
 	done
 
+.PHONY:
+media/reveal.js@%:
+	@\
+	mkdir -p $@; \
+	curl -sSLf https://github.com/hakimel/reveal.js/archive/refs/tags/$*.tar.gz \
+	| tar -xz --strip-components=1 -C $@ reveal.js-$*/dist reveal.js-$*/plugin
+
+.PHONY:
+media/highlight.js@%:
+	@\
+	mkdir -p $@; \
+	curl -sSLf https://github.com/highlightjs/highlight.js/archive/refs/tags/$*.tar.gz \
+	| tar -xz --strip-components=2 -C $@ highlight.js-$*/src/styles/rainbow.css
+
 mkdocs:
 	shiv --output-file ./mkdocs --console-script mkdocs \
 		mkdocs \
