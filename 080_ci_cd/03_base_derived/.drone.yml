@@ -1,7 +1,7 @@
 pipeline:
 
   base:
-    image: docker:18.06
+    image: docker:27.3
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
@@ -9,7 +9,7 @@ pipeline:
     - docker push registry:5000/groot/base
 
   derived:
-    image: docker:18.06
+    image: docker:27.3
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:

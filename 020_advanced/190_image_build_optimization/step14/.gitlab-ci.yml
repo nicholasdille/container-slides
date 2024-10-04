@@ -4,10 +4,10 @@ stages:
 - promote
 
 services:
-- docker:20.10-dind
+- docker:27.3-dind
 
 default:
-  image: docker:20.10
+  image: docker:27.3
 
 variables:
   DOCKER_BUILDKIT: 1
