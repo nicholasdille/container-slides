@@ -1,4 +1,4 @@
-FROM aelsabbahy/goss:v0.3.9 as goss
+FROM aelsabbahy/goss:v0.3.16 as goss
 
 FROM nginx
 
