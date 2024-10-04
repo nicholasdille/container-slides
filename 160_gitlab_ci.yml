@@ -24,6 +24,9 @@ exclude_docs: |
   000_rollout/server/*
   000_rollout/runner/*
   000_rollout/vscode/*
+  agenda.md
+  devops.md
+  final.md
 site_dir: site.160_gitlab_ci
 
 theme:
@@ -134,5 +137,7 @@ nav:
   - Caches: 265_caches/exercise.md
   - Renovate: 270_renovate/exercise.md
   - Security: 280_security/exercise.md
+  - Components: 300_components/exercise.md
+  - Steps: 310_steps/exercise.md
 - Wrap Up:
   - You are done: you_are_done.md
