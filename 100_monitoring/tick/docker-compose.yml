@@ -11,7 +11,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   influxdb:
-    image: influxdb:1.6-alpine
+    image: influxdb:2.7-alpine
     environment:
       INFLUXDB_DB: "demo"
       INFLUXDB_ADMIN_USER: "admin"
