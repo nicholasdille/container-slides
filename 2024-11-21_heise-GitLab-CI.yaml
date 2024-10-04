@@ -1,0 +1,88 @@
+date: 2024-11-12
+metadata:
+  title: GitLab CI
+  title_slug: gitlab-ci
+  subtitle: Workshop
+  favicon: 150_gitlab/media/favicon.ico
+  background:
+    image: 150_gitlab/media/fox-5195283_1920.jpg
+    size: 90%
+    positon: left 50% top 50%
+event:
+  name: heise Academy
+  logo: images/logos/heise-academy.svg
+  link: https://heise-academy.de
+
+slides:
+- 000_introduction/02_bio.md
+- 000_introduction/heise_academy_housekeeping.md
+- 000_introduction/who_are_you.md
+- 160_gitlab_ci/agenda.md
+- 160_gitlab_ci/devops.md
+- 150_gitlab/000_intro/product.md
+- 160_gitlab_ci/000_rollout/slides.md
+- 160_gitlab_ci/010_jobs_and_stages/slides.md
+- 160_gitlab_ci/020_variables/slides.md
+- 160_gitlab_ci/020_variables/predefined.md
+- 160_gitlab_ci/020_variables/ci.md
+- 160_gitlab_ci/030_script_blocks/slides.md
+- 160_gitlab_ci/040_image/slides.md
+- 160_gitlab_ci/050_defaults/slides.md
+- 160_gitlab_ci/060_artifacts/slides.md
+- 160_gitlab_ci/065_job_dependencies/slides.md
+- 160_gitlab_ci/070_schedules/slides.md
+- 160_gitlab_ci/080_configuration/slides.md
+- 160_gitlab_ci/090_unit_tests/slides.md
+- 160_gitlab_ci/100_environments/slides.md
+- 160_gitlab_ci/110_triggers/slides.md
+- 160_gitlab_ci/120_templates/slides.md
+- 160_gitlab_ci/130_rules/slides.md
+- 160_gitlab_ci/140_merge_requests/slides.md
+- 160_gitlab_ci/150_matrix_jobs/slides.md
+- 160_gitlab_ci/200_job_token/slides.md
+- 160_gitlab_ci/205_git_submodules/slides.md
+- 160_gitlab_ci/220_services/slides.md
+- 160_gitlab_ci/230_docker/slides.md
+- 160_gitlab_ci/240_registries/slides.md
+- 160_gitlab_ci/250_releases/slides.md
+- 160_gitlab_ci/255_troubleshooting/slides.md
+- 160_gitlab_ci/260_runners/slides.md
+- 160_gitlab_ci/265_caches/slides.md
+- 160_gitlab_ci/270_renovate/slides.md
+- 160_gitlab_ci/280_security/slides.md
+
+summary:
+- icon: fa-infinity
+  text: GitLab covers the whole DevOps process
+- icon: fa-ball-pile
+  text: GitLab is packed with features
+- icon: fa-gauge-min
+  text: No plugins to support recurring tasks
+- icon: fa-shield-check
+  text: Useful security features even in free tier
+
+events:
+- date: 2024-11-07
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab Ops
+  link: https://heise-academy.de/Workshops/einfuehrung-in-gitlab
+- date: 2024-11-12
+  name: ContainerConf
+  homepage: https://containerconf.de/
+  type: Workshop
+  title: GitLab CI
+  link: https://www.continuouslifecycle.de/veranstaltung-22480-0-ci-cd-mit-gitlab.html
+- date: 2024-11-13
+  name: ContainerConf
+  homepage: https://containerconf.de/
+  type: Talk
+  title: Kubernetes RBAC
+  link: https://www.continuouslifecycle.de/veranstaltung-22482-0-kubernetes-rbac--tricks-und-fallstricke.html
+- date: 2024-11-21
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab CI
+  link: https://heise-academy.de/Workshops/cicd-gitlab

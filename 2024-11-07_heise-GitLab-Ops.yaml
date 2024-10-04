@@ -1,0 +1,90 @@
+date: 2024-11-12
+metadata:
+  title: GitLab Ops
+  title_slug: gitlab-ops
+  subtitle: Workshop
+  favicon: 150_gitlab/media/favicon.ico
+  background:
+    image: 150_gitlab/media/fox-5195283_1920.jpg
+    size: 90%
+    positon: left 50% top 50%
+event:
+  name: heise Academy
+  logo: images/logos/heise-academy.svg
+  link: https://heise-academy.de
+
+slides:
+- 000_introduction/02_bio.md
+- 000_introduction/heise_academy_housekeeping.md
+- 000_introduction/who_are_you.md
+- 150_gitlab/goals.md
+- 150_gitlab/agenda.md
+- 150_gitlab/demo_environment.md
+- 150_gitlab/000_intro/product.md
+- 150_gitlab/000_intro/architecture.md
+- 150_gitlab/part1.md
+- 150_gitlab/001_quickstart/slides.md
+- 150_gitlab/010_projects/slides.md
+- 150_gitlab/020_users/slides.md
+- 150_gitlab/030_authentication/slides.md
+- 150_gitlab/040_profile/slides.md
+- 150_gitlab/050_server_settings/slides.md
+- 150_gitlab/060_api/slides.md
+- 150_gitlab/090_maintenance/slides.md
+- 150_gitlab/part2.md
+- 150_gitlab/100_reverse_proxy/slides.md
+- 150_gitlab/110_directories/slides.md
+- 150_gitlab/120_ldap/slides.md
+- 150_gitlab/125_smtp/slides.md
+- 150_gitlab/130_registries/slides.md
+- 150_gitlab/135_integrations/slides.md
+- 150_gitlab/140_troubleshooting/slides.md
+- 150_gitlab/150_update/slides.md
+- 150_gitlab/160_runner/slides.md
+- 150_gitlab/165_pages/slides.md
+- 150_gitlab/170_monitoring/slides.md
+- 150_gitlab/180_components/slides.md
+- 150_gitlab/185_storage/slides.md
+- 150_gitlab/190_database/slides.md
+- 150_gitlab/ee.md
+- 150_gitlab/usage_ping.md
+
+summary:
+- icon: fa-infinity
+  text: GitLab covers the whole DevOps process
+- icon: fa-rocket-launch
+  text: Easily deployed using containers
+- icon: fa-ball-pile
+  text: GitLab is packed with features
+- icon: fa-hand-peace
+  text: Configuration is two-fold
+- icon: fa-gauge-min
+  text: Restarts are slow
+- icon: fa-shield-check
+  text: Security issues are patched quickly
+
+events:
+- date: 2024-11-07
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab Ops
+  link: https://heise-academy.de/Workshops/einfuehrung-in-gitlab
+- date: 2024-11-12
+  name: ContainerConf
+  homepage: https://containerconf.de/
+  type: Workshop
+  title: GitLab CI
+  link: https://www.continuouslifecycle.de/veranstaltung-22480-0-ci-cd-mit-gitlab.html
+- date: 2024-11-13
+  name: ContainerConf
+  homepage: https://containerconf.de/
+  type: Talk
+  title: Kubernetes RBAC
+  link: https://www.continuouslifecycle.de/veranstaltung-22482-0-kubernetes-rbac--tricks-und-fallstricke.html
+- date: 2024-11-21
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab CI
+  link: https://heise-academy.de/Workshops/cicd-gitlab

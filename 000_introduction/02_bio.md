@@ -16,7 +16,7 @@
 
 <!-- .element: class="fa-ul" style="line-height: 175%;" -->
 
-*Reach out via* [<i class="fa-brands fa-mastodon"></i>][11] [<i class="fa-brands fa-twitter"></i> <i class="fa-brands fa-x-twitter"></i>][8] [<i class="fa-brands fa-github"></i>][9] [<i class="fa-brands fa-keybase"></i>][10]
+*Reach out via* [<i class="fa-brands fa-mastodon"></i>][11] [<i class="fa-brands fa-x-twitter"></i>][8] [<i class="fa-brands fa-github"></i>][9] [<i class="fa-brands fa-keybase"></i>][10]
 
 [1]: https://dille.name
 [2]: https://dille.name/blog/tags/#Slides

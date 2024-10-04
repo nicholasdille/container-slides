@@ -41,25 +41,29 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	EVENT="$$(yq eval '.event.name' $*.yaml)"; \
 	LINK="$$(yq eval '.event.link' $*.yaml)"; \
 	LOGO="$$(yq eval '.event.logo' $*.yaml)"; \
+	LOGOSTYLE="$$(yq eval '.event.logo_style' $*.yaml)"; \
 	cat template.html \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:head/x:title" -v "$${TITLE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:head/x:link[@rel='icon']/@href" -v "$${FAVICON}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']/@data-background" -v "$${BACKGROUND_IMAGE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']/@data-background-size" -v "$${BACKGROUND_SIZE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']/@data-background-position" -v "$${BACKGROUND_POSITION}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:h1" -v "$${TITLE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:h2" -v "$${SUBTITLE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a" -v "$${EVENT}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:a/@href" -v "$${LINK}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" -u "/x:html/x:body//x:section[@id='title']//x:img/@src" -v "$${LOGO}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:head/x:title" -v "$${TITLE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:head/x:link[@rel='icon']/@href" -v "$${FAVICON}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']/@data-background" -v "$${BACKGROUND_IMAGE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']/@data-background-size" -v "$${BACKGROUND_SIZE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']/@data-background-position" -v "$${BACKGROUND_POSITION}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:h1" -v "$${TITLE}" \
+	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:h2" -v "$${SUBTITLE}" \
 	>$@; \
+	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:a" -v "$${EVENT}" $@; \
+	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:a/@href" -v "$${LINK}" $@; \
+	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:img/@src" -v "$${LOGO}" $@; \
+	if test -n "$${LOGOSTYLE}"; then \
+		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:img/@style" -v "$${LOGOSTYLE}" $@; \
+	fi; \
 	yq eval '.slides[]' $*.yaml \
 	| while read -r FILE; do \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
 			--insert '/x:html/x:body//x:section[@id="summary"]' --type elem --name section \
 			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-markdown --value "$${FILE}" \
 			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-separator --value "^---$$" \
-			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-vertical-separator --value "^--$$" \
+			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-separator-vertical --value "^--$$" \
 			--insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
 			$@; \
 	done; \
