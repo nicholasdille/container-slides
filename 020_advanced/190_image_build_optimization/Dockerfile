@@ -14,7 +14,7 @@ RUN go build -o hello .
 RUN go mod download
 RUN cp hello /
 
-FROM ubuntu:20.04 AS step2
+FROM ubuntu:24.04 AS step2
 COPY --from=step2-build /hello /usr/local/bin/
 
 # Order of commands
@@ -26,16 +26,16 @@ COPY . .
 RUN go build -o hello .
 RUN cp hello /
 
-FROM ubuntu:20.04 AS step3
+FROM ubuntu:24.04 AS step3
 COPY --from=step3-build /hello /usr/local/bin/
 
 # USER
-FROM ubuntu:20.04 AS step4
+FROM ubuntu:24.04 AS step4
 COPY --from=step3-build /hello /usr/local/bin/
 USER nobody
 
 # apt with bloat
-FROM ubuntu:20.04 AS step4
+FROM ubuntu:24.04 AS step4
 COPY --from=step3-build /hello /usr/local/bin/
 RUN apt-get update \
  && apt-get -y install --no-install-recommends \
@@ -45,7 +45,7 @@ RUN apt-get update \
 USER nobody
 
 # cache
-FROM ubuntu:20.04 AS step6
+FROM ubuntu:24.04 AS step6
 COPY --from=step3-build /hello /usr/local/bin/
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache \
@@ -58,7 +58,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
 USER nobody
 
 # heredocs
-FROM ubuntu:20.04 AS step7
+FROM ubuntu:24.04 AS step7
 COPY --from=step3-build /hello /usr/local/bin/
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache \
@@ -73,7 +73,7 @@ EOF
 USER nobody
 
 # parallel
-FROM ubuntu:21.04 AS step8-base
+FROM ubuntu:24.04 AS step8-base
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache \
     --mount=type=cache,target=/var/log \

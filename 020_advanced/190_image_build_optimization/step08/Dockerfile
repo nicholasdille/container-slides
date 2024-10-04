@@ -6,7 +6,7 @@ COPY . .
 RUN go build -o hello .
 RUN cp hello /
 
-FROM ubuntu:22.04 AS step4
+FROM ubuntu:24.04 AS step4
 COPY --from=build /hello /usr/local/bin/
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache \
