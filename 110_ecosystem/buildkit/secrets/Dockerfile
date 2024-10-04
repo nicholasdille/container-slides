@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.2
+#syntax=docker/dockerfile:1.10
 FROM alpine
 SHELL [ "sh", "-xec"]
 RUN --mount=type=secret,id=mysite.key \
