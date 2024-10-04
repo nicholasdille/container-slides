@@ -7,3 +7,4 @@ id_rsa_*
 *.pdf
 /site.*
 mkdocs
+node_modules
