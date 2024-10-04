@@ -50,6 +50,7 @@ slides:
 - 160_gitlab_ci/265_caches/slides.md
 - 160_gitlab_ci/270_renovate/slides.md
 - 160_gitlab_ci/280_security/slides.md
+- 160_gitlab_ci/final.md
 
 summary:
 - icon: fa-infinity
