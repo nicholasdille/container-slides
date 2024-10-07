@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -it --network host --mount type=bind,source=$PWD,target=/usr/share/nginx/html nginx
+docker run -it --rm --network host --mount type=bind,source=$PWD,target=/usr/share/nginx/html nginx

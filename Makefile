@@ -41,7 +41,7 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	EVENT="$$(yq eval '.event.name' $*.yaml)"; \
 	LINK="$$(yq eval '.event.link' $*.yaml)"; \
 	LOGO="$$(yq eval '.event.logo' $*.yaml)"; \
-	LOGOSTYLE="$$(yq eval '.event.logo_style' $*.yaml)"; \
+	LOGOSTYLE="$$(yq eval '.event | select(.logo_style != null) .logo_style' $*.yaml)"; \
 	cat template.html \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:head/x:title" -v "$${TITLE}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:head/x:link[@rel='icon']/@href" -v "$${FAVICON}" \

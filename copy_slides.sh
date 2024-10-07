@@ -47,7 +47,15 @@ fi
 make || true
 
 echo "${FILE}" | copy_to_target
-sed -i 's|"media/|"https://cdn.dille.name/|' "${TARGET}/${FILE}"
+
+REVEALJS_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "reveal.js") | .value.version' )"
+SOURCE_SANS_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "@fontsource/source-sans-3") | .value.version' )"
+HIGHLIGHTJS_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "highlight.js") | .value.version' )"
+FONTAWESOME_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "@fortawesome/fontawesome-pro") | .value.version' )"
+sed -E -i "s|node_modules/reveal.js/|https://cdn.dille.name/reveal.js@${REVEALJS_VERSION}/|" "${TARGET}/${FILE}"
+sed -E -i "s|node_modules/@fontsource/source-sans-3/|https://cdn.dille.name/source-sans-3@${SOURCE_SANS_VERSION}/|" "${TARGET}/${FILE}"
+sed -E -i "s|node_modules/highlight.js/|https://cdn.dille.name/highlight.js@${HIGHLIGHTJS_VERSION}/|" "${TARGET}/${FILE}"
+sed -E -i "s|node_modules/@fortawesome/fontawesome-pro/|https://cdn.dille.name/fontawesome-pro@${FONTAWESOME_VERSION}/|" "${TARGET}/${FILE}"
 
 find "fonts" -type f | copy_to_target
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${TARGET}/${FILE}" \
@@ -73,3 +81,5 @@ for INCLUDE in ${INCLUDES}; do
     | extract_links \
     | copy_to_target
 done
+
+mv "${TARGET}/${FILE}" "${TARGET}/index.html"
