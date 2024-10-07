@@ -7,7 +7,7 @@ services:
 
   # https://doc.traefik.io/traefik/
   traefik:
-    image: traefik:v2.10.4
+    image: traefik:v3.1.5
     command:
     - --log=true
     - --log.level=DEBUG
