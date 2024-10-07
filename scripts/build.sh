@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. functions.sh
+source scripts/functions.sh
 
 DIRS=$(find . -type f -name \*.demo | xargs -n 1 dirname | uniq)
 for DIR in ${DIRS}; do

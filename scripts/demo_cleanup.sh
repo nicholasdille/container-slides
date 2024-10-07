@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. functions.sh
+source scripts/functions.sh
 
 echo
 echo -e "${YELLOW}Waiting for demo to end. Press enter to continue...${DEFAULT}"

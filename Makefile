@@ -20,7 +20,7 @@ clean-all:
 	done
 
 %.final.md: %.template.md $(DEMOS)
-	@source $$(dirname $(MAKEFILE_LIST))/functions.sh; \
+	@source $$(dirname $(MAKEFILE_LIST))/scripts/functions.sh; \
 	for DEMO in $(DEMOS); do \
 	    echo "Splitting demo $$(basename $${DEMO} .demo)"; \
 	    split $$(basename $${DEMO} .demo); \

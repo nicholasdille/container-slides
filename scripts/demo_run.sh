@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-. functions.sh
+source scripts/functions.sh
 
 FILE=${1}
 if [[ -z "${FILE}" ]] || [[ ! -f "${FILE}" ]]; then
@@ -50,7 +50,7 @@ for DIR in ${DIRS}; do
 
     prepare
     export SET_PROMPT=1
-    bash --init-file ${BASEDIR}/functions.sh
+    bash --init-file ${BASEDIR}/scripts/functions.sh
     unset SET_PROMPT
 
     echo

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. functions.sh
+source scripts/functions.sh
 
 FILE=${1}
 if [[ -z "${FILE}" ]] || [[ ! -f "${FILE}" ]]; then
