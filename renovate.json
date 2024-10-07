@@ -25,5 +25,12 @@
   "minor":  { "labels": [ "bump/minor", "type/renovate" ] },
   "patch":  { "labels": [ "bump/patch", "type/renovate" ] },
   "pin":    { "labels": [ "bump/pin",   "type/renovate" ] },
-  "digest": { "labels": [ "bump/digest", "type/renovate" ] }
+  "digest": { "labels": [ "bump/digest", "type/renovate" ] },
+  "packageRules": [
+    {
+      "matchPackageNames": [ "@fortawesome/fontawesome-pro" ],
+      "matchDatasources": [ "npm" ],
+      "registryUrls": [ "https://npm.fontawesome.com" ]
+    }
+  ]
 }
