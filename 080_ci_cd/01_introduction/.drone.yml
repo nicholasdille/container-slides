@@ -1,7 +1,7 @@
 pipeline:
 
   build:
-    image: openjdk:8-jdk
+    image: openjdk:24-jdk
     commands:
     - javac HelloWorld.java
     - ls -l
