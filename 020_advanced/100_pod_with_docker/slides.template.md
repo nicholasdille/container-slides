@@ -44,10 +44,10 @@ Share network namespace across services:
 version: "3.3"
 services:
   pod:
-    image: alpine
+    image: alpine:3.20.3
     command: [ "sh", "-c", "while true; do sleep 5; done" ]
   dind:
-    image: docker:stable-dind
+    image: docker:27.3.1-dind
     command: [ "dockerd", "--host", "tcp://127.0.0.1:2375" ]
     privileged: true
     network_mode: service:pod
@@ -71,14 +71,14 @@ x-pod-template: &pod
   network_mode: service:pod
 services:
   pod:
-    image: alpine
+    image: alpine:3.20.3
     command: [ "sh", "-c", "while true; do sleep 5; done" ]
   registry:
     <<: *pod
     image: registry:2
   dind:
     <<: *pod
-    image: docker:stable-dind
+    image: docker:27.3.1-dind
     command: [ "dockerd", "--host", "tcp://127.0.0.1:2375" ]
     privileged: true
 ```

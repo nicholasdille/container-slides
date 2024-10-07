@@ -25,7 +25,7 @@ spec:
           type: DirectoryOrCreate
       containers:
       - name: mysql
-        image: mysql:5
+        image: mysql:9.0.1
         env:
         - name: MYSQL_RANDOM_ROOT_PASSWORD
           value: "yes"

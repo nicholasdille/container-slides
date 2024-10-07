@@ -8,6 +8,6 @@ spec:
   # Jeder Port nur durch einen Container nutzbar
   containers:
   - name: nginx
-    image: nginx
+    image: nginx:1.27.2
   - name: apache
-    image: httpd
+    image: httpd:2.4.62

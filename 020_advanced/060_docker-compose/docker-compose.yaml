@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   db:
-    image: mysql:9
+    image: mysql:9.0.1
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
       MYSQL_DATABASE: wordpress
@@ -11,7 +11,7 @@ services:
       MYSQL_PASSWORD: "5upe4Secr3t!"
 
   web:
-    image: wordpress:6.6
+    image: wordpress:6.6.2
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_NAME: wordpress

@@ -5,4 +5,4 @@ services:
     build:
       context: .
   svc2:
-    image: nginx
+    image: nginx:1.27.2

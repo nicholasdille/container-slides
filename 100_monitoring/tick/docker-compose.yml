@@ -22,7 +22,7 @@ services:
       INFLUXDB_WRITE_PASSWORD: "write"
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:11.2.2
     depends_on:
       - influxdb
     labels:

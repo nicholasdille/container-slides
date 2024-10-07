@@ -12,7 +12,7 @@ spec:
       name: pages
   containers:
   - name: configmap
-    image: nginx:stable-alpine
+    image: nginx:1.27.2-alpine
     volumeMounts:
     - mountPath: /usr/share/nginx/html
       name: data
