@@ -9,24 +9,15 @@
 <!-- https://gauger.io/fonticon/ -->
 <link rel="icon" href="150_gitlab/media/favicon.ico" />
 
-<link rel="stylesheet" href="media/reveal.js@5.1.0/dist/reveal.css" />
-<link rel="stylesheet" href="media/source-sans@3.052/font.css" />
-<link rel="stylesheet" href="media/reveal.js@5.1.0/dist/theme/black.css" id="theme" />
-<link rel="stylesheet" href="themes/theme2022.css" id="theme" />
+<link ref="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" />
+<link ref="stylesheet" href="node_modules/@fontsource/source-sans-3/latin.css" />
+<link ref="stylesheet" href="node_modules/@fontsource/source-sans-3/latin-italic.css" />
+<link ref="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" />
+<link ref="stylesheet" href="node_modules/@fortawesome/fontawesome-pro/css/all.min.css" />
+<link rel="stylesheet" href="themes/theme2022.css" />
 <link rel="stylesheet" href="themes/common.css" />
-<link rel="stylesheet" href="media/highlight.js@11.10.0/styles/rainbow.css" />
-
-<script>
-    var version = '6.6.0'
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    if (window.location.href.match(/^http(s)?:\/\/(.+\.)*dille.name/)) {
-        link.href = 'https://cdn.dille.name/fontawesome-pro@' + version + '/css/all.min.css';
-    } else {
-        link.href = 'media/fontawesome-pro@' + version + '/css/all.min.css';
-    }
-    document.head.appendChild(link);
-</script>
 </head>
 
 <body>
@@ -103,12 +94,12 @@
 </div>
 </div>
 
-<script src="media/reveal.js@5.1.0/dist/reveal.js" type="application/javascript"></script>
-<script src="media/reveal.js@5.1.0/plugin/markdown/markdown.js" type="application/javascript"></script>
-<script src="media/reveal.js@5.1.0/plugin/highlight/highlight.js" type="application/javascript"></script>
-<script src="media/reveal.js@5.1.0/plugin/search/search.js" type="application/javascript"></script>
-<script src="media/reveal.js@5.1.0/plugin/zoom/zoom.js" type="application/javascript"></script>
-<script src="media/reveal.js@5.1.0/plugin/notes/notes.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/dist/reveal.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/plugin/markdown/markdown.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/plugin/highlight/highlight.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/plugin/search/search.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/plugin/zoom/zoom.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
     var durationInMinutes = 4 * 60;
     Reveal.initialize({
