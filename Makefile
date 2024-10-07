@@ -110,30 +110,6 @@ web-$(COMMIT):
 	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
 	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f
 
-.PHONY:
-media/fontawesome-pro@%:
-	@\
-	mkdir -p $@/css $@/webfonts; \
-	curl -so $@/css/all.min.css https://cdn.dille.name/fontawesome-pro@$*/css/all.min.css; \
-	for style in brands-400 duotone-900 light-300 regular-400 solid-900 thin-100; do \
-		curl -so $@/webfonts/fa-$${style}.woff2 https://cdn.dille.name/fontawesome-pro@$*/webfonts/fa-$${style}.woff2; \
-		curl -so $@/webfonts/fa-$${style}.ttf https://cdn.dille.name/fontawesome-pro@$*/webfonts/fa-$${style}.ttf; \
-	done
-
-.PHONY:
-media/reveal.js@%:
-	@\
-	mkdir -p $@; \
-	curl -sSLf https://github.com/hakimel/reveal.js/archive/refs/tags/$*.tar.gz \
-	| tar -xz --strip-components=1 -C $@ reveal.js-$*/dist reveal.js-$*/plugin
-
-.PHONY:
-media/highlight.js@%:
-	@\
-	mkdir -p $@; \
-	curl -sSLf https://github.com/highlightjs/highlight.js/archive/refs/tags/$*.tar.gz \
-	| tar -xz --strip-components=2 -C $@ highlight.js-$*/src/styles/rainbow.css
-
 mkdocs:
 	shiv --output-file ./mkdocs --console-script mkdocs \
 		mkdocs \
