@@ -26,9 +26,13 @@
   "patch":  { "labels": [ "bump/patch", "type/renovate" ] },
   "pin":    { "labels": [ "bump/pin",   "type/renovate" ] },
   "digest": { "labels": [ "bump/digest", "type/renovate" ] },
+  "detectHostRulesFromEnv": true,
   "packageRules": [
     {
-      "matchPackageNames": [ "@fortawesome/fontawesome-pro" ],
+      "matchPackageNames": [
+        "@fortawesome/fontawesome-pro",
+        "@fortawesome/fontawesome-free"
+      ],
       "matchDatasources": [ "npm" ],
       "registryUrls": [ "https://npm.fontawesome.com" ]
     }
