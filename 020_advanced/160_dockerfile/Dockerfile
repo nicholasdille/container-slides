@@ -2,7 +2,7 @@
 
 # https://github.com/chris-crone/containerized-go-dev
 
-FROM --platform=${BUILDPLATFORM} golang:1.14.3-alpine AS base
+FROM --platform=${BUILDPLATFORM} golang:1.23.2-alpine AS base
 WORKDIR /src
 ENV CGO_ENABLED=0
 COPY go.* .
