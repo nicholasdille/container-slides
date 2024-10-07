@@ -102,14 +102,14 @@ pages:
     - public
 
 package:
-  image: docker:20.10.18
+  image: docker:20.10.24
   stage: package
   rules:
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
   variables:
     DOCKER_HOST: tcp://docker:2375
   services:
-  - name: docker:20.10.18-dind
+  - name: docker:20.10.24-dind
     command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
   script:
   - docker build --tag hello .
