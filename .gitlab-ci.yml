@@ -109,12 +109,12 @@ pages:
     - public
 
 package:
-  image: docker:20.10.18
+  image: docker:27.3.1
   stage: package
   extends:
   - .run-on-push-to-default-branch
   services:
-  - name: docker:20.10.18-dind
+  - name: docker:27.3.1-dind
     command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
   variables:
     DOCKER_HOST: tcp://docker:2375
