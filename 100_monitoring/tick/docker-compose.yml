@@ -3,7 +3,7 @@ version: "3.3"
 services:
 
   proxy:
-    image: traefik:v3.2
+    image: traefik:3.1.5
     command: "--debug --docker --docker.endpoint='unix:///var/run/docker.sock' --docker.watch=true --docker.exposedByDefault=false --entryPoints='Name:http Address::80' --defaultEntryPoints='http'"
     ports:
       - 80:80
@@ -11,7 +11,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   influxdb:
-    image: influxdb:2.7-alpine
+    image: influxdb:2.7.9-alpine
     environment:
       INFLUXDB_DB: "demo"
       INFLUXDB_ADMIN_USER: "admin"
@@ -32,7 +32,7 @@ services:
       traefik.protocol: "http"
 
   telegraf:
-    image: telegraf:1.32-alpine
+    image: telegraf:1.32.0-alpine
     entrypoint: "sh"
     command: "-c 'echo \"$${INFLUXDB_CONF}\" > /etc/telegraf/telegraf.conf && exec telegraf'"
     environment:

@@ -21,7 +21,7 @@ spec:
       nodeSelector:
         dille.io/type: lb
       containers:
-      - image: traefik:v2.2
+      - image: traefik:3.1.5
         name: traefik-ingress-lb
         args:
         - --api.insecure

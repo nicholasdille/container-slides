@@ -1,6 +1,6 @@
 #!/bin/bash
 set -o errexit
 
-docker-setup --tools=trivy,regclient,cosign,notation,oras install
+uniget install trivy regclient cosign notation oras
 
 trivy plugin install github.com/aquasecurity/trivy-plugin-referrer

@@ -9,5 +9,5 @@ Usage scenarios
 Options:
 
 - Pay for it (all or some users)
-- Local alternative (e.g. [docker-setup](https://github.com/nicholasdille/docker-setup) and [portainer](https://github.com/portainer/portainer))
+- Local alternative (e.g. [uniget](https://github.com/uniget-org/cli) and [portainer](https://github.com/portainer/portainer))
 - ~Hosted alternative~ (due to costs)

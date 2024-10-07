@@ -3,7 +3,7 @@ volumes:
   registry-data:
 services:
   registry:
-    image: registry:2
+    image: registry:2.8.3
     volumes:
     - "registry-data:/var/lib/registry"
     ports:

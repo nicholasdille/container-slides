@@ -10,7 +10,7 @@ spec:
         default: "Hello World"
   steps:
     - name: echo
-      image: ubuntu
+      image: ubuntu:24.04
       command:
         - echo
       args:

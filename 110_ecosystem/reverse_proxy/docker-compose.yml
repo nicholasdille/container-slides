@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   traefik:
-    image: traefik:v3.2
+    image: traefik:3.1.5
     command:
     - --log=true
     - --log.level=DEBUG
@@ -34,7 +34,7 @@ services:
       traefik.http.routers.traefik.rule: HostRegexp(`traefik.{domain:[a-z0-9]+}.inmylab.de`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
 
   registry:
-    image: registry:2
+    image: registry:2.8.3
     ports:
     - "127.0.0.1:5000:5000"
     labels:

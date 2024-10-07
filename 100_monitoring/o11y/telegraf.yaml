@@ -54,7 +54,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: telegraf
-        image: telegraf:1.12
+        image: telegraf:1.32.0
         imagePullPolicy: Always
         env:
         - name: HOSTNAME

@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.10
+# syntax=docker/dockerfile:1.10.0
 
 # Vanilla
 FROM golang:1.23 AS step1

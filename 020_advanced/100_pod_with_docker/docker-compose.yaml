@@ -9,5 +9,5 @@ services:
     privileged: true
     network_mode: service:pod
   registry:
-    image: registry:2
+    image: registry:2.8.3
     network_mode: service:pod

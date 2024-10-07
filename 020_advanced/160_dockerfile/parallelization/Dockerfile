@@ -1,4 +1,4 @@
-FROM docker:stable AS base
+FROM docker:27.3.1 AS base
 RUN apk add --update-cache --no-cache \
         git \
         curl \

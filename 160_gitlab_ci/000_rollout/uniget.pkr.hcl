@@ -8,7 +8,7 @@ packer {
 }
 
 source "hcloud" "uniget" {
-  image = "ubuntu-22.04"
+  image = "ubuntu-24.04"
   location = "nbg1"
   server_type = "cx11"
   ssh_username = "root"

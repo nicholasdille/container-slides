@@ -1,4 +1,4 @@
 #!/bin/bash
 set -o errexit
 
-docker-setup --tools=docker,buildx,docker-compose,kind,helm,kubectl,gvisor install
+uniget install docker buildx docker-compose kind helm kubectl gvisor
