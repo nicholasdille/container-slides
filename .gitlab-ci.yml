@@ -43,7 +43,7 @@ stages:
 - trigger
 
 default:
-  image: golang:1.19.2
+  image: golang:1.19.13
 
 renovate:
   stage: check
