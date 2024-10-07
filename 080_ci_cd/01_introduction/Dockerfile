@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM openjdk:11-jre
 
 ADD HelloWorld.class /tmp
 WORKDIR /tmp
