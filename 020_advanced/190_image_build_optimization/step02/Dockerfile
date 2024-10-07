@@ -4,5 +4,5 @@ COPY . .
 RUN go build -o hello .
 RUN cp hello /
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 COPY --from=build /hello /usr/local/bin/
