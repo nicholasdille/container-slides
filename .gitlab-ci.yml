@@ -4,19 +4,19 @@ stages:
 
 lint:
   stage: check
-  image: golang:1.19.2
+  image: golang:1.23.2
   script:
   - go fmt .
 
 audit:
   stage: check
-  image: golang:1.19.2
+  image: golang:1.23.2
   script:
   - go vet .
 
 build:
   stage: build
-  image: golang:1.19.2
+  image: golang:1.23.2
   script:
   - |
     go build \
