@@ -65,7 +65,7 @@ services:
 
   # https://hub.docker.com/r/bitnami/openldap
   openldap:
-    image: bitnami/openldap:2.6.1
+    image: bitnami/openldap:2.6.8
     environment:
       LDAP_ROOT: dc=inmylab,dc=de
       LDAP_ALLOW_ANON_BINDING: "yes"
