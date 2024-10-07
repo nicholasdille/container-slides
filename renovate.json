@@ -26,7 +26,14 @@
   "patch":  { "labels": [ "bump/patch", "type/renovate" ] },
   "pin":    { "labels": [ "bump/pin",   "type/renovate" ] },
   "digest": { "labels": [ "bump/digest", "type/renovate" ] },
-  "detectHostRulesFromEnv": true,
+  "npmrcMerge": true,
+  "hostRules": [
+    {
+      "hostType": "npm",
+      "matchHost": "npm.fontawesome.com",
+      "token": "{{ secrets.FONTAWESOME_NPM_TOKEN }}"
+    }
+  ],
   "packageRules": [
     {
       "matchPackageNames": [
