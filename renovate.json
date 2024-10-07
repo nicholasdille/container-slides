@@ -32,5 +32,10 @@
       "matchDatasources": [ "npm" ],
       "registryUrls": [ "https://npm.fontawesome.com" ]
     }
-  ]
+  ],
+  "gitlabci": {
+    "fileMatch": [
+      "(^|\/)\\.gitlab-ci\\.yml$"
+    ]
+  }
 }
