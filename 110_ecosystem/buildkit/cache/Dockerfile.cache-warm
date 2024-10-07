@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.2
+#syntax=docker/dockerfile:1.10
 FROM ubuntu
 RUN --mount=type=cache,target=/tmp/cache \
     touch /tmp/cache/foo.bar
