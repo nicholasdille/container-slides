@@ -17,7 +17,7 @@ volumes:
 services:
 
   gitlab:
-    image: gitlab/gitlab-ee:17.4.1-ee.0
+    image: gitlab/gitlab-ee:17.5.0-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -73,7 +73,7 @@ services:
       traefik.tcp.routers.ssh.service: ssh
 
   db:
-    image: gitlab/gitlab-ee:17.4.1-ee.0
+    image: gitlab/gitlab-ee:17.5.0-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -110,7 +110,7 @@ services:
     - postgres-log:/var/log/gitlab
 
   redis:
-    image: gitlab/gitlab-ee:17.4.1-ee.0
+    image: gitlab/gitlab-ee:17.5.0-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -137,7 +137,7 @@ services:
     - redis-log:/var/log/gitlab
 
   gitaly:
-    image: gitlab/gitlab-ee:17.4.1-ee.0
+    image: gitlab/gitlab-ee:17.5.0-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
