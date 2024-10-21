@@ -6,8 +6,8 @@
 Requires for GitLab Premium and Ultimate
 
 Containerized deployment can be converted to EE<br/>by switching images [](https://docs.gitlab.com/ee/install/docker.html#convert-community-edition-to-enterprise-edition)
-- From: `gitlab/gitlab-ce:16.9.1-ce.0`
-- To: `gitlab/gitlab-ee:16.9.1-ee.0`
+- From: `gitlab/gitlab-ce:17.5.1-ce.0`
+- To: `gitlab/gitlab-ee:17.5.1-ee.0`
 
 Deployments with Linux packages are EE by default [](https://about.gitlab.com/install/)
 
