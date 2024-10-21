@@ -9,7 +9,7 @@ metadata:
     size: 90%
     positon: left 50% top 50%
 event:
-  name: heise Academy
+  name: " "
   logo: images/logos/heise-academy.svg
   link: https://heise-academy.de
 

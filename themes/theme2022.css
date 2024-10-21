@@ -1,21 +1,5 @@
-@font-face {
-    font-family: 'Cascadia Mono';
-    font-style: normal;
-    font-weight: 400;
-    src: url(../fonts/CascadiaMono.ttf) format('truetype');
-}
-
-@font-face {
-    font-family: 'Cascadia Mono Italic';
-    font-style: italic;
-    font-weight: 400;
-    src: url(../fonts/CascadiaMonoItalic.ttf) format('truetype');
-}
-
 :root {
-    --r-main-font: Source Sans Pro;
-    --r-heading-font: Source Sans Pro;
-    --r-code-font: 'Cascadia Mono';
+    --r-code-font: monospace;
 
     --r-main-font-size: 2.5em;
     --r-heading1-size: 2em;
@@ -55,7 +39,7 @@
 }
 
 .reveal pre {
-    font-size: 0.7em;
+    font-size: 1em;
 }
 
 .reveal pre code {

@@ -9,9 +9,9 @@ metadata:
     size: 100%
     positon: left 50% top 50%
 event:
-  name: ContainerConf
+  name: " "
   logo: images/logos/coc_ohnejahr_weiss_bunt.svg
-  logo_style: "height: 2em;"
+  logo_style: "float: left; height: 2em;"
   link: https://www.continuouslifecycle.de/
 
 slides:
