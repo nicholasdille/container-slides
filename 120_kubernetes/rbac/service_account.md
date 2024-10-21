@@ -39,16 +39,6 @@ spec:
 
 ## Prevent token mounting 2/2
 
-Don't want a service account to be mounted?
-
-```yaml [2,5]
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: foo
-automountServiceAccountToken: false
-```
-
 Can be overridden in the pod spec:
 
 ```yaml [2,6]
@@ -85,19 +75,13 @@ KUBERNETES_SERVICE_PORT_HTTPS=443
 
 ---
 
-## Service accounts without token
+## Long-lived service account tokens
 
 Service accounts are created without corresponding `Secret` [](https://kubernetes.io/docs/concepts/configuration/secret/#service-account-token-secrets)
 
-Introduced in Kubernetes 1.24
-
-Automounted service accounts always get a temporary token
-
 Create special secret to obtain long-lived token:
 
-```bash [1-2,4,7-9]
-kubectl create sa foo
-cat <<EOF | kubectl apply -f -
+```yaml [2,5-7]
 apiVersion: v1
 kind: Secret
 metadata:
@@ -105,7 +89,33 @@ metadata:
   annotations:
     kubernetes.io/service-account.name: foo
 type: kubernetes.io/service-account-token
-EOF
+```
+
+<i class="fa-duotone fa-warning"></i> Avoid long-lived service account tokens
+
+Automounted service accounts always get a temporary token
+
+### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
+
+---
+
+## Short-lived service account tokens
+
+Avoid long-lived tokens
+
+Create short-lived tokens on-demand [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount)
+
+```bash
+kubectl create token foo
+kubectl create token bar --duration 1h
+```
+
+Bind lifetime of token to another resource:
+
+```bash
+kubectl create token baz \
+    --bound-object-kind pod \
+    --bound-object-name my-pod
 ```
 
 ### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
@@ -116,53 +126,23 @@ EOF
 
 ![](120_kubernetes/rbac/recovery.drawio.svg) <!-- .element: style="float: right; width: 15%;" -->
 
+Service account is deleted while being in use
+
+### Effect
+
 Access to Kubernetes API stops working immediately
 
 Credentials remain accessible by pod
 
 ### Recovery is not easy
 
-Not enough to create a new service account with the same name
-
-Issued token does not work for new service account
+Issued tokens do not work for new service account
 
 Restart of pod is required
 
 ---
 
-## Short-lived tokens
-
-Avoid long-lived tokens
-
-Create short-lived tokens on-demand [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#manually-create-an-api-token-for-a-serviceaccount)
-
-```bash
-kubectl create token <sa>
-```
-
-Specify lifetime of token:
-
-```bash
-kubectl create token <sa> --duration 1h
-```
-
-Bind lifetime of token to another resource:
-
-```bash
-kubectl create token <sa> \
-    --bound-object-kind <kind> \
-    --bound-object-name <name>
-```
-
-### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
-
----
-
 ## Image Pull Secrets
-
-Usually added to pods description
-
-### Tied to Service Account
 
 Add image pull secret(s) to service account [](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account):
 
@@ -175,19 +155,15 @@ imagePullSecrets:
 - name: my_reg_secret_name
 ```
 
-Mount service account to a pod and check:
+When a pod uses the service account, the secret is added to the pods
 
-```bash
-kubectl get pod bar -o=jsonpath='{.spec.imagePullSecrets[0].name}{"\n"}'
-```
+Check `imagePullSecrets` in `Pod` spec
 
 Works regardless of `automountServiceAccountToken`
 
 ### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
-
-## Avoid Service Accounts 1/2
 
 ```yaml
 apiVersion: v1
@@ -215,6 +191,8 @@ spec:
 
 <!-- .element: style="float: right; width: 24em;" -->
 
+## Avoid Service Accounts 1/2
+
 Use field references in environment variables
 
 Also supports `resourceFieldRef` to access resource requests and limits
@@ -222,8 +200,6 @@ Also supports `resourceFieldRef` to access resource requests and limits
 ### Demo [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/service_account.demo "service_account.demo")
 
 ---
-
-## Avoid Service Accounts 2/2
 
 ```yaml
 apiVersion: v1
@@ -249,6 +225,8 @@ spec:
 ```
 
 <!-- .element: style="float: right; width: 25em;" -->
+
+## Avoid Service Accounts 2/2
 
 Use downward API [](https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/) to expose pod information
 

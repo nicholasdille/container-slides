@@ -6,6 +6,6 @@
 - <span class="fa-li"><i class="fa-duotone fa-id-card-clip"></i></span> Impersonation
 - <span class="fa-li"><i class="fa-duotone fa-shield-quartered"></i></span> Securing service accounts
 - <span class="fa-li"><i class="fa-duotone fa-stethoscope"></i></span> Audit log
-- <span class="fa-li"><i class="fa-duotone fa-person-military-pointing"></i></span> Kyverno
+- <span class="fa-li"><i class="fa-duotone fa-id-card-clip"></i></span> Single-Sign On (SSO)
 
 <!-- .element: class="fa-ul" style="font-size: larger; margin-top: 0.5em;" -->

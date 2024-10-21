@@ -19,10 +19,6 @@ rules:
 
 Log Levels: `None`, `Metadata`, `Request`, `RequestResponse`
 
-Verbs and resources are the same as in RBAC
-
-Users are expressed in `system:` notation
-
 ---
 
 ## Enable audit logging
@@ -49,22 +45,6 @@ Usually enabled during cluster deployment
     <!-- .element: style="width: 42em;" -->
 
 3. Restart `kube-apiserver`
-
----
-
-## Processing audit events
-
-![](120_kubernetes/rbac/audit.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
-
-Send audit events to sink, e.g. [kubernetes-event-exporter](https://github.com/resmoio/kubernetes-event-exporter)
-
-Search for failed/malicious events
-
-### Careful
-
-Can produce large amounts of data
-
-Verbose auditing can lead to credential leaks
 
 ---
 

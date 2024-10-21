@@ -10,7 +10,7 @@ Be very careful when allowing access to secrets
 
 New pods can use existing service accounts [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#workload-creation)
 
-Pods obtain permissions of service accounts ...even without `pods/exec`
+Pods obtain permissions of service accounts... even without `pods/exec`
 
 ### Namespace modification
 
@@ -24,21 +24,17 @@ Verb `patch` on namespace allows changing labels [](https://kubernetes.io/docs/c
 
 ### Escalate verb
 
-Allows changing (Cluster)Roles [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#escalate-verb) [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-creation-or-update)
+Allows changing `(Cluster)Roles` [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#escalate-verb) [](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-creation-or-update)
 
-```yaml [8-12]
+```yaml [7-8]
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: escalate
 rules:
-- apiGroups:
-  - "rbac.authorization.k8s.io"
-  resources:
-  - clusterroles
-  - roles
-  verbs:
-  - escalate
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["clusterroles", "roles"]
+  verbs: ["escalate"]
 ```
 
 Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6)
@@ -49,7 +45,7 @@ Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-ve
 
 ### Bind verb
 
-Allows creating (Cluster)RoleBindings (Cluster)Roles [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#bind-verb)
+Allows creating `(Cluster)RoleBindings` to `(Cluster)Roles` [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#bind-verb)
 
 ```yaml [8-12]
 apiVersion: rbac.authorization.k8s.io/v1
@@ -57,13 +53,9 @@ kind: ClusterRole
 metadata:
   name: bind
 rules:
-- apiGroups:
-  - "rbac.authorization.k8s.io"
-  resources:
-  - clusterroles
-  - roles
-  verbs:
-  - bind
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["clusterroles", "roles"]
+  verbs: ["bind"]
 ```
 
 Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6)
@@ -74,7 +66,7 @@ Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-ve
 
 ### Impersonate verb
 
-Verb `impersonate` on service accounts allows impersonating [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#impersonate-verb)
+Verb `impersonate` on `ServiceAccount` allows impersonating [](https://kubernetes.io/docs/concepts/security/rbac-good-practices/#impersonate-verb)
 
 ```yaml [8-11]
 apiVersion: rbac.authorization.k8s.io/v1
@@ -82,12 +74,9 @@ kind: ClusterRole
 metadata:
   name: impersonate
 rules:
-- apiGroups:
-  - ""
-  resources:
-  - serviceaccounts
-  verbs:
-  - impersonate
+- apiGroups: [""]
+  resources: ["serviceaccounts"]
+  verbs: ["impersonate"]
 ```
 
 Full example [](https://infosecwriteups.com/the-bind-escalate-and-impersonate-verbs-in-the-kubernetes-cluster-e9635b4fbfc6)
@@ -106,12 +95,9 @@ kind: ClusterRole
 metadata:
   name: bind
 rules:
-- apiGroups:
-  - "*"
-  resources:
-  - "*"
-  verbs:
-  - "*"
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
 ```
 
-<i class="fa-duotone fa-triangle-exclamation"></i> Do not use wildcards at all
+<i class="fa-duotone fa-triangle-exclamation"></i> Avoid wildcards whenever possible
