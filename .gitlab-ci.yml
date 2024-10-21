@@ -94,7 +94,7 @@ pages:
   stage: deploy
   extends:
   - .run-on-push-to-default-branch
-  image: registry.gitlab.com/gitlab-org/release-cli:v0.18.0
+  image: registry.gitlab.com/gitlab-org/release-cli:v0.19.0
   release:
     tag_name: ${CI_PIPELINE_IID}
     name: Release ${CI_PIPELINE_IID}
