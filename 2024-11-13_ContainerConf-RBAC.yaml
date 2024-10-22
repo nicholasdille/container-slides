@@ -83,5 +83,4 @@ events:
   title: GitLab CI
   link: https://heise-academy.de/Workshops/cicd-gitlab
 
-post_slides:
-- https://github.com/uniget-org/slides/raw/refs/heads/main/slides.md
+post_slides: []
