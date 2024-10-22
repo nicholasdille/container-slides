@@ -57,6 +57,16 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	if test -n "$${LOGOSTYLE}"; then \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:img/@style" -v "$${LOGOSTYLE}" $@; \
 	fi; \
+	yq eval '.pre_slides[]' $*.yaml \
+	| while read -r FILE; do \
+		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
+			--insert '/x:html/x:body//x:section[@id="agenda"]' --type elem --name section \
+			--append '/x:html/x:body//x:section[@id="agenda"]/preceding::section[1]' --type attr --name data-markdown --value "$${FILE}" \
+			--append '/x:html/x:body//x:section[@id="agenda"]/preceding::section[1]' --type attr --name data-separator --value "^---$$" \
+			--append '/x:html/x:body//x:section[@id="agenda"]/preceding::section[1]' --type attr --name data-separator-vertical --value "^--$$" \
+			--insert '/x:html/x:body//x:section[@id="agenda"]' --type text --name "" --value $$'\n' \
+			$@; \
+	done; \
 	yq eval '.agenda[] | "<li><span class=\"fa-li\"><i class=\"fa-duotone fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
 	| while read -r LINE; do \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
@@ -89,6 +99,16 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
 			--append '/x:html/x:body//x:section[@id="summary"]/x:h3[@id="events"]' --type text --name "" --value "$${LINE}" \
 			--append '/x:html/x:body//x:section[@id="summary"]/x:h3[@id="events"]' --type text --name "" --value $$'\n' \
+			$@; \
+	done; \
+	yq eval '.post_slides[]' $*.yaml \
+	| while read -r FILE; do \
+		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
+			--append '/x:html/x:body//x:section[@id="summary"]' --type elem --name section \
+			--append '/x:html/x:body//x:section[@id="summary"]/following::section[1]' --type attr --name data-markdown --value "$${FILE}" \
+			--append '/x:html/x:body//x:section[@id="summary"]/following::section[1]' --type attr --name data-separator --value "^---$$" \
+			--append '/x:html/x:body//x:section[@id="summary"]/following::section[1]' --type attr --name data-separator-vertical --value "^--$$" \
+			--insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
 			$@; \
 	done; \
 	sed -i 's/&lt;/</g; s/&gt;/>/g' $@

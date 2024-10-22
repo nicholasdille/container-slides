@@ -14,6 +14,9 @@ event:
   logo_style: "float: left; height: 2em;"
   link: https://www.continuouslifecycle.de/
 
+pre_slides:
+- 000_introduction/02_bio.md
+
 agenda:
 - icon: user-shield
   test: Role Based Access Control (RBAC)
@@ -31,7 +34,6 @@ agenda:
   text: Single-Sign On (SSO)
 
 slides:
-- 000_introduction/02_bio.md
 - 120_kubernetes/rbac/quickstart.md
 - 120_kubernetes/rbac/author.md
 - 120_kubernetes/rbac/aggregation.md
@@ -80,3 +82,6 @@ events:
   type: Workshop
   title: GitLab CI
   link: https://heise-academy.de/Workshops/cicd-gitlab
+
+post_slides:
+- https://github.com/uniget-org/slides/raw/refs/heads/main/slides.md
