@@ -1,0 +1,27 @@
+# Auth for k8s using GitLab
+
+# Set local kubeconfig
+export KUBECONFIG=./kubeconfig
+
+# Get credentials
+read -s -p "GitLab App ID: " GL_APP_ID
+read -s -p "GitLab App Secret: " GL_APP_SECRET
+
+# Validate OIDC setup
+kubectl oidc-login setup \
+    --oidc-issuer-url=https://gitlab.com \
+    --oidc-client-id=$GL_APP_ID \
+    --oidc-client-secret=$GL_APP_SECRET
+
+# Update kubeconfig
+kubectl config set-credentials oidc \
+          --exec-api-version=client.authentication.k8s.io/v1beta1 \
+          --exec-command=kubectl \
+          --exec-arg=oidc-login \
+          --exec-arg=get-token \
+          --exec-arg=--oidc-issuer-url=https://gitlab.com \
+          --exec-arg=--oidc-client-id=$GL_APP_ID \
+          --exec-arg=--oidc-client-secret=$GL_APP_SECRET
+
+# Add permissions
+kubectl apply -f rbac.yaml
