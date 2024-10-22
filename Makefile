@@ -113,24 +113,15 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	done; \
 	sed -i 's/&lt;/</g; s/&gt;/>/g' $@
 
-.PHONY:
-web-$(COMMIT):
-	@\
-	if docker image ls web:$(COMMIT) | tr -s ' ' | grep -q "web $(COMMIT)"; then \
-		:; \
-	else \
-		DOCKER_BUILDKIT=1 docker build --tag web:$(COMMIT) --load .; \
-	fi
-
-%.pdf: %.html web-$(COMMIT)
+%.pdf: %.html
 	@\
 	echo "### Remove containers"; \
 	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
 	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f; \
 	echo "### Run web server"; \
-	docker run -d --name web web:$(COMMIT); \
+	docker run -d --name web --volume $$PWD:/usr/share/nginx/html/ nginx; \
 	echo "### Create slides"; \
-	docker run -it --network container:web --name slides astefanutti/decktape:3 --size 1920x1080 --load-pause 5000 --pause 1000 http://localhost:80/$*.html $*.pdf; \
+	docker run -i --network container:web --name slides astefanutti/decktape:3 --size 1920x1080 --load-pause 5000 --pause 1000 http://localhost:80/$*.html?view=pdf $*.pdf; \
 	echo "### Copy slides"; \
 	docker cp slides:/slides/$*.pdf .; \
 	echo "### Remove containers"; \
