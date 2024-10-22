@@ -1,0 +1,108 @@
+# https://docs.docker.com/compose/compose-file
+
+volumes:
+  gitlab_config:
+  gitlab_data:
+  gitlab_logs:
+
+services:
+
+  # https://doc.traefik.io/traefik/
+  traefik:
+    image: traefik:v3.1.6
+    command:
+    - --log=true
+    - --log.level=DEBUG
+    - --api=true
+    - --api.dashboard=true
+    - --entrypoints.http.address=:80
+    - --entrypoints.ssh.address=:2222
+    - --providers.file.directory=/etc/traefik/conf.d
+    - --providers.docker=true
+    - --providers.docker.exposedByDefault=false
+    ports:
+    - 2222:2222
+    - 80:80
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "netstat -tunapl | grep LISTEN | grep :80"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.traefik.entrypoints: http
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN}`)
+
+  # https://docs.gitlab.com/ee/install/docker.html
+  gitlab:
+    image: gitlab/gitlab-ee:17.5.0-ee.0
+    environment:
+      # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['time_zone'] = 'Europe/Berlin'
+
+        gitlab_rails['initial_root_password'] = "${GITLAB_ADMIN_PASS}"
+
+        gitlab_rails['usage_ping_enabled'] = false
+
+        external_url 'http://gitlab.${DOMAIN}'
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
+        nginx['real_ip_trusted_addresses'] = [ '172.16.0.0/12' ]
+        nginx['real_ip_header'] = 'X-Real-Ip'
+        nginx['real_ip_recursive'] = 'on'
+        letsencrypt['enable'] = false
+
+        gitlab_pages['enable'] = true
+        pages_external_url 'http://gitlab.${DOMAIN}'
+        pages_nginx['listen_https'] = false
+        # Required due to https://gitlab.com/gitlab-org/gitlab-pages/issues/129
+        gitlab_pages['inplace_chroot'] = true
+        # Set listen-proxy when behind reverse proxy. see https://docs.gitlab.com/ee/administration/pages/#configure-listener-for-reverse-proxy-requests
+        gitlab_pages['listen_proxy'] = "0.0.0.0:8090"
+        # Fix for https://gitlab.com/gitlab-org/gitlab-pages/-/issues/534
+        gitlab_pages['internal_gitlab_server'] = "http://127.0.0.1"
+
+        registry_external_url 'http://gitlab.${DOMAIN}'
+        registry['registry_http_addr'] = "0.0.0.0:5000"
+        registry_nginx['listen_https'] = false
+
+        # Prevent conflict with host SSH port
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+    # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
+    shm_size: 256m
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - gitlab_config:/etc/gitlab
+    - gitlab_logs:/var/log/gitlab
+    - gitlab_data:/var/opt/gitlab
+    restart: unless-stopped
+    labels:
+      traefik.enable: "true"
+      # Server
+      traefik.http.services.www.loadbalancer.server.port: 80
+      traefik.http.routers.www.entrypoints: http
+      traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN}`)
+      traefik.http.routers.www.service: www
+      # Pages
+      traefik.http.services.pages.loadbalancer.server.port: 8090
+      traefik.http.routers.pages.entrypoints: http
+      traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN}`)
+      traefik.http.routers.pages.service: pages
+      # Registry
+      traefik.http.services.registry.loadbalancer.server.port: 5000
+      traefik.http.routers.registry.entrypoints: http
+      traefik.http.routers.registry.rule: HostRegexp(`gitlab.${DOMAIN}`) && PathPrefix(`/v2`)
+      traefik.http.routers.registry.service: registry
+      # SSH
+      traefik.tcp.services.ssh.loadbalancer.server.port: 22
+      traefik.tcp.routers.ssh.entrypoints: ssh
+      traefik.tcp.routers.ssh.rule: HostSNI(`*`)
+      traefik.tcp.routers.ssh.service: ssh
+      traefik.tcp.routers.ssh.tls.passthrough: "true"

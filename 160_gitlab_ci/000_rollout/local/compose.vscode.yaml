@@ -1,0 +1,36 @@
+volumes:
+  vscode_config:
+  vscode_project:
+
+services:
+
+  vscode1:
+    build:
+      context: ../vscode/vscode
+    command:
+    - --auth
+    - none
+    - --proxy-domain
+    - seat${SEAT1_INDEX}.vscode.${DOMAIN}
+    - --disable-telemetry
+    environment:
+      GIT_USER: "seat${SEAT1_INDEX}"
+      GIT_EMAIL: "seat${SEAT1_INDEX}@${DOMAIN}"
+      GIT_CRED: "http://seat${SEAT1_INDEX}:${SEAT1_PASS}@gitlab.${DOMAIN}"
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/run/docker.sock:/var/run/docker.sock
+    - vscode_config:/home/coder/.config
+    - vscode_project:/home/coder/project
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.vscode.loadbalancer.server.port: 8080
+      traefik.http.routers.vscode.entrypoints: http
+      traefik.http.routers.vscode.rule: Host(`seat${SEAT1_INDEX}.vscode.${DOMAIN}`)
+      traefik.http.routers.vscode.service: vscode
