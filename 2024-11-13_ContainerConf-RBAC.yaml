@@ -14,9 +14,24 @@ event:
   logo_style: "float: left; height: 2em;"
   link: https://www.continuouslifecycle.de/
 
+agenda:
+- icon: user-shield
+  test: Role Based Access Control (RBAC)
+- icon: pencil
+  text: Writing (cluster) roles
+- icon: triangle-exclamation
+  text: Risks
+- icon: user-police-tie
+  text: Impersonation
+- icon: shield-quartered
+  text: Securing service accounts
+- icon: stethoscope
+  text: Audit log
+- icon: id-card-clip
+  text: Single-Sign On (SSO)
+
 slides:
 - 000_introduction/02_bio.md
-- 2024-11-13_ContainerConf-RBAC.md
 - 120_kubernetes/rbac/quickstart.md
 - 120_kubernetes/rbac/author.md
 - 120_kubernetes/rbac/aggregation.md
@@ -27,7 +42,7 @@ slides:
 - 120_kubernetes/oidc/slides.md
 
 summary:
-- icon: id-card-clip
+- icon: user-shield
   text: RBAC is well documented in the ecosystem
 - icon: engine-warning
   text: Little known verbs are a risk
@@ -36,7 +51,9 @@ summary:
 - icon: magnifying-glass
   text: Service account tokens must be managed
 - icon: shield-check
-  text: Policy management - e.g. Kyverno - for the rescue
+  text: Policy engines like Kyverno can help
+- icon: id-card-clip
+  text: OIDC centralizes authn/authz
 
 events:
 - date: 2024-11-07

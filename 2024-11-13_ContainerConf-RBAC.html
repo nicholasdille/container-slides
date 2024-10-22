@@ -35,8 +35,22 @@
 <p><a href="https://www.continuouslifecycle.de/"> </a></p>
 </section>
 
+<section id="agenda" data-separator="^---$" data-separator-vertical="^--$">
+<h2>Agenda</h2>
+
+<i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
+
+<ul id="bullets" class="fa-ul" style="line-height: 1.5em; font-size: larger; margin-top: 0.5em;">
+<li><span class="fa-li"><i class="fa-duotone fa-pencil"></i></span> Writing (cluster) roles</li>
+<li><span class="fa-li"><i class="fa-duotone fa-triangle-exclamation"></i></span> Risks</li>
+<li><span class="fa-li"><i class="fa-duotone fa-user-police-tie"></i></span> Impersonation</li>
+<li><span class="fa-li"><i class="fa-duotone fa-shield-quartered"></i></span> Securing service accounts</li>
+<li><span class="fa-li"><i class="fa-duotone fa-stethoscope"></i></span> Audit log</li>
+<li><span class="fa-li"><i class="fa-duotone fa-id-card-clip"></i></span> Single-Sign On (SSO)</li>
+</ul>
+</section>
+
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="2024-11-13_ContainerConf-RBAC.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/rbac/quickstart.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/rbac/author.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="120_kubernetes/rbac/aggregation.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -52,11 +66,12 @@
 <i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em;">
-<li><span class="fa-li"><i class="fa-duotone fa-id-card-clip"></i></span> RBAC is well documented in the ecosystem</li>
+<li><span class="fa-li"><i class="fa-duotone fa-user-shield"></i></span> RBAC is well documented in the ecosystem</li>
 <li><span class="fa-li"><i class="fa-duotone fa-engine-warning"></i></span> Little known verbs are a risk</li>
 <li><span class="fa-li"><i class="fa-duotone fa-user-police-tie"></i></span> Impersonation can improve security</li>
 <li><span class="fa-li"><i class="fa-duotone fa-magnifying-glass"></i></span> Service account tokens must be managed</li>
-<li><span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Policy management - e.g. Kyverno - for the rescue</li>
+<li><span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Policy engines like Kyverno can help</li>
+<li><span class="fa-li"><i class="fa-duotone fa-id-card-clip"></i></span> OIDC centralizes authn/authz</li>
 </ul>
 
 <h3 id="events">Upcoming events</h3>

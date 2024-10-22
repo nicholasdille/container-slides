@@ -57,6 +57,13 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	if test -n "$${LOGOSTYLE}"; then \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:img/@style" -v "$${LOGOSTYLE}" $@; \
 	fi; \
+	yq eval '.agenda[] | "<li><span class=\"fa-li\"><i class=\"fa-duotone fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
+	| while read -r LINE; do \
+		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
+			--subnode '/x:html/x:body//x:section[@id="agenda"]/x:ul[@id="bullets"]' --type text --name "" --value "$${LINE}" \
+			--subnode '/x:html/x:body//x:section[@id="agenda"]/x:ul[@id="bullets"]' --type text --name "" --value $$'\n' \
+			$@; \
+	done; \
 	yq eval '.slides[]' $*.yaml \
 	| while read -r FILE; do \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
