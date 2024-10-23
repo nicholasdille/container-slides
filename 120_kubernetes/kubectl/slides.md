@@ -4,6 +4,8 @@
 
 kubectl apply -f ./dir
 
+kubectl get --selector
+
 kubectl wait?
 
 kubectl rollout status?
@@ -45,6 +47,8 @@ kubectl edit
 kubectl patch
 
 kubectl ... | xargs ...
+
+kubectl ... | while read -r ...
 
 ### Preserve idempotency
 
