@@ -155,38 +155,7 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                 --data '{"name": "demo"}' \
                 --output /dev/null
         echo "done."
-
-        git config --global user.name "seat${SEAT_INDEX}"
-        git config --global user.email "seat${SEAT_INDEX}@.${DOMAIN}"
-        git config --global credential.helper store
-        echo "https://seat${SEAT_INDEX}:${SEAT_PASS}@gitlab.${DOMAIN}" >"${HOME}/.git-credentials"
-        if test -d /tmp/demo; then
-            rm -rf /tmp/demo
-        fi
-        (
-            mkdir -p /tmp/demo
-            cd /tmp/demo
-            git clone https://github.com/nicholasdille/container-slides .
-            git remote add downstream "https://gitlab.${DOMAIN}/seat${SEAT_INDEX}/demo"
-            CURRENT_BRANCH="$(git branch --show-current)"
-            git branch --remotes --list \
-            | grep -v downstream \
-            | grep -v dependabot \
-            | grep -v renovate \
-            | grep -v '\->' \
-            | grep -v "${CURRENT_BRANCH}" \
-            | while read branch; do
-                git branch --track "${branch#origin/}" "$branch" || true
-            done
-            git push downstream --all
-            if ! git show-ref --quiet refs/heads/main; then
-                git checkout --orphan main
-                git rm -rf .
-                git commit --allow-empty -m "root commit"
-                git push downstream main
-            fi
-            rm -rf /tmp/demo
-        )
+        echo "    Setting default branch to main..."
         docker compose exec -T gitlab \
             curl \
                 --url "http://localhost/api/v4/projects/seat${SEAT_INDEX}%2fdemo" \
@@ -195,6 +164,7 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                 --request PUT \
                 --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
                 --data 'default_branch=main'
+        echo "    done."
     fi
 done
 

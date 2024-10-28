@@ -5,10 +5,15 @@ if test -z "${GIT_USER}" || test -z "${GIT_EMAIL}" || test -z "${GIT_CRED}"; the
     exit 1
 fi
 
-git config --global user.name "${GIT_USER}"
-git config --global user.email "${GIT_EMAIL}"
-git config --global credential.helper store
-echo "${GIT_CRED}" >.git-credentials
+echo "${GIT_CRED}" >"${HOME}/.git-credentials"
 
-git clone "https://gitlab.inmylab.de/${GIT_USER}/demo" /home/seat/demo
-git -C /home/seat/demo remote add upstream https://github.com/nicholasdille/container-slides
+mkdir -p /home/seat/demo
+pushd /home/seat/demo
+
+git init --initial-branch=main
+git config --local user.name "${GIT_USER}"
+git config --local user.email "${GIT_EMAIL}"
+git config --local credential.helper store
+
+git remote add origin https://gitlab.inmylab.de/seat${SEAT_INDEX}/demo
+git remote add upstream https://github.com/nicholasdille/container-slides
