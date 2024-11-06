@@ -12,8 +12,9 @@ spec:
       default: $CI_COMMIT_REF_NAME
     author:
       default: $GITLAB_USER_NAME
-    rules-template-name:
-      default: ""
+    rules:
+      type: array
+      default: []
 ---
 
 .go-targets:
@@ -41,7 +42,6 @@ ${{ inputs.name-prefix]]-build-go:
   extends:
   - .go-targets
   - .go-cache
-  - $[[ rules-template-name ]]
   rules: $[[ inputs.rules ]]
   script:
   - |
@@ -58,7 +58,7 @@ ${{ inputs.name-prefix]]-test-go:
   image: $[[ inputs.image ]]
   extends:
   - .go-targets
-  - $[[ rules-template-name ]]
+  rules: $[[ inputs.rules ]]
   before_script:
   - apt-get update
   - apt-get -y install file
