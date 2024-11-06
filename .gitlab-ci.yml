@@ -13,7 +13,12 @@ workflow:
     when: never
   
 include:
-- local: go.yaml
+- component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/go@$CI_COMMIT_SHA
+  inputs:
+    build-stage: build
+    test-stage: test
+    image: golang:1.23.2
+    rules-template-name: .run-on-push-and-in-mr
 - template: Security/Secret-Detection.gitlab-ci.yml
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Container-Scanning.gitlab-ci.yml
@@ -83,18 +88,6 @@ unit_tests:
     when: always
     reports:
       junit: report.xml
-
-build:
-  stage: build
-  extends:
-  - .run-on-push-and-in-mr
-  - .build-go
-
-test:
-  stage: test
-  extends:
-  - .run-on-push-and-in-mr
-  - .test-go
 
 deploy:
   stage: deploy

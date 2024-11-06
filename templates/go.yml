@@ -1,0 +1,67 @@
+spec:
+  inputs:
+    name-prefix:
+      default: "foo"
+    build-stage:
+      default: build
+    test-stage:
+      default: test
+    image:
+      default: golang:1.23.2
+    version:
+      default: $CI_COMMIT_REF_NAME
+    author:
+      default: $GITLAB_USER_NAME
+    rules-template-name:
+      default: ""
+---
+
+.go-targets:
+  parallel:
+    matrix:
+    - GOOS: linux
+      GOARCH: amd64
+    - GOOS: linux
+      GOARCH: arm64
+
+.go-cache:
+  variables:
+    GOPATH: $CI_PROJECT_DIR/.go
+  before_script:
+  - mkdir -p .go
+  cache:
+    key: ${CI_PROJECT_PATH_SLUG}
+    policy: pull-push
+    paths:
+    - .go/pkg/mod/
+
+${{ inputs.name-prefix]]-build-go:
+  stage: $[[ inputs.build-stage ]]
+  image: $[[ inputs.image ]]
+  extends:
+  - .go-targets
+  - .go-cache
+  - $[[ rules-template-name ]]
+  rules: $[[ inputs.rules ]]
+  script:
+  - |
+    go build \
+        -o hello-${GOOS}-${GOARCH} \
+        -ldflags "-X main.Version=$[[ inputs.version ]] -X 'main.Author=$[[ inputs.author ]]'" \
+        .
+  artifacts:
+    paths:
+    - hello-${GOOS}-${GOARCH}
+
+${{ inputs.name-prefix]]-test-go:
+  stage: $[[ inputs.test-stage ]]
+  image: $[[ inputs.image ]]
+  extends:
+  - .go-targets
+  - $[[ rules-template-name ]]
+  before_script:
+  - apt-get update
+  - apt-get -y install file
+  script:
+  - |
+    file hello-${GOOS}-${GOARCH}
