@@ -10,6 +10,24 @@
 
 XXX https://docs.gitlab.com/ee/ci/steps/
 
+XXX replace `script` with one or more `steps`
+
+XXX no more `!reference[]`
+
+---
+
+## Comparison
+
+XXX smaller units than jobs
+
+### Steps vs. Components
+
+XXX both are self-contained
+
+### Steps vs. Templates
+
+XXX
+
 ---
 
 ### Steps in Catalog?
