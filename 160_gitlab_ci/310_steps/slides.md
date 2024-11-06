@@ -10,7 +10,7 @@
 
 XXX https://docs.gitlab.com/ee/ci/steps/
 
-XXX replace `script` with one or more `steps`
+XXX replace `script` with one or more `steps` in `run` https://docs.gitlab.com/ee/ci/yaml/#run
 
 XXX no more `!reference[]`
 
