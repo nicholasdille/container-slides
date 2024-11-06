@@ -17,5 +17,4 @@ Test VM:
 
 ```bash
 docker version
-git clone https://github.com/nicholasdille/container-slides
 ```

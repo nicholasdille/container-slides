@@ -40,7 +40,7 @@ done
 
 <i class="fa-duotone fa-medal fa-3x fa-duotone-colors" style="float: right;"></i>
 
-Go to http://gitlab.seatN.inmylab.de
+Go to `http://gitlab.seatN.inmylab.de`
 
 Enter user `root`
 
@@ -54,4 +54,4 @@ docker exec -it gitlab cat /etc/gitlab/initial_root_password \
 
 Open browser and go to `http://seatN.inmylab.de` (substitute N with your number)
 
-**Do not worry about the banner! New users require admin approval**
+<i class="fa-duotone fa-triangle-exclamation"></i> **Do not worry about the banner! New users require admin approval** <i class="fa-duotone fa-triangle-exclamation"></i>

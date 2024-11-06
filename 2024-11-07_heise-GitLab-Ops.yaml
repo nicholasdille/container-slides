@@ -13,11 +13,24 @@ event:
   logo: images/logos/heise-academy.svg
   link: https://heise-academy.de
 
-slides:
+pre_slides:
 - 000_introduction/02_bio.md
+
+agenda:
+- icon: rocket
+  text: Quickstart using Docker
+- icon: globe
+  text: Configure through the web UI
+- icon: stars
+  text: Proper deployment
+- icon: file-code
+  text: Configure through the config file
+- icon: hand-sparkles
+  text: Operational tasks
+
+slides:
 - 000_introduction/heise_academy_housekeeping.md
 - 000_introduction/who_are_you.md
-- 150_gitlab/goals.md
 - 150_gitlab/agenda.md
 - 150_gitlab/demo_environment.md
 - 150_gitlab/000_intro/product.md
@@ -88,3 +101,5 @@ events:
   type: Workshop
   title: GitLab CI
   link: https://heise-academy.de/Workshops/cicd-gitlab
+
+post_slides: []
