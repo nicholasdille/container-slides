@@ -13,7 +13,7 @@ Login to VM using password:
 ssh seat@seatN.inmylab.de
 ```
 
-Test VM:
+Test that it is working correctly:
 
 ```bash
 docker version

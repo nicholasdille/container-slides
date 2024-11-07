@@ -36,6 +36,10 @@ gitlab_rails['gitlab_email_reply_to'] = 'noreply@example.com'
 gitlab_rails['smtp_pool'] = true
 ```
 
+---
+
+## Test SMTP
+
 Test the SMTP configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/smtp.html#testing-the-smtp-configuration):
 
 ```bash

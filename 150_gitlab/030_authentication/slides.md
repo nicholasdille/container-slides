@@ -26,11 +26,17 @@ Permissions inherited from user
 ### Hands-On
 
 1. Create a personal access token
-1. Clone a repository using the PAT instead of the password
+1. (Optionally) Clone a repository using the PAT instead of the password
 
 ---
 
-## Group and Project Credentials
+## Group and Project Credentials 1/2
+
+![](150_gitlab/030_authentication/options.drawio.svg) <!-- .element: style="width: 100%;" -->
+
+---
+
+## Group and Project Credentials 2/2
 
 <i class="fa-duotone fa-id-card-clip fa-4x fa-duotone-colors" style="float: right;"></i>
 
@@ -51,7 +57,7 @@ Project Deploy SSH Key (read-write) [<i class="fa-solid fa-arrow-up-right-from-s
 ### Hands-On
 
 1. Create a project deploy token
-1. Use it to clone the repository
+1. (Optionally) Use it to clone the repository
 
 ---
 

@@ -34,13 +34,29 @@ while docker container inspect gitlab \
 done
 ```
 
+--
+
+## Quickstart 2/2
+
+Show containers and note health:
+
+```bash
+docker ps -a
+```
+
+Check for data volumes:
+
+```bash
+docker volume ls
+```
+
 ---
 
 ## First login
 
 <i class="fa-duotone fa-medal fa-3x fa-duotone-colors" style="float: right;"></i>
 
-Go to `http://gitlab.seatN.inmylab.de`
+Go to `http://gitlab.seatN.inmylab.de` (substitute N with your number)
 
 Enter user `root`
 
@@ -51,7 +67,5 @@ docker exec -it gitlab cat /etc/gitlab/initial_root_password \
 | grep ^Password \
 | cut -d' ' -f2
 ```
-
-Open browser and go to `http://seatN.inmylab.de` (substitute N with your number)
 
 <i class="fa-duotone fa-triangle-exclamation"></i> **Do not worry about the banner! New users require admin approval** <i class="fa-duotone fa-triangle-exclamation"></i>

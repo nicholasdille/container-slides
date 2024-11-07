@@ -2,7 +2,7 @@
 
 <i class="fa-duotone fa-book fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
-## LDAP
+## LDAP Directories
 
 ---
 
@@ -59,3 +59,9 @@ Two users are automatically created:
 - `user02:password2`
 
 Login using one these users
+
+---
+
+## Alternative: Single Sign-On
+
+XXX https://docs.gitlab.com/ee/integration/saml.html

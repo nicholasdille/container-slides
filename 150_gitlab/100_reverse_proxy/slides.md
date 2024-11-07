@@ -47,11 +47,10 @@ Examples in this workshop use [`traefik`](https://traefik.io/traefik/)
 
 <i class="fa-duotone fa-signs-post fa-4x fa-duotone-colors" style="float: right;"></i>
 
-Deploy using `docker compose` v2:
+Deploy using Docker Compose:
 
 ```
-# Clone repository with slides and demos
-git clone https://github.com/nicholasdille/container-slides
+# Go to repository with slides and demos
 cd container-slides/150_gitlab/100_reverse_proxy
 git pull
 

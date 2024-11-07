@@ -47,7 +47,7 @@ Projects can override visibility (more later)
 ### Hands-On
 
 1. Create a project in your subgroup with default settings (e.g. `My first project`)
-1. Clone the code repository
+1. (Optionally) Clone the code repository
 
 ---
 

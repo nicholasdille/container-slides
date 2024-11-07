@@ -16,7 +16,9 @@ Extensively customizable [<i class="fa-solid fa-arrow-up-right-from-square"></i>
 
 ### How it works
 
-Deploy to `public/` and...
+Create a job called `pages`, ...
+
+...to directory `public/` and...
 
 ...create an artifact
 

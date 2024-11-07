@@ -34,7 +34,12 @@ You must update to every minor version due to schema updates
 
 ## Hands-On
 
-1. Update `compose.yml` in 100_reverse_proxy<br>with new image `gitlab/gitlab-ee:17.5.1-ee.0`
+1. Update `compose.yml` in `100_reverse_proxy`<br>with new image `gitlab/gitlab-ee:17.5.1-ee.0`: 
+
+    ```bash
+    vim ../100_reverse_proxy/compose.yml
+    ```
+    
 1. Run deployment from [reverse proxy section](#/gitlab_traefik)
 
-(Minor update to v16.10.0 possible.)
+(Minor update to v17.5.1 possible.)
