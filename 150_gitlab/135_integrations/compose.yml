@@ -11,7 +11,7 @@ services:
       KROKI_EXCALIDRAW_HOST: excalidraw
 
   blockdiag:
-    image: yuzutech/kroki-blockdiag:0.25.0
+    image: yuzutech/kroki-blockdiag:0.21.3
 
   mermaid:
     image: yuzutech/kroki-mermaid:0.25.0
