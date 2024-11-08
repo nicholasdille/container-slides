@@ -10,11 +10,11 @@
 
 <i class="fa-duotone fa-magnifying-glass-dollar fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Full-text search across the instance using ElasticSearch [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/elasticsearch.html)
+Full-text search across the instance using ElasticSearch [](https://docs.gitlab.com/ee/integration/elasticsearch.html)
 
 Requires a premium license
 
-Uses open-source project internally [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://gitlab.com/gitlab-org/gitlab-elasticsearch-indexer)
+Uses open-source project internally [](https://gitlab.com/gitlab-org/gitlab-elasticsearch-indexer)
 
 ---
 
@@ -22,15 +22,21 @@ Uses open-source project internally [<i class="fa-solid fa-arrow-up-right-from-s
 
 <i class="fa-duotone fa-browser fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Run full web-based IDE [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/gitpod.html) using Gitpod [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.gitpod.io/)
+Run full web-based IDE [](https://docs.gitlab.com/ee/integration/gitpod.html) using Gitpod [](https://www.gitpod.io/)
 
-Uses web-based Visual Studio Code [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://vscode.dev/)
+Uses web-based Visual Studio Code [](https://vscode.dev/)
 
 Free tier of cloud service requires public repositories
 
-![](150_gitlab/135_integrations/gitpod.drawio.svg) <!-- .element: style="width: 60%;" -->
+![](150_gitlab/135_integrations/gitpod.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 Self-hosted deployment requires Kubernetes
+
+### Alternatives
+
+Web IDE [](https://docs.gitlab.com/ee/user/project/web_ide/) is available in GitLab CE but lacks terminal
+
+Interactive web terminal [](https://docs.gitlab.com/ee/ci/interactive_web_terminal/) opens shell in running CI job
 
 ---
 
@@ -38,17 +44,15 @@ Self-hosted deployment requires Kubernetes
 
 <i class="fa-duotone fa-diagram-project fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Render diagrams from textual descriptions [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/integration/kroki.html) using Kroki [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://kroki.io/)
+Render diagrams from textual descriptions [](https://docs.gitlab.com/ee/administration/integration/kroki.html) using Kroki [](https://kroki.io/)
 
 ### Hands-On
 
 Deploy in addition to GitLab:
 
 ```bash
-# Switch to directory for this topic
-cd ../135_integrations
-
 # Deploy kroki
+cd ../135_integrations
 docker compose --project-name gitlab \
     --file ../100_reverse_proxy/compose.yml \
     --file compose.yml \
@@ -57,7 +61,7 @@ docker compose --project-name gitlab \
 
 Enable Kroki in web UI (Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> General <i class="fa-regular fa-arrow-right"></i> Kroki)
 
-Set Kroki URL: `http://kroki`
+Set Kroki URL to `http://kroki` and enable all additional formats 
 
 See `example.md` and commit to repository
 
@@ -67,16 +71,20 @@ See `example.md` and commit to repository
 
 <i class="fa-brands fa-jira fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Integration of Jira work items with code in GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/jira/)
+Integration of Jira work items with code in GitLab [](https://docs.gitlab.com/ee/integration/jira/)
 
-Two flavours
+Two flavours - see feature comparison [](https://docs.gitlab.com/ee/integration/jira/#direct-feature-comparison)
 
-See feature comparison [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/jira/#direct-feature-comparison)
+### Jira issues integration
 
-### Jira integration
+Connects one or more project to a Jira instance [](https://docs.gitlab.com/ee/integration/jira/configure.html)
 
-Connects one or more project to a Jira instance [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/jira/configure.html)
+- View and search Jira issues directly in GitLab
+- Refer to Jira issues by ID in commits and merge requests
+- Create Jira issues for vulnerabilities
 
 ### Jira development panel integration
 
-Connects all projects under a group to a Jira instance [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/integration/jira/development_panel.html#configure-the-integration)
+Connects all projects under a group to a Jira instance [](https://docs.gitlab.com/ee/integration/jira/development_panel.html#configure-the-integration)
+
+- View GitLab activity directly in Jira

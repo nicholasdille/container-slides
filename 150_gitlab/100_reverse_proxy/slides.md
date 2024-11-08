@@ -34,8 +34,12 @@ Community container image [](https://github.com/sameersbn/docker-gitlab)
 
 Central service for...
 
-- Request routing
-- TLS offloading
+- Request routing based on...
+  - DNS name
+  - path
+- TLS offloading based on DNS name
+
+![](150_gitlab/100_reverse_proxy/reverse_proxy.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 Examples in this workshop use [`traefik`](https://traefik.io/traefik/)
 
@@ -69,6 +73,16 @@ Extract password (or [reset](#/gitlab_troubleshooting)):
 docker compose --project-name gitlab exec gitlab \
     cat /etc/gitlab/initial_root_password \
     | grep ^Password | cut -d' ' -f2
+```
+
+--
+
+## Deployment - Helper commands
+
+Check the state of the whole stack:
+
+```bash
+docker compose --project-name gitlab ps -a
 ```
 
 ---

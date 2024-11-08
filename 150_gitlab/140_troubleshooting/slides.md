@@ -41,7 +41,7 @@ But you have access to the console
 Use `gitlab-rake`:
 
 ```bash
-docker exec -it gitlab \
+docker compose --project-name gitlab exec gitlab \
     gitlab-rake "gitlab:password:reset[root]"
 ```
 

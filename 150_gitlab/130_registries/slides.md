@@ -68,3 +68,5 @@ More about Terraform modules [<i class="fa-solid fa-arrow-up-right-from-square">
 GitLab stores Terraform state [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/infrastructure/iac/terraform_state.html)
 
 No need for separate infrastructure
+
+Official template for Terraform (deprecated [](https://docs.gitlab.com/ee/update/deprecations.html#deprecate-terraform-cicd-templates)) and component for OpenTofu [](https://gitlab.com/components/opentofu)

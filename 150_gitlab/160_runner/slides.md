@@ -22,6 +22,12 @@ Extensive configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 
 Jobs select runners by specifying a tag
 
+### Additional use case
+
+Firewall traversal for foreign datacenters
+
+![](150_gitlab/160_runner/firewall.drawio.svg) <!-- .element: style="width: 50%;" -->
+
 ---
 
 ## Heads-up: New runner registration
@@ -56,6 +62,8 @@ One token per runner
 
 Supported executors: `shell`, `docker`, `docker-windows`, `docker-ssh`, `ssh`, `parallels`, `virtualbox`, `docker+machine`, `docker-ssh+machine`, `kubernetes`
 
+![](150_gitlab/160_runner/runner.drawio.svg) <!-- .element: style="float: right; width: 30%;" -->
+
 ### Shell
 
 Jobs are executed in the context of the runner
@@ -88,6 +96,7 @@ docuum [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.c
     export RUNNER_EXECUTOR=docker
     docker compose --project-name gitlab \
         --file ../100_reverse_proxy/compose.yml \
+        --file ../135_integrations/compose.yml \
         --file compose.yml \
         up -d
     ```
