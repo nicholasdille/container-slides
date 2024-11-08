@@ -8,11 +8,32 @@
 
 ## Components
 
-XXX https://docs.gitlab.com/ee/ci/components/
+Components [](https://docs.gitlab.com/ee/ci/components/) are a new way to offer reusable jobs
 
-XXX header with `spec` https://docs.gitlab.com/ee/ci/yaml/#spec
+They are similar to job templates...
 
-XXX body with one or more jobs (templates are possible)
+...but more contained, i.e. they cannot be overwritten
+
+### Authoring
+
+Directory layout for component `foo`:
+- Either: `templates/go.yml`
+- Or: `templates/go/template.yml`
+
+`template.yml` requires a header with `spec` [](https://docs.gitlab.com/ee/ci/yaml/#spec) and body:
+
+```yaml
+spec:
+  input:
+    path:
+      type: string
+      description: "Path to the source code"
+---
+job:
+  script: go build $[[ inputs.path ]]
+```
+
+The body can also contain job templates
 
 ---
 
@@ -20,7 +41,7 @@ XXX body with one or more jobs (templates are possible)
 
 Both are reusable
 
-### XXX
+### Anatomy
 
 Templates are fragments of a job
 
