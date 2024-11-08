@@ -63,17 +63,17 @@ slides:
 - 150_gitlab/usage_ping.md
 
 summary:
-- icon: fa-infinity
+- icon: infinity
   text: GitLab covers the whole DevOps process
-- icon: fa-rocket-launch
+- icon: rocket-launch
   text: Easily deployed using containers
-- icon: fa-ball-pile
+- icon: ball-pile
   text: GitLab is packed with features
-- icon: fa-hand-peace
+- icon: hand-peace
   text: Configuration is two-fold
-- icon: fa-gauge-min
+- icon: gauge-min
   text: Restarts are slow
-- icon: fa-shield-check
+- icon: shield-check
   text: Security issues are patched quickly
 
 events:

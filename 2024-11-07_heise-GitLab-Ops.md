@@ -1,6 +1,0 @@
-- GitLab bitname?!
-- SSO
-- SSH
-- pages domain
-- grafana auth gitlab
-- summary icons

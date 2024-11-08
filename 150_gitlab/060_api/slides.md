@@ -10,11 +10,11 @@
 
 <i class="fa-duotone fa-gears fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-GitLab offers a very extensive API [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/)
+GitLab offers a very extensive API [](https://docs.gitlab.com/ee/api/)
 
 The API is located at `/api/v4/`
 
-The notes how to use the API [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#how-to-use-the-api) include:
+The notes how to use the API [](https://docs.gitlab.com/ee/api/#how-to-use-the-api) include:
 
 - Authentication (see next slides)
 - Pagination (see next slides)
@@ -26,7 +26,7 @@ The notes how to use the API [<i class="fa-solid fa-arrow-up-right-from-square">
 
 ### Resources
 
-Resources for every aspect of GitLab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/api_resources.html)
+Resources for every aspect of GitLab [](https://docs.gitlab.com/ee/api/api_resources.html)
 
 ---
 
@@ -34,7 +34,7 @@ Resources for every aspect of GitLab [<i class="fa-solid fa-arrow-up-right-from-
 
 <i class="fa-duotone fa-key-skeleton fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Authentication [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#authentication) using a token (personal/group/project)
+Authentication [](https://docs.gitlab.com/ee/api/#authentication) using a token (personal/group/project)
 
 Token requires `read_api` or `api` scope
 
@@ -53,7 +53,7 @@ curl "http://gitlab.${DOMAIN}/api/v4/projects" \
 
 <i class="fa-duotone fa-scroll-old fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-Pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#pagination) done by offset
+Pagination [](https://docs.gitlab.com/ee/api/#pagination) done by offset
 
 GitLab API returns HTTP headers:
 
@@ -66,7 +66,7 @@ GitLab API returns HTTP headers:
 | `x-total`       | Total number of items    |
 | `x-total-pages` | Total number of pages    |
 
-Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/api/#keyset-based-pagination) is also supported
+Keyset-based pagination [](https://docs.gitlab.com/ee/api/#keyset-based-pagination) is also supported
 
 ---
 
@@ -99,7 +99,7 @@ Keyset-based pagination [<i class="fa-solid fa-arrow-up-right-from-square"></i>]
 
 ### `glab`
 
-glab [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://gitlab.com/gitlab-org/cli) was adopted as the official CLI in November 2022:
+glab [](https://gitlab.com/gitlab-org/cli) was adopted as the official CLI in November 2022:
 
 1. Configure `glab`:
 

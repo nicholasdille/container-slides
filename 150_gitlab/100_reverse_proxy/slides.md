@@ -120,16 +120,16 @@ Multiple options
 
 ### GitLab with certificate file <i class="fa-duotone fa-traffic-light-stop" style="--fa-secondary-color: red;"></i>
 
-Configure GitLab with key and certificate [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/ssl.html#other-certificate-authorities)
+Configure GitLab with key and certificate [](https://docs.gitlab.com/omnibus/settings/ssl.html#other-certificate-authorities)
 
 ### GitLab with Let's Encrypt <i class="fa-duotone fa-traffic-light-slow" style="--fa-secondary-color: yellow;"></i>
 
-Configure GitLab to use Let's Encrypt [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/ssl.html#lets-encrypt-integration)
+Configure GitLab to use Let's Encrypt [](https://docs.gitlab.com/omnibus/settings/ssl.html#lets-encrypt-integration)
 
 ### Reverse proxy with custom certificate <i class="fa-duotone fa-traffic-light-slow" style="--fa-secondary-color: yellow;"></i>
 
-Configure traefik to use custom certificate [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/https/tls/#user-defined)
+Configure traefik to use custom certificate [](https://doc.traefik.io/traefik/https/tls/#user-defined)
 
 ### Reverse proxy with Let's Encrypt <i class="fa-duotone fa-traffic-light-go" style="--fa-secondary-color: green;"></i>
 
-Configure traefik to use Let's Encrypt with DNS challenge [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/)
+Configure traefik to use Let's Encrypt with DNS challenge [](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/)

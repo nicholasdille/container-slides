@@ -10,9 +10,9 @@
 
 <i class="fa-duotone fa-globe fa-4x fa-duotone-colors" style="float: right;"></i>
 
-Publish static websites [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/project/pages/)
+Publish static websites [](https://docs.gitlab.com/ee/user/project/pages/)
 
-Extensively customizable [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/pages/index.html)
+Extensively customizable [](https://docs.gitlab.com/ee/administration/pages/index.html)
 
 ### How it works
 

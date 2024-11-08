@@ -12,7 +12,7 @@
 
 ### Messages
 
-Show a banner announcing maintenance work [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/broadcast_messages.html)
+Show a banner announcing maintenance work [](https://docs.gitlab.com/ee/administration/broadcast_messages.html)
 
 Configure under Menu <i class="fa-regular fa-arrow-right"></i> Admin <i class="fa-regular fa-arrow-right"></i> Messages
 
@@ -20,7 +20,7 @@ Can also show up in git response
 
 ### Maintenance Mode (Premium feature)
 
-Switch GitLab into read-only mode [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/maintenance_mode/)
+Switch GitLab into read-only mode [](https://docs.gitlab.com/ee/administration/maintenance_mode/)
 
 ---
 

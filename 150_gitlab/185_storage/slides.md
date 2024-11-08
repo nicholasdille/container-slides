@@ -10,7 +10,7 @@
 
 <i class="fa-duotone fa-database fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
 
-GitLab can store some data in object storage [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/object_storage.html)
+GitLab can store some data in object storage [](https://docs.gitlab.com/ee/administration/object_storage.html)
 
 Enable the object store:
 

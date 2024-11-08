@@ -12,12 +12,12 @@
 
 We have already used username and password
 
-Users can create *Personal Access Tokens* [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
+Users can create *Personal Access Tokens* [](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
 
 - Used instead of password for `git` operations
 - Used to access the API (more later)
 
-Users can add SSH public keys [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/ssh.html)
+Users can add SSH public keys [](https://docs.gitlab.com/ee/user/ssh.html)
 
 - Used for `git` operations
 
@@ -42,17 +42,17 @@ Permissions inherited from user
 
 ### Scoped to group
 
-Group Deploy Tokens (read only) [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
+Group Deploy Tokens (read only) [](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
 
-Group Access Tokens (configurable) [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html)
+Group Access Tokens (configurable) [](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html)
 
 ### Scoped to project
 
-Project Access Tokens (configurable) [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html)
+Project Access Tokens (configurable) [](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html)
 
-Project Deploy Token (read-only) [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
+Project Deploy Token (read-only) [](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
 
-Project Deploy SSH Key (read-write) [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/user/project/deploy_keys/)
+Project Deploy SSH Key (read-write) [](https://docs.gitlab.com/ee/user/project/deploy_keys/)
 
 ### Hands-On
 

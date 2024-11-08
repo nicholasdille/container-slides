@@ -10,7 +10,7 @@
 
 <i class="fa-duotone fa-monitor-waveform fa-4x fa-duotone-colors" style="float: right;"></i>
 
-GitLab ships with Prometheus [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/grafana.html)
+GitLab ships with Prometheus [](https://docs.gitlab.com/omnibus/settings/grafana.html)
 
 Grafana was removed in 16.3.0 (August 2023) [](https://docs.gitlab.com/ee/update/deprecations.html?removal_milestone=16.3#bundled-grafana-deprecated-and-disabled)
 
@@ -55,11 +55,31 @@ Prometheus scrapes metrics from exporter regularly
 
 ---
 
+## Authenticate Grafana against GitLab
+
+Use GitLab as authentication provider in Grafana
+
+<i class="fa-duotone fa-solid fa-triangle-exclamation"></i> **This requires TLS to work** <i class="fa-duotone fa-solid fa-triangle-exclamation"></i>
+
+1. Create application in GitLab
+    - Name: Grafana
+    - Redirect URI: `https://grafana.seatN.inmylab.de/login/gitlab`
+    - Scopes: `openid`, `profile`, `email`
+
+1. Configure Grafana
+    - URL: `http://gitlab:80`
+    - Client ID: `<ID>`
+    - Client Secret: `<Secret>`
+    - Auth URL: `https://gitlab.seatN.inmylab.de/oauth/authorize`
+    - Token URL: `https://gitlab.seatN.inmylab.de/oauth/token`
+
+---
+
 ## GitLab CI Pipelines Exporter (GCPE)
 
 <i class="fa-duotone fa-hose fa-4x fa-duotone-colors" style="float: right;"></i>
 
-Prometheus exporter for pipelines [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter) collecting...
+Prometheus exporter for pipelines [](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter) collecting...
 
 - Pipeline results
 - Job results

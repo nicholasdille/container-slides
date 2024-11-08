@@ -10,7 +10,7 @@
 
 ## SMTP
 
-Outgoing emails for notifications [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/smtp.html) (many examples)
+Outgoing emails for notifications [](https://docs.gitlab.com/omnibus/settings/smtp.html) (many examples)
 
 ```
 # Connection information
@@ -40,7 +40,7 @@ gitlab_rails['smtp_pool'] = true
 
 ## Test SMTP
 
-Test the SMTP configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/omnibus/settings/smtp.html#testing-the-smtp-configuration):
+Test the SMTP configuration [](https://docs.gitlab.com/omnibus/settings/smtp.html#testing-the-smtp-configuration):
 
 ```bash
 gitlab-rails console

@@ -10,15 +10,17 @@
 
 <i class="fa-duotone fa-book fa-4x fa-duotone-colors" style="float: right;"></i>
 
-GitLab can directly connect to LDAP servers [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/auth/ldap/)
+GitLab can directly connect to LDAP servers [](https://docs.gitlab.com/ee/administration/auth/ldap/)
+- Create internal users for authenticated users
+- Sync LDAP groups to GitLab groups [](https://docs.gitlab.com/ee/administration/auth/ldap/ldap_synchronization.html#group-sync) (requires Premium)
 
-LDAP backend based on OpenLDAP [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.openldap.org/)
+### Example setup
 
-Management UI based on Keycloak [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.keycloak.org/)
+LDAP backend based on OpenLDAP [](https://www.openldap.org/)
+
+Management UI based on Keycloak [](https://www.keycloak.org/)
 
 ![](150_gitlab/120_ldap/ldap.drawio.svg) <!-- .element: style="width: 90%;" -->
-
-Group sync [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/administration/auth/ldap/ldap_synchronization.html#group-sync) only available in Premium
 
 ---
 
@@ -37,10 +39,8 @@ docker volume create keycloak_data
 Deploy additional components:
 
 ```bash
-# Switch to directory for this topics
-cd ../120_ldap/
-
 # Deploy components for LDAP
+cd ../120_ldap/
 docker compose --project-name gitlab \
     --file ../100_reverse_proxy/compose.yml \
     --file compose.yml \
@@ -64,4 +64,23 @@ Login using one these users
 
 ## Alternative: Single Sign-On
 
-XXX https://docs.gitlab.com/ee/integration/saml.html
+GitLab can use an SAML Identity Provider to authenticate users [](https://docs.gitlab.com/ee/integration/saml.html)
+
+```ruby
+gitlab_rails['omniauth_enabled'] = true
+gitlab_rails['omniauth_allow_single_sign_on'] = ['saml']
+gitlab_rails['omniauth_block_auto_created_users'] = false
+gitlab_rails['omniauth_auto_link_saml_user'] = true
+gitlab_rails['omniauth_providers'] = [{
+  name: "saml",
+  label: "my-label",
+  args: {
+    assertion_consumer_service_url: "https://gitlab.seatN.inmylab.de/users/auth/saml/callback",
+    idp_cert_fingerprint: "<FINGERPRINT>",
+    idp_sso_target_url: "https://login.foo.com/bar",
+    issuer: "MyIssuer",
+    name_identifier_format: "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
+    attribute_statements: { name: ['name'], first_name: ['first_name'], last_name: ['last_name'], nickname: ['username'] }
+    }
+}]
+```

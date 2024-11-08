@@ -10,13 +10,13 @@
 
 <i class="fa-duotone fa-person-running fa-4x fa-duotone-colors" style="float: right;"></i>
 
-Runners [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI
+Runners [](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI
 
 Runner can be shared across the instance of GitLab
 
 They can be specific to a group or project
 
-Extensive configuration [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
+Extensive configuration [](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
 
 ### Tags
 
@@ -74,7 +74,7 @@ Jobs are executed in a dedicated container / pod
 
 ### Image cleanup
 
-docuum [<i class="fa-solid fa-arrow-up-right-from-square"></i>](https://github.com/stepchowfun/docuum) is able to remove least recently used images
+docuum [](https://github.com/stepchowfun/docuum) is able to remove least recently used images
 
 ---
 
