@@ -24,7 +24,7 @@ export GITLAB_ADMIN_PASS
 docker compose --file compose.yaml up -d
 
 # Wait for GitLab to become available
-GITLAB_MAX_WAIT=300
+GITLAB_MAX_WAIT=600
 SECONDS=0
 while ! docker compose exec -T gitlab \
         curl \
@@ -152,19 +152,9 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                 --request POST \
                 --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
                 --header "Content-Type: application/json" \
-                --data '{"name": "demo"}' \
+                --data '{"name": "demo", "initialize_with_readme": true, "default_branch": "main"}' \
                 --output /dev/null
         echo "done."
-        echo "    Setting default branch to main..."
-        docker compose exec -T gitlab \
-            curl \
-                --url "http://localhost/api/v4/projects/seat${SEAT_INDEX}%2fdemo" \
-                --silent \
-                --show-error \
-                --request PUT \
-                --header "Private-Token: ${SEAT_GITLAB_TOKEN}" \
-                --data 'default_branch=main'
-        echo "    done."
     fi
 done
 
