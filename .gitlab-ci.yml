@@ -136,13 +136,26 @@ package:
     command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
   variables:
     DOCKER_HOST: tcp://docker:2375
-  before_script:
-  - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
-  script:
-  - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .
-  - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
-  after_script:
-  - docker logout "${CI_REGISTRY}"
+  run:
+  - name: docker_login
+    step: ./steps/docker/login/step.yml
+    inputs:
+      registry: ${CI_REGISTRY}
+      username: ${CI_REGISTRY_USER}
+      password: ${CI_REGISTRY_PASSWORD}
+  - name: docker_build
+    step: ./steps/docker/build/step.yml
+    inputs:
+      context: .
+      image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+  - name: docker_push
+    step: ./steps/docker/push/step.yml
+    inputs:
+      image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+  - name: docker_logout
+    step: ./steps/docker/logout/step.yml
+    inputs:
+      registry: ${CI_REGISTRY}
 
 trigger:
   stage: trigger
