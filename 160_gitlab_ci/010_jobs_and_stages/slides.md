@@ -83,7 +83,7 @@ Special stages `.pre` and `.post`
 
 ## Hands-On
 
-See chapter [Jobs and stages](/hands-on/2023-11-30/010_jobs_and_stages/exercise/)
+See chapter [Jobs and stages](/hands-on/2024-11-12/010_jobs_and_stages/exercise/)
 
 ---
 

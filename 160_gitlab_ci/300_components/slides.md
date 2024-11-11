@@ -92,3 +92,9 @@ Instance-wide catalog
 Components can be used without the catalog
 
 Project owners can switch to catalog project [](https://docs.gitlab.com/ee/ci/components/#set-a-component-project-as-a-catalog-project)
+
+---
+
+## Hands-On
+
+See chapter [CI/CD Components](/hands-on/2024-11-12/300_components/exercise/)
