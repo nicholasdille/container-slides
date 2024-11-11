@@ -2,11 +2,13 @@
 
 <i class="fa-duotone fa-box-open-full fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
-## Components
+## CI/CD Components
 
 ---
 
-## Components
+## CI/CD Components
+
+<i class="fa-duotone fa-solid fa-4x fa-sparkles"></i> <!-- .element: style="float: right;" -->
 
 Components [](https://docs.gitlab.com/ee/ci/components/) are a new way to offer reusable jobs
 
@@ -14,30 +16,34 @@ They are similar to job templates...
 
 ...but more contained, i.e. they cannot be overwritten
 
+---
+
 ### Authoring
 
-Directory layout for component `foo`:
+Directory layout for component called `go`:
 - Either: `templates/go.yml`
 - Or: `templates/go/template.yml`
 
-`template.yml` requires a header with `spec` [](https://docs.gitlab.com/ee/ci/yaml/#spec) and body:
+Components require a header with `spec` [](https://docs.gitlab.com/ee/ci/yaml/#spec) and body:
 
-```yaml
-spec:
-  input:
-    path:
-      type: string
-      description: "Path to the source code"
----
-job:
-  script: go build $[[ inputs.path ]]
-```
+  ```yaml
+  spec:
+    input:
+      path:
+        type: string
+        description: "Path to the source code"
+  ---
+  job:
+    script: go build $[[ inputs.path ]]
+  ```
 
 The body can also contain job templates
 
 ---
 
-## Components vs. Templates
+## Components vs. Templates 1/2
+
+<i class="fa-duotone fa-solid fa-4x fa-scale-balanced"></i> <!-- .element: style="float: right;" -->
 
 Both are reusable
 
@@ -47,11 +53,19 @@ Templates are fragments of a job
 
 Components are self-contained jobs
 
-### XXX
+### Composability
 
 Templates can be overwridden
 
-Components cannot
+Components require inputs declarations
+
+---
+
+## Components vs. Templates 2/2
+
+<i class="fa-duotone fa-solid fa-4x fa-scale-balanced"></i> <!-- .element: style="float: right;" -->
+
+Both are reusable
 
 ### Parameters
 
@@ -61,18 +75,20 @@ Components define inputs
 
 ### Versioning
 
-XXX
+Templates require a special syntax for `include`
+
+Components must be digest/version pinned
 
 ---
 
-### Catalog
+### CI/CD Catalog
 
-XXX https://docs.gitlab.com/ee/ci/components/#cicd-catalog
+<i class="fa-duotone fa-solid fa-4x fa-book-sparkles"></i> <!-- .element: style="float: right;" -->
 
-XXX toggle to catalog project
+CI/CD Catalog [](https://docs.gitlab.com/ee/ci/components/#cicd-catalog) is a collection of components
 
----
+Instance-wide catalog
 
-### Best practices
+Components can be used without the catalog
 
-XXX https://docs.gitlab.com/ee/ci/components/#cicd-component-security-best-practices
+Project owners can switch to catalog project [](https://docs.gitlab.com/ee/ci/components/#set-a-component-project-as-a-catalog-project)

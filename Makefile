@@ -128,6 +128,9 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
 	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f
 
+# pipx install mkdocs \
+#     --pip-args "mkdocs-material mkdocs-material-extensions pymdown-extensions mkdocs-minify-plugin mkdocs-macros-plugin mkdocs-redirects regex" \
+#     --force
 mkdocs:
 	shiv --output-file ./mkdocs --console-script mkdocs \
 		mkdocs \
