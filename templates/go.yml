@@ -36,7 +36,7 @@ spec:
     paths:
     - .go/pkg/mod/
 
-${{ inputs.name-prefix]]-build-go:
+$[[ inputs.name-prefix]]-build-go:
   stage: $[[ inputs.build-stage ]]
   image: $[[ inputs.image ]]
   extends:
@@ -53,7 +53,7 @@ ${{ inputs.name-prefix]]-build-go:
     paths:
     - hello-${GOOS}-${GOARCH}
 
-${{ inputs.name-prefix]]-test-go:
+$[[ inputs.name-prefix]]-test-go:
   stage: $[[ inputs.test-stage ]]
   image: $[[ inputs.image ]]
   extends:
