@@ -46,7 +46,7 @@ result="$(
         '
 )"
 
-for INDEX in $(seq 1 ${COUNT}); do
+for INDEX in $( seq 0 $(( COUNT - 1)) ); do
     result="$(
         echo "${result}" | jq \
             --arg index "${INDEX}" \
@@ -69,8 +69,18 @@ for INDEX in $(seq 1 ${COUNT}); do
             '
     )"
 done
-
 echo "${result}" >seats.json
+
+UNIQUE_CODES_COUNT="$(
+    jq --raw-output '.seats[].code' seats.json \
+    | sort \
+    | uniq \
+    | wc -l
+)"
+if test "${UNIQUE_CODES_COUNT}" -ne "${COUNT}"; then
+    echo "ERROR: Not all codes are unique."
+    exit 1
+fi
 
 cat seats.json \
 | jq --raw-output '
