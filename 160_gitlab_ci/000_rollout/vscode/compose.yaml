@@ -1,9 +1,5 @@
 # https://docs.docker.com/compose/compose-file
 
-volumes:
-  vscode_config:
-  vscode_project:
-
 services:
 
   # https://doc.traefik.io/traefik/

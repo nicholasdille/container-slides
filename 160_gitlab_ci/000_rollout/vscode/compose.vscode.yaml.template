@@ -13,8 +13,6 @@
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock
-    - vscode_config:/home/coder/.config
-    - vscode_project:/home/coder/project
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8080"]
