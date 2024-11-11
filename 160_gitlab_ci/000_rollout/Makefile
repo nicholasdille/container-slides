@@ -68,6 +68,11 @@ uniget:
 	@HCLOUD_TOKEN="$(HCLOUD_TOKEN)" packer build uniget.pkr.hcl
 
 .PHONY:
+docker:
+	@packer init docker.pkr.hcl
+	@HCLOUD_TOKEN="$(HCLOUD_TOKEN)" packer build docker.pkr.hcl
+
+.PHONY:
 gitlab:
 	@packer init gitlab.pkr.hcl
 	@HCLOUD_TOKEN="$(HCLOUD_TOKEN)" packer build gitlab.pkr.hcl

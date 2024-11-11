@@ -1,14 +1,12 @@
 ## Agenda
 
-| From  | To    | What                                            |
-|-------|-------|-------------------------------------------------|
-| 09:00 |       | Let's roll <i class="fa fa-rabbit-running"></i> |
-| 10:10 | 10:20 | Coffee Break <i class="fa fa-mug-hot"></i>      |
-| 11:20 | 11:30 | Coffee Break <i class="fa fa-mug-hot"></i>      |
-| 12:30 | 13:30 | Lunch Break <i class="fa fa-pot-food"></i>      |
-| 14:40 | 14:50 | Coffee Break <i class="fa fa-mug-hot"></i>      |
-| 15:50 | 16:00 | Coffee Break <i class="fa fa-mug-hot"></i>      |
-|       | 17:00 | The End <i class="fa fa-flag-checkered"></i>    |
+| From  | To    | What                                                            |
+|-------|-------|-----------------------------------------------------------------|
+| 09:00 |       | Settling in <i class="fa-duotone fa-solid fa-seat-airline"></i> |
+| 10:00 | 12:30 | Let's roll <i class="fa fa-rabbit-running"></i>                 |
+| 12:30 | 13:30 | Lunch Break <i class="fa fa-pot-food"></i>                      |
+| 15:00 | 15:15 | Coffee Break <i class="fa fa-mug-hot"></i>                      |
+|       | 17:00 | The End <i class="fa fa-flag-checkered"></i>                    |
 
 ---
 

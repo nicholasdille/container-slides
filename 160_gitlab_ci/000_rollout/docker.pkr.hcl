@@ -8,14 +8,20 @@ packer {
 }
 
 source "hcloud" "uniget" {
-  image = "ubuntu-24.04"
+  image_filter {
+    with_selector = [
+      "os-flavor=ubuntu",
+      "type=uniget"
+    ]
+    most_recent = true
+  }
   location = "nbg1"
   server_type = "cx22"
   ssh_username = "root"
-  snapshot_name = "uniget-{{ timestamp }}"
+  snapshot_name = "docker-{{ timestamp }}"
   snapshot_labels = {
     os-flavor = "ubuntu"
-    type = "uniget"
+    type = "docker"
   }
 }
 
@@ -43,11 +49,11 @@ EOF
 
   provisioner "shell" {
     inline = [
-        "apt-get update", "apt-get -y upgrade",
-        "apt-get -y install curl ca-certificates git apache2-utils",
-        "sed -i 's/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"systemd.unified_cgroup_hierarchy=1\"/' /etc/default/grub", "update-grub",
-        "curl -sLf https://github.com/uniget-org/cli/releases/latest/download/uniget_linux_$(uname -m).tar.gz | tar -xzC /usr/local/bin uniget",
-        "uniget update", "uniget install --file /tmp/uniget", "rm /tmp/uniget"
+        "groupadd --system docker",
+        "systemctl daemon-reload",
+        "systemctl disable docker.service",
+        "systemctl enable docker.socket", "systemctl start docker.socket",
+        "while ! docker version; do sleep 2; done"
     ]	
   }
 }

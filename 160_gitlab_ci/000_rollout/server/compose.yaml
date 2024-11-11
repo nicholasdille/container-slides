@@ -56,7 +56,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
-    image: gitlab/gitlab-ee:17.5.0-ee.0
+    image: gitlab/gitlab-ee:17.5.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -90,10 +90,6 @@ services:
 
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
-
-        grafana['alerting_enabled'] = true
-        # Fix for chicken-and-egg issue with oauth
-        grafana['disable_login_form'] = false
     # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
     shm_size: 256m
     volumes:

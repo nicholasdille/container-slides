@@ -27,3 +27,6 @@ grype
 trivy
 docker-scout
 vexctl
+
+# development
+glab

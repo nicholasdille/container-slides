@@ -41,7 +41,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
-    image: gitlab/gitlab-ee:17.5.0-ee.0
+    image: gitlab/gitlab-ee:17.5.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
