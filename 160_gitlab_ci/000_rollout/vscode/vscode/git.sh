@@ -15,5 +15,5 @@ git config --local user.name "${GIT_USER}"
 git config --local user.email "${GIT_EMAIL}"
 git config --local credential.helper store
 
-git remote add origin https://gitlab.inmylab.de/seat${SEAT_INDEX}/demo
+git remote add origin https://gitlab.inmylab.de/${GIT_USER}/demo
 git remote add upstream https://github.com/nicholasdille/container-slides
