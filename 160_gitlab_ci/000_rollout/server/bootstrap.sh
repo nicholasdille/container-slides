@@ -152,7 +152,7 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
                 --request POST \
                 --header "Private-Token: ${GITLAB_ADMIN_TOKEN}" \
                 --header "Content-Type: application/json" \
-                --data '{"name": "demo", "initialize_with_readme": true, "default_branch": "main"}' \
+                --data '{"name": "demo", "default_branch": "main"}' \
                 --output /dev/null
         echo "done."
     fi
