@@ -17,3 +17,5 @@ git config --local credential.helper store
 
 git remote add origin https://gitlab.inmylab.de/${GIT_USER}/demo
 git remote add upstream https://github.com/nicholasdille/container-slides
+
+git pull origin main || true
