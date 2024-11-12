@@ -5,7 +5,7 @@ metadata:
   subtitle: Tricks and Caveats
   favicon: images/favicons/kubernetes.ico
   background:
-    image: images/laila-gebhard-PcdMVvTQ0zw-unsplash.jpg
+    image: images/fall-7605042_1920.jpg
     size: 100%
     positon: left 50% top 50%
 event:
@@ -28,10 +28,6 @@ agenda:
   text: Impersonation
 - icon: shield-quartered
   text: Securing service accounts
-- icon: stethoscope
-  text: Audit log
-- icon: id-card-clip
-  text: Single-Sign On (SSO)
 
 slides:
 - 120_kubernetes/rbac/quickstart.md
@@ -40,8 +36,6 @@ slides:
 - 120_kubernetes/rbac/risks.md
 - 120_kubernetes/rbac/impersonation.md
 - 120_kubernetes/rbac/service_account.md
-- 120_kubernetes/rbac/audit.md
-- 120_kubernetes/oidc/slides.md
 
 summary:
 - icon: user-shield
@@ -54,16 +48,8 @@ summary:
   text: Service account tokens must be managed
 - icon: shield-check
   text: Policy engines like Kyverno can help
-- icon: id-card-clip
-  text: OIDC centralizes authn/authz
 
 events:
-- date: 2024-11-07
-  name: heise Academy
-  homepage: https://heise-academy.de/
-  type: Workshop
-  title: GitLab Ops
-  link: https://heise-academy.de/Workshops/einfuehrung-in-gitlab
 - date: 2024-11-12
   name: ContainerConf
   homepage: https://containerconf.de/
@@ -83,4 +69,5 @@ events:
   title: GitLab CI
   link: https://heise-academy.de/Workshops/cicd-gitlab
 
-post_slides: []
+post_slides:
+- 120_kubernetes/oidc/slides.md

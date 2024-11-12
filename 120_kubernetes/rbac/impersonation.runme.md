@@ -2,7 +2,7 @@
 
 Deploy namespace
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Namespace
@@ -13,7 +13,7 @@ EOF
 
 Deploy namespace admin
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -43,9 +43,9 @@ subjects:
 EOF
 ```
 
-Deploy namespace reader
+Deploy service account in namespace
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: ServiceAccount
@@ -61,7 +61,14 @@ metadata:
   annotations:
     kubernetes.io/service-account.name: reader
 type: kubernetes.io/service-account-token
----
+EOF
+
+```
+
+Deploy role and rolebinding in namespace
+
+```sh
+cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -94,7 +101,7 @@ EOF
 
 Deploy impersonation role
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -125,9 +132,9 @@ subjects:
 EOF
 ```
 
-Create new user in kubeconfig
+Create user in kubeconfig
 
-```shell
+```sh
 TOKEN="$(
     kubectl -n test get secrets reader --output json \
     | jq --raw-output '.data.token' \
@@ -137,50 +144,50 @@ kubectl config set-credentials test-reader --token=${TOKEN}
 kubectl config set-context kind-test --user=test-reader --cluster=kind-kind
 ```
 
-Switch context
+Switch namespace
 
-```shell
+```sh
 kubectl config use-context kind-test
 ```
 
 Show permissions in namespace test
 
-```shell
+```sh
 kubectl auth can-i --list --namespace test
 ```
 
 Succeed to access to namespace test
 
-```shell
+```sh
 kubectl -n test get all
 ```
 
 Fail to access namespace default
 
-```shell
+```sh
 kubectl -n default get all
 ```
 
 Fail to run pod in namespace test
 
-```shell
+```sh
 kubectl -n test run -it --image=alpine --command -- sh
 ```
 
 Run pod in namespace test using impersonation
 
-```shell
+```sh
 kubectl -n test run -it --image=alpine --command --as=test-admin -- sh
 ```
 
 Fail to remove pod
 
-```shell
+```sh
 kubectl -n test delete pod sh
 ```
 
 Remove pod using impersonation
 
-```shell
+```sh
 kubectl -n test delete pod sh --as=test-admin
 ```
