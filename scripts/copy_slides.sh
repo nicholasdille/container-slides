@@ -62,6 +62,8 @@ xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${
 | copy_to_target
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-background" -v . -n "${TARGET}/${FILE}" \
 | copy_to_target
+xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:img/@src" -v . -n "${TARGET}/${FILE}" \
+| copy_to_target
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea/comment()" -v . -n "${TARGET}/${FILE}" \
 | extract_from_comments \
 | copy_to_target
