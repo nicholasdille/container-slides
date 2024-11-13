@@ -1,10 +1,10 @@
-# Service Accounts
+# Avoiding Service Accounts
 
 Make sure to prepare your environment according to `prepare.sh`.
 
 Avoid service accounts using env vars
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
@@ -33,7 +33,7 @@ kubectl exec -it foo -- printenv | grep MY_
 
 Avoid service accounts using files
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod

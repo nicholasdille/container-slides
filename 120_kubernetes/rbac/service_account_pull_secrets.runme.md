@@ -1,33 +1,33 @@
-# Service Accounts
+# Service Account with Image Pull Secrets
 
 Make sure to prepare your environment according to `prepare.sh`.
 
 Image pull secrets in service accounts
 
-```shell
+```sh
 kubectl create secret docker-registry registry.company.com --docker-server=registry.company.com --docker-username=ssrv_reg_user --docker-password="Secr3t!"
 ```
 
 Add image pull secret to service account
 
-```shell
+```sh
 kubectl patch serviceaccount default --patch '{"imagePullSecrets": [{"name": "registry.company.com"}]}'
 ```
 
 Display service account
 
-```shell
+```sh
 kubectl get serviceaccount default -o yaml
 ```
 
 Run container with default service account
 
-```shell
+```sh
 kubectl run nginx --image=nginx --restart=Never
 ```
 
 Check pod for image pull secrets
 
-```shell
+```sh
 kubectl get pod nginx -o yaml
 ```

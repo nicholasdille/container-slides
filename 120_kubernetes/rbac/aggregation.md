@@ -39,7 +39,7 @@ Heavily used in builtin ClusterRoles [](https://kubernetes.io/docs/reference/acc
 
 --
 
-## Demo  [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/aggregation.demo "aggregation.demo")
+## Demo  [<i class="fa fa-comment-code"></i>](https://github.com/nicholasdille/container-slides/blob/master/120_kubernetes/rbac/aggregation.runme.md "aggregation.runme.md")
 
 Inspect builtin ClusterRoles with aggregation
 

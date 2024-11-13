@@ -1,22 +1,22 @@
-# Service Accounts
+# Accessing the Kubernetes API
 
 Make sure to prepare your environment according to `prepare.sh`.
 
 Show kubernetes service
 
-```shell
+```sh
 kubectl get service kubernetes
 ```
 
 Create sa
 
-```shell
+```sh
 kubectl create sa foo
 ```
 
 Custom service account
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -50,13 +50,13 @@ EOF
 
 Check service account locally
 
-```shell
+```sh
 kubectl get pods --as=system:serviceaccount:default:foo
 ```
 
 Deploy pod with service account
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
@@ -77,14 +77,19 @@ EOF
 
 Check environment variables for Kubernetes API endpoint
 
-```shell
+```sh
 kubectl exec -it foo-test -- printenv | grep KUBERNETES_ | sort
 ```
 
 Check service account from pod
 
-```shell
+```sh
 kubectl exec -it foo-test -- sh
+```
+
+And then configure kubectl
+
+```sh
 apk udpate
 apk add kubectl --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
 TOKEN="$(cat /run/secrets/kubernetes.io/serviceaccount/token)"

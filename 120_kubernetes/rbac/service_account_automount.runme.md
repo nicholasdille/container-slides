@@ -1,22 +1,22 @@
-# Service Accounts
+# Automounting Service Accounts
 
 Make sure to prepare your environment according to `prepare.sh`.
 
 Show kubernetes service
 
-```shell
+```sh
 kubectl get service kubernetes
 ```
 
 Create sa
 
-```shell
+```sh
 kubectl create sa foo
 ```
 
 Create pod with service account
 
-```shell
+```sh
 cat <<EOF
 apiVersion: v1
 kind: Pod
@@ -33,14 +33,14 @@ EOF
 
 Check automounted service account
 
-```shell
+```sh
 kubectl exec -it foo -- mount | grep secrets
 kubectl exec -it foo -- ls -l /run/secrets/kubernetes.io/serviceaccount
 ```
 
 Create pod without service account
 
-```shell
+```sh
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
@@ -57,6 +57,6 @@ EOF
 
 Check for service account
 
-```shell
+```sh
 kubectl exec -it foo -- mount | grep secrets
 ```
