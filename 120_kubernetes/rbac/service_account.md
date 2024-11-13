@@ -22,16 +22,30 @@ Service account `default` does not have any (Cluster)Role
 
 No need to access Kubernetes API?
 
-Disable token mounting in `Pod`:
+Disable token mounting in the `pod`:
 
-```yaml [2,7]
+```yaml [2,6]
 apiVersion: v1
 kind: Pod
 metadata:
   name: foo
 spec:
-  serviceAccountName: foo
   automountServiceAccountToken: false
+#...
+```
+
+---
+
+## Prevent token mounting 2/
+
+Disable token mounting in the service account:
+
+```yaml [2,5]
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: foo-noautomount
+automountServiceAccountToken: false
 #...
 ```
 
@@ -39,11 +53,11 @@ spec:
 
 ---
 
-## Prevent token mounting 2/2
+## Prevent token mounting 3/3
 
 Can be overridden in the pod spec:
 
-```yaml [2,6]
+```yaml [2,6-7]
 apiVersion: v1
 kind: Pod
 metadata:
