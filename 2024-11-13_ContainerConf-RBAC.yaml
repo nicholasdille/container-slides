@@ -36,6 +36,7 @@ slides:
 - 120_kubernetes/rbac/risks.md
 - 120_kubernetes/rbac/impersonation.md
 - 120_kubernetes/rbac/service_account.md
+- 120_kubernetes/rbac/mitigations.md
 
 summary:
 - icon: user-shield
@@ -47,7 +48,7 @@ summary:
 - icon: magnifying-glass
   text: Service account tokens must be managed
 - icon: shield-check
-  text: Policy engines like Kyverno can help
+  text: Use policy engine, OIDC and workload identity
 
 events:
 - date: 2024-11-12
