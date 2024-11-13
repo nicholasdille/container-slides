@@ -5,13 +5,17 @@ Make sure to prepare your environment according to `prepare.sh`.
 Image pull secrets in service accounts
 
 ```sh
-kubectl create secret docker-registry registry.company.com --docker-server=registry.company.com --docker-username=ssrv_reg_user --docker-password="Secr3t!"
+kubectl create secret docker-registry registry.company.com \
+    --docker-server=registry.company.com \
+    --docker-username=ssrv_reg_user \
+    --docker-password="Secr3t!"
 ```
 
 Add image pull secret to service account
 
 ```sh
-kubectl patch serviceaccount default --patch '{"imagePullSecrets": [{"name": "registry.company.com"}]}'
+kubectl patch serviceaccount default \
+    --patch '{"imagePullSecrets": [{"name": "registry.company.com"}]}'
 ```
 
 Display service account

@@ -17,7 +17,7 @@ kubectl create sa foo
 Create pod with service account
 
 ```sh
-cat <<EOF
+cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -34,8 +34,8 @@ EOF
 Check automounted service account
 
 ```sh
-kubectl exec -it foo -- mount | grep secrets
-kubectl exec -it foo -- ls -l /run/secrets/kubernetes.io/serviceaccount
+kubectl exec -it foo-automount -- mount | grep secrets
+kubectl exec -it foo-automount -- ls -l /run/secrets/kubernetes.io/serviceaccount
 ```
 
 Create pod without service account
@@ -58,5 +58,5 @@ EOF
 Check for service account
 
 ```sh
-kubectl exec -it foo -- mount | grep secrets
+kubectl exec -it foo-noautomount -- mount | grep secrets
 ```

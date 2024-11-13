@@ -2,7 +2,7 @@
 
 Make sure to prepare your environment according to `prepare.sh`.
 
-Avoid service accounts using env vars
+Avoid service accounts by using env vars
 
 ```sh
 cat <<EOF | kubectl apply -f -
@@ -28,10 +28,11 @@ spec:
         fieldRef:
           fieldPath: metadata.namespace
 EOF
+sleep 5
 kubectl exec -it foo -- printenv | grep MY_
 ```
 
-Avoid service accounts using files
+Avoid service accounts by using files
 
 ```sh
 cat <<EOF | kubectl apply -f -
@@ -58,5 +59,6 @@ spec:
         fieldRef:
           fieldPath: metadata.labels
 EOF
+sleep 5
 kubectl exec -it bar -- cat /etc/podinfo/labels
 ```

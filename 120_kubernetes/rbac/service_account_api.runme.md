@@ -81,17 +81,16 @@ Check environment variables for Kubernetes API endpoint
 kubectl exec -it foo-test -- printenv | grep KUBERNETES_ | sort
 ```
 
-Check service account from pod
+Configure and test kubectl
 
 ```sh
-kubectl exec -it foo-test -- sh
-```
-
-And then configure kubectl
-
-```sh
-apk udpate
-apk add kubectl --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
-TOKEN="$(cat /run/secrets/kubernetes.io/serviceaccount/token)"
-kubectl --server=https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT_HTTPS} --certificate-authority=/run/secrets/kubernetes.io/serviceaccount/ca.crt --token="${TOKEN}" version
+kubectl exec -i foo-test -- apk update
+kubectl exec -i foo-test -- apk add kubectl --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
+clear
+kubectl exec -i foo-test -- sh <<"EOF"
+    kubectl version \
+        --server=https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT_HTTPS} \
+        --certificate-authority=/run/secrets/kubernetes.io/serviceaccount/ca.crt \
+        --token="$(cat /run/secrets/kubernetes.io/serviceaccount/token)"
+EOF
 ```

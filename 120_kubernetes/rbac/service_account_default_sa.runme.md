@@ -34,13 +34,13 @@ spec:
 EOF
 ```
 
-Check pod description
+Check pod description for default service account
 
 ```sh
 kubectl get pod default-test -o yaml
 ```
 
-Check for credentials
+Check pod for credentials
 
 ```sh
 kubectl exec -it default-test -- mount | grep secrets
