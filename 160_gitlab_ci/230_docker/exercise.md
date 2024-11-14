@@ -20,12 +20,10 @@ For building a container image, you will need to...
 
 1. Add a new stage `package` to the pipeline
 1. Add a new job `package` to the pipeline
-1. Use the image `docker:20.10.18` for the job
+1. Use the image `docker:27.3.1` for the job
 1. Add a rule to limit execution to pushes to the default branch
-1. Add a service to the job:
-    1. using the image `docker:20.10.18-dind`
-    1. using the `command` set to `[ "dockerd", "--host", "tcp://0.0.0.0:2375" ]`
-1. Add a job variable `DOCKER_HOST` with value `tcp://docker:2375`
+1. Add a service to the job using the image `docker:27.3.1-dind`
+1. Add a variable `DOCKER_CERT_DIR` to the job and set it to an empty string
 1. Execute the command `docker build --tag hello .`
 
 !!! tip "Heads-Up"
@@ -38,7 +36,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     ```yaml
     services:
-    - name: docker:20.10.18-dind
+    - name: docker:27.3.1-dind
       command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
     ```
 
@@ -81,7 +79,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
 
     default:
-      image: golang:1.19.2
+      image: golang:1.23.2
 
     lint:
       stage: check
@@ -150,15 +148,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     package:
-      image: docker:20.10.18
+      image: docker:27.3.1
       stage: package
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       services:
-      - name: docker:20.10.18-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - docker:27.3.1-dind
       script:
       - docker build --tag hello .
 
@@ -176,5 +173,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     git checkout upstream/160_gitlab_ci/230_docker -- '*'
     ```
 
-<!-- TODO: multu-arch build -->
+## Bonus task: Create a template for building container images
+
+Similar to the template for building and testing Go, create a template for building container images including logging in to and out of a container registry.
+
+<!-- TODO: multi-arch build -->
 <!-- TODO: rootless Docker -->

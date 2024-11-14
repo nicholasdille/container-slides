@@ -13,9 +13,18 @@ event:
   logo: images/logos/heise-academy.svg
   link: https://heise-academy.de
 
-slides:
+pre_slides:
 - 000_introduction/02_bio.md
-- 000_introduction/heise_academy_housekeeping.md
+
+agenda:
+- icon: code
+  text: Learn to use GitLab as a developer
+- icon: graduation-cap
+  text: Explore the features of GitLab
+- icon: recycle
+  text: Make your work reusable
+
+slides:
 - 000_introduction/who_are_you.md
 - 160_gitlab_ci/agenda.md
 - 160_gitlab_ci/devops.md
@@ -50,40 +59,27 @@ slides:
 - 160_gitlab_ci/265_caches/slides.md
 - 160_gitlab_ci/270_renovate/slides.md
 - 160_gitlab_ci/280_security/slides.md
+- 160_gitlab_ci/300_components/slides.md
+- 160_gitlab_ci/310_steps/slides.md
+- 160_gitlab_ci/320_secure_files/slides.md
 - 160_gitlab_ci/final.md
 
 summary:
-- icon: fa-infinity
+- icon: infinity
   text: GitLab covers the whole DevOps process
-- icon: fa-ball-pile
+- icon: ball-pile
   text: GitLab is packed with features
-- icon: fa-gauge-min
+- icon: gauge-min
   text: No plugins to support recurring tasks
-- icon: fa-shield-check
+- icon: shield-check
   text: Useful security features even in free tier
 
 events:
-- date: 2024-11-07
-  name: heise Academy
-  homepage: https://heise-academy.de/
-  type: Workshop
-  title: GitLab Ops
-  link: https://heise-academy.de/Workshops/einfuehrung-in-gitlab
-- date: 2024-11-12
-  name: ContainerConf
-  homepage: https://containerconf.de/
-  type: Workshop
-  title: GitLab CI
-  link: https://www.continuouslifecycle.de/veranstaltung-22480-0-ci-cd-mit-gitlab.html
-- date: 2024-11-13
-  name: ContainerConf
-  homepage: https://containerconf.de/
-  type: Talk
-  title: Kubernetes RBAC
-  link: https://www.continuouslifecycle.de/veranstaltung-22482-0-kubernetes-rbac--tricks-und-fallstricke.html
 - date: 2024-11-21
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
   title: GitLab CI
   link: https://heise-academy.de/Workshops/cicd-gitlab
+
+post_slides: []

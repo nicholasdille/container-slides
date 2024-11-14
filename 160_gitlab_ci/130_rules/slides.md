@@ -76,6 +76,12 @@ Adjust order from most specific...
 
 ---
 
+## Hands-On
+
+See chapter [Rules](/hands-on/2024-11-12/130_rules/exercise/)
+
+---
+
 ## Pro tip: Use CI_DEPLOY_FREEZE with rules
 
 Disable pipeline:
@@ -101,6 +107,14 @@ Template to disable job:
 
 ---
 
-## Hands-On
+## Pro tip: Fields for rules
 
-See chapter [Rules](/hands-on/2024-11-12/130_rules/exercise/)
+XXX variables [](https://docs.gitlab.com/ee/ci/yaml/#rulesvariables)
+
+XXX variable precedence
+
+XXX changes [](https://docs.gitlab.com/ee/ci/yaml/#ruleschanges)
+
+XXX exists [](https://docs.gitlab.com/ee/ci/yaml/#rulesexists)
+
+XXX needs [](https://docs.gitlab.com/ee/ci/yaml/#rulesneeds)

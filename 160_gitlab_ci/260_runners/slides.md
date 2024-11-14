@@ -24,7 +24,7 @@ Jobs are executed in the context of the runner
 
 ## Using containers
 
-![](160_gitlab_ci/260_runners/containers.drawio.svg) <!-- .element: style="float: right; width: 30%" -->
+![](160_gitlab_ci/260_runners/containers.drawio.svg) <!-- .element: style="float: right; width: 25%" -->
 
 Dedicated execution environment per job
 
@@ -42,7 +42,7 @@ Jobs are executed in a dedicated container
 
 ### Kubernetes
 
-Jobs are executed in a dedicated containers in a pod per pipeline
+Jobs are executed in a dedicated container in a pod
 
 ---
 
@@ -75,11 +75,11 @@ Tags specify features based on...
 - Operating system, e.g. linux, windows
 - Networking locations, e.g. datacenter, aws, azure
 - Hardware, e.g. compute, gpu
-- Runner configuration, e.g. cache
+- Executor, e.g. shell, docker, kubernetes
 
 ### Selecting runners in pipelines
 
-Each can use a different runner:
+Each job can use a different runner:
 
 ```yaml
 job_name:
@@ -91,20 +91,26 @@ All features work across different runners
 
 ---
 
-## Pro tip: Special purpose executors
+## Pro tip: Finding existing runners
 
-May builtin executors [](https://docs.gitlab.com/runner/executors/)
+XXX
 
-### Instance executor (builtin)
+---
 
-On-demand creation of VM [](https://docs.gitlab.com/runner/executors/instance.html)
+## Pro tip 2: Special purpose executors
 
-Beta support for AWS
+Many builtin executors [](https://docs.gitlab.com/runner/executors/)
 
-Experimantal support for Azure and GCP
+### Instance executors for auto-scaling (builtin)
+
+On-demand creation of VMs [](https://docs.gitlab.com/runner/executors/instance.html)
+
+Idle VMs are possible to speed up job execution
+
+Support for AWS, Azure and GCP
 
 ### Custom executor
 
-DIY [](https://docs.gitlab.com/runner/executors/custom.html)
+Build your own executor [](https://docs.gitlab.com/runner/executors/custom.html)
 
 Examples: libvirt [](https://docs.gitlab.com/runner/executors/custom_examples/libvirt.html), LXD [](https://docs.gitlab.com/runner/executors/custom_examples/lxd.html), AWS Fargate [](https://gitlab.com/gitlab-org/ci-cd/custom-executor-drivers/fargate)

@@ -12,6 +12,6 @@ Containerized service stack for this workshop
 
 ![](160_gitlab_ci/000_rollout/stack.drawio.svg) <!-- .element: style="width: 90%; margin-top: 1em;" -->
 
-Available from 2024-11-12 at 9:00 until 2024-11-12 at 18:00
+Available from 2024-11-21 at 9:00 until 2024-11-28 at 18:00
 
-See [introduction](/hands-on/2024-11-12/)
+Meet your demo environment by following the [introduction](/hands-on/2024-11-21/)

@@ -63,9 +63,9 @@ See chapter [Matrix jobs](/hands-on/2024-11-12/150_matrix_jobs/exercise/)
 
 ## Pro tip: Matrix jobs and `needs`
 
-XXX [](https://docs.gitlab.com/ee/ci/yaml/#needsparallelmatrix)
+Depend on individual jobs of a matrix
 
-XXX extended syntax
+Extended syntax for `needs` [](https://docs.gitlab.com/ee/ci/yaml/#needsparallelmatrix)
 
 ```yaml
 linux:build:
@@ -74,10 +74,7 @@ linux:build:
   parallel:
     matrix:
       - PROVIDER: aws
-        STACK:
-          - monitoring
-          - app1
-          - app2
+        STACK: [ monitoring, app1, app2 ]
 
 linux:rspec:
   stage: test

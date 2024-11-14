@@ -4,12 +4,6 @@ FROM codercom/code-server:4.93.1
 USER root
 
 RUN <<EOF
-code-server --install-extension redhat.vscode-yaml
-code-server --install-extension golang.go
-code-server --install-extension gitlab.gitlab-workflow
-EOF
-
-RUN <<EOF
 apt-get update
 apt-get -y install --no-install-recommends \
     curl \
@@ -34,15 +28,19 @@ uniget install \
     glab
 EOF
 
-# See https://github.com/coder/code-server/issues/5177
-ENV ENTRYPOINTD=/opt/entrypoint.d
-RUN <<EOF
-mkdir -p "${ENTRYPOINTD}"
-EOF
-COPY --chmod=0755 git.sh ${ENTRYPOINTD}
+COPY --chmod=0755 git.sh /opt/entrypoint.d/
 
 RUN <<EOF
 useradd --user-group --create-home --shell /bin/bash seat
 EOF
 USER seat
-WORKDIR /home/seat
+WORKDIR /home/seat/demo
+
+# https://open-vsx.org/
+# code-server --install-extension <publisher>.<extension-name>
+RUN <<EOF
+code-server --install-extension redhat.vscode-yaml
+code-server --install-extension golang.go
+code-server --install-extension gitlab.gitlab-workflow
+code-server --install-extension editorConfig.editorConfig
+EOF

@@ -54,8 +54,8 @@ Consume artifacts from parent (upstream) pipeline [](https://docs.gitlab.com/ee/
 job_name:
   script: cat artifact.txt
   needs:
-    - pipeline: $PARENT_PIPELINE_ID
-      job: create-artifact
+  - pipeline: $PARENT_PIPELINE_ID
+    job: create-artifact
 ```
 
 ---
@@ -63,3 +63,9 @@ job_name:
 ## Hands-On
 
 See chapter [Job dependencies](/hands-on/2024-11-12/065_job_dependencies/exercise/)
+
+---
+
+## Pro tip: XXX
+
+One stage with two jobs and `needs` -> artifacts work

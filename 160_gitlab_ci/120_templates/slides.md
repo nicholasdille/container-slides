@@ -28,7 +28,9 @@ See also the official development guide for templates [](https://docs.gitlab.com
 
 ## Templates 1/
 
-The following pipeline...
+Keywords from `job_name` are applied after keywords from `.template`
+
+The following pipeline... results in the following job:
 
 ```yaml
 .template:
@@ -39,7 +41,7 @@ job_name:
   extends: .template
 ```
 
-...result in the following job:
+<!-- .element: style="float: left; width: 25em;" -->
 
 ```yaml
 job_name:
@@ -47,13 +49,15 @@ job_name:
   script: pwd
 ```
 
-Keywords from `job_name` are applied after keywords from `.template`
+<!-- .element: style="float: right; width: 25em;" -->
 
 ---
 
 ## Templates 2/
 
-The following pipeline...
+Keywords from `job_name` are applied after keywords from `.template`
+
+The following pipeline... result in the following job:
 
 ```yaml
 .template:
@@ -65,7 +69,7 @@ job_name:
   script: ls -l
 ```
 
-...result in the following job:
+<!-- .element: style="float: left; width: 25em;" -->
 
 ```yaml
 job_name:
@@ -73,13 +77,15 @@ job_name:
   script: ls -l
 ```
 
-Keywords from `job_name` are applied after keywords from `.template`
+<!-- .element: style="float: right; width: 25em;" -->
 
 ---
 
 ## Templates 3/3
 
-The following pipeline...
+Variables are merged!
+
+The following pipeline... result in the following job:
 
 ```yaml
 .template:
@@ -94,7 +100,7 @@ job_name:
     bar: baz
 ```
 
-...result in the following job:
+<!-- .element: style="float: left; width: 25em;" -->
 
 ```yaml
 job_name:
@@ -105,7 +111,7 @@ job_name:
   script: pwd
 ```
 
-Variables are merged!
+<!-- .element: style="float: right; width: 25em;" -->
 
 ---
 

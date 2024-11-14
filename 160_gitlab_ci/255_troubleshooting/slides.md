@@ -28,9 +28,27 @@ Use `command || true` is dangerous because it hides errors
 
 ---
 
+## Shotgun debugging
+
+XXX many echos
+
+XXX if then else
+
+---
+
 ## Testing locally
 
-### gitlab-runner
+### gitlabci-local
+
+Run whole pipelines locally using `gcil` (formerly `gitlabci-local`) [](https://gitlab.com/RadianDevCore/tools/gcil)
+
+Supports shell and Docker executor
+
+XXX
+
+### ~~gitlab-runner~~
+
+<i class="fa-duotone fa-triangle-exclamation"></i> This is deprecated and was removed in GitLab 17.0 [](https://docs.gitlab.com/ee/update/deprecations.html#the-gitlab-runner-exec-command-is-deprecated)
 
 Test a single job using Docker using `gitlab-runner` [](https://gitlab.com/gitlab-org/gitlab-runner):
 
@@ -39,11 +57,3 @@ gitlab-runner exec docker <job_name>
 ```
 
 Works for more executors: shell, ssh, docker-ssh and more!
-
-<i class="fa-duotone fa-triangle-exclamation"></i> This is deprecated and will be removed in GitLab 17.0 [](https://docs.gitlab.com/ee/update/deprecations.html#the-gitlab-runner-exec-command-is-deprecated)
-
-### gitlab-ci-local
-
-Run whole pipelines locally using `gitlab-ci-local` [](https://github.com/firecow/gitlab-ci-local)
-
-Supports shell and Docker executor

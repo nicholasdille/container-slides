@@ -86,11 +86,14 @@ Configure and test kubectl
 ```sh
 kubectl exec -i foo-test -- apk update
 kubectl exec -i foo-test -- apk add kubectl --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing
+kubectl exec -i foo-test -- apk add curl
 clear
+kubectl exec -i foo-test -- kubectl version
 kubectl exec -i foo-test -- sh <<"EOF"
-    kubectl version \
-        --server=https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT_HTTPS} \
-        --certificate-authority=/run/secrets/kubernetes.io/serviceaccount/ca.crt \
-        --token="$(cat /run/secrets/kubernetes.io/serviceaccount/token)"
+    curl \
+        --silent \
+        --url https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT_HTTPS}/api \
+        --cacert /run/secrets/kubernetes.io/serviceaccount/ca.crt \
+        --header "Authorization: Bearer $(cat /run/secrets/kubernetes.io/serviceaccount/token)"
 EOF
 ```

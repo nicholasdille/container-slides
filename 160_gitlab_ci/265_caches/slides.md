@@ -22,13 +22,26 @@ Examples for many programming languages [](https://docs.gitlab.com/ee/ci/caching
 
 ### Cache types
 
-| Type        | Availability |
-|-------------|--------------|
-| Local       | available on the same runner with Docker executor |
-| Distributed | requires an S3-compatible backend<br/>(e.g. AWS S3 [](https://aws.amazon.com/de/pm/serv-s3/), MinIO [](https://min.io), Ceph [](https://ceph.io)) |
+Local on the same runner with Docker or shell executor
+
+Distributed with an S3-compatible backend (e.g. AWS S3 [](https://aws.amazon.com/de/pm/serv-s3/), MinIO [](https://min.io), Ceph [](https://ceph.io))
+
+### Hands-On
+
+See chapter [caches](/hands-on/2024-11-12/265_caches/exercise/)
 
 ---
 
-## Hands-On
+## Pro tip: Clear the cache
 
-Runner local cache
+XXX [](https://docs.gitlab.com/ee/ci/caching/#clearing-the-cache)
+
+---
+
+## Pro tip 2: Runner local cache
+
+XXX [](https://docs.gitlab.com/ee/ci/caching/#where-the-caches-are-stored)
+
+Shell: /home/gitlab-runner/cache/<user>/<project>/<cache-key>/cache.zip
+
+Docker: /var/lib/docker/volumes/<volume-id>/_data/<user>/<project>/<cache-key>/cache.zip

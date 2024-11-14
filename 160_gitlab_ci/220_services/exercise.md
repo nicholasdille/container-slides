@@ -65,7 +65,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
 
     default:
-      image: golang:1.19.2
+      image: golang:1.23.2
 
     services:
     - nginx:1.20.2
@@ -201,7 +201,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
     
     default:
-      image: golang:1.19.2
+      image: golang:1.23.2
     
     lint:
       stage: check

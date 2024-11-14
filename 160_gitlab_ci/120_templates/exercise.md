@@ -37,7 +37,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
 
     default:
-      image: golang:1.19.2
+      image: golang:1.23.2
 
     lint:
       stage: check
@@ -156,7 +156,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
 
     default:
-      image: golang:1.19.2
+      image: golang:1.23.2
 
     lint:
       stage: check
@@ -230,7 +230,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     ```yaml linenums="1" hl_lines="1-4"
     include:
-    - project: seat1/template-go
+    - project: seatN/template-go
       ref: main
       file: go.yaml
 
@@ -242,7 +242,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
 
     default:
-      image: golang:1.19.2
+      image: golang:1.23.2
 
     lint:
       stage: check

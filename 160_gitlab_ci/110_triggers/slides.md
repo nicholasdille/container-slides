@@ -89,11 +89,11 @@ job_name:
 
 ## Parent-child pipelines
 
-Child pipeline can be made from multiple files
+Child pipelines [](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html) are created from a file using `include`
 
-`include` supports `local` for files in the same repository
+`include` supports `local` [](https://docs.gitlab.com/ee/ci/yaml/#includelocal) for files in the same repository
 
-Use `project`/`ref`/`file` for files in other repositories
+Use `project`/`ref`/`file` [](https://docs.gitlab.com/ee/ci/yaml/#includeproject) for files in other repositories
 
 ### Example
 
@@ -161,6 +161,23 @@ job_name:
 
 ---
 
+## Pro tip 3: Permissions for include
+
+When including a file from another project...
+
+```yaml
+job_name:
+  trigger:
+    include:
+    - project: <path-to-project>
+      ref: main
+      file: <relative-path-to-file>
+```
+
+...the user must have the permission to run a pipeline in the other project
+
+---
+
 ## Dynamic includes
 
 Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
@@ -187,11 +204,13 @@ use:
 
 ---
 
-## Pro tip: Artifacts from parent pipeline
+## Pro tip 4: Artifacts from parent pipeline
 
 <i class="fa-duotone fa-triangle-exclamation"></i> Requires Enterprise Edition Premium [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline)
 
-Generate artifact and trigger child pipeline:
+Generate artifact and trigger child pipeline
+
+Fetch artifact from parent pipeline
 
 ```yaml
 build_artifacts:
@@ -210,9 +229,7 @@ deploy:
     PARENT_PIPELINE_ID: $CI_PIPELINE_ID
 ```
 
-<!-- .element: style="font-size: medium;" -->
-
-Fetch artifact from parent pipeline
+<!-- .element: style="float: left; font-size: 0.7em; width: 35em;" -->
 
 ```yaml
 test:
@@ -222,11 +239,11 @@ test:
   - pipeline: $PARENT_PIPELINE_ID
     job: build_artifacts
 ```
-<!-- .element: style="font-size: medium;" -->
+<!-- .element: style="float: right; font-size: 0.7em; width: 25em;" -->
 
 ---
 
-## Pro tip: Do not pass global variables
+## Pro tip 5: Do not pass global variables
 
 Only allow job variables to be passed to downstream pipelines:
 

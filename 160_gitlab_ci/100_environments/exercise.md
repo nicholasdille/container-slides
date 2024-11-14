@@ -26,7 +26,7 @@ curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
     --user seat${SEAT_INDEX}:${PASS}
 ```
 
-Mind that `curl` is not available in the default image `golang:1.19.2` but must be installed using the following commands. Apply what you learned about script blocks as well as separating commands into preparation, core steps and cleanup.
+Mind that `curl` is not available in the default image `golang:1.23.2` but must be installed using the following commands. Apply what you learned about script blocks as well as separating commands into preparation, core steps and cleanup.
 
 ```bash
 apt-get update
@@ -58,7 +58,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - deploy
 
     default:
-      image: golang:1.19.2
+      image: golang:1.23.2
 
     lint:
       stage: check
@@ -135,7 +135,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - deploy
 
     default:
-      image: golang:1.19.2
+      image: golang:1.23.2
 
     lint:
       stage: check

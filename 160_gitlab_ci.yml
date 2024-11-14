@@ -112,7 +112,7 @@ nav:
   - IDE: 000_rollout/exercise_ide.md
   - Project: 000_rollout/exercise_project.md
   - You are ready: you_are_ready.md
-- Basics:
+- Fundamentals:
   - Jobs and Stages: 010_jobs_and_stages/exercise.md
   - Variables: 020_variables/exercise.md
   - Scriptblocks: 030_script_blocks/exercise.md
@@ -139,5 +139,6 @@ nav:
   - Security: 280_security/exercise.md
   - CI/CD Components: 300_components/exercise.md
   - CI/CD Steps: 310_steps/exercise.md
+  - Secure Files: 320_secure_files/exercise.md
 - Wrap Up:
   - You are done: you_are_done.md
