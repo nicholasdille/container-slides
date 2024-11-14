@@ -14,7 +14,7 @@ Create a template for compiling a go binary from the job `build` and use it in t
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    XXX
+    `.gitlab-ci.yml`:
 
     ```yaml
     .build-go:

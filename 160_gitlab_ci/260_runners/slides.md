@@ -93,7 +93,15 @@ All features work across different runners
 
 ## Pro tip: Finding existing runners
 
-XXX
+No single place to discover runners
+
+See the CI/CD settings in the runner section
+
+Applies to groups and projects
+
+The list shows runners available
+
+Offers the option to disable instance runners
 
 ---
 

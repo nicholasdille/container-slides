@@ -109,12 +109,11 @@ Template to disable job:
 
 ## Pro tip: Fields for rules
 
-XXX variables [](https://docs.gitlab.com/ee/ci/yaml/#rulesvariables)
+Rules not only control execution of jobs but can also configure jobs through the use of the following fields:
 
-XXX variable precedence
+- Add additional `variables` [](https://docs.gitlab.com/ee/ci/yaml/#rulesvariables) to customize the behaviour of the job
+- Limit a rule to changes `changes` [](https://docs.gitlab.com/ee/ci/yaml/#ruleschanges) on specific files
+- Execute a job only if a specific file `exists` [](https://docs.gitlab.com/ee/ci/yaml/#rulesexists)
+- Make a job dependent on other jobs using `needs` [](https://docs.gitlab.com/ee/ci/yaml/#rulesneeds)
 
-XXX changes [](https://docs.gitlab.com/ee/ci/yaml/#ruleschanges)
-
-XXX exists [](https://docs.gitlab.com/ee/ci/yaml/#rulesexists)
-
-XXX needs [](https://docs.gitlab.com/ee/ci/yaml/#rulesneeds)
+Rules become especially powerful when combining the fields supported by rules - including `if`

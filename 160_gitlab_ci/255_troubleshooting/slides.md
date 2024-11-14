@@ -30,9 +30,17 @@ Use `command || true` is dangerous because it hides errors
 
 ## Shotgun debugging
 
-XXX many echos
+Adding many `echo` stagements is the most prominent (and hated) approach
 
-XXX if then else
+Better add regular output to the script blocks...
+
+...especially when using multi-line commands
+
+Add output to both branches of `if-then-else` statements
+
+Consider moving commands to a script file...
+
+...this can enable local debugging
 
 ---
 
@@ -44,7 +52,7 @@ Run whole pipelines locally using `gcil` (formerly `gitlabci-local`) [](https://
 
 Supports shell and Docker executor
 
-XXX
+Runs one or more jobs or even the whole pipeline
 
 ### ~~gitlab-runner~~
 

@@ -34,14 +34,18 @@ See chapter [caches](/hands-on/2024-11-12/265_caches/exercise/)
 
 ## Pro tip: Clear the cache
 
-XXX [](https://docs.gitlab.com/ee/ci/caching/#clearing-the-cache)
+Clear the cache [](https://docs.gitlab.com/ee/ci/caching/#clearing-the-cache) in two ways:
+
+1. Change the cache key in your pipeline
+1. On the pipeline page, click `Clear runner caches` in the upper right corner
 
 ---
 
 ## Pro tip 2: Runner local cache
 
-XXX [](https://docs.gitlab.com/ee/ci/caching/#where-the-caches-are-stored)
+For some executors, the runner stores the cache locally [](https://docs.gitlab.com/ee/ci/caching/#where-the-caches-are-stored) when not configured otherwise
 
-Shell: /home/gitlab-runner/cache/<user>/<project>/<cache-key>/cache.zip
+The local cache is located in the following directories:
 
-Docker: /var/lib/docker/volumes/<volume-id>/_data/<user>/<project>/<cache-key>/cache.zip
+- Shell: `/home/gitlab-runner/cache/<user>/<project>/<cache-key>/cache.zip`
+- Docker: `/var/lib/docker/volumes/<volume-id>/_data/<user>/<project>/<cache-key>/cache.zip`

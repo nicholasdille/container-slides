@@ -25,7 +25,8 @@ curl -sLf https://github.com/uniget-org/cli/releases/latest/download/uniget_linu
 uniget install \
     gojq \
     go \
-    glab
+    glab \
+    gitlabci-local
 EOF
 
 COPY --chmod=0755 git.sh /opt/entrypoint.d/
