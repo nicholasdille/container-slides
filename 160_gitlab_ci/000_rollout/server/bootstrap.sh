@@ -75,6 +75,8 @@ docker compose exec -T gitlab \
 
 # TODO: Disable Auto DevOps
 
+exit
+
 # Create users
 for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
     echo
