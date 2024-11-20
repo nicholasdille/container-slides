@@ -1,0 +1,9 @@
+/.env.mk
+
+personal_access_tokens.json
+
+git_http_backend.auto.tf
+.terraform
+.terraform.lock.hcl
+plan.out
+errored.tfstate

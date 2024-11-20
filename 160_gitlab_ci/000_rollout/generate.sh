@@ -22,13 +22,33 @@ function generate_code() {
 }
 
 if ! test -f seats.json; then
+    result="$(
+        jq \
+            --null-input \
+            --arg name "${SET_NAME}" \
+            --arg count "${COUNT}" \
+            --arg domain "${DOMAIN}" \
+            --arg gitlab_admin_password "$(openssl rand -hex 32)" \
+            --arg gitlab_admin_token "glpat-$(openssl rand -hex 10)" \
+            '
+            {
+                "name": $name,
+                "count": $count,
+                "domain": $domain,
+                "gitlab_admin_password": $gitlab_admin_password,
+                "gitlab_admin_token": $gitlab_admin_token,
+                "seats": []
+            }
+            '
+    )"
+
     for INDEX in $( seq 0 $(( COUNT - 1)) ); do
         result="$(
             echo "${result}" | jq \
                 --arg index "${INDEX}" \
                 --arg password "$(openssl rand -hex 32)" \
                 --arg code "$(generate_code)" \
-                --arg gitlab_token "$(openssl rand -hex 32)" \
+                --arg gitlab_token "glpat-$(openssl rand -hex 10)" \
                 --arg webdav_pass_dev "$(openssl rand -hex 32)" \
                 --arg webdav_pass_live "$(openssl rand -hex 32)" \
                 '
