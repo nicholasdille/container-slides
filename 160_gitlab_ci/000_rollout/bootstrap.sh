@@ -28,6 +28,8 @@ scp seats.json gitlab:/root/container-slides/160_gitlab_ci/000_rollout/server/
 # Run 160/000/server/bootstrap.sh
 ssh gitlab env -C /root/container-slides/160_gitlab_ci/000_rollout/server/ bash bootstrap.sh
 
+exit
+
 echo "######################"
 echo "###                ###"
 echo "### Runner         ###"
