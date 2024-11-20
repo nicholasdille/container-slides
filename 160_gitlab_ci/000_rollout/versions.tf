@@ -22,10 +22,6 @@ terraform {
       source = "loafoe/ssh"
       version = "2.7.0"
     }
-    gitlab = {
-      source = "gitlabhq/gitlab"
-      version = "17.5.0"
-    }
     null = {
       source = "hashicorp/null"
       version = "3.2.3"

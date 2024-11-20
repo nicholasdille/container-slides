@@ -95,7 +95,8 @@ resource "acme_certificate" "gitlab" {
     "*.dev.webdav.${local.domain}",
     "*.live.webdav.${local.domain}",
     "gitlab.${local.domain}",
-    "*.gitlab.${local.domain}"
+    "*.gitlab.${local.domain}",
+    "grafana.${local.domain}"
   ]
 
   dns_challenge {
@@ -244,6 +245,14 @@ data "hetznerdns_zone" "main" {
 resource "hetznerdns_record" "gitlab" {
   zone_id = data.hetznerdns_zone.main.id
   name = "gitlab"
+  value = hcloud_server.gitlab.ipv4_address
+  type = "A"
+  ttl= 120
+}
+
+resource "hetznerdns_record" "grafana" {
+  zone_id = data.hetznerdns_zone.main.id
+  name = "grafana"
   value = hcloud_server.gitlab.ipv4_address
   type = "A"
   ttl= 120

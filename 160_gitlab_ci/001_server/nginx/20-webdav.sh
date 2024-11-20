@@ -2,7 +2,7 @@
 set -o errexit -o pipefail
 
 # TODO: Use SEAT_COUNT
-for SEAT_INDEX in $(seq 1 21); do
+for SEAT_INDEX in $(seq 0 21); do
     export SEAT_INDEX
 
     # htpasswd webdav dev

@@ -70,3 +70,9 @@ personal_access_tokens.json:
 	$(TERRAFORM_WITH_BACKEND) output -json \
 	| jq '.personal_access_tokens.value' \
 	>personal_access_tokens.json
+
+runner_token.json:
+	@\
+	$(TERRAFORM_WITH_BACKEND) output -json \
+	| jq --raw-output '.runner_token.value' \
+	>runner_token.json

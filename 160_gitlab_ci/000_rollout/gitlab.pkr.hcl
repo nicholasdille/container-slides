@@ -13,6 +13,7 @@ locals {
   traefik_version = "3.1.6"
   code_server_version = "4.93.1"
   nginx_version = "1.27.2"
+  grafana_version = "11.3.1"
 }
 
 source "hcloud" "gitlab" {
@@ -42,7 +43,8 @@ build {
         "docker pull traefik:${local.traefik_version}",
         "docker pull gitlab/gitlab-runner:v${local.gitlab_runner_version}",
         "docker pull codercom/code-server:${local.code_server_version}",
-        "docker pull nginx:${local.nginx_version}"
+        "docker pull nginx:${local.nginx_version}",
+        "docker pull grafana/grafana:${local.grafana_version}"
     ]	
   }
 }

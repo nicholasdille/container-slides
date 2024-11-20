@@ -4,6 +4,7 @@ volumes:
   gitlab_config:
   gitlab_data:
   gitlab_logs:
+  grafana_data:
 
 services:
 
@@ -90,6 +91,10 @@ services:
 
         # Prevent conflict with host SSH port
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
+
+        # https://docs.gitlab.com/ee/administration/monitoring/prometheus/index.html#configuring-prometheus
+        prometheus_monitoring['enable'] = true
+        prometheus['listen_address'] = ':9090'
     # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
     shm_size: 256m
     volumes:
@@ -138,3 +143,28 @@ services:
       traefik.tcp.routers.ssh.rule: HostSNI(`*`)
       traefik.tcp.routers.ssh.service: ssh
       traefik.tcp.routers.ssh.tls.passthrough: "true"
+
+  grafana:
+    image: grafana/grafana:11.3.1
+    volumes:
+    - grafana_data:/var/lib/grafana
+    environment:
+      GF_SERVER_ROOT_URL: https://grafana.inmylab.de
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: "${GITLAB_ADMIN_PASS}"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    restart: unless-stopped
+    labels:
+      traefik.enable: "true"
+      # Web UI: service port
+      traefik.http.services.grafana.loadbalancer.server.port: 3000
+      # Web UI: redirection to HTTPS
+      traefik.http.routers.grafana.entrypoints: http
+      traefik.http.routers.grafana.rule: Host(`grafana.${DOMAIN}`)
+      traefik.http.routers.grafana.service: grafana
+      traefik.http.routers.grafana.middlewares: redirect-to-https
+      # Web UI: unauthenticated endpoint
+      traefik.http.routers.grafana-s.entrypoints: https
+      traefik.http.routers.grafana-s.rule: Host(`grafana.${DOMAIN}`)
+      traefik.http.routers.grafana-s.service: grafana
+      traefik.http.routers.grafana-s.tls: "true"

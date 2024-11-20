@@ -29,7 +29,7 @@ uniget install \
     gitlabci-local
 EOF
 
-COPY --chmod=0755 git.sh /opt/entrypoint.d/
+COPY --chmod=0755 git.sh /entrypoint.d/
 
 RUN <<EOF
 useradd --user-group --create-home --shell /bin/bash seat

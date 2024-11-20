@@ -1,6 +1,8 @@
 /.env.mk
 
+seats.env
 personal_access_tokens.json
+runner_token.json
 
 git_http_backend.auto.tf
 .terraform

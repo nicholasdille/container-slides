@@ -13,7 +13,7 @@ server {
 EOF
 
 # TODO: Use SEAT_COUNT
-for SEAT_INDEX in $(seq 1 21); do
+for SEAT_INDEX in $(seq 0 21); do
     mkdir -p "${WEB_ROOT}/seat${SEAT_INDEX}"
     var="SEAT${SEAT_INDEX}_PASS"
     SEAT_PASS="${!var}"
