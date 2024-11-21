@@ -117,7 +117,7 @@ job_name:
 
 ## Hands-On
 
-See chapter [Templates](/hands-on/2024-11-12/120_templates/exercise/)
+See chapter [Templates](/hands-on/2024-11-21/120_templates/exercise/)
 
 ---
 

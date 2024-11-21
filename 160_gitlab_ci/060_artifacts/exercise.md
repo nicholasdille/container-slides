@@ -77,7 +77,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     git checkout upstream/160_gitlab_ci/060_artifact -- '*'
     ```
 
-## Bonus 1: Define from which jobs to receive artifacts
+## Bonus task 1: Define from which jobs to receive artifacts
 
 Usually, artifacts are received from all jobs in the previous stages. Decide from which jobs to receive artifacts using the `dependencies` keyword. See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#dependencies).
 
@@ -128,7 +128,7 @@ Modify the job `test` to consume artifacts only from the job `build`.
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
 
-## Bonus 2: Passing environment variables
+## Bonus task 2: Passing environment variables
 
 In some situations, artifacts are to heavy-weight and passing a variable would be enough. Read the documentation for [passing environment variables](https://docs.gitlab.com/ee/ci/variables/index.html#pass-an-environment-variable-to-another-job) and implement this between two jobs of your choice.
 

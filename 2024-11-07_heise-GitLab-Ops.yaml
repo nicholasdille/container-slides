@@ -57,6 +57,7 @@ slides:
 - 150_gitlab/165_pages/slides.md
 - 150_gitlab/170_monitoring/slides.md
 - 150_gitlab/180_components/slides.md
+- 150_gitlab/182_iac/slides.md
 - 150_gitlab/185_storage/slides.md
 - 150_gitlab/190_database/slides.md
 - 150_gitlab/200_enterprise/slides.md

@@ -63,7 +63,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 Cleanup commands can be move to `after_script` ([official documentation](https://docs.gitlab.com/ee/ci/yaml/#after_script)) but we have no use for this in the current example.
 
-## Bonus 1: When `after_script` is executed
+## Bonus task 1: When `after_script` is executed
 
 Add commands to all three script block `before_script`, `script` and `after_script`. Test two scenarios:
 
@@ -77,7 +77,7 @@ What happens to the code in `after_script`?
 
     This can be very useful for cleaning up.
 
-## Bonus 2: What happens to environment variables in script blocks?
+## Bonus task 2: What happens to environment variables in script blocks?
 
 Define environment variables in all three script blocks and display them in the same and in the following script block.
 

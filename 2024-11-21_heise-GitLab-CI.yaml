@@ -21,6 +21,8 @@ agenda:
   text: Learn to use GitLab as a developer
 - icon: graduation-cap
   text: Explore the features of GitLab
+- icon: copy
+  text: Don't repeat yourself
 - icon: recycle
   text: Make your work reusable
 

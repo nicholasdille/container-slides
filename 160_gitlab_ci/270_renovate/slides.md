@@ -46,7 +46,7 @@ Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.
 
 ### Hands-On
 
-See chapter [Renovate](/hands-on/2024-11-12/270_renovate/exercise/)
+See chapter [Renovate](/hands-on/2024-11-21/270_renovate/exercise/)
 
 ---
 

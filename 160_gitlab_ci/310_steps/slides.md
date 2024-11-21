@@ -57,4 +57,4 @@ Steps are easier to compose...
 
 ## Hands-On
 
-See chapter [CI/CD Steps](/hands-on/2024-11-12/310_steps/exercise/)
+See chapter [CI/CD Steps](/hands-on/2024-11-21/310_steps/exercise/)

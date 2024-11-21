@@ -56,7 +56,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     git checkout upstream/160_gitlab_ci/040_image -- '*'
     ```
 
-## Bonus: Test different images
+## Bonus task: Test different images
 
 Add a job to your pipeline to test different container images. Check how different images offer specialized execution environments:
 

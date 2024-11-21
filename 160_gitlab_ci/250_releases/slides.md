@@ -30,7 +30,7 @@ See official documentation [](https://docs.gitlab.com/ee/user/project/releases/r
 
 ## Hands-On
 
-See chapter [Releases](/hands-on/2024-11-12/250_releases/exercise/)
+See chapter [Releases](/hands-on/2024-11-21/250_releases/exercise/)
 
 ---
 

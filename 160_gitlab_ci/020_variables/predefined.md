@@ -12,4 +12,4 @@ Some help interacting with the GitLab server
 
 ### Hands-On
 
-See chapter [Variables](/hands-on/2024-11-12/020_variables/exercise/)
+See chapter [Variables](/hands-on/2024-11-21/020_variables/exercise/)

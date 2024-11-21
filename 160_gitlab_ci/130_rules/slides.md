@@ -78,7 +78,7 @@ Adjust order from most specific...
 
 ## Hands-On
 
-See chapter [Rules](/hands-on/2024-11-12/130_rules/exercise/)
+See chapter [Rules](/hands-on/2024-11-21/130_rules/exercise/)
 
 ---
 

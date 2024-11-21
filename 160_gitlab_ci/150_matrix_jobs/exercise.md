@@ -181,7 +181,7 @@ Test whether the following syntax for the inputs produces the same results in a 
       GOARCH: [ amd64, arm64 ]
 ```
 
-## Bonus: Check binaries for correct platform
+## Bonus task: Check binaries for correct platform
 
 Add another matrix job to check the target platform of the `hello` binaries:
 

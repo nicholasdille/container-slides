@@ -116,7 +116,7 @@ File must match `/\.ya?ml$/`
 
 ## Hands-On
 
-See chapter [Triggers](/hands-on/2024-11-12/110_triggers/exercise/)
+See chapter [Triggers](/hands-on/2024-11-21/110_triggers/exercise/)
 
 ---
 

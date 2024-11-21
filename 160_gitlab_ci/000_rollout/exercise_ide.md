@@ -4,6 +4,8 @@ You can follow this workshop in the IDE (Integrated Development Environment) of 
 
 A web-based instance of Visual Studio Code has been provisioned for you to follow this workshop.
 
+Why not the integrated web IDE, you ask? Because it does not support a terminal for security reasons.
+
 ## Task: Access your instance of Visual Studio Code
 
 1. Go to https://seatN.vscode.inmylab.de where `N` is a number.
