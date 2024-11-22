@@ -11,7 +11,7 @@ services:
       MYSQL_PASSWORD: "5upe4Secr3t!"
 
   web:
-    image: wordpress:6.6.2
+    image: wordpress:6.7.1
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_NAME: wordpress
