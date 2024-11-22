@@ -32,7 +32,3 @@
 - runner früher?
 - job timeout
 - hostregexp without {}, no hostregexp
-- CI_COMMIT_REF_SLUG
-- CI_PIPELINE_IID statt CI_PIPELINE_ID anzeigen
-- trigger token -> pipeline abfragen?
-- trigger token -> Text klarer

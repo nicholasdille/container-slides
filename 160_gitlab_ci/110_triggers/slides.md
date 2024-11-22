@@ -64,6 +64,10 @@ Trigger owner must be able to either...
 - Push to a branch
 - Merge into a branch
 
+### Fire and forget
+
+Unable to check pipeline status
+
 ---
 
 ## Multi-project pipelines
