@@ -9,7 +9,7 @@ packer {
 
 locals {
   gitlab_version = "17.5.1"
-  gitlab_runner_version = "17.5.1"
+  gitlab_runner_version = "17.5.2"
   traefik_version = "3.1.6"
   code_server_version = "4.93.1"
   nginx_version = "1.27.2"

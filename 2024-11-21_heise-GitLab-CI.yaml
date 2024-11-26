@@ -27,6 +27,7 @@ agenda:
   text: Make your work reusable
 
 slides:
+- 000_introduction/heise_academy_housekeeping.md
 - 000_introduction/who_are_you.md
 - 160_gitlab_ci/agenda.md
 - 160_gitlab_ci/devops.md

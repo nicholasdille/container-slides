@@ -16,7 +16,6 @@
 - rule to parse commit message?
 - YAML indentation?
 - Variable precedence!
-- profile avatar for nicholasdille?
 - Runner image -> Bild (no image -> default, with image -> hub)
 - `dependencies` for artifacts
 - `needs` for job order
@@ -25,10 +24,8 @@
 - pipelines multiple branches, changes in pipeline
 - remove pipelines without commit (after rebase)
 - artifacts across projects https://docs.gitlab.com/ee/ci/yaml/#needsproject
-- no personal projects?!
 - most recent artifacts https://gitlab.inmylab.de/help/ci/jobs/job_artifacts.md#keep-artifacts-from-most-recent-successful-jobs
 - randomize cron start?
-- git shallow 20
 - runner früher?
 - job timeout
 - hostregexp without {}, no hostregexp

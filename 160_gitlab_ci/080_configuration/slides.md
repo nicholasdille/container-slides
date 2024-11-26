@@ -16,6 +16,8 @@ Git strategy is not relevant for executors like Docker and Kubernetes
 
 Get badges for pipelines status, coverage report and the latest release
 
+Shallow clones with 20 depth
+
 ### Auto DevOps
 
 Auto DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
