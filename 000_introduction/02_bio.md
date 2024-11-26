@@ -16,7 +16,7 @@
 
 <!-- .element: class="fa-ul" style="line-height: 175%;" -->
 
-*Reach out via* [<i class="fa-brands fa-mastodon"></i>][7] [<i class="fa-brands fa-bluesky"></i>][8] [<i class="fa-brands fa-github"></i>][9]
+*Reach out via* [<i class="fa-brands fa-linkedin"></i>][10] [<i class="fa-brands fa-mastodon"></i>][7]  [<i class="fa-brands fa-bluesky"></i>][8] [<i class="fa-brands fa-github"></i>][9]
 
 [1]: https://dille.name
 [2]: https://dille.name/blog/tags/#Slides
@@ -27,3 +27,4 @@
 [7]: https://freiburg.social/@nicholasdille
 [8]: https://bsky.app/profile/nicholasdille.bsky.social
 [9]: https://github.com/nicholasdille
+[10]: https://www.linkedin.com/in/nicholasdille/

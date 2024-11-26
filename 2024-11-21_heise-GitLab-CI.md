@@ -1,7 +1,5 @@
 # Notes 20241121
 
-- Bio: LinkedIn
-- Housekeeping?!
 - Umfragen
   - Erfahrung mit CI/CD?
   - GitLab im Einsatz?
