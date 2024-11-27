@@ -112,7 +112,7 @@ markdown_extensions:
 nav:
 - Home: index.md
 - Navigation: navigation.md
-- Preparation:
+- Introduction:
   - GitLab: 000_rollout/exercise_gitlab.md
   - IDE: 000_rollout/exercise_ide.md
   - Project: 000_rollout/exercise_project.md

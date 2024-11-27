@@ -93,12 +93,12 @@ services:
       # Pages
       traefik.http.services.pages.loadbalancer.server.port: 8090
       traefik.http.routers.pages.entrypoints: http
-      traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN}`)
+      traefik.http.routers.pages.rule: HostRegexp(`.+\.gitlab\.${DOMAIN}`)
       traefik.http.routers.pages.service: pages
       # Registry
       traefik.http.services.registry.loadbalancer.server.port: 5000
       traefik.http.routers.registry.entrypoints: http
-      traefik.http.routers.registry.rule: HostRegexp(`gitlab.${DOMAIN}`) && PathPrefix(`/v2`)
+      traefik.http.routers.registry.rule: Host(`gitlab.${DOMAIN}`) && PathPrefix(`/v2`)
       traefik.http.routers.registry.service: registry
       # SSH
       traefik.tcp.services.ssh.loadbalancer.server.port: 22

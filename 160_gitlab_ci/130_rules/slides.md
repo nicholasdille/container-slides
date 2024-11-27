@@ -117,3 +117,19 @@ Rules not only control execution of jobs but can also configure jobs through the
 - Make a job dependent on other jobs using `needs` [](https://docs.gitlab.com/ee/ci/yaml/#rulesneeds)
 
 Rules become especially powerful when combining the fields supported by rules - including `if`
+
+--
+
+## Pro tip: Avoid pipeline on push
+
+Pipelines can be skipped by adding `[skip ci]` to the commit message
+
+But GitLab still shows a skipped pipelines
+
+Use a rule to avoid pipelines entirely:
+
+```
+my_job:
+  rules:
+  - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_TITLE =~ /skip ci/i
+    when: never

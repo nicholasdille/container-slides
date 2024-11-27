@@ -16,9 +16,25 @@ Extensive configuration [](https://docs.gitlab.com/runner/configuration/advanced
 
 Executors interface with infrastructure
 
+XXX
+
+---
+
+## Runners
+
 ### Shell
 
 Jobs are executed in the context of the runner
+
+### Upsides <i class="fa-duotone fa-solid fa-thumbs-up"></i>
+
+No infrastructure requirements
+
+### Downsides <i class="fa-duotone fa-solid fa-thumbs-down"></i>
+
+Jobs use the same execution environment
+
+Pollution by job commands
 
 ---
 

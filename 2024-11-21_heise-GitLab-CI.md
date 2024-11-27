@@ -5,25 +5,8 @@
   - GitLab im Einsatz?
   - GitLab CI im Einsatz?
 - "Don't repeat yourself"
-- Disable trust in vscode
-- code: seat0?!
-- code: Mehr Text
 - Kein SSH notwendig
-- Flow verbessern: Demo Env -> code -> hands-on
-- Umgang git/vscode?!
-- rule to parse commit message?
-- YAML indentation?
 - Variable precedence!
-- Runner image -> Bild (no image -> default, with image -> hub)
-- `dependencies` for artifacts
-- `needs` for job order
-- clone across projects https://gitlab.inmylab.de/help/ci/jobs/ci_job_token#control-job-token-access-to-your-project
-- dotenv across projects?! quick test failed
-- pipelines multiple branches, changes in pipeline
 - remove pipelines without commit (after rebase)
-- artifacts across projects https://docs.gitlab.com/ee/ci/yaml/#needsproject
-- most recent artifacts https://gitlab.inmylab.de/help/ci/jobs/job_artifacts.md#keep-artifacts-from-most-recent-successful-jobs
-- randomize cron start?
-- runner früher?
-- job timeout
-- hostregexp without {}, no hostregexp
+- "pro tip"
+- protected branches https://docs.gitlab.com/ee/ci/pipelines/#pipeline-security-on-protected-branches

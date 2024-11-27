@@ -78,7 +78,7 @@ job_name2:
   script: echo "${FOO}"
 ```
 
-`dependencies` as well as `needs` limit from which jobs they are consumed
+`dependencies` limits from which jobs artifacts are consumed
 
 ---
 
@@ -105,3 +105,13 @@ Can be configured...
 When two jobs produce an artifact with the same name...
 
 ...the last job to finish wins
+
+---
+
+## Artifact retention
+
+Defaults to keep artifacts from most recent successful jobs
+- Project settings [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts.html#keep-artifacts-from-most-recent-successful-jobs)
+- Instance settings [](https://docs.gitlab.com/ee/administration/settings/continuous_integration.html#keep-the-latest-artifacts-for-all-jobs-in-the-latest-successful-pipelines)
+
+If enabled, `expire_in` does not apply to most recent artifacts

@@ -77,3 +77,11 @@ Wait for quality gates:
 ```bash
 sonar-scanner -Dsonar.qualitygate.wait=true
 ```
+
+---
+
+## Pro tip: Pipelines and multiple branches
+
+Pipeline is executed from `.gitlab-ci.yml` in the branch
+
+Test changes to pipeline in a branch

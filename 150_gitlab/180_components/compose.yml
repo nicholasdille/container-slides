@@ -65,11 +65,11 @@ services:
       traefik.http.routers.www.service: www
       traefik.http.services.pages.loadbalancer.server.port: 8090
       traefik.http.routers.pages.entrypoints: http
-      traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostRegexp(`{subdomain:.+}gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.http.routers.pages.rule: Host(`.+\.gitlab\.${DOMAIN:?You must supply DOMAIN}`) || HostRegexp(`.+\.gitlab\.${IP:?You must supply IP}.nip.io`)
       traefik.http.routers.pages.service: pages
       traefik.tcp.services.ssh.loadbalancer.server.port: 2222
       traefik.tcp.routers.ssh.entrypoints: ssh
-      traefik.tcp.routers.ssh.rule: HostSNI(`gitlab.${DOMAIN:?You must supply DOMAIN}`) || HostSNI(`gitlab.${IP:?You must supply IP}.nip.io`)
+      traefik.tcp.routers.ssh.rule: HostSNI(`*`) || HostSNI(`*`)
       traefik.tcp.routers.ssh.service: ssh
 
   db:

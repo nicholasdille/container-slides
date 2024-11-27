@@ -229,8 +229,6 @@ deploy:
   trigger:
     include:
     - local: path/to/child-pipeline.yml
-  variables:
-    PARENT_PIPELINE_ID: $CI_PIPELINE_ID
 ```
 
 <!-- .element: style="float: left; font-size: 0.7em; width: 35em;" -->
@@ -240,7 +238,7 @@ test:
   stage: test
   script: cat artifact.txt
   needs:
-  - pipeline: $PARENT_PIPELINE_ID
+  - pipeline: $UPSTREAM_PIPELINE_ID
     job: build_artifacts
 ```
 <!-- .element: style="float: right; font-size: 0.7em; width: 25em;" -->
@@ -264,3 +262,15 @@ trigger-job:
     include:
     - local: path/to/child-pipeline.yml
 ```
+
+---
+
+## Pro tip 6: Artifacts across projects
+
+Fetch artifacts from another project using `needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts) :sad:
+
+Use `needs:pipeline:job` [](https://docs.gitlab.com/ee/ci/yaml/index.html#needspipelinejob) for parent-child pipelines [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#parent-child-pipelines)
+
+XXX permissions
+
+dotenv is not an artifact - it only works in the same project

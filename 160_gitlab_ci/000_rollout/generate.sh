@@ -82,6 +82,6 @@ fi
 cat seats.json \
 | jq --raw-output '
         .seats[] |
-        "\nHost code.inmylab.de\nUser seat\(.index)\nCode \(.code)"
+        "\nUser seat\(.index)\nCode \(.code)"
     ' \
 >seats.txt

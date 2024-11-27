@@ -34,7 +34,7 @@ job2:
 
 ---
 
-## Job dependencies 2/2
+## Job dependencies 2/
 
 Depend on a job but do not consume artifacts [](https://docs.gitlab.com/ee/ci/yaml/#needsartifacts):
 
@@ -57,6 +57,24 @@ job_name:
   - pipeline: $PARENT_PIPELINE_ID
     job: create-artifact
 ```
+
+---
+
+## Job dependencies 3/3
+
+Why `dependencies` and `needs`?
+
+### `dependencies`
+
+Has been around longer
+
+Only intended for artifacts
+
+### `needs`
+
+Handles job execution order
+
+Can be used for artifacts
 
 ---
 

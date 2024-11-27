@@ -14,6 +14,66 @@ Pipelines are described in YAML [](https://yaml.org/)
 
 Pipelines are stored in `.gitlab-ci.yml`
 
+--
+
+## YAML (YAML Ain't Markup Language)
+
+Human-readable data serialization format
+
+1. Fields:
+
+  ```yaml
+  key: value
+  ```
+
+1. Lists:
+
+  ```yaml
+  key:
+  - value1
+  - value2
+  ```
+
+1. Hash arrays:
+
+  ```yaml
+  key:
+    subkey1: value1
+    subkey2: value2
+  ```
+
+--
+
+## YAML Example
+
+```yaml
+# Commends are allowed
+firstname: Nicholas
+lastname: Dille
+# Hash array keys are indented
+# YAML usually uses two spaces for indentation
+contact:
+  email: you@wish.dev
+  linkedin: https://www.linkedin.com/in/nicholasdille
+  bsky: https://bsky.app/profile/nicholas.dille.name
+
+# Empty lines are allowed
+web:
+- title: Blog
+  link: https://dille.name
+- title: GitHub
+  link: https://github.com/nicholasdille
+- title: GitLab
+  link: https://gitlab.com/nicholasdille
+
+# Array elements may be indented
+# You must be consistent in one array
+projects:
+  - name: uniget
+    homepage: https://uniget.dev
+    code: https://gitlab.com/uniget-org
+```
+
 ---
 
 ## Jobs

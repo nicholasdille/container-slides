@@ -35,6 +35,7 @@ RUN <<EOF
 useradd --user-group --create-home --shell /bin/bash seat
 EOF
 USER seat
+COPY settings.json /home/seat/.local/share/code-server/User/
 WORKDIR /home/seat/demo
 
 # https://open-vsx.org/
