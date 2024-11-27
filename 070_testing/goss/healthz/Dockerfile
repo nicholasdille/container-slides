@@ -1,6 +1,6 @@
 FROM aelsabbahy/goss:v0.3.16 as goss
 
-FROM nginx:1.27.2
+FROM nginx:1.27.3
 
 # Copy binaries
 COPY --from=goss /goss /goss

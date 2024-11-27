@@ -38,7 +38,7 @@ default:
   image: golang:1.23.2
 
 services:
-- nginx:1.27.2
+- nginx:1.27.3
 
 renovate:
   stage: check
