@@ -5,7 +5,7 @@ services:
 
   prometheus:
     # https://hub.docker.com/r/prom/prometheus/tags
-    image: prom/prometheus:v2.54.1
+    image: prom/prometheus:v3.0.1
     container_name: prometheus
     ports:
     - 9090:9090
