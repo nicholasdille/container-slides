@@ -267,7 +267,7 @@ trigger-job:
 
 ## Pro tip 6: Artifacts across projects
 
-Fetch artifacts from another project using `needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts) :sad:
+Fetch artifacts from another project using `needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
 
 Use `needs:pipeline:job` [](https://docs.gitlab.com/ee/ci/yaml/index.html#needspipelinejob) for parent-child pipelines [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#parent-child-pipelines)
 

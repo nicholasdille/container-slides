@@ -64,7 +64,7 @@ workflow:
 
 ---
 
-## Pro tip: Mind the order
+## Pro tip 1: Mind the order
 
 Rules are evaluated in-order
 
@@ -82,7 +82,7 @@ See chapter [Rules](/hands-on/2024-11-21/130_rules/exercise/)
 
 ---
 
-## Pro tip: Use CI_DEPLOY_FREEZE with rules
+## Pro tip 2: Use CI_DEPLOY_FREEZE with rules
 
 Disable pipeline:
 
@@ -107,7 +107,7 @@ Template to disable job:
 
 ---
 
-## Pro tip: Fields for rules
+## Pro tip 3: Fields for rules
 
 Rules not only control execution of jobs but can also configure jobs through the use of the following fields:
 
@@ -120,7 +120,7 @@ Rules become especially powerful when combining the fields supported by rules - 
 
 --
 
-## Pro tip: Avoid pipeline on push
+## Pro tip 4: Avoid pipeline on push
 
 Pipelines can be skipped by adding `[skip ci]` to the commit message
 

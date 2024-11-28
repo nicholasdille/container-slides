@@ -121,7 +121,7 @@ See chapter [Templates](/hands-on/2024-11-21/120_templates/exercise/)
 
 ---
 
-## Pro tip: Multiple inheritence
+## Pro tip 1: Multiple inheritence
 
 Jobs can inherit from multiple templates
 

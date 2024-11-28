@@ -26,11 +26,13 @@ The order from lowest to highest precedence is:
 - Scan execution policy variables [](https://docs.gitlab.com/ee/user/application_security/policies/scan_execution_policies.html)
 - Pipeline execution policy variables [](https://docs.gitlab.com/ee/user/application_security/policies/pipeline_execution_policies.html#cicd-variables)
 
+<!-- .element: style="font-size: smaller" -->
+
 ---
 
 ## More about pipeline variables
 
-XXX pipeline variables [](https://docs.gitlab.com/ee/ci/variables/#use-pipeline-variables)
+Variables that are passed when starting a pipeline [](https://docs.gitlab.com/ee/ci/variables/#use-pipeline-variables)
 
 They have the same precedence:
 

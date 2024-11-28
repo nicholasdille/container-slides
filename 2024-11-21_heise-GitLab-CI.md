@@ -6,7 +6,40 @@
   - GitLab CI im Einsatz?
 - "Don't repeat yourself"
 - Kein SSH notwendig
-- Variable precedence!
 - remove pipelines without commit (after rebase)
-- "pro tip"
+- permissions and roles https://docs.gitlab.com/ee/user/permissions.html
 - protected branches https://docs.gitlab.com/ee/ci/pipelines/#pipeline-security-on-protected-branches
+- Runner früher? :-D
+- trigger task 2: better reference to task 1
+- trigger dependent projects before my own build
+- short trigger for multi-project pipeline (trigger: myproject)
+- triggers/artifacts: order of tips
+- trigger:include:artifact mit fremdem Projekt
+- Dhall?! https://dhall-lang.org
+  - https://github.com/dhall-lang/awesome-dhall
+- trigger:formward (yaml_variables, pipeline_variables) https://docs.gitlab.com/ee/ci/yaml/#triggerforward
+- two columns WITH HEADINGS
+- template vars conflict
+- multiple inheritence
+- .go-build with image and artifacts!
+- pipeline editor
+- main, dev, live :confused:
+- tempolates: versioning, multiple templates per repo, v1.0.0/v1/sha
+- multiple iheritence for docker
+- template: add artifacts
+- rules: improve example
+- rules: AND in exercise
+- rules: quotes
+- rules: workflow freeze when manual invalid
+- rules: no MR event
+- MR: icons for branch/MR pipeline
+- MR: rule templates after hands-on
+- merged results pipeline PREMIUM https://docs.gitlab.com/ee/ci/pipelines/merged_results_pipelines.html
+- compose: make variables mandatory
+- pages: public by default
+  - enable access control per project: https://docs.gitlab.com/ee/user/project/pages/pages_access_control.html
+  - enable enabling access control per instance: https://docs.gitlab.com/ee/administration/pages/index.html#access-control
+- Agenda: Secure files missing
+- overwridden
+- components: image too early
+- https://www.google.com/search?q=terraform+backends+local+state+deprecated

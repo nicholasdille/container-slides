@@ -16,7 +16,7 @@ See chapter [Variables](/hands-on/2024-11-21/020_variables/exercise/)
 
 ---
 
-## Pro tip: Masked variables for all values
+## Pro tip 1: Masked variables for all values
 
 Many values are rejected by GitLab
 

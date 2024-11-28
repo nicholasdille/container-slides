@@ -253,7 +253,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Task 3: Use deploy freeze
 
-Projects can define a [deploy freeze](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze) to prevent pipelines to run but the settings only results in an environment varialbe `$CI_DEPLOY_FREEZE`. Rules as well as workflow rules can be used to enforce deploy freezes.
+Projects can define a [deploy freeze](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze) to prevent pipelines to run but the settings only results in an environment variable `$CI_DEPLOY_FREEZE`. Rules as well as workflow rules can be used to enforce deploy freezes.
 
 Modify the pipeline to prevent the execution when `$CI_DEPLOY_FREEZE` is not empty.
 

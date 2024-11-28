@@ -18,7 +18,7 @@ Pipelines are stored in `.gitlab-ci.yml`
 
 ## YAML (YAML Ain't Markup Language)
 
-Human-readable data serialization format
+Human-readable data serialization format [](https://yaml.org/)
 
 1. Fields:
 
@@ -74,6 +74,40 @@ projects:
     code: https://gitlab.com/uniget-org
 ```
 
+---
+
+## YAML to JSON
+
+```yaml
+top:
+- item1: value1
+- item2:
+    subitem1: value2
+    subitem2: value3
+- item3: value
+  subitem1: value4
+```
+
+```json
+{
+  "top:" [
+    { "item1": "value1" },
+    { "item2": { "subitem1": "value2", "subitem2": "value3" } },
+    { "item3": "value", "subitem1": "value4" }
+  ]
+}
+```
+
+---
+
+## Tools for YAML/JSON
+
+- JSON query `jq` [](https://github.com/jqlang/jq)
+- JSON viewer `jless` [](https://jless.io)
+- YAML query `yq` [](https://github.com/mikefarah/yq)
+- Linter
+  - `yamllint` [](https://github.com/adrienverge/yamllint)
+  - Spectral by Stoplight [](https://stoplight.io/spectral)
 ---
 
 ## Jobs

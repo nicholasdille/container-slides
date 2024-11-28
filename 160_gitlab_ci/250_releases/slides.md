@@ -34,7 +34,7 @@ See chapter [Releases](/hands-on/2024-11-21/250_releases/exercise/)
 
 ---
 
-## Pro tip: Publish asset in package registry 1/
+## Pro tip 1: Publish asset in package registry 1/
 
 Release binaries can be published to generic package registry [](https://docs.gitlab.com/ee/user/packages/generic_packages/)
 
@@ -44,7 +44,7 @@ Use `$CI_JOB_TOKEN` to authenticate
 
 ---
 
-## Pro tip: Publish asset in package registry 2/2
+## Pro tip 2: Publish asset in package registry 2/2
 
 ### Upload a file
 

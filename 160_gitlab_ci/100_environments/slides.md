@@ -30,7 +30,7 @@ See chapter [Environments](/hands-on/2024-11-21/100_environments/exercise/)
 
 ---
 
-## Pro tip
+## Pro tip 1
 
 Branches can be used to represent target environments:
 
@@ -39,7 +39,7 @@ Branches can be used to represent target environments:
 
 ---
 
-## Pro tip: Disposable environments
+## Pro tip 2: Disposable environments
 
 Additonal use of environments: disposable review apps
 
