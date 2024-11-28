@@ -20,7 +20,7 @@
 
 ### Advanced
 
-[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_triggers) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs)
+[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_triggers) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs) - [Variable precedence](#/gitlab_var_precedence)
 
 ### Expert
 

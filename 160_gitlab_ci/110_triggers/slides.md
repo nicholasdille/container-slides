@@ -271,6 +271,12 @@ Fetch artifacts from another project using `needs:project` [](https://docs.gitla
 
 Use `needs:pipeline:job` [](https://docs.gitlab.com/ee/ci/yaml/index.html#needspipelinejob) for parent-child pipelines [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#parent-child-pipelines)
 
-XXX permissions
+Mind access leven and permissions for the triggering user
 
-dotenv is not an artifact - it only works in the same project
+Also mind the project allowlist for job tokens
+
+### dotenv
+
+It only works in the same project [](https://docs.gitlab.com/ee/ci/variables/#control-which-jobs-receive-dotenv-variables)
+
+Keywords `dependencies` and `needs` are supported

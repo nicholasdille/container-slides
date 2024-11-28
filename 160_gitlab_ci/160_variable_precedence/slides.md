@@ -8,24 +8,37 @@
 
 ## Variable precedence
 
-XXX [](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence)
+Variables con be defined on many different levels
 
-XXX instance-wide CI/CD variables
+GitLab has documented the precedence of variables [](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence)
 
-XXX group-wide CI/CD variables
+The order from lowest to highest precedence is:
 
-XXX project CI/CD variables
+- Predefined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
+- Deployment variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#deployment-variables)
+- Global variables in `.gitlab-ci.yml` (including workflow rules)
+- Job variables in `.gitlab-ci.yml` (after template and rule resolution)
+- Variables from `dotenv` reports [](https://docs.gitlab.com/ee/ci/variables/#pass-an-environment-variable-to-another-job)
+- Instance variables [](https://docs.gitlab.com/ee/ci/variables/#for-an-instance)
+- Group variables [](https://docs.gitlab.com/ee/ci/variables/#for-a-group)
+- Project variables [](https://docs.gitlab.com/ee/ci/variables/#for-a-project)
+- Pipeline variables (more on next slide)
+- Scan execution policy variables [](https://docs.gitlab.com/ee/user/application_security/policies/scan_execution_policies.html)
+- Pipeline execution policy variables [](https://docs.gitlab.com/ee/user/application_security/policies/pipeline_execution_policies.html#cicd-variables)
 
-XXX pipeline trigger variables (web)
+---
 
-XXX pipeline trigger variables (API)
+## More about pipeline variables
 
-XXX yaml global
+XXX pipeline variables [](https://docs.gitlab.com/ee/ci/variables/#use-pipeline-variables)
 
-XXX yaml job
+They have the same precedence:
 
-XXX template
+- Manual job variables [](https://docs.gitlab.com/ee/ci/jobs/index.html#specifying-variables-when-running-manual-jobs)
+- Creating a pipeline trough the API [](https://docs.gitlab.com/ee/api/pipelines.html#create-a-new-pipeline)
+- Manual pipeline run [](https://docs.gitlab.com/ee/ci/pipelines/index.html#run-a-pipeline-manually)
+- Scheduled pipeline variables [](https://docs.gitlab.com/ee/ci/pipelines/schedules.html#add-a-pipeline-schedule)
+- Trigger variables [](https://docs.gitlab.com/ee/ci/triggers/index.html#pass-cicd-variables-in-the-api-call)
+- Variables passed downstream [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
 
-XXX rule
-
-XXX dotenv
+Only one is possible at a time
