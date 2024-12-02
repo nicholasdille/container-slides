@@ -92,12 +92,14 @@ The following pipeline... result in the following job:
   image: alpine
   variables:
     foo: bar
+    my_var: my_val
   script: pwd
 
 job_name:
   extends: .template
   variables:
     bar: baz
+    my_var: also_my_val
 ```
 
 <!-- .element: style="float: left; width: 25em;" -->
@@ -108,6 +110,7 @@ job_name:
   variables:
     foo: bar
     bar: baz
+    my_var: also_my_val
   script: pwd
 ```
 
@@ -174,7 +177,31 @@ job_name:
 
 ---
 
-## Pro tip 3: Public Template Library
+## Pro tip 3: Organizing templates in repositories
+
+Once you are hooked on templates, you want to organize them in a repository
+
+### Versioning
+
+Use tags and releases to mark versions
+
+### Single repository
+
+Easy to find/browse, hard to version
+
+Apply separate versioning: docker/v1.0.0, helm/v1.0.2, k8s/v1.2.0
+
+### Repository per topic
+
+Separation of concerns
+
+Harder to find/browse, easier to version
+
+Create versions separately
+
+---
+
+## Pro tip 4: Public Template Library
 
 Project to help building professional pipelines [](https://to-be-continuous.gitlab.io/doc/)
 

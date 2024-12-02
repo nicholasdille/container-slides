@@ -78,7 +78,17 @@ Launch pipeline in separate project [](https://docs.gitlab.com/ee/ci/pipelines/m
 
 Use the `trigger` keyword [](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger)
 
-### Example
+### Examples
+
+Trigger a pipeline in another project:
+
+```yaml
+job_name:
+  trigger:
+    project: <path-to-project>
+```
+
+Specify the branch to use:
 
 ```yaml
 job_name:
@@ -86,8 +96,6 @@ job_name:
     project: <path-to-project>
     branch: main
 ```
-
-`trigger.branch` is optional
 
 ---
 
@@ -124,32 +132,6 @@ See chapter [Triggers](/hands-on/2024-11-21/110_triggers/exercise/)
 
 ---
 
-## Pro tip 1: Variable inheritence
-
-Downstream pipelines inherit some variables [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
-
-Job variables are passed on unless:
-
-```yaml
-job_name:
-  inherit:
-    variables: false
-```
-
-Predefined variables must be redefined as job variables:
-
-```yaml
-job_name:
-  variables:
-    my_var: ${CI_COMMIT_REF_NAME}
-  trigger:
-    #...
-```
-
-Do not redefined masked variables - **they will not be masked**
-
----
-
 ## Pro tip 2: Wait for downstream pipeline
 
 Upstream pipeline only waits for successful trigger
@@ -163,52 +145,11 @@ job_name:
     strategy: depend
 ```
 
----
-
-## Pro tip 3: Permissions for include
-
-When including a file from another project...
-
-```yaml
-job_name:
-  trigger:
-    include:
-    - project: <path-to-project>
-      ref: main
-      file: <relative-path-to-file>
-```
-
-...the user must have the permission to run a pipeline in the other project
+Useful when triggering the pipeline of a dependency
 
 ---
 
-## Dynamic includes
-
-Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
-
-```yaml
-generate:
-  script:
-  - |
-    cat <<EOF >child.yaml
-    test:
-      script:
-      - printenv
-    EOF
-  artifacts:
-    paths:
-    - child.yaml
-
-use:
-  trigger:
-    include:
-    - artifact: child.yaml
-      job: generate
-```
-
----
-
-## Pro tip 4: Artifacts from parent pipeline
+## Pro tip 1: Artifacts from parent pipeline
 
 <i class="fa-duotone fa-triangle-exclamation"></i> Requires Enterprise Edition Premium [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline)
 
@@ -243,9 +184,39 @@ test:
 ```
 <!-- .element: style="float: right; font-size: 0.7em; width: 25em;" -->
 
+This works for `dotenv` reports as well [](https://docs.gitlab.com/ee/ci/variables/#control-which-jobs-receive-dotenv-variables)
+
+`needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
+
 ---
 
-## Pro tip 5: Do not pass global variables
+## Pro tip 2: Variable inheritence
+
+Downstream pipelines inherit some variables [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
+
+Job variables are passed on unless:
+
+```yaml
+job_name:
+  inherit:
+    variables: false
+```
+
+Predefined variables must be redefined as job variables:
+
+```yaml
+job_name:
+  variables:
+    my_var: ${CI_COMMIT_REF_NAME}
+  trigger:
+    #...
+```
+
+Do not redefined masked variables - **they will not be masked**
+
+---
+
+## Pro tip 3: Do not pass global variables
 
 Only allow job variables to be passed to downstream pipelines:
 
@@ -265,18 +236,43 @@ trigger-job:
 
 ---
 
-## Pro tip 6: Artifacts across projects
+## Pro tip 4: Permissions for include
 
-Fetch artifacts from another project using `needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
+When including a file from another project...
 
-Use `needs:pipeline:job` [](https://docs.gitlab.com/ee/ci/yaml/index.html#needspipelinejob) for parent-child pipelines [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#parent-child-pipelines)
+```yaml
+job_name:
+  trigger:
+    include:
+    - project: <path-to-project>
+      ref: main
+      file: <relative-path-to-file>
+```
 
-Mind access leven and permissions for the triggering user
+...the user must have the permission to run a pipeline in the other project
 
-Also mind the project allowlist for job tokens
+---
 
-### dotenv
+## Pro tip 5: Dynamic includes
 
-It only works in the same project [](https://docs.gitlab.com/ee/ci/variables/#control-which-jobs-receive-dotenv-variables)
+Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
 
-Keywords `dependencies` and `needs` are supported
+```yaml
+generate:
+  script:
+  - |
+    cat <<EOF >child.yaml
+    test:
+      script:
+      - printenv
+    EOF
+  artifacts:
+    paths:
+    - child.yaml
+
+use:
+  trigger:
+    include:
+    - artifact: child.yaml
+      job: generate
+```
