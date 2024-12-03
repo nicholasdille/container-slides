@@ -35,7 +35,7 @@ stages:
 - trigger
 
 default:
-  image: golang:1.23.2
+  image: golang:1.23.3
 
 services:
 - nginx:1.27.3
