@@ -1,3 +1,13 @@
+## Questions
+
+### Do you have any experience with CI/CD?
+
+### Are you using GitLab?
+
+### Are you using GitLab CI?
+
+---
+
 ## Agenda
 
 | From  | To    | What                                                  |

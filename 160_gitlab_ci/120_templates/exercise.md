@@ -117,17 +117,7 @@ Move the template into a separate file `go.yaml` and use the [`include`](https:/
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    `go.yaml`:
-
-    ```yaml
-    .build-go:
-      script:
-      - |
-        go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
-            -o hello \
-            .
-    ```
+    Create the file `go.yaml` and move the template there. Use the `include` keyword to import the template.
 
 ??? example "Solution (Click if you are stuck)"
     `go.yaml`:

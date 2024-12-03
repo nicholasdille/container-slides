@@ -51,7 +51,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
-      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never
@@ -175,7 +174,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Bonus task: Create a template for building container images
 
-Similar to the template for building and testing Go, create a template for building container images including logging in to and out of a container registry.
+Similar to the template for building and testing Go, create a template for building container images including logging in and out of a container registry.
 
+<!-- TODO: use !reference -->
 <!-- TODO: multi-arch build -->
 <!-- TODO: rootless Docker -->

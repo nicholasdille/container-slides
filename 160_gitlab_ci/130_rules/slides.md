@@ -79,6 +79,9 @@ Adjust order from most specific...
 
 Use GitLab Pages to create a download page [](https://docs.gitlab.com/ee/user/project/pages/)
 
+- The job must be called `pages` [](https://docs.gitlab.com/ee/ci/yaml/#pages)
+- The must create an artifact from the directory called `public`
+
 See chapter [Rules](/hands-on/2024-11-21/130_rules/exercise/)
 
 ---
@@ -157,7 +160,17 @@ job_name:
 
 ---
 
-# Pro tip 5: GitLab Pages access control
+# Pro tip 5: Tweaking GitLab Pages
+
+The content directory can be configured using `pages:publish` [](https://docs.gitlab.com/ee/ci/yaml/#pagespublish)
+
+Premium/Ultimate: Deploy to a sub-directory `pages:pages.path_prefix` [](https://docs.gitlab.com/ee/ci/yaml/#pagespagespath_prefix)
+
+Premium/Ultimate: Expire a pages deployment `pages:pages.expire_in` [](https://docs.gitlab.com/ee/ci/yaml/#pagespagesexpire_in)
+
+---
+
+# Pro tip 6: GitLab Pages access control
 
 GitLab Pages are public by default
 

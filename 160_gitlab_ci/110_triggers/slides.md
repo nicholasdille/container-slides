@@ -236,7 +236,18 @@ trigger-job:
 
 ---
 
-## Pro tip 4: Permissions for include
+## Pro tip 4: Types of variables to forward
+
+Use `trigger:forward` [](https://docs.gitlab.com/ee/ci/yaml/#triggerforward) to define which types of variables to forward to downstream pipelines
+
+- `yaml_variables` - variables defined in the trigger job
+- `pipeline_variables` - variables passed to this pipeline [](https://docs.gitlab.com/ee/ci/variables/index.html#cicd-variable-precedence)
+
+This only works for the direct downstream pipeline
+
+---
+
+## Pro tip 5: Permissions for include
 
 When including a file from another project...
 
@@ -253,7 +264,7 @@ job_name:
 
 ---
 
-## Pro tip 5: Dynamic includes
+## Pro tip 6: Dynamic includes
 
 Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
 
