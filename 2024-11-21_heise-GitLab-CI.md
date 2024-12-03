@@ -7,8 +7,6 @@
 - "Don't repeat yourself"
 - Kein SSH notwendig
 - remove pipelines without commit (after rebase)
-- permissions and roles https://docs.gitlab.com/ee/user/permissions.html
-- protected branches https://docs.gitlab.com/ee/ci/pipelines/#pipeline-security-on-protected-branches
 - Runner früher? :-D
 - trigger:include:artifact mit fremdem Projekt
 - trigger:forward (yaml_variables, pipeline_variables) https://docs.gitlab.com/ee/ci/yaml/#triggerforward
