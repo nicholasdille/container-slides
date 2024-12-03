@@ -3,7 +3,7 @@
 services:
 
   kroki:
-    image: yuzutech/kroki:0.25.0
+    image: yuzutech/kroki:0.26.0
     environment:
       KROKI_BLOCKDIAG_HOST: blockdiag
       KROKI_MERMAID_HOST: mermaid
