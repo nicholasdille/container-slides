@@ -57,7 +57,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
 
-## Bonus: Start a job late
+## Bonus task: Start a job late
 
 If two jobs in the same stage should not be executed at the same time, the [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs) keyword can also delay a job until the dependencies are met. Modify the job `lint` so that it waits for the job `audit` to finish.
 

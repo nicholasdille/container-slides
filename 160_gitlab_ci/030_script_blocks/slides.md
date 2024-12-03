@@ -37,4 +37,4 @@ job_name:
 
 ## Hands-On
 
-See chapter [Scriptblocks](/hands-on/2024-11-12/030_script_blocks/exercise/)
+See chapter [Scriptblocks](/hands-on/2024-11-21/030_script_blocks/exercise/)

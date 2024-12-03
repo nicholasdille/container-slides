@@ -16,21 +16,27 @@ Git strategy is not relevant for executors like Docker and Kubernetes
 
 Get badges for pipelines status, coverage report and the latest release
 
+Shallow clones with 20 depth
+
+Job timeout defaults to 1h ...
+
+...but can be overridden in `.gitlab-ci.yml` using `timeout` [](https://docs.gitlab.com/ee/ci/yaml/#timeout)
+
 ### Auto DevOps
 
 Auto DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
-
-### Runners [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
-
-Connect specific runners
-
-Disable shared runners
 
 ---
 
 ## CI configuration 2/2
 
 More useful settings
+
+### Runners [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
+
+Connect specific runners
+
+Disable shared runners
 
 ### Deploy freezes
 

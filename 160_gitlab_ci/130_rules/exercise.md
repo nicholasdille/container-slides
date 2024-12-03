@@ -33,7 +33,7 @@ pages:
 
 Review the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword to limit the job `pages` to run when...
 
-- the pipeline was triggered by a push event
+- the pipeline was triggered by a push event AND
 - the change applied to the default branch
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
@@ -137,7 +137,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 Rules can also be placed under the global [`workflow`](https://docs.gitlab.com/ee/ci/yaml/#workflowrules) keyword to apply to the whole pipeline instead of individual jobs.
 
-Allow the pipeline to run for the triggers `push`, `merge_request_event`, `web`, `schedule` and `pipeline` and prevent the pipeline for triggers `api` and `trigger`.
+Allow the pipeline to run for the triggers `push`, `web`, `schedule` and `pipeline` and prevent the pipeline for triggers `api` and `trigger`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -159,7 +159,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
-      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never
@@ -253,7 +252,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Task 3: Use deploy freeze
 
-Projects can define a [deploy freeze](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze) to prevent pipelines to run but the settings only results in an environment varialbe `$CI_DEPLOY_FREEZE`. Rules as well as workflow rules can be used to enforce deploy freezes.
+Projects can define a [deploy freeze](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze) to prevent pipelines to run but the settings only results in an environment variable `$CI_DEPLOY_FREEZE`. Rules as well as workflow rules can be used to enforce deploy freezes.
 
 Modify the pipeline to prevent the execution when `$CI_DEPLOY_FREEZE` is not empty.
 
@@ -276,7 +275,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
-      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never

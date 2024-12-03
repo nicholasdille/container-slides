@@ -57,7 +57,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
-    image: gitlab/gitlab-ee:17.5.1-ee.0
+    image: gitlab/gitlab-ee:17.6.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -118,18 +118,18 @@ services:
       # Pages: redirection to HTTPS
       traefik.http.routers.pages.entrypoints: http
       traefik.http.routers.pages.middlewares: redirect-to-https
-      traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN}`)
+      traefik.http.routers.pages.rule: HostRegexp(`.+\.gitlab\.${DOMAIN}`)
       traefik.http.routers.pages.service: pages
       # Pages: unauthenticated endpoint
       traefik.http.routers.pages-s.entrypoints: https
-      traefik.http.routers.pages-s.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN}`)
+      traefik.http.routers.pages-s.rule: HostRegexp(`.+\.gitlab\.${DOMAIN}`)
       traefik.http.routers.pages-s.service: pages
       traefik.http.routers.pages-s.tls: "true"
       # Registry: service port
       traefik.http.services.registry.loadbalancer.server.port: 5000
       # Registry: Unauthenticated endpoint
       traefik.http.routers.registry-s.entrypoints: https
-      traefik.http.routers.registry-s.rule: HostRegexp(`gitlab.${DOMAIN}`) && PathPrefix(`/v2`)
+      traefik.http.routers.registry-s.rule: Host(`gitlab.${DOMAIN}`) && PathPrefix(`/v2`)
       traefik.http.routers.registry-s.service: registry
       traefik.http.routers.registry-s.tls: "true"
       # SSH: service port

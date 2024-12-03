@@ -20,8 +20,8 @@
 
 ### Advanced
 
-[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_triggers) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs)
+[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_triggers) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs) - [Variable precedence](#/gitlab_var_precedence)
 
 ### Expert
 
-[Job token](#/gitlab_job_token) - [Git Submodules](#/gitlab_git_submodules) - [Services](#/gitlab_services) - [docker build](#/gitlab_docker) - [Registries](#/gitlab_registries) - [Releases](#/gitlab_releases) - [Troubleshooting](#/gitlab_troubleshooting) - [Runners](#/gitlab_runners) - [Caches](#/gitlab_caches) - [RenovateBot](#/gitlab_renovate) - [Security](#/gitlab_security) - [CI/CD Components](#/gitlab_components) - [CI/CD Steps](#/gitlab_steps)
+[Roles and Permissions](#/gitlab_permissions) - [Job token](#/gitlab_job_token) - [Git Submodules](#/gitlab_git_submodules) - [Services](#/gitlab_services) - [docker build](#/gitlab_docker) - [Registries](#/gitlab_registries) - [Releases](#/gitlab_releases) - [Branch Protection](#/gitlab_branch_protection) - [Troubleshooting](#/gitlab_troubleshooting) - [Runners](#/gitlab_runners) - [Caches](#/gitlab_caches) - [RenovateBot](#/gitlab_renovate) - [Security](#/gitlab_security) - [CI/CD Components](#/gitlab_components) - [CI/CD Steps](#/gitlab_steps) - [Seccure Files](#/gitlab_secure_files)

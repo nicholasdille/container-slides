@@ -14,8 +14,8 @@ Pipelines can automatically test merge requests [](https://docs.gitlab.com/ee/ci
 
 Commits to a branch with a merge request cause multiple events:
 
-1. Push event to branch -> **branch pipeline**
-1. Merge request event -> **merge request pipeline**
+1. Push event to branch -> **branch pipeline** <i class="fa-duotone fa-solid fa-code-branch"></i>
+1. Merge request event -> **merge request pipeline** <i class="fa-duotone fa-solid fa-code-pull-request"></i>
 
 Use rules [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) to decide which jobs to run when
 
@@ -35,7 +35,13 @@ Do not have access to protected variables
 
 ---
 
-## Rule templates
+## Hands-On
+
+See chapter [Merge requests](/hands-on/2024-11-21/140_merge_requests/exercise/)
+
+---
+
+## Pro tip 1: Rule templates
 
 Pipelines often have many jobs
 
@@ -56,13 +62,7 @@ job_name:
 
 ---
 
-## Hands-On
-
-See chapter [Merge requests](/hands-on/2024-11-12/140_merge_requests/exercise/)
-
----
-
-## Integration with SonarQube
+## Pro tip 2: Integration with SonarQube
 
 ### Merge request decoration
 
@@ -77,3 +77,19 @@ Wait for quality gates:
 ```bash
 sonar-scanner -Dsonar.qualitygate.wait=true
 ```
+
+---
+
+## Pro tip 3: Pipelines and multiple branches
+
+Pipeline is executed from `.gitlab-ci.yml` in the branch
+
+Test changes to pipeline in a branch
+
+---
+
+## Pro tip 4: Merged results pipelines
+
+Runs after a merge [](https://docs.gitlab.com/ee/ci/pipelines/merged_results_pipelines.html)
+
+Only available in Premium subscription

@@ -1,50 +1,47 @@
 provider "gitlab" {
   base_url = "https://gitlab.${local.domain}/api/v4/"
-  token = var.gitlab_token
+  token    = var.gitlab_token
 }
 
 provider "grafana" {
-  url = "https://grafana.${local.domain}"
+  url  = "https://grafana.${local.domain}"
   auth = "admin:${local.grafana_password}"
 }
 
 resource "gitlab_application_settings" "settings" {
-  auto_devops_enabled = false
-  default_group_visibility = "internal"
-  default_project_visibility = "internal"
-  restricted_visibility_levels = ["public"]
-  first_day_of_week = 1
+  auto_devops_enabled                  = false
+  default_group_visibility             = "internal"
+  default_project_visibility           = "internal"
+  restricted_visibility_levels         = ["public"]
+  first_day_of_week                    = 1
   require_personal_access_token_expiry = true
-  signup_enabled = false
-  #terms = ""
-  usage_ping_enabled = false
+  signup_enabled                       = false
+  usage_ping_enabled                   = false
 }
 
 resource "gitlab_application" "grafana" {
   confidential = true
   scopes       = ["openid", "email", "profile"]
   name         = "grafana"
-  #redirect_url = "https://grafana.${local.domain}/login/gitlab"
   redirect_url = "https://grafana.${local.domain}/login/generic_oauth"
 }
 
 resource "grafana_sso_settings" "gitlab" {
-  #provider_name = "gitlab"
   provider_name = "generic_oauth"
   oauth2_settings {
-    name                  = "Gitlab"
-    auth_url              = "https://gitlab.${local.domain}/oauth/authorize"
-    token_url             = "https://gitlab.${local.domain}/oauth/token"
-    api_url               = "https://gitlab.${local.domain}/api/v4"
-    client_id             = gitlab_application.grafana.application_id
-    client_secret         = gitlab_application.grafana.secret
-    allow_sign_up         = true
+    name                       = "Gitlab"
+    auth_url                   = "https://gitlab.${local.domain}/oauth/authorize"
+    token_url                  = "https://gitlab.${local.domain}/oauth/token"
+    api_url                    = "https://gitlab.${local.domain}/api/v4"
+    client_id                  = gitlab_application.grafana.application_id
+    client_secret              = gitlab_application.grafana.secret
+    allow_sign_up              = true
     allow_assign_grafana_admin = true
-    auto_login            = false
-    scopes                = "openid email profile"
-    org_mapping           = "root:*:Admin,*:*:Viewer"
-    org_attribute_path    = "info.roles"
-    use_refresh_token     = true
+    auto_login                 = false
+    scopes                     = "openid email profile"
+    org_mapping                = "root:*:Admin,*:*:Viewer"
+    org_attribute_path         = "info.roles"
+    use_refresh_token          = true
   }
 }
 
@@ -130,6 +127,7 @@ resource "gitlab_user" "seats" {
   is_external       = false
   reset_password    = false
   skip_confirmation = true
+  projects_limit    = 100
 }
 
 resource "gitlab_personal_access_token" "seats_vscode" {

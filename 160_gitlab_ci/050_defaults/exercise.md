@@ -56,7 +56,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     git checkout upstream/160_gitlab_ci/050_default -- '*'
     ```
 
-## Bonus 1: Override defaults
+## Bonus task 1: Override defaults
 
 Jobs can still choose to use an image different from the default:
 
@@ -65,7 +65,7 @@ Jobs can still choose to use an image different from the default:
 1. Specify a different image
 1. Check out how the executation environment changes
 
-## Bonus 2: Default values for variables
+## Bonus task 2: Default values for variables
 
 See the official documentation for [`default`](https://docs.gitlab.com/ee/ci/yaml/#default) as well as [`variables`](https://docs.gitlab.com/ee/ci/yaml/#variables) and check how they are related.
 

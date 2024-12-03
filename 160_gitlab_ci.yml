@@ -20,10 +20,15 @@ exclude_docs: |
   000_rollout/.terraform/*
   000_rollout/seats.*
   000_rollout/*.sh
+  000_rollout/*.pkr.hcl
   000_rollout/*.tf
   000_rollout/server/*
   000_rollout/runner/*
   000_rollout/vscode/*
+  001_server/*
+  002_runner/*
+  003_vscode/*
+  009_local/*
   agenda.md
   devops.md
   final.md
@@ -107,7 +112,7 @@ markdown_extensions:
 nav:
 - Home: index.md
 - Navigation: navigation.md
-- Preparation:
+- Introduction:
   - GitLab: 000_rollout/exercise_gitlab.md
   - IDE: 000_rollout/exercise_ide.md
   - Project: 000_rollout/exercise_project.md
@@ -130,10 +135,13 @@ nav:
   - Merge Requests: 140_merge_requests/exercise.md
   - Matrix Jobs: 150_matrix_jobs/exercise.md
 - Expert:
+  - Roles and Permissions: 200_permissions/exercise.md
   - Services: 220_services/exercise.md
   - Docker: 230_docker/exercise.md
   - Registries: 240_registries/exercise.md
   - Releases: 250_releases/exercise.md
+  - Branch Protection: 252_branch_protection/exercise.md
+  - Troubleshooting: 255_troubleshooting/exercise.md
   - Caches: 265_caches/exercise.md
   - Renovate: 270_renovate/exercise.md
   - Security: 280_security/exercise.md

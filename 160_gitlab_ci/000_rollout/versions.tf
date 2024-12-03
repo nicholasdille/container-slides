@@ -3,7 +3,7 @@ terraform {
     hcloud = {
       # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs
       source = "hetznercloud/hcloud"
-      version = "1.48.1"
+      version = "1.49.1"
     }
     hetznerdns = {
       # https://registry.terraform.io/providers/timohirt/hetznerdns/latest/docs
@@ -12,7 +12,7 @@ terraform {
     }
     acme = {
       source  = "vancluever/acme"
-      version = "2.26.0"
+      version = "2.28.1"
     }
     remote = {
       source = "tenstad/remote"

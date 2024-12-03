@@ -28,11 +28,11 @@ Distributed with an S3-compatible backend (e.g. AWS S3 [](https://aws.amazon.com
 
 ### Hands-On
 
-See chapter [caches](/hands-on/2024-11-12/265_caches/exercise/)
+See chapter [caches](/hands-on/2024-11-21/265_caches/exercise/)
 
 ---
 
-## Pro tip: Clear the cache
+## Pro tip 1: Clear the cache
 
 Clear the cache [](https://docs.gitlab.com/ee/ci/caching/#clearing-the-cache) in two ways:
 

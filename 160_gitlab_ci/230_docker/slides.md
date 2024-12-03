@@ -25,7 +25,7 @@ job_name:
 
 ### Hands-On
 
-See chapter [docker build](/hands-on/2024-11-12/230_docker/exercise/)
+See chapter [docker build](/hands-on/2024-11-21/230_docker/exercise/)
 
 ---
 

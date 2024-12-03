@@ -7,13 +7,15 @@
     - consume pre-defined variables
     - add secrets in the UI
 
-## Task 1: Create a job variable
+## Preparation
 
-This exercise requires an updates version of our hello world program:
+This exercise requires an updated version of our hello world program:
 
 ```bash
 git checkout upstream/160_gitlab_ci/020_variables/inline -- main.go
 ```
+
+## Task 1: Create a job variable
 
 Add a variable called `version` to the job called `build` and modify the build command as follows:
 
@@ -121,10 +123,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Task 3: Add a CI variable in the UI
 
-This exercise requires an updates version of our hello world application:
+This task requires an updated version of our hello world application:
 
 ```bash
 git checkout upstream/160_gitlab_ci/020_variables/ci -- main.go
+```
+
+Also, update the build command to inject the author into the variable:
+
+```bash
+go build -o hello -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" .
 ```
 
 The application now also prints the name of the author which must be supplied during compilation as well.

@@ -1,0 +1,7 @@
+{
+    "security.workspace.trust.enabled": false,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.useEditorAsCommitInput": false,
+    "git.showCommitInput": false
+}

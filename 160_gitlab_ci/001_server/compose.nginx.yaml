@@ -4,7 +4,7 @@ services:
     build:
       context: nginx
     environment:
-      DOMAIN: ${DOMAIN}
+      DOMAIN: ${DOMAIN?Environment variable DOMAIN is mandatory}
     env_file:
     - seats.env
     volumes:
@@ -16,31 +16,31 @@ services:
       traefik.http.services.nginx.loadbalancer.server.port: 80
       # Redirection to HTTPS
       traefik.http.routers.nginx.entrypoints: http
-      traefik.http.routers.nginx.rule: Host(`code.${DOMAIN}`)
+      traefik.http.routers.nginx.rule: Host(`code.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.nginx.service: nginx
       traefik.http.routers.nginx.middlewares: redirect-to-https
       # Unauthenticated endpoint
       traefik.http.routers.nginx-s.entrypoints: https
-      traefik.http.routers.nginx-s.rule: Host(`code.${DOMAIN}`)
+      traefik.http.routers.nginx-s.rule: Host(`code.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.nginx-s.service: nginx
       traefik.http.routers.nginx-s.tls: "true"
       # Redirection to HTTPS for dev
       traefik.http.routers.dev.entrypoints: http
-      traefik.http.routers.dev.rule: HostRegexp(`{subdomain:.+}.dev.webdav.${DOMAIN}`)
+      traefik.http.routers.dev.rule: HostRegexp(`.+\.dev\.webdav\.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.dev.service: nginx
       traefik.http.routers.dev.middlewares: redirect-to-https
       # Authenticated endpoint for dev
       traefik.http.routers.dev-s.entrypoints: https
-      traefik.http.routers.dev-s.rule: HostRegexp(`{subdomain:.+}.dev.webdav.${DOMAIN}`)
+      traefik.http.routers.dev-s.rule: HostRegexp(`.+\.dev\.webdav\.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.dev-s.service: nginx
       traefik.http.routers.dev-s.tls: "true"
       # Redirection to HTTPS for live
       traefik.http.routers.live.entrypoints: http
-      traefik.http.routers.live.rule: HostRegexp(`{subdomain:.+}.live.webdav.${DOMAIN}`)
+      traefik.http.routers.live.rule: HostRegexp(`.+\.live\.webdav\.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.live.service: nginx
       traefik.http.routers.live.middlewares: redirect-to-https
       # Authenticated endpoint for live
       traefik.http.routers.live-s.entrypoints: https
-      traefik.http.routers.live-s.rule: HostRegexp(`{subdomain:.+}.live.webdav.${DOMAIN}`)
+      traefik.http.routers.live-s.rule: HostRegexp(`.+\.live\.webdav\.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.live-s.service: nginx
       traefik.http.routers.live-s.tls: "true"

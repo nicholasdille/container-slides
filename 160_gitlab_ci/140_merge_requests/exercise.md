@@ -154,7 +154,7 @@ Now we want to check which jobs are executed in the context of a merge request:
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
-## Bonus: Explore additional predefined variables
+## Bonus task: Explore additional predefined variables
 
 On the branch of the merge request, add a job and run `printenv` to get a list of variables available to the pipeline. Check out additional variables specific to merge request pipelines. See also the [official documentation](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines).
 

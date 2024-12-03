@@ -4,7 +4,7 @@
     - --auth
     - none
     - --proxy-domain
-    - seat${SEAT_INDEX}.vscode.${DOMAIN}
+    - seat${SEAT_INDEX}.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}
     - --disable-telemetry
     environment:
       GIT_USER: "${GIT_USER}"
@@ -28,12 +28,12 @@
       traefik.http.services.vscode${SEAT_INDEX}.loadbalancer.server.port: 8080
       # Redirection to HTTPS
       traefik.http.routers.vscode${SEAT_INDEX}.entrypoints: http
-      traefik.http.routers.vscode${SEAT_INDEX}.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN}`)
+      traefik.http.routers.vscode${SEAT_INDEX}.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.vscode${SEAT_INDEX}.service: vscode${SEAT_INDEX}
       traefik.http.routers.vscode${SEAT_INDEX}.middlewares: redirect-to-https
       # Authenticated endpoint
       traefik.http.routers.vscode${SEAT_INDEX}-s.entrypoints: https
-      traefik.http.routers.vscode${SEAT_INDEX}-s.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN}`)
+      traefik.http.routers.vscode${SEAT_INDEX}-s.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.vscode${SEAT_INDEX}-s.service: vscode${SEAT_INDEX}
       traefik.http.routers.vscode${SEAT_INDEX}-s.middlewares: vscode${SEAT_INDEX}-auth
       traefik.http.routers.vscode${SEAT_INDEX}-s.tls: "true"

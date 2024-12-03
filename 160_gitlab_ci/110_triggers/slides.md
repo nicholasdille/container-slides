@@ -64,6 +64,10 @@ Trigger owner must be able to either...
 - Push to a branch
 - Merge into a branch
 
+### Fire and forget
+
+Unable to check pipeline status
+
 ---
 
 ## Multi-project pipelines
@@ -74,7 +78,17 @@ Launch pipeline in separate project [](https://docs.gitlab.com/ee/ci/pipelines/m
 
 Use the `trigger` keyword [](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger)
 
-### Example
+### Examples
+
+Trigger a pipeline in another project:
+
+```yaml
+job_name:
+  trigger:
+    project: <path-to-project>
+```
+
+Specify the branch to use:
 
 ```yaml
 job_name:
@@ -82,8 +96,6 @@ job_name:
     project: <path-to-project>
     branch: main
 ```
-
-`trigger.branch` is optional
 
 ---
 
@@ -116,11 +128,69 @@ File must match `/\.ya?ml$/`
 
 ## Hands-On
 
-See chapter [Triggers](/hands-on/2024-11-12/110_triggers/exercise/)
+See chapter [Triggers](/hands-on/2024-11-21/110_triggers/exercise/)
 
 ---
 
-## Pro tip 1: Variable inheritence
+## Pro tip 2: Wait for downstream pipeline
+
+Upstream pipeline only waits for successful trigger
+
+Wait for successul downstream pipeline using `strategy` [](https://docs.gitlab.com/ee/ci/yaml/#triggerstrategy)
+
+```yaml
+job_name:
+  trigger:
+    include: child.yaml
+    strategy: depend
+```
+
+Useful when triggering the pipeline of a dependency
+
+---
+
+## Pro tip 1: Artifacts from parent pipeline
+
+<i class="fa-duotone fa-triangle-exclamation"></i> Requires Enterprise Edition Premium [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline)
+
+Generate artifact and trigger child pipeline
+
+Fetch artifact from parent pipeline
+
+```yaml
+build_artifacts:
+  stage: build
+  script: echo "This is a test artifact!" >> artifact.txt
+  artifacts:
+    paths:
+    - artifact.txt
+
+deploy:
+  stage: deploy
+  trigger:
+    include:
+    - local: path/to/child-pipeline.yml
+```
+
+<!-- .element: style="float: left; font-size: 0.7em; width: 35em;" -->
+
+```yaml
+test:
+  stage: test
+  script: cat artifact.txt
+  needs:
+  - pipeline: $UPSTREAM_PIPELINE_ID
+    job: build_artifacts
+```
+<!-- .element: style="float: right; font-size: 0.7em; width: 25em;" -->
+
+This works for `dotenv` reports as well [](https://docs.gitlab.com/ee/ci/variables/#control-which-jobs-receive-dotenv-variables)
+
+`needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
+
+---
+
+## Pro tip 2: Variable inheritence
 
 Downstream pipelines inherit some variables [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
 
@@ -146,22 +216,27 @@ Do not redefined masked variables - **they will not be masked**
 
 ---
 
-## Pro tip 2: Wait for downstream pipeline
+## Pro tip 3: Do not pass global variables
 
-Upstream pipeline only waits for successful trigger
-
-Wait for successul downstream pipeline using `strategy` [](https://docs.gitlab.com/ee/ci/yaml/#triggerstrategy)
+Only allow job variables to be passed to downstream pipelines:
 
 ```yaml
-job_name:
+variables:
+  GLOBAL_VAR: value
+
+trigger-job:
+  inherit:
+    variables: false
+  variables:
+    JOB_VAR: value
   trigger:
-    include: child.yaml
-    strategy: depend
+    include:
+    - local: path/to/child-pipeline.yml
 ```
 
 ---
 
-## Pro tip 3: Permissions for include
+## Pro tip 4: Permissions for include
 
 When including a file from another project...
 
@@ -178,7 +253,7 @@ job_name:
 
 ---
 
-## Dynamic includes
+## Pro tip 5: Dynamic includes
 
 Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
 
@@ -200,63 +275,4 @@ use:
     include:
     - artifact: child.yaml
       job: generate
-```
-
----
-
-## Pro tip 4: Artifacts from parent pipeline
-
-<i class="fa-duotone fa-triangle-exclamation"></i> Requires Enterprise Edition Premium [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline)
-
-Generate artifact and trigger child pipeline
-
-Fetch artifact from parent pipeline
-
-```yaml
-build_artifacts:
-  stage: build
-  script: echo "This is a test artifact!" >> artifact.txt
-  artifacts:
-    paths:
-    - artifact.txt
-
-deploy:
-  stage: deploy
-  trigger:
-    include:
-    - local: path/to/child-pipeline.yml
-  variables:
-    PARENT_PIPELINE_ID: $CI_PIPELINE_ID
-```
-
-<!-- .element: style="float: left; font-size: 0.7em; width: 35em;" -->
-
-```yaml
-test:
-  stage: test
-  script: cat artifact.txt
-  needs:
-  - pipeline: $PARENT_PIPELINE_ID
-    job: build_artifacts
-```
-<!-- .element: style="float: right; font-size: 0.7em; width: 25em;" -->
-
----
-
-## Pro tip 5: Do not pass global variables
-
-Only allow job variables to be passed to downstream pipelines:
-
-```yaml
-variables:
-  GLOBAL_VAR: value
-
-trigger-job:
-  inherit:
-    variables: false
-  variables:
-    JOB_VAR: value
-  trigger:
-    include:
-    - local: path/to/child-pipeline.yml
 ```

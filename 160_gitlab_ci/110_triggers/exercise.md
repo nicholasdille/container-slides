@@ -134,6 +134,8 @@ This was just a demonstration. The changes will not be preserved in the followin
 
 The second option for triggering a pipeline in another project, are multi-project pipelines. They come with a handy syntax in `gitlab-ci.yaml` by using the [`trigger`](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger) keyword.
 
+Update the job called `trigger` from the previous task by replacing the `script` and using the `trigger` keyword. The value of the `trigger` keyword should be the path to the project you want to trigger.
+
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to expand the downstream pipeline to see the jobs and their status.
 
 ??? info "Hint (Click if you are stuck)"

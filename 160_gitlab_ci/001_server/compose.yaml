@@ -45,29 +45,29 @@ services:
       # traefik dashboard: redirection to HTTPS
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN}`)
+      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.traefik.middlewares: redirect-to-https
       # traefik dashboard: authenticated endpoint
       traefik.http.routers.traefik-s.entrypoints: https
       traefik.http.routers.traefik-s.service: api@internal
-      traefik.http.routers.traefik-s.rule: Host(`traefik.${DOMAIN}`)
+      traefik.http.routers.traefik-s.rule: Host(`traefik.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.traefik-s.tls: "true"
       # TODO: Fix auth
       #traefik.http.routers.traefik-s.middlewares: seat-auth
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
-    image: gitlab/gitlab-ee:17.5.1-ee.0
+    image: gitlab/gitlab-ee:17.6.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['time_zone'] = 'Europe/Berlin'
 
-        gitlab_rails['initial_root_password'] = "${GITLAB_ADMIN_PASS}"
+        gitlab_rails['initial_root_password'] = "${GITLAB_ADMIN_PASS?Environment variable GITLAB_ADMIN_PASS is mandatory}"
 
         gitlab_rails['usage_ping_enabled'] = false
 
-        external_url 'https://gitlab.${DOMAIN}'
+        external_url 'https://gitlab.${DOMAIN?Environment variable DOMAIN is mandatory}'
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
         nginx['real_ip_trusted_addresses'] = [ '172.16.0.0/12' ]
@@ -76,7 +76,7 @@ services:
         letsencrypt['enable'] = false
 
         gitlab_pages['enable'] = true
-        pages_external_url 'https://gitlab.${DOMAIN}'
+        pages_external_url 'https://gitlab.${DOMAIN?Environment variable DOMAIN is mandatory}'
         pages_nginx['listen_https'] = false
         # Required due to https://gitlab.com/gitlab-org/gitlab-pages/issues/129
         gitlab_pages['inplace_chroot'] = true
@@ -85,7 +85,7 @@ services:
         # Fix for https://gitlab.com/gitlab-org/gitlab-pages/-/issues/534
         gitlab_pages['internal_gitlab_server'] = "http://127.0.0.1"
 
-        registry_external_url 'https://gitlab.${DOMAIN}'
+        registry_external_url 'https://gitlab.${DOMAIN?Environment variable DOMAIN is mandatory}'
         registry['registry_http_addr'] = "0.0.0.0:5000"
         registry_nginx['listen_https'] = false
 
@@ -109,12 +109,12 @@ services:
       traefik.http.services.www.loadbalancer.server.port: 80
       # Web UI: redirection to HTTPS
       traefik.http.routers.www.entrypoints: http
-      traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN}`)
+      traefik.http.routers.www.rule: Host(`gitlab.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.www.service: www
       traefik.http.routers.www.middlewares: redirect-to-https
       # Web UI: unauthenticated endpoint
       traefik.http.routers.www-s.entrypoints: https
-      traefik.http.routers.www-s.rule: Host(`gitlab.${DOMAIN}`)
+      traefik.http.routers.www-s.rule: Host(`gitlab.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.www-s.service: www
       traefik.http.routers.www-s.tls: "true"
       # Pages: service port
@@ -122,18 +122,18 @@ services:
       # Pages: redirection to HTTPS
       traefik.http.routers.pages.entrypoints: http
       traefik.http.routers.pages.middlewares: redirect-to-https
-      traefik.http.routers.pages.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN}`)
+      traefik.http.routers.pages.rule: HostRegexp(`.+\.gitlab\.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.pages.service: pages
       # Pages: unauthenticated endpoint
       traefik.http.routers.pages-s.entrypoints: https
-      traefik.http.routers.pages-s.rule: HostRegexp(`{subdomain:.+}.gitlab.${DOMAIN}`)
+      traefik.http.routers.pages-s.rule: HostRegexp(`.+\.gitlab\.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.pages-s.service: pages
       traefik.http.routers.pages-s.tls: "true"
       # Registry: service port
       traefik.http.services.registry.loadbalancer.server.port: 5000
       # Registry: Unauthenticated endpoint
       traefik.http.routers.registry-s.entrypoints: https
-      traefik.http.routers.registry-s.rule: HostRegexp(`gitlab.${DOMAIN}`) && PathPrefix(`/v2`)
+      traefik.http.routers.registry-s.rule: Host(`gitlab.${DOMAIN?Environment variable DOMAIN is mandatory}`) && PathPrefix(`/v2`)
       traefik.http.routers.registry-s.service: registry
       traefik.http.routers.registry-s.tls: "true"
       # SSH: service port
@@ -151,7 +151,7 @@ services:
     environment:
       GF_SERVER_ROOT_URL: https://grafana.inmylab.de
       GF_SECURITY_ADMIN_USER: admin
-      GF_SECURITY_ADMIN_PASSWORD: "${GITLAB_ADMIN_PASS}"
+      GF_SECURITY_ADMIN_PASSWORD: "${GITLAB_ADMIN_PASS?Environment variable GITLAB_ADMIN_PASS is mandatory"
       GF_AUTH_ANONYMOUS_ENABLED: "false"
     restart: unless-stopped
     labels:
@@ -160,11 +160,11 @@ services:
       traefik.http.services.grafana.loadbalancer.server.port: 3000
       # Web UI: redirection to HTTPS
       traefik.http.routers.grafana.entrypoints: http
-      traefik.http.routers.grafana.rule: Host(`grafana.${DOMAIN}`)
+      traefik.http.routers.grafana.rule: Host(`grafana.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.grafana.service: grafana
       traefik.http.routers.grafana.middlewares: redirect-to-https
       # Web UI: unauthenticated endpoint
       traefik.http.routers.grafana-s.entrypoints: https
-      traefik.http.routers.grafana-s.rule: Host(`grafana.${DOMAIN}`)
+      traefik.http.routers.grafana-s.rule: Host(`grafana.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.grafana-s.service: grafana
       traefik.http.routers.grafana-s.tls: "true"

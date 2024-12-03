@@ -55,7 +55,7 @@ Components are self-contained jobs
 
 ### Composability
 
-Templates can be overwridden
+Templates can be overridden
 
 Components require inputs declarations
 
@@ -97,4 +97,4 @@ Project owners can switch to catalog project [](https://docs.gitlab.com/ee/ci/co
 
 ## Hands-On
 
-See chapter [CI/CD Components](/hands-on/2024-11-12/300_components/exercise/)
+See chapter [CI/CD Components](/hands-on/2024-11-21/300_components/exercise/)

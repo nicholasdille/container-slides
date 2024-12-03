@@ -10,7 +10,7 @@
 
 Every job has a dedicated job token [](https://docs.gitlab.com/ee/ci/jobs/ci_job_token.html)
 
-Job tokens can be used to authenticate
+Job tokens can be used to authenticate:
 
 - Access the package registry [](https://docs.gitlab.com/ee/user/packages/package_registry/index.html#use-gitlab-cicd-to-build-packages)
 - Access the container registry (see later [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_registries))
@@ -19,11 +19,11 @@ Job tokens can be used to authenticate
 - Access job artifacts
 - Environment
 
-Job token inherits permissions of triggering user
+Job token inherits the access level of triggering user
 
 When using schedules the creator of the schedule is used
 
-Configure the job token to limit access to projects [](https://docs.gitlab.com/ee/ci/jobs/ci_job_token.html#configure-the-job-token-scope-limit)
+Configure the allowlist for foreign job tokens [](https://docs.gitlab.com/ee/ci/jobs/ci_job_token.html#add-a-group-or-project-to-the-job-token-allowlist)
 
 ---
 
@@ -42,3 +42,11 @@ Defined outgoing permissions
 Allowlist of projects to allow access from [](https://docs.gitlab.com/ee/ci/jobs/ci_job_token.html#add-a-project-to-the-job-token-scope-allowlist)
 
 Defines incoming access
+
+---
+
+## Pro tip: Clone across projects
+
+Works if cloned project is public or internal
+
+Works if source project is in allowlist of target project [](https://docs.gitlab.com/ee/ci/jobs/ci_job_token.html#add-a-group-or-project-to-the-job-token-allowlist)

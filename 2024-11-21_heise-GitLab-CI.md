@@ -1,0 +1,21 @@
+# Notes 20241121
+
+- Umfragen
+  - Erfahrung mit CI/CD?
+  - GitLab im Einsatz?
+  - GitLab CI im Einsatz?
+- "Don't repeat yourself"
+- Kein SSH notwendig
+- remove pipelines without commit (after rebase)
+- Runner früher? :-D
+- trigger:include:artifact mit fremdem Projekt
+- trigger:forward (yaml_variables, pipeline_variables) https://docs.gitlab.com/ee/ci/yaml/#triggerforward
+- two columns WITH HEADINGS
+- .go-build with image and artifacts!
+- main, dev, live :confused:
+- multiple inheritence for docker
+- template: add artifacts
+- rules: improve example
+- terraform deprecation warning https://www.google.com/search?q=terraform+backends+local+state+deprecated
+- Exercises
+  - Remove `merge_request_event` before chapter about MRs

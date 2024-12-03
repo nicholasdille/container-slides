@@ -12,7 +12,7 @@ Create a schedule to run a 5 minutes on the branch `main` in the correct timezon
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
-## Bonus: Start a schedule manually
+## Bonus task: Start a schedule manually
 
 Run the previously created schedule manually by clicking the play button :fontawesome-solid-play:. This come in handy if you need to run a pipeline with pre-configured variables.
 

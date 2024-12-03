@@ -1,6 +1,6 @@
-#syntax=docker/dockerfile:1.10.0
+#syntax=docker/dockerfile:1.12.0
 
-FROM codercom/code-server:4.93.1
+FROM codercom/code-server:4.95.3
 USER root
 
 RUN <<EOF
@@ -35,6 +35,7 @@ RUN <<EOF
 useradd --user-group --create-home --shell /bin/bash seat
 EOF
 USER seat
+COPY settings.json /home/seat/.local/share/code-server/User/
 WORKDIR /home/seat/demo
 
 # https://open-vsx.org/

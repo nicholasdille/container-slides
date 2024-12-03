@@ -12,11 +12,11 @@ Careful with protected variables
 
 ### Hands-On
 
-See chapter [Variables](/hands-on/2024-11-12/020_variables/exercise/)
+See chapter [Variables](/hands-on/2024-11-21/020_variables/exercise/)
 
 ---
 
-## Pro tip: Masked variables for all values
+## Pro tip 1: Masked variables for all values
 
 Many values are rejected by GitLab
 
@@ -48,5 +48,5 @@ But masked values can always be leaked through a pipeline:
 ```yaml
 job_name:
   script:
-  - echo "${MASKED_VAR}" | base64 -d
+  - echo "${MASKED_VAR}" | base64
 ```

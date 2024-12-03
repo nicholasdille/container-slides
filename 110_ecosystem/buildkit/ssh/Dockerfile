@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.10.0
+#syntax=docker/dockerfile:1.12.0
 FROM alpine-ssh
 RUN --mount=type=ssh \
     printenv | grep SSH \

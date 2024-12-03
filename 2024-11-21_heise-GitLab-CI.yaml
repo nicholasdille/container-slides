@@ -21,10 +21,13 @@ agenda:
   text: Learn to use GitLab as a developer
 - icon: graduation-cap
   text: Explore the features of GitLab
+- icon: copy
+  text: Don't repeat yourself
 - icon: recycle
   text: Make your work reusable
 
 slides:
+- 000_introduction/heise_academy_housekeeping.md
 - 000_introduction/who_are_you.md
 - 160_gitlab_ci/agenda.md
 - 160_gitlab_ci/devops.md
@@ -48,12 +51,15 @@ slides:
 - 160_gitlab_ci/130_rules/slides.md
 - 160_gitlab_ci/140_merge_requests/slides.md
 - 160_gitlab_ci/150_matrix_jobs/slides.md
-- 160_gitlab_ci/200_job_token/slides.md
-- 160_gitlab_ci/205_git_submodules/slides.md
+- 160_gitlab_ci/160_variable_precedence/slides.md
+- 160_gitlab_ci/200_permissions/slides.md
+- 160_gitlab_ci/210_job_token/slides.md
+- 160_gitlab_ci/215_git_submodules/slides.md
 - 160_gitlab_ci/220_services/slides.md
 - 160_gitlab_ci/230_docker/slides.md
 - 160_gitlab_ci/240_registries/slides.md
 - 160_gitlab_ci/250_releases/slides.md
+- 160_gitlab_ci/252_branch_protection/slides.md
 - 160_gitlab_ci/255_troubleshooting/slides.md
 - 160_gitlab_ci/260_runners/slides.md
 - 160_gitlab_ci/265_caches/slides.md
