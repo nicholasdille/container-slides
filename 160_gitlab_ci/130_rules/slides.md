@@ -54,7 +54,6 @@ workflow:
   - if: $CI_PIPELINE_SOURCE == 'push'
   - if: $CI_PIPELINE_SOURCE == 'web'
   - if: $CI_PIPELINE_SOURCE == 'schedule'
-  - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   - if: $CI_PIPELINE_SOURCE == 'pipeline'
   - if: $CI_PIPELINE_SOURCE == 'api'
     when: never
@@ -64,7 +63,7 @@ workflow:
 
 ---
 
-## Pro tip 1: Mind the order
+## Mind the order
 
 Rules are evaluated in-order
 
@@ -78,11 +77,13 @@ Adjust order from most specific...
 
 ## Hands-On
 
+Use GitLab Pages to create a download page [](https://docs.gitlab.com/ee/user/project/pages/)
+
 See chapter [Rules](/hands-on/2024-11-21/130_rules/exercise/)
 
 ---
 
-## Pro tip 2: Use CI_DEPLOY_FREEZE with rules
+## Pro tip 1: Use CI_DEPLOY_FREEZE with rules
 
 Disable pipeline:
 
@@ -107,7 +108,7 @@ Template to disable job:
 
 ---
 
-## Pro tip 3: Fields for rules
+## Pro tip 2: Fields for rules
 
 Rules not only control execution of jobs but can also configure jobs through the use of the following fields:
 
@@ -120,7 +121,7 @@ Rules become especially powerful when combining the fields supported by rules - 
 
 --
 
-## Pro tip 4: Avoid pipeline on push
+## Pro tip 3: Avoid pipeline on push
 
 Pipelines can be skipped by adding `[skip ci]` to the commit message
 
@@ -133,3 +134,34 @@ my_job:
   rules:
   - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_TITLE =~ /skip ci/i
     when: never
+```
+
+---
+
+## Pro tip 4: Use quotes to help the YAML parser
+
+Sometime the YAML parser gets confused
+
+Use quotes to help the parser
+
+```yaml
+workflow:
+  rules:
+  - if: '$VAR == "value"'
+
+job_name:
+  rules:
+  - if: '$VAR2 == "value2"'
+  #...
+```
+
+---
+
+# Pro tip 5: GitLab Pages access control
+
+GitLab Pages are public by default
+
+Access control can be enabled
+
+1. Per instance [](https://docs.gitlab.com/ee/administration/pages/index.html#access-control) (prerequisite for per project)
+1. Per project [](https://docs.gitlab.com/ee/user/project/pages/pages_access_control.html)

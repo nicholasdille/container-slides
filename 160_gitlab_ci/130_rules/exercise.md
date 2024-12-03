@@ -137,7 +137,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 Rules can also be placed under the global [`workflow`](https://docs.gitlab.com/ee/ci/yaml/#workflowrules) keyword to apply to the whole pipeline instead of individual jobs.
 
-Allow the pipeline to run for the triggers `push`, `merge_request_event`, `web`, `schedule` and `pipeline` and prevent the pipeline for triggers `api` and `trigger`.
+Allow the pipeline to run for the triggers `push`, `web`, `schedule` and `pipeline` and prevent the pipeline for triggers `api` and `trigger`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -159,7 +159,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
-      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never
@@ -276,7 +275,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
-      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never

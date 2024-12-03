@@ -14,15 +14,10 @@
 - trigger:forward (yaml_variables, pipeline_variables) https://docs.gitlab.com/ee/ci/yaml/#triggerforward
 - two columns WITH HEADINGS
 - .go-build with image and artifacts!
-- pipeline editor
 - main, dev, live :confused:
 - multiple inheritence for docker
 - template: add artifacts
 - rules: improve example
-- rules: quotes
-- rules: no MR event
-- MR: rule templates after hands-on
-- pages: public by default
-  - enable access control per project: https://docs.gitlab.com/ee/user/project/pages/pages_access_control.html
-  - enable enabling access control per instance: https://docs.gitlab.com/ee/administration/pages/index.html#access-control
-- https://www.google.com/search?q=terraform+backends+local+state+deprecated
+- terraform deprecation warning https://www.google.com/search?q=terraform+backends+local+state+deprecated
+- Exercises
+  - Remove `merge_request_event` before chapter about MRs

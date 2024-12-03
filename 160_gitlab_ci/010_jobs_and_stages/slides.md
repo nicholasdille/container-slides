@@ -181,7 +181,7 @@ See chapter [Jobs and stages](/hands-on/2024-11-21/010_jobs_and_stages/exercise/
 
 ---
 
-## Pro tip: Skip pipeline for push
+## Pro tip 1: Skip pipeline for push
 
 Sometimes a pipeline run is not desirable
 
@@ -204,3 +204,11 @@ Provide a push option:
 ```bash
 git push -o ci.skip
 ```
+
+---
+
+## Pro tip 2: Pipeline Editor
+
+The web UI offers a pipeline editor
+
+Integrated syntax checking
