@@ -24,4 +24,4 @@
 
 ### Expert
 
-[Job token](#/gitlab_job_token) - [Git Submodules](#/gitlab_git_submodules) - [Services](#/gitlab_services) - [docker build](#/gitlab_docker) - [Registries](#/gitlab_registries) - [Releases](#/gitlab_releases) - [Troubleshooting](#/gitlab_troubleshooting) - [Runners](#/gitlab_runners) - [Caches](#/gitlab_caches) - [RenovateBot](#/gitlab_renovate) - [Security](#/gitlab_security) - [CI/CD Components](#/gitlab_components) - [CI/CD Steps](#/gitlab_steps)
+[Job token](#/gitlab_job_token) - [Git Submodules](#/gitlab_git_submodules) - [Services](#/gitlab_services) - [docker build](#/gitlab_docker) - [Registries](#/gitlab_registries) - [Releases](#/gitlab_releases) - [Troubleshooting](#/gitlab_troubleshooting) - [Runners](#/gitlab_runners) - [Caches](#/gitlab_caches) - [RenovateBot](#/gitlab_renovate) - [Security](#/gitlab_security) - [CI/CD Components](#/gitlab_components) - [CI/CD Steps](#/gitlab_steps) - [Seccure Files](#/gitlab_secure_files)

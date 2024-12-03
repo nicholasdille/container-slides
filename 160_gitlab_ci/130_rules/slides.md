@@ -89,8 +89,8 @@ Disable pipeline:
 ```yaml
 workflow:
   rules:
-  - if: '$CI_DEPLOY_FREEZE'
-    when: manual
+  - if: $CI_DEPLOY_FREEZE
+    when: never
   - when: on_success
 ```
 
@@ -99,7 +99,7 @@ Template to disable job:
 ```yaml
 .freeze-deployment:
   rules:
-  - if: '$CI_DEPLOY_FREEZE'
+  - if: $CI_DEPLOY_FREEZE
     when: manual
     allow_failure: true
   - when: on_success

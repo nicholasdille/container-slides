@@ -55,7 +55,7 @@ Components are self-contained jobs
 
 ### Composability
 
-Templates can be overwridden
+Templates can be overridden
 
 Components require inputs declarations
 

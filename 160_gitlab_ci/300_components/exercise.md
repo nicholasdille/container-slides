@@ -134,7 +134,6 @@ The component is now ready to be used:
       inputs:
         build-stage: build
         test-stage: test
-        image: golang:1.23.2
     #...
     ```
 

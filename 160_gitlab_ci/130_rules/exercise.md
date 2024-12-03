@@ -33,7 +33,7 @@ pages:
 
 Review the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword to limit the job `pages` to run when...
 
-- the pipeline was triggered by a push event
+- the pipeline was triggered by a push event AND
 - the change applied to the default branch
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
