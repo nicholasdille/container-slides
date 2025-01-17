@@ -1,0 +1,92 @@
+---
+apiVersion: apiserver.config.k8s.io/v1beta1
+kind: AuthenticationConfiguration
+jwt:
+- issuer:
+    # url must be unique across all authenticators.
+    # url must not conflict with issuer configured in --service-account-issuer.
+    url: https://gitlab.example.com
+    # audiences is the set of acceptable audiences the JWT must be issued to.
+    # At least one of the entries must match the "aud" claim in presented JWTs.
+    audiences:
+    - gitlab_user_auth
+    # this is required to be set to "MatchAny" when multiple audiences are specified.
+    audienceMatchPolicy: MatchAny
+  claimMappings:
+    # username represents an option for the username attribute.
+    # This is the only required attribute.
+    username:
+      # Same as --oidc-username-claim. Mutually exclusive with username.expression.
+      claim: preferred_username
+      # Same as --oidc-username-prefix. Mutually exclusive with username.expression.
+      # if username.claim is set, username.prefix is required.
+      # Explicitly set it to "" if no prefix is desired.
+      prefix: "oidc:"
+    # groups represents an option for the groups attribute.
+    groups:
+      # Same as --oidc-groups-claim. Mutually exclusive with groups.expression.
+      claim: groups_direct
+      # Same as --oidc-groups-prefix. Mutually exclusive with groups.expression.
+      # if groups.claim is set, groups.prefix is required.
+      # Explicitly set it to "" if no prefix is desired.
+      prefix: "gitlab:"
+    # uid represents an option for the uid attribute.
+    uid:
+      # Mutually exclusive with uid.expression.
+      claim: preferred_username
+- issuer:
+    # url must be unique across all authenticators.
+    # url must not conflict with issuer configured in --service-account-issuer.
+    url: https://gitlab.example.com/
+    # audiences is the set of acceptable audiences the JWT must be issued to.
+    # At least one of the entries must match the "aud" claim in presented JWTs.
+    audiences:
+    - gitlab_ci_auth
+    # this is required to be set to "MatchAny" when multiple audiences are specified.
+    audienceMatchPolicy: MatchAny
+  claimMappings:
+    # username represents an option for the username attribute.
+    # This is the only required attribute.
+    username:
+      # Same as --oidc-username-claim. Mutually exclusive with username.expression.
+      claim: sub
+      # Same as --oidc-username-prefix. Mutually exclusive with username.expression.
+      # if username.claim is set, username.prefix is required.
+      # Explicitly set it to "" if no prefix is desired.
+      prefix: "gitlab-ci:"
+    # groups represents an option for the groups attribute.
+    groups:
+      # Same as --oidc-groups-claim. Mutually exclusive with groups.expression.
+      claim: namespace_path
+      # Same as --oidc-groups-prefix. Mutually exclusive with groups.expression.
+      # if groups.claim is set, groups.prefix is required.
+      # Explicitly set it to "" if no prefix is desired.
+      prefix: "gitlab-ci:"
+    # uid represents an option for the uid attribute.
+    uid:
+      # Mutually exclusive with uid.expression.
+      claim: sub
+    # extra attributes to be added to the UserInfo object. Keys must be domain-prefix path and must be unique.
+    #extra:
+    #  # key is a string to use as the extra attribute key.
+    #  # key must be a domain-prefix path (e.g. example.org/foo). All characters before the first "/" must be a valid
+    #  # subdomain as defined by RFC 1123. All characters trailing the first "/" must
+    #  # be valid HTTP Path characters as defined by RFC 3986.
+    #  # k8s.io, kubernetes.io and their subdomains are reserved for Kubernetes use and cannot be used.
+    #  # key must be lowercase and unique across all extra attributes.
+    #- key: gitlab.haufedev.systems/namespace
+    #  valueExpression: namespace_id
+    #- key: gitlab.haufedev.systems/project
+    #  valueExpression: project_id
+    #- key: gitlab.haufedev.systems/triggerer
+    #  valueExpression: user_id
+    #- key: gitlab.haufedev.systems/pipeline
+    #  valueExpression: pipeline_id
+    #- key: gitlab.haufedev.systems/job
+    #  valueExpression: job_id
+    #- key: gitlab.haufedev.systems/runner
+    #  valueExpression: runner_id
+    #- key: gitlab.haufedev.systems/ref
+    #  valueExpression: ref
+    #- key: gitlab.haufedev.systems/sha
+    #  valueExpression: sha

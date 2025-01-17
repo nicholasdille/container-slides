@@ -1,0 +1,54 @@
+image:
+  registry: registry.gitlab.com
+  image: gitlab-org/gitlab-runner
+  #tag: alpine-v16.4.0
+imagePullPolicy: Always
+probeTimeoutSeconds: 5
+
+## How many runner pods to launch.
+##
+## Note: Using more than one replica is not supported with a runnerToken. Use a runnerRegistrationToken
+## to create multiple runner replicas.
+# replicas: 1
+
+gitlabUrl: https://gitlab.example.com/
+
+unregisterRunners: true
+terminationGracePeriodSeconds: 3600
+concurrent: 5
+checkInterval: 5
+
+rbac:
+  create: true
+  rules:
+    - resources: ["pods", "secrets", "configmaps"]
+      verbs: ["get", "list", "watch", "create", "patch", "delete", "update"]
+    - apiGroups: [""]
+      resources: ["pods/attach", "pods/exec"]
+      verbs: ["create", "patch", "delete"]
+  clusterWideAccess: false
+  podSecurityPolicy:
+    enabled: false
+    resourceNames:
+      - gitlab-runner
+
+runners:
+  config: |
+    [[runners]]
+      executor = "kubernetes"
+
+      [runners.kubernetes]
+        image = "alpine"
+  locked: false
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  privileged: false
+  capabilities:
+    drop: ["ALL"]
+
+podSecurityContext:
+  runAsUser: 100
+  fsGroup: 65533
