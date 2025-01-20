@@ -5,14 +5,7 @@ image:
 imagePullPolicy: Always
 probeTimeoutSeconds: 5
 
-## How many runner pods to launch.
-##
-## Note: Using more than one replica is not supported with a runnerToken. Use a runnerRegistrationToken
-## to create multiple runner replicas.
-# replicas: 1
-
 gitlabUrl: https://gitlab.example.com/
-
 unregisterRunners: true
 terminationGracePeriodSeconds: 3600
 concurrent: 5

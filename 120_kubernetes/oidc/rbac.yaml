@@ -2,23 +2,25 @@
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: oidc-cluster-admin
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: Group
-  name: gitlab:k8s-oidc-demo
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: oidc-test
+  name: oidc-viewer
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: view
 subjects:
 - kind: User
-  name: gitlab-ci:project_path:DilleN/foo:ref_type:branch:ref:main
+  name: gitlab-ci:project_path:foo/bar:ref_type:branch:ref:main
+- kind: User
+  name: gitlab:MyUserName
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: oidc-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: Group
+  name: gitlab:foo
