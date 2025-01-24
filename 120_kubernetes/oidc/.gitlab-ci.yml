@@ -1,0 +1,18 @@
+test-oidc:
+  id_tokens:
+    TEST_ID_TOKEN:
+      aud: id_token_audience
+  image: alpine
+  before_script: |
+    apk update
+    apk add \
+        curl \
+        jq \
+        kubectl
+  script: |
+    echo "${TEST_ID_TOKEN}" | cut -d. -f2 | base64 -d | jq || true
+    kubectl config set-cluster my_cluster --server=https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT} --certificate-authority=/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    kubectl config set-credentials gitlab-ci --token=$TEST_ID_TOKEN
+    kubectl config set-context my_cluster --cluster=my_cluster --user=gitlab-ci
+    kubectl config use-context my_cluster
+    kubectl get pods
