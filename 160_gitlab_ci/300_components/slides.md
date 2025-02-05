@@ -16,6 +16,17 @@ They are similar to job templates...
 
 ...but more contained, i.e. they cannot be overwritten
 
+### Usage
+
+XXX ` include:component` [](https://docs.gitlab.com/ee/ci/yaml/#includecomponent)
+
+XXX fully qualified
+
+```yaml
+include:
+- component: $CI_SERVER_FQDN/my-org/my-project/my-component@1.0
+```
+
 ---
 
 ### Authoring
@@ -28,7 +39,7 @@ Components require a header with `spec` [](https://docs.gitlab.com/ee/ci/yaml/#s
 
   ```yaml
   spec:
-    input:
+    inputs:
       path:
         type: string
         description: "Path to the source code"
