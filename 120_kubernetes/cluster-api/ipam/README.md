@@ -1,6 +1,6 @@
 # Cluster API IPAM
 
-Support static IPs for nodes
+Add [IP Address Management (IPAM)](https://cluster-api.sigs.k8s.io/developer/providers/contracts/ipam) to manage static IPs for nodes
 
 Cluster API includes custom resources [`IPAddressClaim`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/ipam.cluster.x-k8s.io/IPAddressClaim/v1beta1) and [`IPAddress`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/ipam.cluster.x-k8s.io/IPAddress/v1beta1)
 
