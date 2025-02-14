@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   pod:
-    image: alpine:3.20.3
+    image: alpine:3.20.6
     command: [ "sh", "-c", "while true; do sleep 5; done" ]
   dind:
     image: docker:27.3.1-dind
