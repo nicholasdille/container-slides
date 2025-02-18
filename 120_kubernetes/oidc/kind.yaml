@@ -10,6 +10,8 @@ nodes:
         audit-log-path: /var/log/kubernetes/kube-apiserver-audit.log
         audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
         authentication-config: /etc/kubernetes/auth/auth-config.yaml
+        service-account-issuer: https://my-cluster.dille.io
+        service-account-jwks-uri: https://my-cluster.dille.io/keys.json
       extraVolumes:
       - name: audit-policies
         hostPath: /etc/kubernetes/policies

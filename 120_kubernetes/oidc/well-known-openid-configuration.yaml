@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: well-known-openid-configuration
+spec:
+  selector:
+    matchLabels:
+      app: well-known-openid-configuration
+  template:
+    metadata:
+      labels:
+        app: well-known-openid-configuration
+    spec:
+      volumes:
+      - name: app
+        emptyDir: {}
+      - name: well-known-openid-configuration
+        configMap:
+          name: well-known-openid-configuration
+      initContainers:
+      - name: copy
+        image: alpine:3.21.2
+        imagePullPolicy: Always
+        command:
+        - sh
+        - -c
+        args:
+        - |
+          mkdir -p /usr/share/nginx/html/.well-known && cp -v /tmp/openid-configuration /usr/share/nginx/html/.well-known/openid-configuration && cp -v /tmp/keys.json /usr/share/nginx/html/keys.json
+        volumeMounts:
+        - mountPath: /tmp
+          name: well-known-openid-configuration
+        - mountPath: /usr/share/nginx/html
+          name: app
+      containers:
+      - name: web
+        image: nginx:1.26.3-alpine
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html/.well-known
+          name: app
+          readOnly: true
+        ports:
+        - name: web
+          containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: well-known-openid-configuration
+spec:
+  selector:
+    app: well-known-openid-configuration
+  ports:
+  - name: web
+    port: 80
+    targetPort: web
