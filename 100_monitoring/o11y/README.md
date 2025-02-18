@@ -26,6 +26,8 @@ curl --silent --location --fail https://get.helm.sh/helm-v2.16.1-linux-amd64.tar
 helm init --client-only
 helm plugin install https://github.com/rimusz/helm-tiller
 
+# TODO: Migrate to https://github.com/grafana/k8s-monitoring-helm/tree/main/charts/k8s-monitoring
+
 # Log shipping
 helm tiller run helm repo add loki https://grafana.github.io/loki/charts
 helm tiller run helm install loki/loki --name loki --namespace default --values loki-values.yaml
