@@ -1,0 +1,35 @@
+repositories:
+- name: external-dns
+  url: https://kubernetes-sigs.github.io/external-dns/
+- name: cert-manager
+  url: https://charts.jetstack.io
+- name: cert-manager-webhook-hetzner
+  url: https://vadimkim.github.io/cert-manager-webhook-hetzner
+- name: traefik
+  url: https://traefik.github.io/charts
+- name: oauth2-proxy
+  url: https://oauth2-proxy.github.io/manifests
+- name: gitlab
+  url: https://charts.gitlab.io/
+
+releases:
+- name: external-dns
+  namespace: external-dns
+  chart: external-dns/external-dns
+  values:
+  - values-external-dns.yaml
+- name: cert-manager
+  namespace: cert-manager
+  chart: cert-manager/cert-manager
+  values:
+  - values-cert-manager.yaml
+- name: cert-manager-webhook-hetzner
+  namespace: cert-manager
+  chart: cert-manager-webhook-hetzner
+  set:
+  - groupName: acme.inmylab.de
+- name: traefik
+  namespace: kube-system
+  chart: traefik/traefik
+  values:
+  - values-traefik.yaml

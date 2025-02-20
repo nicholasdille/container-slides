@@ -1,0 +1,27 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    email: webmaster@inmylab.de
+    privateKeySecretRef:
+      name: letsencrypt
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+    - dns01:
+        webhook:
+          groupName: acme.inmylab.de
+          solverName: hetzner
+          config:
+            secretName: hetzner-secret
+            zoneName: inmylab.de
+            apiUrl: https://dns.hetzner.com/api/v1
+      selector:
+        dnsZones:
+        - inmylab.de
+---
+# dnsendpoint
+---
+# certificate

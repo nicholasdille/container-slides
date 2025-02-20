@@ -1,0 +1,41 @@
+ingressRoute:
+  dashboard:
+    enabled: true
+
+updateStrategy: Recreate
+
+providers:
+  kubernetesCRD:
+    enabled: true
+  kubernetesIngress:
+    enabled: true
+  kubernetesGateway:
+    enabled: true
+
+ports:
+  traefik:
+    port: 8080
+    expose:
+      default: false
+    exposedPort: 8080
+    protocol: TCP
+  http:
+    port: 80
+    hostPort: 80
+    expose:
+      default: true
+    exposedPort: 80
+    protocol: TCP
+  http:
+    port: 443
+    hostPort: 443
+    expose:
+      default: true
+    exposedPort: 443
+    protocol: TCP
+
+ingressRoute:
+  dashboard:
+    enabled: true
+  healthcheck:
+    enabled: true
