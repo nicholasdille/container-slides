@@ -1,0 +1,54 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: oauth2-proxy
+  namespace: oauth2-proxy
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`auth.inmylab.de`) || PathPrefix(`/oauth2`)
+    services:
+    - name: oauth2-proxy
+      port: 80
+  tls:
+    secretName: certificate-oauth2-proxy
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: oauth2-proxy
+  namespace: oauth2-proxy
+spec:
+  endpoints:
+  - dnsName: auth.inmylab.de
+    recordTTL: 120
+    recordType: CNAME
+    targets:
+    - lb.inmylab.de
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: oauth2-proxy
+  namespace: oauth2-proxy
+spec:
+  commonName: auth.inmylab.de
+  dnsNames:
+  - auth.inmylab.de
+  duration: 2160h
+  isCA: false
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 2048
+  renewBefore: 360h
+  secretName: certificate-oauth2-proxy
+  usages:
+  - server auth
+  - client auth

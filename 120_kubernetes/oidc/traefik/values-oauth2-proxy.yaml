@@ -1,0 +1,39 @@
+config:
+  clientID: private-client
+  clientSecret: 5b6e860d9f418ae429ded27076e849751d225aa981764dbf9b790e1347625558
+  cookieSecret: abcdefghijklmnop
+
+extraEnv:
+- name: OAUTH2_PROXY_HTTP_ADDRESS
+  value: 0.0.0.0:4180
+- name: OAUTH2_PROXY_COOKIE_DOMAINS
+  value: .inmylab.de
+- name: OAUTH2_PROXY_WHITELIST_DOMAINS
+  value: .inmylab.de
+- name: OAUTH2_PROXY_PROVIDER
+  value: oidc
+- name: OAUTH2_PROXY_CLIENT_ID
+  value: private-client
+- name: OAUTH2_PROXY_CLIENT_SECRET
+  value: 5b6e860d9f418ae429ded27076e849751d225aa981764dbf9b790e1347625558
+- name: OAUTH2_PROXY_EMAIL_DOMAINS
+  value: "*"
+- name: OAUTH2_PROXY_OIDC_ISSUER_URL
+  value: https://dex.inmylab.de
+- name: OAUTH2_PROXY_REDIRECT_URL
+  value: https://auth.inmylab.de/oauth2/callback
+- name: OAUTH2_PROXY_REVERSE_PROXY
+  value: 'true'
+- name: OAUTH2_PROXY_COOKIE_CSRF_PER_REQUEST
+  value: 'true'
+- name: OAUTH2_PROXY_COOKIE_CSRF_EXPIRE
+  value: 5m
+
+# Additionally authenticate against a htpasswd file. Entries must be created with "htpasswd -B" for bcrypt encryption.
+# Alternatively supply an existing secret which contains the required information.
+htpasswdFile:
+  enabled: false
+  existingSecret: ""
+  entries:
+  # admin@inmylab.de
+  - admin:$2y$05$Z5s2FqShusd2/wdn2A4DpO8UKYAnM3pik1LKAEZJP1dCc3ajLwqJK

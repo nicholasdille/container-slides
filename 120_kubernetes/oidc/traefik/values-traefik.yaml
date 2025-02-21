@@ -1,16 +1,37 @@
+logs:
+  general:
+    level: "DEBUG"
+
 ingressRoute:
   dashboard:
     enabled: true
+    matchRule: Host(`traefik.inmylab.de`)
+    entryPoints: ["websecure"]
+    tls:
+      secretName: certificate-traefik-dashboard
 
-updateStrategy: Recreate
+updateStrategy:
+  type: Recreate
 
 providers:
   kubernetesCRD:
     enabled: true
+    allowCrossNamespace: true
   kubernetesIngress:
     enabled: true
   kubernetesGateway:
-    enabled: true
+    enabled: false
+
+service:
+  enabled: true
+  type: ClusterIP
+  spec:
+    clusterIP: None
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: lb.inmylab.de
+    #external-dns.alpha.kubernetes.io/endpoints-type: NodeExternalIP
+    external-dns.alpha.kubernetes.io/target: "138.199.175.196"
+    external-dns.alpha.kubernetes.io/ttl: "120"
 
 ports:
   traefik:
@@ -19,23 +40,22 @@ ports:
       default: false
     exposedPort: 8080
     protocol: TCP
-  http:
-    port: 80
-    hostPort: 80
-    expose:
-      default: true
-    exposedPort: 80
-    protocol: TCP
-  http:
+  websecure:
     port: 443
     hostPort: 443
+    containerPort: 443
     expose:
       default: true
     exposedPort: 443
     protocol: TCP
-
-ingressRoute:
-  dashboard:
-    enabled: true
-  healthcheck:
-    enabled: true
+    tls:
+      enabled: true
+      options: ""
+      certResolver: ""
+      domains: []
+  metrics:
+    port: 9100
+    expose:
+      default: false
+    exposedPort: 9100
+    protocol: TCP

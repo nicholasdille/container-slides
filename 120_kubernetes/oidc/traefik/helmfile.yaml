@@ -1,3 +1,5 @@
+# https://helmfile.readthedocs.io/en/latest/#configuration
+
 repositories:
 - name: external-dns
   url: https://kubernetes-sigs.github.io/external-dns/
@@ -25,11 +27,16 @@ releases:
   - values-cert-manager.yaml
 - name: cert-manager-webhook-hetzner
   namespace: cert-manager
-  chart: cert-manager-webhook-hetzner
+  chart: cert-manager-webhook-hetzner/cert-manager-webhook-hetzner
   set:
-  - groupName: acme.inmylab.de
+  - name: groupName
+    value: acme.inmylab.de
+  needs:
+  - cert-manager/cert-manager
 - name: traefik
   namespace: kube-system
   chart: traefik/traefik
   values:
   - values-traefik.yaml
+
+# https://docs.gitlab.com/charts/installation/deployment/

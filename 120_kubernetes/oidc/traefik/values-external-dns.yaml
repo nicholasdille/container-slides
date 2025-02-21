@@ -1,5 +1,11 @@
-namespace: external-dns
+sources:
+- service
+- crd
 policy: sync
+
+extraArgs:
+  - "--txt-prefix=reg-%{record_type}-"
+
 provider:
   name: webhook
   webhook:
@@ -24,6 +30,3 @@ provider:
         port: http-wh-metrics
       initialDelaySeconds: 10
       timeoutSeconds: 5
-
-extraArgs:
-  - "--txt-prefix=reg-%{record_type}-"

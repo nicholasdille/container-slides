@@ -1,0 +1,28 @@
+config:
+  issuer: https://dex.inmylab.de
+
+  storage:
+    type: memory
+
+  enablePasswordDB: true
+  oauth2:
+    passwordConnector: local
+
+  staticPasswords:
+  - email: "test@inmylab.de"
+    # bcrypt hash of the string "password": $(echo password | htpasswd -BinC 10 admin | cut -d: -f2)
+    hash: "$2y$10$8KGmPsP.gcAF10U4BDKVNOiWBzQtPrtPX1HwPgvI.fjNvk7jgBbf."
+    username: "test"
+    userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+  
+  staticClients:
+  - id: public-client
+    public: true
+    name: 'Public Client'
+    redirectURIs:
+    - 'https://auth.inmylab.de/oauth2/callback'
+  - id: private-client
+    secret: 5b6e860d9f418ae429ded27076e849751d225aa981764dbf9b790e1347625558
+    name: 'Private Client'
+    redirectURIs:
+    - 'https://auth.inmylab.de/oauth2/callback'

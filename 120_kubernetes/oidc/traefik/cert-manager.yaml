@@ -15,13 +15,9 @@ spec:
           groupName: acme.inmylab.de
           solverName: hetzner
           config:
-            secretName: hetzner-secret
+            secretName: hetzner-dns-api-key
             zoneName: inmylab.de
             apiUrl: https://dns.hetzner.com/api/v1
       selector:
         dnsZones:
         - inmylab.de
----
-# dnsendpoint
----
-# certificate
