@@ -1,0 +1,17 @@
+---
+apiVersion: apiserver.config.k8s.io/v1beta1
+kind: AuthenticationConfiguration
+jwt:
+- issuer:
+    url: https://gitlab.example.com
+    audiences:
+    - group_application_id
+    - id_token_audience
+    audienceMatchPolicy: MatchAny
+  claimMappings:
+    username:
+      expression: 'has(claims.preferred_username) ? "gitlab:" + claims.preferred_username : "gitlab-ci:" + claims.sub'
+    groups:
+      expression: 'has(claims.groups_direct) ? "gitlab:" + claims.groups_direct : "gitlab-ci:" + claims.namespace_path'
+    uid:
+      expression: 'has(claims.preferred_username) ? "gitlab:" + claims.preferred_username : "gitlab-ci:" + claims.sub'
