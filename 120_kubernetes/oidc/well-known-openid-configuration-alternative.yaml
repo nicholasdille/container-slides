@@ -1,0 +1,46 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: oidc-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: YOUR_ISSUER
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: YOUR_HOST
+    http:
+      paths:
+      - path: /.well-known/openid-configuration
+        pathType: Exact
+        backend:
+          service:
+            name: kubernetes
+            port:
+              number: 443
+      - path: /openid/v1/jwks
+        pathType: Exact
+        backend:
+          service:
+            name: kubernetes
+            port:
+              number: 443
+  tls:
+  - hosts:
+    - YOUR_HOST
+    secretName: oidc-ingress-tls
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: crb:oidc-viewer
+subjects:
+  - kind: Group
+    name: system:unauthenticated
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: system:service-account-issuer-discovery
+  apiGroup: rbac.authorization.k8s.io
