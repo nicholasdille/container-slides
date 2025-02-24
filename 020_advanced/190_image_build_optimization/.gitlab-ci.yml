@@ -21,7 +21,7 @@ variables:
 
 renovate:
   stage: prepare
-  image: renovate/renovate:29.8.3
+  image: renovate/renovate:29.36.2
   variables:
     LOG_LEVEL: debug
   script:
