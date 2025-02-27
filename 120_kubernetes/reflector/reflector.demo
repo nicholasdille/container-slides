@@ -1,0 +1,46 @@
+# reflector
+
+## Install reflector
+helm repo add emberstack https://emberstack.github.io/helm-charts
+helm --namespace=reflector upgrade --install --create-namespace reflector emberstack/reflector
+
+## Create secret for mirroring
+kubectl --namespace=reflector create secret docker-registry reg.company.com \
+    --docker-server=reg.company.com \
+    --docker-email=me@company.com \
+    --docker-username=me \
+    --docker-password='S3crEt!' \
+    --dry-run=client \
+    --output=yaml \
+| kubectl apply -f -
+
+## Secret only exists in namespace reflector
+kubectl get secrets --all-namespaces
+
+## Add annotations for mirroring
+kubectl --namespace=reflector annotate secret reg.company.com \
+    reflector.v1.k8s.emberstack.com/reflection-allowed="true" \
+    reflector.v1.k8s.emberstack.com/reflection-auto-enabled="true"
+
+## Secret was created in all other namespaces
+kubectl get secrets --all-namespaces
+
+## Check contents
+kubectl --namespace=default get secrets reg.company.com --output=json \
+| jq --raw-output '.data.".dockerconfigjson"' \
+| base64 -d
+
+## Change
+kubectl --namespace=reflector create secret docker-registry reg.company.com \
+    --docker-server=reg.company.com \
+    --docker-email=me@company.com \
+    --docker-username=me \
+    --docker-password='NewS3crEt!' \
+    --dry-run=client \
+    --output=yaml \
+| kubectl apply -f -
+
+## Check
+kubectl --namespace=default get secrets reg.company.com --output=json \
+| jq --raw-output '.data.".dockerconfigjson"' \
+| base64 -d
