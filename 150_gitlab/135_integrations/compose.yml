@@ -14,7 +14,7 @@ services:
     image: yuzutech/kroki-blockdiag:0.21.3
 
   mermaid:
-    image: yuzutech/kroki-mermaid:0.26.0
+    image: yuzutech/kroki-mermaid:0.27.0
 
   bpmn:
     image: yuzutech/kroki-bpmn:0.26.0
