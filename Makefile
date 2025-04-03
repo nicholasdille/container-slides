@@ -126,6 +126,17 @@ $(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs
 	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
 	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f
 
+$(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.md -printf '%P\n' | xargs -I{} basename {} .md)):%.pdf: %.md
+	@docker run \
+		--interactive \
+		--rm \
+		--volume="${PWD}:/app" \
+		--workdir=/app \
+		--user="$(id -u):$(id -g)" \
+		jmaupetit/md2pdf \
+			$*.md \
+			$@
+
 # pipx install mkdocs \
 #     --pip-args "mkdocs-material mkdocs-material-extensions pymdown-extensions mkdocs-minify-plugin mkdocs-macros-plugin mkdocs-redirects regex" \
 #     --force
