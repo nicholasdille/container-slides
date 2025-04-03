@@ -28,9 +28,7 @@ clean-all:
 	echo "Generating $$(basename $@)"; \
 	include $*
 
-SOURCES=$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xargs -I{} basename {} .yaml)
-
-$(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
+$(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xargs -I{} basename {} .yaml)):%.html: Makefile template.html %.yaml
 	@\
 	TITLE="$$(yq eval '.metadata.title' $*.yaml)"; \
 	SUBTITLE="$$(yq eval '.metadata.subtitle' $*.yaml)"; \
@@ -113,7 +111,7 @@ $(addsuffix .html,$(SOURCES)):%.html: Makefile template.html %.yaml
 	done; \
 	sed -i 's/&lt;/</g; s/&gt;/>/g' $@
 
-%.pdf: %.html
+$(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs -I{} basename {} .html)):%.pdf: %.html
 	@\
 	echo "### Remove containers"; \
 	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
