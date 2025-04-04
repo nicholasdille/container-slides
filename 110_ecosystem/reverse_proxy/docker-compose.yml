@@ -34,7 +34,7 @@ services:
       traefik.http.routers.traefik.rule: HostRegexp(`traefik.{domain:[a-z0-9]+}.inmylab.de`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
 
   registry:
-    image: registry:2.8.3
+    image: registry:3.0.0
     ports:
     - "127.0.0.1:5000:5000"
     labels:
