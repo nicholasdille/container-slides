@@ -1,0 +1,33 @@
+sources:
+- service
+- crd
+- node
+policy: sync
+
+extraArgs:
+  - "--txt-prefix=reg-%{record_type}-"
+
+provider:
+  name: webhook
+  webhook:
+    image:
+      repository: ghcr.io/mconfalonieri/external-dns-hetzner-webhook
+      tag: v0.7.0
+    env:
+    - name: HETZNER_API_KEY
+      valueFrom:
+        secretKeyRef:
+          name: hetzner-dns-api-key
+          key: api-key
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: http-webhook
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+    readinessProbe:
+      httpGet:
+        path: /ready
+        port: http-webhook
+      initialDelaySeconds: 10
+      timeoutSeconds: 5

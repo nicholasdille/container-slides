@@ -1,0 +1,81 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: oauth-verify
+  namespace: podinfo
+spec:
+  forwardAuth:
+    address: "https://auth.inmylab.de/oauth2/auth"
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: oauth-signin
+  namespace: podinfo
+spec:
+  errors:
+    status:
+    - "401"
+    service:
+      name: oauth2-proxy
+      namespace: oauth2-proxy
+      port: 80
+    query: "/oauth2/sign_in"
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`podinfo.inmylab.de`)
+    services:
+    - name: podinfo
+      port: 9898
+    middlewares:
+    - name: oauth-signin
+    - name: oauth-verify
+  tls:
+    secretName: certificate-podinfo
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  endpoints:
+  - dnsName: podinfo.inmylab.de
+    recordTTL: 120
+    recordType: CNAME
+    targets:
+    - lb.inmylab.de
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  commonName: podinfo.inmylab.de
+  dnsNames:
+  - podinfo.inmylab.de
+  duration: 2160h
+  isCA: false
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 2048
+  renewBefore: 360h
+  secretName: certificate-podinfo
+  usages:
+  - server auth
+  - client auth
