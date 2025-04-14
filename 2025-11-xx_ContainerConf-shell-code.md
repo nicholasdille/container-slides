@@ -8,7 +8,7 @@ Dieser Vortrag gibt einige Tipps, um Shell Code lesbarer zu machen. Außerdem wi
 
 ## Vorkenntnisse
 
-- XXX
+Du solltest bereits einige Zeilen an Shell Code (z.B. bash) geschrieben haben.
 
 ## Lernziele
 
