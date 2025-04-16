@@ -34,7 +34,7 @@ default:
   image: golang:1.23.2
 
 services:
-- nginx:1.27.3
+- nginx:1.27.5
 
 lint:
   stage: check
