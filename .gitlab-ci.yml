@@ -101,14 +101,14 @@ pages:
     - public
 
 package:
-  image: docker:27.3.1
+  image: docker:28.1.1
   stage: package
   rules:
   - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
   variables:
     DOCKER_TLS_CERTDIR: ""
   services:
-  - docker:27.3.1-dind
+  - docker:28.1.1-dind
   script:
   - docker build --tag hello .
 
