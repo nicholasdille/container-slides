@@ -3,7 +3,7 @@ terraform {
     hcloud = {
       # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs
       source = "hetznercloud/hcloud"
-      version = "1.49.1"
+      version = "1.50.1"
     }
     hetznerdns = {
       # https://registry.terraform.io/providers/timohirt/hetznerdns/latest/docs
