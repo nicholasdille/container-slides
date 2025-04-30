@@ -41,18 +41,27 @@ gateway:
 minio:
   enabled: true
       
-deploymentMode: SingleBinary
+deploymentMode: SimpleScalable
 
 singleBinary:
-  replicas: 1
+  replicas: 0
 
 # Zero out replica counts of other deployment modes
 backend:
-  replicas: 0
+  replicas: 1
+  persistence:
+    volumeClaimsEnabled: false
+  resources: {}
 read:
-  replicas: 0
+  replicas: 1
+  persistence:
+    volumeClaimsEnabled: false
+  resources: {}
 write:
-  replicas: 0
+  replicas: 1
+  persistence:
+    volumeClaimsEnabled: false
+  resources: {}
 
 ingester:
   replicas: 0
