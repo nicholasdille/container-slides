@@ -16,7 +16,7 @@ terraform {
     }
     remote = {
       source = "tenstad/remote"
-      version = "0.1.3"
+      version = "0.2.0"
     }
     ssh = {
       source = "loafoe/ssh"
