@@ -33,7 +33,7 @@ stages:
 - trigger
 
 default:
-  image: golang:1.23.2
+  image: golang:1.23.9
 
 lint:
   stage: check
