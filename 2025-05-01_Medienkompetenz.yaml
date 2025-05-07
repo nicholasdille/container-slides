@@ -1,0 +1,49 @@
+date: 2025-05-01
+metadata:
+  title: Medienkompetenz
+  title_slug: medienkompetenz
+  subtitle: ""
+  favicon: 150_gitlab/media/favicon.ico
+  background:
+    # https://unsplash.com/photos/man-walking-on-forest-_r19nfvS3wY
+    image: images/jon-flobrant-_r19nfvS3wY-unsplash.jpg
+    size: 90%
+    positon: left 50% top 50%
+event:
+  name: " "
+  logo: ""
+  link: ""
+
+pre_slides: []
+
+agenda:
+- icon: mobile-screen-button
+  text: Warum ein Handy?
+- icon: triangle-exclamation
+  text: Gefahren
+- icon: people-roof
+  text: xxx
+- icon: shield-heart
+  text: Schutz
+- icon: handshake-simple
+  text: Kompetenz
+
+slides:
+- 995_medienkompetenz/disclaimer.md
+- 995_medienkompetenz/intro.md
+- 995_medienkompetenz/schutz.md
+- 995_medienkompetenz/kompetenz.md
+
+summary:
+- icon: infinity
+  text: GitLab covers the whole DevOps process
+- icon: ball-pile
+  text: GitLab is packed with features
+- icon: gauge-min
+  text: No plugins to support recurring tasks
+- icon: shield-check
+  text: Useful security features even in free tier
+
+events: []
+
+post_slides: []
