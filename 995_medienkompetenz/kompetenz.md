@@ -4,9 +4,19 @@
 
 > Wenn ein Dienst nichts kostet, bist du das Produkt.
 
+XXX Meta
+
 ---
 
 > Ich habe nichts zu verbergen.
+
+XXX Volksdaten
+
+---
+
+> Zu schön um wahr zu sein.
+
+XXX 1-Euro-Handy
 
 ---
 
@@ -20,6 +30,10 @@
 
 ## Konten
 
+XXX Identität
+
+XXX Präsenz
+
 ---
 
 ## Jugendfilter
@@ -27,6 +41,12 @@
 ---
 
 ## Cookies / Tracking
+
+---
+
+## Betrug / Scam
+
+XXX QR-Codes
 
 ---
 

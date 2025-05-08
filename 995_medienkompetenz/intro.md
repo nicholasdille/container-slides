@@ -15,6 +15,8 @@
 - Erreichbarkeit
 - Musik hören
 
+XXX ab wann?
+
 ---
 
 ## Gefahren
@@ -24,6 +26,8 @@
 - <i class="fa-solid fa-heart-pulse"></i><p>**Gesundheit**</p>X
 
 <!-- .element: class="ul-to-blocks3" -->
+
+XXX Augenentspannung 20-20-20 (Minuten, Sekunden, Fuß)
 
 ---
 
@@ -35,3 +39,5 @@
 - <i class="fa-solid fa-hands-holding-child"></i><p>**Vorbild sein**</p>X<br/>Y<br/>Z
 
 <!-- .element: class="ul-to-blocks4" -->
+
+XXX wegnehmen ist schwerer
