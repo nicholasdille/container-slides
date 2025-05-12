@@ -1,6 +1,6 @@
-#syntax=docker/dockerfile:1.12.0
+#syntax=docker/dockerfile:1.15.1
 
-FROM nginx:1.27.3
+FROM nginx:1.27.5
 
 RUN <<EOF
 apt-get update

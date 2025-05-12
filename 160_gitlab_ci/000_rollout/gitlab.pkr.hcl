@@ -39,7 +39,7 @@ build {
 
   provisioner "shell" {
     inline = [
-        "docker pull gitlab/gitlab-ee:${local.gitlab_version}-ee.0",
+        "docker pull gitlab/gitlab-ce:${local.gitlab_version}-ce.0",
         "docker pull traefik:${local.traefik_version}",
         "docker pull gitlab/gitlab-runner:v${local.gitlab_runner_version}",
         "docker pull codercom/code-server:${local.code_server_version}",
