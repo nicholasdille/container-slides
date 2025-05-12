@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk AS builder
+FROM openjdk:25-jdk AS builder
 COPY HelloWorld.java .
 RUN javac HelloWorld.java
 

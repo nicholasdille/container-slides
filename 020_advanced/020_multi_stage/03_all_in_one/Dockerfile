@@ -1,8 +1,8 @@
-FROM openjdk:8-jdk AS builder1
+FROM openjdk:25-jdk AS builder1
 COPY HelloWorld.java .
 RUN javac HelloWorld.java
 
-FROM openjdk:8-jdk AS builder2
+FROM openjdk:25-jdk AS builder2
 COPY HelloHeise.java .
 RUN javac HelloHeise.java
 

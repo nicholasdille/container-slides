@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:25-jdk
 COPY HelloWorld.java .
 RUN javac HelloWorld.java
 CMD [ "java", "HelloWorld" ]
