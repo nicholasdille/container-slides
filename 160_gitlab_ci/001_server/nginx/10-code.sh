@@ -3,13 +3,23 @@ set -o errexit -o pipefail
 
 WEB_ROOT=/usr/share/nginx/html/
 
-cat <<EOF >/etc/nginx/conf.d/code.conf
+cat <<EOF >/etc/nginx/conf.d/default.conf
 server {
     listen 80;
     server_name code.${DOMAIN};
 
     access_log /dev/stdout;
     error_log /dev/stdout info;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
 EOF
 
 # TODO: Use SEAT_COUNT
@@ -33,7 +43,7 @@ for SEAT_INDEX in $(seq 0 21); do
     var="SEAT${SEAT_INDEX}_CODE_HTPASSWD"
     echo "${!var}" >"/etc/nginx/auth/seat${SEAT_INDEX}_htpasswd.code"
 
-    cat <<EOF >>/etc/nginx/conf.d/code.conf
+    cat <<EOF >>/etc/nginx/conf.d/default.conf
     location /seat${SEAT_INDEX}/ {
         auth_basic "Restricted";
         auth_basic_user_file /etc/nginx/auth/seat${SEAT_INDEX}_htpasswd.code;
@@ -41,6 +51,6 @@ for SEAT_INDEX in $(seq 0 21); do
 EOF
 done
 
-cat <<EOF >>/etc/nginx/conf.d/code.conf
+cat <<EOF >>/etc/nginx/conf.d/default.conf
 }
 EOF

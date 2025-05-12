@@ -21,8 +21,6 @@ chown www-data \
     /data.live
 EOF
 
-COPY default.conf /etc/nginx/conf.d/
-COPY --chmod=0755 00-index.sh /docker-entrypoint.d/
 COPY --chmod=0755 10-code.sh /docker-entrypoint.d/
 COPY --chmod=0755 20-webdav.sh /docker-entrypoint.d/
 
