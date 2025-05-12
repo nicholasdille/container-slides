@@ -45,6 +45,7 @@ for SEAT_INDEX in $(seq 0 21); do
 
     cat <<EOF >>/etc/nginx/conf.d/default.conf
     location /seat${SEAT_INDEX}/ {
+        root   /usr/share/nginx/html;
         auth_basic "Restricted";
         auth_basic_user_file /etc/nginx/auth/seat${SEAT_INDEX}_htpasswd.code;
     }
