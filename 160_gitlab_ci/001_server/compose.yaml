@@ -151,7 +151,7 @@ services:
     environment:
       GF_SERVER_ROOT_URL: https://grafana.inmylab.de
       GF_SECURITY_ADMIN_USER: admin
-      GF_SECURITY_ADMIN_PASSWORD: "${GITLAB_ADMIN_PASS?Environment variable GITLAB_ADMIN_PASS is mandatory"
+      GF_SECURITY_ADMIN_PASSWORD: "${GITLAB_ADMIN_PASS?Environment variable GITLAB_ADMIN_PASS is mandatory}"
       GF_AUTH_ANONYMOUS_ENABLED: "false"
     restart: unless-stopped
     labels:
