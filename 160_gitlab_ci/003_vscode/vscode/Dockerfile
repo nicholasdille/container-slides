@@ -33,9 +33,10 @@ COPY --chmod=0755 git.sh /entrypoint.d/
 
 RUN <<EOF
 useradd --user-group --create-home --shell /bin/bash seat
+chown -R seat:seat /home/seat
 EOF
 USER seat
-COPY settings.json /home/seat/.local/share/code-server/User/
+COPY --chown=seat:seat settings.json /home/seat/.local/share/code-server/User/
 WORKDIR /home/seat/demo
 
 # https://open-vsx.org/
