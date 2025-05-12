@@ -44,7 +44,7 @@ services:
       # traefik dashboard: authenticated endpoint
       traefik.http.routers.traefik-s.entrypoints: https
       traefik.http.routers.traefik-s.service: api@internal
-      traefik.http.routers.traefik-s.rule: Host(`traefik.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}`)`)
+      traefik.http.routers.traefik-s.rule: Host(`traefik.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.traefik-s.tls: "true"
       # TODO: Fix auth
       #traefik.http.routers.traefik-s.middlewares: seat-auth
