@@ -25,7 +25,7 @@ export TRAEFIK_HTPASSWD
 echo "services:" >compose.vscode.yaml
 echo -n >vscode.env
 for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
-    SEAT_PASS="$( jq --raw-output --arg index "${SEAT_INDEX}" '.[$index | tonumber]' personal_access_tokens.json )"
+    SEAT_PASS="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .password' seats.json )"
     export SEAT_INDEX
     export SEAT_PASS
 
