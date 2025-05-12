@@ -4,6 +4,10 @@
 
 Make sure your have rolled out the virtual machines in `../000_rollout`.
 
+## Update nginx
+
+Update links in `nginx/index.html` with correct date
+
 ## Start GitLab
 
 ```shell

@@ -1,4 +1,4 @@
--include .env.mk
+include .env.mk
 
 REPOSITORY_URL         := https://github.com/nicholasdille/terraform-state
 REPOSITORY_BRANCH      := main

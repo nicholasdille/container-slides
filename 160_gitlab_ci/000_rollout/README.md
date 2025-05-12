@@ -35,6 +35,8 @@ GIT_USERNAME := nicholasdille
 GIT_PASSWORD := $(shell pp github-terraform-state)
 ```
 
+Make sure that `GIT_PASSWORD` is still valid for `https://github.com/nicholasdille/terraform-state`.
+
 Deploy infrastructure
 
 ```shell
@@ -44,6 +46,42 @@ make apply
 ## Bootstrap services
 
 Checkout the next directories called `../00?_*` and follow the instructions
+
+## Check containers
+
+One-shot connection to remote Docker daemons:
+
+```shell
+docker -H ssh://gitlab ps
+docker -H ssh://runner ps
+docker -H ssh://vscode ps
+```
+
+Create Docker contexts:
+
+```shell
+docker context create gitlab --docker "host=ssh://gitlab"
+docker context create runner --docker "host=ssh://runner"
+docker context create vscode --docker "host=ssh://vscode"
+```
+
+Use contexts:
+
+```shell
+docker --context=gitlab ps
+docker --context=runner ps
+docker --context=vscode ps
+```
+
+## Create entries in password manager
+
+The following entries should be created:
+
+- `Code` for `https://code.inmylab.de`
+- `GitLab` for `https://gitlab.inmylab.de` for user `root` and user `seat0`
+- `GitLab PAT` for user `root` and user `seat0`
+- `VSCode` for `https://vscode.inmylab.de` for user `seat0`
+- `Grafana` for `https://grafana.inmylab.de` for user `admin` and GitLab root password
 
 ## Testing
 

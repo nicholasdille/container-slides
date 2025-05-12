@@ -39,9 +39,8 @@ resource "grafana_sso_settings" "gitlab" {
     allow_assign_grafana_admin = true
     auto_login                 = false
     scopes                     = "openid email profile"
-    org_mapping                = "root:*:Admin,*:*:Viewer"
-    org_attribute_path         = "info.roles"
     use_refresh_token          = true
+    role_attribute_path        = "contains(groups_direct[*], 'grafana') && 'GrafanaAdmin' || 'Viewer'"
   }
 }
 

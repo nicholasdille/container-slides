@@ -28,7 +28,7 @@ data "hcloud_image" "packer" {
 
 resource "hcloud_server" "gitlab" {
   name        = "gitlab"
-  location    = local.location
+  location    = local.location_gitlab
   server_type = local.server_type_gitlab
   image       = data.hcloud_image.packer.id
   ssh_keys    = [
@@ -45,7 +45,7 @@ resource "hcloud_server" "gitlab" {
 
 resource "hcloud_server" "runner" {
   name        = "runner"
-  location    = local.location
+  location    = local.location_runner
   server_type = local.server_type_runner
   image       = data.hcloud_image.packer.id
   ssh_keys    = [
@@ -62,7 +62,7 @@ resource "hcloud_server" "runner" {
 
 resource "hcloud_server" "vscode" {
   name        = "vscode"
-  location    = local.location
+  location    = local.location_vscode
   server_type = local.server_type_vscode
   image       = data.hcloud_image.packer.id
   ssh_keys    = [
