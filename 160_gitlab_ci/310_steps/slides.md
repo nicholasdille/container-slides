@@ -25,7 +25,9 @@ job:
         message: "hello, ${{ job.MESSAGE }}"
 ```
 
-Requires `step-runner` binary [](https://gitlab.com/gitlab-org/step-runner)
+Steps can be combined with CI/CD Components [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
+
+GitLab <17.11 requires `step-runner` binary [](https://gitlab.com/gitlab-org/step-runner)
 
 Steps can also be used to run existing GitHub Actions [](https://docs.gitlab.com/ee/ci/steps/#run-a-github-action)
 

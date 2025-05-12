@@ -16,8 +16,6 @@ Extensive configuration [](https://docs.gitlab.com/runner/configuration/advanced
 
 Executors interface with infrastructure
 
-XXX
-
 ---
 
 ## Runners

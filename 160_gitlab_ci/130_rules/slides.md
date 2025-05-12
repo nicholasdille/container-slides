@@ -178,3 +178,16 @@ Access control can be enabled
 
 1. Per instance [](https://docs.gitlab.com/ee/administration/pages/index.html#access-control) (prerequisite for per project)
 1. Per project [](https://docs.gitlab.com/ee/user/project/pages/pages_access_control.html)
+
+---
+
+# Pro tip 7: Trigger Token fails
+
+Situation:
+
+- Trigger token fails to trigger a pipeline
+- GitLab return HTTP 400 (Bad request)
+
+Possible root cause:
+
+- All job were filtered out due to rules

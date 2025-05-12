@@ -18,9 +18,11 @@ They are similar to job templates...
 
 ### Usage
 
-XXX ` include:component` [](https://docs.gitlab.com/ee/ci/yaml/#includecomponent)
+Include a component using `include:component` [](https://docs.gitlab.com/ee/ci/yaml/#includecomponent)
 
-XXX fully qualified
+The component must reside on the same server as the project
+
+The path must be fully qualified
 
 ```yaml
 include:

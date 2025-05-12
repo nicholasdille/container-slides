@@ -132,7 +132,7 @@ See chapter [Triggers](/hands-on/2024-11-21/110_triggers/exercise/)
 
 ---
 
-## Pro tip 2: Wait for downstream pipeline
+## Pro tip 1: Wait for downstream pipeline
 
 Upstream pipeline only waits for successful trigger
 
@@ -149,7 +149,7 @@ Useful when triggering the pipeline of a dependency
 
 ---
 
-## Pro tip 1: Artifacts from parent pipeline
+## Pro tip 2: Artifacts from parent pipeline
 
 <i class="fa-duotone fa-triangle-exclamation"></i> Requires Enterprise Edition Premium [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline)
 
@@ -190,7 +190,7 @@ This works for `dotenv` reports as well [](https://docs.gitlab.com/ee/ci/variabl
 
 ---
 
-## Pro tip 2: Variable inheritence
+## Pro tip 3: Variable inheritence
 
 Downstream pipelines inherit some variables [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
 
@@ -216,7 +216,7 @@ Do not redefined masked variables - **they will not be masked**
 
 ---
 
-## Pro tip 3: Do not pass global variables
+## Pro tip 4: Do not pass global variables
 
 Only allow job variables to be passed to downstream pipelines:
 
@@ -236,7 +236,7 @@ trigger-job:
 
 ---
 
-## Pro tip 4: Types of variables to forward
+## Pro tip 5: Types of variables to forward
 
 Use `trigger:forward` [](https://docs.gitlab.com/ee/ci/yaml/#triggerforward) to define which types of variables to forward to downstream pipelines
 
@@ -247,7 +247,7 @@ This only works for the direct downstream pipeline
 
 ---
 
-## Pro tip 5: Permissions for include
+## Pro tip 6: Permissions for include
 
 When including a file from another project...
 
@@ -264,7 +264,7 @@ job_name:
 
 ---
 
-## Pro tip 6: Dynamic includes
+## Pro tip 7: Dynamic includes
 
 Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
 

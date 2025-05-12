@@ -2,9 +2,13 @@
 
 ### Do you have any experience with CI/CD?
 
-### Are you using GitLab?
-
 ### Are you using GitLab CI?
+
+### Do you identify as a dev or an op or both?
+
+### Are you responsible for running GitLab?
+
+### Do you own a GitLab Enterprise License?
 
 ---
 
@@ -15,10 +19,10 @@
 | 09:00 |       | Let's roll <i class="fa-solid fa-rabbit-running"></i> |
 | 10:00 | 10:15 | Coffee Break <i class="fa-solid fa-mug-hot"></i>      |
 | 11:15 | 11:30 | Coffee Break <i class="fa-solid fa-mug-hot"></i>      |
-| 12:30 | 13:30 | Lunch Break <i class="fa-solid fa-pot-food"></i>      |
+| 12:30 | 13:30 | Lunch Break <i class="fa-solid fa-utensils"></i>      |
 | 14:30 | 14:45 | Coffee Break <i class="fa-solid fa-mug-hot"></i>      |
 | 15:45 | 16:00 | Coffee Break <i class="fa-solid fa-mug-hot"></i>      |
-|       | 17:00 | The End <i class="fa-solid fa-flag-checkered"></i>    |
+|       | 17:00 | The End <i class="fa-solid fa-pause"></i> / <i class="fa-solid fa-flag-checkered"></i>    |
 
 ---
 
