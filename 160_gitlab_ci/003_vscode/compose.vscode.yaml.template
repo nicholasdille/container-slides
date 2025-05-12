@@ -23,7 +23,7 @@
     labels:
       traefik.enable: "true"
       # Auth
-      traefik.http.middlewares.vscode${SEAT_INDEX}-auth.basicauth.users: ${SEAT${SEAT_INDEX}_HTPASSWD}
+      traefik.http.middlewares.vscode${SEAT_INDEX}-auth.basicauth.users: ${SEAT${SEAT_INDEX}_HTPASSWD?Environment variable SEAT${SEAT_INDEX} is mandatory}
       # Service port
       traefik.http.services.vscode${SEAT_INDEX}.loadbalancer.server.port: 8080
       # Redirection to HTTPS
