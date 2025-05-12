@@ -5,7 +5,6 @@ FROM nginx:1.27.5
 RUN <<EOF
 apt-get update
 apt-get -y install \
-        nginx-extras \
         apache2-utils \
         procps \
         vim-tiny
