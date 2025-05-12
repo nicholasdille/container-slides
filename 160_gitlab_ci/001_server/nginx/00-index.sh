@@ -1,4 +1,7 @@
 #!/bin/bash
 set -o errexit -o pipefail
 
-echo "TODO: index"
+cp /etc/nginx/conf.d/default.conf /tmp/default.conf
+cat /tmp/default.conf \
+| envsubst \
+>/etc/nginx/conf.d/default.conf
