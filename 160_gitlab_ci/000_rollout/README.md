@@ -17,7 +17,25 @@ make docker
 make gitlab
 ```
 
+## Create credentials for attendees
+
+```shell
+SET_NAME=20250512 COUNT=21 bash generate.sh
+```
+
 ## Rollout infrastructure
+
+Provide credentials for infrastructure
+
+```shell
+$ cat .env.mk
+HCLOUD_TOKEN := $(shell pp hcloud-web)
+HETZNERDNS_TOKEN := $(shell pp hetzner-dns-web)
+GIT_USERNAME := nicholasdille
+GIT_PASSWORD := $(shell pp github-terraform-state)
+```
+
+Deploy infrastructure
 
 ```shell
 make apply
