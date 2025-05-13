@@ -42,7 +42,7 @@ Same pricing [](https://about.gitlab.com/pricing/) and features [](https://about
 
 Based on open-source project, allows your own runners, static websites
 
-gitlab.com: 5GB storage [](https://about.gitlab.com/pricing/#do-the-storage-and-transfer-limits-apply-to-self-managed), 400 minutes/month [](https://about.gitlab.com/pricing/#why-do-i-need-to-enter-credit-debit-card-details-for-free-pipeline-minutes), 5 users/group [](https://about.gitlab.com/pricing/#when-will-the-user-limits-be-effective)
+gitlab.com: 10GB storage [](https://about.gitlab.com/pricing/#do-the-storage-and-transfer-limits-apply-to-self-managed), 400 minutes/month [](https://about.gitlab.com/pricing/#why-do-i-need-to-enter-credit-debit-card-details-for-free-pipeline-minutes), 5 users/group [](https://about.gitlab.com/pricing/#when-will-the-user-limits-be-effective)
 
 ### Premium [](https://about.gitlab.com/pricing/premium/) ($29/user/month)
 
