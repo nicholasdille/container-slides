@@ -32,8 +32,10 @@ https://github.com/preslaff/ai-code-reviewer
 
 ---
 
-## MCP
+## Model Context Protocol (MCP)
 
 https://modelcontextprotocol.io
 
 https://github.com/modelcontextprotocol/servers
+
+https://mcpmarket.com/search?q=gitlab / https://github.com/zereight/gitlab-mcp
