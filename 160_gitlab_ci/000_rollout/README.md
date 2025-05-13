@@ -184,9 +184,22 @@ Fetch last activity:
 
 ```shell
 seq 0 20 | while read -r INDEX; do
+    echo "seat${INDEX}"
     PAT="$( jq -r '.gitlab_admin_token' seats.json )"
     USER_ID="$( curl -sSH "Private-Token: ${PAT}" https://gitlab.inmylab.de/api/v4/users?username=seat${INDEX} | jq -r .[0].id )"
     curl -sSH "Private-Token: ${PAT}" https://gitlab.inmylab.de/api/v4/users/${USER_ID} \
-    | jq -r '"last_sign_in_at: \(.last_sign_in_at)\nlast_activity_on: \(.last_activity_on)\nsign_in_count: \(.sign_in_count)"'
+    | jq -r '"  last_sign_in_at: \(.last_sign_in_at)\n  last_activity_on: \(.last_activity_on)\n  sign_in_count: \(.sign_in_count)"'
+done
+```
+
+Test webdav:
+
+```shell
+seq 0 20 | while read -r INDEX; do
+    echo "seat${INDEX}"
+    PASS_DEV="$( jq -r --arg index ${INDEX} '.seats[$index | tonumber].webdav_pass_dev' seats.json )"
+    curl -sSIu "seat${INDEX}:${PASS_DEV}" https://seat${INDEX}.dev.webdav.inmylab.de
+    PASS_LIVE="$( jq -r --arg index ${INDEX} '.seats[$index | tonumber].webdav_pass_live' seats.json )"
+    curl -sSIu "seat${INDEX}:${PASS_LIVE}" https://seat${INDEX}.live.webdav.inmylab.de
 done
 ```
