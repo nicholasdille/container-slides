@@ -30,4 +30,4 @@ golang:
 
 ### Hands-On
 
-See chapter [Unit tests](/hands-on/2024-11-21/090_unit_tests/exercise/)
+See chapter [Unit tests](/hands-on/2025-05-14/090_unit_tests/exercise/)

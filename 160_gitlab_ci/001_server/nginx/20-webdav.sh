@@ -1,6 +1,10 @@
 #!/bin/bash
 set -o errexit -o pipefail
 
+mkdir \
+    /data.dev \
+    /data.live
+
 # TODO: Use SEAT_COUNT
 for SEAT_INDEX in $(seq 0 21); do
     export SEAT_INDEX
@@ -21,3 +25,7 @@ for SEAT_INDEX in $(seq 0 21); do
     | envsubst '$DOMAIN,$SEAT_INDEX' \
     >"/etc/nginx/conf.d/webdav_seat${SEAT_INDEX}.conf"
 done
+
+chown -R nginx \
+    /data.dev \
+    /data.live

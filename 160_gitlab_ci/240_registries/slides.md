@@ -42,7 +42,7 @@ CI jobs receive environment variables:
 
 ### Hands-On
 
-See chapter [Registries](/hands-on/2024-11-21/240_registries/exercise/)
+See chapter [Registries](/hands-on/2025-05-14/240_registries/exercise/)
 
 ---
 

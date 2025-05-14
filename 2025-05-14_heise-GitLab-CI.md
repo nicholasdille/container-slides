@@ -1,0 +1,42 @@
+# 2025-05-14
+
+- Email-Text prüfen und korrigieren
+- RedHat Opt-out (bereits Default: {"redhat.telemetry.enabled": false})
+- code-server Telemetry ({"telemetry.feedback.enabled": false})
+- [skip ci] anywhere in commit message (not only in title)
+- commit field?!
+- gitlab extension?
+- only one slide before hands-on?
+- golang:1.23.4
+- Links und versionen in Slides und Hands-On anpassen
+- image speed improvements
+- artifacts: hands-on link verschieben
+- artifacts hands-on: task~~ 1~~
+- gleichnamige Artifakte
+- max size https://docs.gitlab.com/administration/settings/continuous_integration/#set-maximum-artifacts-size
+- max size + expire
+- max size only for admins
+- keep most recent + expire?! expire applies to older artifacts
+- job deps + upstream pipeline?!
+- jobs deps -> pro tip?! wall of text?!
+- pipeline design
+- create schedule -> solution? cron?
+- inputs everywhere!
+- automatic pipeline cleanup
+- achievements?
+- environment creation before variable binding ~:-|
+- env hands-on: instruct to use environment
+- https://docs.gitlab.com/update/deprecations/?removal_milestone=17.0#after_script-keyword-will-run-for-canceled-jobs
+- https://docs.gitlab.com/update/deprecations/
+- curl image
+- store SSH config to KeePass
+- "Menschen die auf Pipelines starren"
+- env new task? environment.name=$STAGE?
+- manual pipelines with vars (forms)?
+- env pro tip 1 -> no title
+- job scheduling: create in DB and enqueue
+- "successul"
+- trigger -> pro tip 2 -> ugly
+- trigger -> pro tip 4 -> ReAllY?!
+- remote .gitlab-ci.yml (https://docs.gitlab.com/17.11/ci/pipelines/settings/#custom-cicd-configuration-file-examples)
+- KOMPLEXES BEISPIEL

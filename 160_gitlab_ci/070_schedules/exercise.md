@@ -14,6 +14,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Bonus task: Start a schedule manually
 
-Run the previously created schedule manually by clicking the play button :fontawesome-solid-play:. This come in handy if you need to run a pipeline with pre-configured variables.
+Run the previously created schedule manually by clicking the play button :fontawesome-solid-play:. This comes in handy if you need to run a pipeline with pre-configured variables.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.

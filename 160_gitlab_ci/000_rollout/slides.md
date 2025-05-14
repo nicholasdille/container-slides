@@ -18,6 +18,6 @@ Containerized service stack for this workshop
 
 <span style="color: #7cbad4; position: absolute; top: 68%; right: 0%; z-index: -1"><i class="fa-duotone fa-solid fa-hand-point-up"></i> Uses `alpine`<br/>by default</span>
 
-Meet your demo environment by following the [introduction](/hands-on/2024-11-21/)
+Meet your demo environment by following the [introduction](/hands-on/2025-05-14/)
 
 More about GitLab Runner [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)

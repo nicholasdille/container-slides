@@ -27,4 +27,4 @@ Available in all tiers:
 
 ## Hands-On
 
-See chapter [Security](/hands-on/2024-11-21/280_security/exercise/)
+See chapter [Security](/hands-on/2025-05-14/280_security/exercise/)

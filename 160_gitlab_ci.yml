@@ -68,12 +68,10 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/nicholasdille/container-slides
-    - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/r/squidfunk/mkdocs-material/
     - icon: fontawesome/brands/mastodon
       link: https://freiburg.social/@nicholasdille
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/nicholasdille
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/nicholas.dille.name
 
 #extra_css:
 #- ../media/source-sans-pro@19/source-sans-pro.css

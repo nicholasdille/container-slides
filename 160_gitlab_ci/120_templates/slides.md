@@ -120,7 +120,7 @@ job_name:
 
 ## Hands-On
 
-See chapter [Templates](/hands-on/2024-11-21/120_templates/exercise/)
+See chapter [Templates](/hands-on/2025-05-14/120_templates/exercise/)
 
 ---
 

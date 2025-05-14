@@ -82,7 +82,7 @@ Use GitLab Pages to create a download page [](https://docs.gitlab.com/ee/user/pr
 - The job must be called `pages` [](https://docs.gitlab.com/ee/ci/yaml/#pages)
 - The must create an artifact from the directory called `public`
 
-See chapter [Rules](/hands-on/2024-11-21/130_rules/exercise/)
+See chapter [Rules](/hands-on/2025-05-14/130_rules/exercise/)
 
 ---
 

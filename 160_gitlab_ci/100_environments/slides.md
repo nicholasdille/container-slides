@@ -26,7 +26,7 @@ WebDAV endpoints emulate deployment targets
 
 ## Hands-On
 
-See chapter [Environments](/hands-on/2024-11-21/100_environments/exercise/)
+See chapter [Environments](/hands-on/2025-05-14/100_environments/exercise/)
 
 ---
 

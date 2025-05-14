@@ -2,13 +2,31 @@
 
 ### Do you have any experience with CI/CD?
 
+4
+
 ### Are you using GitLab CI?
+
+3
 
 ### Do you identify as a dev or an op or both?
 
+5, 2, 1
+
+### Are you comfortable with Linux?
+
+6
+
+### Is your GitLAb running self-hosted?
+
+6
+
 ### Are you responsible for running GitLab?
 
+1
+
 ### Do you own a GitLab Enterprise License?
+
+1
 
 ---
 
@@ -30,7 +48,7 @@
 
 ### Fundamentals
 
-[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Image](#/gitlab_image) - [Before and after script](#/gitlab_script_blocks) - [Defaults](#/gitlab_default) - [Artifacts and dependencies](#/gitlab_artifacts) - [Job dependencies](#/gitlab_job_deps) - [Schedules](#/gitlab_schedules) - [Configuration](#/gitlab_ci_configuration) - [Unit tests](#/gitlab_unit_tests)
+[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Before and after script](#/gitlab_script_blocks) - [Image](#/gitlab_image) - [Defaults](#/gitlab_default) - [Artifacts and dependencies](#/gitlab_artifacts) - [Job dependencies](#/gitlab_job_deps) - [Schedules](#/gitlab_schedules) - [Configuration](#/gitlab_ci_configuration) - [Unit tests](#/gitlab_unit_tests)
 
 ### Advanced
 

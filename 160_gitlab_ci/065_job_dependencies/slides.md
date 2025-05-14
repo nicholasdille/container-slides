@@ -80,7 +80,7 @@ Can be used for artifacts
 
 ## Hands-On
 
-See chapter [Job dependencies](/hands-on/2024-11-21/065_job_dependencies/exercise/)
+See chapter [Job dependencies](/hands-on/2025-05-14/065_job_dependencies/exercise/)
 
 ---
 
