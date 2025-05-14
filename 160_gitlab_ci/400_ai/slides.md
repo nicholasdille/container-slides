@@ -2,40 +2,71 @@
 
 <i class="fa-duotone fa-microchip-ai fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
-## AI
+## AI / ML / LLM
 
 ---
 
-## XXX
+## AI Considerations
 
-XXX make or buy
+Use GitLab Duo or operate something on your own?
 
-XXX Duo
+### GitLab Duo
 
-XXX community
+Two licenses: Pro and Ultimate
+
+Pro for code suggestions and chat
+
+Ultimate for summarization and code review
+
+See earlier slide [](#/gitlab_duo)
+
+### Self Hosted
+
+Many community projects
+
+Mostly assistents, e.g. for code review
+
+But also for code suggestions
 
 ---
 
 ## Links
 
-https://github.com/rkbansal/gitlab-ai-reviewer
+### Assistents
 
-https://github.com/LuisCusihuaman/gitlab-mcp-server
+Strong focus on code review/summarization
 
-https://github.com/athapong/aio-mcp
+Random examples: github.com/rkbansal/gitlab-ai-reviewer [](https://github.com/rkbansal/gitlab-ai-reviewer) | github.com/somnus-stasis/gitlab-mr-ai [](https://github.com/somnus-stasis/gitlab-mr-ai) | github.com/preslaff/ai-code-reviewer [](https://github.com/preslaff/ai-code-reviewer)
 
-https://github.com/somnus-stasis/gitlab-mr-ai
+### Code suggestions
 
-https://github.com/yoda-digital/mcp-gitlab-server
+Examples: Tabby ML [](https://www.tabbyml.com/), Tab Nine [](https://www.tabnine.com/)
 
-https://github.com/preslaff/ai-code-reviewer
+### AI-first IDEs
+
+Examples: Cursor [](https://www.cursor.com/), Windsurf [](https://windsurf.com/editor), Void [](https://voideditor.com/), Zed [](https://zed.dev/)
+
+### Terminals
+
+Examples: Warp [](https://warp.dev/)
 
 ---
 
 ## Model Context Protocol (MCP)
 
-https://modelcontextprotocol.io
+Build your own AI agents...
+- with access to different systems
+- read information
+- send to LLMs for processing
+- change systems
 
-https://github.com/modelcontextprotocol/servers
+Standardized by MCP [](https://modelcontextprotocol.io)
 
-https://mcpmarket.com/search?q=gitlab / https://github.com/zereight/gitlab-mcp
+List of MCP servers [](https://github.com/modelcontextprotocol/servers) and [](https://mcpmarket.com/search?q=gitlab)
+
+Examples for GitLab (random order):
+
+- github.com/LuisCusihuaman/gitlab-mcp-server [](https://github.com/LuisCusihuaman/gitlab-mcp-server)
+- github.com/athapong/aio-mcp [](https://github.com/athapong/aio-mcp)
+- github.com/yoda-digital/mcp-gitlab-server [](https://github.com/yoda-digital/mcp-gitlab-server)
+- github.com/zereight/gitlab-mcp [](https://github.com/zereight/gitlab-mcp)

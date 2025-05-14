@@ -73,6 +73,7 @@ Ultimate features
 Pricing available on inquiry
 
 ---
+<!-- .slide: id="gitlab_duo" -->
 
 ## GitLab Duo
 
