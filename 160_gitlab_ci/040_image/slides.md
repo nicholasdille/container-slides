@@ -28,7 +28,7 @@ See chapter [Image](/hands-on/2025-05-14/040_image/exercise/)
 
 ---
 
-## Pro tip: Using private registries
+## Pro tip 2: Using private registries
 
 Private container registries are supported [](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#access-an-image-from-a-private-container-registry)
 

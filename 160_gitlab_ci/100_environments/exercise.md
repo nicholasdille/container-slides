@@ -10,13 +10,14 @@
 
 Create CI variables for use in the following exercises:
 
+1. Create two environments called `dev` and `live` in the GitLab UI. No other settings are required
 1. Retrieve passwords for dev and live environments from the info page
 1. Create unprotected but masked CI variable `PASS` twice with scope `dev` and `live`
 1. Create unprotected CI variable `SEAT_INDEX` with your seat number
 
 ## Task 1: Add target environment
 
-Add a new stage `deploy` with a job called `deploy` and use the following commands to upload the binary to the dev environment:
+Add a new stage `deploy` with a job called `deploy`. Use the following commands and add an environment to the job in order to upload the binary to the dev environment:
 
 ```bash
 curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
@@ -26,12 +27,7 @@ curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
     --user seat${SEAT_INDEX}:${PASS}
 ```
 
-Mind that `curl` is not available in the default image `golang:1.23.2` but must be installed using the following commands. Apply what you learned about script blocks as well as separating commands into preparation, core steps and cleanup.
-
-```bash
-apt-get update
-apt-get -y install curl ca-certificates
-```
+Mind that `curl` is not available in the default image `golang:1.23.2`. You can use `curlimages/curl:8.13.0`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to download the `hello` binary from `https://seatN.dev.webdav.inmylab.de/hello`.
 
@@ -40,9 +36,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     ```yaml
     job_name:
-      before_script:
-      - apt-get update
-      - apt-get -y install curl ca-certificates
+      image: curlimages/curl:8.13.0
     ```
 
     Now place the `curl` command under `script`.
@@ -102,9 +96,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       environment:
         name: dev
-      before_script:
-      - apt-get update
-      - apt-get -y install curl ca-certificates
+      image: curlimages/curl:8.13.0
       script:
       - |
         curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
@@ -179,9 +171,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       environment:
         name: ${CI_COMMIT_REF_NAME}
-      before_script:
-      - apt-get update
-      - apt-get -y install curl ca-certificates
+      image: curlimages/curl:8.13.0
       script:
       - |
         curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \

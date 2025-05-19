@@ -23,6 +23,8 @@ make gitlab
 SET_NAME=20250512 COUNT=21 bash generate.sh
 ```
 
+Store `seats.json` in a password manager
+
 ## Rollout infrastructure
 
 Provide credentials for infrastructure
@@ -42,6 +44,8 @@ Deploy infrastructure
 ```shell
 make apply
 ```
+
+Store the SSH config in a password manager
 
 ## Bootstrap services
 

@@ -108,9 +108,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_COMMIT_REF_NAME == "live"
       environment:
         name: ${CI_COMMIT_REF_NAME}
-      before_script:
-      - apt-get update
-      - apt-get -y install curl ca-certificates
+      image: curlimages/curl:8.13.0
       script:
       - |
         curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
@@ -258,9 +256,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - .run-on-push-to-default-branch
       environment:
         name: ${CI_COMMIT_REF_NAME}
-      before_script:
-      - apt-get update
-      - apt-get -y install curl ca-certificates
+      image: curlimages/curl:8.13.0
       script:
       - |
         curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \

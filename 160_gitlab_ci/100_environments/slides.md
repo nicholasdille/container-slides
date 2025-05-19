@@ -30,7 +30,7 @@ See chapter [Environments](/hands-on/2025-05-14/100_environments/exercise/)
 
 ---
 
-## Pro tip 1
+## Pro tip 1: Dynamic environment names
 
 Branches can be used to represent target environments:
 

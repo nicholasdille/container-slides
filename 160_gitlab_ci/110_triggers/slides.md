@@ -136,7 +136,7 @@ See chapter [Triggers](/hands-on/2025-05-14/110_triggers/exercise/)
 
 Upstream pipeline only waits for successful trigger
 
-Wait for successul downstream pipeline using `strategy` [](https://docs.gitlab.com/ee/ci/yaml/#triggerstrategy)
+Wait for successful downstream pipeline using `strategy` [](https://docs.gitlab.com/ee/ci/yaml/#triggerstrategy)
 
 ```yaml
 job_name:
@@ -151,11 +151,7 @@ Useful when triggering the pipeline of a dependency
 
 ## Pro tip 2: Artifacts from parent pipeline
 
-<i class="fa-duotone fa-triangle-exclamation"></i> Requires Enterprise Edition Premium [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline)
-
-Generate artifact and trigger child pipeline
-
-Fetch artifact from parent pipeline
+Child pipeline fetches artifact from parent pipeline
 
 ```yaml
 build_artifacts:
@@ -172,7 +168,7 @@ deploy:
     - local: path/to/child-pipeline.yml
 ```
 
-<!-- .element: style="float: left; font-size: 0.7em; width: 35em;" -->
+<!-- .element: style="float: left; font-size: 0.7em; width: 40em;" -->
 
 ```yaml
 test:
@@ -182,11 +178,11 @@ test:
   - pipeline: $UPSTREAM_PIPELINE_ID
     job: build_artifacts
 ```
-<!-- .element: style="float: right; font-size: 0.7em; width: 25em;" -->
+<!-- .element: style="float: right; font-size: 0.7em; width: 25em; padding-bottom: 8em;" -->
 
 This works for `dotenv` reports as well [](https://docs.gitlab.com/ee/ci/variables/#control-which-jobs-receive-dotenv-variables)
 
-`needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
+<i class="fa-duotone fa-triangle-exclamation"></i> Alternative `needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline) [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
 
 ---
 
@@ -218,17 +214,24 @@ Do not redefined masked variables - **they will not be masked**
 
 ## Pro tip 4: Do not pass global variables
 
-Only allow job variables to be passed to downstream pipelines:
+Only allow job variables or specific global variables to be passed to downstream pipelines:
 
 ```yaml
 variables:
   GLOBAL_VAR: value
+  GLOBAL_VAR_2: value2
 
-trigger-job:
+trigger-job-without-global-vars:
   inherit:
     variables: false
-  variables:
-    JOB_VAR: value
+  trigger:
+    include:
+    - local: path/to/child-pipeline.yml
+
+trigger-job-without-global-vars:
+  inherit:
+    variables:
+    - GLOBA_VAR
   trigger:
     include:
     - local: path/to/child-pipeline.yml

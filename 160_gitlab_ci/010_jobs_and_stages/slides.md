@@ -195,6 +195,8 @@ OR
 My awesome commit message [skip ci]
 ```
 
+Anywhere in the title or body of the commit message
+
 ### Option 2
 
 Leave commit message untouched

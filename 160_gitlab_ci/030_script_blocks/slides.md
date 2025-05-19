@@ -31,7 +31,7 @@ job_name:
   after_script: echo after_script
 ```
 
-`after_script` runs even if the job failed (useful for cleanup)
+`after_script` runs even if the job failed or was canceled (useful for cleanup)
 
 ---
 

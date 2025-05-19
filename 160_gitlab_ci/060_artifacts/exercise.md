@@ -6,7 +6,7 @@
     - define artifacts
     - consume artifacts
 
-## Task 1: Pass an artifact to the next stage
+## Task: Pass an artifact to the next stage
 
 Artifacts are useful for splitting a task in separate job. Refer to the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#artifacts).
 

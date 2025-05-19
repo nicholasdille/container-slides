@@ -84,8 +84,10 @@ See chapter [Job dependencies](/hands-on/2025-05-14/065_job_dependencies/exercis
 
 ---
 
-## Pro tip: Passing atifacts with `needs`
+## Pro tip: Passing artifacts with `needs`
 
-If you have one stage with two jobs where one depends on the other using `needs`, artifacts are passed correctly between them.
+`needs` also controls artifact passing
 
-This is important to note because without `needs` jobs in the same stage to not receive artifacts from each other.
+Work for jobs in the same stage
+
+This makes `needs` superior to `dependencies`

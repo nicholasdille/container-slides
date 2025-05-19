@@ -3,5 +3,8 @@
     "git.autofetch": true,
     "git.enableSmartCommit": true,
     "git.useEditorAsCommitInput": false,
-    "git.showCommitInput": false
+    "git.showCommitInput": false,
+    "redhat.telemetry.enabled": false,
+    "telemetry.telemetryLevel": "crash",
+    "telemetry.feedback.enabled": false
 }

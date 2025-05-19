@@ -22,6 +22,8 @@ Job timeout defaults to 1h ...
 
 ...but can be overridden in `.gitlab-ci.yml` using `timeout` [](https://docs.gitlab.com/ee/ci/yaml/#timeout)
 
+Automatic pipeline cleanup removes old pipelines (disabled by default)
+
 ### Auto DevOps
 
 Auto DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
