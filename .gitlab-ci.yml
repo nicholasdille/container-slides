@@ -49,9 +49,7 @@ deploy:
   stage: deploy
   environment:
     name: dev
-  before_script:
-  - apt-get update
-  - apt-get -y install curl ca-certificates
+  image: curlimages/curl:8.13.0
   script:
   - |
     curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
