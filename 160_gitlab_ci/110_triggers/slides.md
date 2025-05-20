@@ -295,14 +295,10 @@ use:
 
 ## Example 1: Build, package, deploy
 
-XXX
-
-![](160_gitlab_ci/110_triggers/example1.drawio.svg) <!-- .element: style="width: 80%;" -->
+![](160_gitlab_ci/110_triggers/example1.drawio.svg) <!-- .element: style="width: 90%;" -->
 
 ---
 
 ## Example 2: Test, promote, deploy
 
-XXX
-
-![](160_gitlab_ci/110_triggers/example2.drawio.svg) <!-- .element: style="width: 80%;" -->
+![](160_gitlab_ci/110_triggers/example2.drawio.svg) <!-- .element: style="width: 75%;" -->
