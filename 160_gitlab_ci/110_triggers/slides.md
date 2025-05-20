@@ -290,3 +290,19 @@ use:
     - artifact: child.yaml
       job: generate
 ```
+
+---
+
+## Example 1: Build, package, deploy
+
+XXX
+
+![](160_gitlab_ci/110_triggers/example1.drawio.svg) <!-- .element: style="width: 80%;" -->
+
+---
+
+## Example 2: Test, promote, deploy
+
+XXX
+
+![](160_gitlab_ci/110_triggers/example2.drawio.svg) <!-- .element: style="width: 80%;" -->

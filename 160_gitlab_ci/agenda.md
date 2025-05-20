@@ -1,32 +1,22 @@
 ## Questions
 
-### Do you have any experience with CI/CD?
+Date of the event? 2025-05-14
 
-4
+Number of attendees? 6
 
-### Are you using GitLab CI?
+Do you have any experience with CI/CD? 4
 
-3
+Are you using GitLab CI? 3
 
-### Do you identify as a dev or an op or both?
+Do you identify as a dev or an op or both? 5, 2, 1
 
-5, 2, 1
+Are you comfortable with Linux? 6
 
-### Are you comfortable with Linux?
+Is your GitLab self-hosted? 6
 
-6
+Are you responsible for running GitLab? 1
 
-### Is your GitLAb running self-hosted?
-
-6
-
-### Are you responsible for running GitLab?
-
-1
-
-### Do you own a GitLab Enterprise License?
-
-1
+Do you own a GitLab Enterprise License? 1
 
 ---
 
@@ -48,11 +38,11 @@
 
 ### Fundamentals
 
-[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Before and after script](#/gitlab_script_blocks) - [Image](#/gitlab_image) - [Defaults](#/gitlab_default) - [Artifacts and dependencies](#/gitlab_artifacts) - [Job dependencies](#/gitlab_job_deps) - [Schedules](#/gitlab_schedules) - [Configuration](#/gitlab_ci_configuration) - [Unit tests](#/gitlab_unit_tests)
+[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Before and after script](#/gitlab_script_blocks) - [Image](#/gitlab_image) - [Defaults](#/gitlab_default) - [Artifacts and dependencies](#/gitlab_artifacts) - [Job dependencies](#/gitlab_job_deps) - [Schedules](#/gitlab_schedules) - [Configuration](#/gitlab_ci_configuration) - [Unit tests](#/gitlab_unit_tests) - [Scheduling internals](#/gitlab_ci_scheduling) - [Manual pipelines](#/gitlab_ci_manual)
 
 ### Advanced
 
-[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_triggers) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs) - [Variable precedence](#/gitlab_var_precedence)
+[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_triggers) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs) - [Variable precedence](#/gitlab_var_precedence) - [Deprecations](#/gitlab_deprecations)
 
 ### Expert
 

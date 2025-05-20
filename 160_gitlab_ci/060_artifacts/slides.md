@@ -57,6 +57,12 @@ See GitLab API [](https://docs.gitlab.com/ee/api/job_artifacts.html#download-the
 
 ---
 
+## Hands-On
+
+See chapter [Artifacts](/hands-on/2025-05-14/060_artifacts/exercise/)
+
+---
+
 ## Pro tip: When variables are enough
 
 Passing variables between jobs **is** possible (since GitLab 12.9)
@@ -79,12 +85,6 @@ job_name2:
 ```
 
 `dependencies` limits from which jobs artifacts are consumed
-
----
-
-## Hands-On
-
-See chapter [Artifacts](/hands-on/2025-05-14/060_artifacts/exercise/)
 
 ---
 
