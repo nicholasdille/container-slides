@@ -30,7 +30,7 @@ Auto DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfig
 
 ---
 
-## CI configuration 2/2
+## CI configuration 2/
 
 More useful settings
 
@@ -49,3 +49,35 @@ Job scripts must implement freeze
 Use `$CI_DEPLOY_FREEZE` to check for active deploy freeze
 
 We will come back to this later!
+
+---
+
+## Custom CI/CD configuration file
+
+Instead of `.gitlab-ci.yml`, you can... [](https://docs.gitlab.com/ci/pipelines/settings/#custom-cicd-configuration-file-examples)
+
+- Use a different file name
+
+    ```plaintext
+    pipeline.yaml
+    ```
+
+- Move it to a subdirectory
+
+    ```plaintext
+    pipeline/definition.yaml
+    ```
+
+- Fetch it from a URL
+
+    ```plaintext
+    https://www.my-company.de/gitlab-ci.yml
+    ```
+
+- Fetch it from a file in another repository
+
+    ```plaintext
+    path/to/.gitlab-ci.yml@group/subgroup/project
+    ```
+
+<i class="fa-duotone fa-triangle-exclamation"></i> Use with care and communicate propery <i class="fa-duotone fa-triangle-exclamation"></i>

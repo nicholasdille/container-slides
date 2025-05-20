@@ -27,7 +27,7 @@ curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
     --user seat${SEAT_INDEX}:${PASS}
 ```
 
-Mind that `curl` is not available in the default image `golang:1.23.2`. You can use `curlimages/curl:8.13.0`.
+Mind that `curl` is not available in the default image `golang:1.24.3`. You can use `curlimages/curl:8.13.0`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to download the `hello` binary from `https://seatN.dev.webdav.inmylab.de/hello`.
 
@@ -52,7 +52,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - deploy
 
     default:
-      image: golang:1.23.2
+      image: golang:1.24.3
 
     lint:
       stage: check
@@ -127,7 +127,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - deploy
 
     default:
-      image: golang:1.23.2
+      image: golang:1.24.3
 
     lint:
       stage: check

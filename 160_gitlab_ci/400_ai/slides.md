@@ -12,11 +12,15 @@ Use GitLab Duo or operate something on your own?
 
 ### GitLab Duo
 
-Two licenses: Pro and Ultimate
+Licenses: Core, Pro and Ultimate
 
-Pro for code suggestions and chat
+Core for code suggestions and chat in IDE
+
+Pro for code suggestions and chat in web UI
 
 Ultimate for summarization and code review
+
+Self-hosted option
 
 See earlier slide [](#/gitlab_duo)
 

@@ -71,7 +71,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
 
     default:
-      image: golang:1.23.2
+      image: golang:1.24.3
 
     renovate:
       stage: check

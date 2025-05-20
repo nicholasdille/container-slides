@@ -83,11 +83,15 @@ Add AI features to our development process [](https://about.gitlab.com/gitlab-du
 
 AI Transparency Center [](https://about.gitlab.com/ai-transparency-center/)
 
+### Core (free)
+
+Code suggestions and chat in IDE
+
 ### Pro ($19/user/month)
 
 Available for Premium and Ultimate
 
-Code suggestions, chat
+Code suggestions and chat in web UI
 
 ### Enterprise ($39/user/month)
 

@@ -1,27 +1,21 @@
 # 2025-05-14
 
 - Email-Text prüfen und korrigieren
-- commit field?!
-- gitlab extension?
 - only one slide before hands-on?
-- golang:1.23.4
 - Links und versionen in Slides und Hands-On anpassen
 - image speed improvements
 - artifacts: hands-on link verschieben
-- gleichnamige Artifakte
-- max size https://docs.gitlab.com/administration/settings/continuous_integration/#set-maximum-artifacts-size
-- max size + expire
-- max size only for admins
 - keep most recent + expire?! expire applies to older artifacts
 - job deps + upstream pipeline?!
-- pipeline design
 - create schedule -> solution? cron?
-- inputs everywhere!
-- achievements?
-- https://docs.gitlab.com/update/deprecations/
 - curl image -> Update in code branches
 - env new task? environment.name=$STAGE?
-- manual pipelines with vars (forms)?
 - job scheduling: create in DB and enqueue
-- remote .gitlab-ci.yml (https://docs.gitlab.com/17.11/ci/pipelines/settings/#custom-cicd-configuration-file-examples)
+
+## New content
+
+- Deprecations: https://docs.gitlab.com/update/deprecations/
+- pipeline design?
+- manual pipelines with vars (forms)?
+- inputs everywhere!
 - KOMPLEXES BEISPIEL
