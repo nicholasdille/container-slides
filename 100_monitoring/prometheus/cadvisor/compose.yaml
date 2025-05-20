@@ -37,5 +37,5 @@ services:
 
   nginx:
     # https://hub.docker.com/_/nginx
-    image: nginx:1.27.3
+    image: nginx:1.27.5
     container_name: nginx
