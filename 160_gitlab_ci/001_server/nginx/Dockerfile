@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.15.1
+#syntax=docker/dockerfile:1.16.0
 
 FROM nginx:1.27.5
 
