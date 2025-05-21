@@ -12,7 +12,7 @@ Building container image uses services [<i class="fa-solid fa-arrow-right-to-bra
 
 Use `docker:dind` for containerized Docker daemon
 
-The GitLab runner must be configured to run privileged container
+<i class="fa-duotone fa-triangle-exclamation"></i> The GitLab runner must be configured to run privileged container <i class="fa-duotone fa-triangle-exclamation"></i>
 
 ```yaml
 job_name:
@@ -22,6 +22,10 @@ job_name:
     DOCKER_TLS_CERTDIR: ""
   script: docker build .
 ```
+
+Empty `DOCKER_TLS_CERTDIR` disables TLS
+
+---
 
 ### Hands-On
 

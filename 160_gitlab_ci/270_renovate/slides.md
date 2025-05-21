@@ -32,25 +32,31 @@ Unable to solve supply chain security **recursively**
 
 Automated updates of dependencies [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) [<i class="fa-brands fa-github"></i>](https://github.com/renovatebot/renovate) [<i class="fa-solid fa-book"></i>](https://docs.renovatebot.com/)
 
+Support for numerous languages and package managers
+
+Updates are proposed using merge requests
+
+You are in control what gets merged
+
+### Deployment options
+
 Container image available [](https://hub.docker.com/r/renovate/renovate)
 
 No integration with GitLab
 
-### Options
+1. Pipeline job - optionally with official template [](https://gitlab.com/renovate-bot/renovate-runner)
+1. Process running separate from GitLab instance
+1. Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premises/)
 
-Pipeline job - optionally with official template [](https://gitlab.com/renovate-bot/renovate-runner)
+---
 
-Process running separate from GitLab instance
-
-Self-hosted Renovate (formerly paid product) [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premises/)
-
-### Hands-On
+## Hands-On
 
 See chapter [Renovate](/hands-on/2025-05-14/270_renovate/exercise/)
 
 ---
 
-## Pro tip 1: Automerge
+## Pro tip: Automerge
 
 Renovate can automatically merge updates
 
@@ -67,30 +73,3 @@ Do not enable automerge globally
 Start with specific dependencies...
 
 ...or patchlevel updates
-
----
-
-## Pro tip 2: Use slim image
-
-Image is smaller and loads faster
-
-Tools are not pre-installed...
-
-...but installed on-demand...
-
-...natively or using container sidecars
-
-```yaml
-renovate:
-  image: renovate/renovate:slim
-  script: |
-    renovate --platform gitlab \
-        --endpoint ${CI_API_V4_URL} \
-        --token ${RENOVATE_TOKEN} \
-        ${CI_PROJECT_PATH}
-  #...
-```
-
-Request tools version using `constraints` [](https://docs.renovatebot.com/configuration-options/#constraints)
-
-Or use tool specific directives like `engine` for npm [](https://docs.renovatebot.com/node/)

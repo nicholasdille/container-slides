@@ -2,35 +2,41 @@
 
 <i class="fa-duotone fa-microchip-ai fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
 
-## AI / ML / LLM
+## AI / LLM / ML
 
 ---
 
 ## AI Considerations
 
+Just thinking about code suggestions?
+
+Do you want support for code reviews?
+
 Use GitLab Duo or operate something on your own?
 
-### GitLab Duo
+Make or buy?
+
+---
+
+## GitLab Duo (again <i class="fa-duotone fa-solid fa-face-woozy"></i>)
 
 Licenses: Core, Pro and Ultimate
 
-Core for code suggestions and chat in IDE
+Core for code suggestions and chat **in the IDE**
 
-Pro for code suggestions and chat in web UI
+Pro for code suggestions and chat **in the web UI**
 
 Ultimate for summarization and code review
 
-Self-hosted option
-
 See earlier slide [](#/gitlab_duo)
 
-### Self Hosted
+### Self Hosted Option [](https://docs.gitlab.com/administration/gitlab_duo_self_hosted/)
 
-Many community projects
+Additional components: Model and AI Gateway
 
-Mostly assistents, e.g. for code review
+Self hosted model for control over data
 
-But also for code suggestions
+Self hosted AI Gateway for control over performance and rate limits
 
 ---
 
@@ -70,7 +76,7 @@ List of MCP servers [](https://github.com/modelcontextprotocol/servers) and [](h
 
 Examples for GitLab (random order):
 
-- github.com/LuisCusihuaman/gitlab-mcp-server [](https://github.com/LuisCusihuaman/gitlab-mcp-server)
-- github.com/athapong/aio-mcp [](https://github.com/athapong/aio-mcp)
-- github.com/yoda-digital/mcp-gitlab-server [](https://github.com/yoda-digital/mcp-gitlab-server)
-- github.com/zereight/gitlab-mcp [](https://github.com/zereight/gitlab-mcp)
+- gitlab-mcp-server [](https://github.com/LuisCusihuaman/gitlab-mcp-server)
+- aio-mcp [](https://github.com/athapong/aio-mcp)
+- mcp-gitlab-server [](https://github.com/yoda-digital/mcp-gitlab-server)
+- gitlab-mcp [](https://github.com/zereight/gitlab-mcp)

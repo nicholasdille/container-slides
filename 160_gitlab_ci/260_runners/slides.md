@@ -18,9 +18,7 @@ Executors interface with infrastructure
 
 ---
 
-## Runners
-
-### Shell
+## Shell Executor
 
 Jobs are executed in the context of the runner
 

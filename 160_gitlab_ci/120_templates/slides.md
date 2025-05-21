@@ -151,8 +151,6 @@ job_name:
   script: whoami
 ```
 
-But `variables` are merged!
-
 ---
 
 ## Pro tip 2: Solve multiple inheritence
@@ -175,6 +173,8 @@ job_name:
   - !reference[.template2, script]
 ```
 
+CI/CD Components are a proper solution in a later chapter [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
+
 ---
 
 ## Pro tip 3: Organizing templates in repositories
@@ -196,8 +196,6 @@ Apply separate versioning: docker/v1.0.0, helm/v1.0.2, k8s/v1.2.0
 Separation of concerns
 
 Harder to find/browse, easier to version
-
-Create versions separately
 
 ---
 

@@ -31,7 +31,7 @@ pages:
     - public
 ```
 
-Review the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword to limit the job `pages` to run when...
+Review the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword and the [predefined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) to limit the job `pages` to run when...
 
 - the pipeline was triggered by a push event AND
 - the change applied to the default branch

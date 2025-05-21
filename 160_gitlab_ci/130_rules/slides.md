@@ -20,6 +20,8 @@ job_name:
   #...
 ```
 
+If no condition matches, the job disappears from the pipeline
+
 Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) which are "not actively developed"
 
 Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
@@ -51,15 +53,17 @@ Disable execution for some trigger types
 ```yaml
 workflow:
   rules:
-  - if: $CI_PIPELINE_SOURCE == 'push'
-  - if: $CI_PIPELINE_SOURCE == 'web'
-  - if: $CI_PIPELINE_SOURCE == 'schedule'
-  - if: $CI_PIPELINE_SOURCE == 'pipeline'
-  - if: $CI_PIPELINE_SOURCE == 'api'
+  - if: $CI_PIPELINE_SOURCE == 'push'      # Allow triggering through git push
+  - if: $CI_PIPELINE_SOURCE == 'web'       # Allow manally triggered pipelines
+  - if: $CI_PIPELINE_SOURCE == 'schedule'  # Allow scheduled pipelines
+  - if: $CI_PIPELINE_SOURCE == 'pipeline'  # Allow multi-project pipelines
+  - if: $CI_PIPELINE_SOURCE == 'api'       # Prevent pipelines triggered through the API
     when: never
-  - if: $CI_PIPELINE_SOURCE == 'trigger'
+  - if: $CI_PIPELINE_SOURCE == 'trigger'   # Prevent pipelines triggered through trigger tokens
     when: never
 ```
+
+See the pre-defined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) for more information about the variables
 
 ---
 
@@ -122,7 +126,7 @@ Rules not only control execution of jobs but can also configure jobs through the
 
 Rules become especially powerful when combining the fields supported by rules - including `if`
 
---
+---
 
 ## Pro tip 3: Avoid pipeline on push
 
@@ -138,6 +142,8 @@ my_job:
   - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_TITLE =~ /skip ci/i
     when: never
 ```
+
+See the pre-defined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) for more information about the variables
 
 ---
 
@@ -190,4 +196,4 @@ Situation:
 
 Possible root cause:
 
-- All job were filtered out due to rules
+- All jobs were filtered out due to rules

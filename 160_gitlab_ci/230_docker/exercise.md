@@ -23,7 +23,7 @@ For building a container image, you will need to...
 1. Use the image `docker:27.3.1` for the job
 1. Add a rule to limit execution to pushes to the default branch
 1. Add a service to the job using the image `docker:27.3.1-dind`
-1. Add a variable `DOCKER_CERT_DIR` to the job and set it to an empty string
+1. Add a variable `DOCKER_TLS_CERTDIR` to the job and set it to an empty string
 1. Execute the command `docker build --tag hello .`
 
 !!! tip "Heads-Up"
@@ -35,9 +35,10 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     The service should be set to:
 
     ```yaml
+    variables:
+      DOCKER_TLS_CERTDIR: ""
     services:
     - name: docker:27.3.1-dind
-      command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
     ```
 
 ??? example "Solution (Click if you are stuck)"

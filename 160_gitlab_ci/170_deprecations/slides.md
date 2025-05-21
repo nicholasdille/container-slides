@@ -8,12 +8,18 @@
 
 ## Deprecations
 
-XXX https://docs.gitlab.com/update/deprecations/
+<i class="fa-duotone fa-solid fa-4x fa-scroll-old"></i> <!-- .element: style="float: right;" -->
 
-XXX https://gitlab-com.gitlab.io/cs-tools/gitlab-cs-tools/what-is-new-since/?tab=deprecations
+GitLab documents deprecations thoroughly [](https://docs.gitlab.com/update/deprecations/)
+
+Rolled out in major version updates (release in May)
+
+Web page for more granular search [](https://gitlab-com.gitlab.io/cs-tools/gitlab-cs-tools/what-is-new-since/?tab=deprecations)
+
+Compiled from deprecation files [](https://gitlab.com/gitlab-org/gitlab/-/tree/master/data/deprecations)
 
 ### Upcoming features
 
-XXX https://about.gitlab.com/upcoming-releases/
+GitLab also documents upcoming features [](https://about.gitlab.com/upcoming-releases/)
 
-XXX https://gitlab-com.gitlab.io/cs-tools/gitlab-cs-tools/what-is-new-since/?tab=features
+Web page for more granular search [](https://gitlab-com.gitlab.io/cs-tools/gitlab-cs-tools/what-is-new-since/?tab=features)

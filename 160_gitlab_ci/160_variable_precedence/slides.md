@@ -8,7 +8,7 @@
 
 ## Variable precedence
 
-Variables con be defined on many different levels
+Variables can be defined on many different levels
 
 GitLab has documented the precedence of variables [](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence)
 

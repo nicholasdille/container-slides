@@ -14,7 +14,7 @@ Images must be named according to the project path
 
 For example in project `bar` in group `foo`:
 
-    gitlab.inmylab.de/foo/bar:latest
+    gitlab.inmylab.de/seatN/demo:latest
 
 ### Availability
 
@@ -40,7 +40,9 @@ CI jobs receive environment variables:
 - `CI_REGISTRY_PASSWORD`
 - `CI_REGISTRY_IMAGE`
 
-### Hands-On
+---
+
+## Hands-On
 
 See chapter [Registries](/hands-on/2025-05-14/240_registries/exercise/)
 

@@ -12,12 +12,14 @@ In the last chapter about `rules`, you learned how to use `$CI_PIPELINE_SOURCE` 
 
 On the branch `main`, add rules to the jobs to specify when to run them:
 
-1. For the jobs `lint`, `audit`, `unit_tests`, `build` and `test`, add rules so that the jobs are executed when...
+1. Add rules the jobs `lint`, `audit`, `unit_tests`, `build` and `test` so that they are executed when...
     1. pushing to the default branch
     1. running in merge request context
 1. Run the job `trigger` only when pushing to the default branch
 1. Run the job `deploy` only when on the branches `dev` and `live`
 1. Do not modify the existing rules for the job `pages`
+
+Also add the merge request event to the workflow rules to allow the pipeline to run in merge request context.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -147,6 +149,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 Now we want to check which jobs are executed in the context of a merge request:
 
 1. Create a new branch based on `main`
+1. Push a change to the new branch, e.g. small change to the `README.md` file
 1. Create a merge request into `main`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
