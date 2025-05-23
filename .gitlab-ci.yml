@@ -16,7 +16,7 @@ include:
   inputs:
     build-stage: build
     test-stage: test
-    image: golang:1.23.2
+    image: golang:1.24.3
     rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
@@ -109,7 +109,7 @@ pages:
   stage: deploy
   extends:
   - .run-on-push-to-default-branch
-  image: registry.gitlab.com/gitlab-org/release-cli:v0.19.0
+  image: registry.gitlab.com/gitlab-org/release-cli:v0.23.0
   release:
     tag_name: ${CI_PIPELINE_IID}
     name: Release ${CI_PIPELINE_IID}
