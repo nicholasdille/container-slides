@@ -20,9 +20,9 @@ For building a container image, you will need to...
 
 1. Add a new stage `package` to the pipeline
 1. Add a new job `package` to the pipeline
-1. Use the image `docker:27.3.1` for the job
+1. Use the image `docker:28.1.1` for the job
 1. Add a rule to limit execution to pushes to the default branch
-1. Add a service to the job using the image `docker:27.3.1-dind`
+1. Add a service to the job using the image `docker:28.1.1-dind`
 1. Add a variable `DOCKER_TLS_CERTDIR` to the job and set it to an empty string
 1. Execute the command `docker build --tag hello .`
 
@@ -38,7 +38,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     variables:
       DOCKER_TLS_CERTDIR: ""
     services:
-    - name: docker:27.3.1-dind
+    - name: docker:28.1.1-dind
     ```
 
 ??? example "Solution (Click if you are stuck)"
@@ -146,14 +146,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     package:
-      image: docker:27.3.1
+      image: docker:28.1.1
       stage: package
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       variables:
         DOCKER_TLS_CERTDIR: ""
       services:
-      - docker:27.3.1-dind
+      - docker:28.1.1-dind
       script:
       - docker build --tag hello .
 

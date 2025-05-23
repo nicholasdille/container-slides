@@ -99,4 +99,5 @@ events:
   link: ""
 
 post_slides:
-- 160_gitlab_ci/400_ai/slides.md
+- 160_gitlab_ci/400_metrics/slides.md
+- 160_gitlab_ci/410_ai/slides.md

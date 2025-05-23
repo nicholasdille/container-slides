@@ -132,12 +132,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     package:
-      image: docker:20.10.18
+      image: docker:28.1.1
       stage: package
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:20.10.18-dind
+      - name: docker:28.1.1-dind
         command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
       variables:
         DOCKER_HOST: tcp://docker:2375

@@ -18,7 +18,7 @@ GitLab can create [releases](https://docs.gitlab.com/ee/user/project/releases/in
 
 For the `release` keyword to work, the `release-cli` binary must be present in the execution environment of the job:
 
-1. Set `image` to `registry.gitlab.com/gitlab-org/release-cli:v0.14.0`
+1. Set `image` to `registry.gitlab.com/gitlab-org/release-cli:v0.23.0`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -132,7 +132,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       extends:
       - .run-on-push-to-default-branch
-      image: registry.gitlab.com/gitlab-org/release-cli:v0.14.0
+      image: registry.gitlab.com/gitlab-org/release-cli:v0.23.0
       release:
         tag_name: ${CI_PIPELINE_IID}
         name: Release ${CI_PIPELINE_IID}
@@ -147,12 +147,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     package:
-      image: docker:20.10.18
+      image: docker:28.1.1
       stage: package
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:20.10.18-dind
+      - name: docker:28.1.1-dind
         command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
       variables:
         DOCKER_HOST: tcp://docker:2375

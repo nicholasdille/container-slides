@@ -10,7 +10,7 @@
 
 Service are launched in parallel to the regular job to add missing functionality, e.g. a database backend to execute integration tests. See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#services) and modify the pipeline:
 
-1. Create service for the whole pipeline based on the container image `nginx:1.20.2`
+1. Create service for the whole pipeline based on the container image `nginx:1.27.5`
 1. Add a new job `test-service` to the stage `test` with the following code:
     ```bash
     curl -s http://nginx
@@ -24,7 +24,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     ```yaml
     services:
-    - nginx:1.20.2
+    - nginx:1.27.5
     ```
 
 ??? example "Solution (Click if you are stuck)"
@@ -67,7 +67,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       image: golang:1.24.3
 
     services:
-    - nginx:1.20.2
+    - nginx:1.27.5
 
     lint:
       stage: check
@@ -230,7 +230,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       extends:
       - .run-on-push-to-default-branch
       services:
-      - nginx:1.20.2
+      - nginx:1.27.5
       script:
       - curl -s http://nginx
     

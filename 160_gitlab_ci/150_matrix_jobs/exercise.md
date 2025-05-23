@@ -26,6 +26,9 @@ Improve the template `.build-go` in `go.yaml` to build for `linux/amd64` and `li
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
+??? info "Hint (Click if you are stuck)"
+    Matrix pipelines require the `parallel:matrix` keyword.
+
 ??? example "Solution (Click if you are stuck)"
     `go.yaml`:
 

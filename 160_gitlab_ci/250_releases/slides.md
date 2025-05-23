@@ -20,7 +20,7 @@ Release assets can be linked but must be stored elsewhere
 
 Container images are publicly available [](https://gitlab.com/gitlab-org/release-cli/container_registry)
 
-`registry.gitlab.com/gitlab-org/release-cli:v0.14.0`
+`registry.gitlab.com/gitlab-org/release-cli:v0.23.0`
 
 Runners using the shell executor must have `release-cli` installed
 

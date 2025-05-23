@@ -56,7 +56,7 @@ See chapter [Renovate](/hands-on/2025-05-14/270_renovate/exercise/)
 
 ---
 
-## Pro tip: Automerge
+## Pro tip 1: Automerge
 
 Renovate can automatically merge updates
 
@@ -73,3 +73,16 @@ Do not enable automerge globally
 Start with specific dependencies...
 
 ...or patchlevel updates
+
+---
+
+## Pro tip 2: Avoid forward triggers
+
+GitLab only supports forward triggers [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_triggers)
+
+Hard to manage dependencies
+
+Renovate help decouple pipelines
+- Upstream pipeline creates new artifact
+- Downstream pipeline is updated by Renovate
+- Merge triggers the downstream pipeline

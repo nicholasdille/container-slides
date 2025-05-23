@@ -1,5 +1,22 @@
 # Rollout of 160_gitlab_ci
 
+## Preparation
+
+1. Set a timestamp for the event (`YYYY-mm-dd`)
+1. Update links from slides to exercises using regex `/hands-on/\d{4}-\d{2}-\d{2}/`
+1. Update syntax definitions for `Dockerfile` using regex: `docker/dockerfile:\d+.\d+.\d+`
+1. Update nginx using regex: `nginx:\d+.\d+.\d+`
+1. Update traefik using regex: `traefik:v\d+.\d+.\d+`
+1. Update GitLab using regex: `gitlab/gitlab-ce:\d+.\d+.\d+-ce.0`
+1. Update GitLab Runner using regex: `gitlab/gitlab-runner:v\d+.\d+.\d+`
+1. Update code-server using regex: `codercom/code-server:\d+.\d+.\d+`
+1. Update golang using regex: `golang:\d+.\d+.\d+`
+1. Update curl using regex: `curlimages/curl:\d+.\d+.\d+`
+1. Update docker using regex: `docker:\d+.\d+.\d+(-dind)?` with replacement `docker:28.1.1$1`
+1. Update ubuntu using regex: `ubuntu:\d+.\d+`
+1. Update release-cli using regex: `registry.gitlab.com/gitlab-org/release-cli:v\d+\.\d+\.\d+`
+1. Update versions in `160_gitlab_ci/000_rollout/gitlab.pkr.hcl` for pre-pulling container images
+
 ## Prerequisites
 
 ```shell

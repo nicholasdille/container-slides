@@ -63,12 +63,12 @@ The local step can be used in the job `package` in `.gitlab-ci.yml` by referenci
     ```yaml
     #...
     package:
-      image: docker:27.3.1
+      image: docker:28.1.1
       stage: package
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:27.3.1-dind
+      - name: docker:28.1.1-dind
         command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
       variables:
         DOCKER_HOST: tcp://docker:2375
@@ -110,12 +110,12 @@ Create and use a step for Docker build by converting the first command script bl
     ```yaml
     #...
     package:
-      image: docker:27.3.1
+      image: docker:28.1.1
       stage: package
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:27.3.1-dind
+      - name: docker:28.1.1-dind
         command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
       variables:
         DOCKER_HOST: tcp://docker:2375
@@ -162,12 +162,12 @@ Create and use a step for Docker build by converting the first command script bl
     ```yaml
     #...
     package:
-      image: docker:27.3.1
+      image: docker:28.1.1
       stage: package
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:27.3.1-dind
+      - name: docker:28.1.1-dind
         command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
       variables:
         DOCKER_HOST: tcp://docker:2375
@@ -216,12 +216,12 @@ Create and use a step for Docker build by converting the first command script bl
     ```yaml
     #...
     package:
-      image: docker:27.3.1
+      image: docker:28.1.1
       stage: package
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:27.3.1-dind
+      - name: docker:28.1.1-dind
         command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
       variables:
         DOCKER_HOST: tcp://docker:2375
