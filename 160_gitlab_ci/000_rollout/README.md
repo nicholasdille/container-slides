@@ -16,6 +16,7 @@
 1. Update ubuntu using regex: `ubuntu:\d+.\d+`
 1. Update release-cli using regex: `registry.gitlab.com/gitlab-org/release-cli:v\d+\.\d+\.\d+`
 1. Update versions in `160_gitlab_ci/000_rollout/gitlab.pkr.hcl` for pre-pulling container images
+1. Run `scripts/update_code_branches.sh` to update code branches
 
 ## Prerequisites
 
