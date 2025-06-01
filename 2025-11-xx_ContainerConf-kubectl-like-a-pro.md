@@ -2,7 +2,7 @@
 
 ## Beschreibung
 
-`kubectl` ist das Standardwerkzeug, um mit Kubernetes zu interagieren und Abläufe zu automatisieren. Werden die Anforderungen spezieller, wird oft auf andere Werkzeuge zurückgegriffen, um den Output zu parsen und zu verarbeiten. Dabei bietet `kubectl` so viele unbekannte Fähigkeiten, um auch in kniffeligen Situationen zu helfen.
+`kubectl` ist das Standardwerkzeug, um mit Kubernetes zu interagieren und Abläufe zu automatisieren. Werden die Anforderungen spezieller, wird oft auf andere Werkzeuge zurückgegriffen, um den Output zu parsen und zu verarbeiten. Dabei bietet `kubectl` so viele unbekannte Fähigkeiten, um auch in kniffeligen Situationen zu helfen. Dieser Vortrag wird auch auf Möglichkeiten eingehen LLMs einzusetzen, um die Arbeit mit `kubectl` zu vereinfachen.
 
 ## Vorkenntnisse
 
