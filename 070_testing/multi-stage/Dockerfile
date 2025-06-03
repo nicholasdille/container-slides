@@ -1,4 +1,4 @@
-FROM nginx:1.27.3 AS base
+FROM nginx:1.28.0 AS base
 
 FROM base AS testing
 
