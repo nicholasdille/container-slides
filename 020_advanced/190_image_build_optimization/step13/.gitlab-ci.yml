@@ -4,10 +4,10 @@ stages:
 - promote
 
 services:
-- docker:27.3.1-dind
+- docker:27.5.1-dind
 
 default:
-  image: docker:27.3.1
+  image: docker:27.5.1
 
 variables:
   DOCKER_BUILDKIT: 1
