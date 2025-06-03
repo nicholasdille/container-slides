@@ -55,7 +55,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   redis:
-    image: gitlab/gitlab-ee:17.6.1-ee.0
+    image: gitlab/gitlab-ee:18.0.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/16.1.2+ee.0/files/gitlab-config-template/gitlab.rb.template#L1383
       GITLAB_OMNIBUS_CONFIG: |
@@ -80,7 +80,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   postgres:
-    image: gitlab/gitlab-ee:17.6.1-ee.0
+    image: gitlab/gitlab-ee:18.0.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/16.1.2+ee.0/files/gitlab-config-template/gitlab.rb.template#L1229
       GITLAB_OMNIBUS_CONFIG: |
@@ -124,7 +124,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitaly:
-    image: gitlab/gitlab-ee:17.6.1-ee.0
+    image: gitlab/gitlab-ee:18.0.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -181,7 +181,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   application:
-    image: gitlab/gitlab-ee:17.6.1-ee.0
+    image: gitlab/gitlab-ee:18.0.1-ee.0
     environment:
       GITLAB_SKIP_UNMIGRATED_DATA_CHECK: true
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
@@ -234,7 +234,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   pages:
-    image: gitlab/gitlab-ee:17.6.1-ee.0
+    image: gitlab/gitlab-ee:18.0.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
@@ -261,7 +261,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   monitoring:
-    image: gitlab/gitlab-ee:17.6.1-ee.0
+    image: gitlab/gitlab-ee:18.0.1-ee.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
