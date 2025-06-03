@@ -18,7 +18,7 @@ services:
 
   cadvisor:
     # https://github.com/google/cadvisor/releases/
-    image: gcr.io/cadvisor/cadvisor:v0.51.0
+    image: gcr.io/cadvisor/cadvisor:v0.52.1
     container_name: cadvisor
     command:
     - --docker="unix:///var/run/docker.sock"
