@@ -109,7 +109,7 @@ services:
   keycloak:
     profiles:
     - donotstart
-    image: bitnami/keycloak:26.0.7
+    image: bitnami/keycloak:26.2.5
     environment:
       KEYCLOAK_DATABASE_HOST: postgresql
       KEYCLOAK_DATABASE_NAME: keycloak
