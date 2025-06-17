@@ -145,7 +145,7 @@ services:
       traefik.tcp.routers.ssh.tls.passthrough: "true"
 
   grafana:
-    image: grafana/grafana:11.6.1
+    image: grafana/grafana:12.0.2
     volumes:
     - grafana_data:/var/lib/grafana
     environment:
