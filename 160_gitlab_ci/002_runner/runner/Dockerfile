@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.16.0
+#syntax=docker/dockerfile:1.17.1
 
 FROM gitlab/gitlab-runner:v17.11.1
 
