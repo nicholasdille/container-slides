@@ -27,7 +27,13 @@ XXX ab wann?
 
 <!-- .element: class="ul-to-blocks3" -->
 
-XXX Augenentspannung 20-20-20 (Minuten, Sekunden, Fuß)
+XXX Augenentspannung 20-20-20 (Minuten, Sekunden, Fuß) https://search.brave.com/search?q=20+20+20+regel+augen
+
+XXX https://edition.cnn.com/2025/06/09/health/screen-time-kids-emotional-problems-alaimo-wellness
+
+XXX https://www.dak.de/presse/bundesthemen/kinder-jugendgesundheit/dak-suchtstudie-millionen-kinder-haben-probleme-durch-medienkonsum-_91832
+
+XXX Handy Neustart Wanderung
 
 ---
 
@@ -40,4 +46,19 @@ XXX Augenentspannung 20-20-20 (Minuten, Sekunden, Fuß)
 
 <!-- .element: class="ul-to-blocks4" -->
 
-XXX wegnehmen ist schwerer
+XXX Privilegien wegnehmen ist schwerer
+
+XXX Vorbild in der echten Welt - kaum aber in der digitalen Welt
+
+---
+
+## Abgrenzung
+
+### Medienprävention in der Schule
+
+- Umgang mit Medien
+- Reflexion über den eigenen Medienkonsum
+- Soziale Netzwerke
+- Mediensucht
+
+Durchgeführt von Florian Buschmann [](https://www.florian-buschmann.de/)

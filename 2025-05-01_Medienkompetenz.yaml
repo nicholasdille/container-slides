@@ -3,7 +3,7 @@ metadata:
   title: Medienkompetenz
   title_slug: medienkompetenz
   subtitle: ""
-  favicon: 150_gitlab/media/favicon.ico
+  favicon: ""
   background:
     # https://unsplash.com/photos/man-walking-on-forest-_r19nfvS3wY
     image: images/jon-flobrant-_r19nfvS3wY-unsplash.jpg
@@ -22,7 +22,7 @@ agenda:
 - icon: triangle-exclamation
   text: Gefahren
 - icon: people-roof
-  text: xxx
+  text: Familie
 - icon: shield-heart
   text: Schutz
 - icon: handshake-simple
@@ -35,14 +35,16 @@ slides:
 - 995_medienkompetenz/kompetenz.md
 
 summary:
-- icon: infinity
-  text: GitLab covers the whole DevOps process
-- icon: ball-pile
-  text: GitLab is packed with features
-- icon: gauge-min
-  text: No plugins to support recurring tasks
 - icon: shield-check
-  text: Useful security features even in free tier
+  text: Vorbild wie in der realen Welt
+- icon: people-roof
+  text: Schutz der Gesundheit
+- icon: file-contract
+  text: Rechte und Pflichten vereinbaren
+- icon: shield-heart
+  text: Technik ist nur ein Baustein
+- icon: handshake-simple
+  text: Medienkompetenz entwickeln
 
 events: []
 
