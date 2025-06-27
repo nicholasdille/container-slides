@@ -16,8 +16,41 @@ event:
 slides:
 - 000_introduction/02_bio.md
 
-#- Why
-#- Concepts
+# ADVANTAGES
+# available
+
+# DISADVANTAGES
+# XXX
+
+# READABILITY
+# indentation
+# line breaks
+# long parameters
+
+# PORTABILITY
+# bash vs sh
+# difference ubuntu / alpine (libc)
+
+# ERROR HANDLING
+# set -o errexit
+# set -o nounset (?)
+# set -o pipefail (?)
+# if CMD; then
+
+# DEVELOPMENT
+# debugging
+# shellcheck https://github.com/koalaman/shellcheck
+# unit tests https://github.com/bats-core/bats-core
+
+# WHEN TO AVOID
+# length
+# complexity
+# readability
+# maintainability
+# performance (process forks)
+
+# LINKS
+# https://google.github.io/styleguide/shellguide.html
 
 summary:
 - icon: id-card-clip
@@ -32,19 +65,13 @@ summary:
   text: Policy management - e.g. Kyverno - for the rescue
 
 events:
-- date: 2024-11-07
-  name: heise Academy
-  homepage: https://heise-academy.de/
-  type: Workshop
-  title: GitLab Ops
-  link: https://heise-academy.de/schulungen/einfuehrung-in-gitlab
-- date: 2024-11-13
+- date: 2025-11-13
   name: ContainerConf
   homepage: https://containerconf.de/
-  type: hopefully
-  title: " "
-  link:
-- date: 2024-11-21
+  type: Talk
+  title: "Something"
+  link: ""
+- date: 2025-11-21
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
