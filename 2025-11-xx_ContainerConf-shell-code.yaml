@@ -15,42 +15,7 @@ event:
 
 slides:
 - 000_introduction/02_bio.md
-
-# ADVANTAGES
-# available
-
-# DISADVANTAGES
-# XXX
-
-# READABILITY
-# indentation
-# line breaks
-# long parameters
-
-# PORTABILITY
-# bash vs sh
-# difference ubuntu / alpine (libc)
-
-# ERROR HANDLING
-# set -o errexit
-# set -o nounset (?)
-# set -o pipefail (?)
-# if CMD; then
-
-# DEVELOPMENT
-# debugging
-# shellcheck https://github.com/koalaman/shellcheck
-# unit tests https://github.com/bats-core/bats-core
-
-# WHEN TO AVOID
-# length
-# complexity
-# readability
-# maintainability
-# performance (process forks)
-
-# LINKS
-# https://google.github.io/styleguide/shellguide.html
+- 080_ci_cd/scripting/slides.md
 
 summary:
 - icon: id-card-clip
