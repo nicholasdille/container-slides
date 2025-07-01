@@ -108,3 +108,14 @@ html.dimbg75 .slide-background {
     list-style-type: none !important;
     text-align: center !important;
 }
+
+ul.flex-columns {
+    display: flex;
+    flex-wrap: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+ul.flex-columns > li {
+    list-style: none;
+    padding: 1em;
+}
