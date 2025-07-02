@@ -10,7 +10,7 @@
 
 Alle Bildschirme zählen!
 
-- <i class="fa-solid fa-tv-retro"></i> Fernseher
+- <i class="fa-solid fa-tv"></i> Fernseher
 - <i class="fa-solid fa-screencast"></i> Streamingdienste
 - <i class="fa-solid fa-tablet-screen-button"></i> Tablet
 - <i class="fa-solid fa-mobile-notch"></i> Handy
@@ -70,12 +70,35 @@ Kontrolle für Kinder ab 13 Jahren
 
 ---
 
+## Allgemeines
+
+XXX
+
+- <span class="fa-li"><i class="fa-solid fa-file-signature"></i></span> Handyvertrag zwischen Eltern und Kindern
+- <span class="fa-li"><i class="fa-solid fa-user"></i></span> Es wird ein Elternkonto benötigt
+- <span class="fa-li"><i class="fa-solid fa-child-reaching"></i></span> Ein Kind benötigt ein eigenes Konto
+- <span class="fa-li"><i class="fa-solid fa-hands-holding-child"></i></span> Das Kinderkonto wird mit dem Elternkonto verknüpft
+- <span class="fa-li"><i class="fa-solid fa-dumbbell"></i></span> Jetzt beginnt die Arbeit
+
+<!-- .element: class="fa-ul" -->
+
+### Und nun: die Funktionen von Google Family Link
+
+---
+
 ## Features
 
-Wöchentliche Zeitpläne und heutige Einstellung für:
+Beschränkungen:
 
 - <span class="fa-li"><i class="fa-solid fa-clock"></i></span> Bildschirmzeit
 - <span class="fa-li"><i class="fa-solid fa-bed"></i></span> Ruhezeit
+
+<!-- .element: class="fa-ul" -->
+
+Konfiguration:
+
+- <span class="fa-li"><i class="fa-solid fa-calendar-days"></i></span> Wochenplan
+- <span class="fa-li"><i class="fa-solid fa-calendar-day"></i></span> Heute
 
 <!-- .element: class="fa-ul" -->
 
@@ -84,6 +107,25 @@ Zusätzliche Zeit gewähren:
 - <span class="fa-li"><i class="fa-solid fa-plus"></i></span> Bonuszeit
 
 <!-- .element: class="fa-ul" -->
+
+---
+
+## App-Beschränkungen
+
+Einschränkung pro App:
+
+- <span class="fa-li"><i class="fa-solid fa-ban"></i></span> Blockiert
+- <span class="fa-li"></span> kein Zeitlimit
+- <span class="fa-li"><i class="fa-solid fa-hourglass-start"></i></span> Begrenzte Zeit
+- <span class="fa-li"><i class="fa-solid fa-infinity"></i></span> Unbegrenzte Zeit
+
+<!-- .element: class="fa-ul" -->
+
+### Besonderheiten
+
+Kein Wochenplan
+
+Keine tägliche Anpassung
 
 ---
 
@@ -106,8 +148,6 @@ Zusätzliche Zeit gewähren:
 
 ## Zugriff
 
-
-
 - <span class="fa-li"><i class="fa-solid fa-lock"></i></span> (Ent-)Sperren aus der Ferne
 - <span class="fa-li"><i class="fa-solid fa-person-dress"></i></span> Elternzugriff am Gerät
 
@@ -117,13 +157,34 @@ Zusätzliche Zeit gewähren:
 
 ## Jugendfilter
 
-XXX für Google Apps (Suche, Chrome, YouTube, Play Store)
+### Google Play Store
+
+- Genehmigung für Downloads und Käufe
+- Altersbeschränkung der angezeigten Inhalte
+
+### Chrome: Webseiten...
+
+- nicht einschränken
+- ausgewählte verbieten
+- ausgewählte erlauben
+
+### Google Suche: Anstößige Inhalte...
+
+- filtern
+- unkenntlich machen
+- anzeigen
 
 ---
 
 ## App-Berechtigungen
 
-XXX Standort
+### Standort
+
+XXX
+
+### Andere Berechtigungen
+
+XXX
 
 ---
 
@@ -145,8 +206,6 @@ Sehr nützlich für die Schule
 
 Ohne Online-Zugriff sind Änderungen nicht möglich
 
-Lösung: Elternzugriff am Gerät
-
 ### Beispiel
 
 1. Kind wechselt in Flugzeugmodus
@@ -155,6 +214,10 @@ Lösung: Elternzugriff am Gerät
 1. Eltern gewähren die spätere Ruhezeit
 1. Die Änderung kommt nicht an
 1. Kind kann den Flugzeugmodus nicht deaktivieren
+
+### Lösung
+
+Elternzugriff am Gerät
 
 ---
 
@@ -176,4 +239,8 @@ XXX Achtung: Familienzahlungsmethode [](https://support.google.com/families/answ
 
 ## Andere Geräte
 
-Windows [](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/microsoft-family-safety/)
+- <span class="fa-li"><i class="fa-brands fa-windows"></i></span> Windows: Microsoft Family Safety [](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/microsoft-family-safety/)
+- <span class="fa-li"><i class="fa-solid fa-tv"></i></span> Smart TV: Herstellerabhängige Lösung <i class="fa-solid fa-face-sad-cry"></i>
+- <span class="fa-li"><i class="fa-solid fa-gamepad"></i></span> Konsolen: Herstellerabhängige Lösung <i class="fa-solid fa-face-sad-cry"></i>
+
+<!-- .element: class="fa-ul" -->

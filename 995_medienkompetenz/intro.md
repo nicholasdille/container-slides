@@ -1,10 +1,10 @@
 ## Zweck und Ziel
 
-- <i class="fa-solid fa-handshake-simple"></i><p>**Erfahrungsaustausch**</p>Wie macht Ihr es?<br/>An alles gedacht?
-- <i class="fa-solid fa-lightbulb"></i><p>**Motivation und Impulse**</p>A<br/>B
-- <i class="fa-solid fa-arrow-rotate-right"></i><p>**Ganzheitlicher Ansatz**</p>A<br/>B
+- <i class="fa-solid fa-handshake-simple fa-2x"></i><p>**Austausch von Erfahrungen**</p>Wie macht Ihr es?<br/>An alles gedacht?
+- <i class="fa-solid fa-lightbulb fa-2x"></i><p>**Motivation und Impulse**</p>XXX
+- <i class="fa-solid fa-arrow-rotate-right fa-2x"></i><p>**Ganzheitlicher Ansatz**</p>XXX
 
-<!-- .element: class="ul-to-blocks3" -->
+<!-- .element: class="flex-columns" style="text-align: center;" -->
 
 ---
 
@@ -21,13 +21,11 @@ XXX ab wann?
 
 ## Gefahren
 
-- <i class="fa-solid fa-syringe"></i><p>**Sucht**</p>X
-- <i class="fa-solid fa-person-harassing"></i><p>**Aggression**</p>X
-- <i class="fa-solid fa-heart-pulse"></i><p>**Gesundheit**</p>X
+- <i class="fa-solid fa-syringe fa-2x"></i><p>**Sucht**</p>X
+- <i class="fa-solid fa-person-harassing fa-2x"></i><p>**Aggression**</p>X
+- <i class="fa-solid fa-heart-pulse fa-2x"></i><p>**Gesundheit**</p>Augen entspannen (20-20-20)
 
-<!-- .element: class="ul-to-blocks3" -->
-
-XXX Augenentspannung 20-20-20 (Minuten, Sekunden, Fuß) https://search.brave.com/search?q=20+20+20+regel+augen
+<!-- .element: class="flex-columns" style="text-align: center;" -->
 
 XXX https://edition.cnn.com/2025/06/09/health/screen-time-kids-emotional-problems-alaimo-wellness
 
@@ -39,16 +37,12 @@ XXX Handy Neustart Wanderung
 
 ## Familienarbeit
 
-- <i class="fa-solid fa-clock"></i><p>**Früh anfangen**</p>X<br/>Y<br/>Z
-- <i class="fa-solid fa-file-signature"></i><p>**Handyvertrag**</p>Rechte<br/>Pflichten<br/>Eltern und Kinder
-- <i class="fa-solid fa-ranking-star"></i><p>**Prioritäten**</p>Freunde<br/>Draußen<br/>Medien
-- <i class="fa-solid fa-hands-holding-child"></i><p>**Vorbild sein**</p>X<br/>Y<br/>Z
+- <i class="fa-solid fa-clock fa-2x"></i><p>**Früh anfangen**</p>Wegnehmen ist schwerer<br/>Mit dem Alter wachsen
+- <i class="fa-solid fa-file-signature fa-2x"></i><p>**Handyvertrag**</p>Eltern und Kinder<br/>haben<br/>Rechte und Pflichten
+- <i class="fa-solid fa-ranking-star fa-2x"></i><p>**Prioritäten**</p><i class="fa-solid fa-people-arrows"></i> <i class="fa-solid fa-greater-than"></i> <i class="fa-solid fa-sun-bright"></i> <i class="fa-solid fa-greater-than"></i> <i class="fa-solid fa-mobile-screen"></i><br/><i class="fa-solid fa-book"></i> <i class="fa-solid fa-greater-than"></i> <i class="fa-solid fa-mobile-screen"></i>
+- <i class="fa-solid fa-hands-holding-child fa-2x"></i><p>**Vorbild sein**</p>Wie in der realen Welt
 
-<!-- .element: class="ul-to-blocks4" -->
-
-XXX Privilegien wegnehmen ist schwerer
-
-XXX Vorbild in der echten Welt - kaum aber in der digitalen Welt
+<!-- .element: class="flex-columns" style="text-align: center;" -->
 
 ---
 

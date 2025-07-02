@@ -239,3 +239,5 @@ XXX https://digitalcourage.de/digitale-selbstverteidigung
 XXX https://www.privacy-handbuch.de
 
 XXX https://www.privacytools.io
+
+XXX https://quad9.net/de/
