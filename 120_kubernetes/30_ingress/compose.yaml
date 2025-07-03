@@ -55,7 +55,7 @@ services:
       traefik.http.routers.traefik-s.middlewares: seat-auth
 
   portainer:
-    image: portainer/portainer-ce:2.24.1-alpine
+    image: portainer/portainer-ce:2.31.3-alpine
     command:
     - --admin-password=${SEAT_HTPASSWD_ONLY}
     - --host=unix:///var/run/docker.sock
