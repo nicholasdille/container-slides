@@ -1,4 +1,4 @@
-date: 2024-xx-yy
+date: 2025-11-xx
 metadata:
   title: How much bash is enough
   title_slug: cluster-api
@@ -16,6 +16,14 @@ event:
 slides:
 - 000_introduction/02_bio.md
 - 080_ci_cd/scripting/slides.md
+- 080_ci_cd/scripting/readability.md
+- 080_ci_cd/scripting/portability.md
+- 080_ci_cd/scripting/data.md
+- 080_ci_cd/scripting/errors.md
+- 080_ci_cd/scripting/performance.md
+- 080_ci_cd/scripting/development.md
+- 080_ci_cd/scripting/when_to_avoid.md
+- 080_ci_cd/scripting/links.md
 
 summary:
 - icon: id-card-clip

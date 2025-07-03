@@ -1,46 +1,19 @@
-# WHAT IS SHELL CODE
-# XXX
+# What is Shell Code
 
-# ADVANTAGES
-# available
+XXX
 
-# DISADVANTAGES
-# XXX
+---
 
-# READABILITY
-# indentation
-# line breaks
-# long parameters
+# Advantages
 
-# PORTABILITY
-# bash vs sh
-# difference ubuntu / alpine (libc)
+available
 
-# DATA
-# JSON through jq
-#   Separate call for multiple fields
-#   Complexity of jq
-#   Use of jq -r for raw output
+---
 
-# ERROR HANDLING
-# set -o errexit
-# set -o nounset (?)
-# set -o pipefail (?)
-# if CMD; then
+# Disadvantages
 
-# DEVELOPMENT
-# debugging
-# shellcheck https://github.com/koalaman/shellcheck
-# unit tests https://github.com/bats-core/bats-core
+readability
 
-# WHEN TO AVOID
-# length
-# complexity
-# readability
-# maintainability
-# performance (process forks)
+portability
 
-# LINKS
-# https://google.github.io/styleguide/shellguide.html
-# https://github.com/dylanaraps/pure-bash-bible
-# https://github.com/dylanaraps/pure-sh-bible
+performance
