@@ -23,7 +23,9 @@ Alle Bildschirme zählen!
 
 Leitlinie der Deutschen Gesellschaft für Kinder- und Jugendmedizin (DGKJ) [](https://register.awmf.org/de/leitlinien/detail/027-075)
 
-### 12-18 Jahre höchstens 2 Stunden
+### TL;DR (too long didn't read)
+
+12-18 Jahre höchstens 2 Stunden
 
 ---
 
@@ -43,6 +45,30 @@ Leitlinie der Deutschen Gesellschaft für Kinder- und Jugendmedizin (DGKJ) [](ht
 - <span class="fa-li"><i class="fa-solid fa-money-bill-1-wave"></i></span> Versicherung
 
 <!-- .element: class="fa-ul" -->
+
+---
+
+## Nicht das richtige Handy
+
+Das alte, ausgediente Handy
+
+Schutz vor Angriffen und Malware notwendig
+
+Angriffe vorhersehbar
+
+### Anzahl Mobiltelefone in 2023
+
+- weltweit: 8.891.100.000
+- in Deutschland: 105.000.000
+
+Quelle: [The World Factbook](https://www.cia.gov/the-world-factbook/countries/world/#communications)
+
+### Marktanteil Hersteller im März 2025
+
+- Android 72%
+- Apple 27,6%
+
+Quelle: [Statistika](https://de.statista.com/statistik/daten/studie/184335/umfrage/marktanteil-der-mobilen-betriebssysteme-weltweit-seit-2009/)
 
 ---
 
@@ -70,9 +96,7 @@ Kontrolle für Kinder ab 13 Jahren
 
 ---
 
-## Allgemeines
-
-XXX
+## Allgemeines Vorgehen
 
 - <span class="fa-li"><i class="fa-solid fa-file-signature"></i></span> Handyvertrag zwischen Eltern und Kindern
 - <span class="fa-li"><i class="fa-solid fa-user"></i></span> Es wird ein Elternkonto benötigt
@@ -83,6 +107,8 @@ XXX
 <!-- .element: class="fa-ul" -->
 
 ### Und nun: die Funktionen von Google Family Link
+
+![](995_medienkompetenz/GoogleFamilyLink/Icon-Eltern.png) <!-- .element: style="width: 10%; padding: 0.1em;" -->
 
 ---
 
@@ -110,6 +136,16 @@ Zusätzliche Zeit gewähren:
 
 ---
 
+![](995_medienkompetenz/GoogleFamilyLink/Bildschirmzeit.jpg) <!-- .element: style="float: left; width: 28%; padding: 0.5em;" -->
+
+![](995_medienkompetenz/GoogleFamilyLink/Zeitlimits.jpg) <!-- .element: style="float: left; width: 28%; padding: 0.5em;" -->
+
+![](995_medienkompetenz/GoogleFamilyLink/Zeitpläne.jpg) <!-- .element: style="float: left; width: 28%; padding: 0.5em;" -->
+
+---
+
+![](995_medienkompetenz/GoogleFamilyLink/App-Limits.jpg) <!-- .element: style="float: right; width: 27%; padding: 0.1em;" -->
+
 ## App-Beschränkungen
 
 Einschränkung pro App:
@@ -128,6 +164,8 @@ Kein Wochenplan
 Keine tägliche Anpassung
 
 ---
+
+![](995_medienkompetenz/GoogleFamilyLink/Standort.jpg) <!-- .element: style="float: right; width: 27%; padding: 0.1em;" -->
 
 ## Notfälle
 
@@ -155,6 +193,8 @@ Keine tägliche Anpassung
 
 ---
 
+![](995_medienkompetenz/GoogleFamilyLink/Einstellungen.jpg) <!-- .element: style="float: right; width: 20%; padding: 0.1em;" -->
+
 ## Jugendfilter
 
 ### Google Play Store
@@ -176,27 +216,75 @@ Keine tägliche Anpassung
 
 ---
 
+![](995_medienkompetenz/GoogleFamilyLink/Geräteeinstellungen.jpg) <!-- .element: style="float: right; width: 20%; padding: 0.1em;" -->
+
 ## App-Berechtigungen
 
-### Standort
+Jede Berechtigung für jede App durch Eltern konfigurierbar
 
-XXX
+Konfigurierbar, wer die Berechtigung ändern kann<br/>(nur Eltern oder auch Kind)
 
-### Andere Berechtigungen
+### Verfügbare Berechtigungen
 
-XXX
+Kalender, Kamera, Kontakte, Körpersensoren, Mikrofon, SMS, Speicher Standort, Telefon
+
+### Standortfreigabe
+
+Aktivieren oder deaktivieren
+
+Genauigkeit konfigurieren
 
 ---
 
+![](995_medienkompetenz/GoogleFamilyLink/Nicht-Stören-Kinder.jpg) <!-- .element: style="float: right; width: 21%; padding: 0.1em;" -->
+
+![](995_medienkompetenz/GoogleFamilyLink/TöneUndVibration.jpg) <!-- .element: style="float: right; width: 21%; padding: 0.1em;" -->
+
 ## Benachrichtigungen
 
-XXX
+Stören den Unterricht
 
-### Nicht stören
+Halten das Gerät im Fokus
 
-Keine Benachrichtigungen in der konfigurierten Zeit
+### Töne und Vibration
+
+Auswahl: Ton, Vibration und lautlos
+
+### Android Funktion: Nicht stören
+
+Keine Benachrichtigungen</br>in der konfigurierten Zeit
 
 Sehr nützlich für die Schule
+
+---
+
+![](995_medienkompetenz/GoogleFamilyLink/Schulmodus.jpg) <!-- .element: style="float: right; width: 25%; padding: 0.1em;" -->
+
+## Schulmodus
+
+Wochenplan festlegen
+
+Erlaubte App konfigurieren
+
+(unterhalb der Zeitpläne)
+
+---
+
+![](995_medienkompetenz/GoogleFamilyLink/App-Aktivitäten.jpg) <!-- .element: style="float: right; width: 23%; padding: 0.1em;" -->
+
+![](995_medienkompetenz/GoogleFamilyLink/Jugendschutzeinstellungen.jpg) <!-- .element: style="float: right; width: 23%; padding: 0.1em;" -->
+
+## Beim Kind
+
+App namens Jugendschutzeinstellungen
+
+Alle Einstellungen einsehbar
+
+Eigene Aktivitäten sichtbar
+
+Benachrichtigungen über verbleibende Zeit
+
+![](995_medienkompetenz/GoogleFamilyLink/Icon-Kinder.png) <!-- .element: style="width: 10%; padding: 0.1em;" -->
 
 ---
 
@@ -221,19 +309,29 @@ Elternzugriff am Gerät
 
 ---
 
+![](995_medienkompetenz/GoogleFamilyLink/FamiliengruppeApps.jpg) <!-- .element: style="float: right; width: 23%; padding: 0.1em;" -->
+
+![](995_medienkompetenz/GoogleFamilyLink/FamiliengruppeEinstellungen.jpg) <!-- .element: style="float: right; width: 23%; padding: 0.1em;" -->
+
 ## Familiengruppe
 
-XXX [](https://families.google/intl/de/families/)
+Teil von Google Play Store [](https://families.google/intl/de/families/)
 
-XXX Familienmediathek (Apps, Spiele, Filme, Bücher)
+Unabhängig von Google Family Link
 
-XXX Einmal kaufen, gemeinsam nutzen
+### Familienmediathek
 
-XXX Zugriff steuern
+Umfasst Apps, Spiele, Filme, Bücher
 
-XXX Unabhängig von Google Family Link
+Inhalte können einzeln</br>hinzugefügt/entfernt werden
 
-XXX Achtung: Familienzahlungsmethode [](https://support.google.com/families/answer/6294544?hl=de&ref_topic=7327570&sjid=6621849530934270428-EU#zippy=%2Cpurchases-you-can-use-family-payment-method-for%2Cpurchases-you-cant-use-family-payment-method-for)
+Einmal kaufen, gemeinsam nutzen
+
+Zugriff steuern (Jugendschutz)
+
+### Achtung
+
+Familienzahlungsmethode [](https://support.google.com/families/answer/6294544?hl=de&ref_topic=7327570&sjid=6621849530934270428-EU#zippy=%2Cpurchases-you-can-use-family-payment-method-for%2Cpurchases-you-cant-use-family-payment-method-for)
 
 ---
 

@@ -28,7 +28,7 @@ Alle kommerziellen, sozialen Netzwerke sammeln Daten über ihre Nutzer, um diese
 
 > Zu schön um wahr zu sein.
 
-XXX 1-Euro-Handy
+Nicholas fiel auf eine Werbe-E-Mail herein, die ihm ein neues Samsung-Handy für 1€ versprochen hat.
 
 ---
 
@@ -40,6 +40,7 @@ Meta umgeht Maßnahmen zum Schutz der Privatsphäre [](https://www.heise.de/news
 - Verstoß gegen den Datenschutz [](https://gdpr-info.eu/) wegen fehlender Einwilligung
 - Verstoß gegen den Digital Services Act (DSA) [](https://digital-strategy.ec.europa.eu/de/policies/safer-online) wegen Profiling mit besonders schützenswerten Daten
 - Verstoß gegen den Digital Markets Act (DMA) [](https://digital-markets-act.ec.europa.eu/index_en?prefLang=de&etrans=de) wegen Verknüpfung der Daten unterschiedlicher Dienste
+- Noch kein Verfahren eingeleitet
 
 ---
 
@@ -47,25 +48,28 @@ Meta umgeht Maßnahmen zum Schutz der Privatsphäre [](https://www.heise.de/news
 
 > Die Elternkontrolle lässt sich doch leicht umgehen.
 
-Es gibt Sammlungen von Tipps für Google Family Link [](https://praxistipps.chip.de/family-link-umgehen-darauf-sollten-eltern-achten_183837) [](https://www.giga.de/artikel/google-family-link-umgehen-das-geht-darauf-sollten-eltern-aufpassen/)
-
-XXX ausprobieren
-
-XXX Gefahr bewerten
-
----
-
-## Standort
-
-XXX Wetter Online Standortprofil
+Die Tipps für Google Family Link sind veraltet und funktionieren nicht mehr [](https://praxistipps.chip.de/family-link-umgehen-darauf-sollten-eltern-achten_183837) [](https://www.giga.de/artikel/google-family-link-umgehen-das-geht-darauf-sollten-eltern-aufpassen/)
 
 ---
 
 ## WhatsApp
 
-- <i class="fa-solid fa-address-book"></i> Kontakte
-- <i class="fa-solid fa-people-arrows"></i> Metadaten
-- <i class="fa-solid fa-ranking-star"></i> Alternativen
+![](995_medienkompetenz/GoogleFamilyLink/WhatsApp.svg) <!-- .element: style="float: right; width: 10%;" -->
+
+Messenger von Meta
+
+Mehr als 2 Milliarden Nutzer weltweit (Stand 2020)
+
+### Kritik an Meta
+
+- <span class=fa-li><i class="fa-solid fa-address-book"></i></span> Kontakte werden veruntreut
+- <span class=fa-li><i class="fa-solid fa-people-arrows"></i></span> Metadaten werden gesammelt
+
+<!-- .element: class="fa-ul" -->
+
+### Kritik an Nutzern
+
+- <span class=fa-li><i class="fa-solid fa-ranking-star"></i></span> Alternativen werden ignoriert
 
 <!-- .element: class="fa-ul" -->
 
@@ -73,15 +77,7 @@ XXX Wetter Online Standortprofil
 
 ## Chat-Gruppen
 
-XXX
-
-### Private
-
-XXX Mobbing
-
-### Öffentliche
-
-XXX Cybergrooming
+<i class="fa-duotone fa-solid fa-comments fa-4x"></i> <!-- .element: style="float: right;" -->
 
 XXX
 
@@ -98,6 +94,8 @@ Festnetz: 052116391643
 ---
 
 ## Anbieterwahl
+
+<i class="fa-duotone fa-solid fa-hands-bound fa-4x"></i> <!-- .element: style="float: right;" -->
 
 XXX deutsche oder europäische Anbieter
 
@@ -117,6 +115,8 @@ Gemeinsam Dokumente bearbeiten mit Cryptpads [](https://cryptpad.digitalcourage.
 
 ## Konten
 
+<i class="fa-duotone fa-solid fa-id-card fa-4x"></i> <!-- .element: style="float: right;" -->
+
 XXX Identität
 
 XXX Präsenz
@@ -124,6 +124,8 @@ XXX Präsenz
 ---
 
 ## Jugendfilter
+
+<i class="fa-duotone fa-solid fa-filters fa-4x"></i> <!-- .element: style="float: right;" -->
 
 XXX mehr
 
@@ -133,22 +135,22 @@ XXX https://www.jugendschutzprogramm.de/en/
 
 ## Cookies / Tracking
 
-XXX Optionale Cookies ablehnen
+<i class="fa-duotone fa-solid fa-cookie-bite fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX Dritanbieter-Cookies ablehnen
+Optionale und Drittanbieter-Cookies ablehnen
 
-XXX https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/cookies-kontrollieren-und-verwalten-so-gehts-11996
+[Leitfaden der Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/cookies-kontrollieren-und-verwalten-so-gehts-11996)
 
-XXX Pur-Abos bzw. Cookie Paywalls bzw. Pay-or-Okay
+Aktivieren von [Do not Track](https://de.wikipedia.org/wiki/Do_Not_Track_(Software)) im Browser
 
-- Stellungnahme [](https://www.ldi.nrw.de/bewertung-von-pur-abo-modellen-auf-websites)
-- noyb [](https://noyb.eu/en/frequently-asked-questions-about-pay-or-okay)
+Cookies durch den Browser automatisch löschen lassen
 
-XXX DNT [](https://de.wikipedia.org/wiki/Do_Not_Track_(Software))
+Private Tabs bzw. Incognito-Mode helfen, Cookies zu vermeiden
 
-XXX Cookies automatisch löschen
+### Pur-Abos / Cookie Paywalls / Pay-or-Okay
 
-XXX Private Tabs bzw. Incognito-Mode
+- [Stellungnahme des Landesdatenschutzbeauftragten NRW](https://www.ldi.nrw.de/bewertung-von-pur-abo-modellen-auf-websites)
+- [FAQ von noyb (Englisch)](https://noyb.eu/en/frequently-asked-questions-about-pay-or-okay)
 
 ### Browser-Erweiterungen
 
@@ -160,7 +162,11 @@ Blockieren von Trackern mit Privacy Badger [](https://privacybadger.org/de/)
 
 ## Feeds
 
+<i class="fa-duotone fa-solid fa-rss fa-4x"></i> <!-- .element: style="float: right;" -->
+
 XXX Inhalte abhängig von Konsumiertem
+
+XXX Doomscrolling
 
 ---
 
@@ -180,6 +186,8 @@ XXX Phishing (Vortrag Twitter Video)
 
 ## Rechtliches
 
+<i class="fa-duotone fa-solid fa-book-section fa-4x"></i> <!-- .element: style="float: right;" -->
+
 Dies ist keine Rechtsberatung! [](https://de.wikipedia.org/wiki/Rechtsberatung#Deutschland)
 
 - <i class="fa-solid fa-file-contract"></i> AGBs
@@ -191,22 +199,29 @@ XXX Verträge [](https://www.verbraucherzentrale-niedersachsen.de/themen/kaufen-
 
 ## Spiele
 
-- Xbox Live
-- Switch
+<i class="fa-duotone fa-solid fa-gamepad-modern fa-4x"></i> <!-- .element: style="float: right;" -->
+
+- PlayStation [](https://www.esrb.org/tools-for-parents/parental-controls/)
+- Xbox Live [](https://www.xbox.com/de-DE/apps/family-settings-app)
+- Switch [](https://www.nintendo.com/us/mobile-apps/parental-controls/)
 
 ### Minecraft
 
-XXX offiziell: https://www.minecraft.net/de-de/article/parents--guide-minecraft
+Einführung für Eltern und Kinder von **Technik für Kids** [](https://technik-fuer-kids.de/minecraft/)
 
-XXX Kindersicherung: https://www.internetmatters.org/de/parental-controls/gaming-consoles/minecraft/
+Offizieller Leitfaden für Eltern [](https://www.minecraft.net/de-de/article/parents--guide-minecraft)
 
-XXX https://technik-fuer-kids.de/minecraft/
+Anleitung zur Kindersicherung von **Internet Matters** [](https://www.internetmatters.org/de/parental-controls/gaming-consoles/minecraft/)
 
-XXX https://muttis-blog.net/minecraft-unverzichtbares-know-how-fuer-eltern/
+Unverzichtbares Knowhow für Eltern [](https://muttis-blog.net/minecraft-unverzichtbares-know-how-fuer-eltern/)
+
+Kostenlose Server von Aternos [](https://aternos.org/)
 
 ---
 
 ## Portale
+
+<i class="fa-duotone fa-solid fa-circle-info fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Bundeszentrale für Kinder- und Jugendmedienschutz (BzKJ) [](https://www.bzkj.de/)
 
@@ -224,7 +239,9 @@ Ins Netz gehen [](https://www.ins-netz-gehen.info/)
 
 ---
 
-## XXX
+## Initiativen
+
+<i class="fa-duotone fa-solid fa-people-roof fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ### Vereine
 

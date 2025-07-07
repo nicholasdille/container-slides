@@ -17,28 +17,41 @@ event:
 pre_slides: []
 
 agenda:
-- icon: mobile-screen-button
-  text: Warum ein Handy?
+- icon: film
+  text: Kurzfilm
+- icon: magnifying-glass
+  text: Wo stehen wir mit dem Smartphone?
 - icon: triangle-exclamation
-  text: Gefahren
-- icon: people-roof
-  text: Familie
+  text: Gefahren und Risiken
+- icon: scale-balanced
+  text: Wahrheit und Fake
+- icon: gamepad-modern
+  text: Gaming
 - icon: shield-heart
   text: Schutz
 - icon: handshake-simple
   text: Kompetenz
 
 slides:
+- 995_medienkompetenz/block1.md
+- 995_medienkompetenz/block2.md
+- 995_medienkompetenz/block3.md
+- 995_medienkompetenz/block4.md
+- 995_medienkompetenz/block5.md
 - 995_medienkompetenz/disclaimer.md
-- 995_medienkompetenz/intro.md
+#- 995_medienkompetenz/intro.md
 - 995_medienkompetenz/schutz.md
 - 995_medienkompetenz/kompetenz.md
 
 summary:
-- icon: shield-check
-  text: Vorbild wie in der realen Welt
 - icon: people-roof
   text: Schutz der Gesundheit
+- icon: shield-check
+  text: Vorbild wie in der realen Welt
+- icon: screwdriver-wrench
+  text: Geräte sicher konfigurieren
+- icon: lightbulb-on
+  text: Skeptisch sein, prüfen und nachdenken
 - icon: file-contract
   text: Rechte und Pflichten vereinbaren
 - icon: shield-heart
