@@ -76,24 +76,6 @@ Mehr als 2 Milliarden Nutzer weltweit (Stand 2020)
 
 ---
 
-## Chat-Gruppen
-
-<i class="fa-duotone fa-solid fa-comments fa-4x"></i> <!-- .element: style="float: right;" -->
-
-XXX
-
-### Frank geht ran
-
-Rufnummern für nervige Gesprächspartner
-
-Anrufbeantworter [](https://digitalcourage.de/frank-geht-ran)
-
-Mobil: 01631737743
-
-Festnetz: 052116391643
-
----
-
 ## Anbieterwahl
 
 <i class="fa-duotone fa-solid fa-hands-bound fa-4x"></i> <!-- .element: style="float: right;" -->
@@ -116,23 +98,23 @@ Gemeinsam Dokumente bearbeiten mit [Cryptpads](https://cryptpad.digitalcourage.d
 
 ---
 
-## Konten
-
-<i class="fa-duotone fa-solid fa-id-card fa-4x"></i> <!-- .element: style="float: right;" -->
-
-XXX Identität
-
-XXX Präsenz
-
----
-
-## Jugendfilter
+## Jugendschutzprogramm
 
 <i class="fa-duotone fa-solid fa-filters fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX mehr
+[JusProg](https://www.jugendschutzprogramm.de) ist ein gemeinnütziger Verein...
 
-XXX https://www.jugendschutzprogramm.de
+...zum Schutz von Kindern und Jugendlichen im Internet
+
+Schutz vor nicht altersgerechten Inhalten im Internet
+
+Kostenloser Schutz für alle Endgeräte
+
+### Auf dem Smartphone
+
+System-App zum Filtern von Inhalten
+
+App verwaltet Kinder und Erwachsene für die Kindersicherung und deren Verwaltung
 
 ---
 
@@ -167,21 +149,40 @@ Blockieren von Trackern mit Privacy Badger [](https://privacybadger.org/de/)
 
 <i class="fa-duotone fa-solid fa-rss fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX Inhalte abhängig von Konsumiertem
+Inhalte sind abhängig von Konsumiertem
 
-XXX Doomscrolling
+Vorschläge passen in der Regel
+
+Konsumierte Inhalte werden verstärkt angezeigt
+
+Die Inhalte verändern sich - gewollt oder nicht
+
+Der Feed endet nicht
+
+### Achtung: Doomscrolling
 
 ---
 
 ## Informationsquellen
 
-XXX wem kann ich vertrauen?
+Welche Quellen sind vertrauenswürdig?
 
-XXX Betrug
+- Wissenschaft
+- Zeitungen inkl. Online-Präsenz
+- Öffentlich-rechtliche Medien
 
-XXX Phishing (Vortrag Twitter Video)
+Welche Quellen sind es nicht?
 
-XXX QR-Codes
+- Chat-Gruppe
+- Soziale Medien
+
+Warum nicht?
+
+- Hidden Agenda
+- Desinformation
+- Betrug
+
+Informationen prüfen, skeptisch sein, nicht instrumentalisieren lassen
 
 ---
 
@@ -191,14 +192,14 @@ XXX QR-Codes
 
 Dies ist [keine Rechtsberatung](https://de.wikipedia.org/wiki/Rechtsberatung#Deutschland)!
 
-- <span class="fa-li"><i class="fa-solid fa-file-contract"></i></span> Allgemeine Geschäftsbedingungen (AGBn) lesen und verstehen - oder recherchieren
-- <span class="fa-li"><i class="fa-solid fa-section"></i></span> [DSGVO Artikel 8](https://dsgvo-gesetz.de/art-8-dsgvo/) - Verarbeitung personenbezogener Daten nach Einwilligung erst ab dem 16. Lebensjahr
+- <span class="fa-li"><i class="fa-solid fa-file-contract"></i></span> Allgemeine Geschäftsbedingungen (AGBn) lesen und verstehen
+- <span class="fa-li"><i class="fa-solid fa-section"></i></span> [DSGVO Artikel 8](https://dsgvo-gesetz.de/art-8-dsgvo/) - Verarbeitung personenbezogener Daten</br>nach Einwilligung erst ab dem 16. Lebensjahr
 
 <!-- .element: class="fa-ul" -->
 
 ### Verträge
 
-Minderjährige ab sieben Jahren können nur rechtlich vorteilhafte Verträge abschließen
+Minderjährige ab 7 Jahren können nur *rechtlich vorteilhafte* Verträge abschließen
 
 Rechtlich vorteilhaft = keine rechtlichen Verpflichtungen, z.B. Abonnements
 
