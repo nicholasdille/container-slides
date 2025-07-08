@@ -36,6 +36,6 @@ Auch [CHIP](https://chip.de) und [flimmo](https://www.flimmo.de) testen und bewe
 - https://www.klicksafe.de
 - Law4School (Mobbingpräventionswebinare)
 - Digitale Helden
-- Clemes hilft!
+- Clemens hilft!
 - Medienscouts
 - und unzählige mehr!

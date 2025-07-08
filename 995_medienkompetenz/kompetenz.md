@@ -64,6 +64,7 @@ Mehr als 2 Milliarden Nutzer weltweit (Stand 2020)
 
 - <span class=fa-li><i class="fa-solid fa-address-book"></i></span> Kontakte werden veruntreut
 - <span class=fa-li><i class="fa-solid fa-people-arrows"></i></span> Metadaten werden gesammelt
+- <span class=fa-li><i class="fa-solid fa-microchip"></i></span> Meta AI hebelt Ende-zu-Ende-Verschlüsselung aus
 
 <!-- .element: class="fa-ul" -->
 
@@ -97,19 +98,21 @@ Festnetz: 052116391643
 
 <i class="fa-duotone fa-solid fa-hands-bound fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX deutsche oder europäische Anbieter
+Deutsche oder europäische Anbieter
 
-XXX muss es wirklich immer kostenlos sein?
+Muss es wirklich immer kostenlos sein?
+
+Datenschutz hat seinen Preis!
 
 ### Beispiele
 
-EMail: Mailbox, XXX
+EMail: [Mailbox](https://mailbox.org), [Posteo](https://posteo.de/de) (nicht GMX und web.de)
 
-Speicher: Strato HiDrive, XXX
+Speicher: [Strato HiDrive](https://www.strato.de/cloud-speicher/), [MagentaCLOUD](https://cloud.telekom-dienste.de/), [luckycloud](https://luckycloud.de/) ([aktueller Vergleich](https://www.heise.de/download/specials/Die-10-besten-Cloud-Speicher-3149052))
 
-Termine koordinieren mit Nuudel [](https://nuudel.digitalcourage.de/) statt Doodle
+Termine koordinieren mit [Nuudel](https://nuudel.digitalcourage.de/) statt Doodle
 
-Gemeinsam Dokumente bearbeiten mit Cryptpads [](https://cryptpad.digitalcourage.de/)
+Gemeinsam Dokumente bearbeiten mit [Cryptpads](https://cryptpad.digitalcourage.de/)
 
 ---
 
@@ -129,7 +132,7 @@ XXX Präsenz
 
 XXX mehr
 
-XXX https://www.jugendschutzprogramm.de/en/
+XXX https://www.jugendschutzprogramm.de
 
 ---
 
@@ -174,13 +177,11 @@ XXX Doomscrolling
 
 XXX wem kann ich vertrauen?
 
----
-
-## Betrug / Scam
-
-XXX QR-Codes
+XXX Betrug
 
 XXX Phishing (Vortrag Twitter Video)
+
+XXX QR-Codes
 
 ---
 
@@ -188,12 +189,22 @@ XXX Phishing (Vortrag Twitter Video)
 
 <i class="fa-duotone fa-solid fa-book-section fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Dies ist keine Rechtsberatung! [](https://de.wikipedia.org/wiki/Rechtsberatung#Deutschland)
+Dies ist [keine Rechtsberatung](https://de.wikipedia.org/wiki/Rechtsberatung#Deutschland)!
 
-- <i class="fa-solid fa-file-contract"></i> AGBs
-- <i class="fa-solid fa-section"></i> DSGVO Artikel 8
+- <span class="fa-li"><i class="fa-solid fa-file-contract"></i></span> Allgemeine Geschäftsbedingungen (AGBn) lesen und verstehen - oder recherchieren
+- <span class="fa-li"><i class="fa-solid fa-section"></i></span> [DSGVO Artikel 8](https://dsgvo-gesetz.de/art-8-dsgvo/) - Verarbeitung personenbezogener Daten nach Einwilligung erst ab dem 16. Lebensjahr
 
-XXX Verträge [](https://www.verbraucherzentrale-niedersachsen.de/themen/kaufen-reklamieren/kurz-erklaert-minderjaehrige-vertraege)
+<!-- .element: class="fa-ul" -->
+
+### Verträge
+
+Minderjährige ab sieben Jahren können nur rechtlich vorteilhafte Verträge abschließen
+
+Rechtlich vorteilhaft = keine rechtlichen Verpflichtungen, z.B. Abonnements
+
+Einmalige Zahlungen aus dem Taschengeld sind wirksam (siehe [Taschengeldparagraph](https://de.wikipedia.org/wiki/Taschengeldparagraph))
+
+Quelle: [Verbraucherzentrale Niedersachsen](https://www.verbraucherzentrale-niedersachsen.de/themen/kaufen-reklamieren/kurz-erklaert-minderjaehrige-vertraege)
 
 ---
 
@@ -245,16 +256,18 @@ Ins Netz gehen [](https://www.ins-netz-gehen.info/)
 
 ### Vereine
 
-Freiburg Social [](https://freiburg.social/)
+[Freiburg Social](https://freiburg.social/)
 
-Digital Courage [](https://digitalcourage.de)
+[Digital Courage](https://digitalcourage.de) ([digitale Selbstverteidigung](https://digitalcourage.de/digitale-selbstverteidigung))
 
-https://noyb.eu/en
+[noyb](https://noyb.eu/en)
 
-XXX https://digitalcourage.de/digitale-selbstverteidigung
+### Informationen
 
-XXX https://www.privacy-handbuch.de
+[Privacy-Handbuch](https://www.privacy-handbuch.de)
 
-XXX https://www.privacytools.io
+Alternative [Tools zur Wahrung der Privatsphäre](https://www.privacytools.io)
 
-XXX https://quad9.net/de/
+### Tools
+
+[Werbung blockieren mit DNS-Dienst Quad9](https://quad9.net/de/)
