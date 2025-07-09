@@ -83,4 +83,4 @@ Handout Glossar allgemein
 
 ---
 
-![](995_medienkompetenz/block2_kapiervorgang.jpg) <!-- .element: style="width: 50%;" -->
+![](995_medienkompetenz/block2_kapiervorgang.jpg) <!-- .element: style="width: 80%;" -->

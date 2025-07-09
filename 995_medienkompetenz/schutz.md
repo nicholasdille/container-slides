@@ -50,7 +50,7 @@ Leitlinie der Deutschen Gesellschaft für Kinder- und Jugendmedizin (DGKJ) [](ht
 
 ## Nicht das richtige Handy
 
-Das alte, ausgediente Handy
+Das alte, ausgediente Handy ohne Updates
 
 Schutz vor Angriffen und Malware notwendig
 
@@ -65,8 +65,8 @@ Quelle: [The World Factbook](https://www.cia.gov/the-world-factbook/countries/wo
 
 ### Marktanteil Hersteller im März 2025
 
-- Android 72%
-- Apple 27,6%
+- Android 72% (~6,4 Milliarden Geräte)
+- Apple 27,6% (~2,46 Milliarden Geräte)
 
 Quelle: [Statistika](https://de.statista.com/statistik/daten/studie/184335/umfrage/marktanteil-der-mobilen-betriebssysteme-weltweit-seit-2009/)
 
@@ -78,17 +78,17 @@ Quelle: [Statistika](https://de.statista.com/statistik/daten/studie/184335/umfra
 
 Google Family Link [](https://families.google/intl/de/familylink/)
 
-Hilfestellung zur Einrichtung des Geräts [](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/android-smartphone/)
+Hilfestellung zur [Einrichtung des Geräts](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/android-smartphone/)
 
-Hilfestellung zur Einrichtung von Google Family Link [](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/google-family-link/)
+Hilfestellung zur [Einrichtung von Google Family Link](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/google-family-link/)
 
 ### Apple
 
 Kindersicherung [](https://support.apple.com/de-de/105121)
 
-Hilfestellung zur Einrichtung des Geräts [](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/apple-iphone-and-ipad-parental-control-guide/)
+Hilfestellung zur [Einrichtung des Geräts](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/apple-iphone-and-ipad-parental-control-guide/)
 
-Hilfestellung zur Einrichtung von Family Sharing [](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/apples-family-sharing/)
+Hilfestellung zur [Einrichtung von Family Sharing](https://www.internetmatters.org/parental-controls/smartphones-and-other-devices/apples-family-sharing/)
 
 ### Hier: Android als Beispiel
 
@@ -106,9 +106,9 @@ Kontrolle für Kinder ab 13 Jahren
 
 <!-- .element: class="fa-ul" -->
 
-### Und nun: die Funktionen von Google Family Link
+![](995_medienkompetenz/GoogleFamilyLink/Icon-Eltern.png) <!-- .element: style="float: right; width: 10%; padding: 0.1em;" -->
 
-![](995_medienkompetenz/GoogleFamilyLink/Icon-Eltern.png) <!-- .element: style="width: 10%; padding: 0.1em;" -->
+### Und nun: die Funktionen von Google Family Link
 
 ---
 
@@ -121,7 +121,7 @@ Beschränkungen:
 
 <!-- .element: class="fa-ul" -->
 
-Konfiguration:
+Konfiguration für Bildschirm- und Ruhezeit:
 
 - <span class="fa-li"><i class="fa-solid fa-calendar-days"></i></span> Wochenplan
 - <span class="fa-li"><i class="fa-solid fa-calendar-day"></i></span> Heute
@@ -144,16 +144,28 @@ Zusätzliche Zeit gewähren:
 
 ---
 
+![](995_medienkompetenz/GoogleFamilyLink/Aktivität.jpg) <!-- .element: style="float: right; width: 28%; padding: 0.1em;" -->
+
+## Aktivitätsübersicht
+
+Wie lange wurde das Gerät genutzt?
+
+Wie lange wird das Gerät durchschnittlich genutzt?
+
+Welche Apps wurden wie lange genutzt?
+
+---
+
 ![](995_medienkompetenz/GoogleFamilyLink/App-Limits.jpg) <!-- .element: style="float: right; width: 27%; padding: 0.1em;" -->
 
 ## App-Beschränkungen
 
 Einschränkung pro App:
 
-- <span class="fa-li"><i class="fa-solid fa-ban"></i></span> Blockiert
-- <span class="fa-li"></span> kein Zeitlimit
+- <span class="fa-li"><i class="fa-solid fa-ban"></i></span> Blockiert (= nicht erlaubt)
+- <span class="fa-li"></span> kein Zeitlimit (begrenzt durch Bildschirmzeit)
 - <span class="fa-li"><i class="fa-solid fa-hourglass-start"></i></span> Begrenzte Zeit
-- <span class="fa-li"><i class="fa-solid fa-infinity"></i></span> Unbegrenzte Zeit
+- <span class="fa-li"><i class="fa-solid fa-infinity"></i></span> Unbegrenzte Zeit (zählt nicht zur Bildschirmzeit)
 
 <!-- .element: class="fa-ul" -->
 
@@ -165,14 +177,17 @@ Keine tägliche Anpassung
 
 ---
 
+![](995_medienkompetenz/GoogleFamilyLink/NotfallSOS.jpg) <!-- .element: style="float: right; width: 27%; padding: 0.1em;" -->
+
 ![](995_medienkompetenz/GoogleFamilyLink/Standort.jpg) <!-- .element: style="float: right; width: 27%; padding: 0.1em;" -->
 
-## Notfälle
+## Ausnahmefälle / Sorgen
 
 ### Was kann das Kind
 
 - <span class="fa-li"><i class="fa-solid fa-phone"></i></span> Telefonate führen
 - <span class="fa-li"><i class="fa-solid fa-triangle-exclamation"></i></span> Notrufe absetzen
+- <span class="fa-li"><i class="fa-solid fa-siren-on"></i></span> Android-Funktion: Notfall-SOS
 
 <!-- .element: class="fa-ul" -->
 
@@ -183,6 +198,10 @@ Keine tägliche Anpassung
 <!-- .element: class="fa-ul" -->
 
 ---
+
+![](995_medienkompetenz/GoogleFamilyLink/Eltern-Zugangscode.jpg) <!-- .element: style="float: right; width: 27%; padding: 0.1em;" -->
+
+![](995_medienkompetenz/GoogleFamilyLink/Bildschirmzeit.jpg) <!-- .element: style="float: right; width: 27%; padding: 0.1em;" -->
 
 ## Zugriff
 
@@ -230,6 +249,8 @@ Kalender, Kamera, Kontakte, Körpersensoren, Mikrofon, SMS, Speicher Standort, T
 
 ### Standortfreigabe
 
+(Ortung des Geräts)
+
 Aktivieren oder deaktivieren
 
 Genauigkeit konfigurieren
@@ -250,7 +271,7 @@ Halten das Gerät im Fokus
 
 Auswahl: Ton, Vibration und lautlos
 
-### Android Funktion: Nicht stören
+### Android-Funktion: Nicht stören
 
 Keine Benachrichtigungen</br>in der konfigurierten Zeit
 
@@ -264,7 +285,7 @@ Sehr nützlich für die Schule
 
 Wochenplan festlegen
 
-Erlaubte App konfigurieren
+Erlaubte Apps konfigurieren
 
 (unterhalb der Zeitpläne)
 
@@ -273,6 +294,8 @@ Erlaubte App konfigurieren
 ![](995_medienkompetenz/GoogleFamilyLink/App-Aktivitäten.jpg) <!-- .element: style="float: right; width: 23%; padding: 0.1em;" -->
 
 ![](995_medienkompetenz/GoogleFamilyLink/Jugendschutzeinstellungen.jpg) <!-- .element: style="float: right; width: 23%; padding: 0.1em;" -->
+
+![](995_medienkompetenz/GoogleFamilyLink/Icon-Kinder.png) <!-- .element: style="float: right; width: 10%; padding: 0.1em;" -->
 
 ## Beim Kind
 
@@ -284,11 +307,9 @@ Eigene Aktivitäten sichtbar
 
 Benachrichtigungen über verbleibende Zeit
 
-![](995_medienkompetenz/GoogleFamilyLink/Icon-Kinder.png) <!-- .element: style="width: 10%; padding: 0.1em;" -->
-
 ---
 
-## Achtung Sackgasse
+## Achtung Sackgasse 1/3
 
 <i class="fa-duotone fa-engine-warning fa-4x"></i> <!-- .element: style="float: right;" -->
 
@@ -306,6 +327,40 @@ Ohne Online-Zugriff sind Änderungen nicht möglich
 ### Lösung
 
 Elternzugriff am Gerät
+
+---
+
+![](995_medienkompetenz/GoogleFamilyLink/Geräteeinstellungen.jpg) <!-- .element: style="float: right; width: 20%; padding: 0.1em;" -->
+
+## Achtung Sackgasse 2/3
+
+<i class="fa-duotone fa-lock-keyhole fa-4x"></i> <!-- .element: style="float: right; padding: 0.1em;" -->
+
+### Entsperren <i class="fa-solid fa-not-equal"></i> Entsperren
+
+Entsperren aus Google Family Link hebt die Einschränkungen auf
+
+Umgeht aber nicht die Displaysperre</br>(Sperrmuster / PIN / Fingerabdruck)
+
+### Lösung
+
+Neues Kennwort für die Displaysperre vergeben</br>(in Google Family Link)
+
+---
+
+## Achtung Sackgasse 3/3
+
+<i class="fa-duotone fa-bug fa-4x"></i> <!-- .element: style="float: right; padding: 0.1em;" -->
+
+Umgehung von Google Family Link fast nicht mehr möglich, aber...
+
+### Fehlkonfigurationen
+
+XXX
+
+### Fehlverhalten der Eltern
+
+Eltern-Zugangscode wird erspäht
 
 ---
 

@@ -1,6 +1,8 @@
-# ???
+<!-- .slide: class="center" -->
 
-Gaming ist wie Mensch ärgere Dich. Nur zu viel verursacht Schäden.
+Gaming ist wie Mensch ärgere Dich.
+
+Nur zu viel verursacht Schäden.
 
 ---
 
@@ -19,7 +21,7 @@ Gaming ist wie Mensch ärgere Dich. Nur zu viel verursacht Schäden.
 
 ---
 
-# ???
+<!-- .slide: class="center" -->
 
 Die [Unterhaltungssoftware Selbstkontrolle](https://usk.de/)
 
