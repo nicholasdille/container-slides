@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1.12.0
 
 # Vanilla
-FROM golang:1.23 AS step1
+FROM golang:1.24 AS step1
 WORKDIR /go/src/gitlab.com/nicholasdille/cc21_container_image_build_optimization
 COPY . .
 RUN go build -o /usr/local/bin/hello .
 
 # Multi-stage
-FROM golang:1.23 AS step2-build
+FROM golang:1.24 AS step2-build
 WORKDIR /go/src/gitlab.com/nicholasdille/cc21_container_image_build_optimization
 COPY . .
 RUN go build -o hello .
@@ -18,7 +18,7 @@ FROM ubuntu:24.04 AS step2
 COPY --from=step2-build /hello /usr/local/bin/
 
 # Order of commands
-FROM golang:1.23 AS step3-build
+FROM golang:1.24 AS step3-build
 WORKDIR /go/src/gitlab.com/nicholasdille/cc21_container_image_build_optimization
 COPY go.* .
 RUN go mod download
