@@ -309,7 +309,7 @@ Benachrichtigungen über verbleibende Zeit
 
 ---
 
-## Achtung Sackgasse 1/3
+## Achtung Sackgasse 1/2
 
 <i class="fa-duotone fa-engine-warning fa-4x"></i> <!-- .element: style="float: right;" -->
 
@@ -332,7 +332,7 @@ Elternzugriff am Gerät
 
 ![](995_medienkompetenz/GoogleFamilyLink/Geräteeinstellungen.jpg) <!-- .element: style="float: right; width: 20%; padding: 0.1em;" -->
 
-## Achtung Sackgasse 2/3
+## Achtung Sackgasse 2/2
 
 <i class="fa-duotone fa-lock-keyhole fa-4x"></i> <!-- .element: style="float: right; padding: 0.1em;" -->
 
@@ -345,22 +345,6 @@ Umgeht aber nicht die Displaysperre</br>(Sperrmuster / PIN / Fingerabdruck)
 ### Lösung
 
 Neues Kennwort für die Displaysperre vergeben</br>(in Google Family Link)
-
----
-
-## Achtung Sackgasse 3/3
-
-<i class="fa-duotone fa-bug fa-4x"></i> <!-- .element: style="float: right; padding: 0.1em;" -->
-
-Umgehung von Google Family Link fast nicht mehr möglich, aber...
-
-### Fehlkonfigurationen
-
-XXX
-
-### Fehlverhalten der Eltern
-
-Eltern-Zugangscode wird erspäht
 
 ---
 

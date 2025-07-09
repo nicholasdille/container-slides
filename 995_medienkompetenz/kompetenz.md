@@ -50,6 +50,17 @@ Meta umgeht Maßnahmen zum Schutz der Privatsphäre [](https://www.heise.de/news
 
 Die Tipps für Google Family Link sind veraltet und funktionieren nicht mehr [](https://praxistipps.chip.de/family-link-umgehen-darauf-sollten-eltern-achten_183837) [](https://www.giga.de/artikel/google-family-link-umgehen-das-geht-darauf-sollten-eltern-aufpassen/)
 
+- <span class="fa-li"><i class="fa-solid fa-xmark"></i></span> Uhrzeit ändern
+- <span class="fa-li"><i class="fa-solid fa-xmark"></i></span> Stromsparmodus
+- <span class="fa-li"><i class="fa-solid fa-xmark"></i></span> Alternative-Tastatur
+- <span class="fa-li"><i class="fa-solid fa-xmark"></i></span> Eingabehilfe am Sperrbildschirm
+- <span class="fa-li"><i class="fa-solid fa-question"></i></span> Sicherer Ordner (Samsung)
+- <span class="fa-li"><i class="fa-solid fa-xmark"></i></span> Deinstallation Google Family Link
+- <span class="fa-li"><i class="fa-solid fa-xmark"></i></span> Werkseinstellungen
+- <span class="fa-li"><i class="fa-solid fa-check"></i></span> Eltern-Zugangscode wird erspäht
+
+<!-- .element: class="fa-ul" -->
+
 ---
 
 ## WhatsApp
