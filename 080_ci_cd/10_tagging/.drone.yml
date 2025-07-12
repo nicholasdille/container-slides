@@ -1,7 +1,7 @@
 pipeline:
 
   build:
-    image: docker:27.3.1
+    image: docker:28.3.2
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
@@ -10,14 +10,14 @@ pipeline:
     - docker push registry:5000/groot/testing:dev
 
   prepare:
-    image: docker:27.3.1
+    image: docker:28.3.2
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
     - docker ps --quiet --filter "name=testcont" | xargs -r docker rm -f
 
   test:
-    image: docker:27.3.1
+    image: docker:28.3.2
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
@@ -27,7 +27,7 @@ pipeline:
     - docker rm -f testcont
 
   clean:
-    image: docker:27.3.1
+    image: docker:28.3.2
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
@@ -36,7 +36,7 @@ pipeline:
       status: [ failure ]
 
   publish:
-    image: docker:27.3.1
+    image: docker:28.3.2
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
