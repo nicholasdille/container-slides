@@ -1,22 +1,22 @@
 ## Questions
 
-Date of the event? 2025-05-14
+Date of the event?
 
-Number of attendees? 6
+Number of attendees?
 
-Do you have any experience with CI/CD? 4
+Do you have any experience with CI/CD?
 
-Are you using GitLab CI? 3
+Are you using GitLab CI?
 
-Do you identify as a dev or an op or both? 5, 2, 1
+Do you identify as a dev or an op or both?
 
-Are you comfortable with Linux? 6
+Are you comfortable with Linux?
 
-Is your GitLab self-hosted? 6
+Is your GitLab self-hosted?
 
-Are you responsible for running GitLab? 1
+Are you responsible for running GitLab?
 
-Do you own a GitLab Enterprise License? 1
+Do you own a GitLab Enterprise License?
 
 ---
 

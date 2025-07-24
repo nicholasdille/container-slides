@@ -1,8 +1,8 @@
-date: 2024-11-12
+date: 2025-05-14
 metadata:
   title: GitLab CI
   title_slug: gitlab-ci
-  subtitle: Workshop
+  subtitle: Menschen, die auf Pipelines starren
   favicon: 150_gitlab/media/favicon.ico
   background:
     image: 150_gitlab/media/fox-5195283_1920.jpg
@@ -10,8 +10,9 @@ metadata:
     positon: left 50% top 50%
 event:
   name: " "
-  logo: images/logos/heise-academy.svg
-  link: https://heise-academy.de
+  logo: images/logos/coc_ohnejahr_weiss_bunt.svg
+  logo_style: "height: 2em;"
+  link: https://www.continuouslifecycle.de/
 
 pre_slides:
 - 000_introduction/02_bio.md
@@ -45,6 +46,8 @@ slides:
 - 160_gitlab_ci/070_schedules/slides.md
 - 160_gitlab_ci/080_configuration/slides.md
 - 160_gitlab_ci/090_unit_tests/slides.md
+- 160_gitlab_ci/095_scheduling_internals/slides.md
+- 160_gitlab_ci/097_manual_pipelines/slides.md
 - 160_gitlab_ci/100_environments/slides.md
 - 160_gitlab_ci/110_triggers/slides.md
 - 160_gitlab_ci/120_templates/slides.md
@@ -52,6 +55,7 @@ slides:
 - 160_gitlab_ci/140_merge_requests/slides.md
 - 160_gitlab_ci/150_matrix_jobs/slides.md
 - 160_gitlab_ci/160_variable_precedence/slides.md
+- 160_gitlab_ci/170_deprecations/slides.md
 - 160_gitlab_ci/200_permissions/slides.md
 - 160_gitlab_ci/210_job_token/slides.md
 - 160_gitlab_ci/215_git_submodules/slides.md
@@ -67,7 +71,10 @@ slides:
 - 160_gitlab_ci/280_security/slides.md
 - 160_gitlab_ci/300_components/slides.md
 - 160_gitlab_ci/310_steps/slides.md
-- 160_gitlab_ci/320_secure_files/slides.md
+- 160_gitlab_ci/320_pipeline_inputs/slides.md
+- 160_gitlab_ci/330_secure_files/slides.md
+- 160_gitlab_ci/400_metrics/slides.md
+- 160_gitlab_ci/410_ai/slides.md
 - 160_gitlab_ci/final.md
 
 summary:
@@ -81,11 +88,11 @@ summary:
   text: Useful security features even in free tier
 
 events:
-- date: 2024-11-21
-  name: heise Academy
-  homepage: https://heise-academy.de/
-  type: Workshop
-  title: GitLab CI
-  link: https://heise-academy.de/Workshops/cicd-gitlab
+- date: 2025-11-20
+  name: ContainerConf
+  homepage: https://containerconf.de/
+  type: Talk
+  title: Wieviel Shell-Code ist zu viel
+  link: ""
 
 post_slides: []
