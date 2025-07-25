@@ -2,7 +2,7 @@
 
 ## Architecture
 
-Written in Ruby <i class="fa-duotone fa-gem fa-duotone-colors"></i>
+Written in Ruby <i class="fa-duotone fa-gem"></i>
 
 Consists of multiple services internally
 
@@ -10,6 +10,6 @@ Consists of multiple services internally
 
 GitLab offers reference architectures [](https://docs.gitlab.com/ee/administration/reference_architectures/)
 
-Sizing information included <i class="fa-duotone fa-stars fa-duotone-colors"></i>
+Sizing information included <i class="fa-duotone fa-stars"></i>
 
 (Grafana was unbundled in GitLab 16.3.0 [](https://docs.gitlab.com/ee/update/deprecations.html?removal_milestone=16.3#bundled-grafana-deprecated-and-disabled))

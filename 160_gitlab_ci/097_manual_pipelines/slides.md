@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_ci_manual" class="vertical-center" -->
 
-<i class="fa-duotone fa-light-switch-on fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-light-switch-on fa-8x" style="float: right; color: grey;"></i>
 
 ## Manual Pipelines
 

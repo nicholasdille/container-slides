@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_update" class="vertical-center" -->
 
-<i class="fa-duotone fa-rotate fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-rotate fa-8x" style="float: right; color: grey;"></i>
 
 ## Update
 
@@ -8,7 +8,7 @@
 
 ## Update
 
-<i class="fa-duotone fa-rotate fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-rotate fa-4x" style="float: right;"></i>
 
 GitLab releases regularly [](https://about.gitlab.com/releases/categories/releases/)
 

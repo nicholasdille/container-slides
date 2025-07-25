@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_monitoring" class="vertical-center" -->
 
-<i class="fa-duotone fa-monitor-waveform fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-monitor-waveform fa-8x" style="float: right; color: grey;"></i>
 
 ## Monitoring
 
@@ -8,7 +8,7 @@
 
 ## Monitoring
 
-<i class="fa-duotone fa-monitor-waveform fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-monitor-waveform fa-4x" style="float: right;"></i>
 
 GitLab ships with Prometheus [](https://docs.gitlab.com/omnibus/settings/grafana.html)
 
@@ -77,7 +77,7 @@ Use GitLab as authentication provider in Grafana
 
 ## GitLab CI Pipelines Exporter (GCPE)
 
-<i class="fa-duotone fa-hose fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-hose fa-4x" style="float: right;"></i>
 
 Prometheus exporter for pipelines [](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter) collecting...
 

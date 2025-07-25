@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_runner" class="vertical-center" -->
 
-<i class="fa-duotone fa-person-running fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-person-running fa-8x" style="float: right; color: grey;"></i>
 
 ## Runner
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-<i class="fa-duotone fa-person-running fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-person-running fa-4x" style="float: right;"></i>
 
 Runners [](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI
 
@@ -32,7 +32,7 @@ Firewall traversal for foreign datacenters
 
 ## Heads-up: New runner registration
 
-<i class="fa-duotone fa-person-running fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-person-running fa-4x" style="float: right;"></i>
 
 Available since 15.10 [](https://docs.gitlab.com/ee/architecture/blueprints/runner_tokens/)
 
@@ -58,7 +58,7 @@ One token per runner
 
 ## Details
 
-<i class="fa-duotone fa-person-running fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-person-running fa-4x" style="float: right;"></i>
 
 Supported executors: `shell`, `docker`, `docker-windows`, `docker-ssh`, `ssh`, `parallels`, `virtualbox`, `docker+machine`, `docker-ssh+machine`, `kubernetes`
 

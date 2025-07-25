@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_branch_protection" class="vertical-center" -->
 
-<i class="fa-duotone fa-shield-keyhole fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-shield-keyhole fa-8x" style="float: right; color: grey;"></i>
 
 ## Branch Protection
 

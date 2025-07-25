@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_ldap" class="vertical-center" -->
 
-<i class="fa-duotone fa-book fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-book fa-8x" style="float: right; color: grey;"></i>
 
 ## LDAP Directories
 
@@ -8,7 +8,7 @@
 
 ## LDAP
 
-<i class="fa-duotone fa-book fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-book fa-4x" style="float: right;"></i>
 
 GitLab can directly connect to LDAP servers [](https://docs.gitlab.com/ee/administration/auth/ldap/)
 - Create internal users for authenticated users
@@ -26,7 +26,7 @@ Management UI based on Keycloak [](https://www.keycloak.org/)
 
 ## Hands-On: Deployment
 
-<i class="fa-duotone fa-book fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-book fa-4x" style="float: right;"></i>
 
 Prepare persistent volumes for new components:
 
@@ -51,7 +51,7 @@ docker compose --project-name gitlab \
 
 ## Hands-On: Configuration in Keycloak
 
-<i class="fa-duotone fa-book fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-book fa-4x" style="float: right;"></i>
 
 Two users are automatically created:
 

@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_troubleshooting" class="vertical-center" -->
 
-<i class="fa-duotone fa-briefcase-medical fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-briefcase-medical fa-8x" style="float: right; color: grey;"></i>
 
 ## Troubleshooting
 
@@ -8,7 +8,7 @@
 
 ## Troubleshooting
 
-<i class="fa-duotone fa-briefcase-medical fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-briefcase-medical fa-4x" style="float: right;"></i>
 
 GitLab comes with extensive troubleshooting guides [](https://docs.gitlab.com/ee/administration/troubleshooting/)
 
@@ -32,7 +32,7 @@ Correlation IDs [](https://docs.gitlab.com/ee/administration/troubleshooting/tra
 
 ## Reset the root password
 
-<i class="fa-duotone fa-terminal fa-4x fa-duotone-colors-inverted" style="float: right; padding-left: 0.5em;"></i>
+<i class="fa-duotone fa-terminal fa-4x" style="float: right; padding-left: 0.5em;"></i>
 
 If you cannot log into GitLab using `root`
 
@@ -49,7 +49,7 @@ docker compose --project-name gitlab exec gitlab \
 
 ## SSH
 
-<i class="fa-duotone fa-terminal fa-4x fa-duotone-colors-inverted" style="float: right; padding-left: 0.5em;"></i>
+<i class="fa-duotone fa-terminal fa-4x" style="float: right; padding-left: 0.5em;"></i>
 
 Retrieve users public keys:
 
@@ -82,7 +82,7 @@ curl --silent --header "Private-Token: admin-private-token" \
 
 ## Tokens
 
-<i class="fa-duotone fa-passport fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-passport fa-4x" style="float: right;"></i>
 
 Find owner of access token
 

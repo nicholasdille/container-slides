@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_ai" class="vertical-center" -->
 
-<i class="fa-duotone fa-microchip-ai fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-microchip-ai fa-8x" style="float: right; color: grey;"></i>
 
 ## AI / LLM / ML
 

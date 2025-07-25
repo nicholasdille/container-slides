@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_unit_tests" class="vertical-center" -->
 
-<i class="fa-duotone fa-magnifying-glass-chart fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-magnifying-glass-chart fa-8x" style="float: right; color: grey;"></i>
 
 ## Unit tests
 

@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_authentication" class="vertical-center" -->
 
-<i class="fa-duotone fa-key-skeleton-left-right fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-key-skeleton-left-right fa-8x" style="float: right; color: grey;"></i>
 
 ## Authentication
 
@@ -8,7 +8,7 @@
 
 ## Personal Credentials
 
-<i class="fa-duotone fa-key-skeleton fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-key-skeleton fa-4x" style="float: right;"></i>
 
 We have already used username and password
 
@@ -38,7 +38,7 @@ Permissions inherited from user
 
 ## Group and Project Credentials 2/2
 
-<i class="fa-duotone fa-id-card-clip fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-id-card-clip fa-4x" style="float: right;"></i>
 
 ### Scoped to group
 

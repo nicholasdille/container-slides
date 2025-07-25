@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_registries" class="vertical-center" -->
 
-<i class="fa-duotone fa-box-archive fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-box-archive fa-8x" style="float: right; color: grey;"></i>
 
 ## Registries
 
@@ -8,7 +8,7 @@
 
 ## Package Registry
 
-<i class="fa-duotone fa-box-check fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-box-check fa-4x" style="float: right;"></i>
 
 Use your favorite package manager against GitLab [](https://docs.gitlab.com/ee/user/packages/package_registry/index.html)
 
@@ -16,17 +16,17 @@ Authentication using personal/group/project/job token
 
 ## Supported package types
 
-<i class="fa-duotone fa-circle-check fa-duotone-colors"></i> GA: maven, npm, nuget, pypi, generic
+<i class="fa-duotone fa-circle-check"></i> GA: maven, npm, nuget, pypi, generic
 
-<i class="fa-duotone fa-circle-exclamation fa-duotone-colors"></i> Beta: composer, conan, helm
+<i class="fa-duotone fa-circle-exclamation"></i> Beta: composer, conan, helm
 
-<i class="fa-duotone fa-flag fa-duotone-colors-inverted"></i> Alpha: debian, go, ruby
+<i class="fa-duotone fa-flag"></i> Alpha: debian, go, ruby
 
-<i class="fa-duotone fa-hand-holding-medical fa-duotone-colors"></i> Open for contribution: chef, cocoapods, conda, cran, opkg, p2, puppet, rpm, sbt, swift, vagrant
+<i class="fa-duotone fa-hand-holding-medical"></i> Open for contribution: chef, cocoapods, conda, cran, opkg, p2, puppet, rpm, sbt, swift, vagrant
 
 ---
 
-<i class="fa-duotone fa-container-storage fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-container-storage fa-4x" style="float: right;"></i>
 
 ## Container Registry
 
@@ -57,7 +57,7 @@ registry['storage'] = {
 
 ## Infrastructure Registry
 
-<i class="fa-duotone fa-box-taped fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-box-taped fa-4x" style="float: right;"></i>
 
 Store Terraform modules in GitLab [](https://docs.gitlab.com/ee/user/packages/infrastructure_registry/index.html)
 

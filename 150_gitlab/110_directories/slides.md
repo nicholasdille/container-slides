@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_directories" class="vertical-center" -->
 
-<i class="fa-duotone fa-folder-tree fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-folder-tree fa-8x" style="float: right; color: grey;"></i>
 
 ## Directory layout<br>and Logs
 
@@ -8,7 +8,7 @@
 
 ## Directory layout
 
-<i class="fa-duotone fa-folder-tree fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-folder-tree fa-4x" style="float: right;"></i>
 
 GitLab uses a clean top level directory layout
 
@@ -67,7 +67,7 @@ echo -n "${CI_PROJECT_ID}" | sha256sum
 
 ## Logs
 
-<i class="fa-duotone fa-align-left fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-align-left fa-4x" style="float: right;"></i>
 
 Logs are located in `/var/log/gitlab`
 

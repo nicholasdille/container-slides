@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_quickstart" class="vertical-center" -->
 
-<i class="fa-duotone fa-rocket-launch fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-rocket-launch fa-8x" style="float: right; color: grey;"></i>
 
 ## Quickstart
 
@@ -8,7 +8,7 @@
 
 ## Quickstart
 
-<i class="fa-duotone fa-rocket-launch fa-3x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-rocket-launch fa-3x" style="float: right;"></i>
 
 Get GitLab quickly up and running in less than 5 minutes
 
@@ -54,7 +54,7 @@ docker volume ls
 
 ## First login
 
-<i class="fa-duotone fa-medal fa-3x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-medal fa-3x" style="float: right;"></i>
 
 Go to `http://gitlab.seatN.inmylab.de` (substitute N with your number)
 

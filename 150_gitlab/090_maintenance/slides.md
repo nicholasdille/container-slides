@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_maintenance" class="vertical-center" -->
 
-<i class="fa-duotone fa-triangle-person-digging fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-triangle-person-digging fa-8x" style="float: right; color: grey;"></i>
 
 ## Maintenance
 
@@ -8,7 +8,7 @@
 
 ## Maintenance
 
-<i class="fa-duotone fa-triangle-exclamation fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-triangle-exclamation fa-4x" style="float: right;"></i>
 
 ### Messages
 

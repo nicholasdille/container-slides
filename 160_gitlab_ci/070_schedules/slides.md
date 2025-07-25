@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_schedules" class="vertical-center" -->
 
-<i class="fa-duotone fa-calendar-clock fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-calendar-clock fa-8x" style="float: right; color: grey;"></i>
 
 ## Schedules
 
@@ -10,7 +10,7 @@
 
 Execute pipelines on a schedule [](https://docs.gitlab.com/ee/ci/pipelines/schedules.html)
 
-Schedule is specified using cron syntax <i class="fa-duotone fa-face-hand-peeking fa-duotone-colors"></i>
+Schedule is specified using cron syntax <i class="fa-duotone fa-face-hand-peeking"></i>
 
 Scheduled pipelines run on a specific branch...
 

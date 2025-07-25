@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_pages" class="vertical-center" -->
 
-<i class="fa-duotone fa-globe fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-globe fa-8x" style="float: right; color: grey;"></i>
 
 ## GitLab Pages
 
@@ -8,7 +8,7 @@
 
 ## GitLab Pages
 
-<i class="fa-duotone fa-globe fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-globe fa-4x" style="float: right;"></i>
 
 Publish static websites [](https://docs.gitlab.com/ee/user/project/pages/)
 

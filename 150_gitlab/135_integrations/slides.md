@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_integrations" class="vertical-center" -->
 
-<i class="fa-duotone fa-handshake fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-handshake fa-8x" style="float: right; color: grey;"></i>
 
 ## Integrations
 
@@ -8,7 +8,7 @@
 
 ## Advanced Search
 
-<i class="fa-duotone fa-magnifying-glass-dollar fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-magnifying-glass-dollar fa-4x" style="float: right;"></i>
 
 Full-text search across the instance using ElasticSearch [](https://docs.gitlab.com/ee/integration/elasticsearch.html)
 
@@ -20,7 +20,7 @@ Uses open-source project internally [](https://gitlab.com/gitlab-org/gitlab-elas
 
 ## Gitpod
 
-<i class="fa-duotone fa-browser fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-browser fa-4x" style="float: right;"></i>
 
 Run full web-based IDE [](https://docs.gitlab.com/ee/integration/gitpod.html) using Gitpod [](https://www.gitpod.io/)
 
@@ -42,7 +42,7 @@ Interactive web terminal [](https://docs.gitlab.com/ee/ci/interactive_web_termin
 
 ## Diagrams
 
-<i class="fa-duotone fa-diagram-project fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-diagram-project fa-4x" style="float: right;"></i>
 
 Render diagrams from textual descriptions [](https://docs.gitlab.com/ee/administration/integration/kroki.html) using Kroki [](https://kroki.io/)
 
@@ -69,7 +69,7 @@ See `example.md` and commit to repository
 
 ## Jira
 
-<i class="fa-brands fa-jira fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-brands fa-jira fa-4x" style="float: right;"></i>
 
 Integration of Jira work items with code in GitLab [](https://docs.gitlab.com/ee/integration/jira/)
 

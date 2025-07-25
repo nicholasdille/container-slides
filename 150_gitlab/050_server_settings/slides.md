@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_server_settings" class="vertical-center" -->
 
-<i class="fa-duotone fa-sliders fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-sliders fa-8x" style="float: right; color: grey;"></i>
 
 ## Server Settings
 
@@ -8,7 +8,7 @@
 
 ## Visibility
 
-<i class="fa-duotone fa-glasses fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-glasses fa-4x" style="float: right;"></i>
 
 Control defaults for group and project visibility
 
@@ -20,7 +20,7 @@ Available visibility options
 
 ## Sign-up
 
-<i class="fa-duotone fa-signature fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-signature fa-4x" style="float: right;"></i>
 
 Disable registration of new users
 
@@ -36,7 +36,7 @@ Sign-up text
 
 ## Sign-in
 
-<i class="fa-duotone fa-door-open fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-door-open fa-4x" style="float: right;"></i>
 
 Allow password authentication for web UI
 
@@ -54,7 +54,7 @@ Sign-in text
 
 ## Rate Limits
 
-<i class="fa-duotone fa-gauge-high fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-gauge-high fa-4x" style="float: right;"></i>
 
 Separate rate limits for authenticted and unauthenticated requests
 

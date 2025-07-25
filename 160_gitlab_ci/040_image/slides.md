@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_image" class="vertical-center" -->
 
-<i class="fa-duotone fa-layer-group fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-layer-group fa-8x" style="float: right; color: grey;"></i>
 
 ## Image
 
@@ -18,7 +18,7 @@ Speed improvements by avoiding setup of execution environment
 
 Without `image` you rely on the default container image
 
-Our runner configuration defaults to `alpine` [<i class="fa-brands fa-docker"></i>](https://hub.docker.com/_/alpine) [<i class="fa-duotone fa-globe fa-duotone-colors"></i>](https://alpinelinux.org/)
+Our runner configuration defaults to `alpine` [<i class="fa-brands fa-docker"></i>](https://hub.docker.com/_/alpine) [<i class="fa-duotone fa-globe"></i>](https://alpinelinux.org/)
 
 ### Public container registries
 

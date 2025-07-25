@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_omnibus" class="vertical-center" -->
 
-<i class="fa-duotone fa-signs-post fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-signs-post fa-8x" style="float: right; color: grey;"></i>
 
 ## Installation and configuration
 
@@ -30,7 +30,7 @@ Community container image [](https://github.com/sameersbn/docker-gitlab)
 
 ## Reverse Proxy in front of GitLab
 
-<i class="fa-duotone fa-signs-post fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-signs-post fa-4x" style="float: right;"></i>
 
 Central service for...
 
@@ -49,7 +49,7 @@ Examples in this workshop use [`traefik`](https://traefik.io/traefik/)
 
 ## Deployment
 
-<i class="fa-duotone fa-signs-post fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-signs-post fa-4x" style="float: right;"></i>
 
 Deploy using Docker Compose:
 
@@ -112,7 +112,7 @@ A fresh instance has a new initial root password
 
 ## TLS
 
-<i class="fa-duotone fa-shield-check fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-shield-check fa-4x" style="float: right;"></i>
 
 Not configured in this workshop
 

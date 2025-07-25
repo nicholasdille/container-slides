@@ -79,20 +79,8 @@
     padding-left: 1em;
 }
 
-.fa-duotone-colors {
-    --fa-primary-color: var(--r-heading-color);
-    --fa-secondary-color: grey;
-    --fa-secondary-opacity: 1.0;
-}
-
-.fa-duotone-colors-inverted {
-    --fa-primary-color: grey;
-    --fa-secondary-color: var(--r-heading-color);
-    --fa-secondary-opacity: 1.0;
-}
-
 .reveal a:empty::after {
-    font: var(--fa-font-solid);
+    font: normal 900 1em/1 "Font Awesome 7 Duotone";
     content: "\f08e";
 }
 

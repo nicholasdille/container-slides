@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_projects" class="vertical-center" -->
 
-<i class="fa-duotone fa-building fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-building fa-8x" style="float: right; color: grey;"></i>
 
 ## Projects <br>and Groups
 
@@ -8,7 +8,7 @@
 
 ## Groups
 
-<i class="fa-duotone fa-list-tree fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-list-tree fa-4x" style="float: right;"></i>
 
 Groups [](https://docs.gitlab.com/ee/user/group/subgroups/) are used for organizing projects
 
@@ -31,7 +31,7 @@ Groups...
 
 ## Projects
 
-<i class="fa-duotone fa-people-roof fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-people-roof fa-4x" style="float: right;"></i>
 
 Project [](https://docs.gitlab.com/ee/user/project/) offer collaboration
 
@@ -53,7 +53,7 @@ Projects can override visibility (more later)
 
 ## Project features
 
-<i class="fa-duotone fa-light-switch-on fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-light-switch-on fa-4x" style="float: right;"></i>
 
 ### Visibility
 
@@ -76,7 +76,7 @@ For example: repository, issues etc.
 
 ## Project and Group Members
 
-<i class="fa-duotone fa-id-badge fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-id-badge fa-4x" style="float: right;"></i>
 
 ### Roles
 
@@ -102,7 +102,7 @@ Configure expiry date
 
 ## Project management
 
-<i class="fa-duotone fa-user-tie fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-user-tie fa-4x" style="float: right;"></i>
 
 Rename project to change display name
 

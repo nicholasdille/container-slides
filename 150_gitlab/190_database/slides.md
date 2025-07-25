@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_database" class="vertical-center" -->
 
-<i class="fa-duotone fa-database fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-database fa-8x" style="float: right; color: grey;"></i>
 
 ## Database
 
@@ -8,7 +8,7 @@
 
 ## Database
 
-<i class="fa-duotone fa-database fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-database fa-4x" style="float: right;"></i>
 
 Only PostgreSQL is supported [](https://docs.gitlab.com/omnibus/settings/database.html)
 - Packaged Linux packages as well as Docker
@@ -32,7 +32,7 @@ Migration to second database is not ready for production yet [](https://docs.git
 
 ## Important database tables
 
-<i class="fa-duotone fa-database fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-database fa-4x" style="float: right;"></i>
 
 | Table        | Contents                                                                         |
 |--------------|----------------------------------------------------------------------------------|

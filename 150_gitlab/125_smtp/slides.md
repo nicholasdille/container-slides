@@ -1,12 +1,12 @@
 <!-- .slide: id="gitlab_smtp" class="vertical-center" -->
 
-<i class="fa-duotone fa-envelope fa-8x fa-duotone-colors-inverted" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-envelope fa-8x" style="float: right; color: grey;"></i>
 
 ## SMTP
 
 ---
 
-<i class="fa-duotone fa-envelope fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-envelope fa-4x" style="float: right;"></i>
 
 ## SMTP
 

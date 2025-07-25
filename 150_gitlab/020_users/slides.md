@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_users" class="vertical-center" -->
 
-<i class="fa-duotone fa-users fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-users fa-8x" style="float: right; color: grey;"></i>
 
 ## Users
 
@@ -8,7 +8,7 @@
 
 ## Users
 
-<i class="fa-duotone fa-user fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-user fa-4x" style="float: right;"></i>
 
 GitLab maintains internal user object
 
@@ -31,7 +31,7 @@ Users can be...
 
 ## Membership
 
-<i class="fa-duotone fa-id-badge fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-id-badge fa-4x" style="float: right;"></i>
 
 Users can be invited to join group and projects
 

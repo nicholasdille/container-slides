@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_enterprise" class="vertical-center" -->
 
-<i class="fa-duotone fa-building-flag fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-building-flag fa-8x" style="float: right; color: grey;"></i>
 
 ## GitLab Enterprise
 

@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_components" class="vertical-center" -->
 
-<i class="fa-duotone fa-network-wired fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-network-wired fa-8x" style="float: right; color: grey;"></i>
 
 ## Infrastructure-as-Code
 
@@ -8,7 +8,7 @@
 
 ## Infrastructure-as-Code
 
-<i class="fa-duotone fa-network-wired fa-4x fa-duotone-colors" style="float: right;"></i>
+<i class="fa-duotone fa-network-wired fa-4x" style="float: right;"></i>
 
 XXX
 

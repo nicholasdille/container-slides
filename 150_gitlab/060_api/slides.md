@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_api" class="vertical-center" -->
 
-<i class="fa-duotone fa-gears fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-gears fa-8x" style="float: right; color: grey;"></i>
 
 ## API
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-<i class="fa-duotone fa-gears fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-gears fa-4x" style="float: right;"></i>
 
 GitLab offers a very extensive API [](https://docs.gitlab.com/ee/api/)
 
@@ -32,7 +32,7 @@ Resources for every aspect of GitLab [](https://docs.gitlab.com/ee/api/api_resou
 
 ## Authentication
 
-<i class="fa-duotone fa-key-skeleton fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-key-skeleton fa-4x" style="float: right;"></i>
 
 Authentication [](https://docs.gitlab.com/ee/api/#authentication) using a token (personal/group/project)
 
@@ -51,7 +51,7 @@ curl "http://gitlab.${DOMAIN}/api/v4/projects" \
 
 ## Pagination
 
-<i class="fa-duotone fa-scroll-old fa-4x fa-duotone-colors-inverted" style="float: right;"></i>
+<i class="fa-duotone fa-scroll-old fa-4x" style="float: right;"></i>
 
 Pagination [](https://docs.gitlab.com/ee/api/#pagination) done by offset
 

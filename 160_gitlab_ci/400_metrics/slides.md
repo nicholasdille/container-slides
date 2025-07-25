@@ -1,6 +1,6 @@
 <!-- .slide: id="gitlab_ci_metrics" class="vertical-center" -->
 
-<i class="fa-duotone fa-chart-simple-horizontal fa-8x fa-duotone-colors" style="float: right; color: grey;"></i>
+<i class="fa-duotone fa-chart-simple-horizontal fa-8x" style="float: right; color: grey;"></i>
 
 ## Pipeline Metrics
 
