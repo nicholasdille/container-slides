@@ -10,7 +10,7 @@
 
 Matrix jobs execute the same script with different inputs
 
-Defined using `parallel` [](https://docs.gitlab.com/ee/ci/yaml/#parallel)
+Defined using [`parallel`](https://docs.gitlab.com/ee/ci/yaml/#parallel)
 
 Inputs are specified using environment variables
 
@@ -65,7 +65,7 @@ See chapter [Matrix jobs](/hands-on/2025-05-14/150_matrix_jobs/exercise/)
 
 Depend on individual jobs of a matrix
 
-Extended syntax for `needs` [](https://docs.gitlab.com/ee/ci/yaml/#needsparallelmatrix)
+Extended syntax for [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needsparallelmatrix)
 
 ```yaml
 linux:build:

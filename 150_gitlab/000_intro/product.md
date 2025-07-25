@@ -36,35 +36,35 @@
 
 ## Options
 
-Same pricing [](https://about.gitlab.com/pricing/) and features [](https://about.gitlab.com/pricing/self-managed/feature-comparison/) for cloud and self-hosted
+Same [pricing](https://about.gitlab.com/pricing/) and [features](https://about.gitlab.com/pricing/self-managed/feature-comparison/) for cloud and self-hosted
 
 ### Free
 
 Based on open-source project, allows your own runners, static websites
 
-gitlab.com: 10GB storage [](https://about.gitlab.com/pricing/#do-the-storage-and-transfer-limits-apply-to-self-managed), 400 minutes/month [](https://about.gitlab.com/pricing/#why-do-i-need-to-enter-credit-debit-card-details-for-free-pipeline-minutes), 5 users/group [](https://about.gitlab.com/pricing/#when-will-the-user-limits-be-effective)
+gitlab.com: 10GB [storage](https://about.gitlab.com/pricing/#do-the-storage-and-transfer-limits-apply-to-self-managed), 400 [minutes/month](https://about.gitlab.com/pricing/#why-do-i-need-to-enter-credit-debit-card-details-for-free-pipeline-minutes), 5 [users/group](https://about.gitlab.com/pricing/#when-will-the-user-limits-be-effective)
 
-### Premium [](https://about.gitlab.com/pricing/premium/) ($29/user/month)
+### Premium [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/premium/) ($29/user/month)
 
 **CI/CD-focused:** Faster code reviews, advanced CI/CD, enterprise agile planning, release controls, support, higher limits
 
-### Ultimate [](https://about.gitlab.com/pricing/ultimate/) ($99/user/month)
+### Ultimate [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/ultimate/) ($99/user/month)
 
 **Security-focused:** Advanced security testing, security risk mitigation, compliance, portfolio management, value stream management, free guest users
 
 ---
 
-## GitLab Dedicated
+## GitLab Dedicated [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/dedicated/)
 
 <i class="fa-duotone fa-fence fa-4x"></i> <!--.element: style="float: right; margin-right: 1em;" -->
 
-Single-tenant SaaS deployment [](https://about.gitlab.com/dedicated/)
+Single-tenant SaaS deployment 
 
 Fully managed and deployed by GitLab
 
 No maintenance overhead
 
-Available in 30+ AWS regions [](https://docs.gitlab.com/ee/subscriptions/gitlab_dedicated/#aws-regions-not-supported)
+Available in 30+ [AWS regions](https://docs.gitlab.com/ee/subscriptions/gitlab_dedicated/#aws-regions-not-supported)
 
 Bring your own encryption key for data at rest
 
@@ -75,13 +75,13 @@ Pricing available on inquiry
 ---
 <!-- .slide: id="gitlab_duo" -->
 
-## GitLab Duo
+## GitLab Duo [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/gitlab-duo/)
 
 <i class="fa-duotone fa-microchip-ai fa-4x"></i> <!--.element: style="float: right; margin-right: 1em;" -->
 
-Add AI features to our development process [](https://about.gitlab.com/gitlab-duo/)
+Add AI features to our development process
 
-AI Transparency Center [](https://about.gitlab.com/ai-transparency-center/)
+Read more in the [AI Transparency Center](https://about.gitlab.com/ai-transparency-center/)
 
 ### Core (free)
 

@@ -26,8 +26,10 @@
     --r-heading-font-weight: 600;
     --r-heading1-text-shadow: none;
 
-    /*--fa-style-family: var(--fa-style-family-classic);
-    --fa-style: 900;*/
+    --fa-primary-color: #fff;
+    --fa-secondary-color: #7cbad4;
+    --fa-primary-opacity: 1;
+    --fa-secondary-opacity: 1;
 }
 
 .reveal .slides {

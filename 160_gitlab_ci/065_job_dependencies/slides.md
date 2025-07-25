@@ -8,7 +8,7 @@
 
 ## Job dependencies 1/
 
-`needs` [](https://docs.gitlab.com/ee/ci/yaml/#needs) can start jobs from the next stage early...
+[`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs) can start jobs from the next stage early...
 
 ```yaml
 job1:
@@ -36,7 +36,7 @@ job2:
 
 ## Job dependencies 2/
 
-Depend on a job but do not consume artifacts [](https://docs.gitlab.com/ee/ci/yaml/#needsartifacts):
+Depend on a job but [do not consume artifacts](https://docs.gitlab.com/ee/ci/yaml/#needsartifacts):
 
 ```yaml
 job_name:
@@ -48,7 +48,7 @@ job_name2:
     artifacts: false
 ```
 
-Consume artifacts from parent (upstream) pipeline [](https://docs.gitlab.com/ee/ci/yaml/#needspipelinejob):
+Consume artifacts from [parent (upstream) pipeline](https://docs.gitlab.com/ee/ci/yaml/#needspipelinejob):
 
 ```yaml
 job_name:

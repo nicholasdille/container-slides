@@ -2,7 +2,7 @@
 
 ## trivy
 
-Vulnerability scanner [](https://github.com/aquasecurity/trivy)
+Vulnerability scanner [trivy](https://github.com/aquasecurity/trivy)
 
 Support for containers, filesystem and git
 

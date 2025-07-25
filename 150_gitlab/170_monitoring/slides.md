@@ -10,15 +10,15 @@
 
 <i class="fa-duotone fa-monitor-waveform fa-4x" style="float: right;"></i>
 
-GitLab ships with Prometheus [](https://docs.gitlab.com/omnibus/settings/grafana.html)
+GitLab ships with [Prometheus](https://docs.gitlab.com/administration/monitoring/prometheus/)
 
-Grafana was removed in 16.3.0 (August 2023) [](https://docs.gitlab.com/ee/update/deprecations.html?removal_milestone=16.3#bundled-grafana-deprecated-and-disabled)
+Grafana was [removed in 16.3.0 (August 2023)](https://docs.gitlab.com/ee/update/deprecations.html?removal_milestone=16.3#bundled-grafana-deprecated-and-disabled)
 
 All components expose metrics
 
 GitLab includes Prometheus exporters for all components
 
-GitLab provides custom dashboards for import into Grafana [](https://gitlab.com/gitlab-org/grafana-dashboards)
+GitLab provides custom dashboards for [import into Grafana](https://gitlab.com/gitlab-org/grafana-dashboards)
 
 ### How Prometheus works
 
@@ -47,7 +47,7 @@ Prometheus scrapes metrics from exporter regularly
 
 1. Create datasource of type Prometheus with URL `http://gitlab:9090`
 
-1. Import dashboard with ID 5774 [](https://grafana.com/grafana/dashboards/5774-gitlab-omnibus/) (more dashboards [](https://grafana.com/grafana/dashboards/?search=gitlab&dataSource=prometheus))
+1. Import [dashboard with ID 5774](https://grafana.com/grafana/dashboards/5774-gitlab-omnibus/) ([more dashboards](https://grafana.com/grafana/dashboards/?search=gitlab&dataSource=prometheus))
 
 1. Add link to Grafana: Admin Area <i class="fa-regular fa-arrow-right"></i> Settings <i class="fa-regular fa-arrow-right"></i> Metrics and profiling <i class="fa-regular fa-arrow-right"></i> Metrics - Grafana
 
@@ -79,7 +79,7 @@ Use GitLab as authentication provider in Grafana
 
 <i class="fa-duotone fa-hose fa-4x" style="float: right;"></i>
 
-Prometheus exporter for pipelines [](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter) collecting...
+Prometheus [exporter for pipelines](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter) collecting...
 
 - Pipeline results
 - Job results

@@ -12,12 +12,12 @@
 
 We have already used username and password
 
-Users can create *Personal Access Tokens* [](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
+Users can create [Personal Access Tokens](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
 
 - Used instead of password for `git` operations
 - Used to access the API (more later)
 
-Users can add SSH public keys [](https://docs.gitlab.com/ee/user/ssh.html)
+Users can add [SSH public keys](https://docs.gitlab.com/ee/user/ssh.html)
 
 - Used for `git` operations
 
@@ -42,17 +42,17 @@ Permissions inherited from user
 
 ### Scoped to group
 
-Group Deploy Tokens (read only) [](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
+Read-only [Group Deploy Tokens](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
 
-Group Access Tokens (configurable) [](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html)
+Configurable [Group Access Tokens](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html)
 
 ### Scoped to project
 
-Project Access Tokens (configurable) [](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html)
+Configurable [Project Access Tokens](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html)
 
-Project Deploy Token (read-only) [](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
+Read-only [Project Deploy Token](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
 
-Project Deploy SSH Key (read-write) [](https://docs.gitlab.com/ee/user/project/deploy_keys/)
+Read-write [Project Deploy SSH Key](https://docs.gitlab.com/ee/user/project/deploy_keys/)
 
 ### Hands-On
 
@@ -89,7 +89,7 @@ User can pull but not push
 
 Deploy keys belong to a user who can be blocked <i class="fa-solid fa-face-scream"></i> [gitlab-org/gitlab#35779](https://gitlab.com/gitlab-org/gitlab/-/issues/35779)
 
-Find and fix deploy keys using Ruby code in rails console [](https://docs.gitlab.com/ee/user/project/deploy_keys/#identify-deploy-keys-associated-with-non-member-and-blocked-users)
+Find and fix deploy keys [using Ruby code in rails console](https://docs.gitlab.com/ee/user/project/deploy_keys/#identify-deploy-keys-associated-with-non-member-and-blocked-users)
 
 ```ruby
 DeployKeysProject.with_write_access.find_each do |deploy_key_mapping|

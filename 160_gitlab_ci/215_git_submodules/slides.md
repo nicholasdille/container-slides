@@ -8,7 +8,7 @@
 
 ## Git Submodules
 
-Handling of submodules is supported [](https://docs.gitlab.com/ee/ci/git_submodules.html)
+Handling of [submodules is supported](https://docs.gitlab.com/ee/ci/git_submodules.html)
 
 Submodules are not fetched automatically
 

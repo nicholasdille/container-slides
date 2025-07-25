@@ -16,9 +16,9 @@ Notifications
 
 Personal access tokens
 
-SSH keys [](https://docs.gitlab.com/ee/user/ssh.html)
+MAnage [SSH public keys](https://docs.gitlab.com/ee/user/ssh.html)
 
-GPG keys [](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/)
+Manage [GPG public keys](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/)
 
 Preferences
 

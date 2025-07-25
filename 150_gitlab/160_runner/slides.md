@@ -10,13 +10,13 @@
 
 <i class="fa-duotone fa-person-running fa-4x" style="float: right;"></i>
 
-Runners [](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI
+[Runners](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI
 
 Runner can be shared across the instance of GitLab
 
 They can be specific to a group or project
 
-Extensive configuration [](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
+Extensive [configuration](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
 
 ### Tags
 
@@ -34,7 +34,7 @@ Firewall traversal for foreign datacenters
 
 <i class="fa-duotone fa-person-running fa-4x" style="float: right;"></i>
 
-Available since 15.10 [](https://docs.gitlab.com/ee/architecture/blueprints/runner_tokens/)
+Available [since 15.10](https://docs.gitlab.com/ee/architecture/blueprints/runner_tokens/)
 
 New default in 16.0 (May 2023)
 
@@ -48,9 +48,9 @@ One token per instance, per group and per project
 
 Credential leak causes a lot of work
 
-### New process [](https://docs.gitlab.com/ee/ci/runners/new_creation_workflow.html)
+### New process [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/ci/runners/new_creation_workflow.html)
 
-Create a runner through the UI [](https://docs.gitlab.com/ee/ci/runners/runners_scope.html) or the API [](https://docs.gitlab.com/ee/api/users.html#create-a-runner-linked-to-a-user)
+Create a runner [through the UI](https://docs.gitlab.com/ee/ci/runners/runners_scope.html) or [through the API](https://docs.gitlab.com/ee/api/users.html#create-a-runner-linked-to-a-user)
 
 One token per runner
 
@@ -74,7 +74,7 @@ Jobs are executed in a dedicated container / pod
 
 ### Image cleanup
 
-docuum [](https://github.com/stepchowfun/docuum) is able to remove least recently used images
+[docuum](https://github.com/stepchowfun/docuum) is able to remove least recently used images
 
 ---
 

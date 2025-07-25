@@ -8,7 +8,7 @@
 
 ## Environments
 
-Environments are deployment targets [](https://docs.gitlab.com/ee/ci/environments/)
+[Environments](https://docs.gitlab.com/ee/ci/environments/) are deployment targets
 
 CI variables can be scoped to environments
 

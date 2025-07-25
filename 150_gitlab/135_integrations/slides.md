@@ -10,11 +10,11 @@
 
 <i class="fa-duotone fa-magnifying-glass-dollar fa-4x" style="float: right;"></i>
 
-Full-text search across the instance using ElasticSearch [](https://docs.gitlab.com/ee/integration/elasticsearch.html)
+[Full-text search](https://docs.gitlab.com/ee/integration/elasticsearch.html) across the instance using ElasticSearch
 
 Requires a premium license
 
-Uses open-source project internally [](https://gitlab.com/gitlab-org/gitlab-elasticsearch-indexer)
+Uses open-source project internally [for indexing](https://gitlab.com/gitlab-org/gitlab-elasticsearch-indexer)
 
 ---
 
@@ -22,9 +22,9 @@ Uses open-source project internally [](https://gitlab.com/gitlab-org/gitlab-elas
 
 <i class="fa-duotone fa-browser fa-4x" style="float: right;"></i>
 
-Run full web-based IDE [](https://docs.gitlab.com/ee/integration/gitpod.html) using Gitpod [](https://www.gitpod.io/)
+Run full [web-based IDE](https://docs.gitlab.com/ee/integration/gitpod.html) using [Gitpod](https://www.gitpod.io/)
 
-Uses web-based Visual Studio Code [](https://vscode.dev/)
+Uses [web-based Visual Studio Code](https://vscode.dev/)
 
 Free tier of cloud service requires public repositories
 
@@ -34,9 +34,9 @@ Self-hosted deployment requires Kubernetes
 
 ### Alternatives
 
-Web IDE [](https://docs.gitlab.com/ee/user/project/web_ide/) is available in GitLab CE but lacks terminal
+[Web IDE](https://docs.gitlab.com/ee/user/project/web_ide/) is available in GitLab CE but lacks terminal
 
-Interactive web terminal [](https://docs.gitlab.com/ee/ci/interactive_web_terminal/) opens shell in running CI job
+Interactive [web terminal](https://docs.gitlab.com/ee/ci/interactive_web_terminal/) opens shell in running CI job
 
 ---
 
@@ -44,7 +44,7 @@ Interactive web terminal [](https://docs.gitlab.com/ee/ci/interactive_web_termin
 
 <i class="fa-duotone fa-diagram-project fa-4x" style="float: right;"></i>
 
-Render diagrams from textual descriptions [](https://docs.gitlab.com/ee/administration/integration/kroki.html) using Kroki [](https://kroki.io/)
+Render [diagrams from textual descriptions](https://docs.gitlab.com/ee/administration/integration/kroki.html) using [Kroki](https://kroki.io/)
 
 ### Hands-On
 
@@ -71,13 +71,13 @@ See `example.md` and commit to repository
 
 <i class="fa-brands fa-jira fa-4x" style="float: right;"></i>
 
-Integration of Jira work items with code in GitLab [](https://docs.gitlab.com/ee/integration/jira/)
+[Integration of Jira](https://docs.gitlab.com/ee/integration/jira/) work items with code in GitLab
 
-Two flavours - see feature comparison [](https://docs.gitlab.com/ee/integration/jira/#direct-feature-comparison)
+Two flavours - see [feature comparison](https://docs.gitlab.com/ee/integration/jira/#direct-feature-comparison)
 
 ### Jira issues integration
 
-Connects one or more project to a Jira instance [](https://docs.gitlab.com/ee/integration/jira/configure.html)
+Connects [one or more project to a Jira instance](https://docs.gitlab.com/ee/integration/jira/configure.html)
 
 - View and search Jira issues directly in GitLab
 - Refer to Jira issues by ID in commits and merge requests
@@ -85,6 +85,6 @@ Connects one or more project to a Jira instance [](https://docs.gitlab.com/ee/in
 
 ### Jira development panel integration
 
-Connects all projects under a group to a Jira instance [](https://docs.gitlab.com/ee/integration/jira/development_panel.html#configure-the-integration)
+Connects [all projects under a group to a Jira instance](https://docs.gitlab.com/ee/integration/jira/development_panel.html#configure-the-integration)
 
 - View GitLab activity directly in Jira

@@ -2,9 +2,9 @@
 
 ## semgrep
 
-XXX [](https://semgrep.dev/)
+XXX [semgrep](https://semgrep.dev/)
 
-XXX [](https://semgrep.dev/docs/language-support/)
+XXX [languages](https://semgrep.dev/docs/language-support/)
 
 ### Hands-On
 

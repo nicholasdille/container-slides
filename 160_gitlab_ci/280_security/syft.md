@@ -2,7 +2,7 @@
 
 ## syft
 
-Software Bill of Materials (SBoM) [](https://github.com/anchore/syft)
+Software Bill of Materials (SBoM) [syft](https://github.com/anchore/syft)
 
 Support for container and filesystem
 

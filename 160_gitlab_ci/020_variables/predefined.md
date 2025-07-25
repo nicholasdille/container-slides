@@ -2,7 +2,7 @@
 
 ## Predefined variables
 
-GitLab offers many predefined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
+GitLab offers many [predefined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
 
 Most describe the current job, stage and pipeline
 

@@ -24,7 +24,7 @@ No builtin metrics for specific pipelines
 
 ## GitLab CI Pipelines Exporter (GCPE)
 
-Community project for pipeline metrics [](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter)
+Community project for [pipeline metrics](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter)
 
 Uses API excessively to...
 - Discover projects
@@ -32,7 +32,7 @@ Uses API excessively to...
 - Discover pipelines
 - Discover jobs
 
-Maintenance status unclear
+Maintenance status is unclear
 
 ---
 
@@ -51,7 +51,7 @@ Based on [Semantic Conventions for CI/CD](https://github.com/open-telemetry/sema
 
 ### Status
 
-Work in Progress (WIP): GitLab Receiver [](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/gitlabreceiver)
+Work in Progress (WIP): [GitLab Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/gitlabreceiver)
 
 Progress tracked by [open-telemetry/opentelemetry-collector-contrib#35207](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35207)
 

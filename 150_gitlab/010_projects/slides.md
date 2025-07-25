@@ -10,7 +10,7 @@
 
 <i class="fa-duotone fa-list-tree fa-4x" style="float: right;"></i>
 
-Groups [](https://docs.gitlab.com/ee/user/group/subgroups/) are used for organizing projects
+[Groups](https://docs.gitlab.com/ee/user/group/subgroups/) are used for organizing projects
 
 - by organizational units
 - by architectural components
@@ -33,7 +33,7 @@ Groups...
 
 <i class="fa-duotone fa-people-roof fa-4x" style="float: right;"></i>
 
-Project [](https://docs.gitlab.com/ee/user/project/) offer collaboration
+[Projects](https://docs.gitlab.com/ee/user/project/) offer collaboration
 
 - Create content using code, wikis and pages
 - Review work using merge requests

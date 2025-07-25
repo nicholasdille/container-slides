@@ -10,23 +10,23 @@
 
 <i class="fa-duotone fa-briefcase-medical fa-4x" style="float: right;"></i>
 
-GitLab comes with extensive troubleshooting guides [](https://docs.gitlab.com/ee/administration/troubleshooting/)
+GitLab comes with extensive [troubleshooting guides](https://docs.gitlab.com/ee/administration/troubleshooting/)
 
 ### For example...
 
-Sidekiq (job processor) [](https://docs.gitlab.com/ee/administration/troubleshooting/sidekiq.html)
+[Sidekiq](https://docs.gitlab.com/ee/administration/troubleshooting/sidekiq.html) (job processor)
 
-GitLab rails [](https://docs.gitlab.com/ee/administration/troubleshooting/gitlab_rails_cheat_sheet.html)
+GitLab [rails](https://docs.gitlab.com/ee/administration/troubleshooting/gitlab_rails_cheat_sheet.html)
 
 ### ...as well as tools...
 
-gitlabsos (omnibus, docker) [](https://gitlab.com/gitlab-com/support/toolbox/gitlabsos/)
+[gitlabsos](https://gitlab.com/gitlab-com/support/toolbox/gitlabsos/) (omnibus, docker)
 
-kubesos [](https://gitlab.com/gitlab-com/support/toolbox/kubesos)
+[kubesos](https://gitlab.com/gitlab-com/support/toolbox/kubesos)
 
 ### ...and tracing across logs
 
-Correlation IDs [](https://docs.gitlab.com/ee/administration/troubleshooting/tracing_correlation_id.html)
+Consistent [correlation IDs](https://docs.gitlab.com/ee/administration/troubleshooting/tracing_correlation_id.html) across different components
 
 ---
 

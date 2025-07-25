@@ -20,7 +20,7 @@ Do you own a GitLab Enterprise License?
 
 ---
 
-## Agenda
+## Timetable
 
 | From  | To    | What                                                  |
 |-------|-------|-------------------------------------------------------|

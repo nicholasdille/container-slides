@@ -10,15 +10,15 @@
 
 <i class="fa-duotone fa-book fa-4x" style="float: right;"></i>
 
-GitLab can directly connect to LDAP servers [](https://docs.gitlab.com/ee/administration/auth/ldap/)
+GitLab can directly connect to [LDAP servers](https://docs.gitlab.com/ee/administration/auth/ldap/)
 - Create internal users for authenticated users
-- Sync LDAP groups to GitLab groups [](https://docs.gitlab.com/ee/administration/auth/ldap/ldap_synchronization.html#group-sync) (requires Premium)
+- Sync [LDAP groups to GitLab groups](https://docs.gitlab.com/ee/administration/auth/ldap/ldap_synchronization.html#group-sync) (requires Premium)
 
 ### Example setup
 
-LDAP backend based on OpenLDAP [](https://www.openldap.org/)
+LDAP backend based on [OpenLDAP](https://www.openldap.org/)
 
-Management UI based on Keycloak [](https://www.keycloak.org/)
+Management UI based on [Keycloak](https://www.keycloak.org/)
 
 ![](150_gitlab/120_ldap/ldap.drawio.svg) <!-- .element: style="width: 90%;" -->
 
@@ -64,7 +64,7 @@ Login using one these users
 
 ## Alternative: Single Sign-On
 
-GitLab can use an SAML Identity Provider to authenticate users [](https://docs.gitlab.com/ee/integration/saml.html)
+GitLab can use an [SAML Identity Provider](https://docs.gitlab.com/ee/integration/saml.html) to authenticate users
 
 ```ruby
 gitlab_rails['omniauth_enabled'] = true

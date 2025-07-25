@@ -8,11 +8,11 @@
 
 ## CI/CD Steps (experimental)
 
-Steps are reusable units of a job [](https://docs.gitlab.com/ee/ci/steps/)
+[Steps](https://docs.gitlab.com/ee/ci/steps/) are reusable units of a job
 
-The can replace `script` with one or more `steps` under `run` [](https://docs.gitlab.com/ee/ci/yaml/#run)
+The can replace `script` with one or more `steps` under [`run`](https://docs.gitlab.com/ee/ci/yaml/#run)
 
-No more `!reference[]` tags [](https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#reference-tags) to merge multiple script blocks
+No more [`!reference[]`](https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#reference-tags) tags to merge multiple script blocks
 
 ```yaml
 job:
@@ -27,11 +27,11 @@ job:
 
 Steps can be combined with CI/CD Components [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
 
-GitLab <17.11 requires `step-runner` binary [](https://gitlab.com/gitlab-org/step-runner)
+GitLab <17.11 requires [`step-runner`](https://gitlab.com/gitlab-org/step-runner) binary
 
-Steps can also be used to run existing GitHub Actions [](https://docs.gitlab.com/ee/ci/steps/#run-a-github-action)
+Steps can also be used to [run existing GitHub Actions](https://docs.gitlab.com/ee/ci/steps/#run-a-github-action)
 
-Eventually steps will be discoverable in the CI/CD Catalog [](https://gitlab.com/gitlab-org/gitlab/-/issues/425891)
+Eventually [steps will be discoverable in the CI/CD Catalog](https://gitlab.com/gitlab-org/gitlab/-/issues/425891)
 
 ---
 

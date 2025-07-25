@@ -1,7 +1,3 @@
-html.dimbg75 .slide-background {
-    opacity: 0.75 !important;
-}
-
 .center-image {
     display: block;
     margin-left: auto !important;
@@ -23,11 +19,6 @@ html.dimbg75 .slide-background {
 .layout-double {
     display: grid;
     grid-template-columns: 1fr 1fr;
-}
-
-.external-link::after {
-    font-family: FontAwesome;
-    content: " \f08e"
 }
 
 .tooltip {

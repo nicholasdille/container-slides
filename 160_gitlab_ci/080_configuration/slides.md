@@ -20,13 +20,13 @@ Shallow clones with 20 depth
 
 Job timeout defaults to 1h ...
 
-...but can be overridden in `.gitlab-ci.yml` using `timeout` [](https://docs.gitlab.com/ee/ci/yaml/#timeout)
+...but can be overridden in `.gitlab-ci.yml` using [`timeout`](https://docs.gitlab.com/ee/ci/yaml/#timeout)
 
 Automatic pipeline cleanup removes old pipelines (disabled by default)
 
 ### Auto DevOps
 
-Auto DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
+[Auto DevOps](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
 
 ---
 
@@ -42,7 +42,7 @@ Disable shared runners
 
 ### Artifacts
 
-Keep most recent artifacts [](https://docs.gitlab.com/ci/jobs/job_artifacts/#keep-artifacts-from-most-recent-successful-jobs) of successful job
+Keep most [recent artifacts](https://docs.gitlab.com/ci/jobs/job_artifacts/#keep-artifacts-from-most-recent-successful-jobs) of successful job
 
 Enabled by default
 
@@ -62,7 +62,7 @@ Will be covered in a later chapter about triggers [<i class="fa-solid fa-arrow-r
 
 ### Deploy freezes
 
-Prevent unintentional deployments using Deploy Freeze [](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze)
+Prevent unintentional deployments using [Deploy Freeze](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze)
 
 Additional pipeline variable called `CI_DEPLOY_FREEZE` during deploy freeze
 
@@ -102,7 +102,7 @@ All artifacts are removed after the specified time
 
 ## Custom CI/CD configuration file
 
-Instead of `.gitlab-ci.yml`, you can... [](https://docs.gitlab.com/ci/pipelines/settings/#custom-cicd-configuration-file-examples)
+Instead of `.gitlab-ci.yml`, [you can](https://docs.gitlab.com/ci/pipelines/settings/#custom-cicd-configuration-file-examples)...
 
 - Use a different file name - even in a subdirectory
 

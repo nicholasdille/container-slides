@@ -10,7 +10,7 @@
 
 GitLab does not offer a visual pipeline editor
 
-Pipelines are described in YAML [](https://yaml.org/)
+Pipelines are described in [YAML](https://yaml.org/)
 
 Pipelines are stored in `.gitlab-ci.yml`
 
@@ -18,7 +18,7 @@ Pipelines are stored in `.gitlab-ci.yml`
 
 ## YAML (YAML Ain't Markup Language)
 
-Human-readable data serialization format [](https://yaml.org/)
+Human-readable data [serialization format](https://yaml.org/)
 
 1. Fields:
 
@@ -102,12 +102,12 @@ top:
 
 ## Tools for YAML/JSON
 
-- JSON query `jq` [](https://github.com/jqlang/jq)
-- JSON viewer `jless` [](https://jless.io)
-- YAML query `yq` [](https://github.com/mikefarah/yq)
+- JSON query [`jq`](https://github.com/jqlang/jq)
+- JSON viewer [`jless`](https://jless.io)
+- YAML query []`yq`](https://github.com/mikefarah/yq)
 - Linter
-  - `yamllint` [](https://github.com/adrienverge/yamllint)
-  - Spectral by Stoplight [](https://stoplight.io/spectral)
+  - [`yamllint`](https://github.com/adrienverge/yamllint)
+  - Stoplight [Spectral](https://stoplight.io/spectral)
 ---
 
 ## Jobs
@@ -134,7 +134,7 @@ Jobs fail if any command fails (exit code > 0)
 
 ## Jobs with herestrings
 
-`script` supports all herestring variants of YAML [](https://docs.gitlab.com/ee/ci/yaml/script.html#split-long-commands)
+`script` supports all [herestring variants of YAML](https://docs.gitlab.com/ee/ci/yaml/script.html#split-long-commands)
 
 Literal multiline block:
 
@@ -165,7 +165,7 @@ job_name:
 
 Jobs represent isolated steps in a pipeline
 
-Stages [](https://docs.gitlab.com/ee/ci/yaml/#stages) are executed sequentially
+[Stages](https://docs.gitlab.com/ee/ci/yaml/#stages) are executed sequentially
 
 Jobs in the same stage are executed in parallel
 

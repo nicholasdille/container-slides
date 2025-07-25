@@ -8,14 +8,14 @@
 
 ## Services
 
-Services [](https://docs.gitlab.com/ee/ci/services/index.html) run side-by-side with CI jobs
+[Services](https://docs.gitlab.com/ee/ci/services/index.html) run side-by-side with CI jobs
 
 Useful for integration tests, e.g. database and other backend services
 
-Services can be declared using the `services` keyword [](https://docs.gitlab.com/ee/ci/yaml/#services)
+Services can be declared using the [`services`](https://docs.gitlab.com/ee/ci/yaml/#services) keyword
 
-- For all jobs
-- Per job
+- For all jobs (only Docker)
+- Per job (Docker and Kubernetes)
 
 Services are accessed using the `image` name (or an `alias`)
 

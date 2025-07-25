@@ -19,7 +19,7 @@ The step will wrap logging in to a container registry using Docker and enable th
 1. Add an input called `registry` with a default value of `docker.io`
 1. Add an input called `username` with no default value
 1. Add an input called `password` with no default value
-1. Create the step in the body using the `exec.command` keyword [](https://docs.gitlab.com/ee/ci/steps/#execute-a-command)
+1. Create the step in the body using the [`exec.command`](https://docs.gitlab.com/ee/ci/steps/#execute-a-command) keyword
 1. Use the `docker login` command with the provided inputs
 
 ??? info "Hint (Click if you are stuck)"
