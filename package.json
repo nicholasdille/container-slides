@@ -5,11 +5,12 @@
     "author": "Nicholas Dille",
     "license": "Apache-2.0",
     "dependencies": {
-        "reveal.js": "5.2.1",
-        "highlight.js": "11.11.1",
+        "@awesome.me/kit-7a4232352c": "^1.0.4",
         "@fortawesome/fontawesome-free": "7.0.0",
         "@fortawesome/fontawesome-pro": "7.0.0",
+        "clipboard": "2.0.11",
+        "highlight.js": "11.11.1",
         "notyf": "3.10.0",
-        "clipboard": "2.0.11"
+        "reveal.js": "5.2.1"
     }
 }
