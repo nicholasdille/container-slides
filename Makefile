@@ -6,6 +6,7 @@ COMMIT  := $(shell git rev-parse HEAD | head -c7)
 TOPICS  := $(shell find $(pwd) -type f -name \*.template.md)
 IMAGES  := $(shell find $(pwd) -type f -name \*.svg -or -name \*.jpg -or -name *.png)
 SLIDES  := $(shell find $(pwd) -type f -name \*.html -or -name \*.css -or -name *.js)
+FONTAWESOME_NPM_TOKEN := $(shell pp fa-npm)
 
 .PHONY:
 all:
@@ -111,37 +112,41 @@ $(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xarg
 	done; \
 	sed -i 's/&lt;/</g; s/&gt;/>/g' $@
 
-$(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs -I{} basename {} .html)):%.pdf: %.html
+.PHONY:
+init:
+	@env FONTAWESOME_NPM_TOKEN=$(FONTAWESOME_NPM_TOKEN) npm install
+
+.PHONY:
+update:
+	@env FONTAWESOME_NPM_TOKEN=$(FONTAWESOME_NPM_TOKEN) npm update
+
+.PHONY:
+audit:
+	@npm audit
+
+.PHONY:
+serve:
 	@\
-	echo "### Remove containers"; \
-	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
-	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f; \
-	echo "### Run web server"; \
-	docker run -d --name web --volume $$PWD:/usr/share/nginx/html/ nginx; \
-	echo "### Create slides"; \
-	docker run -i --network container:web --name slides astefanutti/decktape:3 --size 1920x1080 --load-pause 5000 --pause 1000 http://localhost:80/$*.html?view=pdf $*.pdf; \
-	echo "### Copy slides"; \
-	docker cp slides:/slides/$*.pdf .; \
-	echo "### Remove containers"; \
-	docker ps --filter name=web --all --quiet | xargs -r docker rm -f; \
-	docker ps --filter name=slides --all --quiet | xargs -r docker rm -f
+	echo "****************************************************"; \
+	echo "*                                                  *"; \
+	echo "* Please open http://localhost to view the slides. *"; \
+	echo "*                                                  *"; \
+	echo "****************************************************"; \
+	docker compose up --abort-on-container-exit web
+
+$(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs -I{} basename {} .html)):%.pdf: %.html
+	@docker compose run decktape --size=1920x1080 --load-pause=5000 --pause=1000 "http://web/$*.html" $*.pdf
+	@docker compose down --remove-orphans
 
 $(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.md -printf '%P\n' | xargs -I{} basename {} .md)):%.pdf: %.md
-	@docker run \
-		--interactive \
-		--rm \
-		--volume="${PWD}:/app" \
-		--workdir=/app \
-		--user="$(id -u):$(id -g)" \
-		jmaupetit/md2pdf \
-			$*.md \
-			$@
+	@docker compose run md2pdf $*.md $*.pdf
+	@docker compose down --remove-orphans
 
 # pipx install mkdocs \
 #     --pip-args "mkdocs-material mkdocs-material-extensions pymdown-extensions mkdocs-minify-plugin mkdocs-macros-plugin mkdocs-redirects regex" \
 #     --force
 mkdocs:
-	shiv --output-file ./mkdocs --console-script mkdocs \
+	@shiv --output-file ./mkdocs --console-script mkdocs \
 		mkdocs \
 		mkdocs-material \
 		mkdocs-material-extensions \
@@ -154,3 +159,4 @@ mkdocs:
 .PHONY:
 clean:
 	@rm -fv *.final.md *.command
+	@docker compose down --remove-orphans

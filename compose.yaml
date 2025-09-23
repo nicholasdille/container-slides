@@ -1,0 +1,33 @@
+services:
+
+  web:
+    image: nginx:latest
+    volumes:
+    - .:/usr/share/nginx/html
+    ports:
+    - 80:80
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost"]
+      interval: 5s
+      retries: 3
+      start_period: 5s
+      timeout: 5s
+  
+  decktape:
+    image: astefanutti/decktape:3
+    volumes:
+    - .:/slides
+    working_dir: /slides
+    user: "1000:1000"
+    restart: on-failure
+    depends_on:
+      web:
+        condition: service_healthy
+
+  md2pdf:
+    image: jmaupetit/md2pdf
+    volumes:
+    - .:/app
+    working_dir: /app
+    user: "1000:1000"
+    restart: on-failure
