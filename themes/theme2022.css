@@ -27,7 +27,7 @@
     --r-heading1-text-shadow: none;
 
     --fa-primary-color: #fff;
-    --fa-secondary-color: #7cbad4;
+    --fa-secondary-color: grey; /*#7cbad4;*/
     --fa-primary-opacity: 1;
     --fa-secondary-opacity: 1;
 }

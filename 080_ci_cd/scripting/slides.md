@@ -1,19 +1,44 @@
-# What is Shell Code
+```bash
+#!/bin/bash
+set -o errexit
 
-XXX
+curl -sf http://example.com && echo yes || echo no
+
+cat /var/log/syslog | grep -i error | xargs ..
+
+1
+2
+3
+4
+```
+<!-- .element: style="width: 30em; float: right;" -->
+
+## Shell Code
+
+Whatever you execute on the console...
+
+...put in a file
 
 ---
 
-# Advantages
+## Advantages
 
-available
+<i class="fa-duotone fa-solid fa-thumbs-up fa-4x"></i> <!-- .element: style="float: right;" -->
+
+Always available
+
+No libraries
+
+Command line tools
 
 ---
 
-# Disadvantages
+## Disadvantages
 
-readability
+<i class="fa-duotone fa-solid fa-thumbs-down fa-4x"></i> <!-- .element: style="float: right;" -->
 
-portability
+Readability
 
-performance
+Portability
+
+Performance

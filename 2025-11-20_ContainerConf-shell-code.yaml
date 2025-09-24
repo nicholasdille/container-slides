@@ -1,52 +1,60 @@
 date: 2025-11-xx
 metadata:
-  title: How much bash is enough
-  title_slug: cluster-api
-  subtitle: Declarative Awesomeness
+  title: How Much<br/>Shell Code<br/>is Enough
+  title_slug: shell-code
+  subtitle: ""
+  box:
+    width: 33%
   favicon: images/favicons/kubernetes.ico
   background:
-    image: images/laila-gebhard-PcdMVvTQ0zw-unsplash.jpg
-    size: 100%
-    positon: left 50% top 50%
+    image: images/bernd-dittrich-p8dvOcIjkfY-unsplash.jpg
+    size: 130%
+    position: left 0% top 30%
 event:
-  name: ""
-  logo: ""
-  link: ""
+  name: " "
+  logo: images/logos/clc2025_white.svg
+  logo_style: "height: 2em; margin-top: 0.5em;"
+  link: https://www.continuouslifecycle.de/
+
+pre_slides:
+- 000_introduction/02_bio.md
+
+agenda:
+- icon: face-awesome
+  text: Shell scripts are great
+- icon: face-surprise
+  text: Are they really?
+- icon: face-scream
+  text: What have you done?
+- icon: face-thinking
+  text: Compromise
 
 slides:
-- 000_introduction/02_bio.md
 - 080_ci_cd/scripting/slides.md
 - 080_ci_cd/scripting/readability.md
 - 080_ci_cd/scripting/portability.md
-- 080_ci_cd/scripting/data.md
-- 080_ci_cd/scripting/errors.md
 - 080_ci_cd/scripting/performance.md
+#- 080_ci_cd/scripting/data.md
+- 080_ci_cd/scripting/errors.md
 - 080_ci_cd/scripting/development.md
 - 080_ci_cd/scripting/when_to_avoid.md
-- 080_ci_cd/scripting/links.md
 
 summary:
-- icon: id-card-clip
-  text: RBAC is well documented in the ecosystem
-- icon: engine-warning
-  text: Little known verbs are a risk
-- icon: user-police-tie
-  text: Impersonation can improve security
-- icon: magnifying-glass
-  text: Service account tokens must be managed
-- icon: shield-check
-  text: Policy management - e.g. Kyverno - for the rescue
+- icon: sparkles
+  text: Shell code is omnipresent
+- icon: cauldron
+  text: Combine console commands
+- icon: book-sparkles
+  text: Make it repeatable
+- icon: hat-wizard
+  text: You feel powerful
+- icon: hydra
+  text: Until you loose control
 
 events:
-- date: 2025-11-13
-  name: ContainerConf
-  homepage: https://containerconf.de/
-  type: Talk
-  title: "Something"
-  link: ""
-- date: 2025-11-21
+- date: 2025-11-27
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
-  title: GitLab CI
+  title: CI/CD with GitLab
   link: https://heise-academy.de/schulungen/cicd-gitlab
