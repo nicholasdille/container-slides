@@ -30,7 +30,7 @@ configMapGenerator:
 images:
 - name: nginx
   newName: nginx
-  newTag: "1.27"
+  newTag: "1.29"
 
 replicas:
 - name: my-deployment
