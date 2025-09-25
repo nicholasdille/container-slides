@@ -8,7 +8,7 @@ terraform {
     grafana = {
       # https://registry.terraform.io/providers/grafana/grafana/latest/docs
       source = "grafana/grafana"
-      version = "3.24.1"
+      version = "3.25.9"
     }
   }
 }
