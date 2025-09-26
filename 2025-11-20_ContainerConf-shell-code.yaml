@@ -1,14 +1,14 @@
 date: 2025-11-xx
 metadata:
-  title: How Much<br/>Shell Code<br/>is Enough
+  title: How Much Shell Code is Enough
   title_slug: shell-code
   subtitle: ""
   box:
-    width: 33%
+    width: 80%
   favicon: images/favicons/kubernetes.ico
   background:
-    image: images/bernd-dittrich-p8dvOcIjkfY-unsplash.jpg
-    size: 130%
+    image: images/arjun-kapoor-gR_-FEC_zQc-unsplash.jpg
+    size: 100%
     position: left 0% top 30%
 event:
   name: " "
@@ -38,6 +38,7 @@ slides:
 - 080_ci_cd/scripting/errors.md
 - 080_ci_cd/scripting/development.md
 - 080_ci_cd/scripting/when_to_avoid.md
+- 080_ci_cd/scripting/alternatives.md
 
 summary:
 - icon: sparkles

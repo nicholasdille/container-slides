@@ -12,6 +12,16 @@ XXX
 
 <i class="fa-duotone fa-solid fa-person-running-fast fa-4x"></i> <!-- .element: style="float: right;" -->
 
+### Interpreted language
+
+XXX 
+
+---
+
+## Performance
+
+<i class="fa-duotone fa-solid fa-person-running-fast fa-4x"></i> <!-- .element: style="float: right;" -->
+
 ### Avoid excessive forking
 
 O(n), ~100 processes, 13 seconds:

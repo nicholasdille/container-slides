@@ -4,15 +4,15 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta charset="utf-8" />
 
-<title>How Much<br/>Shell Code<br/>is Enough</title>
+<title>How Much Shell Code is Enough</title>
 
 <!-- https://gauger.io/fonticon/ -->
 <link rel="icon" href="images/favicons/kubernetes.ico" />
 
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
-<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" />
-<link rel="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
+<link rel="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" id="theme" />
 <link rel="stylesheet" href="themes/theme2022.css" />
 <link rel="stylesheet" href="themes/common.css" />
 
@@ -25,17 +25,11 @@
 <div class="reveal">
 <div class="slides">
 
-<section id="title" data-separator="^---$" data-separator-vertical="^--$" data-background="images/bernd-dittrich-p8dvOcIjkfY-unsplash.jpg" data-background-size="130%" data-background-position="left 0% top 30%" class="center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 33%; margin: auto; text-align: right;">
-
-<h1 style="font-size: 1.5em; color: white;">How Much<br/>Shell Code<br/>is Enough</h1>
-
-<p><img src="images/logos/clc2025_white.svg" style="height: 2em; margin-top: 0.5em;" /></p>
-
-<h2 style="font-size: 1.2em; text-transform: none; color: white;"></h2>
-
-<p><i>Nicholas Dille, Haufe Group</i></p>
-
-<p><a href="https://www.continuouslifecycle.de/"> </a></p>
+<section id="title" data-background="images/arjun-kapoor-gR_-FEC_zQc-unsplash.jpg" data-background-size="100%" data-background-position="left 0% top 30%" style="color: white; width: 100%; height: 100%; margin: auto;">
+<div style="position: absolute; bottom: 0; right: -2em; background: rgb(0, 0, 0, 0.5); width: max-content; text-align: right; padding: 0.25em 0.75em 0.25em 0.75em;">
+<i>Nicholas Dille, Haufe Group</i>
+<h1 style="margin: 0; font-size: 1.5em; color: white;">How Much Shell Code is Enough</h1>
+</div>
 </section>
 
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -59,6 +53,7 @@
 <section data-markdown="080_ci_cd/scripting/errors.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="080_ci_cd/scripting/development.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="080_ci_cd/scripting/when_to_avoid.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="080_ci_cd/scripting/alternatives.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
 <section id="summary" data-separator="^---$" data-separator-vertical="^--$">
 <h2>Summary</h2>
@@ -92,6 +87,7 @@
         width: 1400,
         height: 850,
         margin: 0.05,
+        controls: false,
         controlsTutorial: false,
         showSlideNumber: false,
         hash: true,
@@ -114,12 +110,6 @@
         backgroundTransition: 'fade',
         hideInactiveCursor: true,
         hideCursorTime: 3000,
-
-        totalTime: durationInMinutes * 60,
-        allottedTime: durationInMinutes * 60 * 1000,
-
-        barColor: 'rgb(200, 0, 0)',
-        pausedBarColor: 'rgba(200, 0, 0, .6)',
 
         markdown: {
             smartypants: true
