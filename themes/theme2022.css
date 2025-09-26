@@ -1,23 +1,12 @@
 :root {
-    --r-code-font: monospace;
+    --r-main-font-size: 50px;
 
-    --r-main-font-size: 2.5em;
-    --r-heading1-size: 2em;
-    --r-heading2-size: 1.8em;
-    --r-heading3-size: 1.3em;
-    --r-heading4-size: 1em;
+    /*--r-main-font: 'Open Sans', sans-serif;*/
+    --r-code-font: monospace;
 
     --r-main-color: #fff;
     --r-heading-color: #7cbad4;
     --r-background-color: #191919;
-    --r-link-color: #7cbad4;
-    --r-link-color-dark: #7cbad4;
-    --r-link-color-hover: #7cbad4;
-    --r-selection-background-color: #dcdcdc;
-    --r-selection-color: black;
-
-    --r-block-margin: 0.3em;
-    --r-heading-margin: 0.5em 0 0 0;
 
     --r-heading-line-height: 1.2;
     --r-heading-letter-spacing: normal;
@@ -25,6 +14,13 @@
     --r-heading-text-shadow: none;
     --r-heading-font-weight: 600;
     --r-heading1-text-shadow: none;
+
+    --r-link-color: #7cbad4;
+    --r-link-color-dark: #7cbad4;
+    --r-link-color-hover: #7cbad4;
+
+    --r-selection-background-color: #dcdcdc;
+    --r-selection-color: black;
 
     --fa-family: var(--fa-family-duotone);
     --fa-style: 900;
@@ -42,32 +38,8 @@
     margin: 0;
 }
 
-.reveal pre {
-    font-size: 0.8em;
-}
-
 .reveal pre code {
     margin-bottom: 1.5em;
-}
-
-.reveal h3,
-.reveal h4 {
-    text-transform: none;
-}
-
-.reveal h4 {
-    font-style: italic;
-}
-
-.reveal mark {
-  font-weight: bold;
-  background-color: darkgrey;
-  border-radius: 8px;
-  color: black;
-}
-
-.reveal ul {
-    list-style-type: circle;
 }
 
 .reveal ul.fa-ul {
@@ -86,16 +58,4 @@
 .reveal a:empty::after {
     font: normal 900 1em/1 "Font Awesome 7 Duotone";
     content: "\f08e";
-}
-
-.reveal .hljs {
-    max-height: 30em;
-}
-
-.reveal table td {
-    font-size: 0.9em;
-}
-
-.notyf-toast-success {
-    font-family: var(--r-code-font);
 }

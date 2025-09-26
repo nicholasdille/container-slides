@@ -3,19 +3,32 @@ metadata:
   title: kubectl
   title_slug: kubectl-like-a-pro
   subtitle: Like a Pro
+  box:
+    width: 20%
+    align: left
   favicon: images/favicons/kubernetes.ico
   background:
-    image: images/laila-gebhard-PcdMVvTQ0zw-unsplash.jpg
-    size: 100%
-    positon: left 50% top 50%
+    image: images/jade-lee-h_Uxi-NeNSA-unsplash.jpg
+    size: 130%
+    position: left 0% top 60%
 event:
   name: " "
-  logo: images/logos/coc_ohnejahr_weiss_bunt.svg
-  logo_style: "float: left; height: 2em;"
+  logo: images/logos/clc2025_white.svg
+  logo_style: "height: 1.5em; margin-top: 0.5em;"
   link: https://www.continuouslifecycle.de/
 
 pre_slides:
 - 000_introduction/02_bio.md
+
+agenda:
+- icon: face-grin-stars
+  text: Shell scripts are great
+- icon: face-surprise
+  text: Are they really?
+- icon: face-sad-cry
+  text: What have you done?
+- icon: face-rolling-eyes
+  text: Compromise
 
 slides:
 - 120_kubernetes/kubectl/slides.md

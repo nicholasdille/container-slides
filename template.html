@@ -11,7 +11,7 @@
 
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
-<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
 <link rel="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" />
 <link rel="stylesheet" href="themes/theme2022.css" />
 <link rel="stylesheet" href="themes/common.css" />
@@ -27,26 +27,23 @@
 
 <section
     id="title"
-    data-separator="^---$"
-    data-separator-vertical="^--$"
     data-background="images/barn-raising-unsplash.jpg"
     data-background-size="100%"
     data-background-position="left 0% top 0%"
-    class="center"
-    style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;">
+    style="padding: 1em 1em 1em 1em; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;">
 
-<h1 style="font-size: 1.5em; color: white;">Title</h1>
+<h1 style="font-size: 1.5em;"><b>Title</b></h1>
+
+<h2 style="font-size: 1.2em; text-transform: none;">Subtitle</h2>
+
+<p><em>Nicholas Dille<br/>Haufe Group</em></p>
 
 <p><img src="LOGO" style="float: left; height: 1em;" /></p>
-
-<h2 style="font-size: 1.2em; text-transform: none; color: white;">Subtitle</h2>
-
-<p><i>Nicholas Dille, Haufe Group</i></p>
 
 <p><a href="LINK">EVENT</a></p>
 </section>
 
-<section id="agenda" data-separator="^---$" data-separator-vertical="^--$">
+<section id="agenda">
 <h2>Agenda</h2>
 
 <i class="fa-duotone fa-4x fa-list-check" style="float: right;"></i>
@@ -55,7 +52,7 @@
 </ul>
 </section>
 
-<section id="summary" data-separator="^---$" data-separator-vertical="^--$">
+<section id="summary">
 <h2>Summary</h2>
 
 <i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
@@ -76,39 +73,36 @@
 <script src="node_modules/reveal.js/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 4 * 60;
     Reveal.initialize({
-        width: 1400,
-        height: 850,
+        width: 1920,
+        height: 1080,
+        minScale: 0.5,
+        maxScale: 2.0,
         margin: 0.05,
+
+        controls: false,
         controlsTutorial: false,
-        showSlideNumber: false,
-        hash: true,
-        history: true,
+        progress: true,
+        slideNumber: false,
         keyboard: true,
-        overview: true,
-        center: true,
         touch: false,
-        shuffle: false,
+        mouseWheel: true,
+
+        hash: true,
+        history: false,
+        overview: true,
         fragments: true,
         fragmentInURL: true,
-        embedded: false,
-        help: true,
-        showNotes: false,
-        autoPlayMedia: null,
-        mouseWheel: false,
-        previewLinks: false,
         transition: 'convex',
         transitionSpeed: 'default',
         backgroundTransition: 'fade',
         hideInactiveCursor: true,
-        hideCursorTime: 3000,
 
-        totalTime: durationInMinutes * 60,
-        allottedTime: durationInMinutes * 60 * 1000,
+        autoPlayMedia: null,
+        previewLinks: true,
 
-        barColor: 'rgb(200, 0, 0)',
-        pausedBarColor: 'rgba(200, 0, 0, .6)',
+        center: true,
+        help: true,
 
         markdown: {
             smartypants: true
