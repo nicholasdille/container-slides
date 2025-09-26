@@ -42,3 +42,5 @@ cat file | grep --quiet "pattern"
 # Works on both
 cat file | grep -q "pattern"
 ```
+
+Decreases readability

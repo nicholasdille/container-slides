@@ -2,7 +2,7 @@
 
 <i class="fa-duotone fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
-set -o errexit
+set -o errexit (all you need? No!)
 
 set -o nounset (?)
 
