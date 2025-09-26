@@ -1,20 +1,67 @@
+<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+
 ## When to Avoid
+
+### Length
+
+[Predecessor of uniget](https://github.com/nicholasdille/docker-setup/blob/v1.7.47) was written in bash
+
+~900 lines of code
+
+---
 
 <i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
-length
-- https://github.com/nicholasdille/docker-setup/blob/v1.7.47
-- script of ~900 lines
-- 4 sources files of ~1000 lines
+## When to Avoid
 
-complexity
-- https://github.com/nicholasdille/docker-setup/blob/v1.7.47
-- 4 sources files of ~1000 lines
+### Complexity
 
-readability
+[Predecessor of uniget](https://github.com/nicholasdille/docker-setup/blob/v1.7.47) was sourcing files
 
-maintainability
+4 files of ~1000 lines of code in total
 
-performance (process forks)
+---
 
-logic (make or buy)
+<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## When to Avoid
+
+### Readability
+
+XXX
+
+---
+
+<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## When to Avoid
+
+### Maintainability
+
+Many checks for required tools
+
+Use of dictionaries (`declare -A my_dictionary`)
+
+Extensive parsing of JSON
+
+---
+
+<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## When to Avoid
+
+### Performance
+
+XXX process forks
+
+---
+
+<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## When to Avoid
+
+### You are truly lost if you...
+
+Write [pure bash](https://github.com/dylanaraps/pure-bash-bible) to avoid dependencies
+
+Write unit tests using [bats](https://github.com/bats-core/bats-core)

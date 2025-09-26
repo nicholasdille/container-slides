@@ -4,33 +4,34 @@ metadata:
   title_slug: shell-code
   subtitle: ""
   box:
-    width: 80%
+    width: 20%
+    align: left
   favicon: images/favicons/kubernetes.ico
   background:
     image: images/arjun-kapoor-gR_-FEC_zQc-unsplash.jpg
-    size: 100%
+    size: 120%
     position: left 0% top 30%
 event:
   name: " "
   logo: images/logos/clc2025_white.svg
-  logo_style: "height: 2em; margin-top: 0.5em;"
+  logo_style: "height: 1.5em; margin-top: 0.5em;"
   link: https://www.continuouslifecycle.de/
 
 pre_slides:
 - 000_introduction/02_bio.md
 
 agenda:
-- icon: face-awesome
+- icon: face-grin-stars
   text: Shell scripts are great
 - icon: face-surprise
   text: Are they really?
-- icon: face-scream
+- icon: face-sad-cry
   text: What have you done?
-- icon: face-thinking
+- icon: face-rolling-eyes
   text: Compromise
 
 slides:
-- 080_ci_cd/scripting/slides.md
+- 080_ci_cd/scripting/introduction.md
 - 080_ci_cd/scripting/readability.md
 - 080_ci_cd/scripting/portability.md
 - 080_ci_cd/scripting/performance.md

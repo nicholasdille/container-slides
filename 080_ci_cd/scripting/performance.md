@@ -1,6 +1,6 @@
-## Performance
+<i class="fa-duotone fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
 
-<i class="fa-duotone fa-solid fa-person-running-fast fa-4x"></i> <!-- .element: style="float: right;" -->
+## Performance
 
 ### use of external commands
 
@@ -8,19 +8,66 @@ XXX
 
 ---
 
-## Performance
+<i class="fa-duotone fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
 
-<i class="fa-duotone fa-solid fa-person-running-fast fa-4x"></i> <!-- .element: style="float: right;" -->
+## Performance
 
 ### Interpreted language
 
-XXX 
+Shell scripts are read and executed line-by-line
+
+This is slow
+
+Editing breaks execution
 
 ---
 
+<i class="fa-duotone fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
+
 ## Performance
 
-<i class="fa-duotone fa-solid fa-person-running-fast fa-4x"></i> <!-- .element: style="float: right;" -->
+### Working with data structure 1/2
+
+JSON is not natively supported
+
+`jq` to the rescue?
+
+One call per value for retrieval
+
+```bash
+jq --raw-output \
+    '.tools[] | select(.name == 'aws2') | .version' \
+    ~/.cache/uniget/metadata.json
+    
+jq --raw-output \
+    '.tools[] | select(.name == 'aws2') | .homepage' \
+    ~/.cache/uniget/metadata.json
+```
+
+---
+
+<i class="fa-duotone fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## Performance
+
+### Working with data structure 2/2
+
+One alternative is to use the builtin command `mapfile`:
+
+```bash
+declare -a value_array
+mapfile -t value_array < <(
+    jq --raw-output \
+        '.tools[] | select(.name == "aws2") | [.version, .homepage] | join("\n")' \
+        ~/.cache/uniget/metadata.json
+)
+```
+
+---
+
+<i class="fa-duotone fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## Performance
 
 ### Avoid excessive forking
 
@@ -32,7 +79,9 @@ time \
 jq --raw-output '.tools[].name' ~/.cache/uniget/metadata.json \
 | sort -r \
 | while read -r tool; do
-    jq --raw-output --arg tool "${tool}" '.tools[] | select(.name == $tool) | "\(.name) v\(.version)"' ~/.cache/uniget/metadata.json
+    jq --raw-output --arg tool "${tool}" \
+        '.tools[] | select(.name == $tool) | "\(.name) v\(.version)"' \
+        ~/.cache/uniget/metadata.json
 done
 ```
 

@@ -34,6 +34,7 @@ $(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xarg
 	TITLE="$$(yq eval '.metadata.title' $*.yaml)"; \
 	SUBTITLE="$$(yq eval '.metadata.subtitle' $*.yaml)"; \
 	BOX_WIDTH="$$(yq eval '.metadata.box.width' $*.yaml)"; \
+	BOX_ALIGN="$$(yq eval '.metadata.box.align' $*.yaml)"; \
 	FAVICON="$$(yq eval '.metadata.favicon' $*.yaml)"; \
 	BACKGROUND_IMAGE="$$(yq eval '.metadata.background.image' $*.yaml)"; \
 	BACKGROUND_SIZE="$$(yq eval '.metadata.background.size' $*.yaml)"; \
@@ -43,7 +44,7 @@ $(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xarg
 	LOGO="$$(yq eval '.event.logo' $*.yaml)"; \
 	LOGOSTYLE="$$(yq eval '.event | select(.logo_style != null) .logo_style' $*.yaml)"; \
 	cat template.html \
-	| sed "s/width: 60%/width: $${BOX_WIDTH}/" \
+	| sed "s/width: 60%/width: $${BOX_WIDTH}/; s/text-align: right/text-align: $${BOX_ALIGN}/" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:head/x:title" -v "$${TITLE}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:head/x:link[@rel='icon']/@href" -v "$${FAVICON}" \
 	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']/@data-background" -v "$${BACKGROUND_IMAGE}" \

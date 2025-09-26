@@ -1,13 +1,11 @@
-## Development
-
 <i class="fa-duotone fa-solid fa-laptop-code fa-4x"></i> <!-- .element: style="float: right;" -->
 
-style guide https://google.github.io/styleguide/shellguide.html
+## Development
 
-avoid unnecessary dependencies to command line tools https://github.com/dylanaraps/pure-bash-bible
+[Writing](https://mywiki.wooledge.org/BashGuide) shell code and understanding [caveats](https://mywiki.wooledge.org/BashFAQ)
 
-debugging
+[Style guide](https://google.github.io/styleguide/shellguide.html) by Google
 
-shellcheck https://github.com/koalaman/shellcheck
+[Extension](https://marketplace.visualstudio.com/items?itemName=mads-hartmann.bash-ide-vscode) for Visual Studio Code based on [Bash Language Server](https://github.com/bash-lsp/bash-language-server)
 
-unit tests https://github.com/bats-core/bats-core
+Static analysis using [shellcheck](https://github.com/koalaman/shellcheck)

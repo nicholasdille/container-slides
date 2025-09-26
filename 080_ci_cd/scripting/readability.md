@@ -2,17 +2,17 @@
 
 ## Readability
 
-### Avoid Oneliners
+## Avoid Oneliners
+
+Count instances of git-credential-oauth:
 
 ```bash
-# Latest version of Minecraft
-curl -sSLf https://launchermeta.mojang.com/mc/game/version_manifest.json | jq -r '.latest.release'
+ps ax | grep git-credential-oauth | grep -v grep | wc -l
 ```
 
-... or...
+Tools supported by uniget:
 
 ```bash
-# Tools supported by uniget
 regctl manifest get ghcr.io/uniget-org/tools/metadata:main -p local --format
 raw-body | jq -r '.layers[0].digest' | xargs regctl blob get
 ghcr.io/uniget-org/tools/metadata | tar -xzO metadata.json
@@ -20,20 +20,22 @@ ghcr.io/uniget-org/tools/metadata | tar -xzO metadata.json
 
 ---
 
-## Readability
-
 <i class="fa-duotone fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## Readability
 
 ### Break long lines
 
+Count instances of git-credential-oauth:
+
 ```bash
-# Latest version of Docker Desktop
-curl -sSf https://desktop.docker.com/linux/main/amd64/appcast.xml \
-| xq -j \
-| jq -r '.rss.channel.item.enclosure."@shortVersionString"'
+ps ax \
+| grep git-credential-oauth \
+| grep -v grep \
+| wc -l
 ```
 
-... or...
+Tools supported by uniget:
 
 ```bash
 # Tools supported by uniget
@@ -46,20 +48,23 @@ regctl manifest get ghcr.io/uniget-org/tools/metadata:main -p local --format=raw
 
 ---
 
-## Readability
-
 <i class="fa-duotone fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## Readability
 
 ### Use Long Parameters
 
+Count instances of git-credential-oauth:
+
 ```bash
 # Latest version of Docker Desktop
-curl --silent --show-error --fail https://desktop.docker.com/linux/main/amd64/appcast.xml \
-| xq --json \
-| jq --raw-output '.rss.channel.item.enclosure."@shortVersionString"'
+ps ax \
+| grep git-credential-oauth \
+| grep --invert-match grep \
+| wc --lines
 ```
 
-... or...
+Tools supported by uniget:
 
 ```bash
 # Tools supported by uniget
@@ -72,9 +77,9 @@ regctl manifest get ghcr.io/uniget-org/tools/metadata:main --platform=local --fo
 
 ---
 
-## Readability
-
 <i class="fa-duotone fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## Readability
 
 ### Avoid Sourcing Files
 

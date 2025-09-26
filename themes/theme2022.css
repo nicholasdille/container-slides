@@ -26,6 +26,8 @@
     --r-heading-font-weight: 600;
     --r-heading1-text-shadow: none;
 
+    --fa-family: var(--fa-family-duotone);
+    --fa-style: 900;
     --fa-primary-color: #fff;
     --fa-secondary-color: grey; /*#7cbad4;*/
     --fa-primary-opacity: 1;
