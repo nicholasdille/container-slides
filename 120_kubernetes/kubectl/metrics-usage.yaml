@@ -1,0 +1,104 @@
+apiVersion: kwok.x-k8s.io/v1alpha1
+kind: ClusterResourceUsage
+metadata:
+  name: usage-from-annotation
+spec:
+  usages:
+  - usage:
+      cpu:
+        expression: |
+          "kwok.x-k8s.io/usage-cpu" in pod.metadata.annotations
+          ? Quantity(pod.metadata.annotations["kwok.x-k8s.io/usage-cpu"])
+          : Quantity("1m")
+      memory:
+        expression: |
+          "kwok.x-k8s.io/usage-memory" in pod.metadata.annotations
+          ? Quantity(pod.metadata.annotations["kwok.x-k8s.io/usage-memory"])
+          : Quantity("1Mi")
+---
+apiVersion: kwok.x-k8s.io/v1alpha1
+kind: Metric
+metadata:
+  name: metrics-resource
+spec:
+  metrics:
+  - dimension: node
+    help: |
+      [ALPHA] 1 if there was an error while getting metrics from the node, 0 otherwise
+    kind: gauge
+    name: scrape_error
+    value: "0"
+  - dimension: container
+    help: |
+      [ALPHA] Start time of the container since unix epoch in seconds
+    kind: gauge
+    labels:
+    - name: container
+      value: container.name
+    - name: namespace
+      value: pod.metadata.namespace
+    - name: pod
+      value: pod.metadata.name
+    name: container_start_time_seconds
+    value: pod.SinceSecond()
+  - dimension: container
+    help: |
+      [ALPHA] Cumulative cpu time consumed by the container in core-seconds
+    kind: counter
+    labels:
+    - name: container
+      value: container.name
+    - name: namespace
+      value: pod.metadata.namespace
+    - name: pod
+      value: pod.metadata.name
+    name: container_cpu_usage_seconds_total
+    value: pod.CumulativeUsage("cpu", container.name)
+  - dimension: container
+    help: |
+      [ALPHA] Current working set of the container in bytes
+    kind: gauge
+    labels:
+    - name: container
+      value: container.name
+    - name: namespace
+      value: pod.metadata.namespace
+    - name: pod
+      value: pod.metadata.name
+    name: container_memory_working_set_bytes
+    value: pod.Usage("memory", container.name)
+  - dimension: pod
+    help: |
+      [ALPHA] Cumulative cpu time consumed by the pod in core-seconds
+    kind: counter
+    labels:
+    - name: namespace
+      value: pod.metadata.namespace
+    - name: pod
+      value: pod.metadata.name
+    name: pod_cpu_usage_seconds_total
+    value: pod.CumulativeUsage("cpu")
+  - dimension: pod
+    help: |
+      [ALPHA] Current working set of the pod in bytes
+    kind: gauge
+    labels:
+    - name: namespace
+      value: pod.metadata.namespace
+    - name: pod
+      value: pod.metadata.name
+    name: pod_memory_working_set_bytes
+    value: pod.Usage("memory")
+  - dimension: node
+    help: |
+      [ALPHA] Cumulative cpu time consumed by the node in core-seconds
+    kind: counter
+    name: node_cpu_usage_seconds_total
+    value: node.CumulativeUsage("cpu")
+  - dimension: node
+    help: |
+      [ALPHA] Current working set of the node in bytes
+    kind: gauge
+    name: node_memory_working_set_bytes
+    value: node.Usage("memory")
+  path: /metrics/nodes/{nodeName}/metrics/resource

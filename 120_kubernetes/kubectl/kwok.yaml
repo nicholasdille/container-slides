@@ -1,0 +1,256 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      node.alpha.kubernetes.io/ttl: "0"
+      kwok.x-k8s.io/node: fake
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: kwok-node-0
+      kubernetes.io/os: linux
+      kubernetes.io/role: agent
+      node-role.kubernetes.io/agent: ""
+      type: kwok
+    name: kwok-node-0
+  spec:
+    taints: # Avoid scheduling actual running pods to fake Node
+    - effect: NoSchedule
+      key: kwok.x-k8s.io/node
+      value: fake
+  status:
+    allocatable:
+      cpu: 7
+      memory: 30Gi
+      pods: 110
+    capacity:
+      cpu: 8
+      memory: 32Gi
+      pods: 110
+    nodeInfo:
+      architecture: amd64
+      bootID: ""
+      containerRuntimeVersion: ""
+      kernelVersion: ""
+      kubeProxyVersion: fake
+      kubeletVersion: fake
+      machineID: ""
+      operatingSystem: linux
+      osImage: ""
+      systemUUID: ""
+    phase: Running
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      node.alpha.kubernetes.io/ttl: "0"
+      kwok.x-k8s.io/node: fake
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: kwok-node-0
+      kubernetes.io/os: linux
+      kubernetes.io/role: agent
+      node-role.kubernetes.io/agent: ""
+      type: kwok
+    name: kwok-node-1
+  spec:
+    taints: # Avoid scheduling actual running pods to fake Node
+    - effect: NoSchedule
+      key: kwok.x-k8s.io/node
+      value: fake
+  status:
+    allocatable:
+      cpu: 7
+      memory: 30Gi
+      pods: 110
+    capacity:
+      cpu: 8
+      memory: 32Gi
+      pods: 110
+    nodeInfo:
+      architecture: amd64
+      bootID: ""
+      containerRuntimeVersion: ""
+      kernelVersion: ""
+      kubeProxyVersion: fake
+      kubeletVersion: fake
+      machineID: ""
+      operatingSystem: linux
+      osImage: ""
+      systemUUID: ""
+    phase: Running
+
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      node.alpha.kubernetes.io/ttl: "0"
+      kwok.x-k8s.io/node: fake
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: kwok-node-0
+      kubernetes.io/os: linux
+      kubernetes.io/role: agent
+      node-role.kubernetes.io/agent: ""
+      type: kwok
+    name: kwok-node-2
+  spec:
+    taints: # Avoid scheduling actual running pods to fake Node
+    - effect: NoSchedule
+      key: kwok.x-k8s.io/node
+      value: fake
+  status:
+    allocatable:
+      cpu: 7
+      memory: 30Gi
+      pods: 110
+    capacity:
+      cpu: 8
+      memory: 32Gi
+      pods: 110
+    nodeInfo:
+      architecture: amd64
+      bootID: ""
+      containerRuntimeVersion: ""
+      kernelVersion: ""
+      kubeProxyVersion: fake
+      kubeletVersion: fake
+      machineID: ""
+      operatingSystem: linux
+      osImage: ""
+      systemUUID: ""
+    phase: Running
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      node.alpha.kubernetes.io/ttl: "0"
+      kwok.x-k8s.io/node: fake
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: kwok-node-0
+      kubernetes.io/os: linux
+      kubernetes.io/role: agent
+      node-role.kubernetes.io/agent: ""
+      type: kwok
+    name: kwok-node-3
+  spec:
+    taints: # Avoid scheduling actual running pods to fake Node
+    - effect: NoSchedule
+      key: kwok.x-k8s.io/node
+      value: fake
+  status:
+    allocatable:
+      cpu: 7
+      memory: 30Gi
+      pods: 110
+    capacity:
+      cpu: 8
+      memory: 32Gi
+      pods: 110
+    nodeInfo:
+      architecture: amd64
+      bootID: ""
+      containerRuntimeVersion: ""
+      kernelVersion: ""
+      kubeProxyVersion: fake
+      kubeletVersion: fake
+      machineID: ""
+      operatingSystem: linux
+      osImage: ""
+      systemUUID: ""
+    phase: Running
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      node.alpha.kubernetes.io/ttl: "0"
+      kwok.x-k8s.io/node: fake
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: kwok-node-0
+      kubernetes.io/os: linux
+      kubernetes.io/role: agent
+      node-role.kubernetes.io/agent: ""
+      type: kwok
+    name: kwok-node-4
+  spec:
+    taints: # Avoid scheduling actual running pods to fake Node
+    - effect: NoSchedule
+      key: kwok.x-k8s.io/node
+      value: fake
+  status:
+    allocatable:
+      cpu: 7
+      memory: 30Gi
+      pods: 110
+    capacity:
+      cpu: 8
+      memory: 32Gi
+      pods: 110
+    nodeInfo:
+      architecture: amd64
+      bootID: ""
+      containerRuntimeVersion: ""
+      kernelVersion: ""
+      kubeProxyVersion: fake
+      kubeletVersion: fake
+      machineID: ""
+      operatingSystem: linux
+      osImage: ""
+      systemUUID: ""
+    phase: Running
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: fake-pod
+    namespace: default
+  spec:
+    replicas: 100
+    selector:
+      matchLabels:
+        app: fake-pod
+    template:
+      metadata:
+        annotations:
+          kwok.x-k8s.io/usage-cpu: 100m
+          kwok.x-k8s.io/usage-memory: 100Mi
+        labels:
+          app: fake-pod
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: type
+                  operator: In
+                  values:
+                  - kwok
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        tolerations:
+        - key: "kwok.x-k8s.io/node"
+          operator: "Exists"
+          effect: "NoSchedule"
+        containers:
+        - name: fake-container
+          image: fake-image
