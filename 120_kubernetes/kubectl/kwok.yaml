@@ -6,6 +6,7 @@ items:
   kind: Node
   metadata:
     annotations:
+      metrics.k8s.io/resource-metrics-path: /metrics/nodes/kwok-node-0/metrics/resource
       node.alpha.kubernetes.io/ttl: "0"
       kwok.x-k8s.io/node: fake
     labels:
@@ -48,6 +49,7 @@ items:
   kind: Node
   metadata:
     annotations:
+      metrics.k8s.io/resource-metrics-path: /metrics/nodes/kwok-node-1/metrics/resource
       node.alpha.kubernetes.io/ttl: "0"
       kwok.x-k8s.io/node: fake
     labels:
@@ -86,11 +88,11 @@ items:
       osImage: ""
       systemUUID: ""
     phase: Running
-
 - apiVersion: v1
   kind: Node
   metadata:
     annotations:
+      metrics.k8s.io/resource-metrics-path: /metrics/nodes/kwok-node-2/metrics/resource
       node.alpha.kubernetes.io/ttl: "0"
       kwok.x-k8s.io/node: fake
     labels:
@@ -133,6 +135,7 @@ items:
   kind: Node
   metadata:
     annotations:
+      metrics.k8s.io/resource-metrics-path: /metrics/nodes/kwok-node-3/metrics/resource
       node.alpha.kubernetes.io/ttl: "0"
       kwok.x-k8s.io/node: fake
     labels:
@@ -175,6 +178,7 @@ items:
   kind: Node
   metadata:
     annotations:
+      metrics.k8s.io/resource-metrics-path: /metrics/nodes/kwok-node-4/metrics/resource
       node.alpha.kubernetes.io/ttl: "0"
       kwok.x-k8s.io/node: fake
     labels:
@@ -240,13 +244,6 @@ items:
                   operator: In
                   values:
                   - kwok
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 200m
-            memory: 256Mi
         tolerations:
         - key: "kwok.x-k8s.io/node"
           operator: "Exists"
@@ -254,3 +251,10 @@ items:
         containers:
         - name: fake-container
           image: fake-image
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
