@@ -88,7 +88,32 @@ Test changes to pipeline in a branch
 
 ---
 
-## Pro tip 4: Merged results pipelines
+## Pro tip 4: Parent-child pipelines for MRs
+
+Use parent-child pipelines to organize jobs
+
+```yaml
+# .gitlab-ci.yml
+mr_parent_job:
+  rules:
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  trigger:
+    include: mr.yaml
+    strategy: depend
+
+# mr.yaml
+mr_child_job:
+  rules:
+  - if: $CI_MERGE_REQUEST_ID
+  script: |
+    echo "MR"
+```
+
+Child job `mr_child_job` only runs if the rule is present
+
+---
+
+## Pro tip 5: Merged results pipelines
 
 Runs [after a merge](https://docs.gitlab.com/ee/ci/pipelines/merged_results_pipelines.html)
 
