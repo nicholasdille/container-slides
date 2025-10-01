@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.12.0
+# syntax=docker/dockerfile:1.12.1
 
 FROM golang:1.23 AS build
 WORKDIR /go/src/gitlab.com/nicholasdille/cc22_container_image_build_optimization
