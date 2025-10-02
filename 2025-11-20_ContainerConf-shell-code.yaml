@@ -42,15 +42,15 @@ slides:
 - 080_ci_cd/scripting/alternatives.md
 
 summary:
-- icon: sparkles
+- icon: hands-holding
   text: Shell code is omnipresent
-- icon: cauldron
+- icon: layer-group
   text: Combine console commands
-- icon: book-sparkles
+- icon: book
   text: Make it repeatable
 - icon: hat-wizard
   text: You feel powerful
-- icon: hydra
+- icon: person-falling-burst
   text: Until you loose control
 
 events:
