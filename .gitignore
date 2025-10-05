@@ -8,3 +8,4 @@ id_rsa_*
 /site.*
 mkdocs
 node_modules
+themes/fontawesome.css*

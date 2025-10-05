@@ -69,7 +69,7 @@ $(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xarg
 			--insert '/x:html/x:body//x:section[@id="agenda"]' --type text --name "" --value $$'\n' \
 			$@; \
 	done; \
-	yq eval '.agenda[] | "<li><span class=\"fa-li\"><i class=\"fa-duotone fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
+	yq eval '.agenda[] | "<li><span class=\"fa-li\"><i class=\"fa fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
 	| while read -r LINE; do \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
 			--subnode '/x:html/x:body//x:section[@id="agenda"]/x:ul[@id="bullets"]' --type text --name "" --value "$${LINE}" \
@@ -89,7 +89,7 @@ $(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xarg
 	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
 	    --insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
 		$@; \
-	yq eval '.summary[] | "<li><span class=\"fa-li\"><i class=\"fa-duotone fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
+	yq eval '.summary[] | "<li><span class=\"fa-li\"><i class=\"fa fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
 	| while read -r LINE; do \
 		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
 			--subnode '/x:html/x:body//x:section[@id="summary"]/x:ul[@id="bullets"]' --type text --name "" --value "$${LINE}" \
@@ -128,7 +128,7 @@ audit:
 	@npm audit
 
 .PHONY:
-serve:
+serve: themes/fontawesome.css
 	@\
 	echo "****************************************************"; \
 	echo "*                                                  *"; \
@@ -137,7 +137,10 @@ serve:
 	echo "****************************************************"; \
 	docker compose up --abort-on-container-exit web
 
-$(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs -I{} basename {} .html)):%.pdf: %.html
+themes/fontawesome.css:%.css: %.scss
+	@sass $*.scss $*.css
+
+$(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs -I{} basename {} .html)):%.pdf: %.html themes/fontawesome.css
 	@docker compose run decktape --size=1920x1080 --load-pause=5000 --pause=1000 "http://web/$*.html" $*.pdf
 	@docker compose down --remove-orphans
 

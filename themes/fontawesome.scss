@@ -1,0 +1,28 @@
+// customize variables
+@use '../node_modules/@fortawesome/fontawesome-pro/scss/variables' with (
+  // customizing $font-path (if needed)
+  $font-path: '../node_modules/@fortawesome/fontawesome-pro/webfonts',
+);
+
+// load Font Awesome core
+@use '../node_modules/@fortawesome/fontawesome-pro/scss/fontawesome';
+
+// load  Font Awesome helpers (mixins, functions, and variables) and make available via @forward
+@use '../node_modules/@fortawesome/fontawesome-pro/scss/fa' as fa;
+
+// load Classic Duotone style
+@use '../node_modules/@fortawesome/fontawesome-pro/scss/duotone.scss' as fa-duotone;
+
+// load Classic Duotone style
+@use '../node_modules/@fortawesome/fontawesome-pro/scss/brands.scss' as fa-brands;
+
+// set --fa-family to Classic Duotone
+:root {
+  --fa-family: var(--fa-family-duotone);
+  --fa-style: 900;
+}
+
+// adding the Classic Duotone-based CSS to the general .fa class to support rendering two layer icons with just this class
+.fa {
+  @extend .#{fa.$css-prefix}-duotone;
+}
