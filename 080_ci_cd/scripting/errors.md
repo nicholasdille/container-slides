@@ -1,4 +1,4 @@
-<i class="fa-duotone fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
@@ -20,27 +20,29 @@ Use `errexit` in addition to error handling
 
 ---
 
-<i class="fa-duotone fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
-### Do not suppress errors
+### Errors should be handled
 
-XXX
+Do not suppress errors:
 
 ```bash
 test -f missing_file_name || true
 ```
 
-XXX careful
+Be careful - this rarely makes sense!
 
 ---
 
-<i class="fa-duotone fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
 ### Use `if` for error handling
+
+Maps to `true` except when return code > 0:
 
 ```bash
 if test -f missing_file_name; then
@@ -52,7 +54,7 @@ fi
 
 ---
 
-<i class="fa-duotone fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
@@ -66,7 +68,7 @@ if curl http://example.com; then
 fi
 ```
 
-Tell `curl` to `--fail` on HTTP errors:
+Tell `curl` to `--fail` on HTTP errors (>= 400):
 
 ```bash
 if curl --fail http://example.com; then
@@ -76,7 +78,7 @@ fi
 
 ---
 
-<i class="fa-duotone fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
@@ -95,7 +97,7 @@ Prevents typos
 
 ---
 
-<i class="fa-duotone fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 

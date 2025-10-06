@@ -2,30 +2,45 @@
 #!/bin/bash
 set -o errexit
 
-curl -sf http://example.com && echo yes || echo no
+test -n "${HC_IMG}" || local HC_IMG=ubuntu-24.04
+test -n "${HC_LOC}" || local HC_LOC=fsn1
+test -n "${HC_SSH_KEY}" || local HC_SSH_KEY=21771045
+test -n "${HC_ID_FILE}" || local HC_ID_FILE=~/.ssh/id_ed25519
 
-cat /var/log/syslog | grep -i error | xargs ..
+hcloud server create \
+  --location "${HC_LOC}" --type cx22 --image "${HC_IMG}" \
+  --name playground --ssh-key "${HC_SSH_KEY}"
+HC_VM_IP="$(
+  hcloud server list --output=json \
+  | jq --raw-output \
+    '.[] | select(.name == "playground") | .public_net.ipv4.ip'
+)"
 
-1
-2
-3
-4
+# Creating SSH config
+cat >~/.ssh/config.d/playground-hcloud <<EOF
+Host docker-hcloud hcloud ${HC_VM_IP}
+    HostName ${HC_VM_IP}
+    User root
+    IdentityFile ${HC_ID_FILE}
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+EOF
 ```
-<!-- .element: style="width: 30em; float: right;" -->
+<!-- .element: style="width: 40em; float: right; font-size: 0.5em;" -->
 
 ## Shell Code
 
-Whatever you execute on the console...
+Whatever you execute<br/>on the console...
 
-...put in a file
+...put in a file <!-- .element: style="padding-left: 3em;" -->
 
 Executed manually...
 
-...or automatically
+...or automatically <!-- .element: style="padding-left: 3em;" -->
 
 ---
 
-```yaml
+```yaml[8,16]
 stages:
 - build
 - test
@@ -59,7 +74,7 @@ GitHub: `.github/workflows/`
 
 ---
 
-```Dockerfile
+```Dockerfile[5-7]
 #syntax=docker/dockerfile:1
 FROM ubuntu:24.04
 RUN apt-get install -y curl jq
@@ -87,7 +102,7 @@ Repeatable and reproducible
 
 ## Advantages
 
-<i class="fa-duotone fa-solid fa-thumbs-up fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-thumbs-up fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Always available
 
@@ -103,7 +118,7 @@ Script collection
 
 ## Disadvantages
 
-<i class="fa-duotone fa-solid fa-thumbs-down fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-thumbs-down fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Readability
 

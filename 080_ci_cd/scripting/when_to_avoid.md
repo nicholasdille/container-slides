@@ -1,4 +1,4 @@
-<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
@@ -10,7 +10,7 @@
 
 ---
 
-<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
@@ -20,19 +20,28 @@
 
 4 files of ~1000 lines of code in total
 
+(Script included logic for hot loading <i class="fa-solid fa-face-dizzy"></i>)
+
 ---
 
-<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
 ### Readability
 
-XXX
+Are you using?
+- Oneliners
+- Language-specific constructs
+- Sourcing files
+
+Are you creating a script collection?
+
+Are you creating a function library?
 
 ---
 
-<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
@@ -46,17 +55,19 @@ Extensive parsing of JSON
 
 ---
 
-<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
 ### Performance
 
-XXX process forks
+Dependencies on external tools
+
+Many additional processes
 
 ---
 
-<i class="fa-duotone fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 

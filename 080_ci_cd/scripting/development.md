@@ -1,8 +1,8 @@
-<i class="fa-duotone fa-solid fa-laptop-code fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-laptop-code fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Development
 
-[Writing](https://mywiki.wooledge.org/BashGuide) shell code and understanding [caveats](https://mywiki.wooledge.org/BashFAQ)
+[How to write](https://mywiki.wooledge.org/BashGuide) shell code and [understand caveats](https://mywiki.wooledge.org/BashFAQ)
 
 [Style guide](https://google.github.io/styleguide/shellguide.html) by Google
 

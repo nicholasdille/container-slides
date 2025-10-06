@@ -1,8 +1,10 @@
-<i class="fa-duotone fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
 ### Follow POSIX `sh`
+
+Least common denominator
 
 ```bash
 # Only bash
@@ -14,11 +16,11 @@ test -z "$var" && echo "empty"
 grep --extended-regexp --quiet '^foo\s' <<< "$var" && echo "starts with foo"
 ```
 
-Rule of thumb: If it makes your life easier, it will not be portalble <i class="fa-duotone fa-face-rolling-eyes"></i>
+Rule of thumb: If it makes your life easier, it will not be portable <i class="fa fa-face-rolling-eyes"></i>
 
 ---
 
-<i class="fa-duotone fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
@@ -42,7 +44,7 @@ Workarounds found in [pure sh bible](https://github.com/dylanaraps/pure-sh-bible
 
 ---
 
-<i class="fa-duotone fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
@@ -53,29 +55,39 @@ Obviously different package managers
 Also different package names:
 
 ```bash
-apt-get install foo
-apk add bar
-yum install baz
+# Ubuntu
+apt-get install libz1g
+
+# Alpine Linux
+apk add libz
+
+# Fedora
+yum install zlib-ng
 ```
 
 ---
 
-<i class="fa-duotone fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
 ### Distributions 2/2
 
-In addition, different file locations:
+In addition, different file locations
 
-```bash
-XXX
-YYY
-```
+For example, network configuration files:
+
+| Distribution | Tool               | Location            | Format |
+|--------------|--------------------|---------------------|--------|
+| Ubuntu       | netplan            | /etc/netplan/       | YAML   |
+| Fedora       | NetworkManager     | /etc/NetworkManager/| TOML   |
+| Alpine Linux | ifupdown (busybox) | /etc/network/       | Text   |
+
+<!-- .element: style="font-size: smaller;" -->
 
 ---
 
-<i class="fa-duotone fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
@@ -92,4 +104,4 @@ cat file | grep --quiet "pattern"
 cat file | grep -q "pattern"
 ```
 
-Sacrifices readability
+Size sacrifices readability <i class="fa fa-face-rolling-eyes"></i>

@@ -1,16 +1,21 @@
-<i class="fa-duotone fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 
 ### High-level programming language
 
-Switch if parsing JSON is required
+When to switch:
+- Parsing of structured files
+- Length
+- Readability
+- Portability
+- Performance
 
-XXX
+Think about a custom CLI <i class="fa-solid fa-wand-magic-sparkles"></i>
 
 ---
 
-<i class="fa-duotone fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 
@@ -20,9 +25,11 @@ For example: Python, Ruby, Perl, PowerShell
 
 Be careful about the runtime dependency
 
+When to switch: **same reasons as above**
+
 ---
 
-<i class="fa-duotone fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 
@@ -30,14 +37,21 @@ Be careful about the runtime dependency
 
 Manage the runtime environment
 
-XXX
+Create shippable unit
+
+Intermediate step before switching to another language
 
 ---
 
-<i class="fa-duotone fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 
 ### Abstraction
 
-XXX consume logic from existing tools
+Consume logic from existing tools
+
+For example:
+- Terraform / OpenTofu
+- Docker Compose
+- Ansible

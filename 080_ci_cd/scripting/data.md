@@ -1,6 +1,6 @@
 ## Data Processing
 
-<i class="fa-duotone fa-solid fa-file-brackets-curly fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-file-brackets-curly fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ### JSON using `jq`
 
