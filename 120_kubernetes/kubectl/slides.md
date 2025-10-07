@@ -4,17 +4,17 @@
 
 ## Apply all files
 
-XXX
+In a directory:
 
 ```shell
-kubectl apply -f ./dir
+kubectl apply -f ./dir/
 ```
 
 ---
 
 ## Apply all files
 
-XXX
+With basic templating:
 
 ```shell
 cat *.yaml | envsubst | kubectl apply -f -
@@ -92,7 +92,7 @@ XXX --ignore-not-found
 
 XXX --output https://kubernetes.io/docs/reference/kubectl/#output-options
 
-XXX YAML for humans
+XXX (K)YAML for humans
 
 XXX JSON for machines
 
