@@ -1,5 +1,6 @@
 date: 2025-11-xx
 metadata:
+  author: Nicholas Dille, Haufe Group
   title: How Much Shell Code is Enough
   title_slug: shell-code
   subtitle: ""
@@ -54,7 +55,7 @@ summary:
   text: Until you loose control
 
 events:
-- date: 2025-11-27
+- date: "2025-11-27"
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop

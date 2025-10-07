@@ -29,103 +29,30 @@ clean-all:
 	echo "Generating $$(basename $@)"; \
 	include $*
 
-$(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xargs -I{} basename {} .yaml)):%.html: Makefile template.html %.yaml
-	@\
-	TITLE="$$(yq eval '.metadata.title' $*.yaml)"; \
-	SUBTITLE="$$(yq eval '.metadata.subtitle' $*.yaml)"; \
-	BOX_WIDTH="$$(yq eval '.metadata.box.width' $*.yaml)"; \
-	BOX_ALIGN="$$(yq eval '.metadata.box.align' $*.yaml)"; \
-	FAVICON="$$(yq eval '.metadata.favicon' $*.yaml)"; \
-	BACKGROUND_IMAGE="$$(yq eval '.metadata.background.image' $*.yaml)"; \
-	BACKGROUND_SIZE="$$(yq eval '.metadata.background.size' $*.yaml)"; \
-	BACKGROUND_POSITION="$$(yq eval '.metadata.background.position' $*.yaml)"; \
-	EVENT="$$(yq eval '.event.name' $*.yaml)"; \
-	LINK="$$(yq eval '.event.link' $*.yaml)"; \
-	LOGO="$$(yq eval '.event.logo' $*.yaml)"; \
-	LOGOSTYLE="$$(yq eval '.event | select(.logo_style != null) .logo_style' $*.yaml)"; \
-	cat template.html \
-	| sed "s/width: 60%/width: $${BOX_WIDTH}/; s/text-align: right/text-align: $${BOX_ALIGN}/" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:head/x:title" -v "$${TITLE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:head/x:link[@rel='icon']/@href" -v "$${FAVICON}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']/@data-background" -v "$${BACKGROUND_IMAGE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']/@data-background-size" -v "$${BACKGROUND_SIZE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']/@data-background-position" -v "$${BACKGROUND_POSITION}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:h1" -v "$${TITLE}" \
-	| xmlstarlet ed -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:h2" -v "$${SUBTITLE}" \
-	>$@; \
-	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:a" -v "$${EVENT}" $@; \
-	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:a/@href" -v "$${LINK}" $@; \
-	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:img/@src" -v "$${LOGO}" $@; \
-	if test -n "$${LOGOSTYLE}"; then \
-		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" --update "/x:html/x:body//x:section[@id='title']//x:img/@style" -v "$${LOGOSTYLE}" $@; \
-	fi; \
-	yq eval '.pre_slides[]' $*.yaml \
-	| while read -r FILE; do \
-		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
-			--insert '/x:html/x:body//x:section[@id="agenda"]' --type elem --name section \
-			--append '/x:html/x:body//x:section[@id="agenda"]/preceding::section[1]' --type attr --name data-markdown --value "$${FILE}" \
-			--append '/x:html/x:body//x:section[@id="agenda"]/preceding::section[1]' --type attr --name data-separator --value "^---$$" \
-			--append '/x:html/x:body//x:section[@id="agenda"]/preceding::section[1]' --type attr --name data-separator-vertical --value "^--$$" \
-			--insert '/x:html/x:body//x:section[@id="agenda"]' --type text --name "" --value $$'\n' \
-			$@; \
-	done; \
-	yq eval '.agenda[] | "<li><span class=\"fa-li\"><i class=\"fa fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
-	| while read -r LINE; do \
-		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
-			--subnode '/x:html/x:body//x:section[@id="agenda"]/x:ul[@id="bullets"]' --type text --name "" --value "$${LINE}" \
-			--subnode '/x:html/x:body//x:section[@id="agenda"]/x:ul[@id="bullets"]' --type text --name "" --value $$'\n' \
-			$@; \
-	done; \
-	yq eval '.slides[]' $*.yaml \
-	| while read -r FILE; do \
-		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
-			--insert '/x:html/x:body//x:section[@id="summary"]' --type elem --name section \
-			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-markdown --value "$${FILE}" \
-			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-separator --value "^---$$" \
-			--append '/x:html/x:body//x:section[@id="summary"]/preceding::section[1]' --type attr --name data-separator-vertical --value "^--$$" \
-			--insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
-			$@; \
-	done; \
-	xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
-	    --insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
-		$@; \
-	yq eval '.summary[] | "<li><span class=\"fa-li\"><i class=\"fa fa-" + .icon + "\"></i></span> " + .text + "</li>"' $*.yaml \
-	| while read -r LINE; do \
-		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
-			--subnode '/x:html/x:body//x:section[@id="summary"]/x:ul[@id="bullets"]' --type text --name "" --value "$${LINE}" \
-			--subnode '/x:html/x:body//x:section[@id="summary"]/x:ul[@id="bullets"]' --type text --name "" --value $$'\n' \
-			$@; \
-	done; \
-	yq eval '.events | reverse | .[] | "<p>" + (.date | tostring) + " - <a href=\"" + .homepage + "\">" + .name + "</a> " + .type + " <a href=\"" + .link + "\">" + .title + "</a></p>"' $*.yaml \
-	| while read -r LINE; do \
-		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
-			--append '/x:html/x:body//x:section[@id="summary"]/x:h3[@id="events"]' --type text --name "" --value "$${LINE}" \
-			--append '/x:html/x:body//x:section[@id="summary"]/x:h3[@id="events"]' --type text --name "" --value $$'\n' \
-			$@; \
-	done; \
-	yq eval '.post_slides[]' $*.yaml \
-	| while read -r FILE; do \
-		xmlstarlet ed --inplace -P -N x="http://www.w3.org/1999/xhtml" \
-			--append '/x:html/x:body//x:section[@id="summary"]' --type elem --name section \
-			--append '/x:html/x:body//x:section[@id="summary"]/following::section[1]' --type attr --name data-markdown --value "$${FILE}" \
-			--append '/x:html/x:body//x:section[@id="summary"]/following::section[1]' --type attr --name data-separator --value "^---$$" \
-			--append '/x:html/x:body//x:section[@id="summary"]/following::section[1]' --type attr --name data-separator-vertical --value "^--$$" \
-			--insert '/x:html/x:body//x:section[@id="summary"]' --type text --name "" --value $$'\n' \
-			$@; \
-	done; \
+BIN      := $(HOME)/.local/bin
+GOMPLATE := $(BIN)/gomplate
+SASS     := $(BIN)/sass
+NPM      := $(BIN)/npm
+MKDOCS   := $(BIN)/mkdocs
+
+$(BIN)/%:
+	@uniget install $*
+
+$(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xargs -I{} basename {} .yaml)):%.html: Makefile template.html %.yaml $(GOMPLATE)
+	@$(GOMPLATE) --file=template.html --datasource=talk=$*.yaml --out=$@; \
 	sed -i 's/&lt;/</g; s/&gt;/>/g' $@
 
 .PHONY:
 init:
-	@env FONTAWESOME_NPM_TOKEN=$(FONTAWESOME_NPM_TOKEN) npm install
+	@env FONTAWESOME_NPM_TOKEN=$(FONTAWESOME_NPM_TOKEN) $(NPM) install
 
 .PHONY:
 update:
-	@env FONTAWESOME_NPM_TOKEN=$(FONTAWESOME_NPM_TOKEN) npm update
+	@env FONTAWESOME_NPM_TOKEN=$(FONTAWESOME_NPM_TOKEN) $(NPM) update
 
 .PHONY:
 audit:
-	@npm audit
+	@$(NPM) audit
 
 .PHONY:
 serve: themes/fontawesome.css
@@ -138,7 +65,7 @@ serve: themes/fontawesome.css
 	docker compose up --abort-on-container-exit web
 
 themes/fontawesome.css:%.css: %.scss
-	@sass $*.scss $*.css
+	@$(SASS) $*.scss $*.css
 
 $(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs -I{} basename {} .html)):%.pdf: %.html themes/fontawesome.css
 	@docker compose run decktape --size=1920x1080 --load-pause=5000 --pause=1000 "http://web/$*.html" $*.pdf

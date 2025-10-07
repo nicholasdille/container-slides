@@ -4,10 +4,10 @@
 <head>
 <meta charset="utf-8"/>
 
-<title>TITLE</title>
+<title>{{ (datasource "talk").metadata.title }}</title>
 
 <!-- https://gauger.io/fonticon/ -->
-<link rel="icon" href="images/favicons/renovate.ico"/>
+<link rel="icon" href="{{ (datasource "talk").metadata.favicon }}"/>
 
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
@@ -24,21 +24,27 @@
 
 <section
     id="title"
-    data-background="images/barn-raising-unsplash.jpg"
-    data-background-size="100%"
-    data-background-position="left 0% top 0%"
-    style="padding: 1em 1em 1em 1em; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;">
+    data-background="{{ (datasource "talk").metadata.background.image }}"
+    data-background-size="{{ (datasource "talk").metadata.background.size }}"
+    data-background-position="{{ (datasource "talk").metadata.background.position }}"
+    style="padding: 1em 1em 1em 1em; background: rgba(0, 0, 0, 0.5); width: {{ (datasource "talk").metadata.box.width }}; margin: auto; text-align: {{ (datasource "talk").metadata.box.align }};">
 
-<h1 style="font-size: 1.5em;"><b>Title</b></h1>
+<h1 style="font-size: 1.5em;"><b>{{ (datasource "talk").metadata.title }}</b></h1>
 
-<h2 style="font-size: 1.2em; text-transform: none;">Subtitle</h2>
+<h2 style="font-size: 1.2em; text-transform: none;">{{ (datasource "talk").metadata.subtitle }}</h2>
 
-<p><em>Nicholas Dille<br/>Haufe Group</em></p>
+<p><em>{{ (datasource "talk").metadata.author }}</em></p>
 
-<p><img src="LOGO" style="float: left; height: 1em;" /></p>
+<p><img src="{{ (datasource "talk").event.logo }}" style="{{ (datasource "talk").event.logo_style }}" /></p>
 
-<p><a href="LINK">EVENT</a></p>
+<p><a href="{{ (datasource "talk").event.link }}">{{ (datasource "talk").event.name }}</a></p>
 </section>
+
+{{- if has (datasource "talk") "pre_slides" }}
+{{- range (datasource "talk").pre_slides }}
+<section data-markdown="{{ . }}" data-separator="^---$" data-separator-vertical="^--$"></section>
+{{- end }}
+{{- end }}
 
 <section id="agenda">
 <h2>Agenda</h2>
@@ -46,8 +52,15 @@
 <i class="fa fa-4x fa-list-check" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em; font-size: larger; margin-top: 0.5em;">
+{{- range (datasource "talk").agenda }}
+<li><i class="fa fa-li fa-{{ .icon }}"></i> {{ .text }}</li>
+{{- end }}
 </ul>
 </section>
+
+{{- range (datasource "talk").slides }}
+<section data-markdown="{{ . }}" data-separator="^---$" data-separator-vertical="^--$"></section>
+{{- end }}
 
 <section id="summary">
 <h2>Summary</h2>
@@ -55,10 +68,22 @@
 <i class="fa fa-4x fa-lightbulb-on" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em;">
+{{- range (datasource "talk").summary }}
+<li><i class="fa fa-li fa-{{ .icon }}"></i> {{ .text }}</li>
+{{- end }}
 </ul>
 
 <h3 id="events">Upcoming events</h3>
+{{- range (datasource "talk").events }}
+<p>{{ .date }} - <a href="{{ .homepage }}">{{ .name }}</a> {{ .type }} <a href="{{ .link }}">{{ .title }}</a></p>
+{{- end }}
 </section>
+
+{{- if has (datasource "talk") "post_slides" }}
+{{- range (datasource "talk").post_slides }}
+<section data-markdown="{{ . }}" data-separator="^---$" data-separator-vertical="^--$"></section>
+{{- end }}
+{{- end }}
 
 </div>
 </div>
