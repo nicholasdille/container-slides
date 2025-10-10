@@ -55,3 +55,18 @@ For example:
 - Terraform / OpenTofu
 - Docker Compose
 - Ansible
+
+---
+
+<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## Alternatives
+
+### Simplify
+
+Complexity caused by approaches
+
+For example:
+- `xmlstarlet` is great for processing XML/XHTML
+- Excessive use sacrifices readability and performance
+- Templating can be an alternative, e.g. `gomplate`

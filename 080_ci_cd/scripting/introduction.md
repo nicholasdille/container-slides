@@ -72,6 +72,8 @@ Jenkins: `Jenkinsfile`
 
 GitHub: `.github/workflows/`
 
+`Makefile` and alternatives
+
 ---
 
 ```Dockerfile[5-7]
