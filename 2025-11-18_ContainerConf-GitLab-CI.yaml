@@ -1,17 +1,21 @@
 date: 2025-05-14
 metadata:
+  author: Nicholas Dille, Haufe Group
   title: GitLab CI
   title_slug: gitlab-ci
-  subtitle: Menschen, die auf Pipelines starren
+  subtitle: The People Who Stare at Pipelines
+  box:
+    width: 30%
+    align: left
   favicon: 150_gitlab/media/favicon.ico
   background:
     image: 150_gitlab/media/fox-5195283_1920.jpg
-    size: 90%
-    positon: left 50% top 50%
+    size: 100%
+    position: left 50% top 50%
 event:
   name: " "
-  logo: images/logos/coc_ohnejahr_weiss_bunt.svg
-  logo_style: "height: 2em;"
+  logo: images/logos/clc2025_white.svg
+  logo_style: "height: 1.5em; margin-top: 0.5em;"
   link: https://www.continuouslifecycle.de/
 
 pre_slides:

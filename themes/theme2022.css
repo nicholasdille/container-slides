@@ -1,7 +1,6 @@
 :root {
     --r-main-font-size: 50px;
 
-    /*--r-main-font: 'Open Sans', sans-serif;*/
     --r-code-font: monospace;
 
     --r-main-color: #fff;
@@ -55,7 +54,18 @@
     padding-left: 1em;
 }
 
+.reveal a:empty::before {
+    position: absolute;
+    margin-left: 0.25em;
+    font: var(--fa-font-duotone);
+    content: '\f08e';
+    color: var(--fa-primary-color);
+}
+
 .reveal a:empty::after {
-    font: normal 900 1em/1 "Font Awesome 7 Duotone";
-    content: "\f08e";
+    position: absolute;
+    margin-left: 0.25em;
+    font: var(--fa-font-duotone);
+    content: '\f08e\f08e';
+    color: var(--fa-secondary-color);
 }

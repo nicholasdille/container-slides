@@ -90,6 +90,8 @@ For example: repository, issues etc.
 
 *Owner* for permissions
 
+*Auditor* for compliance (only Premium and Ultimate) [](https://docs.gitlab.com/administration/auditor_users/)
+
 ### Members
 
 Invite users/groups

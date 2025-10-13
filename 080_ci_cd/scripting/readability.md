@@ -1,4 +1,4 @@
-<i class="fa fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Readability
 
@@ -20,7 +20,7 @@ ghcr.io/uniget-org/tools/metadata | tar -xzO metadata.json
 
 ---
 
-<i class="fa fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Readability
 
@@ -48,7 +48,7 @@ regctl manifest get ghcr.io/uniget-org/tools/metadata:main -p local --format=raw
 
 ---
 
-<i class="fa fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Readability
 
@@ -77,7 +77,7 @@ regctl manifest get ghcr.io/uniget-org/tools/metadata:main --platform=local --fo
 
 ---
 
-<i class="fa fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Readability
 

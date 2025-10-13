@@ -1,14 +1,61 @@
+configs:
+  nginx.conf:
+    content: |
+      user  nginx;
+      worker_processes  auto;
+
+      error_log  /var/log/nginx/error.log warn;
+      pid        /var/run/nginx.pid;
+
+      events {
+          worker_connections  128;
+      }
+
+      http {
+          include       /etc/nginx/mime.types;
+          default_type  application/octet-stream;
+
+          sendfile        on;
+
+          keepalive_timeout  65;
+
+          include /etc/nginx/conf.d/*.conf;
+      }
+  default.conf:
+    content: |
+      server {
+          listen       80;
+          listen  [::]:80;
+          server_name  localhost;
+
+          location / {
+              root   /usr/share/nginx/html;
+              index  index.html index.htm;
+              autoindex on;
+          }
+
+          error_page   500 502 503 504  /50x.html;
+          location = /50x.html {
+              root   /usr/share/nginx/html;
+          }
+      }
+
 services:
 
   web:
     image: nginx:latest
+    configs:
+    - source: nginx.conf
+      target: /etc/nginx/nginx.conf
+    - source: default.conf
+      target: /etc/nginx/conf.d/default.conf
     volumes:
     - .:/usr/share/nginx/html
     ports:
     - 80:80
     healthcheck:
       test: ["CMD-SHELL", "curl http://localhost"]
-      interval: 5s
+      interval: 10s
       retries: 3
       start_period: 5s
       timeout: 5s

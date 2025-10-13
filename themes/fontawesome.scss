@@ -10,11 +10,14 @@
 // load  Font Awesome helpers (mixins, functions, and variables) and make available via @forward
 @use '../node_modules/@fortawesome/fontawesome-pro/scss/fa' as fa;
 
-// load Classic Duotone style
-@use '../node_modules/@fortawesome/fontawesome-pro/scss/duotone.scss' as fa-duotone;
+// load classic solid style
+@use '../node_modules/@fortawesome/fontawesome-pro/scss/solid' as fa-solid;
 
-// load Classic Duotone style
-@use '../node_modules/@fortawesome/fontawesome-pro/scss/brands.scss' as fa-brands;
+// load Duotone style
+@use '../node_modules/@fortawesome/fontawesome-pro/scss/duotone' as fa-duotone;
+
+// load brand icons
+@use '../node_modules/@fortawesome/fontawesome-pro/scss/brands' as fa-brands;
 
 // set --fa-family to Classic Duotone
 :root {

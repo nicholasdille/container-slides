@@ -1,4 +1,4 @@
-<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
@@ -10,7 +10,7 @@
 
 ---
 
-<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
@@ -24,7 +24,7 @@
 
 ---
 
-<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
@@ -41,7 +41,7 @@ Are you creating a function library?
 
 ---
 
-<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
@@ -55,7 +55,7 @@ Extensive parsing of JSON
 
 ---
 
-<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 
@@ -67,7 +67,7 @@ Many additional processes
 
 ---
 
-<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## When to Avoid
 

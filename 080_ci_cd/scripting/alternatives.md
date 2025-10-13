@@ -1,4 +1,4 @@
-<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 
@@ -15,7 +15,7 @@ Think about a custom CLI <i class="fa-solid fa-wand-magic-sparkles"></i>
 
 ---
 
-<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 
@@ -29,7 +29,7 @@ When to switch: **same reasons as above**
 
 ---
 
-<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 
@@ -43,7 +43,7 @@ Intermediate step before switching to another language
 
 ---
 
-<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 
@@ -58,7 +58,7 @@ For example:
 
 ---
 
-<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
 

@@ -1,16 +1,21 @@
 date: 2024-11-12
 metadata:
+  author: Nicholas Dille, Haufe Group
   title: GitLab Ops
   title_slug: gitlab-ops
   subtitle: Workshop
+  box:
+    width: 20%
+    align: left
   favicon: 150_gitlab/media/favicon.ico
   background:
     image: 150_gitlab/media/fox-5195283_1920.jpg
-    size: 90%
-    positon: left 50% top 50%
+    size: 100%
+    position: left 0% top 80%
 event:
   name: " "
   logo: images/logos/heise-academy.svg
+  logo_style: "height: 1.5em; margin-top: 0.5em;"
   link: https://heise-academy.de
 
 pre_slides:

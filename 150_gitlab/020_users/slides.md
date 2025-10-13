@@ -19,7 +19,7 @@ No concept of user groups...
 Users can be...
 
 - Blocked/deactivated/banned/deleted
-- Impersonated (logged in `/var/log/gitlab/gitlab-rails/application.log`)
+- Impersonated<br/>(logged in `/var/log/gitlab/gitlab-rails/application.log`)
 
 ### Hands-On
 

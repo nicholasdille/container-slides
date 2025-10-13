@@ -1,57 +1,58 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta charset="utf-8" />
+<head>
+<meta charset="utf-8"/>
 
 <title>GitLab CI</title>
 
 <!-- https://gauger.io/fonticon/ -->
-<link rel="icon" href="150_gitlab/media/favicon.ico" />
+<link rel="icon" href="150_gitlab/media/favicon.ico"/>
 
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
-<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
 <link rel="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" />
-<link rel="stylesheet" href="themes/theme2022.css" />
+<link rel="stylesheet" href="themes/theme2022.css" id="theme" />
 <link rel="stylesheet" href="themes/common.css" />
-
-<script defer="defer" src="node_modules/@fortawesome/fontawesome-pro/js/brands.min.js"></script>
-<script defer="defer" src="node_modules/@fortawesome/fontawesome-pro/js/duotone.min.js"></script>
-<script defer="defer" src="node_modules/@fortawesome/fontawesome-pro/js/fontawesome.min.js"></script>
+<link rel="stylesheet" href="themes/fontawesome.css" />
 </head>
 
 <body>
 <div class="reveal">
 <div class="slides">
 
-<section id="title" data-separator="^---$" data-separator-vertical="^--$" data-background="150_gitlab/media/fox-5195283_1920.jpg" class="center" style="padding: 1em 1em 1em 1em; color: white; background: rgba(0, 0, 0, 0.5); width: 60%; margin: auto; text-align: right;">
+<section
+    id="title"
+    data-background="150_gitlab/media/fox-5195283_1920.jpg"
+    data-background-size="100%"
+    data-background-position="left 50% top 50%"
+    style="padding: 1em 1em 1em 1em; background: rgba(0, 0, 0, 0.5); width: 30%; margin: auto; text-align: left;">
 
-<h1 style="font-size: 1.5em; color: white;">GitLab CI</h1>
+<h1 style="font-size: 1.5em;"><b>GitLab CI</b></h1>
 
-<p><img src="images/logos/coc_ohnejahr_weiss_bunt.svg" style="height: 2em;" /></p>
+<h2 style="font-size: 1.2em; text-transform: none;">The People Who Stare at Pipelines</h2>
 
-<h2 style="font-size: 1.2em; text-transform: none; color: white;">Menschen, die auf Pipelines starren</h2>
+<p><em>Nicholas Dille, Haufe Group</em></p>
 
-<p><i>Nicholas Dille, Haufe Group</i></p>
+<p><img src="images/logos/clc2025_white.svg" style="height: 1.5em; margin-top: 0.5em;" /></p>
 
 <p><a href="https://www.continuouslifecycle.de/"> </a></p>
 </section>
-
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section id="agenda" data-separator="^---$" data-separator-vertical="^--$">
+
+<section id="agenda">
 <h2>Agenda</h2>
 
 <i class="fa-duotone fa-4x fa-list-check" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em; font-size: larger; margin-top: 0.5em;">
-<li><span class="fa-li"><i class="fa-duotone fa-code"></i></span> Learn to use GitLab as a developer</li>
-<li><span class="fa-li"><i class="fa-duotone fa-graduation-cap"></i></span> Explore the features of GitLab</li>
-<li><span class="fa-li"><i class="fa-duotone fa-copy"></i></span> Don't repeat yourself</li>
-<li><span class="fa-li"><i class="fa-duotone fa-recycle"></i></span> Make your work reusable</li>
+<li><i class="fa-duotone fa-li fa-code"></i> Learn to use GitLab as a developer</li>
+<li><i class="fa-duotone fa-li fa-graduation-cap"></i> Explore the features of GitLab</li>
+<li><i class="fa-duotone fa-li fa-copy"></i> Don't repeat yourself</li>
+<li><i class="fa-duotone fa-li fa-recycle"></i> Make your work reusable</li>
 </ul>
 </section>
-
 <section data-markdown="000_introduction/heise_academy_housekeeping.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="000_introduction/who_are_you.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="160_gitlab_ci/agenda.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -101,20 +102,20 @@
 <section data-markdown="160_gitlab_ci/410_ai/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 <section data-markdown="160_gitlab_ci/final.md" data-separator="^---$" data-separator-vertical="^--$"></section>
 
-<section id="summary" data-separator="^---$" data-separator-vertical="^--$">
+<section id="summary">
 <h2>Summary</h2>
 
 <i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em;">
-<li><span class="fa-li"><i class="fa-duotone fa-infinity"></i></span> GitLab covers the whole DevOps process</li>
-<li><span class="fa-li"><i class="fa-duotone fa-ball-pile"></i></span> GitLab is packed with features</li>
-<li><span class="fa-li"><i class="fa-duotone fa-gauge-min"></i></span> No plugins to support recurring tasks</li>
-<li><span class="fa-li"><i class="fa-duotone fa-shield-check"></i></span> Useful security features even in free tier</li>
+<li><i class="fa-duotone fa-li fa-infinity"></i> GitLab covers the whole DevOps process</li>
+<li><i class="fa-duotone fa-li fa-ball-pile"></i> GitLab is packed with features</li>
+<li><i class="fa-duotone fa-li fa-gauge-min"></i> No plugins to support recurring tasks</li>
+<li><i class="fa-duotone fa-li fa-shield-check"></i> Useful security features even in free tier</li>
 </ul>
 
 <h3 id="events">Upcoming events</h3>
-<p>2025-11-20 - <a href="https://containerconf.de/">ContainerConf</a> Talk <a href="">Wieviel Shell-Code ist zu viel</a></p>
+<p>2025-11-20 00:00:00 +0000 UTC - <a href="https://containerconf.de/">ContainerConf</a> Talk <a href="">Wieviel Shell-Code ist zu viel</a></p>
 </section>
 
 </div>
@@ -127,39 +128,36 @@
 <script src="node_modules/reveal.js/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
-    var durationInMinutes = 4 * 60;
     Reveal.initialize({
-        width: 1400,
-        height: 850,
+        width: 1920,
+        height: 1080,
+        minScale: 0.5,
+        maxScale: 2.0,
         margin: 0.05,
+
+        controls: false,
         controlsTutorial: false,
-        showSlideNumber: false,
-        hash: true,
-        history: true,
+        progress: true,
+        slideNumber: false,
         keyboard: true,
-        overview: true,
-        center: false,
         touch: false,
-        shuffle: false,
+        mouseWheel: false,
+
+        hash: true,
+        history: false,
+        overview: true,
         fragments: true,
         fragmentInURL: true,
-        embedded: false,
-        help: true,
-        showNotes: false,
-        autoPlayMedia: null,
-        mouseWheel: false,
-        previewLinks: false,
         transition: 'convex',
         transitionSpeed: 'default',
         backgroundTransition: 'fade',
         hideInactiveCursor: true,
-        hideCursorTime: 3000,
 
-        totalTime: durationInMinutes * 60,
-        allottedTime: durationInMinutes * 60 * 1000,
+        autoPlayMedia: null,
+        previewLinks: true,
 
-        barColor: 'rgb(200, 0, 0)',
-        pausedBarColor: 'rgba(200, 0, 0, .6)',
+        center: true,
+        help: true,
 
         markdown: {
             smartypants: true

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
 <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
 <link rel="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" />
-<link rel="stylesheet" href="themes/theme2022.css" />
+<link rel="stylesheet" href="themes/theme2022.css" id="theme" />
 <link rel="stylesheet" href="themes/common.css" />
 <link rel="stylesheet" href="themes/fontawesome.css" />
 </head>
@@ -49,11 +49,11 @@
 <section id="agenda">
 <h2>Agenda</h2>
 
-<i class="fa fa-4x fa-list-check" style="float: right;"></i>
+<i class="fa-duotone fa-4x fa-list-check" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em; font-size: larger; margin-top: 0.5em;">
 {{- range (datasource "talk").agenda }}
-<li><i class="fa fa-li fa-{{ .icon }}"></i> {{ .text }}</li>
+<li><i class="fa-duotone fa-li fa-{{ .icon }}"></i> {{ .text }}</li>
 {{- end }}
 </ul>
 </section>
@@ -65,11 +65,11 @@
 <section id="summary">
 <h2>Summary</h2>
 
-<i class="fa fa-4x fa-lightbulb-on" style="float: right;"></i>
+<i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em;">
 {{- range (datasource "talk").summary }}
-<li><i class="fa fa-li fa-{{ .icon }}"></i> {{ .text }}</li>
+<li><i class="fa-duotone fa-li fa-{{ .icon }}"></i> {{ .text }}</li>
 {{- end }}
 </ul>
 
@@ -108,7 +108,7 @@
         slideNumber: false,
         keyboard: true,
         touch: false,
-        mouseWheel: true,
+        mouseWheel: false,
 
         hash: true,
         history: false,

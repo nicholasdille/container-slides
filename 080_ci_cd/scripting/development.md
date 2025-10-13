@@ -1,4 +1,4 @@
-<i class="fa fa-solid fa-laptop-code fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-laptop-code fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Development
 

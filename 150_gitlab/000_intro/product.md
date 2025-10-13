@@ -2,39 +2,39 @@
 
 ## GitLab
 
-### The DevOps Platform
+### AI-powered DevSecOps Platform
 
-"Deliver software faster with better security and collaboration in a single platform."
+One platform to empower Dev, Sec, and Ops teams
 
-![](150_gitlab/media/devops_lifecycle.svg) <!-- .element: style="width: 70%; padding: 1em; background-color: grey;" -->
+![](150_gitlab/media/platform.svg) <!-- .element: style="width: 50%; padding: 1em; background-color: var(--r-background-color);" -->
 
 ---
 
 ## Features
 
-![](150_gitlab/media/manage.svg) <!-- .element: style="width: 1em;" --> Manage <span style="color: grey;">- Groups, Compliance / Value Stream Management</span>
+### Some highlights
 
-![](150_gitlab/media/plan.svg) <!-- .element: style="width: 1em;" --> Plan <span style="color: grey;">- Team Planning, Service Desk, Management</span>
+Planning <span style="color: grey;">- DORA Metrics, Value Stream Management, Service Desk, Wiki, Team Planning</span>
 
-![](150_gitlab/media/create.svg) <!-- .element: style="width: 1em;" --> Create <span style="color: grey;">- Code, Reviews, Wiki</span>
+Source Code Management <span style="color: grey;">- Web IDE, CLI, Review Workflow, Code Suggestions/Explanation</span>
 
-![](150_gitlab/media/verify.svg) <!-- .element: style="width: 1em;" --> Verify <span style="color: grey;">- CI, Testing, Coverage, Performance Testing</span>
+Continuous Integration <span style="color: grey;">- Secrets, Review Apps, Merge Trains, Root Cause Analysis</span>
 
-![](150_gitlab/media/package.svg) <!-- .element: style="width: 1em;" --> Package <span style="color: grey;">- Package/Container/Helm Chart Registry</span>
+Security <span style="color: grey;">- Container Scanning, SCA, DAST, Code Quality, Secret Detection, SAST</span>
 
-![](150_gitlab/media/secure.svg) <!-- .element: style="width: 1em;" --> Secure <span style="color: grey;">- SAST, Code quality, DAST</span>
+Compliance <span style="color: grey;">- Release Evidence, Software Bill of Materials, Dependency Management</span>
 
-![](150_gitlab/media/release.svg) <!-- .element: style="width: 1em;" --> Release <span style="color: grey;">- CD, Pages, Environment Management</span>
+Artifact Registry <span style="color: grey;">- Container, Helm Charts, Packages, Models, Dependency Proxy</span>
 
-![](150_gitlab/media/configure.svg) <!-- .element: style="width: 1em;" --> Configure <span style="color: grey;">- Auto DevOps, Kubernetes, ChatOps, IaaC</span>
+Continuous Delivery <span style="color: grey;">- Infrastructure as Code, Pages, Feature Flags, Environments</span>
 
-![](150_gitlab/media/monitor.svg) <!-- .element: style="width: 1em;" --> Monitor <span style="color: grey;">- Metrics, Incident Management, Tracing</span>
+Observability <span style="color: grey;">- Incident Management, Metrics, Distributed Tracing, Logs</span>
 
-![](150_gitlab/media/defend.svg) <!-- .element: style="width: 1em;" --> Protect <span style="color: grey;">- Container Scanning, Security Orchestration</span>
+See full feature matrix [](https://about.gitlab.com/platform/)
 
 ---
 
-## Options
+## Plans
 
 Same [pricing](https://about.gitlab.com/pricing/) and [features](https://about.gitlab.com/pricing/self-managed/feature-comparison/) for cloud and self-hosted
 
@@ -48,7 +48,7 @@ gitlab.com: 10GB [storage](https://about.gitlab.com/pricing/#do-the-storage-and-
 
 **CI/CD-focused:** Faster code reviews, advanced CI/CD, enterprise agile planning, release controls, support, higher limits
 
-### Ultimate [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/ultimate/) ($99/user/month)
+### Ultimate [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/ultimate/) (price undisclosed)
 
 **Security-focused:** Advanced security testing, security risk mitigation, compliance, portfolio management, value stream management, free guest users
 
@@ -58,19 +58,21 @@ gitlab.com: 10GB [storage](https://about.gitlab.com/pricing/#do-the-storage-and-
 
 <i class="fa-duotone fa-fence fa-4x"></i> <!--.element: style="float: right; margin-right: 1em;" -->
 
-Single-tenant SaaS deployment 
+Single-tenant DevSecOps deployment 
 
-Fully managed and deployed by GitLab
+Hosted and maintaned by GitLab
 
-No maintenance overhead
-
-Available in 30+ [AWS regions](https://docs.gitlab.com/ee/subscriptions/gitlab_dedicated/#aws-regions-not-supported)
+Available in 24 [AWS regions](https://docs.gitlab.com/administration/dedicated/create_instance/data_residency_high_availability/#primary-regions)
 
 Bring your own encryption key for data at rest
+
+Bring your own domain
 
 Ultimate features
 
 Pricing available on inquiry
+
+Some features are [unavailable](https://docs.gitlab.com/subscriptions/gitlab_dedicated/#unavailable-features)
 
 ---
 <!-- .slide: id="gitlab_duo" -->
@@ -85,16 +87,16 @@ Read more in the [AI Transparency Center](https://about.gitlab.com/ai-transparen
 
 ### Core (free)
 
-Code suggestions and chat in IDE
+Code and test generation, explanation, refactoring and chat in IDE
 
 ### Pro ($19/user/month)
 
-Available for Premium and Ultimate
+Available for Premium and Ultimate plans
 
-Code suggestions and chat in web UI
+Code explanation in the web UI
 
-### Enterprise ($39/user/month)
+### Enterprise (price undisclosed)
 
-Available for Ultimate
+Available for Premium and Ultimate plans
 
 Summarization, templating, vulnerability explanation, root cause analysis

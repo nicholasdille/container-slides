@@ -104,7 +104,7 @@ Repeatable and reproducible
 
 ## Advantages
 
-<i class="fa fa-solid fa-thumbs-up fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-thumbs-up fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Always available
 
@@ -120,7 +120,7 @@ Script collection
 
 ## Disadvantages
 
-<i class="fa fa-solid fa-thumbs-down fa-4x"></i> <!-- .element: style="float: right;" -->
+<i fa-solid fa-thumbs-down fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Readability
 

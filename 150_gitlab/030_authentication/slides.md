@@ -67,7 +67,7 @@ Read-write [Project Deploy SSH Key](https://docs.gitlab.com/ee/user/project/depl
 
 Role defines the permission level
 
-Scope specified available "features", e.g.
+Scope specifies available "features", e.g.
 
 - `(read_)?api`
 - `(read|write)_repository`
@@ -108,6 +108,8 @@ DeployKeysProject.with_write_access.find_each do |deploy_key_mapping|
        ", User: #{user.username}, User ID: #{user.id}, User state: #{user.state}"
 end
 ```
+
+<!-- .element: style="height: 18em;" -->
 
 ---
 
