@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: typing
+spec:
+  selector:
+    matchLabels:
+      app: typing
+  replicas: 10
+  template:
+    metadata:
+      labels:
+        app: typing
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: typing
+        image: busybox
+        command:
+        - sh
+        - -c
+        args:
+        - sleep 3600
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waiting
+spec:
+  selector:
+    matchLabels:
+      app: waiting
+  template:
+    metadata:
+      labels:
+        app: waiting
+    spec:
+      terminationGracePeriodSeconds: 5
+      initContainers:
+      - name: init-wait
+        image: busybox
+        command:
+        - sh
+        - -c
+        - trap EXIT exit 1; while ! test -f /tmp/initialized; do echo "$(date) Initializing..."; sleep 2; done; echo "Initialization complete."
+      containers:
+      - name: waiting
+        image: nginx:alpine
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi

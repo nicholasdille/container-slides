@@ -1,4 +1,4 @@
-## Console grind
+## ???
 
 ---
 
@@ -10,6 +10,17 @@ In a directory:
 kubectl apply -f ./dir/
 ```
 
+Demo:
+- ServiceAccount
+- Role
+- RoleBinding
+- Deployment
+- Service
+- Certificate
+- DNS
+- Ingress
+- ServiceMonitor
+
 ---
 
 ## Apply all files
@@ -20,51 +31,49 @@ With basic templating:
 cat *.yaml | envsubst | kubectl apply -f -
 ```
 
+Demo:
+- Same as above but with...
+- Variable `${NAMESPACE}`
+- Variable `${IMAGE_TAG}`
+- Variable `${DOMAIN}`
+- Variable `${APP_NAME}`
+
+Better use `helm` or `kustomize`
+
 ---
 
-## Waiting
+## Waiting for consistency
 
 XXX kubectl wait
 
 XXX kubectl rollout status
 
+Demo:
+- Deployment with long-running init container
+- Run `kubectl get pods` regularly
+- Run `kubectl rollout status deployment/waiting`
+- Run `kubectl wait --for=condition=available --timeout=60s deployment/waiting`
+- `kubectl exec -it deployment/waiting -c init-wait -- touch /tmp/initialized`
+
+XXX difference?
+
 ---
 
-## Waiting
+## Watching changes
 
 Watch vs. --watch
 
----
+Demo:
+- `kubectl get pods --watch` updates on new events
+- `kubectl scale deployment waiting --replicas 10` - becomes hard to read for many replicas
+- Better `watch kubectl get pods`
+- Only top lines are shown
 
-## Selecting objects
+Does not work: `watch kubectl get pods | grep foo`
 
-XXX the default
+Does work: `watch "kubectl get pods | grep foo"`
 
-```shell
-kubectl get --selector
-```
-
-XXX
-
-```shell
-kubectl get --field-selector (https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/)
-```
-
----
-
-## Don't leave the console
-
-XXX kubectl explain
-
----
-
-## Less typing
-
-XXX completion
-
-XXX kubectl logs deployment/foo
-
-XXX kubectl exec -it deployment/foo -- bash
+Enter quoting hell
 
 ---
 
@@ -72,19 +81,76 @@ XXX kubectl exec -it deployment/foo -- bash
 
 ---
 
-## XXX
+## Selecting objects
 
-kubectl get pods --show-labels
+XXX too many objects
+
+XXX the default
+
+XXX use `metadata.labels` as context
+
+```shell
+kubectl get --selector=app=foo
+```
+
+Demo:
+- kwok
+- Many deployments with countless pods
+- kgp is too long
+- kgp --selector=app=foo
+- kubectl get pods --show-labels
+
+XXX the complex
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/
+
+```shell
+kubectl get --field-selector="metadata.namespace!=kube-system"
+```
+
+---
+
+## Console grind
+
+---
+
+## Less typing
+
+XXX completion `kubectl completion bash|zsh|fish`
+
+XXX Show log of any pod with `kubectl logs deployment/typing`
+
+XXX Enter any pod `kubectl exec -it deployment/typing -- bash`
+
+XXX alias k `alias k=kubectl` with completion `complete -F __start_kubectl k`
 
 ---
 
 ## Multiple resources at once
 
-XXX kubectl get pod,svc,secrets,cm
+XXX Show only required resources `kubectl get pod,svc,secrets,cm`
 
-XXX even with name: kubectl get rc/web service/frontend pods/web-pod-13je7
+XXX even with name: `kubectl get rc/web service/frontend`
 
-XXX --ignore-not-found
+XXX Some may not exist: `--ignore-not-found`
+
+XXX `kubectl get all` is just an alias for `kubectl get pod,svc,rs,deploy,sts,ds,jobs,cronjobs`
+
+---
+
+## Don't leave the console
+
+XXX `kubectl explain`
+
+---
+
+## Long vs. short parameters
+
+XXX `-o` vs. `--output`
+
+XXX short on console
+
+XXX long in scripts
 
 ---
 
@@ -92,21 +158,35 @@ XXX --ignore-not-found
 
 XXX --output https://kubernetes.io/docs/reference/kubectl/#output-options
 
-XXX (K)YAML for humans
+XXX YAML for humans
 
 XXX JSON for machines
 
 ---
 
-## Custom columns
+## KYAML
 
-kubectl get pod -o custom-columns=NAME:.metadata.name,STATUS:.status.phase
+XXX client-side
+
+XXX requires kubectl 1.34+ (https://kubernetes.io/blog/2025/07/28/kubernetes-v1-34-sneak-peek/#support-for-kyaml-a-kubernetes-dialect-of-yaml)
+
+XXX `export KUBECTL_KYAML=true`
+
+XXX `kubectl get pod --output kyaml`
+
+---
+
+## Custom tables
+
+XXX output `custom-columns`
+
+`kubectl get pod --output custom-columns=NAME:.metadata.name,STATUS:.status.phase`
 
 ---
 
 ## Sorting
 
-kubectl ... --output=wide --sort-by=.metadata.name
+`kubectl get pod --all-namespaces --sort-by=.metadata.name`
 
 ---
 
@@ -136,11 +216,11 @@ KUBECTL_EXTERNAL_DIFF=meld kubectl diff -k ./dir/
 
 ## Using a single file
 
-`$HOME/.kube/config`
+first `$HOME/.kube/config`
 
-`export KUBECONFIG`
+then `export KUBECONFIG`
 
-`kubectl --kubeconfig`
+last `kubectl --kubeconfig`
 
 ---
 
@@ -153,6 +233,12 @@ KUBECTL_EXTERNAL_DIFF=meld kubectl diff -k ./dir/
 ## direnv
 
 `direnv`
+
+---
+
+## OIDC
+
+XXX kubelogin https://github.com/int128/kubelogin
 
 ---
 
@@ -208,19 +294,17 @@ XXX https://github.com/ahmetb/kubectl-foreach
 
 XXX https://github.com/kvaps/kubectl-node-shell
 
-XXX https://github.com/int128/kubelogin
-
 ---
 
 ## API
 
 ---
 
-## Only pods
+## Only pods for port forwarding
 
 Selecting services downgrades to pods
 
-XXX kubectl port-forward svc/foo ...
+`kubectl port-forward svc/foo 8080:8080`
 
 ---
 
@@ -232,26 +316,4 @@ kubectl get --raw
 
 ## Without port forwarding
 
-API server proxy URLs https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls 
-
----
-
-## XXX
-
-Remote SOCKS5 https://kubernetes.io/docs/tasks/extend-kubernetes/socks5-proxy-access-api/
-
----
-
-## XXX
-
-kubectl proxy https://kubernetes.io/docs/reference/kubectl/generated/kubectl_proxy/
-
----
-
-## Resources
-
----
-
-## Links
-
-https://kubectl.docs.kubernetes.io/
+API server proxy URLs https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls
