@@ -1,56 +1,15 @@
-# Mass production
-
----
-
-## Apply all files
-
-In a directory:
-
-```shell
-kubectl apply -f ./dir/
-```
-
-Demo:
-- ServiceAccount
-- Role
-- RoleBinding
-- Deployment
-- Service
-- Certificate
-- DNS
-- Ingress
-- ServiceMonitor
-
----
-
-## Templating
-
-With basic templating:
-
-```shell
-cat *.yaml | envsubst | kubectl apply -f -
-```
-
-Demo:
-- Same as above but with...
-- Variable `${NAMESPACE}`
-- Variable `${IMAGE_TAG}`
-- Variable `${DOMAIN}`
-- Variable `${APP_NAME}`
-
-Better use `helm` or `kustomize`
-
----
-
 # Divide and conquer
 
 ---
 
-## Waiting for consistency
+## Eventual consistency
 
-XXX kubectl wait
+Wait for deployments to complete
 
-XXX kubectl rollout status
+| `kubectl wait` | `kubectl rollout status` |
+|----------------|--------------------------|
+
+https://www.google.com/search?q=kubectl+wait+vs+kubectl+rollout+status&authuser=0&aep=21&udm=50&utm_source=google&utm_campaign=aim_aware&utm_content=oo-seaport-10851&mstk=AUtExfAyZE_QTdBShMLh510PibS67VxL-Q5hYsSrOSBfhK9ZYQgwfu3bktm6sEenti2QMjresQS6yWvwEuhhyjfyRMXVue8w0JYoRE_X_p4csbCDpr3GlhHT15ueXLn8kvPITlXoDyObopj0iP-mpSX8XmmpRISzdVXjF812m7Ay8FddBYOeAoC7OtdvVxY5ZVQrTW66ChVtyjwxcEJye9zvZ8JR1fZAnmw9_n9MkU939cVz-EFLKXyq2D4TaZCENKWUrAIwLbCm5YzhXtj_ovaN_siNu2XBvDQ3GBgk4hTztVK6IdfxGVxgcMqExUHktaID37wk2ueCf9rSEQ&csuir=1&mtid=gzf7aJvXH_i39u8PuevN0QQ
 
 Demo:
 - Deployment with long-running init container
