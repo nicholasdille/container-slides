@@ -1,4 +1,4 @@
-## ???
+# Mass production
 
 ---
 
@@ -23,7 +23,7 @@ Demo:
 
 ---
 
-## Apply all files
+## Templating
 
 With basic templating:
 
@@ -39,6 +39,10 @@ Demo:
 - Variable `${APP_NAME}`
 
 Better use `helm` or `kustomize`
+
+---
+
+# Divide and conquer
 
 ---
 
@@ -77,10 +81,6 @@ Enter quoting hell
 
 ---
 
-## Finding the needle in the haystack
-
----
-
 ## Selecting objects
 
 XXX too many objects
@@ -107,10 +107,6 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selector
 ```shell
 kubectl get --field-selector="metadata.namespace!=kube-system"
 ```
-
----
-
-## Console grind
 
 ---
 
@@ -144,13 +140,7 @@ XXX `kubectl explain`
 
 ---
 
-## Long vs. short parameters
-
-XXX `-o` vs. `--output`
-
-XXX short on console
-
-XXX long in scripts
+# Emperor's new cloths
 
 ---
 
@@ -176,6 +166,14 @@ XXX `kubectl get pod --output kyaml`
 
 ---
 
+## Wide is too wide
+
+`kubectl get pod --output wide`
+
+Working with multiple panes
+
+---
+
 ## Custom tables
 
 XXX output `custom-columns`
@@ -187,6 +185,10 @@ XXX output `custom-columns`
 ## Sorting
 
 `kubectl get pod --all-namespaces --sort-by=.metadata.name`
+
+---
+
+# Console grind
 
 ---
 
@@ -202,6 +204,32 @@ kubectl get no -o go-template='{{range .items}}{{if .spec.unschedulable}}{{.meta
 
 ---
 
+## Quick actions
+
+kubectl ... | xargs ...
+
+---
+
+## Complex actions
+
+kubectl ... | while read -r ...
+
+---
+
+## Long vs. short parameters
+
+XXX `-o` vs. `--output`
+
+XXX short on console
+
+XXX long in scripts
+
+---
+
+# State affairs
+
+---
+
 ## Diffing local and remote state
 
 kubectl diff -k ./dir/
@@ -210,7 +238,23 @@ KUBECTL_EXTERNAL_DIFF=meld kubectl diff -k ./dir/
 
 ---
 
-## kubeconfig shenanigans
+## patch vs. edit
+
+kubectl edit
+
+kubectl patch
+
+---
+
+## Create manifests
+
+preserve idempotency
+
+kubectl create secret --dry-run | kubectl apply -f -
+
+---
+
+# Release the kraken
 
 ---
 
@@ -234,6 +278,14 @@ last `kubectl --kubeconfig`
 
 `direnv`
 
+https://direnv.net/
+
+```shell
+$ cat .envrc
+export KUBECONFIG=~/.kube/config.my-cluster
+export KUBECTL_CONTEXT=my-cluster-admin
+```
+
 ---
 
 ## OIDC
@@ -242,61 +294,7 @@ XXX kubelogin https://github.com/int128/kubelogin
 
 ---
 
-## Shortcuts (a.k.a. no scripts) 
-
----
-
-kubectl get deployment/foo
-
----
-
-## patch vs. edit
-
-kubectl edit
-
-kubectl patch
-
----
-
-## Quick actions
-
-kubectl ... | xargs ...
-
----
-
-## Complex actions
-
-kubectl ... | while read -r ...
-
----
-
-## Preserve idempotency
-
----
-
-## Create manifests
-
-kubectl create secret --dry-run | kubectl apply -f -
-
----
-
-## Better together
-
----
-
-plugins https://krew.sigs.k8s.io/plugins/
-
-XXX https://github.com/GoogleCloudPlatform/kubectl-ai
-
-XXX https://github.com/knight42/kubectl-blame
-
-XXX https://github.com/ahmetb/kubectl-foreach
-
-XXX https://github.com/kvaps/kubectl-node-shell
-
----
-
-## API
+# All roads lead to Rome
 
 ---
 
@@ -317,3 +315,21 @@ kubectl get --raw
 ## Without port forwarding
 
 API server proxy URLs https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls
+
+---
+
+# Better together
+
+---
+
+## Plugins
+
+krew https://krew.sigs.k8s.io/plugins/
+
+XXX https://github.com/GoogleCloudPlatform/kubectl-ai
+
+XXX https://github.com/knight42/kubectl-blame
+
+XXX https://github.com/ahmetb/kubectl-foreach
+
+XXX https://github.com/kvaps/kubectl-node-shell
