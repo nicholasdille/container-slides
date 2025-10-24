@@ -6,10 +6,14 @@
 
 Wait for deployments to complete
 
-| `kubectl wait` | `kubectl rollout status` |
-|----------------|--------------------------|
+Two options
 
-https://www.google.com/search?q=kubectl+wait+vs+kubectl+rollout+status&authuser=0&aep=21&udm=50&utm_source=google&utm_campaign=aim_aware&utm_content=oo-seaport-10851&mstk=AUtExfAyZE_QTdBShMLh510PibS67VxL-Q5hYsSrOSBfhK9ZYQgwfu3bktm6sEenti2QMjresQS6yWvwEuhhyjfyRMXVue8w0JYoRE_X_p4csbCDpr3GlhHT15ueXLn8kvPITlXoDyObopj0iP-mpSX8XmmpRISzdVXjF812m7Ay8FddBYOeAoC7OtdvVxY5ZVQrTW66ChVtyjwxcEJye9zvZ8JR1fZAnmw9_n9MkU939cVz-EFLKXyq2D4TaZCENKWUrAIwLbCm5YzhXtj_ovaN_siNu2XBvDQ3GBgk4hTztVK6IdfxGVxgcMqExUHktaID37wk2ueCf9rSEQ&csuir=1&mtid=gzf7aJvXH_i39u8PuevN0QQ
+| `kubectl wait`                           | `kubectl rollout status`             |
+|------------------------------------------|--------------------------------------|
+| Wait for a condition on a resource       | Monitor the progress of a rollout    |
+| Applies to many resources and conditions | Specialized for workload controllers |
+| Single success message                   | Streaming output of rollout progress |
+
 
 Demo:
 - Deployment with long-running init container
@@ -18,19 +22,26 @@ Demo:
 - Run `kubectl wait --for=condition=available --timeout=60s deployment/waiting`
 - `kubectl exec -it deployment/waiting -c init-wait -- touch /tmp/initialized`
 
-XXX difference?
-
 ---
 
 ## Watching changes
 
-Watch vs. --watch
+Monitor the progress of a change
+
+Two options
+
+| `kubectl get pods --watch`     | `watch kubectl get pods`   |
+|--------------------------------|----------------------------|
+| Streaming output of changes    | Regularly runs the command |
+| Hard to read for many replicas | Truncated to screen height |
 
 Demo:
 - `kubectl get pods --watch` updates on new events
 - `kubectl scale deployment waiting --replicas 10` - becomes hard to read for many replicas
 - Better `watch kubectl get pods`
 - Only top lines are shown
+
+### Filter output of `watch`
 
 Does not work: `watch kubectl get pods | grep foo`
 
@@ -42,11 +53,11 @@ Enter quoting hell
 
 ## Selecting objects
 
-XXX too many objects
+Production cluster have too many resources
 
-XXX the default
+### Option 1
 
-XXX use `metadata.labels` as context
+Filter on `metadata.labels` using `--selector`
 
 ```shell
 kubectl get --selector=app=foo
@@ -59,41 +70,46 @@ Demo:
 - kgp --selector=app=foo
 - kubectl get pods --show-labels
 
-XXX the complex
+### Option 2
 
-https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/
+Filter on some fields using `--field-selector` [](https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/)
 
 ```shell
 kubectl get --field-selector="metadata.namespace!=kube-system"
 ```
 
+Demo:
+- ???
+
 ---
 
 ## Less typing
 
-XXX completion `kubectl completion bash|zsh|fish`
+Always have shell completion ready (`kubectl completion bash|zsh|fish`)
 
-XXX Show log of any pod with `kubectl logs deployment/typing`
+Avoid pod names:
+- Logs: `kubectl logs deployment/typing`
+- Exec: `kubectl exec -it deployment/typing -- bash`
 
-XXX Enter any pod `kubectl exec -it deployment/typing -- bash`
-
-XXX alias k `alias k=kubectl` with completion `complete -F __start_kubectl k`
+Use shortcut for ` kubectl`:
+- Create alias: `alias k=kubectl`
+- Add shell completion: `complete -F __start_kubectl k`
 
 ---
 
 ## Multiple resources at once
 
-XXX Show only required resources `kubectl get pod,svc,secrets,cm`
+Show only required resources: `kubectl get pod,svc,secrets,cm`
 
-XXX even with name: `kubectl get rc/web service/frontend`
+Also works for named resources: `kubectl get rc/web service/frontend`
 
-XXX Some may not exist: `--ignore-not-found`
+Ignore missing resources types: `kubectl get deploy/gone --ignore-not-found`
 
-XXX `kubectl get all` is just an alias for `kubectl get pod,svc,rs,deploy,sts,ds,jobs,cronjobs`
+`kubectl get all` is just an alias for `kubectl get pod,svc,rs,deploy,sts,ds,jobs,cronjobs`
 
 ---
 
-## Don't leave the console
+## Don't leave the console (MOVE?)
 
 XXX `kubectl explain`
 
@@ -103,7 +119,7 @@ XXX `kubectl explain`
 
 ---
 
-## Little known outputs
+## Little known outputs (REMOVE?)
 
 XXX --output https://kubernetes.io/docs/reference/kubectl/#output-options
 
@@ -111,37 +127,37 @@ XXX YAML for humans
 
 XXX JSON for machines
 
+XXX describe vs. output
+
+XXX server-side printing (`--server-print=false`)
+
 ---
 
 ## KYAML
 
-XXX client-side
+Client-side processing
 
-XXX requires kubectl 1.34+ (https://kubernetes.io/blog/2025/07/28/kubernetes-v1-34-sneak-peek/#support-for-kyaml-a-kubernetes-dialect-of-yaml)
+Requires `kubectl` 1.34+ [](https://kubernetes.io/blog/2025/07/28/kubernetes-v1-34-sneak-peek/#support-for-kyaml-a-kubernetes-dialect-of-yaml)
 
-XXX `export KUBECTL_KYAML=true`
+Hidden behind feature flag: `export KUBECTL_KYAML=true`
 
-XXX `kubectl get pod --output kyaml`
-
----
-
-## Wide is too wide
-
-`kubectl get pod --output wide`
-
-Working with multiple panes
+Finally: `kubectl get pod --output kyaml`
 
 ---
 
-## Custom tables
+## Wide is too wide (REMOVE?)
 
-XXX output `custom-columns`
+`kubectl get pods` often misses interesting fields
+
+`kubectl get pod --output wide` is two wide
+
+Hard to read when working with multiple panes
+
+### Enter `custom-columns`
 
 `kubectl get pod --output custom-columns=NAME:.metadata.name,STATUS:.status.phase`
 
----
-
-## Sorting
+### Sorting
 
 `kubectl get pod --all-namespaces --sort-by=.metadata.name`
 
@@ -152,6 +168,10 @@ XXX output `custom-columns`
 ---
 
 ## Processing JSON
+
+XXX avoid text parsing
+
+XXX `--no-headers`
 
 jq vs. jsonpath https://kubernetes.io/docs/reference/kubectl/jsonpath/
 
@@ -292,3 +312,15 @@ XXX https://github.com/knight42/kubectl-blame
 XXX https://github.com/ahmetb/kubectl-foreach
 
 XXX https://github.com/kvaps/kubectl-node-shell
+
+---
+
+# Bonus: Shell-based Controller
+
+---
+
+## Watching events
+
+`kubectl get pods --watch --output=json`
+
+Alternative: https://github.com/flant/shell-operator
