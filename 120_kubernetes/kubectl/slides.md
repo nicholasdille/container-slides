@@ -1,5 +1,9 @@
 # Divide and conquer
 
+<i class="fa-duotone fa-solid fa-cake-slice"></i>
+
+## Finding the needle in the haystack
+
 ---
 
 ## Eventual consistency
@@ -117,6 +121,10 @@ XXX `kubectl explain`
 
 # Emperor's new cloths
 
+<i class="fa-duotone fa-solid fa-shirt-jersey"></i>
+
+XXX subtitle
+
 ---
 
 ## Little known outputs (REMOVE?)
@@ -165,75 +173,132 @@ Hard to read when working with multiple panes
 
 # Console grind
 
+<i class="fa-duotone fa-solid fa-keyboard"></i>
+
+XXX subtitle
+
 ---
 
 ## Processing JSON
 
-XXX avoid text parsing
+Avoid text parsing
 
-XXX `--no-headers`
+But if you must, use `--no-headers`
 
-jq vs. jsonpath https://kubernetes.io/docs/reference/kubectl/jsonpath/
+### `--output=jsonpath={}`
+
+XXX https://kubernetes.io/docs/reference/kubectl/jsonpath/
+
+XXX IETF [RFC 9535](https://www.rfc-editor.org/rfc/rfc9535)
+
+### `--output=json | jq`
+
+XXX jq is the defacto standard for JSON **processing**
+
+XXX https://jqlang.org/manual/
+
+XXX more than just parsing
 
 ---
 
 ## Go Templating
 
-kubectl get no -o go-template='{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
+kubectl get node --output=go-template='{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
 
 ---
 
 ## Quick actions
 
-kubectl ... | xargs ...
+Sometimes a oneliner is more helpful than a script, e.g.
 
----
+- `kubectl ... | xargs ...`
+- `kubectl ... | while read -r ...`
 
-## Complex actions
-
-kubectl ... | while read -r ...
+This is usually combined with jsonpath/json/go-template output
 
 ---
 
 ## Long vs. short parameters
 
-XXX `-o` vs. `--output`
+Mind readability
 
-XXX short on console
+Flag usually have a short and a long version
 
-XXX long in scripts
+For example: `-o` vs. `--output`
+
+Use the short flag on the console for speed
+
+Use the long flag in scripts for readability
 
 ---
 
 # State affairs
 
+<i class="fa-duotone fa-solid fa-scale-balanced"></i>
+
+XXX subtitle
+
 ---
 
 ## Diffing local and remote state
 
-kubectl diff -k ./dir/
+XXX
 
-KUBECTL_EXTERNAL_DIFF=meld kubectl diff -k ./dir/
+`kubectl diff -k ./dir/`
+
+Even use your favourite `diff` tool:
+
+`export KUBECTL_EXTERNAL_DIFF=delta`
+
+### For scripting
+
+XXX return codes
+
+XXX 0 - no differences
+
+XXX 1 - differences found
+
+XXX >=2 - error
 
 ---
 
-## patch vs. edit
+## Incremental updates
 
-kubectl edit
+Always prefer automated approaches (GitOps, CI/CD)
 
-kubectl patch
+### Manual changes
+
+`kubectl edit`
+
+XXX `KUBE_EDITOR` / `EDITOR`
+
+### Scripted changes
+
+`kubectl patch`
+
+XXX https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/
+
+XXX strategic merge - merge documents but arrays are either replaced or merged (determined in code, e.g. defaults to replace, podSpec.containers uses merge)
+
+XXX JSON merge patch (https://tools.ietf.org/html/rfc7386)
+
+XXX JSON patch (https://tools.ietf.org/html/rfc6902)
 
 ---
 
 ## Create manifests
 
-preserve idempotency
+Preserve idempotency
 
-kubectl create secret --dry-run | kubectl apply -f -
+`kubectl create secret --dry-run | kubectl apply -f -`
 
 ---
 
 # Release the kraken
+
+<i class="fa-duotone fa-solid fa-octopus"></i>
+
+XXX subtitle
 
 ---
 
@@ -250,6 +315,12 @@ last `kubectl --kubeconfig`
 ## Using multiple files
 
 `export KUBECONFIG=a:b`
+
+---
+
+## Impersonation
+
+XXX `kubectl --as=user --as-group=group`
 
 ---
 
@@ -275,6 +346,10 @@ XXX kubelogin https://github.com/int128/kubelogin
 
 # All roads lead to Rome
 
+<i class="fa-duotone fa-solid fa-crosshairs-simple"></i>
+
+XXX subtitle
+
 ---
 
 ## Only pods for port forwarding
@@ -299,6 +374,10 @@ API server proxy URLs https://kubernetes.io/docs/tasks/access-application-cluste
 
 # Better together
 
+<i class="fa-duotone fa-solid fa-handshake"></i>
+
+XXX
+
 ---
 
 ## Plugins
@@ -315,12 +394,22 @@ XXX https://github.com/kvaps/kubectl-node-shell
 
 ---
 
-# Bonus: Shell-based Controller
+# Bonus: To Shell or not to Shell
+
+<i class="fa-duotone fa-solid fa-hand-holding-skull"></i>
+
+XXX subtitle
 
 ---
 
 ## Watching events
 
-`kubectl get pods --watch --output=json`
+```bash
+kubectl get namespaces --watch=true --output-watch-events=true --output=json | \
+jq --compact-output --monochrome-output --unbuffered 'del(.object.metadata.managedFields)' | \
+while read EVENT; do
+    #
+done
+```
 
 Alternative: https://github.com/flant/shell-operator
