@@ -1,0 +1,96 @@
+date: 2025-05-14
+metadata:
+  author: Nicholas Dille, Haufe Group
+  title: GitLab CI
+  title_slug: gitlab-ci
+  subtitle: The People Who Stare at Pipelines
+  box:
+    width: 30%
+    align: left
+  favicon: 150_gitlab/media/favicon.ico
+  background:
+    image: 150_gitlab/media/fox-5195283_1920.jpg
+    size: 100%
+    position: left 50% top 50%
+event:
+  name: " "
+  logo: images/logos/heise-academy.svg
+  logo_style: "height: 1.5em; margin-top: 0.5em;"
+  link: https://heise-academy.de
+
+pre_slides:
+- 000_introduction/02_bio.md
+
+agenda:
+- icon: code
+  text: Learn to use GitLab as a developer
+- icon: graduation-cap
+  text: Explore the features of GitLab
+- icon: copy
+  text: Don't repeat yourself
+- icon: recycle
+  text: Make your work reusable
+
+slides:
+- 000_introduction/heise_academy_housekeeping.md
+- 000_introduction/who_are_you.md
+- 160_gitlab_ci/agenda.md
+- 160_gitlab_ci/devops.md
+- 150_gitlab/000_intro/product.md
+- 160_gitlab_ci/000_rollout/slides.md
+- 160_gitlab_ci/010_jobs_and_stages/slides.md
+- 160_gitlab_ci/020_variables/slides.md
+- 160_gitlab_ci/020_variables/predefined.md
+- 160_gitlab_ci/020_variables/ci.md
+- 160_gitlab_ci/030_script_blocks/slides.md
+- 160_gitlab_ci/040_image/slides.md
+- 160_gitlab_ci/050_defaults/slides.md
+- 160_gitlab_ci/060_artifacts/slides.md
+- 160_gitlab_ci/065_job_dependencies/slides.md
+- 160_gitlab_ci/070_schedules/slides.md
+- 160_gitlab_ci/080_configuration/slides.md
+- 160_gitlab_ci/090_unit_tests/slides.md
+- 160_gitlab_ci/095_scheduling_internals/slides.md
+- 160_gitlab_ci/097_manual_pipelines/slides.md
+- 160_gitlab_ci/100_environments/slides.md
+- 160_gitlab_ci/110_triggers/slides.md
+- 160_gitlab_ci/120_templates/slides.md
+- 160_gitlab_ci/130_rules/slides.md
+- 160_gitlab_ci/140_merge_requests/slides.md
+- 160_gitlab_ci/150_matrix_jobs/slides.md
+- 160_gitlab_ci/160_variable_precedence/slides.md
+- 160_gitlab_ci/170_deprecations/slides.md
+- 160_gitlab_ci/200_permissions/slides.md
+- 160_gitlab_ci/210_job_token/slides.md
+- 160_gitlab_ci/215_git_submodules/slides.md
+- 160_gitlab_ci/220_services/slides.md
+- 160_gitlab_ci/230_docker/slides.md
+- 160_gitlab_ci/240_registries/slides.md
+- 160_gitlab_ci/250_releases/slides.md
+- 160_gitlab_ci/252_branch_protection/slides.md
+- 160_gitlab_ci/255_troubleshooting/slides.md
+- 160_gitlab_ci/260_runners/slides.md
+- 160_gitlab_ci/265_caches/slides.md
+- 160_gitlab_ci/270_renovate/slides.md
+- 160_gitlab_ci/280_security/slides.md
+- 160_gitlab_ci/300_components/slides.md
+- 160_gitlab_ci/310_steps/slides.md
+- 160_gitlab_ci/320_pipeline_inputs/slides.md
+- 160_gitlab_ci/330_secure_files/slides.md
+- 160_gitlab_ci/400_metrics/slides.md
+- 160_gitlab_ci/410_ai/slides.md
+- 160_gitlab_ci/final.md
+
+summary:
+- icon: infinity
+  text: GitLab covers the whole DevOps process
+- icon: ball-pile
+  text: GitLab is packed with features
+- icon: gauge-min
+  text: No plugins to support recurring tasks
+- icon: shield-check
+  text: Useful security features even in free tier
+
+events: []
+
+post_slides: []
