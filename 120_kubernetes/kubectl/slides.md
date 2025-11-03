@@ -1,6 +1,6 @@
-# Divide and conquer
+<i class="fa-duotone fa-solid fa-cake-slice fa-4x"></i> <!-- .element: style="float: right;" -->
 
-<i class="fa-duotone fa-solid fa-cake-slice"></i>
+# Divide and conquer
 
 ## Finding the needle in the haystack
 
@@ -18,6 +18,7 @@ Two options
 | Applies to many resources and conditions | Specialized for workload controllers |
 | Single success message                   | Streaming output of rollout progress |
 
+Notes:
 
 Demo:
 - Deployment with long-running init container
@@ -39,19 +40,22 @@ Two options
 | Streaming output of changes    | Regularly runs the command |
 | Hard to read for many replicas | Truncated to screen height |
 
+### Filter output of `watch`
+
+- <i class="fa-duotone fa-solid fa-square-xmark" style="--fa-secondary-color: red;"></i>`watch kubectl get pods | grep foo`
+- <i class="fa-duotone fa-solid fa-square-check" style="--fa-secondary-color: green;"></i>`watch "kubectl get pods | grep foo"`
+
+<!-- .element: class="fa-ul" -->
+
+Enter quoting hell
+
+Notes:
+
 Demo:
 - `kubectl get pods --watch` updates on new events
 - `kubectl scale deployment waiting --replicas 10` - becomes hard to read for many replicas
 - Better `watch kubectl get pods`
 - Only top lines are shown
-
-### Filter output of `watch`
-
-Does not work: `watch kubectl get pods | grep foo`
-
-Does work: `watch "kubectl get pods | grep foo"`
-
-Enter quoting hell
 
 ---
 
@@ -67,13 +71,6 @@ Filter on `metadata.labels` using `--selector`
 kubectl get --selector=app=foo
 ```
 
-Demo:
-- kwok
-- Many deployments with countless pods
-- kgp is too long
-- kgp --selector=app=foo
-- kubectl get pods --show-labels
-
 ### Option 2
 
 Filter on some fields using `--field-selector` [](https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/)
@@ -82,34 +79,79 @@ Filter on some fields using `--field-selector` [](https://kubernetes.io/docs/con
 kubectl get --field-selector="metadata.namespace!=kube-system"
 ```
 
-Demo:
-- ???
+Notes:
+
+Demo 1:
+- kwok
+- Many deployments with countless pods
+- kgp is too long
+- kgp --selector=app=foo
+- kubectl get pods --show-labels
+
+Demo 2:
+- XXX
 
 ---
 
 ## Less typing
 
-Always have shell completion ready (`kubectl completion bash|zsh|fish`)
+Always have shell completion ready
+
+```bash
+kubectl completion bash|zsh|fish
+```
 
 Avoid pod names:
-- Logs: `kubectl logs deployment/typing`
-- Exec: `kubectl exec -it deployment/typing -- bash`
 
-Use shortcut for ` kubectl`:
-- Create alias: `alias k=kubectl`
-- Add shell completion: `complete -F __start_kubectl k`
+```bash
+kubectl logs deployment/typing
+kubectl exec -it deployment/typing -- bash
+```
+
+Use shortcut with shell completion:
+
+```bash
+alias k=kubectl
+complete -F __start_kubectl k
+```
 
 ---
 
 ## Multiple resources at once
 
-Show only required resources: `kubectl get pod,svc,secrets,cm`
+Show only required resources:
 
-Also works for named resources: `kubectl get rc/web service/frontend`
+```bash
+kubectl get pod,svc,secrets,cm
+```
 
-Ignore missing resources types: `kubectl get deploy/gone --ignore-not-found`
+Also works for named resources:
 
-`kubectl get all` is just an alias for `kubectl get pod,svc,rs,deploy,sts,ds,jobs,cronjobs`
+```bash
+kubectl get rc/web service/frontend
+```
+
+Ignore missing resources types:
+
+```bash
+kubectl get deploy/gone --ignore-not-found
+```
+
+---
+
+## Multiple resources at once
+
+Fun fact:
+
+```bash
+kubectl get all
+```
+
+... is just an alias for...
+
+```bash
+kubectl get pod,svc,rs,deploy,sts,ds,jobs,cronjobs
+```
 
 ---
 
@@ -119,9 +161,9 @@ XXX `kubectl explain`
 
 ---
 
-# Emperor's new cloths
+<i class="fa-duotone fa-solid fa-shirt-jersey fa-4x"></i> <!-- .element: style="float: right;" -->
 
-<i class="fa-duotone fa-solid fa-shirt-jersey"></i>
+# Emperor's new cloths
 
 XXX subtitle
 
@@ -147,9 +189,17 @@ Client-side processing
 
 Requires `kubectl` 1.34+ [](https://kubernetes.io/blog/2025/07/28/kubernetes-v1-34-sneak-peek/#support-for-kyaml-a-kubernetes-dialect-of-yaml)
 
-Hidden behind feature flag: `export KUBECTL_KYAML=true`
+Hidden behind feature flag:
 
-Finally: `kubectl get pod --output kyaml`
+```bash
+export KUBECTL_KYAML=true
+```
+
+Finally:
+
+```bash
+kubectl get pod --output=kyaml
+```
 
 ---
 
@@ -159,21 +209,30 @@ Finally: `kubectl get pod --output kyaml`
 
 `kubectl get pod --output wide` is two wide
 
-Hard to read when working with multiple panes
-
 ### Enter `custom-columns`
 
-`kubectl get pod --output custom-columns=NAME:.metadata.name,STATUS:.status.phase`
+XXX
 
-### Sorting
-
-`kubectl get pod --all-namespaces --sort-by=.metadata.name`
+```bash
+kubectl get pod --output \
+    custom-columns=NAME:.metadata.name,STATUS:.status.phase
+```
 
 ---
 
-# Console grind
+## Sorting resources
 
-<i class="fa-duotone fa-solid fa-keyboard"></i>
+XXX
+
+```bash
+kubectl get pod --all-namespaces --sort-by=.metadata.name
+```
+
+---
+
+<i class="fa-duotone fa-solid fa-keyboard fa-4x"></i> <!-- .element: style="float: right;" -->
+
+# Console grind
 
 XXX subtitle
 
