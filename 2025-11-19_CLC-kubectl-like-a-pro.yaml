@@ -17,6 +17,18 @@ event:
   logo: images/logos/clc2025_white.svg
   logo_style: "height: 1.5em; margin-top: 0.5em;"
   link: https://www.continuouslifecycle.de/
+custom_style: |
+  .reveal pre code {
+      margin-bottom: 1.5em;
+      font-size: 150%
+  }
+
+  .reveal p code {
+      background-color: #505050;
+      padding-left: 0.1em;
+      padding-right: 0.1em;
+      border-radius: 0.2em;
+  }
 
 pre_slides:
 - 000_introduction/02_bio.md

@@ -16,6 +16,11 @@
 <link rel="stylesheet" href="themes/theme2022.css" id="theme" />
 <link rel="stylesheet" href="themes/common.css" />
 <link rel="stylesheet" href="themes/fontawesome.css" />
+{{- if has (datasource "talk") "custom_style" }}
+<style>
+{{ (datasource "talk").custom_style }}
+</style>
+{{- end }}
 </head>
 
 <body>
