@@ -34,50 +34,30 @@ pre_slides:
 - 000_introduction/02_bio.md
 
 agenda:
-- icon: face-grin-stars
-  text: Shell scripts are great
-- icon: face-surprise
-  text: Are they really?
-- icon: face-sad-cry
-  text: What have you done?
-- icon: face-rolling-eyes
-  text: Compromise
+- icon: magnifying-glass
+  text: Finding the needle in the haystack
+- icon: shirt-jersey
+  text: Styling the output
+- icon: keyboard
+  text: Console grind
+- icon: scale-balanced
+  text: State affairs
+- icon: octopus
+  text: Multiple clusters and contexts
+- icon: crosshairs-simple
+  text: How to reach a pod for testing
+- icon: handshake
+  text: Community contributions
 
 slides:
 - 120_kubernetes/kubectl/slides.md
 
 summary:
-- icon: id-card-clip
-  text: RBAC is well documented in the ecosystem
-- icon: engine-warning
-  text: Little known verbs are a risk
-- icon: user-police-tie
-  text: Impersonation can improve security
-- icon: magnifying-glass
-  text: Service account tokens must be managed
-- icon: shield-check
-  text: Policy management - e.g. Kyverno - for the rescue
+- icon: question
+  text: XXX
 
 events:
-- date: 2024-11-07
-  name: heise Academy
-  homepage: https://heise-academy.de/
-  type: Workshop
-  title: GitLab Ops
-  link: https://heise-academy.de/Workshops/einfuehrung-in-gitlab
-- date: 2024-11-12
-  name: ContainerConf
-  homepage: https://containerconf.de/
-  type: Workshop
-  title: GitLab CI
-  link: https://www.continuouslifecycle.de/veranstaltung-22480-0-ci-cd-mit-gitlab.html
-- date: 2024-11-13
-  name: ContainerConf
-  homepage: https://containerconf.de/
-  type: Talk
-  title: Kubernetes RBAC
-  link: https://www.continuouslifecycle.de/veranstaltung-22482-0-kubernetes-rbac--tricks-und-fallstricke.html
-- date: 2024-11-21
+- date: "2024-11-21"
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop

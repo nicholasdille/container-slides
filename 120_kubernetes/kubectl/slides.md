@@ -1,8 +1,8 @@
 <i class="fa-duotone fa-solid fa-cake-slice fa-4x"></i> <!-- .element: style="float: right;" -->
 
-# Divide and conquer
+## Divide and conquer
 
-## Finding the needle in the haystack
+### Finding the needle in the haystack
 
 ---
 
@@ -163,9 +163,9 @@ XXX `kubectl explain`
 
 <i class="fa-duotone fa-solid fa-shirt-jersey fa-4x"></i> <!-- .element: style="float: right;" -->
 
-# Emperor's new cloths
+## Emperor's new cloths
 
-XXX subtitle
+### XXX subtitle
 
 ---
 
@@ -240,29 +240,37 @@ XXX subtitle
 
 ## Processing JSON
 
-Avoid text parsing
+Avoid text parsing with `grep`/`awk`/`sed`/`cut`/`tr`
 
-But if you must, use `--no-headers`
+But if you must, use `kubectl [...] --no-headers`
 
 ### `--output=jsonpath={}`
 
-XXX https://kubernetes.io/docs/reference/kubectl/jsonpath/
+XXX **filtering**
 
-XXX IETF [RFC 9535](https://www.rfc-editor.org/rfc/rfc9535)
+`kubectl` supports JSONPath natively [](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
+
+Based on IETF RFC9535 [](https://www.rfc-editor.org/rfc/rfc9535)
 
 ### `--output=json | jq`
 
-XXX jq is the defacto standard for JSON **processing**
+`jq` is the defacto standard for JSON **processing** [](https://jqlang.org/manual/)
 
-XXX https://jqlang.org/manual/
-
-XXX more than just parsing
+More than just filtering
 
 ---
 
 ## Go Templating
 
+XXX https://gotemplate.io/
+
+XXX example
+
+XXX in `kubectl`
+
+```bash
 kubectl get node --output=go-template='{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
+```
 
 ---
 
@@ -270,18 +278,25 @@ kubectl get node --output=go-template='{{range .items}}{{if .spec.unschedulable}
 
 Sometimes a oneliner is more helpful than a script, e.g.
 
-- `kubectl ... | xargs ...`
-- `kubectl ... | while read -r ...`
+```bash
+kubectl ... | xargs ...
+kubectl ... | while read -r ...
+```
 
 This is usually combined with jsonpath/json/go-template output
+
+Notes:
+
+Demo:
+- XXX
 
 ---
 
 ## Long vs. short parameters
 
-Mind readability
+Think of readability
 
-Flag usually have a short and a long version
+Flags usually have a short and a long version
 
 For example: `-o` vs. `--output`
 
@@ -291,33 +306,37 @@ Use the long flag in scripts for readability
 
 ---
 
-# State affairs
+<i class="fa-duotone fa-solid fa-scale-balanced fa-4x"></i> <!-- .element: style="float: right;" -->
 
-<i class="fa-duotone fa-solid fa-scale-balanced"></i>
+## State affairs
 
-XXX subtitle
+### XXX subtitle
 
 ---
 
 ## Diffing local and remote state
 
-XXX
+Check for configuration drift:
 
-`kubectl diff -k ./dir/`
+```bash
+kubectl diff -k ./dir/
+```
 
 Even use your favourite `diff` tool:
 
-`export KUBECTL_EXTERNAL_DIFF=delta`
+```bash
+export KUBECTL_EXTERNAL_DIFF=delta
+```
 
-### For scripting
+### Useful for scripting
 
-XXX return codes
+Return codes are your friend:
 
-XXX 0 - no differences
-
-XXX 1 - differences found
-
-XXX >=2 - error
+| Code | Meaning              |
+|------|----------------------|
+| 0    | No differences found |
+| 1    | Differences found    |
+| >=2  | Error occurred       |
 
 ---
 
@@ -327,9 +346,25 @@ Always prefer automated approaches (GitOps, CI/CD)
 
 ### Manual changes
 
-`kubectl edit`
+XXX
 
-XXX `KUBE_EDITOR` / `EDITOR`
+```bash
+kubectl edit NAME
+```
+
+Use your favourite editor:
+
+```bash
+export KUBE_EDITOR=nano
+```
+
+`kubectl` also honours `EDITOR` environment variable
+
+---
+
+## Incremental updates
+
+Always prefer automated approaches (GitOps, CI/CD)
 
 ### Scripted changes
 
@@ -349,19 +384,28 @@ XXX JSON patch (https://tools.ietf.org/html/rfc6902)
 
 Preserve idempotency
 
-`kubectl create secret --dry-run | kubectl apply -f -`
+```bash
+kubectl create secret docker-registry reg.my-corp.io --dry-run=client --output=yaml \
+    --docker-server=reg.my-corp.io \
+    --docker-email=me@my-corp.io \
+    --docker-username=me \
+    --docker-password=Secr3t \
+| kubectl apply -f -
+```
 
 ---
 
-# Release the kraken
+<i class="fa-duotone fa-solid fa-octopus fa-4x"></i> <!-- .element: style="float: right;" -->
 
-<i class="fa-duotone fa-solid fa-octopus"></i>
+## Release the kraken
 
-XXX subtitle
+### `kubeconfig` and multiple clusters
 
 ---
 
 ## Using a single file
+
+`kubectl` looks for a `kubeconfig` in three places:
 
 first `$HOME/.kube/config`
 
@@ -371,23 +415,33 @@ last `kubectl --kubeconfig`
 
 ---
 
-## Using multiple files
+## Using multiple clusters
+
+XXX
+
+### Straight forward
+
+XXX single `kubeconfig` file
+
+### Alternative
+
+XXX one `kubeconfig` file per cluster
 
 `export KUBECONFIG=a:b`
 
 ---
 
-## Impersonation
+## Switching clusters and contexts
 
-XXX `kubectl --as=user --as-group=group`
+XXX
 
----
+### `kubeswitch`
 
-## direnv
+XXX `kubeswitch` https://github.com/danielb42/kubeswitch
 
-`direnv`
+### direnv
 
-https://direnv.net/
+XXX `direnv` https://direnv.net/
 
 ```shell
 $ cat .envrc
@@ -399,15 +453,31 @@ export KUBECTL_CONTEXT=my-cluster-admin
 
 ## OIDC
 
+XXX avoid explicit credentials in `kubeconfig`
+
+XXX use trustful identity provider, e.g. GitLab
+
 XXX kubelogin https://github.com/int128/kubelogin
+
+XXX RBAC
 
 ---
 
-# All roads lead to Rome
+## Impersonation
 
-<i class="fa-duotone fa-solid fa-crosshairs-simple"></i>
+XXX Limit access to read-only
 
-XXX subtitle
+XXX allow impersonation for administrative tasks
+
+XXX `kubectl --as=user --as-group=group`
+
+---
+
+<i class="fa-duotone fa-solid fa-crosshairs-simple fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## All roads lead to Rome
+
+### How to reach a pod for testing
 
 ---
 
@@ -415,13 +485,19 @@ XXX subtitle
 
 Selecting services downgrades to pods
 
-`kubectl port-forward svc/foo 8080:8080`
+```bash
+kubectl port-forward svc/foo 8080:8080
+```
 
 ---
 
 ## Without explicit authentication
 
+XXX
+
+```bash
 kubectl get --raw
+```
 
 ---
 
@@ -431,11 +507,11 @@ API server proxy URLs https://kubernetes.io/docs/tasks/access-application-cluste
 
 ---
 
-# Better together
+<i class="fa-duotone fa-solid fa-handshake fa-4x"></i> <!-- .element: style="float: right;" -->
 
-<i class="fa-duotone fa-solid fa-handshake"></i>
+## Better together
 
-XXX
+### XXX
 
 ---
 
@@ -451,17 +527,21 @@ XXX https://github.com/ahmetb/kubectl-foreach
 
 XXX https://github.com/kvaps/kubectl-node-shell
 
+XXX so many useful tools
+
 ---
 
-# Bonus: To Shell or not to Shell
+<i class="fa-duotone fa-solid fa-hand-holding-skull fa-4x"></i> <!-- .element: style="float: right;" -->
 
-<i class="fa-duotone fa-solid fa-hand-holding-skull"></i>
+## Bonus: To Shell or not to Shell
 
-XXX subtitle
+### XXX subtitle
 
 ---
 
 ## Watching events
+
+XXX
 
 ```bash
 kubectl get namespaces --watch=true --output-watch-events=true --output=json | \
@@ -471,4 +551,4 @@ while read EVENT; do
 done
 ```
 
-Alternative: https://github.com/flant/shell-operator
+Alternative: `shell-operator` [](https://github.com/flant/shell-operator)
