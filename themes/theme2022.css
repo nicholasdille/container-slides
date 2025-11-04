@@ -39,6 +39,8 @@
 
 .reveal pre code {
     margin-bottom: 1.5em;
+    font-size: 150%;
+    line-height: 110%;
 }
 
 .reveal ul.fa-ul {

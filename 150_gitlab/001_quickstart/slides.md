@@ -8,6 +8,26 @@
 
 ## Quickstart
 
+<i class="fa-brands fa-docker fa-3x" style="float: right;"></i>
+
+### Option 1: Docker
+
+Fully contained runtime environment
+
+Host system remains untouched
+
+<i class="fa-brands fa-ubuntu fa-3x" style="float: right;"></i>
+
+### Option 2: Package manager
+
+Well-known handling of services
+
+XXX
+
+---
+
+## Quickstart Option 1: Docker
+
 <i class="fa-duotone fa-rocket-launch fa-3x" style="float: right;"></i>
 
 Get GitLab quickly up and running in less than 5 minutes
@@ -16,11 +36,11 @@ Start local GitLab instance using Docker:
 
 ```bash
 docker run -d --name gitlab \
-    --volume gitlab_config:/etc/gitlab \
-    --volume gitlab_logs:/var/log/gitlab \
-    --volume gitlab_data:/var/opt/gitlab \
+    --mount type=bind,src=/etc/gitlab,dst=/etc/gitlab \
+    --mount type=bind,src=/var/log/gitlab,dst=/var/log/gitlab \
+    --mount type=bind,src=/var/opt/gitlab,dst=/var/opt/gitlab \
     --publish 80:80 \
-    gitlab/gitlab-ee:17.5.1-ee.0
+    gitlab/gitlab-ee:18.5.0-ee.0
 ```
 
 Wait for container to finish starting:
@@ -34,20 +54,28 @@ while docker container inspect gitlab \
 done
 ```
 
---
+---
 
-## Quickstart 2/2
+## Quickstart Option 2: Package manager
 
-Show containers and note health:
+<i class="fa-duotone fa-rocket-launch fa-3x" style="float: right;"></i>
 
-```bash
-docker ps -a
-```
+According to official documentation [](https://docs.gitlab.com/install/package/ubuntu/)
 
-Check for data volumes:
-
-```bash
-docker volume ls
+``` bash
+# prepare
+apt-get update
+apt-get install -y curl vim-tiny
+# add package repository
+curl "https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh" \
+| bash
+# patch location of keyring
+sed -i -e 's|/usr/share/keyrings/|/etc/apt/keyrings/|g' /etc/apt/sources.list.d/gitlab_gitlab-ee.list
+# install GitLab
+apt-get update
+apt-get install -y gitlab-ee=18.5.0-ee.0
+# configure and start GitLab
+gitlab-ctl reconfigure
 ```
 
 ---
@@ -56,14 +84,14 @@ docker volume ls
 
 <i class="fa-duotone fa-medal fa-3x" style="float: right;"></i>
 
-Go to `http://gitlab.seatN.inmylab.de` (substitute N with your number)
+Go to `http://gitlab.seatN.inmylab.de`<br/>(substitute N with your number)
 
 Enter user `root`
 
 Retrieve initial root password:
 
 ```bash
-docker exec -it gitlab cat /etc/gitlab/initial_root_password \
+cat /etc/gitlab/initial_root_password \
 | grep ^Password \
 | cut -d' ' -f2
 ```

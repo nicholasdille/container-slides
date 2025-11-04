@@ -84,7 +84,9 @@ Jobs are executed in a dedicated container / pod
 
 1. Configure runner: Check "Run untagged jobs"
 
-1. Start runner (substitute token below)
+### Option 1: Docker
+
+3. Start runner (substitute token below)
 
     ```bash
     # Switch to directory for this topic
@@ -101,4 +103,45 @@ Jobs are executed in a dedicated container / pod
         up -d
     ```
 
-    <!-- .element: style="width: 35em;" -->
+    <!-- .element: style="width: 55em;" -->
+
+---
+
+## Hands-On
+
+1. Add runner to GitLab instance: Admin Area <i class="fa-regular fa-arrow-right"></i> CI/CD <i class="fa-regular fa-arrow-right"></i> Runners <i class="fa-regular fa-arrow-right"></i> New instance runner
+
+1. Configure runner: Check "Run untagged jobs"
+
+### Option 2: Package manager 1/2
+
+3. Install runner according to official documentation [](https://docs.gitlab.com/runner/install/linux-repository/)
+
+    ```bash
+    apt-get update
+    apt-get install -y gitlab-runner==18.5.0-1
+    ```
+
+---
+
+## Hands-On
+
+1. Add runner to GitLab instance: Admin Area <i class="fa-regular fa-arrow-right"></i> CI/CD <i class="fa-regular fa-arrow-right"></i> Runners <i class="fa-regular fa-arrow-right"></i> New instance runner
+
+1. Configure runner: Check "Run untagged jobs"
+
+### Option 2: Package manager 2/2
+
+3. Install runner according to official documentation [](https://docs.gitlab.com/runner/install/linux-repository/)
+
+4. Register runner according to official documentation [](https://docs.gitlab.com/runner/register/)
+
+    ```bash
+    gitlab-runner register \
+    --non-interactive \
+    --url "https://gitlab.seat<N>.inmylab.de" \
+    --token "<TOKEN>" \
+    --executor "docker" \
+    --docker-image alpine:latest \
+    --description "docker-runner"
+    ```

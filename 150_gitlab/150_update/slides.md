@@ -34,7 +34,9 @@ For upgrades from older versions, checkout the [upgrade path tool](https://gitla
 
 ## Hands-On
 
-1. Update `compose.yml` in `100_reverse_proxy`<br>with new image `gitlab/gitlab-ee:17.5.1-ee.0`: 
+### Option 1: Docker
+
+1. Update `compose.yml` in `100_reverse_proxy`<br>with new image `gitlab/gitlab-ee:18.5.1-ee.0`: 
 
     ```bash
     vim ../100_reverse_proxy/compose.yml
@@ -42,4 +44,11 @@ For upgrades from older versions, checkout the [upgrade path tool](https://gitla
     
 1. Run deployment from [reverse proxy section](#/gitlab_traefik)
 
-(Minor update to v17.5.1 possible.)
+### Option 2: Package manager
+
+XXX https://docs.gitlab.com/update/package/
+
+```bash
+apt-get update
+apt-get install -y gitlab-ee=18.5.1-ee.0
+```
