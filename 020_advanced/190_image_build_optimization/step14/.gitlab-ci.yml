@@ -40,7 +40,7 @@ test:
 scan:
   stage: test
   image:
-    name: aquasec/trivy:0.57.1
+    name: aquasec/trivy:0.64.1
     entrypoint: ["/bin/sh", "-c"]
   script:
   - export TRIVY_USERNAME=${CI_REGISTRY_USER}
