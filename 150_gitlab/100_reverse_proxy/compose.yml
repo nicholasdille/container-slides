@@ -1,13 +1,5 @@
 # https://docs.docker.com/compose/compose-file
 
-volumes:
-  gitlab_config:
-    external: true
-  gitlab_logs:
-    external: true
-  gitlab_data:
-    external: true
-
 services:
 
   # https://doc.traefik.io/traefik/

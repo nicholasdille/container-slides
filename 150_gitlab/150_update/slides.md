@@ -32,6 +32,28 @@ For upgrades from older versions, checkout the [upgrade path tool](https://gitla
 
 ---
 
+## Preparation for Update
+
+Run upgrade health checks [](https://docs.gitlab.com/update/plan_your_upgrade/#run-upgrade-health-checks)
+
+```bash
+gitlab-rake gitlab:check
+```
+
+Pause pipelines [](https://docs.gitlab.com/update/plan_your_upgrade/#pause-cicd-pipelines-and-jobs)
+
+```bash
+nginx['custom_gitlab_server_config'] = "location = /api/v4/jobs/request {\n deny all;\n return 503;\n}\n"
+```
+
+Then reconfigure GitLab:
+
+```bash
+gitlab-ctl reconfigure
+```
+
+---
+
 ## Hands-On
 
 ### Option 1: Docker
@@ -46,7 +68,7 @@ For upgrades from older versions, checkout the [upgrade path tool](https://gitla
 
 ### Option 2: Package manager
 
-XXX https://docs.gitlab.com/update/package/
+Update according to official documentation [](https://docs.gitlab.com/update/package/)
 
 ```bash
 apt-get update

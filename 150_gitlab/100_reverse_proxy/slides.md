@@ -22,9 +22,13 @@ Docker
 
 [Template](https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template) for configuration file `gitlab.rb`
 
-### Alternative
+### Option 1: Docker
 
-Community [container image](https://github.com/sameersbn/docker-gitlab)
+Pass environment variable `GITLAB_OMNIBUS_CONFIG` to container
+
+### Option 2: Package manager
+
+Edit `/etc/gitlab/gitlab.rb`
 
 ---
 
@@ -37,7 +41,7 @@ Central service for...
 - Request routing based on...
   - DNS name
   - path
-- TLS offloading based on DNS name
+- Optional TLS offloading based on DNS name
 
 ![](150_gitlab/100_reverse_proxy/reverse_proxy.drawio.svg) <!-- .element: style="width: 50%;" -->
 
@@ -70,9 +74,8 @@ Your VM has the necessary environment variables: `DOMAIN` and `IP`
 Extract password (or [reset](#/gitlab_troubleshooting)):
 
 ```bash
-docker compose --project-name gitlab exec gitlab \
-    cat /etc/gitlab/initial_root_password \
-    | grep ^Password | cut -d' ' -f2
+cat /etc/gitlab/initial_root_password \
+| grep ^Password | cut -d' ' -f2
 ```
 
 --
@@ -84,29 +87,6 @@ Check the state of the whole stack:
 ```bash
 docker compose --project-name gitlab ps -a
 ```
-
----
-
-## Starting fresh (just in case)
-
-Stop running instance:
-
-```
-docker compose --project-name gitlab down
-```
-
-Purge data by removing volumes:
-
-```
-docker volume rm gitlab_config
-docker volume rm gitlab_logs
-docker volume rm gitlab_data
-docker volume create gitlab_config
-docker volume create gitlab_logs
-docker volume create gitlab_data
-```
-
-A fresh instance has a new initial root password
 
 ---
 
@@ -133,3 +113,27 @@ Configure traefik to use [custom certificate](https://doc.traefik.io/traefik/htt
 ### Reverse proxy with Let's Encrypt <i class="fa-duotone fa-traffic-light-go" style="--fa-secondary-color: green;"></i>
 
 Configure traefik to use [Let's Encrypt with DNS challenge](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/)
+
+---
+
+## Hands-On
+
+### Only for Option 2: Package manager
+
+Configure TLS manually by editing `/etc/gitlab/gitlab.rb` [](https://docs.gitlab.com/omnibus/settings/ssl/)
+
+```ruby
+# https://docs.gitlab.com/omnibus/settings/ssl/#configure-https-manually
+external_url "https://gitlab.example.com"
+letsencrypt['enable'] = false
+
+# https://docs.gitlab.com/omnibus/settings/ssl/#change-the-default-ssl-certificate-location
+nginx['ssl_certificate'] = "/etc/traefik/ssl/seat.crt"
+nginx['ssl_certificate_key'] = "/etc/traefik/ssl/seat.key"
+```
+
+Then reconfigure GitLab:
+
+```bash
+gitlab-ctl reconfigure
+```

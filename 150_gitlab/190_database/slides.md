@@ -49,3 +49,37 @@ Migration to second database is [not ready for production yet](https://docs.gitl
 ```
 docker compose --project-name gitlab exec gitlab gitlab-psql
 ```
+
+---
+
+## Maintenance tasks
+
+Check status of database migrations [](https://docs.gitlab.com/administration/raketasks/maintenance/#display-status-of-database-migrations)
+
+```bash
+gitlab-rake db:migrate:status
+```
+
+Run incomplete database migrations [](https://docs.gitlab.com/administration/raketasks/maintenance/#run-incomplete-database-migrations)
+
+```bash
+gitlab-rake db:migrate
+```
+
+Rebuild indexes [](https://docs.gitlab.com/administration/raketasks/maintenance/#rebuild-database-indexes)
+
+```bash
+gitlab-rake gitlab:db:reindex
+```
+
+Check database for inconsistencies [](https://docs.gitlab.com/administration/raketasks/maintenance/#check-the-database-for-schema-inconsistencies)
+
+```bash
+gitlab-rake gitlab:db:schema_checker:run
+```
+
+Repair indexes [](https://docs.gitlab.com/administration/raketasks/maintenance/#repair-corrupted-database-indexes)
+
+```bash
+DRY_RUN=true gitlab-rake gitlab:db:repair_index
+```

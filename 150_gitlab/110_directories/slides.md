@@ -12,14 +12,6 @@
 
 GitLab uses a clean top level directory layout
 
-Explore:
-
-```bash
-docker compose --project-name gitlab exec gitlab bash
-```
-
-<!-- .element: style="width: 35em;" -->
-
 ### Configuration
 
 `/etc/gitlab`
