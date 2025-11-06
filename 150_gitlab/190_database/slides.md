@@ -54,6 +54,8 @@ docker compose --project-name gitlab exec gitlab gitlab-psql
 
 ## Maintenance tasks
 
+### Database migrations
+
 Check status of database migrations [](https://docs.gitlab.com/administration/raketasks/maintenance/#display-status-of-database-migrations)
 
 ```bash
@@ -65,6 +67,12 @@ Run incomplete database migrations [](https://docs.gitlab.com/administration/rak
 ```bash
 gitlab-rake db:migrate
 ```
+
+---
+
+## Maintenance tasks
+
+### Database housekeeping
 
 Rebuild indexes [](https://docs.gitlab.com/administration/raketasks/maintenance/#rebuild-database-indexes)
 

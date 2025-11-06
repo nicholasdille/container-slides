@@ -2,11 +2,13 @@
 
 <i class="fa-duotone fa-bucket fa-8x" style="float: right; color: grey;"></i>
 
-## Cache
+## Caches
 
 ---
 
-## Cache
+## Caches
+
+<i class="fa-duotone fa-bucket fa-4x" style="float: right;"></i>
 
 ### What are they?
 
@@ -21,6 +23,12 @@ Offered and configured by admin
 GitLab Runner uses S3 compatible storage to...
 - push cache
 - pull cache
+
+---
+
+## Cache Pitfalls
+
+<i class="fa-duotone fa-bucket fa-4x" style="float: right;"></i>
 
 ### How to use them efficiently?
 
