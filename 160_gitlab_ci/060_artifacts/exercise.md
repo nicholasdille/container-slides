@@ -40,7 +40,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - test
 
     default:
-      image: golang:1.24.3
+      image: golang:1.25.3
 
     lint:
       stage: check
@@ -93,7 +93,7 @@ Modify the job `test` to consume artifacts only from the job `build`.
     - test
 
     default:
-      image: golang:1.24.3
+      image: golang:1.25.3
 
     lint:
       stage: check
@@ -156,7 +156,7 @@ The following hint and solution are a working example.
     - test
 
     default:
-      image: golang:1.24.3
+      image: golang:1.25.3
 
     lint:
       stage: check

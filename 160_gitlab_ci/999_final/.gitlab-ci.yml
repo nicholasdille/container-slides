@@ -34,7 +34,7 @@ stages:
 - trigger
 
 default:
-  image: golang:1.24.3
+  image: golang:1.25.3
 
 services:
 - nginx:1.27.5
@@ -91,7 +91,7 @@ deploy:
   - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
   environment:
     name: ${CI_COMMIT_REF_NAME}
-  image: curlimages/curl:8.13.0
+  image: curlimages/curl:8.17.0
   script:
   - |
     curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
@@ -104,7 +104,7 @@ pages:
   stage: deploy
   extends:
   - .run-on-push-to-default-branch
-  image: registry.gitlab.com/gitlab-org/release-cli:v0.23.0
+  image: registry.gitlab.com/gitlab-org/release-cli:0.24.0
   release:
     tag_name: ${CI_PIPELINE_IID}
     name: Release ${CI_PIPELINE_IID}

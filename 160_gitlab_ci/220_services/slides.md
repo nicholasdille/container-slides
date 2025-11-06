@@ -51,7 +51,7 @@ job_name:
 
 ### Hands-On
 
-See chapter [Services](/hands-on/2025-05-14/220_services/exercise/)
+See chapter [Services](/hands-on/2025-11-18/220_services/exercise/)
 
 ---
 

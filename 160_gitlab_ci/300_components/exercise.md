@@ -45,7 +45,7 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
 1. Unhide the jobs `.build-go` and `.test-go`
 1. Use the input `build-stage` for the `stage` field in the `build-go` job
 1. Use the input `test-stage` for the `stage` field in the `test-go` job
-1. Add an `image` field to `build-go` and `test-go` with a value of `golang:1.24.3`
+1. Add an `image` field to `build-go` and `test-go` with a value of `golang:1.25.3`
 1. Remove `go.yaml`
 
 ??? info "Hint (Click if you are stuck)"
@@ -85,7 +85,7 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
     
     build-go:
       stage: $[[ inputs.build-stage ]]
-      image: golang:1.24.3
+      image: golang:1.25.3
       extends:
       - .go-targets
       - .go-cache
@@ -101,7 +101,7 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
     
     test-go:
       stage: $[[ inputs.test-stage ]]
-      image: golang:1.24.3
+      image: golang:1.25.3
       extends:
       - .go-targets
       before_script:
@@ -142,7 +142,7 @@ The component is now ready to be used:
 Customize the template to make the image configurable:
 
 1. Add an input called `image` to the component
-1. Set the default value of `image` to `golang:1.24.3`
+1. Set the default value of `image` to `golang:1.25.3`
 1. Use the input `image` for the `image` field in the `build-go` and `test-go` jobs
 1. (Optionally) Add a value for `image` to the include in `.gitlab-ci.yml`
 
@@ -160,7 +160,7 @@ Customize the template to make the image configurable:
         test-stage:
           default: test
         image:
-          default: golang:1.24.3
+          default: golang:1.25.3
     ---
     
     .go-targets:
@@ -220,7 +220,7 @@ Customize the template to make the image configurable:
       inputs:
         build-stage: build
         test-stage: test
-        image: golang:1.24.3
+        image: golang:1.25.3
     #...
     ```
 
@@ -247,7 +247,7 @@ Continue to customize the component by making the author name as well as the ver
         test-stage:
           default: test
         image:
-          default: golang:1.24.3
+          default: golang:1.25.3
         version:
           default: $CI_COMMIT_REF_NAME
         author:
@@ -311,7 +311,7 @@ Continue to customize the component by making the author name as well as the ver
       inputs:
         build-stage: build
         test-stage: test
-        image: golang:1.24.3
+        image: golang:1.25.3
         author: ${GITLAB_USER_NAME}
         version: ${CI_COMMIT_REF_NAME}
     #...
@@ -341,7 +341,7 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
         test-stage:
           default: test
         image:
-          default: golang:1.24.3
+          default: golang:1.25.3
         version:
           default: $CI_COMMIT_REF_NAME
         author:
@@ -405,7 +405,7 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
       inputs:
         build-stage: build
         test-stage: test
-        image: golang:1.24.3
+        image: golang:1.25.3
         author: ${GITLAB_USER_NAME}
         version: ${CI_COMMIT_REF_NAME}
     #...
@@ -436,7 +436,7 @@ The components has only used string inputs so far. To configure rules for the jo
         test-stage:
           default: test
         image:
-          default: golang:1.24.3
+          default: golang:1.25.3
         version:
           default: $CI_COMMIT_REF_NAME
         author:
@@ -505,7 +505,7 @@ The components has only used string inputs so far. To configure rules for the jo
       inputs:
         build-stage: build
         test-stage: test
-        image: golang:1.24.3
+        image: golang:1.25.3
         author: ${GITLAB_USER_NAME}
         version: ${CI_COMMIT_REF_NAME}
         rules:

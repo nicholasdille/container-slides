@@ -22,7 +22,7 @@ XXX Release assets canbe uploaded now
 
 [Container images](https://gitlab.com/gitlab-org/release-cli/container_registry) are publicly available
 
-`registry.gitlab.com/gitlab-org/release-cli:v0.23.0`
+`registry.gitlab.com/gitlab-org/release-cli:0.24.0`
 
 Runners using the shell executor must have `release-cli` installed
 
@@ -32,7 +32,7 @@ See [official documentation](https://docs.gitlab.com/ee/user/project/releases/re
 
 ## Hands-On
 
-See chapter [Releases](/hands-on/2025-05-14/250_releases/exercise/)
+See chapter [Releases](/hands-on/2025-11-18/250_releases/exercise/)
 
 ---
 

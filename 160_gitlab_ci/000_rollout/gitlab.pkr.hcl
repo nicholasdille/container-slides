@@ -8,12 +8,12 @@ packer {
 }
 
 locals {
-  gitlab_version = "17.11.1"
-  gitlab_runner_version = "17.11.1"
-  traefik_version = "3.3.7"
-  code_server_version = "4.99.4"
+  gitlab_version = "18.5.1"
+  gitlab_runner_version = "18.5.0"
+  traefik_version = "3.5.4"
+  code_server_version = "4.105.1"
   nginx_version = "1.27.5"
-  grafana_version = "11.6.1"
+  grafana_version = "12.2.1"
 }
 
 source "hcloud" "gitlab" {

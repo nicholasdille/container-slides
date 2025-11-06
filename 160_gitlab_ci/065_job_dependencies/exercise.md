@@ -22,7 +22,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - test
 
     default:
-      image: golang:1.24.3
+      image: golang:1.25.3
 
     lint:
       stage: check
@@ -73,7 +73,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - test
 
     default:
-      image: golang:1.24.3
+      image: golang:1.25.3
 
     lint:
       stage: check

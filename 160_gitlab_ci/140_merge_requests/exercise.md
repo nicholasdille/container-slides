@@ -52,7 +52,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
 
     default:
-      image: golang:1.24.3
+      image: golang:1.25.3
 
     lint:
       stage: check
@@ -110,7 +110,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_COMMIT_REF_NAME == "live"
       environment:
         name: ${CI_COMMIT_REF_NAME}
-      image: curlimages/curl:8.13.0
+      image: curlimages/curl:8.17.0
       script:
       - |
         curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
@@ -208,7 +208,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - trigger
 
     default:
-      image: golang:1.24.3
+      image: golang:1.25.3
 
     lint:
       stage: check
@@ -259,7 +259,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - .run-on-push-to-default-branch
       environment:
         name: ${CI_COMMIT_REF_NAME}
-      image: curlimages/curl:8.13.0
+      image: curlimages/curl:8.17.0
       script:
       - |
         curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \

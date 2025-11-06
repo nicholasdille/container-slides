@@ -9,7 +9,7 @@ services:
 
   # https://doc.traefik.io/traefik/
   traefik:
-    image: traefik:v3.3.7
+    image: traefik:v3.5.4
     command:
     - --log=true
     - --log.level=DEBUG
@@ -41,7 +41,7 @@ services:
 
   # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
-    image: gitlab/gitlab-ce:17.11.1-ce.0
+    image: gitlab/gitlab-ce:18.5.1-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
       GITLAB_OMNIBUS_CONFIG: |
