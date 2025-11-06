@@ -1,4 +1,4 @@
-date: 2025-05-14
+date: 2025-11-27
 metadata:
   author: Nicholas Dille, Haufe Group
   title: GitLab CI
@@ -92,17 +92,17 @@ summary:
   text: Useful security features even in free tier
 
 events:
-- date: "2024-11-27"
+- date: "2025-11-27"
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
   title: GitLab CI
   link: https://heise-academy.de/Workshops/cicd-gitlab
-- date: "2024-12-15"
+- date: "2025-12-15"
   name: DevOps Meetup Freiburg
-  homepage: https://clc-conference.eu/
+  homepage: https://www.meetup.com/de-DE/devops-freiburg/
   type: Talk
   title: kubectl like a pro
-  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html
+  link: ""
 
 post_slides: []

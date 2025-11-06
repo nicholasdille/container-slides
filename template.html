@@ -40,9 +40,11 @@
 
 <p><em>{{ (datasource "talk").metadata.author }}</em></p>
 
-<p><img src="{{ (datasource "talk").event.logo }}" style="{{ (datasource "talk").event.logo_style }}" /></p>
-
+{{ if (datasource "talk").event.logo }}
+<p><a href="{{ (datasource "talk").event.link }}"><img src="{{ (datasource "talk").event.logo }}" style="{{ (datasource "talk").event.logo_style }}" /></a></p>
+{{ else }}
 <p><a href="{{ (datasource "talk").event.link }}">{{ (datasource "talk").event.name }}</a></p>
+{{ end }}
 </section>
 
 {{- if has (datasource "talk") "pre_slides" }}
@@ -81,7 +83,7 @@
 <h3 id="events">Upcoming events</h3>
 <ul>
 {{- range (datasource "talk").events }}
-<li>{{ .date }} - <a href="{{ .link }}">{{ .title }}</a> @ <a href="{{ .homepage }}">{{ .name }}</a> ({{ .type }})</li>
+<li>{{ .date }} - {{ if .link }}<a href="{{ .link }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }} @ <a href="{{ .homepage }}">{{ .name }}</a> ({{ .type }})</li>
 {{- end }}
 </ul>
 </section>

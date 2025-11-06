@@ -1,11 +1,11 @@
-date: 2024-xx-yy
+date: 2025-12-15
 metadata:
   author: Nicholas Dille, Haufe Group
   title: kubectl
   title_slug: kubectl-like-a-pro
   subtitle: Like a Pro
   box:
-    width: 20%
+    width: 30%
     align: left
   favicon: images/favicons/kubernetes.ico
   background:
@@ -14,9 +14,9 @@ metadata:
     position: left 0% top 60%
 event:
   name: "DevOps Meetup Freiburg"
-  logo: images/logos/clc2025_white.svg
+  logo: ""
   logo_style: "height: 1.5em; margin-top: 0.5em;"
-  link: https://www.continuouslifecycle.de/
+  link: https://www.meetup.com/de-DE/devops-freiburg/
 custom_style: |
   .reveal p code {
       background-color: #505050;
@@ -52,21 +52,9 @@ summary:
   text: XXX
 
 events:
-- date: "2024-11-20"
-  name: ContainerConf
-  homepage: https://clc-conference.eu/
-  type: Talk
-  title: How much Shell Code is Enough
-  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html
-- date: "2024-11-27"
-  name: heise Academy
-  homepage: https://heise-academy.de/
-  type: Workshop
-  title: GitLab CI
-  link: https://heise-academy.de/Workshops/cicd-gitlab
-- date: "2024-12-15"
+- date: "2025-12-15"
   name: DevOps Meetup Freiburg
-  homepage: https://clc-conference.eu/
+  homepage: https://www.meetup.com/de-DE/devops-freiburg/
   type: Talk
   title: kubectl like a pro
-  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html
+  link: ""
