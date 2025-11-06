@@ -14,9 +14,9 @@ Pipelines are described in [YAML](https://yaml.org/)
 
 Pipelines are stored in `.gitlab-ci.yml`
 
---
+---
 
-## YAML (YAML Ain't Markup Language)
+## YAML Ain't Markup Language
 
 Human-readable data [serialization format](https://yaml.org/)
 
@@ -42,7 +42,7 @@ Human-readable data [serialization format](https://yaml.org/)
     subkey2: value2
   ```
 
---
+---
 
 ## YAML Example
 
@@ -74,9 +74,11 @@ projects:
     code: https://gitlab.com/uniget-org
 ```
 
+<!-- .element: style="height: 30em;" -->
+
 ---
 
-## YAML to JSON
+## YAML...
 
 ```yaml
 top:
@@ -87,6 +89,8 @@ top:
 - item3: value
   subitem1: value4
 ```
+
+### ...to JSON
 
 ```json
 {
@@ -102,12 +106,12 @@ top:
 
 ## Tools for YAML/JSON
 
-- JSON query [`jq`](https://github.com/jqlang/jq)
-- JSON viewer [`jless`](https://jless.io)
-- YAML query []`yq`](https://github.com/mikefarah/yq)
+- JSON query `jq` [](https://github.com/jqlang/jq)
+- JSON viewer `jless` [](https://jless.io)
+- YAML query `yq` [](https://github.com/mikefarah/yq)
 - Linter
-  - [`yamllint`](https://github.com/adrienverge/yamllint)
-  - Stoplight [Spectral](https://stoplight.io/spectral)
+  - `yamllint` [](https://github.com/adrienverge/yamllint)
+  - Stoplight `Spectral` [](https://stoplight.io/spectral)
 ---
 
 ## Jobs
@@ -169,7 +173,7 @@ Jobs represent isolated steps in a pipeline
 
 Jobs in the same stage are executed in parallel
 
-![](160_gitlab_ci/010_jobs_and_stages/jobs_and_stages.drawio.svg) <!-- .element: style="width: 60%;" -->
+![](160_gitlab_ci/010_jobs_and_stages/jobs_and_stages.drawio.svg) <!-- .element: style="width: 45%;" -->
 
 Special stages `.pre` and `.post`
 

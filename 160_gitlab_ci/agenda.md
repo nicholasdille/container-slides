@@ -42,8 +42,8 @@ Do you own a GitLab Enterprise License?
 
 ### Advanced
 
-[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_triggers) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs) - [Variable precedence](#/gitlab_var_precedence) - [Deprecations](#/gitlab_deprecations)
+[Environments](#/gitlab_environments) - [Trigger](#/gitlab_triggers) - [Child pipelines](#/gitlab_triggers) - [Templates](#/gitlab_templates) - [Rules](#/gitlab_rules) - [Merge requests](#/gitlab_merge_requests) - [Matrix Jobs](#/gitlab_matrix_jobs) - [Variable precedence](#/gitlab_var_precedence) - [Deprecations](#/gitlab_deprecations) - [Roles and Permissions](#/gitlab_permissions) - [Job token](#/gitlab_job_token) - [Git Submodules](#/gitlab_git_submodules)
 
 ### Expert
 
-[Roles and Permissions](#/gitlab_permissions) - [Job token](#/gitlab_job_token) - [Git Submodules](#/gitlab_git_submodules) - [Services](#/gitlab_services) - [docker build](#/gitlab_docker) - [Registries](#/gitlab_registries) - [Releases](#/gitlab_releases) - [Branch Protection](#/gitlab_branch_protection) - [Troubleshooting](#/gitlab_troubleshooting) - [Runners](#/gitlab_runners) - [Caches](#/gitlab_caches) - [RenovateBot](#/gitlab_renovate) - [Security](#/gitlab_security) - [CI/CD Components](#/gitlab_components) - [CI/CD Steps](#/gitlab_steps) - [Inputs](#/gitlab_ci_inputs) - [Secure Files](#/gitlab_secure_files)
+[Services](#/gitlab_services) - [docker build](#/gitlab_docker) - [Registries](#/gitlab_registries) - [Releases](#/gitlab_releases) - [Branch Protection](#/gitlab_branch_protection) - [Troubleshooting](#/gitlab_troubleshooting) - [Runners](#/gitlab_runners) - [Caches](#/gitlab_caches) - [RenovateBot](#/gitlab_renovate) - [Security](#/gitlab_security) - [CI/CD Components](#/gitlab_components) - [CI/CD Steps](#/gitlab_steps) - [Inputs](#/gitlab_ci_inputs) - [Secure Files](#/gitlab_secure_files) - [Pipeline Metrics](#/gitlab_ci_metrics) - [Artificial Intelligence](#/gitlab_ai)

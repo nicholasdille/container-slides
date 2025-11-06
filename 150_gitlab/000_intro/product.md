@@ -30,7 +30,7 @@ Continuous Delivery <span style="color: grey;">- Infrastructure as Code, Pages, 
 
 Observability <span style="color: grey;">- Incident Management, Metrics, Distributed Tracing, Logs</span>
 
-See full feature matrix [](https://about.gitlab.com/platform/)
+**See full feature matrix** [](https://about.gitlab.com/platform/)
 
 ---
 
