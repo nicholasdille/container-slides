@@ -55,9 +55,21 @@ summary:
   text: Until you loose control
 
 events:
-- date: "2025-11-27"
+- date: "2024-11-20"
+  name: ContainerConf
+  homepage: https://clc-conference.eu/
+  type: Talk
+  title: How much Shell Code is Enough
+  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html
+- date: "2024-11-27"
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
-  title: CI/CD with GitLab
-  link: https://heise-academy.de/schulungen/cicd-gitlab
+  title: GitLab CI
+  link: https://heise-academy.de/Workshops/cicd-gitlab
+- date: "2024-12-15"
+  name: DevOps Meetup Freiburg
+  homepage: https://clc-conference.eu/
+  type: Talk
+  title: kubectl like a pro
+  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html

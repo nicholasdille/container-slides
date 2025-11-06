@@ -91,6 +91,18 @@ summary:
 - icon: shield-check
   text: Useful security features even in free tier
 
-events: []
+events:
+- date: "2024-11-27"
+  name: heise Academy
+  homepage: https://heise-academy.de/
+  type: Workshop
+  title: GitLab CI
+  link: https://heise-academy.de/Workshops/cicd-gitlab
+- date: "2024-12-15"
+  name: DevOps Meetup Freiburg
+  homepage: https://clc-conference.eu/
+  type: Talk
+  title: kubectl like a pro
+  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html
 
 post_slides: []

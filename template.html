@@ -79,9 +79,11 @@
 </ul>
 
 <h3 id="events">Upcoming events</h3>
+<ul>
 {{- range (datasource "talk").events }}
-<p>{{ .date }} - <a href="{{ .homepage }}">{{ .name }}</a> {{ .type }} <a href="{{ .link }}">{{ .title }}</a></p>
+<li>{{ .date }} - <a href="{{ .link }}">{{ .title }}</a> @ <a href="{{ .homepage }}">{{ .name }}</a> ({{ .type }})</li>
 {{- end }}
+</ul>
 </section>
 
 {{- if has (datasource "talk") "post_slides" }}

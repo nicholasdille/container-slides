@@ -84,29 +84,35 @@ summary:
   text: Security issues are patched quickly
 
 events:
-- date: 2024-11-07
+- date: "2024-11-13"
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
   title: GitLab Ops
   link: https://heise-academy.de/Workshops/einfuehrung-in-gitlab
-- date: 2024-11-12
-  name: ContainerConf
-  homepage: https://containerconf.de/
+- date: "2024-11-18"
+  name: Continuous Lifecycle 
+  homepage: https://clc-conference.eu/
   type: Workshop
   title: GitLab CI
-  link: https://www.continuouslifecycle.de/veranstaltung-22480-0-ci-cd-mit-gitlab.html
-- date: 2024-11-13
+  link: https://clc-conference.eu/veranstaltung-83818-0-ci-cd-mit-gitlab.html
+- date: "2024-11-20"
   name: ContainerConf
-  homepage: https://containerconf.de/
+  homepage: https://clc-conference.eu/
   type: Talk
-  title: Kubernetes RBAC
-  link: https://www.continuouslifecycle.de/veranstaltung-22482-0-kubernetes-rbac--tricks-und-fallstricke.html
-- date: 2024-11-21
+  title: How much Shell Code is Enough
+  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html
+- date: "2024-11-27"
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
   title: GitLab CI
   link: https://heise-academy.de/Workshops/cicd-gitlab
+- date: "2024-12-15"
+  name: DevOps Meetup Freiburg
+  homepage: https://clc-conference.eu/
+  type: Talk
+  title: kubectl like a pro
+  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html
 
 post_slides: []
