@@ -31,7 +31,7 @@ Can be [disabled per project](https://docs.gitlab.com/ee/user/packages/container
 
 ## Authentication
 
-GitLab provides predefined variables [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_variables) for accessing the registry
+GitLab provides predefined variables [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_variables) for accessing the registry
 
 CI jobs receive environment variables:
 

@@ -26,7 +26,7 @@ Expire artifacts
 
 Add untracked files
 
-`artifacts` can be in `default` [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_default)
+`artifacts` can be in `default` [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_default)
 
 ---
 

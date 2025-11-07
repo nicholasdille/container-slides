@@ -173,7 +173,7 @@ job_name:
   - !reference[.template2, script]
 ```
 
-CI/CD Components are a proper solution in a later chapter [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
+CI/CD Components are a proper solution in a later chapter [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
 
 ---
 

@@ -25,7 +25,7 @@ job:
         message: "hello, ${{ job.MESSAGE }}"
 ```
 
-Steps can be combined with CI/CD Components [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
+Steps can be combined with CI/CD Components [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
 
 GitLab <17.11 requires [`step-runner`](https://gitlab.com/gitlab-org/step-runner) binary
 

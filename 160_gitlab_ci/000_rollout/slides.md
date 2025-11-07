@@ -20,4 +20,4 @@ Containerized service stack for this workshop
 
 Meet your demo environment by following the [introduction](/hands-on/2025-11-18/)
 
-More about GitLab Runner [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
+More about GitLab Runner [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)

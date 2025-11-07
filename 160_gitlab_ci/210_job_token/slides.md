@@ -13,7 +13,7 @@ Every job has a dedicated [job token](https://docs.gitlab.com/ee/ci/jobs/ci_job_
 Job tokens can be used to authenticate:
 
 - Access the [package registry](https://docs.gitlab.com/ee/user/packages/package_registry/index.html#use-gitlab-cicd-to-build-packages)
-- Access the container registry (see later [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_registries))
+- Access the container registry (see later [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_registries))
 - Download [job artifacts](https://docs.gitlab.com/ee/api/job_artifacts.html#get-job-artifacts)
 - Get details of corresponding job through the [Job API](https://docs.gitlab.com/ee/api/jobs.html#get-job-tokens-job)
 - Access job artifacts

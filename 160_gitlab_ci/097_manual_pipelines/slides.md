@@ -24,7 +24,7 @@ Global variables can have...
 
 ### See also
 
-Pipeline inputs in a later chapter [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_ci_inputs)
+Pipeline inputs in a later chapter [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_ci_inputs)
 
 ---
 

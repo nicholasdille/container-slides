@@ -30,7 +30,7 @@ Unable to solve supply chain security **recursively**
 
 ## Renovate
 
-Automated [updates of dependencies](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) [<i class="fa-brands fa-github"></i>](https://github.com/renovatebot/renovate) [<i class="fa-solid fa-book"></i>](https://docs.renovatebot.com/)
+Automated [updates of dependencies](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) [<i class="fa-brands fa-github"></i>](https://github.com/renovatebot/renovate) [<i class="fa fa-solid fa-book"></i>](https://docs.renovatebot.com/)
 
 Support for numerous languages and package managers
 
@@ -78,7 +78,7 @@ Start with specific dependencies...
 
 ## Pro tip 2: Avoid forward triggers
 
-GitLab only supports forward triggers [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_triggers)
+GitLab only supports forward triggers [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_triggers)
 
 Hard to manage dependencies
 

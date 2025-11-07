@@ -73,7 +73,7 @@ curl --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
 
 ## Pro tip 2: Link asset to GitLab Pages
 
-Upload binary to GitLab Pages [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) and add link to release:
+Upload binary to GitLab Pages [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) and add link to release:
 
 ```yaml
 job_name:

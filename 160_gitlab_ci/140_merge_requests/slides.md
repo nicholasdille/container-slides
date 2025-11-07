@@ -17,7 +17,7 @@ Commits to a branch with a merge request cause multiple events:
 1. Push event to branch -> **branch pipeline** <i class="fa-duotone fa-solid fa-code-branch"></i>
 1. Merge request event -> **merge request pipeline** <i class="fa-duotone fa-solid fa-code-pull-request"></i>
 
-Use rules [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) to decide which jobs to run when
+Use rules [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) to decide which jobs to run when
 
 GitLab offers `$CI_PIPELINE_SOURCE` with event name
 

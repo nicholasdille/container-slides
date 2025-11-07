@@ -34,7 +34,7 @@ Automatic pipeline cleanup removes old pipelines (disabled by default)
 
 More useful settings
 
-### Runners [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
+### Runners [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
 
 Connect specific runners
 
@@ -54,11 +54,11 @@ Artifacts are maintained for branches separately
 
 ### Variables
 
-Covered in chapter about variables [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_variables)
+Covered in chapter about variables [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_variables)
 
 ### Pipeline trigger tokens
 
-Will be covered in a later chapter about triggers [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_triggers)
+Will be covered in a later chapter about triggers [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_triggers)
 
 ### Deploy freezes
 
@@ -74,11 +74,11 @@ Job scripts must implement freeze
 
 ### Job token permissions
 
-Will be covered in a later chapter about the job token [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_job_token)
+Will be covered in a later chapter about the job token [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_job_token)
 
 ### Secure files
 
-Will be covered in a later chapter about secure files [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_secure_files)
+Will be covered in a later chapter about secure files [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_secure_files)
 
 ---
 

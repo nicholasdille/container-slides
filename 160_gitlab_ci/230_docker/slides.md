@@ -8,7 +8,7 @@
 
 ## Docker build
 
-Building container image uses services [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_services)
+Building container image uses services [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_services)
 
 Use `docker:dind` for containerized Docker daemon
 
