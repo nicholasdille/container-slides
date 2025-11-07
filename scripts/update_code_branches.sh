@@ -37,11 +37,13 @@ CODE_BRANCHES="$(
 if test "$#" -gt 0; then
     TEMP_DIR=$1
 fi
-if test -z TEMP_DIR; then
+if test -z "${TEMP_DIR}"; then
+    echo "Setting TEMP_DIR"
     TEMP_DIR="$(mktemp -d)"
     trap 'rm -rf "$TEMP_DIR"' EXIT
-    git clone https://github.com/nicholasdille/container-slides "${TEMP_DIR}"
 fi
+echo "Using TEMP_DIR=${TEMP_DIR}"
+git clone https://github.com/nicholasdille/container-slides "${TEMP_DIR}"
 
 for CODE_BRANCH in ${CODE_BRANCHES}; do
     clear
@@ -52,16 +54,19 @@ for CODE_BRANCH in ${CODE_BRANCHES}; do
     git -C "${TEMP_DIR}" switch -q "${CODE_BRANCH}"
     git -C "${TEMP_DIR}" reset -q --hard "origin/${CODE_BRANCH}"
 
-    if test -f .gitlab-ci.yml; then
-        sed -i -E "s|golang:[0-9]+\.[0-9]+\.[0-9]+|golang:${GOLANG_VERSION}|" .gitlab-ci.yml
-        sed -i -E "s|curlimages/curl:[0-9]+\.[0-9]+\.[0-9]|curlimages/curl:${CURL_VERSION}|" .gitlab-ci.yml
-        sed -i -E "s|nginx:[0-9]+\.[0-9]+\.[0-9]|nginx:${NGINX_VERSION}|" .gitlab-ci.yml
-        sed -i -E "s|docker:[0-9]+\.[0-9]+\.[0-9]+|docker:${DOCKER_VERSION}|" .gitlab-ci.yml
-        sed -i -E "s|registry.gitlab.com/gitlab-org/release-cli:v[0-9]+\.[0-9]+\.[0-9]+|registry.gitlab.com/gitlab-org/release-cli:v${RELEASE_CLI_VERSION}|" .gitlab-ci.yml
-    fi
+    for FILE in ${TEMP_DIR}/.gitlab-ci.yml ${TEMP_DIR}/Dockerfile; do
+        if test -f "${FILE}"; then
+            echo "Updating file: ${FILE}"
+            sed -i -E "s|golang:[0-9]+\.[0-9]+\.[0-9]+|golang:${GOLANG_VERSION}|" "${FILE}"
+            sed -i -E "s|curlimages/curl:[0-9]+\.[0-9]+\.[0-9]|curlimages/curl:${CURL_VERSION}|" "${FILE}"
+            sed -i -E "s|nginx:[0-9]+\.[0-9]+\.[0-9]|nginx:${NGINX_VERSION}|" "${FILE}"
+            sed -i -E "s|docker:[0-9]+\.[0-9]+\.[0-9]+|docker:${DOCKER_VERSION}|" "${FILE}"
+            sed -i -E "s|registry.gitlab.com/gitlab-org/release-cli:v[0-9]+\.[0-9]+\.[0-9]+|registry.gitlab.com/gitlab-org/release-cli:v${RELEASE_CLI_VERSION}|" "${FILE}"
+        fi
+    done
 
-    if test -n "$(git status --porcelain)"; then
-        git diff | cat
+    if test -n "$(git -C "${TEMP_DIR}" status --porcelain)"; then
+        git -C "${TEMP_DIR}" diff | cat
         read -n 1 -p "Press any key to continue..."
 
         git -C "${TEMP_DIR}" add --all
