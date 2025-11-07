@@ -28,4 +28,4 @@ Separate buckets for...
 
 Artifacts, Git LFS, Packages, Terraform state, Pages
 
-...and more <i class="fa-solid fa-face-smile-wink"></i>
+...and more <i class="fa fa-solid fa-face-smile-wink"></i>

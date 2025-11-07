@@ -36,13 +36,13 @@ Migration to second database is [not ready for production yet](https://docs.gitl
 
 | Table        | Contents                                                                         |
 |--------------|----------------------------------------------------------------------------------|
-| users        | Users [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_users)       |
-| namespaces   | Groups [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_projects)   |
-| projects     | Projects [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_projects) |
+| users        | Users [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_users)       |
+| namespaces   | Groups [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_projects)   |
+| projects     | Projects [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_projects) |
 | ci_builds    | CI Jobs                                                                          |
 | ci_pipelines | CI Pipelines                                                                     |
 | ci_stages    | CI Stages                                                                        |
-| ci_runners   | CI Runners [<i class="fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runner) |
+| ci_runners   | CI Runners [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runner) |
 
 ### Enter database
 

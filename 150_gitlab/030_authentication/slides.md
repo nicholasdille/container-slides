@@ -87,7 +87,7 @@ User can pull but not push
 
 ## Caveats 2/2
 
-Deploy keys belong to a user who can be blocked <i class="fa-solid fa-face-scream"></i> [gitlab-org/gitlab#35779](https://gitlab.com/gitlab-org/gitlab/-/issues/35779)
+Deploy keys belong to a user who can be blocked <i class="fa fa-solid fa-face-scream"></i> [gitlab-org/gitlab#35779](https://gitlab.com/gitlab-org/gitlab/-/issues/35779)
 
 Find and fix deploy keys [using Ruby code in rails console](https://docs.gitlab.com/ee/user/project/deploy_keys/#identify-deploy-keys-associated-with-non-member-and-blocked-users)
 
