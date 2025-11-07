@@ -26,7 +26,7 @@ Host docker-hcloud hcloud ${HC_VM_IP}
     UserKnownHostsFile /dev/null
 EOF
 ```
-<!-- .element: style="width: 40em; float: right; font-size: 0.5em;" -->
+<!-- .element: style="width: 40em; height: 31em; float: right; font-size: 0.5em;" -->
 
 ## Shell Code
 
@@ -58,7 +58,7 @@ test:
   image: golang
   script: go test ./...
 ```
-<!-- .element: style="width: 30em; float: right;" -->
+<!-- .element: style="width: 30em; height: 19em; float: right;" -->
 
 ## Also Shell Code
 
@@ -104,7 +104,7 @@ Repeatable and reproducible
 
 ## Advantages
 
-<i fa-solid fa-thumbs-up fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-thumbs-up fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Always available
 
@@ -120,7 +120,7 @@ Script collection
 
 ## Disadvantages
 
-<i fa-solid fa-thumbs-down fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-thumbs-down fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Readability
 

@@ -1,4 +1,4 @@
-<i fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
@@ -20,7 +20,7 @@ Use `errexit` in addition to error handling
 
 ---
 
-<i fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
@@ -36,7 +36,7 @@ Be careful - this rarely makes sense!
 
 ---
 
-<i fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
@@ -54,7 +54,7 @@ fi
 
 ---
 
-<i fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
@@ -78,7 +78,7 @@ fi
 
 ---
 
-<i fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 
@@ -97,7 +97,7 @@ Prevents typos
 
 ---
 
-<i fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
 

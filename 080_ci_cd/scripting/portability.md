@@ -1,4 +1,4 @@
-<i fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
@@ -16,11 +16,11 @@ test -z "$var" && echo "empty"
 grep --extended-regexp --quiet '^foo\s' <<< "$var" && echo "starts with foo"
 ```
 
-Rule of thumb: If it makes your life easier, it will not be portable <i fa-face-rolling-eyes"></i>
+Rule of thumb: If it makes your life easier, it will not be portable <i class="fa fa-face-rolling-eyes"></i>
 
 ---
 
-<i fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
@@ -46,7 +46,7 @@ Also: Security issues from outdated tools
 
 ---
 
-<i fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
@@ -69,7 +69,7 @@ yum install zlib-ng
 
 ---
 
-<i fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
@@ -89,7 +89,7 @@ For example, network configuration files:
 
 ---
 
-<i fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
 
@@ -106,4 +106,4 @@ cat file | grep --quiet "pattern"
 cat file | grep -q "pattern"
 ```
 
-Size sacrifices readability <i fa-face-rolling-eyes"></i>
+Size sacrifices readability <i class="fa fa-face-rolling-eyes"></i>

@@ -1,6 +1,6 @@
 <!-- .slide: data-visibility="hidden" -->
 
-<i fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Performance
 
@@ -10,7 +10,7 @@ XXX
 
 ---
 
-<i fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Performance
 
@@ -24,7 +24,7 @@ Editing breaks execution
 
 ---
 
-<i fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Performance
 
@@ -48,7 +48,7 @@ jq --raw-output \
 
 ---
 
-<i fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Performance
 
@@ -65,11 +65,11 @@ mapfile -t value_array < <(
 )
 ```
 
-Avoiding repetition sacrifices readability <i fa-face-rolling-eyes"></i>
+Avoiding repetition sacrifices readability <i class="fa fa-face-rolling-eyes"></i>
 
 ---
 
-<i fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Performance
 
