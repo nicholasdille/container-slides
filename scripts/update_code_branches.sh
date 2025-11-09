@@ -23,7 +23,7 @@ if test -z "$DOCKER_VERSION"; then
     echo "Please set DOCKER_VERSION in the .env file"
     exit 1
 fi
-if test -z "$RELEASE_CLI_VERSION"; then
+if test -z "$GITLAB_CLI_VERSION"; then
     echo "Please set RELEASE_CLI_VERSION in the .env file"
     exit 1
 fi
@@ -61,7 +61,8 @@ for CODE_BRANCH in ${CODE_BRANCHES}; do
             sed -i -E "s|curlimages/curl:[0-9]+\.[0-9]+\.[0-9]|curlimages/curl:${CURL_VERSION}|" "${FILE}"
             sed -i -E "s|nginx:[0-9]+\.[0-9]+\.[0-9]|nginx:${NGINX_VERSION}|" "${FILE}"
             sed -i -E "s|docker:[0-9]+\.[0-9]+\.[0-9]+|docker:${DOCKER_VERSION}|" "${FILE}"
-            sed -i -E "s|registry.gitlab.com/gitlab-org/release-cli:v[0-9]+\.[0-9]+\.[0-9]+|registry.gitlab.com/gitlab-org/release-cli:v${RELEASE_CLI_VERSION}|" "${FILE}"
+            sed -i -E "s|registry.gitlab.com/gitlab-org/cli:v[0-9]+\.[0-9]+\.[0-9]+|registry.gitlab.com/gitlab-org/cli:v${GITLAB_CLI_VERSION}|" "${FILE}"
+            sed -i -E "s|registry.gitlab.com/gitlab-org/release-cli:v[0-9]+\.[0-9]+\.[0-9]+|registry.gitlab.com/gitlab-org/cli:v${GITLAB_CLI_VERSION}|" "${FILE}"
         fi
     done
 

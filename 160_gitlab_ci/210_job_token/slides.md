@@ -43,6 +43,8 @@ Allowlist of projects to [allow access from](https://docs.gitlab.com/ee/ci/jobs/
 
 Defines incoming access
 
+Configure fine-grained permissions [](https://docs.gitlab.com/ci/jobs/fine_grained_permissions/)
+
 ---
 
 ## Pro tip: Clone across projects

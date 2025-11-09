@@ -27,7 +27,9 @@ job:
 
 Steps can be combined with CI/CD Components [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
 
-GitLab <17.11 requires [`step-runner`](https://gitlab.com/gitlab-org/step-runner) binary
+GitLab Runner <17.11 requires [`step-runner`](https://gitlab.com/gitlab-org/step-runner) binary
+
+GitLab Runner >= 17.11 injects `step-runner`
 
 Steps can also be used to [run existing GitHub Actions](https://docs.gitlab.com/ee/ci/steps/#run-a-github-action)
 

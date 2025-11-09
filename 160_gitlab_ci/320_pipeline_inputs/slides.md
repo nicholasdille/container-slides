@@ -12,7 +12,7 @@
 
 Supercedes variable-based forms for [manual pipelines](#/gitlab_ci_manual)
 
-GA since GitLan 17.0 (May 2024)
+GA since GitLab 17.0 (May 2024)
 
 Pipeline is expressed with...
 - New header for supported [inputs](https://docs.gitlab.com/ci/inputs/) (see below)

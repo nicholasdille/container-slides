@@ -14,19 +14,21 @@ Pipeline jobs can create [releases](https://docs.gitlab.com/ee/user/project/rele
 
 Release assets can be linked but must be stored elsewhere
 
-XXX Release assets canbe uploaded now
+XXX Release assets can be uploaded now
 
-### `release-cli` required
+### GitLab CLI `glab` required
 
-[`release-cli`](https://gitlab.com/gitlab-org/release-cli) must be available
+[`glab`](https://gitlab.com/gitlab-org/cli/) must be available
 
-[Container images](https://gitlab.com/gitlab-org/release-cli/container_registry) are publicly available
+[Container images](https://gitlab.com/gitlab-org/cli/container_registry) are publicly available
 
-`registry.gitlab.com/gitlab-org/release-cli:0.24.0`
+`registry.gitlab.com/gitlab-org/cli:v1.76.2`
 
-Runners using the shell executor must have `release-cli` installed
+Runners using the shell executor must have `glab` installed
 
-See [official documentation](https://docs.gitlab.com/ee/user/project/releases/release_cli.html)
+See [official documentation](https://docs.gitlab.com/user/project/releases/release_cli/)
+
+*Previously, `release-cli` was required*
 
 ---
 
@@ -88,3 +90,18 @@ job_name:
 ```
 
 GitLab Pages is publicly accessible unless [access control](https://docs.gitlab.com/user/project/pages/pages_access_control/) is enabled
+
+---
+
+## Pro tip 3: Permalink to latest release
+
+XXX https://docs.gitlab.com/user/project/releases/#permanent-link-to-latest-release
+
+`https://gitlab.inmylab.de/seatN/demo/-/releases/permalink/latest`
+
+---
+
+## Pro tip 4: Artifact provenance
+
+XXX https://docs.gitlab.com/ci/runners/configure_runners/#artifact-provenance-metadata
+

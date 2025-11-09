@@ -74,11 +74,4 @@ Build your own AI agents...
 
 Standardized by [MCP](https://modelcontextprotocol.io)
 
-List of [MCP servers](https://github.com/modelcontextprotocol/servers)
-
-Examples for GitLab (random order):
-
-- [gitlab-mcp-server](https://github.com/LuisCusihuaman/gitlab-mcp-server)
-- [aio-mcp](https://github.com/athapong/aio-mcp)
-- [mcp-gitlab-server](https://github.com/yoda-digital/mcp-gitlab-server)
-- [gitlab-mcp](https://github.com/zereight/gitlab-mcp)
+Official MCP server for GitLab [](https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/)

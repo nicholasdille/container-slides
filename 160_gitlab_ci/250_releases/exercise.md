@@ -4,7 +4,7 @@
     Learn how to...
 
     - create a release on GitLab
-    - use the GitLab `release-cli`
+    - use the GitLab CLI called `glab`
 
 ## Task: Create a release
 
@@ -16,9 +16,9 @@ GitLab can create [releases](https://docs.gitlab.com/ee/user/project/releases/in
 1. Use the unique pipeline ID (`$CI_PIPELINE_IID`) as the tag name
 1. Set an arbitrary name and description
 
-For the `release` keyword to work, the `release-cli` binary must be present in the execution environment of the job:
+For the `release` keyword to work, the `glab` binary must be present in the execution environment of the job:
 
-1. Set `image` to `registry.gitlab.com/gitlab-org/release-cli:0.24.0`
+1. Set `image` to `registry.gitlab.com/gitlab-org/cli:v1.76.2`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -132,7 +132,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       extends:
       - .run-on-push-to-default-branch
-      image: registry.gitlab.com/gitlab-org/release-cli:0.24.0
+      image: registry.gitlab.com/gitlab-org/cli:v1.76.2
       release:
         tag_name: ${CI_PIPELINE_IID}
         name: Release ${CI_PIPELINE_IID}
