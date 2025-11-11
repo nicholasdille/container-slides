@@ -12,6 +12,6 @@ curl --silent --show-error --location --fail \
     cloud-provider-kind
 EOF
 
-FROM docker:28.0.0-cli
+FROM docker:28.3.2-cli
 COPY --from=cpk /usr/local/bin/cloud-provider-kind /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/cloud-provider-kind"]
