@@ -40,7 +40,7 @@ docker run -d --name gitlab \
     --mount type=bind,src=/var/log/gitlab,dst=/var/log/gitlab \
     --mount type=bind,src=/var/opt/gitlab,dst=/var/opt/gitlab \
     --publish 80:80 \
-    gitlab/gitlab-ee:18.5.0-ee.0
+    gitlab/gitlab-ee:18.4.2-ee.0
 ```
 
 Wait for container to finish starting:
@@ -63,17 +63,17 @@ done
 According to official documentation [](https://docs.gitlab.com/install/package/ubuntu/)
 
 ``` bash
-# prepare
-apt-get update
-apt-get install -y curl vim-tiny
 # add package repository
 curl "https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh" \
 | bash
+
 # patch location of keyring
 sed -i -e 's|/usr/share/keyrings/|/etc/apt/keyrings/|g' /etc/apt/sources.list.d/gitlab_gitlab-ee.list
+
 # install GitLab
 apt-get update
-apt-get install -y gitlab-ee=18.5.0-ee.0
+apt-get install -y gitlab-ee=18.4.2-ee.0
+
 # configure and start GitLab
 gitlab-ctl reconfigure
 ```

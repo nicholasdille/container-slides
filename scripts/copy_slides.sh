@@ -3,7 +3,7 @@ set -o errexit
 
 extract_links() {
     cat | while read LINE; do
-        echo ${LINE} | grep -E "!\[.*\]\(.+\)" | sed -r 's/^.*!\[.*\]\((.+)\).*$/\1/'
+        echo ${LINE} | grep -E "!\[.*\]\([^)]+\)" | sed -r 's/^.*!\[.*\]\(([^)]+)\).*$/\1/'
         echo ${LINE} | grep "<img " | sed -r 's/^.*img.+src="([^"]+)".+$/\1/'
     done
 }
