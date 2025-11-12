@@ -44,7 +44,7 @@ if ! type xmlstarlet; then
     apt -y install xmlstarlet
 fi
 
-make || true
+#make || true
 
 echo "${FILE}" | copy_to_target
 
@@ -56,6 +56,11 @@ sed -E -i "s|node_modules/reveal.js/|https://cdn.dille.name/reveal.js@${REVEALJS
 sed -E -i "s|node_modules/@fontsource/source-sans-3/|https://cdn.dille.name/source-sans-3@${SOURCE_SANS_VERSION}/|" "${TARGET}/${FILE}"
 sed -E -i "s|node_modules/highlight.js/|https://cdn.dille.name/highlight.js@${HIGHLIGHTJS_VERSION}/|" "${TARGET}/${FILE}"
 sed -E -i "s|node_modules/@fortawesome/fontawesome-pro/|https://cdn.dille.name/fontawesome-pro@${FONTAWESOME_VERSION}/|" "${TARGET}/${FILE}"
+
+sed -E -i "s|\.\./node_modules/@fortawesome/fontawesome-pro/webfonts|https://cdn.dille.name/fontawesome-pro@${FONTAWESOME_VERSION}/webfonts|" "themes/fontawesome.scss"
+make themes/fontawesome.css
+git checkout themes/fontawesome.scss
+echo "themes/fontawesome.css" | copy_to_target
 
 xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:textarea" -v . "${TARGET}/${FILE}" \
 | extract_links \
