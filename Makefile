@@ -67,12 +67,12 @@ serve: themes/fontawesome.css
 themes/fontawesome.css:%.css: %.scss
 	@$(SASS) $*.scss $*.css
 
-$(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs -I{} basename {} .html)):%.pdf: %.html themes/fontawesome.css
-	@docker compose run decktape --size=1920x1080 --load-pause=5000 --pause=1000 "http://web/$*.html" $*.pdf
-	@docker compose down --remove-orphans
-
 $(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.md -printf '%P\n' | xargs -I{} basename {} .md)):%.pdf: %.md
 	@docker compose run md2pdf $*.md $*.pdf
+	@docker compose down --remove-orphans
+
+$(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs -I{} basename {} .html)):%.pdf: %.html themes/fontawesome.css
+	@docker compose run decktape --size=1920x1080 --load-pause=5000 --pause=1000 "http://web/$*.html" $*.pdf
 	@docker compose down --remove-orphans
 
 # pipx install mkdocs \
