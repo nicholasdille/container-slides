@@ -1,0 +1,11 @@
+# https://docs.docker.com/compose/compose-file
+
+services:
+
+  gitlab:
+    image: gitlab/gitlab-ee:18.4.2-ee.0
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/gitlab:/etc/gitlab
+    - /var/log/gitlab:/var/log/gitlab
+    - /var/opt/gitlab:/var/opt/gitlab

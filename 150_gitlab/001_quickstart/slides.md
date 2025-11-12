@@ -35,11 +35,11 @@ Get GitLab quickly up and running in less than 5 minutes
 Start local GitLab instance using Docker:
 
 ```bash
-docker run -d --name gitlab \
-    --mount type=bind,src=/etc/gitlab,dst=/etc/gitlab \
-    --mount type=bind,src=/var/log/gitlab,dst=/var/log/gitlab \
-    --mount type=bind,src=/var/opt/gitlab,dst=/var/opt/gitlab \
-    --publish 80:80 \
+docker run -d --name=gitlab \
+    --volume=/etc/gitlab:/etc/gitlab \
+    --volume=/var/log/gitlab:/var/log/gitlab \
+    --volume=/var/opt/gitlab:/var/opt/gitlab \
+    --publish=80:80 \
     gitlab/gitlab-ee:18.4.2-ee.0
 ```
 

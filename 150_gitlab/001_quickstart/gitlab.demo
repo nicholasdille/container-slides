@@ -1,12 +1,12 @@
 # Quickstart
 
 # Start GitLab
-docker run -d --name gitlab \
-    --volume gitlab_config:/etc/gitlab \
-    --volume gitlab_logs:/var/log/gitlab \
-    --volume gitlab_data:/var/opt/gitlab \
-    --publish 80:80 \
-    gitlab/gitlab-ee:17.5.1-ee.0
+docker run -d --name=gitlab \
+    --volume=/etc/gitlab:/etc/gitlab \
+    --volume=/var/log/gitlab:/var/log/gitlab \
+    --volume=/var/opt/gitlab:/var/opt/gitlab \
+    --publish=80:80 \
+    gitlab/gitlab-ee:18.4.2-ee.0
 
 # Wait for container to finish starting
 while docker container inspect gitlab \
@@ -16,6 +16,6 @@ while docker container inspect gitlab \
 done
 
 # Retrieve initial root password
-docker exec -it gitlab cat /etc/gitlab/initial_root_password \
+cat /etc/gitlab/initial_root_password \
 | grep ^Password \
 | cut -d' ' -f2
