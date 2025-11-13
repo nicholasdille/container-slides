@@ -82,6 +82,8 @@ For example: repository, issues etc.
 
 *Guest* for viewing
 
+*Planner* for planning
+
 *Reporter* for issues
 
 *Developer* for coding

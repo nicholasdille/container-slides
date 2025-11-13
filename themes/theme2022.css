@@ -41,6 +41,10 @@
     margin-bottom: 1.5em;
 }
 
+.reveal ul {
+    margin-bottom: 0.5em;
+}
+
 .reveal ul.fa-ul {
     list-style-type: none;
     line-height: 200%;
@@ -55,13 +59,18 @@
 }
 
 .reveal a:empty::before {
+    /*
     position: absolute;
     margin-left: 0.25em;
     font: var(--fa-font-duotone);
     content: '\f08e';
     color: var(--fa-primary-color);
+    */
+    font: var(--fa-font-solid);
+    content: '\f08e';
 }
 
+/*
 .reveal a:empty::after {
     position: absolute;
     margin-left: 0.25em;
@@ -69,3 +78,4 @@
     content: '\f08e\f08e';
     color: var(--fa-secondary-color);
 }
+*/

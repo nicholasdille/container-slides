@@ -23,7 +23,7 @@ pre_slides:
 
 agenda:
 - icon: rocket
-  text: Quickstart using Docker
+  text: Quickstart
 - icon: globe
   text: Configure through the web UI
 - icon: stars

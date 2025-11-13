@@ -22,7 +22,7 @@ Host system remains untouched
 
 Well-known handling of services
 
-XXX
+Dependencies are harder to manager
 
 ---
 

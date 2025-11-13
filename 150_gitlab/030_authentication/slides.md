@@ -42,9 +42,9 @@ Permissions inherited from user
 
 ### Scoped to group
 
-Read-only [Group Deploy Tokens](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
-
 Configurable [Group Access Tokens](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html)
+
+Read-only [Group Deploy Tokens](https://docs.gitlab.com/ee/user/project/deploy_tokens/)
 
 ### Scoped to project
 
@@ -115,7 +115,7 @@ end
 
 ## Comparison
 
-| | Password | Personal Access Token | Personal SSH Key | Group Access Token | Group Deploy Token | Project Access Token | Project Deploy Token | Project SSH Key |
+| | Password | Personal Access Token | Personal SSH Key | Group Access Token | Group Deploy Token | Project Access Token | Project Deploy Token | Project Deploy Key (SSH) |
 |-|-|-|-|-|-|-|-|-|
 | Access to Web UI            | Yes          | No      | No       | No          | No          | No      | No      | No          |
 | Access to API               | Indirect (1) | Yes     | No       | Yes (2)     | No          | Yes (3) | No      | No          |
@@ -128,7 +128,7 @@ end
 | Impact of security incident | High         | High    | High     | Medium      | Medium      | Low     | Low     | Medium      |
 | Recommendation              | No           | No      | No       | Limited (6) | Limited (6) | Yes     | Yes     | Limited (6) |
 
-<!-- .element: style="font-size: large;" -->
+<!-- .element: style="font-size: 0.4em;" -->
 
 - (1) Username and password can be used to retrieve a personal access token
 - (2) Group only

@@ -47,7 +47,7 @@
 <i class="fa-duotone fa-4x fa-list-check" style="float: right;"></i>
 
 <ul id="bullets" class="fa-ul" style="line-height: 1.5em; font-size: larger; margin-top: 0.5em;">
-<li><i class="fa-duotone fa-li fa-rocket"></i> Quickstart using Docker</li>
+<li><i class="fa-duotone fa-li fa-rocket"></i> Quickstart</li>
 <li><i class="fa-duotone fa-li fa-globe"></i> Configure through the web UI</li>
 <li><i class="fa-duotone fa-li fa-stars"></i> Proper deployment</li>
 <li><i class="fa-duotone fa-li fa-file-code"></i> Configure through the config file</li>
@@ -119,8 +119,6 @@
 <script src="node_modules/reveal.js/dist/reveal.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/markdown/markdown.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/highlight/highlight.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/search/search.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
     Reveal.initialize({
@@ -136,7 +134,7 @@
         slideNumber: false,
         keyboard: true,
         touch: false,
-        mouseWheel: false,
+        mouseWheel: true,
 
         hash: true,
         history: false,
@@ -161,8 +159,6 @@
         plugins: [
             RevealMarkdown,
             RevealHighlight,
-            RevealSearch,
-            RevealZoom,
             RevealNotes
         ]
     });

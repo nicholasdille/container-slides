@@ -24,6 +24,8 @@ Management UI based on [Keycloak](https://www.keycloak.org/)
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 ## Hands-On: Deployment
 
 <i class="fa-duotone fa-book fa-4x" style="float: right;"></i>
@@ -48,6 +50,8 @@ docker compose --project-name gitlab \
 ```
 
 ---
+
+<!-- .slide: data-visibility="hidden" -->
 
 ## Hands-On: Configuration in Keycloak
 
@@ -83,4 +87,47 @@ gitlab_rails['omniauth_providers'] = [{
     attribute_statements: { name: ['name'], first_name: ['first_name'], last_name: ['last_name'], nickname: ['username'] }
     }
 }]
+```
+
+<!-- .element: style="height: 20em;" -->
+
+---
+
+## Single Sign-On on the console 1/2
+
+<i class="fa-duotone fa-wand-magic-sparkles fa-4x" style="float: right;"></i>
+
+Never configure credentials ever again
+
+### GitLab CLI
+
+Official GitLab CLI `glab` [](https://gitlab.com/gitlab-org/cli/)
+
+Configuration is documented for cloud and self-hosted [](https://gitlab.com/gitlab-org/cli/#authentication)
+
+---
+
+## Single Sign-On on the console 2/2
+
+<i class="fa-duotone fa-wand-magic-sparkles fa-4x" style="float: right;"></i>
+
+Never configure credentials ever again
+
+### Git
+
+1. In GitLab, create a global application:
+    - Callback: `http://127.0.0.1`
+    - Trusted: `yes`
+    - Confidential: `no`
+    - Scopes: `read_repository`, `write_repository`
+
+1. On your client, install `git-credential-oauth` [](https://github.com/hickford/git-credential-oauth) and update `~/.gitconfig`:
+
+```
+[credential "https://gitlab.example.com"]
+    oauthclientId = "<APP_ID>"
+    oauthScopes = "read_repository write_repository"
+    oauthAuthURL = /oauth/authorize
+    oauthTokenURL = /oauth/token
+    oauthDeviceAuthURL = /oauth/authorize_device
 ```

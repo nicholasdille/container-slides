@@ -44,11 +44,11 @@ Allow password authentication for git-over-HTTP
 
 Enforce two factor authentication
 
+Admin Mode
+
 Redirect non-authenticated users
 
 Sign-out page
-
-Sign-in text
 
 ---
 
