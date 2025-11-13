@@ -83,6 +83,8 @@ GitLab API returns HTTP headers:
     ```
     <!-- .element: style="width: 30em;" -->
 
+    Hint: Pipe into `jq` for readability.
+
 1. Check pagination headers:
 
     ```bash
@@ -106,21 +108,31 @@ GitLab API returns HTTP headers:
     ```bash
     glab auth login --hostname gitlab.${DOMAIN}
     ```
-    <!-- .element: style="width: 32em;" -->
+    <!-- .element: style="width: 35em;" -->
 
-1. Search for projects:
+    Hint: Select HTTP for git and API.
+
+1. Search for projects containing `foo`:
 
     ```bash
     GL_HOST=gitlab.${DOMAIN} glab repo search -s foo
     ```
-    <!-- .element: style="width: 32em;" -->
+    <!-- .element: style="width: 35em;" -->
 
 1. Send raw API requests with automatic pagination:
 
     ```bash
     GL_HOST=gitlab.${DOMAIN} glab api --paginate /projects
     ```
-    <!-- .element: style="width: 32em;" -->
+    <!-- .element: style="width: 35em;" -->
+
+---
+
+## Using the API without using the API ;-)
+
+XXX https://python-gitlab.readthedocs.io/en/stable/api-usage.html
+
+XXX https://gitlab.com/gitlab-org/api/client-go
 
 ---
 
