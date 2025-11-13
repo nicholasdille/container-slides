@@ -18,6 +18,8 @@ GitLab uses a clean top level directory layout
 
 Generated from `$GITLAB_OMNIBUS_CONFIG`
 
+Backup `gitlab-secrets.json`!
+
 ### Runtime data
 
 `/var/opt/gitlab`

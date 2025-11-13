@@ -18,11 +18,9 @@ Authentication using personal/group/project/job token
 
 <i class="fa-duotone fa-circle-check"></i> GA: maven, npm, nuget, pypi, generic
 
-<i class="fa-duotone fa-circle-exclamation"></i> Beta: composer, conan, helm
+<i class="fa-duotone fa-circle-exclamation"></i> Beta: composer, helm
 
-<i class="fa-duotone fa-flag"></i> Alpha: debian, go, ruby
-
-<i class="fa-duotone fa-hand-holding-medical"></i> Open for contribution: chef, cocoapods, conda, cran, opkg, p2, puppet, rpm, sbt, swift, vagrant
+<i class="fa-duotone fa-flag"></i> Experiment: conan 1+2, debian, go, ruby
 
 ---
 
@@ -69,4 +67,4 @@ GitLab stores [Terraform state](https://docs.gitlab.com/ee/user/infrastructure/i
 
 No need for separate infrastructure
 
-Official template for Terraform ([deprecated](https://docs.gitlab.com/ee/update/deprecations.html#deprecate-terraform-cicd-templates)) and [component for OpenTofu](https://gitlab.com/components/opentofu))
+Official template for Terraform ([deprecated](https://docs.gitlab.com/ee/update/deprecations.html#deprecate-terraform-cicd-templates)) and [component for OpenTofu](https://gitlab.com/components/opentofu)

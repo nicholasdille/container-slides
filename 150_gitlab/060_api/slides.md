@@ -128,11 +128,12 @@ GitLab API returns HTTP headers:
 
 ---
 
-## Using the API without using the API ;-)
+## Using the API without using the API <i class="fa-duotone fa-solid fa-face-smile-wink"></i>
 
-XXX https://python-gitlab.readthedocs.io/en/stable/api-usage.html
+For more complex tasks, use...
 
-XXX https://gitlab.com/gitlab-org/api/client-go
+- the Python package for GitLab [](https://python-gitlab.readthedocs.io/en/stable/index.html)
+- the GitLab Go SDK [](https://gitlab.com/gitlab-org/api/client-go)<br/>(formerly `github.com/xanzy/go-gitlab`)
 
 ---
 
