@@ -3,16 +3,11 @@ terraform {
     hcloud = {
       # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs
       source = "hetznercloud/hcloud"
-      version = "1.51.0"
-    }
-    hetznerdns = {
-      # https://registry.terraform.io/providers/timohirt/hetznerdns/latest/docs
-      source = "timohirt/hetznerdns"
-      version = "2.2.0"
+      version = "1.56.0"
     }
     acme = {
       source  = "vancluever/acme"
-      version = "2.34.0"
+      version = "2.38.0"
     }
     remote = {
       source = "tenstad/remote"
@@ -27,4 +22,13 @@ terraform {
       version = "3.2.4"
     }
   }
+}
+
+provider "hcloud" {
+  token = var.hcloud_token
+}
+
+provider "hcloud" {
+  alias = "dns"
+  token = var.hcloud_dns_token
 }

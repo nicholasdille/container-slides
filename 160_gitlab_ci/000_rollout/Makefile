@@ -43,7 +43,7 @@ plan.out: *.tf .terraform.lock.hcl
 		-out=plan.out \
 		-var="name=$(STATE_NAME)" \
 		-var="hcloud_token=$(HCLOUD_TOKEN)" \
-		-var="hetznerdns_token=$(HETZNERDNS_TOKEN)"
+		-var="hcloud_dns_token=$(HCLOUD_DNS_TOKEN)"
 
 .PHONY:
 apply: plan.out
@@ -59,7 +59,7 @@ destroy:
 		-state=terraform.tfstate \
 		-var="name=$(STATE_NAME)" \
 		-var="hcloud_token=$(HCLOUD_TOKEN)" \
-		-var="hetznerdns_token=$(HETZNERDNS_TOKEN)"
+		-var="hcloud_dns_token=$(HCLOUD_DNS_TOKEN)"
 	@rm -f terraform.tfstate*
 
 .PHONY:

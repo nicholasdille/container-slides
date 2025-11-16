@@ -238,96 +238,129 @@ resource "remote_file" "tls_chain_vscode" {
   permissions = "0644"
 }
 
-data "hetznerdns_zone" "main" {
+data "hcloud_zone" "main" {
+  provider = hcloud.dns
   name = local.domain
 }
 
-resource "hetznerdns_record" "gitlab" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "gitlab" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "gitlab"
-  value = hcloud_server.gitlab.ipv4_address
   type = "A"
   ttl= 120
+  records = [
+    { value = hcloud_server.gitlab.ipv4_address },
+  ]
 }
 
-resource "hetznerdns_record" "grafana" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "grafana" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "grafana"
-  value = hcloud_server.gitlab.ipv4_address
   type = "A"
   ttl= 120
+  records = [
+    { value = hcloud_server.gitlab.ipv4_address },
+  ]
 }
 
-resource "hetznerdns_record" "gitlab_wildcard" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "gitlab_wildcard" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "*.gitlab"
-  value = hetznerdns_record.gitlab.name
   type = "CNAME"
   ttl= 120
+  records = [
+    { value = hcloud_zone_rrset.gitlab.name },
+  ]
 }
 
-resource "hetznerdns_record" "gitlab_traefik" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "gitlab_traefik" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "traefik"
-  value = hetznerdns_record.gitlab.name
   type = "CNAME"
   ttl= 120
+  records = [
+    { value = hcloud_zone_rrset.gitlab.name },
+  ]
 }
 
-resource "hetznerdns_record" "gitlab_code" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "gitlab_code" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "code"
-  value = hetznerdns_record.gitlab.name
   type = "CNAME"
   ttl= 120
+  records = [
+    { value = hcloud_zone_rrset.gitlab.name },
+  ]
 }
 
-resource "hetznerdns_record" "webdav_dev" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "webdav_dev" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "dev.webdav"
-  value = hcloud_server.gitlab.ipv4_address
   type = "A"
   ttl= 120
+  records = [
+    { value = hcloud_server.gitlab.ipv4_address },
+  ]
 }
 
-resource "hetznerdns_record" "webdav_dev_wildcard" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "webdav_dev_wildcard" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "*.dev.webdav"
-  value = hetznerdns_record.webdav_dev.name
   type = "CNAME"
   ttl= 120
+  records = [
+    { value = hcloud_zone_rrset.webdav_dev.name },
+  ]
 }
 
-resource "hetznerdns_record" "webdav_live" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "webdav_live" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "live.webdav"
-  value = hcloud_server.gitlab.ipv4_address
   type = "A"
   ttl= 120
+  records = [
+    { value = hcloud_server.gitlab.ipv4_address
 }
 
-resource "hetznerdns_record" "webdav_live_wildcard" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "webdav_live_wildcard" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "*.live.webdav"
-  value = hetznerdns_record.webdav_live.name
   type = "CNAME"
   ttl= 120
+  records = [
+    { value = hcloud_zone_rrset.webdav_live.name },
+  ]
 }
 
-resource "hetznerdns_record" "vscode" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "vscode" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "vscode"
-  value = hcloud_server.vscode.ipv4_address
   type = "A"
   ttl= 120
+  records = [
+    { value = hcloud_server.vscode.ipv4_address },
+  ]
 }
 
-resource "hetznerdns_record" "vscode_wildcard" {
-  zone_id = data.hetznerdns_zone.main.id
+resource "hcloud_zone_rrset" "vscode_wildcard" {
+  provider = hcloud.dns
+  zone_id = data.hcloud_zone.main.name
   name = "*.vscode"
-  value = hetznerdns_record.vscode.name
   type = "CNAME"
   ttl= 120
+  records = [
+    { value = hcloud_zone_rrset.vscode.name },
+  ]
 }
 
 resource "local_file" "ssh" {
