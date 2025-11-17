@@ -115,6 +115,22 @@ resource "grafana_dashboard" "gitlab_platform" {
   config_json = data.http.gitlab_platform.response_body
 }
 
+resource "gitlab_group" "grafana" {
+  name             = "Grafana"
+  path             = "grafana"
+  visibility_level = "private"
+}
+
+data "gitlab_user" "root" {
+  username = "root"
+}
+
+resource "gitlab_group_membership" {
+  group_id     = gitlab_group.grafana.id
+  user_id      = gitlab_user.root.id
+  access_level = "owner"
+}
+
 resource "gitlab_user" "seats" {
   count = var.user_count
 
