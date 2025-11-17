@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit -o pipefail
 
-mkdir \
+mkdir -p \
     /data.dev \
     /data.live
 
