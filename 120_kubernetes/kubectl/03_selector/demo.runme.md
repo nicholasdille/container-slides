@@ -1,4 +1,6 @@
-# Demo
+# Selecting objects
+
+XXX
 
 ## Preparation
 
@@ -32,13 +34,18 @@ Create nodes and pods:
 kubectl apply -f kwok.yaml
 ```
 
-Check cluster usage:
+## Demo 1
 
-```bash
-kubectl top nodes
-```
+- Many deployments with countless pods
+- kgp is too long
+- kgp --selector=app=foo
+- kubectl get pods --show-labels
 
-Remove cluster:
+## Demo 2
+
+- XXX
+
+## Cleanup
 
 ```bash
 kwokctl delete cluster --name=kwok

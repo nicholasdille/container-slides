@@ -18,14 +18,7 @@ Two options
 | Applies to many resources and conditions | Specialized for workload controllers |
 | Single success message                   | Streaming output of rollout progress |
 
-Notes:
-
-Demo:
-- Deployment with long-running init container
-- Run `kubectl get pods` regularly
-- Run `kubectl rollout status deployment/waiting`
-- Run `kubectl wait --for=condition=available --timeout=60s deployment/waiting`
-- `kubectl exec -it deployment/waiting -c init-wait -- touch /tmp/initialized`
+### Demo 01_wait
 
 ---
 
@@ -49,13 +42,7 @@ Two options
 
 Enter quoting hell
 
-Notes:
-
-Demo:
-- `kubectl get pods --watch` updates on new events
-- `kubectl scale deployment waiting --replicas 10` - becomes hard to read for many replicas
-- Better `watch kubectl get pods`
-- Only top lines are shown
+### Demo 02_watch
 
 ---
 
@@ -79,17 +66,7 @@ Filter on some fields using `--field-selector` [](https://kubernetes.io/docs/con
 kubectl get --field-selector="metadata.namespace!=kube-system"
 ```
 
-Notes:
-
-Demo 1:
-- kwok
-- Many deployments with countless pods
-- kgp is too long
-- kgp --selector=app=foo
-- kubectl get pods --show-labels
-
-Demo 2:
-- XXX
+### Demo 03_selector
 
 ---
 
@@ -201,6 +178,8 @@ Finally:
 kubectl get pod --output=kyaml
 ```
 
+### Demo 04_kyaml
+
 ---
 
 ## Wide is too wide (REMOVE?)
@@ -215,8 +194,10 @@ XXX
 
 ```bash
 kubectl get pod --output \
-    custom-columns=NAME:.metadata.name,STATUS:.status.phase
+    custom-columns=NAME:.metadata.name,STATUS:.status.phase,HOST:.spec.nodeName
 ```
+
+### Demo 05_wide
 
 ---
 
@@ -227,6 +208,8 @@ XXX
 ```bash
 kubectl get pod --all-namespaces --sort-by=.metadata.name
 ```
+
+### Demo 06_sort
 
 ---
 
@@ -258,6 +241,8 @@ Based on IETF RFC9535 [](https://www.rfc-editor.org/rfc/rfc9535)
 
 More than just filtering
 
+### Demo 07_json
+
 ---
 
 ## Go Templating
@@ -272,6 +257,8 @@ XXX in `kubectl`
 kubectl get node --output=go-template='{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
 ```
 
+### Demo 08_go_template
+
 ---
 
 ## Quick actions
@@ -285,10 +272,7 @@ kubectl ... | while read -r ...
 
 This is usually combined with jsonpath/json/go-template output
 
-Notes:
-
-Demo:
-- XXX
+### Demo 09_pipe
 
 ---
 
@@ -360,6 +344,8 @@ export KUBE_EDITOR=nano
 
 `kubectl` also honours `EDITOR` environment variable
 
+Mood killer: Immutable fields
+
 ---
 
 ## Incremental updates
@@ -378,6 +364,8 @@ XXX JSON merge patch (https://tools.ietf.org/html/rfc7386)
 
 XXX JSON patch (https://tools.ietf.org/html/rfc6902)
 
+Mood killer: Immutable fields
+
 ---
 
 ## Create manifests
@@ -392,6 +380,8 @@ kubectl create secret docker-registry reg.my-corp.io --dry-run=client --output=y
     --docker-password=Secr3t \
 | kubectl apply -f -
 ```
+
+### Demo 10_create
 
 ---
 
@@ -471,6 +461,8 @@ XXX allow impersonation for administrative tasks
 
 XXX `kubectl --as=user --as-group=group`
 
+### Demo 11_impersonation
+
 ---
 
 <i class="fa-duotone fa-solid fa-crosshairs-simple fa-4x"></i> <!-- .element: style="float: right;" -->
@@ -504,6 +496,12 @@ kubectl get --raw
 ## Without port forwarding
 
 API server proxy URLs https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls
+
+```plaintext
+http://kubernetes_master_address/api/v1/namespaces/namespace_name/services/[https:]service_name[:port_name]/proxy
+```
+
+### Demo 12_proxy
 
 ---
 
@@ -552,3 +550,5 @@ done
 ```
 
 Alternative: `shell-operator` [](https://github.com/flant/shell-operator)
+
+### Demo

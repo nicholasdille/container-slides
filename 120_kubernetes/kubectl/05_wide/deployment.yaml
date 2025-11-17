@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wide
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: wide
+  template:
+    metadata:
+      labels:
+        app: wide
+    spec:
+      containers:
+      - name: wide
+        image: nginx:alpine
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi

@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: waiting
+  name: wait
 spec:
   selector:
     matchLabels:
-      app: waiting
+      app: wait
   template:
     metadata:
       labels:
-        app: waiting
+        app: wait
     spec:
       terminationGracePeriodSeconds: 5
       initContainers:
@@ -20,7 +20,7 @@ spec:
         - -c
         - trap EXIT exit 1; while ! test -f /tmp/initialized; do echo "$(date) Initializing..."; sleep 2; done; echo "Initialization complete."
       containers:
-      - name: waiting
+      - name: wait
         image: nginx:alpine
         resources:
           requests:

@@ -1,26 +1,21 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: typing
+  name: simple
 spec:
+  replicas: 10
   selector:
     matchLabels:
-      app: typing
-  replicas: 10
+      app: simple
   template:
     metadata:
       labels:
-        app: typing
+        app: simple
     spec:
-      terminationGracePeriodSeconds: 5
       containers:
-      - name: typing
-        image: busybox
-        command:
-        - sh
-        - -c
-        args:
-        - sleep 3600
+      - name: simple
+        image: nginx:alpine
         resources:
           requests:
             cpu: 100m
@@ -28,3 +23,16 @@ spec:
           limits:
             cpu: 200m
             memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple
+spec:
+  selector:
+    app: simple
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
