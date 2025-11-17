@@ -36,7 +36,7 @@ slides:
 - 000_introduction/who_are_you.md
 - 160_gitlab_ci/questions.md
 - 160_gitlab_ci/timetable_1day.md
-#- 160_gitlab_ci/timetable:2day.md
+#- 160_gitlab_ci/timetable_2day.md
 - 160_gitlab_ci/quicklinks.md
 - 150_gitlab/000_intro/product.md
 - 160_gitlab_ci/000_rollout/slides.md
