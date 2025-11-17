@@ -2,7 +2,7 @@ include ../000_rollout/.env.mk
 
 REPOSITORY_URL         := https://github.com/nicholasdille/terraform-state
 REPOSITORY_BRANCH      := main
-STATE_NAME             := 160_gitlab_ci_gitlab
+STATE_NAME             := 20251118_gitlab
 SEATS_JSON_FILE        := ../000_rollout/seats.json
 GITLAB_TOKEN		   := $(shell jq --raw-output '.gitlab_admin_token' $(SEATS_JSON_FILE))
 USER_COUNT   		   := $(shell jq --raw-output '.seats | length' $(SEATS_JSON_FILE))
