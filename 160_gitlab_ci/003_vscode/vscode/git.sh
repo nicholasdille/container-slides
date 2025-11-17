@@ -15,6 +15,13 @@ git config --local user.name "${GIT_USER}"
 git config --local user.email "${GIT_EMAIL}"
 git config --local credential.helper store
 
+# https://github.com/hickford/git-credential-oauth?tab=readme-ov-file#gitlab
+#git config --global credential.https://gitlab.example.com.oauthClientId <CLIENTID>
+#git config --global credential.https://gitlab.example.com.oauthScopes "read_repository write_repository"
+#git config --global credential.https://gitlab.example.com.oauthAuthURL /oauth/authorize
+#git config --global credential.https://gitlab.example.com.oauthTokenURL /oauth/token
+#git config --global credential.https://gitlab.example.com.oauthDeviceAuthURL /oauth/authorize_device
+
 git remote add origin https://gitlab.inmylab.de/${GIT_USER}/demo
 git remote add upstream https://github.com/nicholasdille/container-slides
 

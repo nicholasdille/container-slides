@@ -1,22 +1,23 @@
-provider "gitlab" {
-  base_url = "https://gitlab.${local.domain}/api/v4/"
-  token    = var.gitlab_token
-}
-
-provider "grafana" {
-  url  = "https://grafana.${local.domain}"
-  auth = "admin:${local.grafana_password}"
-}
-
 resource "gitlab_application_settings" "settings" {
-  auto_devops_enabled                  = false
-  default_group_visibility             = "internal"
-  default_project_visibility           = "internal"
-  restricted_visibility_levels         = ["public"]
-  first_day_of_week                    = 1
-  require_personal_access_token_expiry = true
-  signup_enabled                       = false
-  usage_ping_enabled                   = false
+  auto_devops_enabled                     = false
+  default_group_visibility                = "internal"
+  default_project_visibility              = "internal"
+  restricted_visibility_levels            = ["public"]
+  first_day_of_week                       = 1
+  require_personal_access_token_expiry    = true
+  signup_enabled                          = false
+  usage_ping_enabled                      = false
+  snowplow_enabled                        = false
+  password_authentication_enabled_for_git = true
+  password_authentication_enabled_for_web = true
+  require_admin_two_factor_authentication = false
+  require_two_factor_authentication       = false
+  two_factor_grace_period                 = 48
+  enforce_terms                           = false
+  terms                                   = ""
+  whats_new                               = false
+  hide_third_party_offers                 = true
+  grafana_url                             = "https://grafana.${local.domain}"
 }
 
 resource "gitlab_application" "grafana" {
@@ -129,6 +130,22 @@ resource "gitlab_group_membership" {
   group_id     = gitlab_group.grafana.id
   user_id      = gitlab_user.root.id
   access_level = "owner"
+}
+
+# https://gitlab.com/gitlab-org/cli/#oauth-gitlab-self-managed-gitlab-dedicated
+resource "gitlab_application" "glab" {
+  name         = "glab"
+  scopes       = ["openid", "email", "read_user", "write_repository", "api"]
+  confidential = false
+  redirect_url = "http://localhost:7171/auth/redirect"
+}
+
+# https://github.com/hickford/git-credential-oauth?tab=readme-ov-file#gitlab
+resource "gitlab_application" "git_credential_oauth" {
+  name         = "git-credential-oauth"
+  scopes       = ["read_repository", "write_repository"]
+  confidential = false
+  redirect_url = "http://127.0.0.1"
 }
 
 resource "gitlab_user" "seats" {

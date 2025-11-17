@@ -12,3 +12,13 @@ terraform {
     }
   }
 }
+
+provider "gitlab" {
+  base_url = "https://gitlab.${local.domain}/api/v4/"
+  token    = var.gitlab_token
+}
+
+provider "grafana" {
+  url  = "https://grafana.${local.domain}"
+  auth = "admin:${local.grafana_password}"
+}

@@ -7,3 +7,13 @@ output "runner_token" {
     value = gitlab_user_runner.shared.token
     sensitive = true
 }
+
+output "app_id_glab" {
+    value     = gitlab_application.glab.application_id
+    sensitive = true
+}
+
+output "app_id_git" {
+    value     = gitlab_application.git_credential_oauth.application_id
+    sensitive = true
+}
