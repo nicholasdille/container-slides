@@ -2,7 +2,6 @@
 set -o errexit -o pipefail
 
 WEB_ROOT=/usr/share/nginx/html/
-SEAT_COUNT="$( jq --raw-output '.seats | length' seats.json )"
 
 cat <<EOF >/etc/nginx/conf.d/default.conf
 server {
@@ -23,7 +22,7 @@ server {
     }
 EOF
 
-for SEAT_INDEX in $(seq 0 ${SEAT_COUNT}); do
+for SEAT_INDEX in $(seq 0 20); do
     mkdir -p "${WEB_ROOT}/seat${SEAT_INDEX}"
     var="SEAT${SEAT_INDEX}_PASS"
     SEAT_PASS="${!var}"

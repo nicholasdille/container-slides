@@ -7,7 +7,6 @@ apt-get update
 apt-get -y install \
         apache2-utils \
         procps \
-        jq \
         vim-tiny
 EOF
 
