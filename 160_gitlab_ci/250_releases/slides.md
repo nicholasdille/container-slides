@@ -12,9 +12,7 @@ Pipeline jobs can create [releases](https://docs.gitlab.com/ee/user/project/rele
 
 ...by adding the [`release`](https://docs.gitlab.com/ee/ci/yaml/#release) keyword
 
-Release assets can be linked but must be stored elsewhere
-
-XXX Release assets can be uploaded now
+Release assets can added to a release
 
 ### GitLab CLI `glab` required
 
@@ -93,15 +91,39 @@ GitLab Pages is publicly accessible unless [access control](https://docs.gitlab.
 
 ---
 
-## Pro tip 3: Permalink to latest release
+## Pro tip 3: Permalinks
 
-XXX https://docs.gitlab.com/user/project/releases/#permanent-link-to-latest-release
+Download links
 
-`https://gitlab.inmylab.de/seatN/demo/-/releases/permalink/latest`
+### For a release
+
+Permalinks can be created for a release [](https://docs.gitlab.com/user/project/releases/#permanent-link-to-latest-release)
+
+For example:
+
+```plaintext
+https://gitlab.inmylab.de/seatN/demo/-/releases/permalink/latest
+```
+
+### For a release asset
+
+Link to a file on a specific release:
+
+```plaintext
+https://gitlab.inmylab.de/seatN/demo/-/releases/TAG/downloads/FILE
+```
+
+Link to a file in the latest release:
+
+```plaintext
+https://gitlab.inmylab.de/seatN/demo/-/releases/permalink/latest/downloads/FILE
+```
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 ## Pro tip 4: Artifact provenance
 
-XXX https://docs.gitlab.com/ci/runners/configure_runners/#artifact-provenance-metadata
+Artifact provenance [](https://docs.gitlab.com/ci/runners/configure_runners/#artifact-provenance-metadata)
 

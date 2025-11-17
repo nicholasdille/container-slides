@@ -131,8 +131,6 @@
 <script src="node_modules/reveal.js/dist/reveal.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/markdown/markdown.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/highlight/highlight.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/search/search.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
     Reveal.initialize({
@@ -148,7 +146,7 @@
         slideNumber: false,
         keyboard: true,
         touch: false,
-        mouseWheel: false,
+        mouseWheel: true,
 
         hash: true,
         history: false,
@@ -173,8 +171,6 @@
         plugins: [
             RevealMarkdown,
             RevealHighlight,
-            RevealSearch,
-            RevealZoom,
             RevealNotes
         ]
     });

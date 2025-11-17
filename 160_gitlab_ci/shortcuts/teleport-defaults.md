@@ -6,7 +6,21 @@
 
 ---
 
-## XXX
+## Teleport: Defaults
+
+Skip basic chapters
+
+Save time for important chapters
+
+### What you need to know
+
+How to get there
+
+Example app
+
+Pipeline
+
+---
 
 ```bash
 git checkout upstream/160_gitlab_ci/050_default -- '*'
@@ -14,11 +28,11 @@ git checkout upstream/160_gitlab_ci/050_default -- '*'
 
 <!-- .element: style="width: 35em; float: right;" -->
 
-XXX
+## How to get there
+
+Fetch sources from a git tag
 
 ---
-
-## Example App
 
 ```go
 package main
@@ -39,13 +53,15 @@ func main() {
 
 <!-- .element: style="width: 35em; height: 17em; float: right;" -->
 
-XXX
+## Example App
 
-XXX go.mod and go.sum
+Written in Go
+
+Dependencies in `go.mod`
+
+Lock file is `go.sum`
 
 ---
-
-## Pipeline
 
 ```yaml
 stages:
@@ -53,29 +69,40 @@ stages:
 - build
 
 default:
-    image: golang:1.25.3
+  image: golang:1.25.3
 
 lint:
-    stage: check
-    script:
-    - go fmt .
+  stage: check
+  script:
+  - go fmt .
 
 audit:
-    stage: check
-    script:
-    - go vet .
+  stage: check
+  script:
+  - go vet .
 
 build:
-    stage: build
-    script:
-    - |
+  stage: build
+  script:
+  - |
     go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
-        -o hello \
-        .
-    - ./hello
+      -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+      -o hello \
+      .
+  - ./hello
 ```
 
-<!-- .element: style="width: 49em; height: 32em; float: right;" -->
+<!-- .element: style="width: 52em; height: 32em; float: right;" -->
 
-XXX
+## Pipeline
+
+2 stages with 3 jobs:
+- check
+    - lint
+    - audit
+- build
+    - build
+    
+Script field defines commands
+
+Default image is used for all jobs

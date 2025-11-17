@@ -6,9 +6,9 @@
 
 ---
 
-## XXX
+## Hyperlapse: Docker
 
-XXX
+Fast progress for Docker-related topics
 
 1. Read slides for services [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_services)
 
