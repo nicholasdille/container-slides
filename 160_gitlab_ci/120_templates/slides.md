@@ -201,7 +201,7 @@ Harder to find/browse, easier to version
 
 ## Pro tip 4: Public Template Library
 
-[Project](https://to-be-continuous.gitlab.io/doc/) to help building professional pipelines
+Project *to be continuous* [](https://to-be-continuous.gitlab.io/doc/) to help building professional pipelines
 
 Pipeline [generator](https://to-be-continuous.gitlab.io/kicker/)
 

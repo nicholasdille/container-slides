@@ -36,9 +36,17 @@ See chapter [Image](/hands-on/2025-11-18/040_image/exercise/)
 
 ---
 
+## Pro tip 1: Choosing an image
+
+Images must contain a shell
+
+`scratch` will not work
+
+---
+
 ## Pro tip 2: Using private registries
 
-[Private container registries]](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#access-an-image-from-a-private-container-registry) are supported
+[Private container registries](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#access-an-image-from-a-private-container-registry) are supported
 
 Credentials must be provided in [variable `DOCKER_AUTH_CONFIG`](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#use-statically-defined-credentials)
 

@@ -20,6 +20,10 @@ Example app
 
 Pipeline
 
+Review variables
+
+Pro tips
+
 ---
 
 ```bash
@@ -106,3 +110,27 @@ build:
 Script field defines commands
 
 Default image is used for all jobs
+
+---
+
+## Review
+
+### Variables
+
+Can be created per pipeline and per job:
+
+```yaml
+variables:
+  FOO: bar
+
+job_name:
+  variables:
+    FOO: baz
+  script: printenv | sort  
+```
+
+## Pro tips
+
+Go back to skipped chapters and checkout pro tips:
+
+[Jobs and stages](#/gitlab_jobs) - [Variables](#/gitlab_variables) - [Script blocks](#/gitlab_script_blocks) - [Images](#/gitlab_image) - [Defaults](#/gitlab_default)

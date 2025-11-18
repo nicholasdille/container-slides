@@ -39,3 +39,15 @@ The internal pipeline schedule worker is configured with...
 Scheduled pipelines cannot run more often
 
 Adjust the [maximum frequency](https://docs.gitlab.com/ee/administration/cicd.html#change-maximum-scheduled-pipeline-frequency) for schedules pipelines
+
+---
+
+## Pro tip: Schedules have an owner
+
+If the owner is block...
+
+...the scheduled pipeline becomes inactive
+
+If a user is deleted...
+
+...the user is first blocked

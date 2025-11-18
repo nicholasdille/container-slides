@@ -16,7 +16,8 @@ job1:
   #...
 job2:
   stage: stage2
-  needs: job1
+  needs:
+  - job1
   #...
 ```
 
@@ -28,7 +29,8 @@ job1:
   #...
 job2:
   stage: test
-  needs: job1
+  needs:
+  - job1
   #...
 ```
 
@@ -44,7 +46,7 @@ job_name:
 
 job_name2:
   needs:
-    job: job_name
+  - job: job_name
     artifacts: false
 ```
 

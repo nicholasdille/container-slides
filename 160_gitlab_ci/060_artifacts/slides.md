@@ -100,6 +100,8 @@ Can be configured...
 
 Only available to instance administrators
 
+gitlab.com: Maximum artifact size is 1GB (not configurable)
+
 ---
 
 ## Conflicting artifact names

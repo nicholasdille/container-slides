@@ -218,3 +218,42 @@ git push -o ci.skip
 The web UI offers a pipeline editor
 
 Integrated syntax checking
+
+---
+
+## Pro tip 3: Collapsed multi-line string
+
+Multi-line commands are collapsed by default
+
+Feature flag `FF_SCRIPT_SECTIONS` to print full command in logs:
+
+```yaml
+my_job:
+  variables:
+    FF_SCRIPT_SECTIONS: true
+  script:
+  - echo START
+  - |
+    if test -f foo; then
+        echo "File foo found"
+    fi
+  - echo END
+```
+
+---
+
+## Fun fact: Pushing the boundaries of multi-line
+
+The following works:
+
+```yaml
+my_job:
+  script:
+  - if test -f foo; then
+  -   echo "File foo found"
+  - fi
+```
+
+### Reason
+
+The commands are copied into the `step_script` line by line

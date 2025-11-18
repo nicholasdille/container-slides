@@ -41,7 +41,12 @@
     margin-bottom: 1.5em;
 }
 
-.reveal ul {
+.reveal code {
+    font-size: 0.9em;
+}
+
+.reveal ul,
+.reveal table {
     margin-bottom: 0.5em;
 }
 

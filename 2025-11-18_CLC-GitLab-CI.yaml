@@ -32,10 +32,11 @@ agenda:
   text: Make your work reusable
 
 slides:
-- 000_introduction/heise_academy_housekeeping.md
+#- 000_introduction/heise_academy_housekeeping.md
 - 000_introduction/who_are_you.md
 - 160_gitlab_ci/questions.md
-- 160_gitlab_ci/timetable_1day.md
+- 160_gitlab_ci/timetable_1day_clc.md
+#- 160_gitlab_ci/timetable_1day.md
 #- 160_gitlab_ci/timetable_2day.md
 - 160_gitlab_ci/quicklinks.md
 - 150_gitlab/000_intro/product.md
@@ -91,7 +92,7 @@ summary:
 - icon: ball-pile
   text: GitLab is packed with features
 - icon: gauge-min
-  text: No plugins to support recurring tasks
+  text: Pipeline language evolves constantly
 - icon: shield-check
   text: Useful security features even in free tier
 
@@ -103,7 +104,7 @@ events:
   title: GitLab CI
   link: https://clc-conference.eu/veranstaltung-83818-0-ci-cd-mit-gitlab.html
 - date: "2025-11-20"
-  name: ContainerConf
+  name: Continuous Lifecycle
   homepage: https://clc-conference.eu/
   type: Talk
   title: How much Shell Code is Enough

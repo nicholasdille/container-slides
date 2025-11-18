@@ -193,9 +193,11 @@ This was just a demonstration. The changes will not be preseved in the following
 
 Create the branch `live` from the branch `dev` and push it without further changes.
 
-Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to download the `hello` binary from `https://seatN.live.inmylab.de/hello`.
+Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run and be able to download the `hello` binary from `https://seatN.live.webdav.inmylab.de/hello`.
 
 !!! info "Heads up"
     Checkout the branch `main` to make sure that the following exercises are based on the correct code base.
+
+<!-- TODO: Migrate from branches dev/live to main/live -->
 
 <!-- TODO: disposable environments -->

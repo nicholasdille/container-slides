@@ -28,6 +28,8 @@ The order from lowest to highest precedence is:
 
 <!-- .element: style="font-size: smaller" -->
 
+<i class="fa-duotone fa-solid fa-triangle-exclamation"></i> Note that CI/CD variables take precedence over `variables` <i class="fa-duotone fa-solid fa-triangle-exclamation"></i>
+
 ---
 
 ## More about pipeline variables

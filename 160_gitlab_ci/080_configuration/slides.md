@@ -122,4 +122,4 @@ Instead of `.gitlab-ci.yml`, [you can](https://docs.gitlab.com/ci/pipelines/sett
     path/to/.gitlab-ci.yml@group/subgroup/project
     ```
 
-<i class="fa-duotone fa-triangle-exclamation"></i> Use with care and communicate propery <i class="fa-duotone fa-triangle-exclamation"></i>
+<i class="fa-duotone fa-triangle-exclamation"></i> Use with care and communicate properly <i class="fa-duotone fa-triangle-exclamation"></i>
