@@ -56,7 +56,7 @@ summary:
 
 events:
 - date: "2025-11-20"
-  name: ContainerConf
+  name: Continuous Lifecycle
   homepage: https://clc-conference.eu/
   type: Talk
   title: How much Shell Code is Enough

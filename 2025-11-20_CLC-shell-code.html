@@ -77,7 +77,7 @@
 
 <h3 id="events">Upcoming events</h3>
 <ul>
-<li>2025-11-20 - <a href="https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html">How much Shell Code is Enough</a> @ <a href="https://clc-conference.eu/">ContainerConf</a> (Talk)</li>
+<li>2025-11-20 - <a href="https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html">How much Shell Code is Enough</a> @ <a href="https://clc-conference.eu/">Continuous Lifecycle</a> (Talk)</li>
 <li>2025-11-27 - <a href="https://heise-academy.de/Workshops/cicd-gitlab">GitLab CI</a> @ <a href="https://heise-academy.de/">heise Academy</a> (Workshop)</li>
 <li>2025-12-15 - kubectl like a pro @ <a href="https://www.meetup.com/de-DE/devops-freiburg/">DevOps Meetup Freiburg</a> (Talk)</li>
 </ul>
@@ -89,8 +89,6 @@
 <script src="node_modules/reveal.js/dist/reveal.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/markdown/markdown.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/highlight/highlight.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/search/search.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/zoom/zoom.js" type="application/javascript"></script>
 <script src="node_modules/reveal.js/plugin/notes/notes.js" type="application/javascript"></script>
 <script>
     Reveal.initialize({
@@ -106,7 +104,7 @@
         slideNumber: false,
         keyboard: true,
         touch: false,
-        mouseWheel: false,
+        mouseWheel: true,
 
         hash: true,
         history: false,
@@ -131,8 +129,6 @@
         plugins: [
             RevealMarkdown,
             RevealHighlight,
-            RevealSearch,
-            RevealZoom,
             RevealNotes
         ]
     });
