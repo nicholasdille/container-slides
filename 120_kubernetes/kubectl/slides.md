@@ -18,7 +18,7 @@ Two options
 | Applies to many resources and conditions | Specialized for workload controllers |
 | Single success message                   | Streaming output of rollout progress |
 
-### Demo 01_wait
+### Demo (01_wait)
 
 ---
 
@@ -42,7 +42,7 @@ Two options
 
 Enter quoting hell
 
-### Demo 02_watch
+### Demo (02_watch)
 
 ---
 
@@ -66,7 +66,7 @@ Filter on some fields using `--field-selector` [](https://kubernetes.io/docs/con
 kubectl get --field-selector="metadata.namespace!=kube-system"
 ```
 
-### Demo 03_selector
+### Demo (03_selector)
 
 ---
 
@@ -132,6 +132,8 @@ kubectl get pod,svc,rs,deploy,sts,ds,jobs,cronjobs
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 ## Don't leave the console (MOVE?)
 
 XXX `kubectl explain`
@@ -142,9 +144,11 @@ XXX `kubectl explain`
 
 ## Emperor's new cloths
 
-### XXX subtitle
+### Styling the output
 
 ---
+
+<!-- .slide: data-visibility="hidden" -->
 
 ## Little known outputs (REMOVE?)
 
@@ -178,7 +182,7 @@ Finally:
 kubectl get pod --output=kyaml
 ```
 
-### Demo 04_kyaml
+### Demo (04_kyaml)
 
 ---
 
@@ -190,34 +194,34 @@ kubectl get pod --output=kyaml
 
 ### Enter `custom-columns`
 
-XXX
+Create columns from metadata, spec and status fields:
 
 ```bash
 kubectl get pod --output \
     custom-columns=NAME:.metadata.name,STATUS:.status.phase,HOST:.spec.nodeName
 ```
 
-### Demo 05_wide
+### Demo (05_wide)
 
 ---
 
 ## Sorting resources
 
-XXX
+Change the order of displayed resources:
 
 ```bash
 kubectl get pod --all-namespaces --sort-by=.metadata.name
 ```
 
-### Demo 06_sort
+### Demo (06_sort)
 
 ---
 
 <i class="fa-duotone fa-solid fa-keyboard fa-4x"></i> <!-- .element: style="float: right;" -->
 
-# Console grind
+## Console grind
 
-XXX subtitle
+### Bulk processing manifests
 
 ---
 
@@ -227,37 +231,36 @@ Avoid text parsing with `grep`/`awk`/`sed`/`cut`/`tr`
 
 But if you must, use `kubectl [...] --no-headers`
 
-### `--output=jsonpath={}`
+### Better: `--output=jsonpath={}`
 
-XXX **filtering**
-
-`kubectl` supports JSONPath natively [](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
+`kubectl` supports JSONPath for filtering natively [](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
 
 Based on IETF RFC9535 [](https://www.rfc-editor.org/rfc/rfc9535)
 
-### `--output=json | jq`
+### Also better: `--output=json | jq`
 
 `jq` is the defacto standard for JSON **processing** [](https://jqlang.org/manual/)
 
 More than just filtering
 
-### Demo 07_json
+### Demo (07_json)
 
 ---
 
 ## Go Templating
 
-XXX https://gotemplate.io/
+De facto standard [](https://gotemplate.io/)
 
-XXX example
+Integrated in `kubectl` for parsing manifests
 
-XXX in `kubectl`
+### For example
 
 ```bash
-kubectl get node --output=go-template='{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
+kubectl get node --output=go-template=\
+'{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
 ```
 
-### Demo 08_go_template
+### Demo (08_go_template)
 
 ---
 
@@ -270,9 +273,12 @@ kubectl ... | xargs ...
 kubectl ... | while read -r ...
 ```
 
-This is usually combined with jsonpath/json/go-template output
+This is usually combined with machine readable output:
+- jsonpath
+- json
+- go-template
 
-### Demo 09_pipe
+### Demo (09_pipe)
 
 ---
 
@@ -284,9 +290,11 @@ Flags usually have a short and a long version
 
 For example: `-o` vs. `--output`
 
-Use the short flag on the console for speed
+### When to use what
 
-Use the long flag in scripts for readability
+Short flag on the console for speed
+
+Long flag in scripts for readability
 
 ---
 
@@ -294,7 +302,7 @@ Use the long flag in scripts for readability
 
 ## State affairs
 
-### XXX subtitle
+### Updating resources
 
 ---
 
@@ -314,23 +322,21 @@ export KUBECTL_EXTERNAL_DIFF=delta
 
 ### Useful for scripting
 
-Return codes are your friend:
-
-| Code | Meaning              |
-|------|----------------------|
-| 0    | No differences found |
-| 1    | Differences found    |
-| >=2  | Error occurred       |
+| Return Code | Meaning              |
+|-------------|----------------------|
+| 0           | No differences found |
+| 1           | Differences found    |
+| >=2         | Error occurred       |
 
 ---
 
-## Incremental updates
+## Incremental updates 1/2
 
 Always prefer automated approaches (GitOps, CI/CD)
 
 ### Manual changes
 
-XXX
+Update resource on-the-fly:
 
 ```bash
 kubectl edit NAME
@@ -344,33 +350,33 @@ export KUBE_EDITOR=nano
 
 `kubectl` also honours `EDITOR` environment variable
 
-Mood killer: Immutable fields
+<i class="fa-duotone fa-solid fa-triangle-exclamation"></i> Mood killer: Immutable fields <i class="fa-duotone fa-solid fa-triangle-exclamation"></i>
 
 ---
 
-## Incremental updates
+## Incremental updates 2/2
 
 Always prefer automated approaches (GitOps, CI/CD)
 
 ### Scripted changes
 
-`kubectl patch`
+Use `kubectl patch` with three options [](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/)
 
-XXX https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/
+Strategic merge combines documents field by field
 
-XXX strategic merge - merge documents but arrays are either replaced or merged (determined in code, e.g. defaults to replace, podSpec.containers uses merge)
+JSON merge patch [](https://tools.ietf.org/html/rfc7386)
 
-XXX JSON merge patch (https://tools.ietf.org/html/rfc7386)
+JSON patch [](https://tools.ietf.org/html/rfc6902)
 
-XXX JSON patch (https://tools.ietf.org/html/rfc6902)
-
-Mood killer: Immutable fields
+<i class="fa-duotone fa-solid fa-triangle-exclamation"></i> Mood killer: Immutable fields <i class="fa-duotone fa-solid fa-triangle-exclamation"></i>
 
 ---
 
 ## Create manifests
 
 Preserve idempotency
+
+Secrets are affected
 
 ```bash
 kubectl create secret docker-registry reg.my-corp.io --dry-run=client --output=yaml \
@@ -381,7 +387,7 @@ kubectl create secret docker-registry reg.my-corp.io --dry-run=client --output=y
 | kubectl apply -f -
 ```
 
-### Demo 10_create
+### Demo (10_create)
 
 ---
 
@@ -407,31 +413,35 @@ last `kubectl --kubeconfig`
 
 ## Using multiple clusters
 
-XXX
+Don't we all?!
 
 ### Straight forward
 
-XXX single `kubeconfig` file
+Single `kubeconfig` file
+
+MUltiple clusters, users and contexts
 
 ### Alternative
 
-XXX one `kubeconfig` file per cluster
+Single `kubeconfig` file per cluster
 
-`export KUBECONFIG=a:b`
+Reference multiple files: `export KUBECONFIG=a:b`
 
 ---
 
 ## Switching clusters and contexts
 
-XXX
+Builtin: `kubeconfig config use-context FOO`
 
 ### `kubeswitch`
 
-XXX `kubeswitch` https://github.com/danielb42/kubeswitch
+Minimal TUI for switching contexts and namespaces [](https://github.com/danielb42/kubeswitch)
 
 ### direnv
 
-XXX `direnv` https://direnv.net/
+Load configuration when entering a directory [](https://direnv.net/)
+
+For example:
 
 ```shell
 $ cat .envrc
@@ -441,27 +451,35 @@ export KUBECTL_CONTEXT=my-cluster-admin
 
 ---
 
-## OIDC
+<!-- .slide: data-visibility="hidden" -->
 
-XXX avoid explicit credentials in `kubeconfig`
+## Open ID Connect
 
-XXX use trustful identity provider, e.g. GitLab
+Avoid explicit credentials in `kubeconfig`
 
-XXX kubelogin https://github.com/int128/kubelogin
+Use trusted identity provider, e.g. GitLab
 
-XXX RBAC
+Structured authentication configuration for mapping claims to users and groups [](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#using-authentication-configuration)
+
+Use RBAC for permissions based on claims
+
+Plugin `kubelogin` for local integration [](https://github.com/int128/kubelogin)
 
 ---
 
 ## Impersonation
 
-XXX Limit access to read-only
+Limit access to read-only
 
-XXX allow impersonation for administrative tasks
+Allow impersonation for administrative tasks
 
-XXX `kubectl --as=user --as-group=group`
+For example:
 
-### Demo 11_impersonation
+```bash
+kubectl --as=user --as-group=group
+```
+
+### Demo (11_impersonation)
 
 ---
 
@@ -481,27 +499,34 @@ Selecting services downgrades to pods
 kubectl port-forward svc/foo 8080:8080
 ```
 
----
-
-## Without explicit authentication
-
-XXX
-
-```bash
-kubectl get --raw
-```
+Not suited for testing load balancing
 
 ---
 
 ## Without port forwarding
 
-API server proxy URLs https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls
+API server brings a builtin proxy [](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls)
+
+Format of proxy URL:
 
 ```plaintext
-http://kubernetes_master_address/api/v1/namespaces/namespace_name/services/[https:]service_name[:port_name]/proxy
+/api/v1/namespaces/NAMESPACE/services/[https:]SERVICE[:port_name]/proxy
 ```
 
-### Demo 12_proxy
+Option 1:
+
+```bash
+$ kubectl proxy
+$ curl -s http://127.0.0.1:8001/api/v1/namespaces/NAMESPACE/services/[https:]SERVICE[:port_name]/proxy
+```
+
+Option 2:
+
+```bash
+kubectl get --raw /api/v1/namespaces/NAMESPACE/services/[https:]SERVICE[:port_name]/proxy
+```
+
+### Demo (12_proxy)
 
 ---
 
@@ -509,23 +534,25 @@ http://kubernetes_master_address/api/v1/namespaces/namespace_name/services/[http
 
 ## Better together
 
-### XXX
+### More features using plugins
 
 ---
 
-## Plugins
+## Noteworthy Plugins
 
-krew https://krew.sigs.k8s.io/plugins/
+Install plugins using `krew` [](https://krew.sigs.k8s.io/)
 
-XXX https://github.com/GoogleCloudPlatform/kubectl-ai
+### Opinionated examples
 
-XXX https://github.com/knight42/kubectl-blame
+kubectl-ai [](https://github.com/GoogleCloudPlatform/kubectl-ai)
 
-XXX https://github.com/ahmetb/kubectl-foreach
+kubectl-blame [](https://github.com/knight42/kubectl-blame)
 
-XXX https://github.com/kvaps/kubectl-node-shell
+kubectl-foreach [](https://github.com/ahmetb/kubectl-foreach)
 
-XXX so many useful tools
+kubectl-node-shell [](https://github.com/kvaps/kubectl-node-shell)
+
+Many more plugins [](https://krew.sigs.k8s.io/plugins/)
 
 ---
 
@@ -533,13 +560,13 @@ XXX so many useful tools
 
 ## Bonus: To Shell or not to Shell
 
-### XXX subtitle
+### Testing the boundaries of shell code
 
 ---
 
 ## Watching events
 
-XXX
+Writing a minimalistic operator:
 
 ```bash
 kubectl get namespaces --watch=true --output-watch-events=true --output=json | \
@@ -550,5 +577,3 @@ done
 ```
 
 Alternative: `shell-operator` [](https://github.com/flant/shell-operator)
-
-### Demo
