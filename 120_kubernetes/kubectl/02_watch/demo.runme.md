@@ -40,7 +40,7 @@ kubectl scale deployment wait --replicas 5
 
 ## Cleanup
 
-XXX
+Remove the deployment:
 
 ```bash
 kubectl delete -f deployment.yaml

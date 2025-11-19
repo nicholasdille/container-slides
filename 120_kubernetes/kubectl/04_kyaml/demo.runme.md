@@ -1,10 +1,10 @@
 # KYAML
 
-XXX
+Test KYAML.
 
 ## Preparation
 
-XXX
+Enable KYAML (experimental):
 
 ```bash
 export KUBECTL_KYAML=true
@@ -12,7 +12,7 @@ export KUBECTL_KYAML=true
 
 ## Demo
 
-XXX
+Show resource in KYAML instead of YAML:
 
 ```bash
 kubectl get deployment simple -o kyaml
@@ -20,7 +20,7 @@ kubectl get deployment simple -o kyaml
 
 ## Cleanup
 
-XXX
+Remove deployment:
 
 ```bash
 kubectl delete -f deployment.yaml

@@ -1051,6 +1051,10 @@ items:
   metadata:
     name: service1
     namespace: backend
+    labels:
+      app: service1
+      tier: backend
+      owner: team1
   spec:
     replicas: 100
     selector:
@@ -1063,6 +1067,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service1
+          tier: backend
+          owner: team1
       spec:
         affinity:
           nodeAffinity:
@@ -1092,6 +1098,10 @@ items:
   metadata:
     name: service2
     namespace: backend
+    labels:
+      app: service2
+      tier: backend
+      owner: team1
   spec:
     replicas: 100
     selector:
@@ -1104,6 +1114,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service2
+          tier: backend
+          owner: team1
       spec:
         affinity:
           nodeAffinity:
@@ -1133,6 +1145,10 @@ items:
   metadata:
     name: service3
     namespace: frontend
+    labels:
+      app: service3
+      tier: frontend
+      owner: team1
   spec:
     replicas: 100
     selector:
@@ -1145,6 +1161,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service3
+          tier: frontend
+          owner: team1
       spec:
         affinity:
           nodeAffinity:
@@ -1174,6 +1192,10 @@ items:
   metadata:
     name: service4
     namespace: frontend
+    labels:
+      app: service4
+      tier: frontend
+      owner: team2
   spec:
     replicas: 100
     selector:
@@ -1186,6 +1208,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service4
+          tier: frontend
+          owner: team2
       spec:
         affinity:
           nodeAffinity:
@@ -1215,6 +1239,10 @@ items:
   metadata:
     name: service5
     namespace: frontend
+    labels:
+      app: service5
+      tier: frontend
+      owner: team2
   spec:
     replicas: 100
     selector:
@@ -1227,6 +1255,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service5
+          tier: frontend
+          owner: team2
       spec:
         affinity:
           nodeAffinity:
@@ -1256,6 +1286,10 @@ items:
   metadata:
     name: service6
     namespace: backend
+    labels:
+      app: service6
+      tier: backend
+      owner: team3
   spec:
     replicas: 100
     selector:
@@ -1268,6 +1302,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service6
+          tier: backend
+          owner: team3
       spec:
         affinity:
           nodeAffinity:
@@ -1297,6 +1333,10 @@ items:
   metadata:
     name: service7
     namespace: backend
+    labels:
+      app: service7
+      tier: backend
+      owner: team4
   spec:
     replicas: 100
     selector:
@@ -1309,6 +1349,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service7
+          tier: backend
+          owner: team4
       spec:
         affinity:
           nodeAffinity:
@@ -1338,6 +1380,10 @@ items:
   metadata:
     name: service8
     namespace: frontend
+    labels:
+      app: service8
+      tier: frontend
+      owner: team1
   spec:
     replicas: 100
     selector:
@@ -1350,6 +1396,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service8
+          tier: frontend
+          owner: team1
       spec:
         affinity:
           nodeAffinity:
@@ -1379,6 +1427,10 @@ items:
   metadata:
     name: service9
     namespace: backend
+    labels:
+      app: service9
+      tier: backend
+      owner: team2
   spec:
     replicas: 100
     selector:
@@ -1391,6 +1443,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service9
+          tier: backend
+          owner: team2
       spec:
         affinity:
           nodeAffinity:
@@ -1420,6 +1474,10 @@ items:
   metadata:
     name: service10
     namespace: backend
+    labels:
+      app: service10
+      tier: backend
+      owner: team3
   spec:
     replicas: 100
     selector:
@@ -1432,6 +1490,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service10
+          tier: backend
+          owner: team3
       spec:
         affinity:
           nodeAffinity:
@@ -1461,6 +1521,10 @@ items:
   metadata:
     name: service11
     namespace: backend
+    labels:
+      app: service11
+      tier: backend
+      owner: team4
   spec:
     replicas: 100
     selector:
@@ -1473,6 +1537,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service11
+          tier: backend
+          owner: team4
       spec:
         affinity:
           nodeAffinity:
@@ -1502,6 +1568,10 @@ items:
   metadata:
     name: service12
     namespace: frontend
+    labels:
+      app: service12
+      tier: frontend
+      owner: team5
   spec:
     replicas: 100
     selector:
@@ -1514,6 +1584,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service12
+          tier: frontend
+          owner: team5
       spec:
         affinity:
           nodeAffinity:
@@ -1543,6 +1615,10 @@ items:
   metadata:
     name: service13
     namespace: frontend
+    labels:
+      app: service13
+      tier: frontend
+      owner: team5
   spec:
     replicas: 100
     selector:
@@ -1555,6 +1631,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service13
+          tier: frontend
+          owner: team5
       spec:
         affinity:
           nodeAffinity:
@@ -1584,6 +1662,10 @@ items:
   metadata:
     name: service14
     namespace: frontend
+    labels:
+      app: service14
+      tier: frontend
+      owner: team5
   spec:
     replicas: 100
     selector:
@@ -1596,6 +1678,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service14
+          tier: frontend
+          owner: team5
       spec:
         affinity:
           nodeAffinity:
@@ -1625,6 +1709,10 @@ items:
   metadata:
     name: service15
     namespace: backend
+    labels:
+      app: service15
+      tier: backend
+      owner: team3
   spec:
     replicas: 100
     selector:
@@ -1637,6 +1725,8 @@ items:
           kwok.x-k8s.io/usage-memory: 100Mi
         labels:
           app: service15
+          tier: backend
+          owner: team3
       spec:
         affinity:
           nodeAffinity:

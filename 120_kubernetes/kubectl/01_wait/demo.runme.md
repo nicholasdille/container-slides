@@ -36,7 +36,7 @@ Check how the `wait` command completes.
 
 ## Cleanup
 
-XXX
+Remove the deployment:
 
 ```bash
 kubectl delete -f deployment.yaml

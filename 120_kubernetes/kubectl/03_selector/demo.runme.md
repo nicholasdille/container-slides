@@ -1,6 +1,6 @@
 # Selecting objects
 
-XXX
+Use selectors to find resources.
 
 ## Preparation
 
@@ -36,16 +36,63 @@ kubectl apply -f kwok.yaml
 
 ## Demo 1
 
-- Many deployments with countless pods
-- kgp is too long
-- kgp --selector=app=foo
-- kubectl get pods --show-labels
+Use labels selectors to filter resources.
+
+Too many pods:
+
+```bash
+kubectl get pods -A
+```
+
+How many are pods there:
+
+```bash
+kubectl get pods -A --no-headers | wc -l
+```
+
+How many Deployments are there:
+
+```bash
+kubectl get deployment -A
+```
+
+How many backend pods are there:
+
+```bash
+kubectl -n backend get pods --no-header | wc -l
+```
+
+Which labels are available:
+
+```bash
+kubectl -n backend get deployments.apps --show-labels
+```
+
+Show deployments owned by team 1:
+
+```bash
+kubectl get deployment -l owner=team1 -A --show-labels
+```
 
 ## Demo 2
 
-- XXX
+Use field selectors to filter resources.
+
+Show all pods not contained in namespace `kube-system`:
+
+```bash
+kubectl get deployment -A --field-selector "metadata.namespace!=kube-system"
+```
+
+How many pods are running on node `kwok-node-9`:
+
+```bash
+kubectl get pods -A --field-selector "spec.nodeName=kwok-node-9" | wc -l
+```
 
 ## Cleanup
+
+Remove the whole cluster:
 
 ```bash
 kwokctl delete cluster --name=kwok

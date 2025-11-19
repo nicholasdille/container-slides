@@ -1,26 +1,26 @@
 # Sorting
 
-XXX
+Sort the output.
 
 ## Preparation
 
-XXX
+None
 
 ## Demo
 
-XXX:
+Display pods in default order:
 
 ```bash
 kubectl get pods
 ```
 
-XXX:
+Display pods sorted by creation timestamp:
 
 ```bash
 kubectl get pods --sort-by=.metadata.creationTimestamp
 ```
 
-XXX:
+Display pods sorted by IP:
 
 ```bash
 kubectl get pods --sort-by=.status.podIP
@@ -28,7 +28,7 @@ kubectl get pods --sort-by=.status.podIP
 
 ## Cleanup
 
-XXX
+Remove deployment:
 
 ```bash
 kubectl delete -f deployment.yaml
