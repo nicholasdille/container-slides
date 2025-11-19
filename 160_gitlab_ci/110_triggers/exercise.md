@@ -312,7 +312,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout upstream/160_gitlab_ci/110_triggers/parent-child -- '*'
     ```
-
-<!-- TODO: variable inheritence -->
-<!-- TODO: dynamic child pipelines -->
-<!-- TODO: pull artifact from upstream pipeline -->

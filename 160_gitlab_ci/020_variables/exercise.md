@@ -188,9 +188,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout upstream/160_gitlab_ci/020_variables/ci -- '*'
     ```
-
-<!-- TODO: masked variables -->
-
-<!-- TODO: protected variables -->
-
-<!-- TODO: default values and descriptions -->

@@ -292,5 +292,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout upstream/160_gitlab_ci/140_merge_requests_rule_templates -- '*'
     ```
-
-<!-- TODO: merge request decoration? -->

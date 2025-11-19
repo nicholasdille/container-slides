@@ -197,7 +197,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 !!! info "Heads up"
     Checkout the branch `main` to make sure that the following exercises are based on the correct code base.
-
-<!-- TODO: Migrate from branches dev/live to main/live -->
-
-<!-- TODO: disposable environments -->

@@ -174,7 +174,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ## Bonus task: Create a template for building container images
 
 Similar to the template for building and testing Go, create a template for building container images including logging in and out of a container registry.
-
-<!-- TODO: use !reference -->
-<!-- TODO: multi-arch build -->
-<!-- TODO: rootless Docker -->

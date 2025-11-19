@@ -147,5 +147,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout upstream/160_gitlab_ci/010_jobs_and_stages/parallel -- '*'
     ```
-
-<!-- TODO: error handling (if, || true etc.) -->

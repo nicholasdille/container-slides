@@ -109,5 +109,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
-
-<!-- TODO: Convert stages to needs -->
