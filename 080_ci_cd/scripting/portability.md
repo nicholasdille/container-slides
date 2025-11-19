@@ -1,3 +1,9 @@
+<i class="fa fa-solid fa-cart-flatbed-suitcase fa-8x"></i> <!-- .element: style="float: right;" -->
+
+## Portability
+
+---
+
 <i class="fa fa-solid fa-cart-flatbed-suitcase fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Portability
@@ -40,7 +46,7 @@ check_tool curl
 check_tool jq
 ```
 
-Workarounds found in [pure sh bible](https://github.com/dylanaraps/pure-sh-bible) - increases complexity
+Workarounds found in [pure sh bible](https://github.com/dylanaraps/pure-sh-bible) (increases complexity)
 
 Also: Security issues from outdated tools
 

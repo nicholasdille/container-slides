@@ -32,7 +32,7 @@ EOF
 
 Whatever you execute<br/>on the console...
 
-...put in a file <!-- .element: style="padding-left: 3em;" -->
+...and put it in a file <!-- .element: style="padding-left: 3em;" -->
 
 Executed manually...
 
@@ -70,9 +70,9 @@ GitLab: `.gitlab-ci.yml`
 
 Jenkins: `Jenkinsfile`
 
-GitHub: `.github/workflows/`
+GitHub: `.github/workflows/*`
 
-`Makefile` and alternatives
+`Makefile` (and alternatives)
 
 ---
 
@@ -80,12 +80,12 @@ GitHub: `.github/workflows/`
 #syntax=docker/dockerfile:1
 FROM ubuntu:24.04
 RUN apt-get install -y curl jq
-COPY <<EOF /usr/local/bin/myscript
+COPY <<EOF /usr/local/bin/mycurl
 #!/bin/bash
 set -o errexit
 curl -sf $1
 EOF
-ENTRYPOINT ["/usr/local/bin/myscript"]
+ENTRYPOINT ["/usr/local/bin/mycurl"]
 CMD ["--help"]
 ```
 <!-- .element: style="width: 30em; float: right;" -->

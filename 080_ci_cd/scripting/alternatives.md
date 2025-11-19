@@ -1,3 +1,9 @@
+<i class="fa fa-solid fa-shuffle fa-8x"></i> <!-- .element: style="float: right;" -->
+
+## Alternatives
+
+---
+
 <i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Alternatives
@@ -19,13 +25,18 @@ Think about a custom CLI <i class="fa fa-solid fa-wand-magic-sparkles"></i>
 
 ## Alternatives
 
-### Advanced script languages
+### Script languages
 
 For example: Python, Ruby, Perl, PowerShell
 
 Be careful about the runtime dependency
 
-When to switch: **same reasons as above**
+When to switch:
+- Parsing of structured files
+- Length
+- Readability
+- Portability
+- Performance
 
 ---
 
@@ -64,7 +75,7 @@ For example:
 
 ### Simplify
 
-Complexity caused by approaches
+Complexity caused by design decisions
 
 For example:
 - `xmlstarlet` is great for processing XML/XHTML

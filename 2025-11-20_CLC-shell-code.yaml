@@ -38,15 +38,13 @@ slides:
 - 080_ci_cd/scripting/performance.md
 #- 080_ci_cd/scripting/data.md
 - 080_ci_cd/scripting/errors.md
-- 080_ci_cd/scripting/development.md
+#- 080_ci_cd/scripting/development.md
 - 080_ci_cd/scripting/when_to_avoid.md
 - 080_ci_cd/scripting/alternatives.md
 
 summary:
 - icon: hands-holding
   text: Shell code is omnipresent
-- icon: layer-group
-  text: Combine console commands
 - icon: book
   text: Make it repeatable
 - icon: hat-wizard
@@ -55,12 +53,6 @@ summary:
   text: Until you loose control
 
 events:
-- date: "2025-11-20"
-  name: Continuous Lifecycle
-  homepage: https://clc-conference.eu/
-  type: Talk
-  title: How much Shell Code is Enough
-  link: https://clc-conference.eu/veranstaltung-83821-0-wie-viel-shell-code-ist-zu-viel.html
 - date: "2025-11-27"
   name: heise Academy
   homepage: https://heise-academy.de/

@@ -1,3 +1,9 @@
+<i class="fa fa-solid fa-poo-storm fa-8x"></i> <!-- .element: style="float: right;" -->
+
+## Error Handling
+
+---
+
 <i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Error Handling
@@ -52,6 +58,16 @@ else
 fi
 ```
 
+...also:
+
+```bash
+if grep --quiet pattern file; then
+    echo "Pattern exists in file"
+else
+    echo "Pattern does not exist in file"
+fi
+```
+
 ---
 
 <i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
@@ -60,7 +76,7 @@ fi
 
 ### Know your tools
 
-`curl` reports success for >= 400 by default:
+`curl` signals success if it completed:
 
 ```bash
 if curl http://example.com; then
@@ -93,7 +109,7 @@ set -o nounset
 echo $foo
 ```
 
-Prevents typos
+Exposes typos in variable names
 
 ---
 

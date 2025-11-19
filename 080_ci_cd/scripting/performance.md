@@ -1,3 +1,9 @@
+<i class="fa fa-solid fa-gauge-high fa-8x"></i> <!-- .element: style="float: right;" -->
+
+## Performance
+
+---
+
 <!-- .slide: data-visibility="hidden" -->
 
 <i class="fa fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
@@ -37,10 +43,12 @@ JSON is not natively supported
 One call per value for retrieval
 
 ```bash
+# Fetch version
 jq --raw-output \
     '.tools[] | select(.name == 'aws2') | .version' \
     ~/.cache/uniget/metadata.json
     
+# Fetch homepage
 jq --raw-output \
     '.tools[] | select(.name == 'aws2') | .homepage' \
     ~/.cache/uniget/metadata.json
@@ -78,7 +86,7 @@ Avoiding repetition sacrifices readability <i class="fa fa-face-rolling-eyes"></
 O(n), ~100 processes, 13 seconds:
 
 ```bash
-# Show all tools with version in reverse alphabetical order
+# Loop to show all tools with version in reverse order
 time \
 jq --raw-output '.tools[].name' ~/.cache/uniget/metadata.json \
 | sort -r \
@@ -92,7 +100,7 @@ done
 O(1), 1 process, 13 milliseconds:
 
 ```bash
-# Show all tools with version in reverse alphabetical order
+# Show all tools with version in reverse order
 time \
 jq --raw-output '.tools[] | "\(.name) v\(.version)"' ~/.cache/uniget/metadata.json \
 | sort -r

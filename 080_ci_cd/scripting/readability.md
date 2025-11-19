@@ -1,3 +1,9 @@
+<i class="fa fa-solid fa-book-open-reader fa-8x"></i> <!-- .element: style="float: right;" -->
+
+## Readability
+
+---
+
 <i class="fa fa-solid fa-book-open-reader fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Readability
@@ -15,7 +21,7 @@ Tools supported by `uniget`:
 ```bash
 regctl manifest get ghcr.io/uniget-org/tools/metadata:main -p local --format
 raw-body | jq -r '.layers[0].digest' | xargs regctl blob get
-ghcr.io/uniget-org/tools/metadata | tar -xzO metadata.json
+ghcr.io/uniget-org/tools/metadata | tar -xzO metadata.json | jq -r '.tools[].name'
 ```
 
 ---
@@ -38,12 +44,12 @@ ps ax \
 Tools supported by `uniget`:
 
 ```bash
-# Tools supported by uniget
 regctl manifest get ghcr.io/uniget-org/tools/metadata:main -p local --format=raw-body \
 | jq -r '.layers[0].digest' \
 | xargs \
     regctl blob get ghcr.io/uniget-org/tools/metadata \
-| tar -xzO metadata.json
+| tar -xzO metadata.json \
+| jq -r '.tools[].name'
 ```
 
 ---
@@ -57,7 +63,6 @@ regctl manifest get ghcr.io/uniget-org/tools/metadata:main -p local --format=raw
 Count instances of `git-credential-oauth`:
 
 ```bash
-# Latest version of Docker Desktop
 ps ax \
 | grep git-credential-oauth \
 | grep --invert-match grep \
@@ -67,12 +72,12 @@ ps ax \
 Tools supported by `uniget`:
 
 ```bash
-# Tools supported by uniget
 regctl manifest get ghcr.io/uniget-org/tools/metadata:main --platform=local --format=raw-body \
 | jq --raw-output '.layers[0].digest' \
 | xargs \
     regctl blob get ghcr.io/uniget-org/tools/metadata \
-| tar --extract --gzip --to-stdout metadata.json
+| tar --extract --gzip --to-stdout metadata.json \
+| jq --raw-output '.tools[].name'
 ```
 
 ---
@@ -85,7 +90,7 @@ regctl manifest get ghcr.io/uniget-org/tools/metadata:main --platform=local --fo
 
 Sacrifices readability
 
-Additional files to install
+Scripts are often authored on the console
 
 ```bash
 #!/bin/bash
@@ -93,3 +98,5 @@ source functions.sh
 
 get_uniget_metadata()
 ```
+
+Additional files to install
