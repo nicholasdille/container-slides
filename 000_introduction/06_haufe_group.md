@@ -1,4 +1,4 @@
-## Haufe Group [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://www.haufegroup.com)
+## Haufe Group [](https://www.haufegroup.com)
 
 ![](images/haufe-group/HaufeGroupLogoSoloLime.png) <!-- .element: style="float: right; width: 10%;" -->
 

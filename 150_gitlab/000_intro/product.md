@@ -44,17 +44,17 @@ Based on open-source project, allows your own runners, static websites
 
 gitlab.com: 10GB [storage](https://about.gitlab.com/pricing/#do-the-storage-and-transfer-limits-apply-to-self-managed), 400 [minutes/month](https://about.gitlab.com/pricing/#why-do-i-need-to-enter-credit-debit-card-details-for-free-pipeline-minutes), 5 [users/group](https://about.gitlab.com/pricing/#when-will-the-user-limits-be-effective)
 
-### Premium [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/premium/) ($29/user/month)
+### Premium [](https://about.gitlab.com/pricing/premium/) ($29/user/month)
 
 **CI/CD-focused:** Faster code reviews, advanced CI/CD, enterprise agile planning, release controls, support, higher limits
 
-### Ultimate [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/pricing/ultimate/) (price undisclosed)
+### Ultimate [](https://about.gitlab.com/pricing/ultimate/) (price undisclosed)
 
 **Security-focused:** Advanced security testing, security risk mitigation, compliance, portfolio management, value stream management, free guest users
 
 ---
 
-## GitLab Dedicated [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/dedicated/)
+## GitLab Dedicated [](https://about.gitlab.com/dedicated/)
 
 <i class="fa-duotone fa-fence fa-4x"></i> <!--.element: style="float: right; margin-right: 1em;" -->
 
@@ -77,7 +77,7 @@ Some features are [unavailable](https://docs.gitlab.com/subscriptions/gitlab_ded
 ---
 <!-- .slide: id="gitlab_duo" -->
 
-## GitLab Duo [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://about.gitlab.com/gitlab-duo/)
+## GitLab Duo [](https://about.gitlab.com/gitlab-duo/)
 
 <i class="fa-duotone fa-microchip-ai fa-4x"></i> <!--.element: style="float: right; margin-right: 1em;" -->
 

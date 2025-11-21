@@ -48,7 +48,7 @@ One token per instance, per group and per project
 
 Credential leak causes a lot of work
 
-### New process [<i class="fa-duotone fa-solid fa-arrow-up-right-from-square"></i>](https://docs.gitlab.com/ee/ci/runners/new_creation_workflow.html)
+### New process [](https://docs.gitlab.com/ee/ci/runners/new_creation_workflow.html)
 
 Create a runner [through the UI](https://docs.gitlab.com/ee/ci/runners/runners_scope.html) or [through the API](https://docs.gitlab.com/ee/api/users.html#create-a-runner-linked-to-a-user)
 
