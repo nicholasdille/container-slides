@@ -37,9 +37,6 @@ container_scanning:
 default:
   image: golang:1.25.3
 
-services:
-- nginx:1.27.5
-
 renovate:
   rules:
   - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE'
@@ -86,12 +83,6 @@ test:
   extends:
   - .run-on-push-and-in-mr
   - .test-go
-
-test-service:
-  extends:
-  - .run-on-push-to-default-branch
-  script:
-  - curl -s http://nginx
 
 deploy:
   needs:

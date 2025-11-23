@@ -72,7 +72,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
           GOARCH: amd64
         - GOOS: linux
           GOARCH: arm64
-    
+
     .go-cache:
       variables:
         GOPATH: $CI_PROJECT_DIR/.go
@@ -83,7 +83,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         policy: pull-push
         paths:
         - .go/pkg/mod/
-    
+
     .build-go:
       extends:
       - .go-targets
@@ -92,12 +92,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - |
         go build \
             -o hello-${GOOS}-${GOARCH} \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             .
       artifacts:
         paths:
         - hello-${GOOS}-${GOARCH}
-    
+
     .test-go:
       extends:
       - .go-targets
@@ -107,6 +107,17 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       script:
       - |
         file hello-${GOOS}-${GOARCH}
+
+    .unit-tests-go:
+      extends:
+      - .go-cache
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - ./.go/bin/gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
     ```
     
     If you want to jump to the solution, execute the following command:

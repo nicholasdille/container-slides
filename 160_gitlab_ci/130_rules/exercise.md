@@ -51,52 +51,44 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     include:
     - local: go.yaml
 
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
-      script:
-      - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml
-      artifacts:
-        when: always
-        reports:
-          junit: report.xml
+      extends:
+      - .unit-tests-go
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
       extends:
       - .build-go
-      artifacts:
-        paths:
-        - hello
+      variables:
+        version: $CI_COMMIT_REF_NAME
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
+      rules:
+      - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       environment:
         name: ${CI_COMMIT_REF_NAME}
       image: curlimages/curl:8.17.0
@@ -109,7 +101,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --user seat${SEAT_INDEX}:${PASS}
 
     pages:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       image: alpine
@@ -120,7 +114,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     trigger:
-      stage: trigger
       trigger:
         include: child.yaml
     ```
@@ -166,76 +159,69 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     include:
     - local: go.yaml
 
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
-      script:
-      - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml
-      artifacts:
-        when: always
-        reports:
-          junit: report.xml
+      extends:
+      - .unit-tests-go
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
       extends:
       - .build-go
-      artifacts:
-        paths:
-        - hello
+      variables:
+        version: $CI_COMMIT_REF_NAME
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
+      rules:
+      - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       image: curlimages/curl:8.17.0
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
 
     pages:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       image: alpine
       script:
-      - cp hello public/
+      - cp hello public/hello
       artifacts:
         paths:
         - public
 
     trigger:
-      stage: trigger
       trigger:
         include: child.yaml
     ```
@@ -276,80 +262,73 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         when: never
       - if: $CI_PIPELINE_SOURCE == 'trigger'
         when: never
-
+      
     include:
     - local: go.yaml
-
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
 
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
-      script:
-      - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml
-      artifacts:
-        when: always
-        reports:
-          junit: report.xml
+      extends:
+      - .unit-tests-go
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
       extends:
       - .build-go
-      artifacts:
-        paths:
-        - hello
+      variables:
+        version: $CI_COMMIT_REF_NAME
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
+      rules:
+      - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       environment:
-        name: dev
+        name: ${CI_COMMIT_REF_NAME}
       image: curlimages/curl:8.17.0
       script:
       - |
-        curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
 
     pages:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       image: alpine
       script:
-      - cp hello public/
+      - cp hello public/hello
       artifacts:
         paths:
         - public
 
     trigger:
-      stage: trigger
       trigger:
         include: child.yaml
     ```

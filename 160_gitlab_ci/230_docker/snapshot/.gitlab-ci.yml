@@ -26,9 +26,6 @@ include:
 default:
   image: golang:1.25.3
 
-services:
-- nginx:1.27.5
-
 lint:
   extends:
   - .run-on-push-and-in-mr
@@ -63,11 +60,6 @@ test:
   extends:
   - .run-on-push-and-in-mr
   - .test-go
-
-test-service:
-  extends:
-  - .run-on-push-to-default-branch
-  script:
   - curl -s http://nginx
 
 deploy:

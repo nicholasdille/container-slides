@@ -56,13 +56,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-
     default:
       image: golang:1.25.3
 
@@ -70,52 +63,50 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - nginx:1.27.5
 
     lint:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go fmt .
 
     audit:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
-      script:
-      - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml
-      artifacts:
-        when: always
-        reports:
-          junit: report.xml
+      - .unit-tests-go
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
       extends:
       - .run-on-push-and-in-mr
       - .build-go
+      variables:
+        version: $CI_COMMIT_REF_NAME
 
     test:
-      stage: test
+      needs:
+      - build
       extends:
       - .run-on-push-and-in-mr
       - .test-go
 
     test-service:
-      stage: test
       extends:
       - .run-on-push-to-default-branch
       script:
       - curl -s http://nginx
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       rules:
       - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       environment:
@@ -130,7 +121,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --user seat${SEAT_INDEX}:${PASS}
 
     pages:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       extends:
       - .run-on-push-to-default-branch
       image: alpine
@@ -141,7 +134,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     trigger:
-      stage: trigger
       extends:
       - .run-on-push-to-default-branch
       trigger:
@@ -176,66 +168,69 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         when: never
       - if: $CI_PIPELINE_SOURCE == 'trigger'
         when: never
-      
+
     include:
     - local: go.yaml
-    
+
     .run-on-push-to-default-branch:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-    
+
     .run-on-push-and-in-mr:
       rules:
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-    
+
     default:
       image: golang:1.25.3
-    
+
     lint:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go fmt .
-    
+
     audit:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go vet .
-    
+
+    unit_tests:
+      extends:
+      - .run-on-push-and-in-mr
+      - .unit-tests-go
+
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
       extends:
       - .run-on-push-and-in-mr
       - .build-go
-    
+      variables:
+        version: $CI_COMMIT_REF_NAME
+
     test:
-      stage: test
+      needs:
+      - build
       extends:
       - .run-on-push-and-in-mr
       - .test-go
-    
+
     test-service:
-      stage: test
       extends:
       - .run-on-push-to-default-branch
       services:
       - nginx:1.27.5
       script:
       - curl -s http://nginx
-    
+
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       rules:
       - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       environment:
@@ -248,9 +243,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --verbose \
             --upload-file hello-linux-amd64 \
             --user seat${SEAT_INDEX}:${PASS}
-    
+
     pages:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       extends:
       - .run-on-push-to-default-branch
       image: alpine
@@ -259,9 +256,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       artifacts:
         paths:
         - public
-    
+
     trigger:
-      stage: trigger
       extends:
       - .run-on-push-to-default-branch
       trigger:

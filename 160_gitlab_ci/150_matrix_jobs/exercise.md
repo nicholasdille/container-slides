@@ -43,12 +43,35 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
             -o hello-${GOOS}-${GOARCH} \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             .
       artifacts:
         paths:
         - hello-${GOOS}-${GOARCH}
+
+    .test-go:
+      parallel:
+        matrix:
+        - GOOS: linux
+          GOARCH: amd64
+        - GOOS: linux
+          GOARCH: arm64
+      before_script:
+      - apt-get update
+      - apt-get -y install file
+      script:
+      - |
+        file hello-${GOOS}-${GOARCH}
+
+    .unit-tests-go:
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
     ```
 
     `.gitlab-ci.yml`:
@@ -79,60 +102,50 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go fmt .
 
     audit:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
-      script:
-      - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml
-      artifacts:
-        when: always
-        reports:
-          junit: report.xml
+      - .unit-tests-go
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
       extends:
       - .run-on-push-and-in-mr
       - .build-go
+      variables:
+        version: $CI_COMMIT_REF_NAME
 
     test:
-      stage: test
+      needs:
+      - build
       extends:
       - .run-on-push-and-in-mr
-      image: alpine
-      script:
-      - ./hello-linux-amd64
+      - .test-go
 
     deploy:
-      stage: deploy
-      extends:
-      - .run-on-push-to-default-branch
+      needs:
+      - build
+      - unit_tests
+      rules:
+      - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       environment:
         name: ${CI_COMMIT_REF_NAME}
       image: curlimages/curl:8.17.0
@@ -145,7 +158,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --user seat${SEAT_INDEX}:${PASS}
 
     pages:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       extends:
       - .run-on-push-to-default-branch
       image: alpine
@@ -156,7 +171,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     trigger:
-      stage: trigger
       extends:
       - .run-on-push-to-default-branch
       trigger:
@@ -209,7 +223,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello-${GOOS}-${GOARCH} \
             .
       artifacts:
@@ -225,6 +239,15 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       script:
       - |
         file hello-${GOOS}-${GOARCH}
+
+    .unit-tests-go:
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
     ```
 
     `.gitlab-ci.yml`:
@@ -242,7 +265,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         when: never
       - if: $CI_PIPELINE_SOURCE == 'trigger'
         when: never
-
+      
     include:
     - local: go.yaml
 
@@ -255,56 +278,48 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go fmt .
 
     audit:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
-      script:
-      - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml
-      artifacts:
-        when: always
-        reports:
-          junit: report.xml
+      - .unit-tests-go
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
       extends:
       - .run-on-push-and-in-mr
       - .build-go
+      variables:
+        version: $CI_COMMIT_REF_NAME
 
     test:
-      stage: test
+      needs:
+      - build
       extends:
       - .run-on-push-and-in-mr
       - .test-go
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       rules:
       - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       environment:
@@ -319,7 +334,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --user seat${SEAT_INDEX}:${PASS}
 
     pages:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       extends:
       - .run-on-push-to-default-branch
       image: alpine
@@ -330,7 +347,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     trigger:
-      stage: trigger
       extends:
       - .run-on-push-to-default-branch
       trigger:

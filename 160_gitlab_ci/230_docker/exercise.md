@@ -70,57 +70,48 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - package
-    - trigger
-
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go fmt .
 
     audit:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       extends:
       - .run-on-push-and-in-mr
-      script:
-      - go install gotest.tools/gotestsum@latest
-      - gotestsum --junitfile report.xml
-      artifacts:
-        when: always
-        reports:
-          junit: report.xml
+      - .unit-tests-go
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
       extends:
       - .run-on-push-and-in-mr
       - .build-go
+      variables:
+        version: $CI_COMMIT_REF_NAME
 
     test:
-      stage: test
+      needs:
+      - build
       extends:
       - .run-on-push-and-in-mr
       - .test-go
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       rules:
       - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
       environment:
@@ -135,7 +126,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
             --user seat${SEAT_INDEX}:${PASS}
 
     pages:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       extends:
       - .run-on-push-to-default-branch
       image: alpine
@@ -146,19 +139,20 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - public
 
     package:
-      image: docker:28.1.1
-      stage: package
-      rules:
-      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+      needs:
+      - build
+      - unit_tests
+      image: docker:28.5.2
+      extends:
+      - .run-on-push-to-default-branch
+      services:
+      - name: docker:28.5.2-dind
       variables:
         DOCKER_TLS_CERTDIR: ""
-      services:
-      - docker:28.1.1-dind
       script:
       - docker build --tag hello .
 
     trigger:
-      stage: trigger
       extends:
       - .run-on-push-to-default-branch
       trigger:
