@@ -1,0 +1,58 @@
+default:
+  image: golang:1.25.3
+
+lint:
+  script:
+  - go fmt .
+
+audit:
+  script:
+  - go vet .
+
+unit_tests:
+  script:
+  - go install gotest.tools/gotestsum@latest
+  - gotestsum --junitfile report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+
+build:
+  needs:
+  - lint
+  - audit
+  - unit_tests
+  variables:
+    version: $CI_COMMIT_REF_NAME
+  script:
+  - |
+    go build \
+        -o hello \
+        -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+        .
+  artifacts:
+    paths:
+    - hello
+
+test:
+  needs:
+  - build
+  image: alpine
+  script:
+  - ./hello
+
+deploy:
+  needs:
+  - build
+  - unit_tests
+  environment:
+    name: ${CI_COMMIT_REF_NAME}
+  image: curlimages/curl:8.17.0
+  script:
+  - |
+    curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
+        --fail \
+        --verbose \
+        --upload-file hello \
+        --user seat${SEAT_INDEX}:${PASS}

@@ -1,0 +1,81 @@
+workflow:
+  rules:
+  - if: $CI_DEPLOY_FREEZE
+    when: never
+  - if: $CI_PIPELINE_SOURCE == 'push'
+  - if: $CI_PIPELINE_SOURCE == 'web'
+  - if: $CI_PIPELINE_SOURCE == 'schedule'
+  - if: $CI_PIPELINE_SOURCE == 'pipeline'
+  - if: $CI_PIPELINE_SOURCE == 'api'
+    when: never
+  - if: $CI_PIPELINE_SOURCE == 'trigger'
+    when: never
+  
+include:
+- local: go.yaml
+
+default:
+  image: golang:1.25.3
+
+lint:
+  script:
+  - go fmt .
+
+audit:
+  script:
+  - go vet .
+
+unit_tests:
+  extends:
+  - .unit-tests-go
+
+build:
+  needs:
+  - lint
+  - audit
+  - unit_tests
+  extends:
+  - .build-go
+  variables:
+    version: $CI_COMMIT_REF_NAME
+
+test:
+  needs:
+  - build
+  image: alpine
+  script:
+  - ./hello
+
+deploy:
+  needs:
+  - build
+  - unit_tests
+  rules:
+  - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
+  environment:
+    name: ${CI_COMMIT_REF_NAME}
+  image: curlimages/curl:8.17.0
+  script:
+  - |
+    curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
+        --fail \
+        --verbose \
+        --upload-file hello \
+        --user seat${SEAT_INDEX}:${PASS}
+
+pages:
+  needs:
+  - build
+  - unit_tests
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  image: alpine
+  script:
+  - cp hello public/hello
+  artifacts:
+    paths:
+    - public
+
+trigger:
+  trigger:
+    include: child.yaml

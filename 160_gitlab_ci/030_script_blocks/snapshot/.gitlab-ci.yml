@@ -1,0 +1,34 @@
+stages:
+- check
+- build
+
+lint:
+  stage: check
+  before_script:
+  - apk update
+  - apk add go
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  before_script:
+  - apk update
+  - apk add go
+  script:
+  - go vet .
+
+build:
+  stage: build
+  before_script:
+  - apk update
+  - apk add go
+  variables:
+    version: $CI_COMMIT_REF_NAME
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+        -o hello \
+        .
+  - ./hello

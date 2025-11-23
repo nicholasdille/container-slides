@@ -1,0 +1,28 @@
+stages:
+- check
+- build
+
+default:
+  image: golang:1.25.3
+
+lint:
+  stage: check
+  script:
+  - go fmt .
+
+audit:
+  stage: check
+  script:
+  - go vet .
+
+build:
+  stage: build
+  variables:
+    version: $CI_COMMIT_REF_NAME
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+        -o hello \
+        .
+  - ./hello

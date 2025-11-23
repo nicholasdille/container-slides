@@ -1,0 +1,33 @@
+default:
+  image: golang:1.25.3
+
+lint:
+  script:
+  - go fmt .
+
+audit:
+  script:
+  - go vet .
+
+build:
+  needs:
+  - lint
+  - audit
+  variables:
+    version: $CI_COMMIT_REF_NAME
+  script:
+  - |
+    go build \
+        -o hello \
+        -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+        .
+  artifacts:
+    paths:
+    - hello
+
+test:
+  needs:
+  - build
+  image: alpine
+  script:
+  - ./hello
