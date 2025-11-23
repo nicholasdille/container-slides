@@ -37,7 +37,7 @@ In the web UI:
 
 In your pipeline:
 
-1. Add new stage `trigger` as well as a job `trigger`
+1. Add new job called `trigger`
 1. Add `curl` snippet in `script` block
 1. Replace `TOKEN` with the variable `$TOKEN`
 1. Replace `REF_NAME` with branch name (`main`)
@@ -47,29 +47,19 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="6 64-72"
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-
+    ```yaml linenums="1" hl_lines="60-67"
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       script:
       - go install gotest.tools/gotestsum@latest
       - gotestsum --junitfile report.xml
@@ -79,11 +69,16 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
           junit: report.xml
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
       artifacts:
@@ -91,26 +86,28 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
         - hello
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       environment:
         name: ${CI_COMMIT_REF_NAME}
       image: curlimages/curl:8.17.0
       script:
       - |
-        curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
 
     trigger:
-      stage: trigger
       script: |
         curl https://gitlab.inmylab.de/api/v4/projects/seat${SEAT_INDEX}%2ftrigger/trigger/pipeline \
             --request POST \
@@ -142,29 +139,19 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="64-66"
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-
+    ```yaml linenums="1" hl_lines="61"
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       script:
       - go install gotest.tools/gotestsum@latest
       - gotestsum --junitfile report.xml
@@ -174,11 +161,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
           junit: report.xml
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
       artifacts:
@@ -186,27 +178,29 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - hello
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       environment:
         name: ${CI_COMMIT_REF_NAME}
       image: curlimages/curl:8.17.0
       script:
       - |
-        curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
 
     trigger:
-      stage: trigger
-      trigger: <path-to-project>
+      trigger: seatN/trigger
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
@@ -239,29 +233,19 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="67"
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-    - trigger
-
+    ```yaml linenums="1" hl_lines="61-62"
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       script:
       - go install gotest.tools/gotestsum@latest
       - gotestsum --junitfile report.xml
@@ -271,11 +255,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
           junit: report.xml
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
       artifacts:
@@ -283,26 +272,28 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - hello
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       environment:
         name: ${CI_COMMIT_REF_NAME}
       image: curlimages/curl:8.17.0
       script:
       - |
-        curl https://${CI_COMMIT_REF_NAME}.seat${SEAT_INDEX}.inmylab.de/ \
+        curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
             --fail \
             --verbose \
             --upload-file hello \
             --user seat${SEAT_INDEX}:${PASS}
 
     trigger:
-      stage: trigger
       trigger:
         include: child.yaml
     ```

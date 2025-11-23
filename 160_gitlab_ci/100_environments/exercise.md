@@ -44,28 +44,19 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="5 48-61"
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-
+    ```yaml linenums="1" hl_lines="45-58"
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       script:
       - go install gotest.tools/gotestsum@latest
       - gotestsum --junitfile report.xml
@@ -75,11 +66,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
           junit: report.xml
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
       artifacts:
@@ -87,13 +83,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - hello
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       environment:
         name: dev
       image: curlimages/curl:8.17.0
@@ -119,28 +118,19 @@ Create a new branch `dev` from the branch `main` and modify the job `deploy` to 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml linenums="1" hl_lines="51 57"
-    stages:
-    - check
-    - build
-    - test
-    - deploy
-
+    ```yaml linenums="1" hl_lines="50 54"
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       script:
       - go install gotest.tools/gotestsum@latest
       - gotestsum --junitfile report.xml
@@ -150,11 +140,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
           junit: report.xml
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
       artifacts:
@@ -162,13 +157,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - hello
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
 
     deploy:
-      stage: deploy
+      needs:
+      - build
+      - unit_tests
       environment:
         name: ${CI_COMMIT_REF_NAME}
       image: curlimages/curl:8.17.0

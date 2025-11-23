@@ -47,27 +47,19 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="19-27"
-    stages:
-    - check
-    - build
-    - test
-
+    ```yaml linenums="1" hl_lines="12-19 25"
     default:
       image: golang:1.25.3
 
     lint:
-      stage: check
       script:
       - go fmt .
 
     audit:
-      stage: check
       script:
       - go vet .
 
     unit_tests:
-      stage: check
       script:
       - go install gotest.tools/gotestsum@latest
       - gotestsum --junitfile report.xml
@@ -77,11 +69,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
           junit: report.xml
 
     build:
-      stage: build
+      needs:
+      - lint
+      - audit
+      - unit_tests
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
       artifacts:
@@ -89,7 +86,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - hello
 
     test:
-      stage: test
+      needs:
+      - build
       image: alpine
       script:
       - ./hello
