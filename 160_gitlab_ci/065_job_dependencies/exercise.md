@@ -6,7 +6,7 @@
     - ignore stages
     - start jobs as soon as dependencies are met
 
-## Task: Start a job early
+## Task 1: Start a job early
 
 Start the job `build` as soon as the job `audit` completes without waiting for other job of the stage `check` to finish. Check out the official documentation of [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs).
 
@@ -55,9 +55,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - ./hello
     ```
 
-This was just a demonstration. The changes will not be preserved in the following chapters.
-
-## Bonus task: Start a job late
+## Task 2: Start a job late
 
 If two jobs in the same stage should not be executed at the same time, the [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs) keyword can also delay a job until the dependencies are met. Modify the job `lint` so that it waits for the job `audit` to finish.
 
@@ -108,4 +106,50 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - ./hello
     ```
 
-This was just a demonstration. The changes will not be preserved in the following chapters.
+## Task 3: Replace stages with job dependencies
+
+Modify your pipeline:
+
+1. Remove the declaration of `stages` at the top
+1. Remove the `stage` field from all jobs
+1. Add `needs` so that `build` requires `lint` and `audit`
+1. Add `needs` so that `test` requires `build`
+
+??? example "Solution (Click if you are stuck)"
+    `.gitlab-ci.yml`:
+    
+    ```yaml linenums="1" hl_lines="13-15 29-30"
+    default:
+      image: golang:1.25.3
+
+    lint:
+      script:
+      - go fmt .
+
+    audit:
+      script:
+      - go vet .
+
+    build:
+      needs:
+      - lint
+      - audit
+      variables:
+        version: $CI_COMMIT_REF_NAME
+      script:
+      - |
+        go build \
+            -o hello \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+            .
+      artifacts:
+        paths:
+        - hello
+
+    test:
+      needs:
+      - build
+      image: alpine
+      script:
+      - ./hello
+    ```

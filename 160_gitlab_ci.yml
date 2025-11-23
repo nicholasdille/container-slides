@@ -115,6 +115,7 @@ nav:
   - IDE: 000_rollout/exercise_ide.md
   - Project: 000_rollout/exercise_project.md
   - You are ready: you_are_ready.md
+  - Alternative gitlab.com: 000_rollout/exercise_gitlabcom.md
 - Fundamentals:
   - Jobs and Stages: 010_jobs_and_stages/exercise.md
   - Variables: 020_variables/exercise.md

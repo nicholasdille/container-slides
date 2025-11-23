@@ -79,13 +79,12 @@ Read the [official documentation about predefined variables](https://docs.gitlab
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    1. Remove the `variable` keyword from the job called `build`
-    2. Replace the variable `${version}` with the predefined variable `${CI_COMMIT_REF_NAME}`
+    1. Instead of a hardcoded value, use the predefined variable `${CI_COMMIT_REF_NAME}` for the variable `version`
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="25-28"
+    ```yaml linenums="1" hl_lines="22"
     stages:
     - check
     - build
@@ -106,12 +105,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     build:
       stage: build
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - apk update
       - apk add go
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME}" \
+            -ldflags "-X main.Version=${version}" \
             -o hello \
             .
       - ./hello
@@ -151,7 +152,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="25-28"
+    ```yaml linenums="1" hl_lines="28"
     stages:
     - check
     - build
@@ -172,12 +173,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     build:
       stage: build
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - apk update
       - apk add go
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
       - ./hello

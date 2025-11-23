@@ -143,7 +143,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       stage: deploy
       extends:
       - .run-on-push-to-default-branch
-      image: registry.gitlab.com/gitlab-org/release-cli:0.24.0
+      image: registry.gitlab.com/gitlab-org/release-cli:v0.24.0
       release:
         tag_name: ${CI_PIPELINE_IID}
         name: Release ${CI_PIPELINE_IID}

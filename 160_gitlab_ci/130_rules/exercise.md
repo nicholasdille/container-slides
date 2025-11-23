@@ -353,5 +353,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       trigger:
         include: child.yaml
     ```
-
-This was just a demonstration. The changes will not be preserved in the following chapters.

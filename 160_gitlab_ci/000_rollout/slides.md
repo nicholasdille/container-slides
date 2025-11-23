@@ -21,3 +21,11 @@ Containerized service stack for this workshop
 Meet your demo environment by following the [introduction](/hands-on/2025-11-18/)
 
 More about GitLab Runner [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
+
+---
+
+## Pro tip: Using gitlab.com
+
+You can also follow the workshop using `gitlab.com`
+
+Follow [this exercise](https://dille.name/hands-on/2025-11-18/000_rollout/exercise_gitlabcom/) to learn about the differences

@@ -13,8 +13,6 @@ workflow:
   
 include:
 - local: go.yaml
-- template: Security/Secret-Detection.gitlab-ci.yml
-- template: Security/SAST.gitlab-ci.yml
 
 .run-on-push-to-default-branch:
   rules:
@@ -40,7 +38,7 @@ renovate:
   script: |
     renovate --platform gitlab \
         --endpoint ${CI_API_V4_URL} \
-        --token ${CI_JOB_TOKEN} \
+        --token ${RENOVATE_TOKEN} \
         ${CI_PROJECT_PATH}
 
 lint:
@@ -68,6 +66,8 @@ build:
   extends:
   - .run-on-push-and-in-mr
   - .build-go
+  variables:
+    version: $CI_COMMIT_REF_NAME
 
 test:
   needs:
@@ -105,7 +105,7 @@ pages:
   - unit_tests
   extends:
   - .run-on-push-to-default-branch
-  image: registry.gitlab.com/gitlab-org/release-cli:0.24.0
+  image: registry.gitlab.com/gitlab-org/cli:v1.78.2
   release:
     tag_name: ${CI_PIPELINE_IID}
     name: Release ${CI_PIPELINE_IID}
@@ -139,7 +139,6 @@ package:
   - docker logout "${CI_REGISTRY}"
 
 trigger:
-  stage: trigger
   extends:
   - .run-on-push-to-default-branch
   trigger:

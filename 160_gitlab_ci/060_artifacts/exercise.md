@@ -54,10 +54,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     build:
       stage: build
+      variables:
+        version: $CI_COMMIT_REF_NAME
       script:
       - |
         go build \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
             -o hello \
             .
       artifacts:
