@@ -1,0 +1,17 @@
+spec:
+  inputs:
+    registry:
+      type: string
+      default: docker.io
+    username:
+      type: string
+    password:
+      type: string
+---
+exec:
+  command:
+  - docker
+  - login
+  - ${{ inputs.registry }}
+  - --username=${{ inputs.username }}
+  - --password=${{ inputs.password }}

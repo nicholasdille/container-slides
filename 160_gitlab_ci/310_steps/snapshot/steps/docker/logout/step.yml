@@ -1,0 +1,11 @@
+spec:
+  inputs:
+    registry:
+      type: string
+      default: docker.io
+---
+exec:
+  command:
+  - docker
+  - logout
+  - ${{ inputs.registry }}

@@ -17,10 +17,10 @@ Create a component in the same repository:
 1. Add a new directory called `templates`
 1. Add a new file called `templates/go.yml`
 1. Add `spec` in the header
-1. Add inputs called `build-stage` and `test-stage`
+1. Add inputs called `binary-name` and `needs`
 
 ??? info "Hint (Click if you are stuck)"
-    - The file *must* have the extension `.yml` not `.yaml`
+    - The file *must* have the extension `.yml` (not `.yaml`)
     - The file *must* be located in the directory `templates`
     - The header and body of a component *must* be separated by a line containing only `---`
 
@@ -30,10 +30,11 @@ Create a component in the same repository:
     ```yaml
     spec:
       inputs:
-        build-stage:
-          default: build
-        test-stage:
-          default: test
+        binary-name:
+          default: hello
+        needs:
+          type: array
+          default: []
     ---
     ```
 
@@ -42,9 +43,8 @@ Create a component in the same repository:
 Now fill the body of the component with the job templates for Go in `go.yaml`:
 
 1. Copy all job templates from `go.yaml` to the body of `templates/go.yml`
-1. Unhide the jobs `.build-go` and `.test-go`
-1. Use the input `build-stage` for the `stage` field in the `build-go` job
-1. Use the input `test-stage` for the `stage` field in the `test-go` job
+1. Unhide the jobs `.build-go` and `.test-go` and `.unit-tests-go`
+1. Use the input for `needs` in the `build-go` job
 1. Add an `image` field to `build-go` and `test-go` with a value of `golang:1.25.3`
 1. Remove `go.yaml`
 
@@ -52,18 +52,22 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
     - The header and body of a component *must* be separated by a line containing only `---`
     - Unhide a job by removing the leading dot
 
+??? info "Hint (Click if you are stuck)"
+    The syntax for using the input for `needs` is: `needs: $[[ inputs.needs ]]`
+
 ??? example "Solution (Click if you are stuck)"
     `templates/go.yml`:
 
     ```yaml
     spec:
       inputs:
-        build-stage:
-          default: build
-        test-stage:
-          default: test
+        binary-name:
+          default: hello
+        needs:
+          type: array
+          default: []
     ---
-    
+
     .go-targets:
       parallel:
         matrix:
@@ -71,7 +75,7 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
           GOARCH: amd64
         - GOOS: linux
           GOARCH: arm64
-    
+
     .go-cache:
       variables:
         GOPATH: $CI_PROJECT_DIR/.go
@@ -82,26 +86,26 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
         policy: pull-push
         paths:
         - .go/pkg/mod/
-    
+
     build-go:
-      stage: $[[ inputs.build-stage ]]
-      image: golang:1.25.3
+      needs: $[[ inputs.needs ]]
       extends:
       - .go-targets
       - .go-cache
+      image: golang:1.25.3
       script:
       - |
         go build \
-            -o hello-${GOOS}-${GOARCH} \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+            -o $[[ inputs.binary-name ]]-${GOOS}-${GOARCH} \
             .
       artifacts:
         paths:
-        - hello-${GOOS}-${GOARCH}
-    
+        - $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
     test-go:
-      stage: $[[ inputs.test-stage ]]
-      image: golang:1.25.3
+      needs:
+      - build-go
       extends:
       - .go-targets
       before_script:
@@ -109,7 +113,19 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
       - apt-get -y install file
       script:
       - |
-        file hello-${GOOS}-${GOARCH}
+        file $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
+    unit-tests-go:
+      extends:
+      - .go-cache
+      image: golang:1.25.3
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - ./.go/bin/gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
     ```
 
 ## Task 3: Use component locally
@@ -132,8 +148,8 @@ The component is now ready to be used:
     include:
     - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/go@$CI_COMMIT_SHA
       inputs:
-        build-stage: build
-        test-stage: test
+        binary-name: hello
+        needs: []
     #...
     ```
 
@@ -143,7 +159,7 @@ Customize the template to make the image configurable:
 
 1. Add an input called `image` to the component
 1. Set the default value of `image` to `golang:1.25.3`
-1. Use the input `image` for the `image` field in the `build-go` and `test-go` jobs
+1. Use the input `image` for the `image` field in the `build-go` and `unit-tests-go` jobs
 1. (Optionally) Add a value for `image` to the include in `.gitlab-ci.yml`
 
 ??? info "Hint (Click if you are stuck)"
@@ -155,14 +171,15 @@ Customize the template to make the image configurable:
     ```yaml
     spec:
       inputs:
-        build-stage:
-          default: build
-        test-stage:
-          default: test
-        image:
+        binary-name:
+          default: hello
+        image: 
           default: golang:1.25.3
+        needs:
+          type: array
+          default: []
     ---
-    
+
     .go-targets:
       parallel:
         matrix:
@@ -170,7 +187,7 @@ Customize the template to make the image configurable:
           GOARCH: amd64
         - GOOS: linux
           GOARCH: arm64
-    
+
     .go-cache:
       variables:
         GOPATH: $CI_PROJECT_DIR/.go
@@ -181,26 +198,29 @@ Customize the template to make the image configurable:
         policy: pull-push
         paths:
         - .go/pkg/mod/
-    
-    build-go:
-      stage: $[[ inputs.build-stage ]]
+
+    .go-image:
       image: $[[ inputs.image ]]
+
+    build-go:
+      needs: $[[ inputs.needs ]]
       extends:
       - .go-targets
       - .go-cache
+      - .go-image
       script:
       - |
         go build \
-            -o hello-${GOOS}-${GOARCH} \
-            -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+            -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+            -o $[[ inputs.binary-name ]]-${GOOS}-${GOARCH} \
             .
       artifacts:
         paths:
-        - hello-${GOOS}-${GOARCH}
-    
+        - $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
     test-go:
-      stage: $[[ inputs.test-stage ]]
-      image: $[[ inputs.image ]]
+      needs:
+      - build-go
       extends:
       - .go-targets
       before_script:
@@ -208,7 +228,19 @@ Customize the template to make the image configurable:
       - apt-get -y install file
       script:
       - |
-        file hello-${GOOS}-${GOARCH}
+        file $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
+    unit-tests-go:
+      extends:
+      - .go-cache
+      - .go-image
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - ./.go/bin/gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
     ```
 
     `.gitlab-ci.yml`:
@@ -218,9 +250,9 @@ Customize the template to make the image configurable:
     include:
     - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/go@$CI_COMMIT_SHA
       inputs:
-        build-stage: build
-        test-stage: test
+        binary-name: hello
         image: golang:1.25.3
+        needs: []
     #...
     ```
 
@@ -234,7 +266,7 @@ Continue to customize the component by making the author name as well as the ver
 1. Replace the variable for the version with the input `version` in the `build-go` job
 
 ??? info "Hint (Click if you are stuck)"
-    Replace the variables `${AUTHOR}` and `${VERSION}` with the inputs `$[[ inputs.author ]]` and `$[[ inputs.version ]]`.
+    Replace the variables `${AUTHOR}` and `${version}` with the inputs `$[[ inputs.author ]]` and `$[[ inputs.version ]]`.
 
 ??? example "Solution (Click if you are stuck)"
     `templates/go.yml`:
@@ -242,18 +274,19 @@ Continue to customize the component by making the author name as well as the ver
     ```yaml
     spec:
       inputs:
-        build-stage:
-          default: build
-        test-stage:
-          default: test
-        image:
-          default: golang:1.25.3
-        version:
-          default: $CI_COMMIT_REF_NAME
+        binary-name:
+          default: hello
         author:
-          default: $GITLAB_USER_NAME
+          default: unknown
+        version:
+          default: dev
+        image: 
+          default: golang:1.25.3
+        needs:
+          type: array
+          default: []
     ---
-    
+
     .go-targets:
       parallel:
         matrix:
@@ -261,7 +294,7 @@ Continue to customize the component by making the author name as well as the ver
           GOARCH: amd64
         - GOOS: linux
           GOARCH: arm64
-    
+
     .go-cache:
       variables:
         GOPATH: $CI_PROJECT_DIR/.go
@@ -272,26 +305,29 @@ Continue to customize the component by making the author name as well as the ver
         policy: pull-push
         paths:
         - .go/pkg/mod/
-    
-    build-go:
-      stage: $[[ inputs.build-stage ]]
+
+    .go-image:
       image: $[[ inputs.image ]]
+
+    build-go:
+      needs: $[[ inputs.needs ]]
       extends:
       - .go-targets
       - .go-cache
+      - .go-image
       script:
       - |
         go build \
-            -o hello-${GOOS}-${GOARCH} \
             -ldflags "-X main.Version=$[[ inputs.version ]] -X 'main.Author=$[[ inputs.author ]]'" \
+            -o $[[ inputs.binary-name ]]-${GOOS}-${GOARCH} \
             .
       artifacts:
         paths:
-        - hello-${GOOS}-${GOARCH}
-    
+        - $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
     test-go:
-      stage: $[[ inputs.test-stage ]]
-      image: $[[ inputs.image ]]
+      needs:
+      - build-go
       extends:
       - .go-targets
       before_script:
@@ -299,7 +335,19 @@ Continue to customize the component by making the author name as well as the ver
       - apt-get -y install file
       script:
       - |
-        file hello-${GOOS}-${GOARCH}
+        file $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
+    unit-tests-go:
+      extends:
+      - .go-cache
+      - .go-image
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - ./.go/bin/gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
     ```
 
     `.gitlab-ci.yml`:
@@ -309,11 +357,11 @@ Continue to customize the component by making the author name as well as the ver
     include:
     - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/go@$CI_COMMIT_SHA
       inputs:
-        build-stage: build
-        test-stage: test
-        image: golang:1.25.3
-        author: ${GITLAB_USER_NAME}
+        binary-name: hello
+        author: ${AUTHOR}
         version: ${CI_COMMIT_REF_NAME}
+        image: golang:1.25.3
+        needs: []
     #...
     ```
 
@@ -334,20 +382,21 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
     ```yaml
     spec:
       inputs:
+        binary-name:
+          default: hello
+        author:
+          default: unknown
+        version:
+          default: dev
+        image: 
+          default: golang:1.25.3
+        needs:
+          type: array
+          default: []
         name-prefix:
           default: "foo"
-        build-stage:
-          default: build
-        test-stage:
-          default: test
-        image:
-          default: golang:1.25.3
-        version:
-          default: $CI_COMMIT_REF_NAME
-        author:
-          default: $GITLAB_USER_NAME
     ---
-    
+
     .go-targets:
       parallel:
         matrix:
@@ -355,7 +404,7 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
           GOARCH: amd64
         - GOOS: linux
           GOARCH: arm64
-    
+
     .go-cache:
       variables:
         GOPATH: $CI_PROJECT_DIR/.go
@@ -366,26 +415,29 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
         policy: pull-push
         paths:
         - .go/pkg/mod/
-    
-    $[[ inputs.name-prefix]]-build-go:
-      stage: $[[ inputs.build-stage ]]
+
+    .go-image:
       image: $[[ inputs.image ]]
+
+    $[[ inputs.name-prefix]]-build-go:
+      needs: $[[ inputs.needs ]]
       extends:
       - .go-targets
       - .go-cache
+      - .go-image
       script:
       - |
         go build \
-            -o hello-${GOOS}-${GOARCH} \
             -ldflags "-X main.Version=$[[ inputs.version ]] -X 'main.Author=$[[ inputs.author ]]'" \
+            -o $[[ inputs.binary-name ]]-${GOOS}-${GOARCH} \
             .
       artifacts:
         paths:
-        - hello-${GOOS}-${GOARCH}
-    
+        - $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
     $[[ inputs.name-prefix]]-test-go:
-      stage: $[[ inputs.test-stage ]]
-      image: $[[ inputs.image ]]
+      needs:
+      - $[[ inputs.name-prefix]]-build-go
       extends:
       - .go-targets
       before_script:
@@ -393,7 +445,19 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
       - apt-get -y install file
       script:
       - |
-        file hello-${GOOS}-${GOARCH}
+        file $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
+    $[[ inputs.name-prefix]]-unit-tests-go:
+      extends:
+      - .go-cache
+      - .go-image
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - ./.go/bin/gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
     ```
 
     `.gitlab-ci.yml`:
@@ -403,12 +467,12 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
     include:
     - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/go@$CI_COMMIT_SHA
       inputs:
-        build-stage: build
-        test-stage: test
-        image: golang:1.25.3
-        author: ${GITLAB_USER_NAME}
+        binary-name: hello
+        author: ${AUTHOR}
         version: ${CI_COMMIT_REF_NAME}
-    #...
+        image: golang:1.25.3
+        needs: []
+        name-prefix: hello
     ```
 
 ## Task 7: Add array input for rules
@@ -429,23 +493,24 @@ The components has only used string inputs so far. To configure rules for the jo
     ```yaml
     spec:
       inputs:
-        name-prefix:
-          default: "foo"
-        build-stage:
-          default: build
-        test-stage:
-          default: test
-        image:
-          default: golang:1.25.3
-        version:
-          default: $CI_COMMIT_REF_NAME
+        binary-name:
+          default: hello
         author:
-          default: $GITLAB_USER_NAME
+          default: unknown
+        version:
+          default: dev
+        image: 
+          default: golang:1.25.3
+        needs:
+          type: array
+          default: []
         rules:
           type: array
           default: []
+        name-prefix:
+          default: "foo"
     ---
-    
+
     .go-targets:
       parallel:
         matrix:
@@ -453,7 +518,7 @@ The components has only used string inputs so far. To configure rules for the jo
           GOARCH: amd64
         - GOOS: linux
           GOARCH: arm64
-    
+
     .go-cache:
       variables:
         GOPATH: $CI_PROJECT_DIR/.go
@@ -464,27 +529,30 @@ The components has only used string inputs so far. To configure rules for the jo
         policy: pull-push
         paths:
         - .go/pkg/mod/
-    
-    $[[ inputs.name-prefix]]-build-go:
-      stage: $[[ inputs.build-stage ]]
+
+    .go-image:
       image: $[[ inputs.image ]]
+
+    $[[ inputs.name-prefix]]-build-go:
+      needs: $[[ inputs.needs ]]
       extends:
       - .go-targets
       - .go-cache
+      - .go-image
       rules: $[[ inputs.rules ]]
       script:
       - |
         go build \
-            -o hello-${GOOS}-${GOARCH} \
             -ldflags "-X main.Version=$[[ inputs.version ]] -X 'main.Author=$[[ inputs.author ]]'" \
+            -o $[[ inputs.binary-name ]]-${GOOS}-${GOARCH} \
             .
       artifacts:
         paths:
-        - hello-${GOOS}-${GOARCH}
-    
+        - $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
     $[[ inputs.name-prefix]]-test-go:
-      stage: $[[ inputs.test-stage ]]
-      image: $[[ inputs.image ]]
+      needs:
+      - $[[ inputs.name-prefix]]-build-go
       extends:
       - .go-targets
       rules: $[[ inputs.rules ]]
@@ -493,7 +561,20 @@ The components has only used string inputs so far. To configure rules for the jo
       - apt-get -y install file
       script:
       - |
-        file hello-${GOOS}-${GOARCH}
+        file $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
+    $[[ inputs.name-prefix]]-unit-tests-go:
+      extends:
+      - .go-cache
+      - .go-image
+      rules: $[[ inputs.rules ]]
+      script:
+      - go install gotest.tools/gotestsum@latest
+      - ./.go/bin/gotestsum --junitfile report.xml
+      artifacts:
+        when: always
+        reports:
+          junit: report.xml
     ```
 
     `.gitlab-ci.yml`:
@@ -503,14 +584,15 @@ The components has only used string inputs so far. To configure rules for the jo
     include:
     - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/go@$CI_COMMIT_SHA
       inputs:
-        build-stage: build
-        test-stage: test
-        image: golang:1.25.3
-        author: ${GITLAB_USER_NAME}
+        binary-name: hello
+        author: ${AUTHOR}
         version: ${CI_COMMIT_REF_NAME}
+        image: golang:1.25.3
+        needs: []
         rules:
         - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
         - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+        name-prefix: hello
     #...
     ```
 

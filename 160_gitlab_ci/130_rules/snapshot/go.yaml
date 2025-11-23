@@ -2,8 +2,8 @@
   script:
   - |
     go build \
-        -o hello \
         -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+        -o hello \
         .
   artifacts:
     paths:

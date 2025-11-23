@@ -1,0 +1,84 @@
+spec:
+  inputs:
+    binary-name:
+      default: hello
+    author:
+      default: unknown
+    version:
+      default: dev
+    image: 
+      default: golang:1.25.3
+    needs:
+      type: array
+      default: []
+    rules:
+      type: array
+      default: []
+    name-prefix:
+      default: "foo"
+---
+
+.go-targets:
+  parallel:
+    matrix:
+    - GOOS: linux
+      GOARCH: amd64
+    - GOOS: linux
+      GOARCH: arm64
+
+.go-cache:
+  variables:
+    GOPATH: $CI_PROJECT_DIR/.go
+  before_script:
+  - mkdir -p .go
+  cache:
+    key: ${CI_PROJECT_PATH_SLUG}
+    policy: pull-push
+    paths:
+    - .go/pkg/mod/
+
+.go-image:
+  image: $[[ inputs.image ]]
+
+$[[ inputs.name-prefix]]-build-go:
+  needs: $[[ inputs.needs ]]
+  extends:
+  - .go-targets
+  - .go-cache
+  - .go-image
+  rules: $[[ inputs.rules ]]
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=$[[ inputs.version ]] -X 'main.Author=$[[ inputs.author ]]'" \
+        -o $[[ inputs.binary-name ]]-${GOOS}-${GOARCH} \
+        .
+  artifacts:
+    paths:
+    - $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
+$[[ inputs.name-prefix]]-test-go:
+  needs:
+  - $[[ inputs.name-prefix]]-build-go
+  extends:
+  - .go-targets
+  rules: $[[ inputs.rules ]]
+  before_script:
+  - apt-get update
+  - apt-get -y install file
+  script:
+  - |
+    file $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
+$[[ inputs.name-prefix]]-unit-tests-go:
+  extends:
+  - .go-cache
+  - .go-image
+  rules: $[[ inputs.rules ]]
+  script:
+  - go install gotest.tools/gotestsum@latest
+  - ./.go/bin/gotestsum --junitfile report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml

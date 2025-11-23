@@ -63,15 +63,16 @@ The local step can be used in the job `package` in `.gitlab-ci.yml` by referenci
     ```yaml
     #...
     package:
-      image: docker:28.1.1
-      stage: package
+      needs:
+      - hello-build-go
+      - hello-unit-tests-go
+      image: docker:28.5.2
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.1.1-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - name: docker:28.5.2-dind
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       run:
       - name: docker_login
         step: ./steps/docker/login/step.yml
@@ -110,15 +111,16 @@ Create and use a step for Docker build by converting the first command script bl
     ```yaml
     #...
     package:
-      image: docker:28.1.1
-      stage: package
+      needs:
+      - hello-build-go
+      - hello-unit-tests-go
+      image: docker:28.5.2
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.1.1-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - name: docker:28.5.2-dind
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       run:
       - name: docker_login
         step: ./steps/docker/login/step.yml
@@ -162,15 +164,16 @@ Create and use a step for Docker build by converting the first command script bl
     ```yaml
     #...
     package:
-      image: docker:28.1.1
-      stage: package
+      needs:
+      - hello-build-go
+      - hello-unit-tests-go
+      image: docker:28.5.2
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.1.1-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - name: docker:28.5.2-dind
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       run:
       - name: docker_login
         step: ./steps/docker/login/step.yml
@@ -216,15 +219,16 @@ Create and use a step for Docker build by converting the first command script bl
     ```yaml
     #...
     package:
-      image: docker:28.1.1
-      stage: package
+      needs:
+      - hello-build-go
+      - hello-unit-tests-go
+      image: docker:28.5.2
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.1.1-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - name: docker:28.5.2-dind
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       run:
       - name: docker_login
         step: ./steps/docker/login/step.yml
