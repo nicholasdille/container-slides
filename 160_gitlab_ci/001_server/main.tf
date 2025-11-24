@@ -184,6 +184,15 @@ resource "gitlab_project" "seats_demo" {
   initialize_with_readme = true
 }
 
+resource "gitlab_project_variable" "user_seat_n" {
+  count = var.user_count
+
+  project = gitlab_project.seats_demo[count.index].id
+
+  key     = "SEAT_INDEX"
+  value   = "${count.index}"
+}
+
 resource "gitlab_user_runner" "shared" {
   runner_type = "instance_type"
 

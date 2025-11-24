@@ -1,0 +1,14 @@
+spec:
+  inputs:
+    context:
+      type: string
+      default: .
+    image:
+      type: string
+---
+exec:
+  command:
+  - docker
+  - build
+  - ${{ inputs.context }}
+  - --tag=${{ inputs.image }}

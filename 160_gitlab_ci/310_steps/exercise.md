@@ -40,7 +40,12 @@ The step will wrap logging in to a container registry using Docker and enable th
           type: string
     ---
     exec:
-      command: docker login $[[ inputs.registry ]] --username $[[ inputs.username ]] --password $[[ inputs.password ]]
+      command:
+      - docker
+      - login
+      - ${{ inputs.registry }}
+      - --username=${{ inputs.username }}
+      - --password=${{ inputs.password }}
     ```
 
 ## Task 2: Use the step
@@ -56,29 +61,31 @@ The local step can be used in the job `package` in `.gitlab-ci.yml` by referenci
     - Hostname in `${CI_REGISTRY}`
     - Username in `${CI_REGISTRY_USER}`
     - Password in `${CI_REGISTRY_PASSWORD}`
+    Note that fir CI/CD Steps, environment variables must be referenced using `${job.NAME}`.
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml
+    ```yaml linenums="1" hl_lines="13-19"
     #...
     package:
-      image: docker:28.1.1
-      stage: package
+      needs:
+      - hello-build-go
+      - hello-unit-tests-go
+      image: docker:28.5.2
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.1.1-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - name: docker:28.5.2-dind
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       run:
       - name: docker_login
         step: ./steps/docker/login/step.yml
         inputs:
-          registry: ${CI_REGISTRY}
-          username: ${CI_REGISTRY_USER}
-          password: ${CI_REGISTRY_PASSWORD}
+          registry: ${{ job.CI_REGISTRY }}
+          username: ${{ job.CI_REGISTRY_USER }}
+          password: ${{ job.CI_REGISTRY_PASSWORD }}
     #...
     ```
 
@@ -94,43 +101,48 @@ Create and use a step for Docker build by converting the first command script bl
 
     ```yaml
     spec:
-    inputs:
+      inputs:
         context:
-        type: string
-        default: .
+          type: string
+          default: .
         image:
-        type: string
+          type: string
     ---
     exec:
-    command: docker build --tag "$[[ inputs.image ]]" $[[ inputs.context ]]
+      command:
+      - docker
+      - build
+      - ${{ inputs.context }}
+      - --tag=${{ inputs.image }}
     ```
 
     `.gitlab-ci.yml`:
 
-    ```yaml
+    ```yaml linenums="1" hl_lines="20-24"
     #...
     package:
-      image: docker:28.1.1
-      stage: package
+      needs:
+      - hello-build-go
+      - hello-unit-tests-go
+      image: docker:28.5.2
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.1.1-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - name: docker:28.5.2-dind
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       run:
       - name: docker_login
         step: ./steps/docker/login/step.yml
         inputs:
-          registry: ${CI_REGISTRY}
-          username: ${CI_REGISTRY_USER}
-          password: ${CI_REGISTRY_PASSWORD}
+          registry: ${{ job.CI_REGISTRY }}
+          username: ${{ job.CI_REGISTRY_USER }}
+          password: ${{ job.CI_REGISTRY_PASSWORD }}
       - name: docker_build
         step: ./steps/docker/build/step.yml
         inputs:
           context: .
-          image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+          image: ${{ job.CI_REGISTRY_IMAGE }}:${{ job.CI_COMMIT_REF_NAME }}
     #...
     ```
 
@@ -146,47 +158,48 @@ Create and use a step for Docker build by converting the first command script bl
 
     ```yaml
     spec:
-    inputs:
-        context:
-        type: string
-        default: .
+      inputs:
         image:
-        type: string
+          type: string
     ---
     exec:
-    command: docker push "$[[ inputs.image ]]"
+      command:
+      - docker
+      - push
+      - ${{ inputs.image }}
     ```
     
     `.gitlab-ci.yml`:
 
-    ```yaml
+    ```yaml linenums="1" hl_lines="25-28"
     #...
     package:
-      image: docker:28.1.1
-      stage: package
+      needs:
+      - hello-build-go
+      - hello-unit-tests-go
+      image: docker:28.5.2
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.1.1-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - name: docker:28.5.2-dind
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       run:
       - name: docker_login
         step: ./steps/docker/login/step.yml
         inputs:
-          registry: ${CI_REGISTRY}
-          username: ${CI_REGISTRY_USER}
-          password: ${CI_REGISTRY_PASSWORD}
+          registry: ${{ job.CI_REGISTRY }}
+          username: ${{ job.CI_REGISTRY_USER }}
+          password: ${{ job.CI_REGISTRY_PASSWORD }}
       - name: docker_build
         step: ./steps/docker/build/step.yml
         inputs:
           context: .
-          image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+          image: ${{ job.CI_REGISTRY_IMAGE }}:${{ job.CI_COMMIT_REF_NAME }}
       - name: docker_push
         step: ./steps/docker/push/step.yml
         inputs:
-          image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+          image: ${{ job.CI_REGISTRY_IMAGE }}:${{ job.CI_COMMIT_REF_NAME }}
     #...
     ```
 
@@ -202,49 +215,53 @@ Create and use a step for Docker build by converting the first command script bl
 
     ```yaml
     spec:
-    inputs:
+      inputs:
         registry:
-        type: string
-        default: docker.io
+          type: string
+          default: docker.io
     ---
     exec:
-    command: docker logout $[[ inputs.registry ]]
+      command:
+      - docker
+      - logout
+      - ${{ inputs.registry }}
     ```
     
     `.gitlab-ci.yml`:
 
-    ```yaml
+    ```yaml linenums="1" hl_lines="29-32"
     #...
     package:
-      image: docker:28.1.1
-      stage: package
+      needs:
+      - hello-build-go
+      - hello-unit-tests-go
+      image: docker:28.5.2
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.1.1-dind
-        command: [ "dockerd", "--host", "tcp://0.0.0.0:2375" ]
+      - name: docker:28.5.2-dind
       variables:
-        DOCKER_HOST: tcp://docker:2375
+        DOCKER_TLS_CERTDIR: ""
       run:
       - name: docker_login
         step: ./steps/docker/login/step.yml
         inputs:
-          registry: ${CI_REGISTRY}
-          username: ${CI_REGISTRY_USER}
-          password: ${CI_REGISTRY_PASSWORD}
+          registry: ${{ job.CI_REGISTRY }}
+          username: ${{ job.CI_REGISTRY_USER }}
+          password: ${{ job.CI_REGISTRY_PASSWORD }}
       - name: docker_build
         step: ./steps/docker/build/step.yml
         inputs:
           context: .
-          image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+          image: ${{ job.CI_REGISTRY_IMAGE }}:${{ job.CI_COMMIT_REF_NAME }}
       - name: docker_push
         step: ./steps/docker/push/step.yml
         inputs:
-          image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+          image: ${{ job.CI_REGISTRY_IMAGE }}:${{ job.CI_COMMIT_REF_NAME }}
       - name: docker_logout
         step: ./steps/docker/logout/step.yml
         inputs:
-          registry: ${CI_REGISTRY}
+          registry: ${{ job.CI_REGISTRY }}
     #...
     ```
 
@@ -281,5 +298,24 @@ Move the steps into a separate project and use them from there. Check out the of
             url: ${CI_SERVER_HOST}/library/steps/docker
             dir: login
             rev: main
+      #...
+    ```
+
+??? info "Hint 4 (Click if you are stuck)"
+    Add inputs to the component:
+
+    ```yaml
+    my_job:
+      run:
+      - name: docker_login:
+        step:
+          git:
+            url: ${CI_SERVER_HOST}/library/steps/docker
+            dir: login
+            rev: main
+        inputs:
+          registry: ${{ job.CI_REGISTRY }}
+          username: ${{ job.CI_REGISTRY_USER }}
+          password: ${{ job.CI_REGISTRY_PASSWORD }}
       #...
     ```

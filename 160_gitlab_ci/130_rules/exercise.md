@@ -47,7 +47,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="63-72"
+    ```yaml linenums="1" hl_lines="53-64"
     include:
     - local: go.yaml
 
@@ -144,7 +144,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="1-11"
+    ```yaml linenums="1" hl_lines="1-10"
     workflow:
       rules:
       - if: $CI_PIPELINE_SOURCE == 'push'

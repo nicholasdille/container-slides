@@ -32,7 +32,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `go.yaml`:
 
-    ```yaml linenums="1" hl_lines="2-7 12 14-16"
+    ```yaml linenums="1" hl_lines="2-7 12 16 19-24 30"
     .build-go:
       parallel:
         matrix:
@@ -43,8 +43,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       script:
       - |
         go build \
-            -o hello-${GOOS}-${GOARCH} \
             -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+            -o hello-${GOOS}-${GOARCH} \
             .
       artifacts:
         paths:
@@ -76,7 +76,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="63-67 75 91 100"
+    ```yaml linenums="1" hl_lines="78 89"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -252,7 +252,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="73"
+    ```yaml linenums="1" hl_lines="62"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE

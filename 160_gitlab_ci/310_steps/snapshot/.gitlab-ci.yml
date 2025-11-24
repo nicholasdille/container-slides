@@ -12,10 +12,22 @@ workflow:
     when: never
   
 include:
-- local: go.yaml
 - template: Security/Secret-Detection.gitlab-ci.yml
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Container-Scanning.gitlab-ci.yml
+- component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/go@$CI_COMMIT_SHA
+  inputs:
+    binary-name: hello
+    author: ${AUTHOR}
+    version: ${CI_COMMIT_REF_NAME}
+    image: golang:1.25.3
+    needs:
+    - lint
+    - audit
+    rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    name-prefix: hello
 
 container_scanning:
   needs:
@@ -44,8 +56,7 @@ renovate:
   variables:
     LOG_LEVEL: debug
   script: |
-    renovate \
-        --platform gitlab \
+    renovate --platform gitlab \
         --endpoint ${CI_API_V4_URL} \
         --token ${RENOVATE_TOKEN} \
         ${CI_PROJECT_PATH}
@@ -62,33 +73,10 @@ audit:
   script:
   - go vet .
 
-unit_tests:
-  extends:
-  - .run-on-push-and-in-mr
-  - .unit-tests-go
-
-build:
-  needs:
-  - lint
-  - audit
-  - unit_tests
-  extends:
-  - .run-on-push-and-in-mr
-  - .build-go
-  variables:
-    version: $CI_COMMIT_REF_NAME
-
-test:
-  needs:
-  - build
-  extends:
-  - .run-on-push-and-in-mr
-  - .test-go
-
 deploy:
   needs:
-  - build
-  - unit_tests
+  - hello-build-go
+  - hello-unit-tests-go
   rules:
   - if: '$CI_COMMIT_REF_NAME == "dev" || $CI_COMMIT_REF_NAME == "live"'
   environment:
@@ -104,8 +92,8 @@ deploy:
 
 pages:
   needs:
-  - build
-  - unit_tests
+  - hello-build-go
+  - hello-unit-tests-go
   extends:
   - .run-on-push-to-default-branch
   image: registry.gitlab.com/gitlab-org/cli:v1.78.2
@@ -124,8 +112,8 @@ pages:
 
 package:
   needs:
-  - build
-  - unit_tests
+  - hello-build-go
+  - hello-unit-tests-go
   image: docker:28.5.2
   extends:
   - .run-on-push-to-default-branch
@@ -133,13 +121,26 @@ package:
   - name: docker:28.5.2-dind
   variables:
     DOCKER_TLS_CERTDIR: ""
-  before_script:
-  - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
-  script:
-  - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .
-  - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
-  after_script:
-  - docker logout "${CI_REGISTRY}"
+  run:
+  - name: docker_login
+    step: ./steps/docker/login/step.yml
+    inputs:
+      registry: ${{ job.CI_REGISTRY }}
+      username: ${{ job.CI_REGISTRY_USER }}
+      password: ${{ job.CI_REGISTRY_PASSWORD }}
+  - name: docker_build
+    step: ./steps/docker/build/step.yml
+    inputs:
+      context: .
+      image: ${{ job.CI_REGISTRY_IMAGE }}:${{ job.CI_COMMIT_REF_NAME }}
+  - name: docker_push
+    step: ./steps/docker/push/step.yml
+    inputs:
+      image: ${{ job.CI_REGISTRY_IMAGE }}:${{ job.CI_COMMIT_REF_NAME }}
+  - name: docker_logout
+    step: ./steps/docker/logout/step.yml
+    inputs:
+      registry: ${{ job.CI_REGISTRY }}
 
 trigger:
   extends:

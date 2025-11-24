@@ -28,7 +28,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="31-37 41-42"
+    ```yaml linenums="1" hl_lines="28-37 44-45"
     include:
     - local: go.yaml
 

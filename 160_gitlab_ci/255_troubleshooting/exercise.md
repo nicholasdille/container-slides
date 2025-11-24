@@ -35,8 +35,8 @@ Add a job to print all environment variables.
     ```yaml
     #...
     new_job:
-    stage: check
-    script: |
+      stage: check
+      script: |
         printenv | sort
     #...
     ```

@@ -20,7 +20,8 @@ The easiest way to get Renovate on GitLab is to integrated it into your pipeline
 1. Set the variable `LOG_LEVEL` to `debug`
 1. Use the following script to execute Renovate:
     ```bash
-    renovate --platform gitlab \
+    renovate \
+        --platform gitlab \
         --endpoint ${CI_API_V4_URL} \
         --token ${RENOVATE_TOKEN} \
         ${CI_PROJECT_PATH}
@@ -32,7 +33,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="38-49"
+    ```yaml linenums="1" hl_lines="29-40"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -68,7 +69,8 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       variables:
         LOG_LEVEL: debug
       script: |
-        renovate --platform gitlab \
+        renovate \
+            --platform gitlab \
             --endpoint ${CI_API_V4_URL} \
             --token ${RENOVATE_TOKEN} \
             ${CI_PROJECT_PATH}

@@ -12,8 +12,8 @@
   script:
   - |
     go build \
-        -o hello-${GOOS}-${GOARCH} \
         -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+        -o hello-${GOOS}-${GOARCH} \
         .
   artifacts:
     paths:

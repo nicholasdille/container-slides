@@ -30,7 +30,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="37-38 78-83"
+    ```yaml linenums="1" hl_lines="29-30 67-71"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE

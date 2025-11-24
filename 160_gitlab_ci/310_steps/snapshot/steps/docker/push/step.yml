@@ -1,0 +1,10 @@
+spec:
+  inputs:
+    image:
+      type: string
+---
+exec:
+  command:
+  - docker
+  - push
+  - ${{ inputs.image }}

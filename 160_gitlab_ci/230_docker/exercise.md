@@ -44,7 +44,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="32 104-115"
+    ```yaml linenums="1" hl_lines="94-106"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
