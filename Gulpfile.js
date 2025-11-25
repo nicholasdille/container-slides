@@ -19,11 +19,13 @@ gulp.task('serve', function() {
       directory: true
 		},
 		notify: false,
+    localOnly: true,
 		port: 8080,
     localOnly: true,
 		injectChanges: true,
     open: "local",
-    ghostMode: false
+    ghostMode: false,
+    ui: false
 	})
 
   gulp.watch([files], browserSync.reload)

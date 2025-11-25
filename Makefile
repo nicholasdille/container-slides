@@ -55,7 +55,7 @@ audit:
 	@$(NPM) audit
 
 .PHONY:
-serve: themes/fontawesome.css
+nginx: themes/fontawesome.css
 	@\
 	echo "****************************************************"; \
 	echo "*                                                  *"; \
@@ -67,7 +67,7 @@ serve: themes/fontawesome.css
 gulp: init themes/fontawesome.css
 	@docker compose up --abort-on-container-exit gulp
 
-livereload: init themes/fontawesome.css
+serve: init themes/fontawesome.css
 	@./node_modules/.bin/gulp serve
 
 themes/fontawesome.css:%.css: %.scss
