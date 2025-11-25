@@ -64,6 +64,12 @@ serve: themes/fontawesome.css
 	echo "****************************************************"; \
 	docker compose up --abort-on-container-exit web
 
+gulp: init themes/fontawesome.css
+	@docker compose up --abort-on-container-exit gulp
+
+livereload: init themes/fontawesome.css
+	@./node_modules/.bin/gulp serve
+
 themes/fontawesome.css:%.css: %.scss
 	@$(SASS) $*.scss $*.css
 

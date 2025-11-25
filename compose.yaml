@@ -42,6 +42,13 @@ configs:
 
 services:
 
+  gulp:
+    image: node
+    command: ["./node_modules/.bin/gulp", "serve"]
+    volumes:
+    - .:/usr/src/app
+    working_dir: /usr/src/app
+
   web:
     image: nginx:latest
     configs:

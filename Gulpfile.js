@@ -11,7 +11,7 @@ var files = [
   '!node_modules/**/*',
 ];
 
-gulp.task('browser-sync', function() {
+gulp.task('serve', function() {
 	browserSync.init(files, {
 		// Read here http://www.browsersync.io/docs/options/
 		server: {
@@ -25,8 +25,8 @@ gulp.task('browser-sync', function() {
     open: "local",
     ghostMode: false
 	})
-});
 
-gulp.task('default', gulp.series('browser-sync'), function () {
-  gulp.watch([files], browserSync.reload);
-});
+  gulp.watch([files], browserSync.reload)
+})
+
+gulp.task('default', gulp.series('serve'))
