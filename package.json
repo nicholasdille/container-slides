@@ -5,13 +5,13 @@
     "author": "Nicholas Dille",
     "license": "Apache-2.0",
     "dependencies": {
-        "@awesome.me/kit-7a4232352c": "^1.0.4",
+        "@awesome.me/kit-7a4232352c": "1.0.4",
         "@fortawesome/fontawesome-pro": "7.0.1",
-        "gulp": "^5.0.1",
-        "gulp-connect": "^5.7.0",
-        "gulp-livereload": "^4.0.2",
         "highlight.js": "11.11.1",
-        "opn": "^5.5.0",
         "reveal.js": "5.2.1"
+    },
+    "devDependencies": {
+        "browser-sync": "3.0.4",
+        "gulp": "5.0.1"
     }
 }
