@@ -126,7 +126,7 @@ data "gitlab_user" "root" {
   username = "root"
 }
 
-resource "gitlab_group_membership" {
+resource "gitlab_group_membership" "grafana" {
   group_id     = gitlab_group.grafana.id
   user_id      = gitlab_user.root.id
   access_level = "owner"
