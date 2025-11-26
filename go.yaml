@@ -2,6 +2,18 @@
   script:
   - |
     go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+        -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
         -o hello \
         .
+  artifacts:
+    paths:
+    - hello
+
+.unit-tests-go:
+  script:
+  - go install gotest.tools/gotestsum@latest
+  - gotestsum --junitfile report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
