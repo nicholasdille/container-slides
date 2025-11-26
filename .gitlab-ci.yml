@@ -1,25 +1,37 @@
-stages:
-- check
-- build
-- test
-- deploy
-- trigger
+include:
+- local: go.yaml
 
 default:
-  image: golang:1.25.3
+  image: golang:1.25.4
 
 lint:
-  stage: check
   script:
   - go fmt .
 
 audit:
-  stage: check
   script:
   - go vet .
 
-unit_tests:
-  stage: check
+.build-go:
+  script:
+  - |
+    go build \
+        -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
+        -o hello \
+        .
+  artifacts:
+    paths:
+    - hello
+
+.test-go:
+  before_script:
+  - apt-get update
+  - apt-get -y install file
+  script:
+  - |
+    file hello
+
+.unit-tests-go:
   script:
   - go install gotest.tools/gotestsum@latest
   - gotestsum --junitfile report.xml
@@ -28,30 +40,32 @@ unit_tests:
     reports:
       junit: report.xml
 
-.build-go:
-  script:
-  - |
-    go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
-        -o hello \
-        .
+
+unit_tests:
+  extends:
+  - .unit-tests-go
 
 build:
-  stage: build
+  needs:
+  - lint
+  - audit
+  - unit_tests
   extends:
   - .build-go
-  artifacts:
-    paths:
-    - hello
+  variables:
+    version: $CI_COMMIT_REF_NAME
 
 test:
-  stage: test
+  needs:
+  - build
   image: alpine
   script:
   - ./hello
 
 deploy:
-  stage: deploy
+  needs:
+  - build
+  - unit_tests
   environment:
     name: ${CI_COMMIT_REF_NAME}
   image: curlimages/curl:8.17.0
@@ -64,6 +78,5 @@ deploy:
         --user seat${SEAT_INDEX}:${PASS}
 
 trigger:
-  stage: trigger
   trigger:
     include: child.yaml
