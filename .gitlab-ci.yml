@@ -1,23 +1,15 @@
-stages:
-- check
-- build
-- test
-
 default:
-  image: golang:1.25.3
+  image: golang:1.25.4
 
 lint:
-  stage: check
   script:
   - go fmt .
 
 audit:
-  stage: check
   script:
   - go vet .
 
 unit_tests:
-  stage: check
   script:
   - go install gotest.tools/gotestsum@latest
   - gotestsum --junitfile report.xml
@@ -27,11 +19,16 @@ unit_tests:
       junit: report.xml
 
 build:
-  stage: build
+  needs:
+  - lint
+  - audit
+  - unit_tests
+  variables:
+    version: $CI_COMMIT_REF_NAME
   script:
   - |
     go build \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
+        -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
         -o hello \
         .
   artifacts:
@@ -39,7 +36,8 @@ build:
     - hello
 
 test:
-  stage: test
+  needs:
+  - build
   image: alpine
   script:
   - ./hello
