@@ -93,7 +93,7 @@ done
 docker compose \
     --file compose.yaml \
     --file compose.nginx.yaml \
-    --env-file seats.env 
+    --env-file seats.env \
     up \
         --build \
         --detach \
