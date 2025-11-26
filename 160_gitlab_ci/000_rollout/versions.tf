@@ -2,7 +2,7 @@ terraform {
   required_providers {
     hcloud = {
       # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs
-      source = "hetznercloud/hcloud"
+      source  = "hetznercloud/hcloud"
       version = "1.56.0"
     }
     acme = {
@@ -10,15 +10,15 @@ terraform {
       version = "2.38.0"
     }
     remote = {
-      source = "tenstad/remote"
+      source  = "tenstad/remote"
       version = "0.2.1"
     }
     ssh = {
-      source = "loafoe/ssh"
+      source  = "loafoe/ssh"
       version = "2.7.0"
     }
     null = {
-      source = "hashicorp/null"
+      source  = "hashicorp/null"
       version = "3.2.4"
     }
   }

@@ -11,13 +11,18 @@ fi
 cat /etc/ssl/tls.crt /etc/ssl/tls.chain >/etc/ssl/tls.full
 
 # Get variables
+SEAT_COUNT="$( jq --raw-output '.count' seats.json )"
 DOMAIN="$( jq --raw-output '.domain' seats.json )"
 GITLAB_ADMIN_PASS="$( jq --raw-output '.gitlab_admin_password' seats.json )"
+export SEAT_COUNT
 export DOMAIN
 export GITLAB_ADMIN_PASS
 
 # Start GitLab
-docker compose --file compose.yaml up -d
+docker compose \
+    --file compose.yaml \
+    up \
+        --detach
 
 # Wait for GitLab to become available
 GITLAB_MAX_WAIT=600
@@ -58,7 +63,7 @@ fi
 
 # nginx
 echo -n >seats.env
-for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
+for SEAT_INDEX in $( jq --raw-output '.seats[].index' seats.json ); do
 
     SEAT_CODE="$( jq --raw-output --arg index "${SEAT_INDEX}" '.seats[] | select(.index == $index) | .code' seats.json )"
     VAR_NAME="SEAT${SEAT_INDEX}_CODE_HTPASSWD"
@@ -85,5 +90,11 @@ for SEAT_INDEX in $(jq --raw-output '.seats[].index' seats.json); do
     echo "${VAR_NAME}='${!VAR_NAME}'" >>seats.env
 done
 
-# TODO: Pass SEAT_COUNT
-docker compose --file compose.yaml --file compose.nginx.yaml --env-file seats.env up --build --detach nginx
+docker compose \
+    --file compose.yaml \
+    --file compose.nginx.yaml \
+    --env-file seats.env 
+    up \
+        --build \
+        --detach \
+        nginx

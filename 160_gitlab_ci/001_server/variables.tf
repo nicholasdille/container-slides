@@ -1,16 +1,16 @@
 variable "name" {
-  type = string
+  type        = string
   description = "Name of the deployment"
 }
 
 variable "gitlab_token" {
-  type = string
+  type        = string
   description = "Admin token to manage the instance"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "user_count" {
-  type = number
+  type        = number
   description = "Number of users to create"
-  default = 1
+  default     = 1
 }

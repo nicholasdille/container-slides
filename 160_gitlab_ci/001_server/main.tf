@@ -165,8 +165,8 @@ resource "gitlab_user" "seats" {
 resource "gitlab_personal_access_token" "seats_vscode" {
   count = var.user_count
 
-  user_id    = gitlab_user.seats[count.index].id
-  name       = "vscode"
+  user_id = gitlab_user.seats[count.index].id
+  name    = "vscode"
 
   scopes = ["api", "read_user", "write_repository"]
 }
@@ -174,13 +174,13 @@ resource "gitlab_personal_access_token" "seats_vscode" {
 resource "gitlab_project" "seats_demo" {
   count = var.user_count
 
-  name        = "demo"
-  description = "Demo"
+  name         = "demo"
+  description  = "Demo"
   namespace_id = gitlab_user.seats[count.index].namespace_id
 
   visibility_level = "internal"
 
-  default_branch = "main"
+  default_branch         = "main"
   initialize_with_readme = true
 }
 
@@ -189,8 +189,15 @@ resource "gitlab_project_variable" "user_seat_n" {
 
   project = gitlab_project.seats_demo[count.index].id
 
-  key     = "SEAT_INDEX"
-  value   = "${count.index}"
+  description       = "Your personal seat index (the N in seatN)"
+  key               = "SEAT_INDEX"
+  value             = count.index
+  variable_type     = "env_var"
+  environment_scope = "*"
+
+  raw       = true
+  protected = false
+  masked    = false
 }
 
 resource "gitlab_user_runner" "shared" {

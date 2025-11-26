@@ -4,7 +4,6 @@ volumes:
   gitlab_config:
   gitlab_data:
   gitlab_logs:
-  runner_config:
 
 configs:
   config.toml:
@@ -12,8 +11,9 @@ configs:
       concurrent = 1
 
       [[runners]]
-        url = "https://gitlab.haufedev.systems"
-        token = "glrt-PdxcuhibSm1jbBU4fh5dSG86MQpwOmE4dAp0OjMKdToyEQ.01.1a1a7xgok"
+        url = "${CI_SERVER_URL}"
+        clone_url = "http://10.222.0.3"
+        token = "${CI_SERVER_TOKEN}"
         executor = "docker"
         [runners.docker]
           image = "alpine"
@@ -71,6 +71,12 @@ services:
         nginx['real_ip_header'] = 'X-Real-Ip'
         nginx['real_ip_recursive'] = 'on'
 
+        puma['worker_processes'] = 2
+        nginx['worker_processes'] = 4
+        gitlab_rails['gitlab_kas_enabled'] = false
+        alertmanager['enable'] = false
+        postgresql['max_worker_processes'] = 2
+
         gitlab_pages['enable'] = true
         pages_external_url 'http://gitlab.localhost'
         # Set listen-proxy when behind reverse proxy. see https://docs.gitlab.com/ee/administration/pages/#configure-listener-for-reverse-proxy-requests
@@ -94,6 +100,10 @@ services:
     - gitlab_config:/etc/gitlab
     - gitlab_logs:/var/log/gitlab
     - gitlab_data:/var/opt/gitlab
+    restart: always
+    depends_on:
+      traefik:
+        condition: service_healthy
     labels:
       traefik.enable: "true"
       traefik.http.services.www.loadbalancer.server.port: 80
@@ -114,7 +124,6 @@ services:
     image: gitlab/gitlab-runner:v18.5.0
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    #- runner_config:/etc/gitlab-runner
     - /var/run/docker.sock:/var/run/docker.sock:rw
     configs:
     - source: config.toml
@@ -122,3 +131,23 @@ services:
     command:
     - run
     restart: always
+
+  kroki:
+    image: yuzutech/kroki:0.28.0
+    environment:
+      KROKI_MERMAID_HOST: mermaid
+      KROKI_BPMN_HOST: bpmn
+      KROKI_EXCALIDRAW_HOST: excalidraw
+    depends_on:
+    - mermaid
+    - bpmn
+    - excalidraw
+
+  mermaid:
+    image: yuzutech/kroki-mermaid:0.28.0
+
+  bpmn:
+    image: yuzutech/kroki-bpmn:0.28.0
+
+  excalidraw:
+    image: yuzutech/kroki-excalidraw:0.28.0

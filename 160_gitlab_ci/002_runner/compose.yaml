@@ -1,17 +1,27 @@
 # https://docs.docker.com/compose/compose-file
 
+configs:
+  config.toml:
+    content: |
+      concurrent = 1
+      [[runners]]
+        url = "http://gitlab"
+        token = "${CI_SERVER_TOKEN}"
+        executor = "docker"
+        [runners.docker]
+          image = "alpine"
+          privileged = true
+
 services:
 
   runner:
-    build:
-      context: runner
-    environment:
-      CI_SERVER_TOKEN: ${CI_SERVER_TOKEN?Environment variable CI_SERVER_TOKEN is mandatory}
-      CI_SERVER_URL: https://gitlab.${DOMAIN?Environment variable DOMAIN is mandatory}
-      RUNNER_EXECUTOR: docker
-      DOCKER_PRIVILEGED: "true"
-      CONCURRENT: "10"
-    restart: unless-stopped
+    image: gitlab/gitlab-runner:v18.5.0
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - /var/run/docker.sock:/var/run/docker.sock
+    - /var/run/docker.sock:/var/run/docker.sock:rw
+    configs:
+    - source: config.toml
+      target: /etc/gitlab-runner/config.toml
+    command:
+    - run
+    restart: always

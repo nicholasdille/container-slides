@@ -5,6 +5,7 @@ services:
       context: nginx
     environment:
       DOMAIN: ${DOMAIN?Environment variable DOMAIN is mandatory}
+      SEAT_COUNT: ${SEAT_COUNT?Environment variable SEAT_COUNT is mandatory}
     env_file:
     - seats.env
     volumes:

@@ -5,8 +5,7 @@ mkdir -p \
     /data.dev \
     /data.live
 
-# TODO: Use SEAT_COUNT
-for SEAT_INDEX in $(seq 0 21); do
+for SEAT_INDEX in $( seq 0 $(( SEAT_COUNT - 1 )) ); do
     export SEAT_INDEX
 
     # htpasswd webdav dev

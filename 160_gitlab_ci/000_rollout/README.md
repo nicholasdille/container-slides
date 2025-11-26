@@ -4,11 +4,15 @@
 
 1. Set a timestamp for the event (`YYYY-mm-dd`)
 1. Update links from slides to exercises using regex `/hands-on/\d{4}-\d{2}-\d{2}/`
-1. Update syntax definitions for `Dockerfile` using regex: `docker/dockerfile:\d+.\d+.\d+`
+1. Update syntax definitions for `Dockerfile` using regex: `docker/dockerfile:\d+.\d+.\d+` (https://hub.docker.com/r/docker/dockerfile)
 1. Update nginx using regex: `nginx:\d+.\d+.\d+` (https://hub.docker.com/_/nginx)
 1. Update traefik using regex: `traefik:v\d+.\d+.\d+` (https://hub.docker.com/_/traefik)
-1. Update GitLab using regex: `gitlab/gitlab-ce:\d+.\d+.\d+-ce.0`
-1. Update GitLab Runner using regex: `gitlab/gitlab-runner:v\d+.\d+.\d+`
+1. Update GitLab using regex: `gitlab/gitlab-ce:\d+.\d+.\d+-ce.0` (https://about.gitlab.com/releases/categories/releases/)
+1. Update GitLab Runner using regex: `gitlab/gitlab-runner:v\d+.\d+.\d+` (https://gitlab.com/gitlab-org/gitlab-runner/-/releases)
+1. Update Kroki using regex: `yuzutech/kroki:\d+.\d+.\d+` (https://hub.docker.com/r/yuzutech/kroki)
+1. Update Kroki Mermaid using regex: `yuzutech/kroki-mermaid:\d+.\d+.\d+` (https://hub.docker.com/r/yuzutech/kroki-mermaid)
+1. Update Kroki BPMN using regex: `yuzutech/kroki-bpmn:\d+.\d+.\d+` (https://hub.docker.com/r/yuzutech/kroki-bpmn)
+1. Update Kroki Excalidraw using regex: `yuzutech/kroki-excalidraw:\d+.\d+.\d+` (https://hub.docker.com/r/yuzutech/kroki-excalidraw)
 1. Update code-server using regex: `codercom/code-server:\d+.\d+.\d+` (https://hub.docker.com/r/codercom/code-server)
 1. Update golang using regex: `golang:\d+.\d+.\d+` (https://hub.docker.com/_/golang/)
 1. Update curl using regex: `curlimages/curl:\d+.\d+.\d+` (https://hub.docker.com/r/curlimages/curl)
@@ -39,7 +43,7 @@ make gitlab
 ## Create credentials for attendees
 
 ```shell
-SET_NAME=20250512 COUNT=21 bash generate.sh
+SET_NAME=YYYYMMDD COUNT=MAX bash generate.sh
 ```
 
 Store `seats.json` in a password manager

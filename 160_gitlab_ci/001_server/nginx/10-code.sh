@@ -22,7 +22,7 @@ server {
     }
 EOF
 
-for SEAT_INDEX in $(seq 0 20); do
+for SEAT_INDEX in $( seq 0 $(( SEAT_COUNT - 1 )) ); do
     mkdir -p "${WEB_ROOT}/seat${SEAT_INDEX}"
     var="SEAT${SEAT_INDEX}_PASS"
     SEAT_PASS="${!var}"

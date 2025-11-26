@@ -8,8 +8,8 @@ volumes:
 
 services:
 
-  # https://doc.traefik.io/traefik/
   traefik:
+    # https://doc.traefik.io/traefik/
     image: traefik:v3.6.1
     command:
     - --log=true
@@ -55,8 +55,8 @@ services:
       # TODO: Fix auth
       #traefik.http.routers.traefik-s.middlewares: seat-auth
 
-  # https://docs.gitlab.com/ee/install/docker.html
   gitlab:
+    # https://docs.gitlab.com/ee/install/docker.html
     image: gitlab/gitlab-ce:18.5.1-ce.0
     environment:
       # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
@@ -74,6 +74,12 @@ services:
         nginx['real_ip_header'] = 'X-Real-Ip'
         nginx['real_ip_recursive'] = 'on'
         letsencrypt['enable'] = false
+
+        puma['worker_processes'] = 8
+        nginx['worker_processes'] = 4
+        gitlab_rails['gitlab_kas_enabled'] = false
+        alertmanager['enable'] = false
+        postgresql['max_worker_processes'] = 4
 
         gitlab_pages['enable'] = true
         pages_external_url 'https://gitlab.${DOMAIN?Environment variable DOMAIN is mandatory}'
@@ -168,3 +174,27 @@ services:
       traefik.http.routers.grafana-s.rule: Host(`grafana.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.grafana-s.service: grafana
       traefik.http.routers.grafana-s.tls: "true"
+
+  # https://docs.gitlab.com/api/settings/#update-application-settings
+  # .kroki_enabled
+  # .kroki_url
+  # .kroki_formats{bpmn,blockdiag,excalidraw}
+  kroki:
+    image: yuzutech/kroki:0.28.0
+    environment:
+      KROKI_MERMAID_HOST: mermaid
+      KROKI_BPMN_HOST: bpmn
+      KROKI_EXCALIDRAW_HOST: excalidraw
+    depends_on:
+    - mermaid
+    - bpmn
+    - excalidraw
+
+  mermaid:
+    image: yuzutech/kroki-mermaid:0.28.0
+
+  bpmn:
+    image: yuzutech/kroki-bpmn:0.28.0
+
+  excalidraw:
+    image: yuzutech/kroki-excalidraw:0.28.0
