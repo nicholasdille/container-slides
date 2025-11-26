@@ -24,8 +24,8 @@
   script:
   - |
     go build \
+        -ldflags "-X main.Version=${version} -X 'main.Author=${AUTHOR}'" \
         -o hello-${GOOS}-${GOARCH} \
-        -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
         .
   artifacts:
     paths:
@@ -40,3 +40,14 @@
   script:
   - |
     file hello-${GOOS}-${GOARCH}
+
+.unit-tests-go:
+  extends:
+  - .go-cache
+  script:
+  - go install gotest.tools/gotestsum@latest
+  - ./.go/bin/gotestsum --junitfile report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
