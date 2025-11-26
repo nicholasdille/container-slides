@@ -5,7 +5,7 @@ configs:
     content: |
       concurrent = 1
       [[runners]]
-        url = "http://gitlab"
+        url = "http://gitlab.inmylab.de"
         token = "${CI_SERVER_TOKEN}"
         executor = "docker"
         [runners.docker]
