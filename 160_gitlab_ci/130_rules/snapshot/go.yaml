@@ -9,14 +9,6 @@
     paths:
     - hello
 
-.test-go:
-  before_script:
-  - apt-get update
-  - apt-get -y install file
-  script:
-  - |
-    file hello
-
 .unit-tests-go:
   script:
   - go install gotest.tools/gotestsum@latest

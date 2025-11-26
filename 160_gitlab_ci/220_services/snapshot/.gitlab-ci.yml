@@ -5,6 +5,7 @@ workflow:
   - if: $CI_PIPELINE_SOURCE == 'push'
   - if: $CI_PIPELINE_SOURCE == 'web'
   - if: $CI_PIPELINE_SOURCE == 'schedule'
+  - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   - if: $CI_PIPELINE_SOURCE == 'pipeline'
   - if: $CI_PIPELINE_SOURCE == 'api'
     when: never
@@ -25,6 +26,15 @@ include:
 
 default:
   image: golang:1.25.4
+
+services:
+- nginx:1.27.5
+
+test-service:
+  extends:
+  - .run-on-push-to-default-branch
+  script:
+  - curl -s http://nginx
 
 lint:
   extends:
