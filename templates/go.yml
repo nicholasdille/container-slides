@@ -1,20 +1,21 @@
 spec:
   inputs:
-    name-prefix:
-      default: "foo"
-    build-stage:
-      default: build
-    test-stage:
-      default: test
-    image:
-      default: golang:1.23.2
-    version:
-      default: $CI_COMMIT_REF_NAME
+    binary-name:
+      default: hello
     author:
-      default: $GITLAB_USER_NAME
+      default: unknown
+    version:
+      default: dev
+    image: 
+      default: golang:1.25.4
+    needs:
+      type: array
+      default: []
     rules:
       type: array
       default: []
+    name-prefix:
+      default: "foo"
 ---
 
 .go-targets:
@@ -36,26 +37,29 @@ spec:
     paths:
     - .go/pkg/mod/
 
-$[[ inputs.name-prefix]]-build-go:
-  stage: $[[ inputs.build-stage ]]
+.go-image:
   image: $[[ inputs.image ]]
+
+$[[ inputs.name-prefix]]-build-go:
+  needs: $[[ inputs.needs ]]
   extends:
   - .go-targets
   - .go-cache
+  - .go-image
   rules: $[[ inputs.rules ]]
   script:
   - |
     go build \
-        -o hello-${GOOS}-${GOARCH} \
         -ldflags "-X main.Version=$[[ inputs.version ]] -X 'main.Author=$[[ inputs.author ]]'" \
+        -o $[[ inputs.binary-name ]]-${GOOS}-${GOARCH} \
         .
   artifacts:
     paths:
-    - hello-${GOOS}-${GOARCH}
+    - $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
 
 $[[ inputs.name-prefix]]-test-go:
-  stage: $[[ inputs.test-stage ]]
-  image: $[[ inputs.image ]]
+  needs:
+  - $[[ inputs.name-prefix]]-build-go
   extends:
   - .go-targets
   rules: $[[ inputs.rules ]]
@@ -64,4 +68,17 @@ $[[ inputs.name-prefix]]-test-go:
   - apt-get -y install file
   script:
   - |
-    file hello-${GOOS}-${GOARCH}
+    file $[[ inputs.binary-name ]]-${GOOS}-${GOARCH}
+
+$[[ inputs.name-prefix]]-unit-tests-go:
+  extends:
+  - .go-cache
+  - .go-image
+  rules: $[[ inputs.rules ]]
+  script:
+  - go install gotest.tools/gotestsum@latest
+  - ./.go/bin/gotestsum --junitfile report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml

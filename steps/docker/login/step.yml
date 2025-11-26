@@ -9,4 +9,9 @@ spec:
       type: string
 ---
 exec:
-  command: docker login $[[ inputs.registry ]] --username $[[ inputs.username ]] --password $[[ inputs.password ]]
+  command:
+  - docker
+  - login
+  - ${{ inputs.registry }}
+  - --username=${{ inputs.username }}
+  - --password=${{ inputs.password }}

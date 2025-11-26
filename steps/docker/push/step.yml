@@ -1,10 +1,10 @@
 spec:
   inputs:
-    context:
-      type: string
-      default: .
     image:
       type: string
 ---
 exec:
-  command: docker push "$[[ inputs.image ]]"
+  command:
+  - docker
+  - push
+  - ${{ inputs.image }}

@@ -5,4 +5,7 @@ spec:
       default: docker.io
 ---
 exec:
-  command: docker logout $[[ inputs.registry ]]
+  command:
+  - docker
+  - logout
+  - ${{ inputs.registry }}
