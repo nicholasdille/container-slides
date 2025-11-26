@@ -50,20 +50,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         paths:
         - hello-${GOOS}-${GOARCH}
 
-    .test-go:
-      parallel:
-        matrix:
-        - GOOS: linux
-          GOARCH: amd64
-        - GOOS: linux
-          GOARCH: arm64
-      before_script:
-      - apt-get update
-      - apt-get -y install file
-      script:
-      - |
-        file hello-${GOOS}-${GOARCH}
-
     .unit-tests-go:
       script:
       - go install gotest.tools/gotestsum@latest
@@ -76,7 +62,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="78 89"
+    ```yaml linenums="1" hl_lines="79 90"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -84,6 +70,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never
@@ -252,7 +239,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     `.gitlab-ci.yml`:
     
-    ```yaml linenums="1" hl_lines="62"
+    ```yaml linenums="1" hl_lines="63"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -260,6 +247,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never

@@ -26,7 +26,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="16-26"
+    ```yaml linenums="1" hl_lines="17-27"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -34,6 +34,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never
@@ -181,12 +182,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout upstream/160_gitlab_ci/280_security -- '*'
     ```
-
-!!! tip "Heads-Up"
-    You can also [select a different scanner for container scanning](https://docs.gitlab.com/ee/user/application_security/container_scanning/index.html#change-scanners) using the variable `$CS_ANALYZER_IMAGE`. The following values are available:
-
-    | Scanner         | Image                                                            |
-    |-----------------|------------------------------------------------------------------|
-    | Default (trivy) | registry.gitlab.com/security-products/container-scanning:6       |
-    | Grype           | registry.gitlab.com/security-products/container-scanning/grype:6 |
-    | Trivy           | registry.gitlab.com/security-products/container-scanning/trivy:6 |

@@ -9,7 +9,9 @@ fi
 
 # Fetch runner token
 CI_SERVER_TOKEN="$( cat runner_token.json )"
-export CI_SERVER_TOKEN
+cat <<EOF >.env
+CI_SERVER_TOKEN=${CI_SERVER_TOKEN}
+EOF
 
 echo
 echo "### Starting runner"

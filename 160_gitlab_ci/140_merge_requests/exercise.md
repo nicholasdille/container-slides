@@ -27,7 +27,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     `$CI_PIPELINE_SOURCE` can take the values `push` and `merge_request_event` in this context. `$CI_COMMIT_REF_NAME` contains the name of the Git reference (e.g. branch) the pipeline is running on. `$CI_DEFAULT_BRANCH` contains the name of the default branch of the repository in the current project. You can use the logical operator `&&` to combine multiple conditions.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml linenums="1" hl_lines="23 30 37 44 57"
+    ```yaml linenums="1" hl_lines="24 31 38 45 58"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -35,6 +35,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never
@@ -164,7 +165,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     Remember that only `variables` are kumulative. All other keywords overwrite each other in the order of appearance.
 
 ??? example "Solution (Click if you are stuck)"
-    ```yaml linenums="1" hl_lines="17-24 30-31 36-37 43 52 60-61 87-88 97-98"
+    ```yaml linenums="1" hl_lines="18-25 31-32 37-38 44 53 61-62 88-89 98-99"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -172,6 +173,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never

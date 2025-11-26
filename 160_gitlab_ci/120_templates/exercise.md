@@ -77,14 +77,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       variables:
         version: $CI_COMMIT_REF_NAME
 
-    .test-go:
-      before_script:
-      - apt-get update
-      - apt-get -y install file
-      script:
-      - |
-        file hello
-
     test:
       needs:
       - build
@@ -143,14 +135,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       artifacts:
         paths:
         - hello
-
-    .test-go:
-      before_script:
-      - apt-get update
-      - apt-get -y install file
-      script:
-      - |
-        file hello
 
     .unit-tests-go:
       script:

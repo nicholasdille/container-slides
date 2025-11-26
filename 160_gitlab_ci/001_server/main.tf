@@ -15,7 +15,7 @@ resource "gitlab_application_settings" "settings" {
   two_factor_grace_period                 = 48
   enforce_terms                           = false
   terms                                   = ""
-  whats_new                               = false
+  whats_new_variant                       = "disabled"
   hide_third_party_offers                 = true
   grafana_url                             = "https://grafana.${local.domain}"
 }
@@ -120,16 +120,6 @@ resource "gitlab_group" "grafana" {
   name             = "Grafana"
   path             = "grafana"
   visibility_level = "private"
-}
-
-data "gitlab_user" "root" {
-  username = "root"
-}
-
-resource "gitlab_group_membership" "grafana" {
-  group_id     = gitlab_group.grafana.id
-  user_id      = gitlab_user.root.id
-  access_level = "owner"
 }
 
 # https://gitlab.com/gitlab-org/cli/#oauth-gitlab-self-managed-gitlab-dedicated

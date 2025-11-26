@@ -30,7 +30,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="29-30 67-71"
+    ```yaml linenums="1" hl_lines="30-37"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -38,6 +38,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never
@@ -61,6 +62,12 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     services:
     - nginx:1.27.5
+
+    test-service:
+      extends:
+      - .run-on-push-to-default-branch
+      script:
+      - curl -s http://nginx
 
     lint:
       extends:
@@ -96,12 +103,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       extends:
       - .run-on-push-and-in-mr
       - .test-go
-
-    test-service:
-      extends:
-      - .run-on-push-to-default-branch
-      script:
-      - curl -s http://nginx
 
     deploy:
       needs:
@@ -155,7 +156,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="67-68"
+    ```yaml linenums="1" hl_lines="33-34"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -163,6 +164,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: $CI_PIPELINE_SOURCE == 'push'
       - if: $CI_PIPELINE_SOURCE == 'web'
       - if: $CI_PIPELINE_SOURCE == 'schedule'
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
       - if: $CI_PIPELINE_SOURCE == 'pipeline'
       - if: $CI_PIPELINE_SOURCE == 'api'
         when: never
@@ -183,6 +185,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     default:
       image: golang:1.25.4
+
+    test-service:
+      extends:
+      - .run-on-push-to-default-branch
+      services:
+      - nginx:1.27.5
+      script:
+      - curl -s http://nginx
 
     lint:
       extends:
@@ -218,14 +228,6 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       extends:
       - .run-on-push-and-in-mr
       - .test-go
-
-    test-service:
-      extends:
-      - .run-on-push-to-default-branch
-      services:
-      - nginx:1.27.5
-      script:
-      - curl -s http://nginx
 
     deploy:
       needs:

@@ -16,6 +16,16 @@ bash bootstrap.sh
 
 ## Configure GitLab
 
+Set new state name in `Makefile`
+
+```Makefile
+#...
+STATE_NAME             := YYYYMMDD_gitlab
+#...
+```
+
+Configure GitLab:
+
 ```shell
 make apply
 make personal_access_tokens.json

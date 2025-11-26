@@ -63,6 +63,14 @@ GIT_PASSWORD := $(shell pp github-terraform-state)
 
 Make sure that `GIT_PASSWORD` is still valid for `https://github.com/nicholasdille/terraform-state`.
 
+Set new state name in `Makefile`
+
+```Makefile
+#...
+STATE_NAME             := YYYYMMDD
+#...
+```
+
 Deploy infrastructure
 
 ```shell
@@ -71,9 +79,20 @@ make apply
 
 Store the SSH config in a password manager
 
+Wait for DNS to converge:
+
+```bash
+for NAME in traefik gitlab code grafana vscode; do
+    while ! nslookup "${NAME}.inmylab.de" >/dev/null; do
+        echo "Waiting 5s for ${NAME}.inmylab.de..."
+        sleep 5
+    done
+done
+```
+
 ## Bootstrap services
 
-Checkout the next directories called `../00?_*` and follow the instructions
+Checkout the next directories called `../00?_*` and follow the instructions in `README.md`
 
 ## Check containers
 
@@ -122,7 +141,7 @@ ssh gitlab env -C /root/container-slides/160_gitlab_ci/001_server docker-compose
 View GitLab Runner:
 
 ```shell
-ssh gitlab env -C /root/container-slides/160_gitlab_ci/002_runner docker-compose ps -a
+ssh runner env -C /root/container-slides/160_gitlab_ci/002_runner docker-compose ps -a
 ```
 
 View instances of Visual Studio Code:
@@ -134,6 +153,7 @@ ssh vscode env -C /root/container-slides/160_gitlab_ci/003_vscode docker-compose
 Test DNS resolution:
 
 ```shell
+dig +short traefik.inmylab.de
 dig +short code.inmylab.de
 dig +short gitlab.inmylab.de
 dig +short vscode.inmylab.de
@@ -146,8 +166,8 @@ Test endpoints:
 curl -sSI https://code.inmylab.de/
 curl -sSI https://gitlab.inmylab.de/
 curl -sSI https://grafana.inmylab.de/
-seq 0 20 | xargs -I{} curl -sSI https://seat{}.vscode.inmylab.de
 seq 0 20 | xargs -I{} curl -sSI https://code.inmylab.de/seat{}/
+seq 0 20 | xargs -I{} curl -sSI https://seat{}.vscode.inmylab.de
 ```
 
 List runners:
@@ -156,7 +176,7 @@ List runners:
 curl -sSLfH "Private-Token: $(jq -r '.gitlab_admin_token' seats.json)" https://gitlab.inmylab.de/api/v4/runners/all?type=instance_type | jq .
 ```
 
-Test authentication for code.inmylab.de:
+Test authentication for code.inmylab.de and expect HTTP/200 after successful authentication:
 
 ```shell
 seq 0 20 \
@@ -167,7 +187,7 @@ seq 0 20 \
 done
 ```
 
-Test authentication for vscode.inmylab.de:
+Test authentication for vscode.inmylab.de and expect HTTP/302 after successful authentication:
 
 ```shell
 seq 0 20 \
@@ -220,7 +240,7 @@ seq 0 20 | while read -r INDEX; do
 done
 ```
 
-Test webdav:
+Test webdav and expect HTTP/404 after successful authentication:
 
 ```shell
 seq 0 20 | while read -r INDEX; do

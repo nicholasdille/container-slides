@@ -1,4 +1,5 @@
-/.env.mk
+.env.mk
+.env
 
 seats.env
 personal_access_tokens.json

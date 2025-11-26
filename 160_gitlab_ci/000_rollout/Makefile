@@ -2,7 +2,7 @@ include .env.mk
 
 REPOSITORY_URL         := https://github.com/nicholasdille/terraform-state
 REPOSITORY_BRANCH      := main
-STATE_NAME             := 20251118
+STATE_NAME             := 20251127
 TERRAFORM_WITH_BACKEND := TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME) TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD) GIT_USERNAME=$(GIT_USERNAME) GIT_PASSWORD=$(GIT_PASSWORD) terraform-backend-git git --repository $(REPOSITORY_URL) --ref $(REPOSITORY_BRANCH) --state $(STATE_NAME)/state.json terraform
 
 .PHONY:

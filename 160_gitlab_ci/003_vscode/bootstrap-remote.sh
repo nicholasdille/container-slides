@@ -16,11 +16,11 @@ cat /etc/ssl/tls.crt /etc/ssl/tls.chain >/etc/ssl/tls.full
 
 # Get variables
 DOMAIN="$( jq --raw-output '.domain' seats.json )"
-GITLAB_ADMIN_PASS="$( jq --raw-output '.gitlab_admin_password' seats.json )"
-export DOMAIN
-
 TRAEFIK_HTPASSWD="$( htpasswd -nbB admin "${GITLAB_ADMIN_PASS}" )"
-export TRAEFIK_HTPASSWD
+cat <<EOF >.env
+DOMAIN=${DOMAIN}
+TRAEFIK_HTPASSWD=${TRAEFIK_HTPASSWD}
+EOF
 
 echo "services:" >compose.vscode.yaml
 echo -n >vscode.env

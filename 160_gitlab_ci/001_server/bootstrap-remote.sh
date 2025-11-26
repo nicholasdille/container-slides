@@ -14,9 +14,11 @@ cat /etc/ssl/tls.crt /etc/ssl/tls.chain >/etc/ssl/tls.full
 SEAT_COUNT="$( jq --raw-output '.count' seats.json )"
 DOMAIN="$( jq --raw-output '.domain' seats.json )"
 GITLAB_ADMIN_PASS="$( jq --raw-output '.gitlab_admin_password' seats.json )"
-export SEAT_COUNT
-export DOMAIN
-export GITLAB_ADMIN_PASS
+cat <<EOF >.env
+SEAT_COUNT=${SEAT_COUNT}
+DOMAIN=${DOMAIN}
+GITLAB_ADMIN_PASS=${GITLAB_ADMIN_PASS}
+EOF
 
 # Start GitLab
 docker compose \
