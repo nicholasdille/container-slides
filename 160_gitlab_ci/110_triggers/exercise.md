@@ -49,7 +49,7 @@ Afterwards check the pipeline in both projects in the GitLab UI. You should see 
     
     ```yaml linenums="1" hl_lines="60-67"
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       script:
@@ -141,7 +141,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     
     ```yaml linenums="1" hl_lines="61"
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       script:
@@ -235,7 +235,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     ```yaml linenums="1" hl_lines="61-62"
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       script:

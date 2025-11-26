@@ -57,7 +57,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     services:
     - nginx:1.27.5
@@ -182,7 +182,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       extends:

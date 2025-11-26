@@ -86,7 +86,7 @@ Use [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) to create a d
 - The job must be called [`pages`](https://docs.gitlab.com/ee/ci/yaml/#pages)
 - The must create an artifact from the directory called `public`
 
-See chapter [Rules](/hands-on/2025-11-18/130_rules/exercise/)
+See chapter [Rules](/hands-on/2025-11-27/130_rules/exercise/)
 
 ---
 

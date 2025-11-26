@@ -20,7 +20,7 @@ include:
     binary-name: hello
     author: ${AUTHOR}
     version: ${CI_COMMIT_REF_NAME}
-    image: golang:1.25.3
+    image: golang:1.25.4
     needs:
     - lint
     - audit
@@ -47,7 +47,7 @@ container_scanning:
   - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 default:
-  image: golang:1.25.3
+  image: golang:1.25.4
 
 renovate:
   rules:
@@ -96,7 +96,7 @@ pages:
   - hello-unit-tests-go
   extends:
   - .run-on-push-to-default-branch
-  image: registry.gitlab.com/gitlab-org/cli:v1.78.2
+  image: registry.gitlab.com/gitlab-org/cli:v1.78.3
   release:
     tag_name: ${CI_PIPELINE_IID}
     name: Release ${CI_PIPELINE_IID}
@@ -114,11 +114,11 @@ package:
   needs:
   - hello-build-go
   - hello-unit-tests-go
-  image: docker:28.5.2
+  image: docker:29.0.4
   extends:
   - .run-on-push-to-default-branch
   services:
-  - name: docker:28.5.2-dind
+  - name: docker:29.0.4-dind
   variables:
     DOCKER_TLS_CERTDIR: ""
   run:

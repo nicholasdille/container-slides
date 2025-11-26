@@ -57,7 +57,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     services:
     - nginx:1.27.5
@@ -137,11 +137,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       needs:
       - build
       - unit_tests
-      image: docker:28.5.2
+      image: docker:29.0.4
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.5.2-dind
+      - name: docker:29.0.4-dind
       variables:
         DOCKER_TLS_CERTDIR: ""
       before_script:

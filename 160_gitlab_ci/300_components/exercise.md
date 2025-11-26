@@ -45,7 +45,7 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
 1. Copy all job templates from `go.yaml` to the body of `templates/go.yml`
 1. Unhide the jobs `.build-go` and `.test-go` and `.unit-tests-go`
 1. Use the input for `needs` in the `build-go` job
-1. Add an `image` field to `build-go` and `test-go` with a value of `golang:1.25.3`
+1. Add an `image` field to `build-go` and `test-go` with a value of `golang:1.25.4`
 1. Remove `go.yaml`
 
 ??? info "Hint (Click if you are stuck)"
@@ -92,7 +92,7 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
       extends:
       - .go-targets
       - .go-cache
-      image: golang:1.25.3
+      image: golang:1.25.4
       script:
       - |
         go build \
@@ -118,7 +118,7 @@ Now fill the body of the component with the job templates for Go in `go.yaml`:
     unit-tests-go:
       extends:
       - .go-cache
-      image: golang:1.25.3
+      image: golang:1.25.4
       script:
       - go install gotest.tools/gotestsum@latest
       - ./.go/bin/gotestsum --junitfile report.xml
@@ -158,7 +158,7 @@ The component is now ready to be used:
 Customize the template to make the image configurable:
 
 1. Add an input called `image` to the component
-1. Set the default value of `image` to `golang:1.25.3`
+1. Set the default value of `image` to `golang:1.25.4`
 1. Use the input `image` for the `image` field in the `build-go` and `unit-tests-go` jobs
 1. (Optionally) Add a value for `image` to the include in `.gitlab-ci.yml`
 
@@ -174,7 +174,7 @@ Customize the template to make the image configurable:
         binary-name:
           default: hello
         image: 
-          default: golang:1.25.3
+          default: golang:1.25.4
         needs:
           type: array
           default: []
@@ -251,7 +251,7 @@ Customize the template to make the image configurable:
     - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/go@$CI_COMMIT_SHA
       inputs:
         binary-name: hello
-        image: golang:1.25.3
+        image: golang:1.25.4
         needs: []
     #...
     ```
@@ -281,7 +281,7 @@ Continue to customize the component by making the author name as well as the ver
         version:
           default: dev
         image: 
-          default: golang:1.25.3
+          default: golang:1.25.4
         needs:
           type: array
           default: []
@@ -360,7 +360,7 @@ Continue to customize the component by making the author name as well as the ver
         binary-name: hello
         author: ${AUTHOR}
         version: ${CI_COMMIT_REF_NAME}
-        image: golang:1.25.3
+        image: golang:1.25.4
         needs: []
     #...
     ```
@@ -389,7 +389,7 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
         version:
           default: dev
         image: 
-          default: golang:1.25.3
+          default: golang:1.25.4
         needs:
           type: array
           default: []
@@ -470,7 +470,7 @@ Components import whole jobs into a pipeline which can cause name conflicts. To 
         binary-name: hello
         author: ${AUTHOR}
         version: ${CI_COMMIT_REF_NAME}
-        image: golang:1.25.3
+        image: golang:1.25.4
         needs: []
         name-prefix: hello
     ```
@@ -500,7 +500,7 @@ The components has only used string inputs so far. To configure rules for the jo
         version:
           default: dev
         image: 
-          default: golang:1.25.3
+          default: golang:1.25.4
         needs:
           type: array
           default: []
@@ -587,7 +587,7 @@ The components has only used string inputs so far. To configure rules for the jo
         binary-name: hello
         author: ${AUTHOR}
         version: ${CI_COMMIT_REF_NAME}
-        image: golang:1.25.3
+        image: golang:1.25.4
         needs: []
         rules:
         - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'

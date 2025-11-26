@@ -61,4 +61,4 @@ Steps are easier to compose...
 
 ## Hands-On
 
-See chapter [CI/CD Steps](/hands-on/2025-11-18/310_steps/exercise/)
+See chapter [CI/CD Steps](/hands-on/2025-11-27/310_steps/exercise/)

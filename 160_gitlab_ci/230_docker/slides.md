@@ -29,7 +29,7 @@ Empty `DOCKER_TLS_CERTDIR` disables TLS
 
 ### Hands-On
 
-See chapter [docker build](/hands-on/2025-11-18/230_docker/exercise/)
+See chapter [docker build](/hands-on/2025-11-27/230_docker/exercise/)
 
 ---
 

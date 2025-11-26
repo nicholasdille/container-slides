@@ -20,7 +20,7 @@ Release assets can added to a release
 
 [Container images](https://gitlab.com/gitlab-org/cli/container_registry) are publicly available
 
-`registry.gitlab.com/gitlab-org/cli:v1.76.2`
+`registry.gitlab.com/gitlab-org/cli:v1.78.3`
 
 Runners using the shell executor must have `glab` installed
 
@@ -32,7 +32,7 @@ See [official documentation](https://docs.gitlab.com/user/project/releases/relea
 
 ## Hands-On
 
-See chapter [Releases](/hands-on/2025-11-18/250_releases/exercise/)
+See chapter [Releases](/hands-on/2025-11-27/250_releases/exercise/)
 
 ---
 

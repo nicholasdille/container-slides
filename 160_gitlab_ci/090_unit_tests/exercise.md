@@ -49,7 +49,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     ```yaml linenums="1" hl_lines="12-19 25"
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       script:

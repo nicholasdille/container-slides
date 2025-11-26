@@ -59,7 +59,7 @@ See [GitLab API](https://docs.gitlab.com/ee/api/job_artifacts.html#download-the-
 
 ## Hands-On
 
-See chapter [Artifacts](/hands-on/2025-11-18/060_artifacts/exercise/)
+See chapter [Artifacts](/hands-on/2025-11-27/060_artifacts/exercise/)
 
 ---
 

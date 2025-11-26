@@ -18,7 +18,7 @@ Containerized service stack for this workshop
 
 <span style="color: #7cbad4; position: absolute; top: 68%; right: 0%; z-index: -1"><i class="fa-duotone fa-solid fa-hand-point-up"></i> Uses `alpine`<br/>by default</span>
 
-Meet your demo environment by following the [introduction](/hands-on/2025-11-18/)
+Meet your demo environment by following the [introduction](/hands-on/2025-11-27/)
 
 More about GitLab Runner [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_runners)
 
@@ -28,4 +28,4 @@ More about GitLab Runner [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>]
 
 You can also follow the workshop using `gitlab.com`
 
-Follow [this exercise](https://dille.name/hands-on/2025-11-18/000_rollout/exercise_gitlabcom/) to learn about the differences
+Follow [this exercise](https://dille.name/hands-on/2025-11-27/000_rollout/exercise_gitlabcom/) to learn about the differences

@@ -23,7 +23,7 @@ services:
 
   # https://doc.traefik.io/traefik/
   traefik:
-    image: traefik:v3.6.1
+    image: traefik:v3.6.2
     command:
     - --log=true
     - --log.level=DEBUG
@@ -121,7 +121,7 @@ services:
       traefik.tcp.routers.ssh.tls.passthrough: true
   
   runner:
-    image: gitlab/gitlab-runner:v18.5.0
+    image: gitlab/gitlab-runner:v18.6.2
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock:rw

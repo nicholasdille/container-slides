@@ -7,7 +7,7 @@ spec:
     version:
       default: dev
     image: 
-      default: golang:1.25.3
+      default: golang:1.25.4
     needs:
       type: array
       default: []

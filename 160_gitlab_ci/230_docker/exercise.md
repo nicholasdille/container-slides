@@ -20,9 +20,9 @@ For building a container image, you will need to...
 
 1. Add a new stage `package` to the pipeline
 1. Add a new job `package` to the pipeline
-1. Use the image `docker:28.1.1` for the job
+1. Use the image `docker:29.0.4` for the job
 1. Add a rule to limit execution to pushes to the default branch
-1. Add a service to the job using the image `docker:28.1.1-dind`
+1. Add a service to the job using the image `docker:29.0.4-dind`
 1. Add a variable `DOCKER_TLS_CERTDIR` to the job and set it to an empty string
 1. Execute the command `docker build --tag hello .`
 
@@ -38,7 +38,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     variables:
       DOCKER_TLS_CERTDIR: ""
     services:
-    - name: docker:28.1.1-dind
+    - name: docker:29.0.4-dind
     ```
 
 ??? example "Solution (Click if you are stuck)"
@@ -71,7 +71,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       extends:
@@ -142,11 +142,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       needs:
       - build
       - unit_tests
-      image: docker:28.5.2
+      image: docker:29.0.4
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.5.2-dind
+      - name: docker:29.0.4-dind
       variables:
         DOCKER_TLS_CERTDIR: ""
       script:

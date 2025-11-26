@@ -24,7 +24,7 @@ Creator must have role Developer or have merge permissions on protected branches
 
 ### Hands-On
 
-See chapter [Schedules](/hands-on/2025-11-18/070_schedules/exercise/)
+See chapter [Schedules](/hands-on/2025-11-27/070_schedules/exercise/)
 
 ---
 

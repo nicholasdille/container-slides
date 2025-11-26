@@ -16,4 +16,4 @@
 
 ### Hands-On
 
-See chapter [Variables](/hands-on/2025-11-18/020_variables/exercise/)
+See chapter [Variables](/hands-on/2025-11-27/020_variables/exercise/)

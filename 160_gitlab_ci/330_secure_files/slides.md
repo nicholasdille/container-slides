@@ -55,4 +55,4 @@ test:
 
 ## Hands-On
 
-See chapter [Secure Files](/hands-on/2025-11-18/320_secure_files/exercise/)
+See chapter [Secure Files](/hands-on/2025-11-27/320_secure_files/exercise/)

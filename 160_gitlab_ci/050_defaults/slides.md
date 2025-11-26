@@ -27,4 +27,4 @@ job_name:
 
 ### Hands-On
 
-See chapter [Defaults](/hands-on/2025-11-18/050_defaults/exercise/)
+See chapter [Defaults](/hands-on/2025-11-27/050_defaults/exercise/)

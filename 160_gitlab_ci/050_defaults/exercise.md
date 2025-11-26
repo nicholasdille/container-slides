@@ -27,7 +27,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - build
 
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       stage: check

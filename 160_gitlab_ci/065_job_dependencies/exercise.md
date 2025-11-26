@@ -22,7 +22,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - test
 
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       stage: check
@@ -71,7 +71,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     - test
 
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       stage: check
@@ -120,7 +120,7 @@ Modify your pipeline:
     
     ```yaml linenums="1" hl_lines="13-15 29-30"
     default:
-      image: golang:1.25.3
+      image: golang:1.25.4
 
     lint:
       script:

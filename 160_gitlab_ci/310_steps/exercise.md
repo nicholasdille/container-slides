@@ -72,11 +72,11 @@ The local step can be used in the job `package` in `.gitlab-ci.yml` by referenci
       needs:
       - hello-build-go
       - hello-unit-tests-go
-      image: docker:28.5.2
+      image: docker:29.0.4
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.5.2-dind
+      - name: docker:29.0.4-dind
       variables:
         DOCKER_TLS_CERTDIR: ""
       run:
@@ -124,11 +124,11 @@ Create and use a step for Docker build by converting the first command script bl
       needs:
       - hello-build-go
       - hello-unit-tests-go
-      image: docker:28.5.2
+      image: docker:29.0.4
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.5.2-dind
+      - name: docker:29.0.4-dind
       variables:
         DOCKER_TLS_CERTDIR: ""
       run:
@@ -177,11 +177,11 @@ Create and use a step for Docker build by converting the first command script bl
       needs:
       - hello-build-go
       - hello-unit-tests-go
-      image: docker:28.5.2
+      image: docker:29.0.4
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.5.2-dind
+      - name: docker:29.0.4-dind
       variables:
         DOCKER_TLS_CERTDIR: ""
       run:
@@ -235,11 +235,11 @@ Create and use a step for Docker build by converting the first command script bl
       needs:
       - hello-build-go
       - hello-unit-tests-go
-      image: docker:28.5.2
+      image: docker:29.0.4
       extends:
       - .run-on-push-to-default-branch
       services:
-      - name: docker:28.5.2-dind
+      - name: docker:29.0.4-dind
       variables:
         DOCKER_TLS_CERTDIR: ""
       run:

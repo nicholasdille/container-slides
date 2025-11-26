@@ -28,7 +28,7 @@ Distributed with an S3-compatible backend (e.g. [AWS S3](https://aws.amazon.com/
 
 ### Hands-On
 
-See chapter [caches](/hands-on/2025-11-18/265_caches/exercise/)
+See chapter [caches](/hands-on/2025-11-27/265_caches/exercise/)
 
 ---
 

@@ -110,4 +110,4 @@ Project owners can [switch to catalog project](https://docs.gitlab.com/ee/ci/com
 
 ## Hands-On
 
-See chapter [CI/CD Components](/hands-on/2025-11-18/300_components/exercise/)
+See chapter [CI/CD Components](/hands-on/2025-11-27/300_components/exercise/)

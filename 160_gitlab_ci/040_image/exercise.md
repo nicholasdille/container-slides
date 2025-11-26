@@ -10,13 +10,13 @@
 
 In the previous exampes, we called `apk` at the beginning of every job to install Go. This had to be repeated for every job because Go was not present. Choosing an image for a job using the `image` directive, time is saved by avoiding commands to install required tools. See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#image).
 
-Replace the calls to `apk` with the container image `golang:1.25.3`.
+Replace the calls to `apk` with the container image `golang:1.25.4`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
     - Remove `before_script`
-    - Add `image: golang:1.25.3` instead
+    - Add `image: golang:1.25.4` instead
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
@@ -28,19 +28,19 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
     lint:
       stage: check
-      image: golang:1.25.3
+      image: golang:1.25.4
       script:
       - go fmt .
 
     audit:
       stage: check
-      image: golang:1.25.3
+      image: golang:1.25.4
       script:
       - go vet .
 
     build:
       stage: build
-      image: golang:1.25.3
+      image: golang:1.25.4
       variables:
         version: $CI_COMMIT_REF_NAME
       script:

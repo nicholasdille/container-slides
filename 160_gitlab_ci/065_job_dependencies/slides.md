@@ -82,7 +82,7 @@ Can be used for artifacts
 
 ## Hands-On
 
-See chapter [Job dependencies](/hands-on/2025-11-18/065_job_dependencies/exercise/)
+See chapter [Job dependencies](/hands-on/2025-11-27/065_job_dependencies/exercise/)
 
 ---
 

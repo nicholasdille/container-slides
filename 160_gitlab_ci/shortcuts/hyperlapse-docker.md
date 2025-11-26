@@ -16,6 +16,6 @@ Fast progress for Docker-related topics
 
 1. Read slides for registries [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_registries)
 
-1. Do exercises for docker [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](/hands-on/2025-11-18/230_docker/exercise/)
+1. Do exercises for docker [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](/hands-on/2025-11-27/230_docker/exercise/)
 
-1. Do exercises for registries [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](/hands-on/2025-11-18/240_registries/exercise/)
+1. Do exercises for registries [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](/hands-on/2025-11-27/240_registries/exercise/)

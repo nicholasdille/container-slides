@@ -52,7 +52,7 @@ No integration with GitLab
 
 ## Hands-On
 
-See chapter [Renovate](/hands-on/2025-11-18/270_renovate/exercise/)
+See chapter [Renovate](/hands-on/2025-11-27/270_renovate/exercise/)
 
 ---
 
