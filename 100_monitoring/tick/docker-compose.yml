@@ -3,7 +3,7 @@ version: "3.3"
 services:
 
   proxy:
-    image: traefik:v3.2.1
+    image: traefik:v3.6.2
     command: "--debug --docker --docker.endpoint='unix:///var/run/docker.sock' --docker.watch=true --docker.exposedByDefault=false --entryPoints='Name:http Address::80' --defaultEntryPoints='http'"
     ports:
       - 80:80
