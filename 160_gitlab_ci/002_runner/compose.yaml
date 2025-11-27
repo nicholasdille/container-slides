@@ -3,7 +3,7 @@
 configs:
   config.toml:
     content: |
-      concurrent = 1
+      concurrent = 10
       [[runners]]
         url = "http://gitlab.inmylab.de"
         token = "${CI_SERVER_TOKEN}"

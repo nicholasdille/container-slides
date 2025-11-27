@@ -10,14 +10,14 @@
 
 Create CI variables for use in the following exercises:
 
-1. Create two environments called `dev` and `live` in the GitLab UI. No other settings are required
+1. Optional: Create two environments called `dev` and `live` in the GitLab UI. No other settings are required
 1. Retrieve passwords for dev and live environments from the info page
 1. Create unprotected but masked CI variable `PASS` twice with scope `dev` and `live`
-1. Create unprotected CI variable `SEAT_INDEX` with your seat number
+1. Pre-created: Create unprotected CI variable `SEAT_INDEX` with your seat number
 
 ## Task 1: Add target environment
 
-Add a new stage `deploy` with a job called `deploy`. Use the following commands and add an environment to the job in order to upload the binary to the dev environment:
+Add a new job called `deploy` and use the following commands. Add an [environment](https://docs.gitlab.com/ci/yaml/#environmentname) to the job in order to upload the binary to the `dev` environment:
 
 ```bash
 curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \

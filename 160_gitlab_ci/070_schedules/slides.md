@@ -44,7 +44,7 @@ Adjust the [maximum frequency](https://docs.gitlab.com/ee/administration/cicd.ht
 
 ## Pro tip: Schedules have an owner
 
-If the owner is block...
+If the owner is blocked...
 
 ...the scheduled pipeline becomes inactive
 

@@ -37,7 +37,7 @@ Familiarize yourself with Visual Studio Code and the git workflow:
 ??? info "Hint (Click if you are stuck)"
     Go to GitLab (`https://gitlab.inmylab.de`) and go to your project called `demo`.
 
-## Troubleshooting: Context manu not working correctly
+## Troubleshooting: Context menu not working correctly
 
 When using Firefox, the context menu may not show up without issues. This can be fixed as [proposed on StackOverflow](https://stackoverflow.com/questions/79320517/why-does-right-click-in-a-code-server-instance-of-vs-code-open-paste-instead-o):
 

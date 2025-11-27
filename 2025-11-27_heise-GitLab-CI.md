@@ -1,0 +1,25 @@
+2025-11-27
+- GitLab logo on title page
+- Housekeeping: DU
+- Ausblick: Staging?
+- id_tokens: Anbindung Kubernetes? Anbindung an AWS?
+- vscode: Getting started
+    - workbench.startupEditor=none
+    - workbench.welcomePage.walkthroughs.openOnInstall=false
+- Deutsche Texte?
+- Pipeline Editor -> Configure pipeline -> zu komplex
+- Einführung: Pipelines in the web UI (or at least a hint)?
+- GitLab: Disable project features?
+- Provision example program? No feature updates for example program?
+- Images: Task for speed improvement?
+- Artifacts: Code snippet -> Review slide
+- Job dependencies: Improve slides
+- Groups jobs https://docs.gitlab.com/ci/jobs/#group-similar-jobs-together-in-pipeline-views
+- Schedule ownership https://docs.gitlab.com/api/pipeline_schedules/#take-ownership-of-a-pipeline-schedule
+- Unveränderliche Default-Pipeline
+- Manual pipelines: Exercise? Move pipeline inputs here?
+- CI -> CI/CD
+- env: deploy needs build and test (!unit_tests)
+- Update exercises and describe intention first
+- GLOBA_VAR
+- pro tips sortieren

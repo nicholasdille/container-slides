@@ -8,9 +8,17 @@
 
 ## Artifacts
 
-Transfer files between jobs using [`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts)
+Store generated files [`artifacts`](https://docs.gitlab.com/ee/ci/yaml/#artifacts)
 
-All jobs in subsequent stages will receive the artifacts (by default)
+```yaml
+build:
+  #...
+  artifacts:
+    paths:
+    - hello
+```
+
+All later jobs consume the artifact
 
 ![](160_gitlab_ci/060_artifacts/artifacts.drawio.svg) <!-- .element: style="width: 50%; float: right;" -->
 
@@ -23,10 +31,6 @@ Include and exclude paths
 When to create artifacts (jobs success, failure, always)
 
 Expire artifacts
-
-Add untracked files
-
-`artifacts` can be in `default` [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_default)
 
 ---
 

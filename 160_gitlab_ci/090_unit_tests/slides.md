@@ -18,10 +18,9 @@ The following example was taken from the [official one](https://docs.gitlab.com/
 
 ```yaml
 golang:
-  stage: test
   script:
-    - go install gotest.tools/gotestsum@latest
-    - gotestsum --junitfile report.xml --format testname
+  - go install gotest.tools/gotestsum@latest
+  - gotestsum --junitfile report.xml --format testname
   artifacts:
     when: always
     reports:

@@ -66,7 +66,7 @@ Prevent unintentional deployments using [Deploy Freeze](https://docs.gitlab.com/
 
 Additional pipeline variable called `CI_DEPLOY_FREEZE` during deploy freeze
 
-Job scripts must implement freeze
+Job scripts must implement freeze, e.g. using rules [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules)
 
 ---
 

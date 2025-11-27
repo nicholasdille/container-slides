@@ -1,9 +1,12 @@
 date: 2025-11-27
 metadata:
   author: Nicholas Dille, Haufe Group
-  title: GitLab CI
+  title: GitLab CI/CD
   title_slug: gitlab-ci
   subtitle: The People Who Stare at Pipelines
+  logo:
+    image: 150_gitlab/media/gitlab-icon-rgb.svg
+    style: "float: right; width: 2em;"
   box:
     width: 30%
     align: left
