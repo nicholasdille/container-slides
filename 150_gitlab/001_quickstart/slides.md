@@ -40,7 +40,7 @@ docker run -d --name=gitlab \
     --volume=/var/log/gitlab:/var/log/gitlab \
     --volume=/var/opt/gitlab:/var/opt/gitlab \
     --publish=80:80 \
-    gitlab/gitlab-ee:18.4.2-ee.0
+    gitlab/gitlab-ee:18.6.0-ee.0
 ```
 
 Wait for container to finish starting:

@@ -8,7 +8,7 @@
 
 ## Environment
 
-<span style="color: #7cbad4; position: absolute; right: 10%; transform: rotate(15deg); z-index: -1"><i class="fa-duotone fa-solid fa-sparkles"></i> Available for the whole week <i class="fa-duotone fa-solid fa-sparkles"></i></span>
+<span style="color: #7cbad4; position: absolute; right: 10%; transform: rotate(15deg); z-index: -1"><i class="fa-duotone fa-solid fa-sparkles"></i> Available for the whole workshop <i class="fa-duotone fa-solid fa-sparkles"></i></span>
 
 Find slides in the chat <i class="fa-duotone fa-solid fa-comments"></i>
 

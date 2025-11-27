@@ -58,7 +58,7 @@ gitlab-ctl reconfigure
 
 ### Option 1: Docker
 
-1. Update `compose.yml` in `100_reverse_proxy`<br>with new image `gitlab/gitlab-ee:18.5.1-ee.0`: 
+1. Update `compose.yml` in `100_reverse_proxy`<br>with new image `gitlab/gitlab-ee:18.6.1-ee.0`: 
 
     ```bash
     vim ../100_reverse_proxy/compose.yml

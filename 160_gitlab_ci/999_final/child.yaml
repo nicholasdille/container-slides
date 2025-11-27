@@ -1,3 +1,0 @@
-test:
-  script:
-  - printenv | sort

@@ -8,7 +8,7 @@ packer {
 }
 
 locals {
-  gitlab_version = "18.6.0"
+  gitlab_version = "18.6.1"
   gitlab_runner_version = "18.6.2"
   traefik_version = "3.6.2"
   code_server_version = "4.106.2"

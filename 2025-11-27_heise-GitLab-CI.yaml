@@ -82,7 +82,6 @@ slides:
 - 160_gitlab_ci/330_secure_files/slides.md
 - 160_gitlab_ci/400_metrics/slides.md
 - 160_gitlab_ci/410_ai/slides.md
-- 160_gitlab_ci/999_final/slides.md
 
 summary:
 - icon: infinity
