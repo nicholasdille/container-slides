@@ -8,7 +8,7 @@
 
 ## Flavors
 
-[Variables](https://docs.gitlab.com/ee/ci/yaml/#variables) can be...
+Variables [](https://docs.gitlab.com/ee/ci/yaml/#variables) can be...
 
 - defined in the pipeline definition
 - predefined by GitLab

@@ -8,7 +8,7 @@
 
 ## Make jobs conditional
 
-[Rules](https://docs.gitlab.com/ee/ci/yaml/#rules) define whether to execute a job
+Rules [](https://docs.gitlab.com/ee/ci/yaml/#rules) define whether to execute a job
 
 At least one successful rule for the job to be executed
 
@@ -22,15 +22,15 @@ job_name:
 
 If no condition matches, the job disappears from the pipeline
 
-Formerly [`only`/`except`](https://docs.gitlab.com/ee/ci/yaml/#only--except) which are "not actively developed"
+Formerly `only`/`except` [](https://docs.gitlab.com/ee/ci/yaml/#only--except) which are "not actively developed"
 
-Official documentation of [job control](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
+Official documentation of job control [](https://docs.gitlab.com/ee/ci/jobs/job_control.html)
 
 ---
 
 ## Make pipelines conditional
 
-[Workflow rules](https://docs.gitlab.com/ee/ci/yaml/#workflow) define whether to execute a whole pipeline
+Workflow rules [](https://docs.gitlab.com/ee/ci/yaml/#workflow) define whether to execute a whole pipeline
 
 ```yaml
 workflow:
@@ -63,7 +63,7 @@ workflow:
     when: never
 ```
 
-See the [pre-defined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) for more information about the variables
+See the pre-defined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) for more information about the variables
 
 ---
 
@@ -81,9 +81,9 @@ Adjust order from most specific...
 
 ## Hands-On
 
-Use [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) to create a download page
+Use GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/) to create a download page
 
-- The job must be called [`pages`](https://docs.gitlab.com/ee/ci/yaml/#pages)
+- The job must be called `pages` [](https://docs.gitlab.com/ee/ci/yaml/#pages)
 - The must create an artifact from the directory called `public`
 
 See chapter [Rules](/hands-on/2025-11-27/130_rules/exercise/)
@@ -119,10 +119,10 @@ Template to disable job:
 
 Rules not only control execution of jobs but can also configure jobs through the use of the following fields:
 
-- Add additional [`variables`](https://docs.gitlab.com/ee/ci/yaml/#rulesvariables) to customize the behaviour of the job
-- Limit a rule to changes [`changes`](https://docs.gitlab.com/ee/ci/yaml/#ruleschanges) on specific files
-- Execute a job only if a specific file [`exists`](https://docs.gitlab.com/ee/ci/yaml/#rulesexists)
-- Make a job dependent on other jobs using [`needs`](https://docs.gitlab.com/ee/ci/yaml/#rulesneeds)
+- Add additional `variables` [](https://docs.gitlab.com/ee/ci/yaml/#rulesvariables) to customize the behaviour of the job
+- Limit a rule to changes `changes` [](https://docs.gitlab.com/ee/ci/yaml/#ruleschanges) on specific files
+- Execute a job only if a specific file `exists` [](https://docs.gitlab.com/ee/ci/yaml/#rulesexists)
+- Make a job dependent on other jobs using `needs` [](https://docs.gitlab.com/ee/ci/yaml/#rulesneeds)
 
 Rules become especially powerful when combining the fields supported by rules - including `if`
 
@@ -143,7 +143,7 @@ my_job:
     when: never
 ```
 
-See the [pre-defined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) for more information about the variables
+See the pre-defined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) for more information about the variables
 
 ---
 
@@ -168,11 +168,11 @@ job_name:
 
 # Pro tip 5: Tweaking GitLab Pages
 
-The content directory can be configured using [`pages:publish`](https://docs.gitlab.com/ee/ci/yaml/#pagespublish)
+The content directory can be configured using `pages:publish` [](https://docs.gitlab.com/ee/ci/yaml/#pagespublish)
 
-Premium/Ultimate: Deploy to a sub-directory [`pages:pages.path_prefix`](https://docs.gitlab.com/ee/ci/yaml/#pagespagespath_prefix)
+Premium/Ultimate: Deploy to a sub-directory `pages:pages.path_prefix` [](https://docs.gitlab.com/ee/ci/yaml/#pagespagespath_prefix)
 
-Premium/Ultimate: Expire a pages deployment [`pages:pages.expire_in`](https://docs.gitlab.com/ee/ci/yaml/#pagespagesexpire_in)
+Premium/Ultimate: Expire a pages deployment `pages:pages.expire_in` [](https://docs.gitlab.com/ee/ci/yaml/#pagespagesexpire_in)
 
 ---
 
@@ -182,8 +182,8 @@ GitLab Pages are public by default
 
 Access control can be enabled
 
-1. Per [instance](https://docs.gitlab.com/ee/administration/pages/index.html#access-control) (prerequisite for per project)
-1. Per [project](https://docs.gitlab.com/ee/user/project/pages/pages_access_control.html)
+1. Per instance [](https://docs.gitlab.com/ee/administration/pages/index.html#access-control) (prerequisite for per project)
+1. Per project [](https://docs.gitlab.com/ee/user/project/pages/pages_access_control.html)
 
 ---
 

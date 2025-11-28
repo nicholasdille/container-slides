@@ -12,7 +12,7 @@
 
 `script` is just a YAML string
 
-GitLab also supported [YAML herestrings](https://yaml-multiline.info/):
+GitLab also supported YAML herestrings [](https://yaml-multiline.info/):
 
 ```yaml
 job_name:

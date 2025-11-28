@@ -8,23 +8,23 @@
 
 ## Releases
 
-Pipeline jobs can create [releases](https://docs.gitlab.com/ee/user/project/releases/index.html)
+Pipeline jobs can create releases [](https://docs.gitlab.com/ee/user/project/releases/index.html)
 
-...by adding the [`release`](https://docs.gitlab.com/ee/ci/yaml/#release) keyword
+...by adding the `release` [](https://docs.gitlab.com/ee/ci/yaml/#release) keyword
 
 Release assets can added to a release
 
 ### GitLab CLI `glab` required
 
-[`glab`](https://gitlab.com/gitlab-org/cli/) must be available
+`glab` [](https://gitlab.com/gitlab-org/cli/) must be available
 
-[Container images](https://gitlab.com/gitlab-org/cli/container_registry) are publicly available
+Container images [](https://gitlab.com/gitlab-org/cli/container_registry) are publicly available
 
 `registry.gitlab.com/gitlab-org/cli:v1.78.3`
 
 Runners using the shell executor must have `glab` installed
 
-See [official documentation](https://docs.gitlab.com/user/project/releases/release_cli/)
+See official documentation [](https://docs.gitlab.com/user/project/releases/release_cli/)
 
 *Previously, `release-cli` was required*
 
@@ -38,7 +38,7 @@ See chapter [Releases](/hands-on/2025-11-27/250_releases/exercise/)
 
 ## Pro tip 1: Publish asset in package registry 1/
 
-Release binaries can be published to [generic package registry](https://docs.gitlab.com/ee/user/packages/generic_packages/)
+Release binaries can be published to generic package registry [](https://docs.gitlab.com/ee/user/packages/generic_packages/)
 
 Base URL for package registry: `https://gitlab.inmylab.de/api/v4/projects/${CI_PROJECT_ID}/packages/generic/`
 
@@ -52,7 +52,7 @@ User access requires API token
 
 ### Upload a file
 
-[Upload](https://docs.gitlab.com/ee/user/packages/generic_packages/#publish-a-package-file) file `file.txt` to package `my_package` with version `0.0.1`
+Upload [](https://docs.gitlab.com/ee/user/packages/generic_packages/#publish-a-package-file) file `file.txt` to package `my_package` with version `0.0.1`
 
 ```bash
 curl --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
@@ -62,7 +62,7 @@ curl --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
 
 ### Download a file
 
-[Download](https://docs.gitlab.com/ee/user/packages/generic_packages/#download-package-file) file `file.txt` from package `my_package` with version `0.0.1`
+Download [](https://docs.gitlab.com/ee/user/packages/generic_packages/#download-package-file) file `file.txt` from package `my_package` with version `0.0.1`
 
 ```bash
 curl --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
@@ -87,7 +87,7 @@ job_name:
       url: ${CI_PAGES_URL}/hello
 ```
 
-GitLab Pages is publicly accessible unless [access control](https://docs.gitlab.com/user/project/pages/pages_access_control/) is enabled
+GitLab Pages is publicly accessible unless access control [](https://docs.gitlab.com/user/project/pages/pages_access_control/) is enabled
 
 ---
 

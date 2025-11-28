@@ -28,11 +28,11 @@ Pro for code suggestions and chat **in the web UI**
 
 Ultimate for summarization and code review
 
-See [earlier slide](#/gitlab_duo)
+See earlier slide [](#/gitlab_duo)
 
 ### Self Hosted Option
 
-Self-Hosted option is [only available for GitLab Duo Ultimate](https://docs.gitlab.com/administration/gitlab_duo_self_hosted/)
+Self-Hosted option is only available for GitLab Duo Ultimate [](https://docs.gitlab.com/administration/gitlab_duo_self_hosted/)
 
 Additional components: Model and AI Gateway
 
@@ -48,19 +48,19 @@ Self hosted AI Gateway for control over performance and rate limits
 
 Strong focus on code review/summarization
 
-Random examples: [github.com/rkbansal/gitlab-ai-reviewer](https://github.com/rkbansal/gitlab-ai-reviewer) | [github.com/somnus-stasis/gitlab-mr-ai](https://github.com/somnus-stasis/gitlab-mr-ai) | [github.com/preslaff/ai-code-reviewer](https://github.com/preslaff/ai-code-reviewer)
+Random examples: github.com/rkbansal/gitlab-ai-reviewer [](https://github.com/rkbansal/gitlab-ai-reviewer) | github.com/somnus-stasis/gitlab-mr-ai [](https://github.com/somnus-stasis/gitlab-mr-ai) | github.com/preslaff/ai-code-reviewer [](https://github.com/preslaff/ai-code-reviewer)
 
 ### Code suggestions
 
-Examples: [Tabby ML](https://www.tabbyml.com/), [Tab Nine](https://www.tabnine.com/)
+Examples: Tabby ML [](https://www.tabbyml.com/), Tab Nine [](https://www.tabnine.com/)
 
 ### AI-first IDEs
 
-Examples: [Cursor](https://www.cursor.com/), [Windsurf](https://windsurf.com/editor), [Void](https://voideditor.com/), [Zed](https://zed.dev/), [Warp](https://warp.dev/)
+Examples: Cursor [](https://www.cursor.com/), Windsurf [](https://windsurf.com/editor), Void [](https://voideditor.com/), Zed [](https://zed.dev/), Warp [](https://warp.dev/)
 
 ### Terminals
 
-Examples: [Warp](https://www.warp.dev/terminal)
+Examples: Warp [](https://www.warp.dev/terminal)
 
 ---
 
@@ -72,6 +72,6 @@ Build your own AI agents...
 - send to LLMs for processing
 - change systems
 
-Standardized by [MCP](https://modelcontextprotocol.io)
+Standardized by MCP [](https://modelcontextprotocol.io)
 
 Official MCP server for GitLab [](https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/)

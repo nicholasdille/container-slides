@@ -8,13 +8,13 @@
 
 ## Unit Tests
 
-GitLab is able to consume JUnit XML formatted [reports](https://docs.gitlab.com/ee/ci/testing/unit_test_reports.html)
+GitLab is able to consume JUnit XML formatted reports [](https://docs.gitlab.com/ee/ci/testing/unit_test_reports.html)
 
 Reports must be defined as a special type of artifact
 
 Reports will be displayed in the summary view of a pipeline
 
-The following example was taken from the [official one](https://docs.gitlab.com/ee/ci/testing/unit_test_report_examples.html#go):
+The following example was taken from the official one [](https://docs.gitlab.com/ee/ci/testing/unit_test_report_examples.html#go):
 
 ```yaml
 golang:

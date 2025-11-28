@@ -8,7 +8,7 @@
 
 ## Roles 1/2
 
-Builtin [roles](https://docs.gitlab.com/user/permissions/#roles)
+Builtin roles [](https://docs.gitlab.com/user/permissions/#roles)
 
 | Role       | Purpose                                          |
 |------------|--------------------------------------------------|
@@ -21,7 +21,7 @@ Builtin [roles](https://docs.gitlab.com/user/permissions/#roles)
 
 Guest < Planner < Reporter < Developer < Maintainer < Owner
 
-[Custom roles](https://docs.gitlab.com/user/custom_roles/) are only available in GitLab Ultimate
+Custom roles [](https://docs.gitlab.com/user/custom_roles/) are only available in GitLab Ultimate
 
 ---
 
@@ -41,4 +41,4 @@ Subgroups and projects can (only) increase the role
 
 ### Permissions
 
-Detailed [permissions](https://docs.gitlab.com/ee/user/permissions.html) are documented
+Detailed permissions [](https://docs.gitlab.com/ee/user/permissions.html) are documented

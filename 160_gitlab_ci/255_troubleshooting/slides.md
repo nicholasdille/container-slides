@@ -48,7 +48,7 @@ Consider moving commands to a script file...
 
 ### gitlabci-local
 
-Run whole pipelines locally using [`gcil`](https://gitlab.com/RadianDevCore/tools/gcil) (formerly `gitlabci-local`)
+Run whole pipelines locally using `gcil` [](https://gitlab.com/RadianDevCore/tools/gcil) (formerly `gitlabci-local`)
 
 Supports shell and Docker executor
 
@@ -56,9 +56,9 @@ Runs one or more jobs or even the whole pipeline
 
 ### ~~gitlab-runner~~
 
-<i class="fa-duotone fa-triangle-exclamation"></i> This is deprecated and was [removed in GitLab 17.0](https://docs.gitlab.com/ee/update/deprecations.html#the-gitlab-runner-exec-command-is-deprecated)
+<i class="fa-duotone fa-triangle-exclamation"></i> This is deprecated and was removed in GitLab 17.0 [](https://docs.gitlab.com/ee/update/deprecations.html#the-gitlab-runner-exec-command-is-deprecated)
 
-Test a single job using Docker using [`gitlab-runner`](https://gitlab.com/gitlab-org/gitlab-runner):
+Test a single job using Docker using `gitlab-runner` [](https://gitlab.com/gitlab-org/gitlab-runner):
 
 ```bash
 gitlab-runner exec docker <job_name>

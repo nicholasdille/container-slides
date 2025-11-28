@@ -28,4 +28,4 @@ More about GitLab Runner [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>]
 
 You can also follow the workshop using `gitlab.com`
 
-Follow [this exercise](https://dille.name/hands-on/2025-11-27/000_rollout/exercise_gitlabcom/) to learn about the differences
+Follow [this exercise](/hands-on/2025-11-27/000_rollout/exercise_gitlabcom/) to learn about the differences

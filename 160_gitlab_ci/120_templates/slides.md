@@ -16,13 +16,13 @@ Job templates begin with a dot to prevent execution
 
 Templates can be located in the same `.gitlab-ci.yml` (inline)
 
-Templates can be imported using [`include`](https://docs.gitlab.com/ee/ci/yaml/#include) from...
+Templates can be imported using `include` [](https://docs.gitlab.com/ee/ci/yaml/#include) from...
 
 - Files in the same repository
 - Files in other repositories of the same instance
 - Remote locations (only unauthenticated)
 
-See also the [official development guide for templates](https://docs.gitlab.com/ee/development/cicd/templates.html)
+See also the official development guide for templates [](https://docs.gitlab.com/ee/development/cicd/templates.html)
 
 ---
 
@@ -164,7 +164,7 @@ Conflicting templates...
   script: whoami
 ```
 
-...can be resolved by using [reference tags](https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#reference-tags)
+...can be resolved by using reference tags [](https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#reference-tags)
 
 ```yaml
 job_name:
@@ -203,8 +203,8 @@ Harder to find/browse, easier to version
 
 Project *to be continuous* [](https://to-be-continuous.gitlab.io/doc/) to help building professional pipelines
 
-Pipeline [generator](https://to-be-continuous.gitlab.io/kicker/)
+Pipeline generator [](https://to-be-continuous.gitlab.io/kicker/)
 
-Well [documented](https://to-be-continuous.gitlab.io/doc/intro/)
+Well documented [](https://to-be-continuous.gitlab.io/doc/intro/)
 
-Source code [on GitLab.com](https://gitlab.com/to-be-continuous)
+Source code on GitLab.com [](https://gitlab.com/to-be-continuous)

@@ -10,9 +10,9 @@
 
 ![](160_gitlab_ci/260_runners/executor.drawio.svg) <!-- .element: style="float: right; width: 30%;" -->
 
-[Runners](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI
+Runners [](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI/CD
 
-Extensive configuration [options](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
+Extensive configuration options [](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
 
 Executors interface with infrastructure
 
@@ -119,11 +119,11 @@ Offers the option to disable instance runners
 
 ## Pro tip 2: Special purpose executors
 
-Many builtin [executors](https://docs.gitlab.com/runner/executors/)
+Many builtin executors [](https://docs.gitlab.com/runner/executors/)
 
 ### Instance executors for auto-scaling (builtin)
 
-On-demand [creation of VMs](https://docs.gitlab.com/runner/executors/instance.html)
+On-demand creation of VMs [](https://docs.gitlab.com/runner/executors/instance.html)
 
 Idle VMs are possible to speed up job execution
 
@@ -131,6 +131,6 @@ Support for AWS, Azure and GCP
 
 ### Custom executor
 
-Build your own [custom executor](https://docs.gitlab.com/runner/executors/custom.html)
+Build your own custom executor [](https://docs.gitlab.com/runner/executors/custom.html)
 
-Examples: [libvirt](https://docs.gitlab.com/runner/executors/custom_examples/libvirt.html), [LXD](https://docs.gitlab.com/runner/executors/custom_examples/lxd.html), [AWS Fargate](https://gitlab.com/gitlab-org/ci-cd/custom-executor-drivers/fargate)
+Examples: libvirt [](https://docs.gitlab.com/runner/executors/custom_examples/libvirt.html), LXD [](https://docs.gitlab.com/runner/executors/custom_examples/lxd.html), AWS Fargate [](https://gitlab.com/gitlab-org/ci-cd/custom-executor-drivers/fargate)

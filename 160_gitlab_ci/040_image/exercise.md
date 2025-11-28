@@ -58,7 +58,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     git checkout upstream/160_gitlab_ci/040_image -- '*'
     ```
 
-## Bonus task: Test different images
+## Bonus task 1: Test different images
+
+Compare pipeline and job durations for pipeline before and after the change. You should notice a significant speedup because the installation of Go is skipped.
+
+## Bonus task 2: Test different images
 
 Add a job to your pipeline to test different container images. Check how different images offer specialized execution environments:
 

@@ -10,7 +10,7 @@
 
 Matrix jobs execute the same script with different inputs
 
-Defined using [`parallel`](https://docs.gitlab.com/ee/ci/yaml/#parallel)
+Defined using `parallel` [](https://docs.gitlab.com/ee/ci/yaml/#parallel)
 
 Inputs are specified using environment variables
 
@@ -61,11 +61,11 @@ See chapter [Matrix jobs](/hands-on/2025-11-27/150_matrix_jobs/exercise/)
 
 ---
 
-## Pro tip: Matrix jobs and `needs`
+## Pro tip 1: Matrix jobs and `needs`
 
 Depend on individual jobs of a matrix
 
-Extended syntax for [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needsparallelmatrix)
+Extended syntax for `needs` [](https://docs.gitlab.com/ee/ci/yaml/#needsparallelmatrix)
 
 ```yaml
 linux:build:
@@ -86,3 +86,22 @@ linux:rspec:
             STACK: app1
   script: echo "Running rspec on linux..."
 ```
+
+---
+
+## Pro tip 2: Job Groups
+
+Jobs can also be grouped manually [](https://docs.gitlab.com/ci/jobs/#group-similar-jobs-together-in-pipeline-views)
+
+```yaml
+job 1/3:
+  script: pwd
+
+job 2/3:
+  script: pwd
+
+job 3/3:
+  script: pwd
+```
+
+Instead of `/`, more delimiters are allowed: `:`, ` `

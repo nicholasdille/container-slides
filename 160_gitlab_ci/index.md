@@ -1,4 +1,4 @@
-# Workshop: GitLab CI
+# Workshop: GitLab CI/CD
 
 This site contains the exercises to learn about GitLab CI.
 

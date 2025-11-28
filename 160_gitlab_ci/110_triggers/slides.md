@@ -12,19 +12,19 @@ Ability to split automation across multiple pipeline
 
 ### Trigger tokens
 
-[Trigger](https://docs.gitlab.com/ee/ci/triggers/) pipelines through the API
+Trigger [](https://docs.gitlab.com/ee/ci/triggers/) pipelines through the API
 
 Fire and forget
 
 ### Multi-project pipelines
 
-Launch pipeline in [separate project](https://docs.gitlab.com/ee/ci/pipelines/multi_project_pipelines.html)
+Launch pipeline in separate project [](https://docs.gitlab.com/ee/ci/pipelines/multi_project_pipelines.html)
 
-Use the [`trigger`](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger) keyword
+Use the `trigger` [](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger) keyword
 
 ### Parent-child pipelines
 
-Load stages and jobs from a file using [`include`](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html)
+Load stages and jobs from a file using `include` [](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html)
 
 ---
 
@@ -74,9 +74,9 @@ Unable to check pipeline status
 
 Modern alternative to trigger tokens
 
-Launch pipeline in [separate project](https://docs.gitlab.com/ee/ci/pipelines/multi_project_pipelines.html)
+Launch pipeline in separate project [](https://docs.gitlab.com/ee/ci/pipelines/multi_project_pipelines.html)
 
-Use the [`trigger`](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger) keyword
+Use the `trigger` [](https://docs.gitlab.com/ee/ci/yaml/index.html#trigger) keyword
 
 ### Examples
 
@@ -101,12 +101,11 @@ job_name:
 
 ## Parent-child pipelines
 
-[Child pipelines](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html) are created from a file using `include`
+Child pipelines [](https://docs.gitlab.com/ee/ci/pipelines/parent_child_pipelines.html) are created from a file using `include`
 
-`include` supports [`local`](https://docs.gitlab.com/ee/ci/yaml/#includelocal) for files in the same repository
+`include` supports `local` [](https://docs.gitlab.com/ee/ci/yaml/#includelocal) for files in the same repository
 
-Use [`project`/`ref`/`file`](https://docs.gitlab.com/ee/ci/yaml/#includeproject) for files in other repositories
-
+Use `project`/`ref`/`file` [](https://docs.gitlab.com/ee/ci/yaml/#includeproject) for files in other repositories
 ### Example
 
 ```yaml
@@ -136,7 +135,7 @@ See chapter [Triggers](/hands-on/2025-11-27/110_triggers/exercise/)
 
 Upstream pipeline only waits for successful trigger
 
-Wait for successful downstream pipeline using [`strategy`](https://docs.gitlab.com/ee/ci/yaml/#triggerstrategy)
+Wait for successful downstream pipeline using `strategy` [](https://docs.gitlab.com/ee/ci/yaml/#triggerstrategy)
 
 ```yaml
 job_name:
@@ -180,15 +179,15 @@ test:
 ```
 <!-- .element: style="float: right; font-size: 0.7em; width: 25em; padding-bottom: 8em;" -->
 
-This works for [`dotenv` reports as well](https://docs.gitlab.com/ee/ci/variables/#control-which-jobs-receive-dotenv-variables)
+This works for `dotenv` reports as well [](https://docs.gitlab.com/ee/ci/variables/#control-which-jobs-receive-dotenv-variables)
 
-<i class="fa-duotone fa-triangle-exclamation"></i> Alternative [`needs:project`](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription (see [here](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline) and [here](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts)) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
+<i class="fa-duotone fa-triangle-exclamation"></i> Alternative `needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription (see [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline) and [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts)) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
 
 ---
 
 ## Pro tip 3: Variable inheritence
 
-Downstream pipelines [inherit some variables](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
+Downstream pipelines inherit some variables [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
 
 Job variables are passed on unless:
 
@@ -228,10 +227,10 @@ trigger-job-without-global-vars:
     include:
     - local: path/to/child-pipeline.yml
 
-trigger-job-without-global-vars:
+trigger-job-with-global-var:
   inherit:
     variables:
-    - GLOBA_VAR
+    - GLOBAL_VAR
   trigger:
     include:
     - local: path/to/child-pipeline.yml
@@ -241,10 +240,10 @@ trigger-job-without-global-vars:
 
 ## Pro tip 5: Types of variables to forward
 
-Use [`trigger:forward`](https://docs.gitlab.com/ee/ci/yaml/#triggerforward) to define which types of variables to forward to downstream pipelines
+Use `trigger:forward` [](https://docs.gitlab.com/ee/ci/yaml/#triggerforward) to define which types of variables to forward to downstream pipelines
 
 - `yaml_variables` - variables defined in the trigger job
-- `pipeline_variables` - variables [passed to this pipeline](https://docs.gitlab.com/ee/ci/variables/index.html#cicd-variable-precedence)
+- `pipeline_variables` - variables passed to this pipeline [](https://docs.gitlab.com/ee/ci/variables/index.html#cicd-variable-precedence)
 
 This only works for the direct downstream pipeline
 
@@ -269,7 +268,7 @@ job_name:
 
 ## Pro tip 7: Dynamic includes
 
-Included file can also be [generated before job start](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
+Included file can also be generated before job start [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines)
 
 ```yaml
 generate:

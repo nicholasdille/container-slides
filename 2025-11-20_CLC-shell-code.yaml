@@ -57,7 +57,7 @@ events:
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
-  title: GitLab CI
+  title: GitLab CI/CD
   link: https://heise-academy.de/Workshops/cicd-gitlab
 - date: "2025-12-15"
   name: DevOps Meetup Freiburg

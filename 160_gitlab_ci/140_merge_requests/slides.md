@@ -10,7 +10,7 @@
 
 Merge requests enable collaboration
 
-Pipelines can automatically test [merge requests](https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html)
+Pipelines can automatically test merge requests [](https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html)
 
 Commits to a branch with a merge request cause multiple events:
 
@@ -27,9 +27,9 @@ GitLab offers `$CI_PIPELINE_SOURCE` with event name
 
 ### What make them different
 
-Only [run when configured using the `rules` keyword](https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html#use-rules-to-add-jobs)
+Only run when configured using the `rules` keyword [](https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html#use-rules-to-add-jobs)
 
-Have access to [more pre-defined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines)
+Have access to more pre-defined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines)
 
 Do not have access to protected variables
 
@@ -66,7 +66,7 @@ job_name:
 
 ### Merge request decoration
 
-Write scan results [into merge request](https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/gitlab-integration/)
+Write scan results into merge request [](https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/gitlab-integration/)
 
 Requires Developer Edition
 
@@ -115,6 +115,6 @@ Child job `mr_child_job` only runs if the rule is present
 
 ## Pro tip 5: Merged results pipelines
 
-Runs [after a merge](https://docs.gitlab.com/ee/ci/pipelines/merged_results_pipelines.html)
+Runs after a merge [](https://docs.gitlab.com/ee/ci/pipelines/merged_results_pipelines.html)
 
 Only available in Premium subscription

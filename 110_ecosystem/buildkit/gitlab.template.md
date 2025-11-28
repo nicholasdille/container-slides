@@ -1,4 +1,4 @@
-## Using BuildKit with GitLab CI
+## Using BuildKit with GitLab CI/CD
 
 Described in my [blog post](https://dille.name/blog/2020/06/01/using-buildkit-for-cloud-native-builds-in-gitlab/)
 

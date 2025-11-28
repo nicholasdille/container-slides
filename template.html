@@ -33,22 +33,17 @@
     data-background-size="{{ (datasource "talk").metadata.background.size }}"
     data-background-position="{{ (datasource "talk").metadata.background.position }}"
     style="padding: 1em 1em 1em 1em; background: rgba(0, 0, 0, 0.5); width: {{ (datasource "talk").metadata.box.width }}; margin: auto; text-align: {{ (datasource "talk").metadata.box.align }};">
-
-{{ if (datasource "talk").metadata.logo.image }}
+{{- if has (datasource "talk").metadata "logo" }}
 <p><img src="{{ (datasource "talk").metadata.logo.image }}" style="{{ (datasource "talk").metadata.logo.style }}" /></p>
-{{ end }}
-
+{{- end }}
 <h1 style="font-size: 1.5em;"><b>{{ (datasource "talk").metadata.title }}</b></h1>
-
 <h2 style="font-size: 1.2em; text-transform: none;">{{ (datasource "talk").metadata.subtitle }}</h2>
-
 <p><em>{{ (datasource "talk").metadata.author }}</em></p>
-
-{{ if (datasource "talk").event.logo }}
+{{- if (datasource "talk").event.logo }}
 <p><a href="{{ (datasource "talk").event.link }}"><img src="{{ (datasource "talk").event.logo }}" style="{{ (datasource "talk").event.logo_style }}" /></a></p>
-{{ else }}
+{{- else }}
 <p><a href="{{ (datasource "talk").event.link }}">{{ (datasource "talk").event.name }}</a></p>
-{{ end }}
+{{- end }}
 </section>
 
 {{- if has (datasource "talk") "pre_slides" }}

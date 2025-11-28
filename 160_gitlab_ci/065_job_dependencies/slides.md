@@ -8,7 +8,19 @@
 
 ## Job dependencies 1/
 
-[`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs) can start jobs from the next stage early...
+XXX define order of jobs
+
+XXX `needs` [](https://docs.gitlab.com/ee/ci/yaml/#needs)
+
+XXX start job as soon as possible
+
+XXX replacement for stages
+
+---
+
+## Mixing with stages
+
+Start jobs from the next stage early:
 
 ```yaml
 job1:
@@ -21,7 +33,7 @@ job2:
   #...
 ```
 
-...or delay them in the same stage
+Delay jobs in the same stage:
 
 ```yaml
 job1:
@@ -36,9 +48,9 @@ job2:
 
 ---
 
-## Job dependencies 2/
+## Effect on artifacts
 
-Depend on a job but [do not consume artifacts](https://docs.gitlab.com/ee/ci/yaml/#needsartifacts):
+Depend on a job but do not consume artifacts [](https://docs.gitlab.com/ee/ci/yaml/#needsartifacts):
 
 ```yaml
 job_name:
@@ -50,7 +62,7 @@ job_name2:
     artifacts: false
 ```
 
-Consume artifacts from [parent (upstream) pipeline](https://docs.gitlab.com/ee/ci/yaml/#needspipelinejob):
+Consume artifacts from parent (upstream) pipeline [](https://docs.gitlab.com/ee/ci/yaml/#needspipelinejob):
 
 ```yaml
 job_name:
@@ -62,7 +74,7 @@ job_name:
 
 ---
 
-## Job dependencies 3/3
+## Comparison
 
 Why `dependencies` and `needs`?
 
@@ -83,13 +95,3 @@ Can be used for artifacts
 ## Hands-On
 
 See chapter [Job dependencies](/hands-on/2025-11-27/065_job_dependencies/exercise/)
-
----
-
-## Pro tip: Passing artifacts with `needs`
-
-`needs` also controls artifact passing
-
-Work for jobs in the same stage
-
-This makes `needs` superior to `dependencies`

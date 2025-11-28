@@ -8,7 +8,7 @@
 
 ## Defaults
 
-Apply settings to all jobs using [`default`](https://docs.gitlab.com/ee/ci/yaml/#default), e.g.
+Apply settings to all jobs using `default` [](https://docs.gitlab.com/ee/ci/yaml/#default), e.g.
 
 - `image`
 - `before_script`, `after_script`

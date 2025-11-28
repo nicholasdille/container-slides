@@ -106,7 +106,7 @@ Apply RBAC
 kubectl apply -f rbac.yaml
 ```
 
-## GitLab CI
+## GitLab CI/CD
 
 Deploy GitLab runner
 

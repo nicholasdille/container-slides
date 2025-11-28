@@ -14,13 +14,13 @@ Manual trigger from the pipeline overview in the web UI
 
 Pipeline variables can be added manually
 
-But [simple forms](https://docs.gitlab.com/ci/pipelines/#prefill-variables-in-manual-pipelines) are also possible
+But simple forms [](https://docs.gitlab.com/ci/pipelines/#prefill-variables-in-manual-pipelines) are also possible
 
 Global variables can have...
 
-- Description in [`variables:description`](https://docs.gitlab.com/ci/yaml/#variablesdescription)
-- Default value in [`variables:value`](https://docs.gitlab.com/ci/yaml/#variablesvalue)
-- Dropdown options in [`variables:options`](https://docs.gitlab.com/ci/yaml/#variablesoptions)
+- Description in `variables:description` [](https://docs.gitlab.com/ci/yaml/#variablesdescription)
+- Default value in `variables:value` [](https://docs.gitlab.com/ci/yaml/#variablesvalue)
+- Dropdown options in `variables:options` [](https://docs.gitlab.com/ci/yaml/#variablesoptions)
 
 ### See also
 

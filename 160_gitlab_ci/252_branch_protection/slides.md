@@ -26,7 +26,7 @@
 
 ## Pipeline Security
 
-Strict security model for [protected branches](https://docs.gitlab.com/ci/pipelines/#pipeline-security-on-protected-branches)
+Strict security model for protected branches [](https://docs.gitlab.com/ci/pipelines/#pipeline-security-on-protected-branches)
 
 Users with push or merge permissions on protected branches can...
 
@@ -37,8 +37,8 @@ Users with push or merge permissions on protected branches can...
 
 ### Variables
 
-[Protected variables](https://docs.gitlab.com/ci/variables/#protect-a-cicd-variable) are only available to pipelines on protected branches
+Protected variables [](https://docs.gitlab.com/ci/variables/#protect-a-cicd-variable) are only available to pipelines on protected branches
 
 ### Runners
 
-[Protected runners](https://docs.gitlab.com/ci/runners/configure_runners/#prevent-runners-from-revealing-sensitive-information) can only run jobs on protected branches
+Protected runners [](https://docs.gitlab.com/ci/runners/configure_runners/#prevent-runners-from-revealing-sensitive-information) can only run jobs on protected branches

@@ -10,7 +10,7 @@
 
 <i class="fa-duotone fa-person-running fa-4x" style="float: right;"></i>
 
-[Runners](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI
+[Runners](https://docs.gitlab.com/runner/) are used to execute jobs in GitLab CI/CD
 
 Runner can be shared across the instance of GitLab
 

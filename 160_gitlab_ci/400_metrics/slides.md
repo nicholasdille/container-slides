@@ -24,7 +24,7 @@ No builtin metrics for specific pipelines
 
 ## GitLab CI Pipelines Exporter (GCPE)
 
-Community project for [pipeline metrics](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter)
+Community project for pipeline metrics [](https://github.com/mvisonneau/gitlab-ci-pipelines-exporter)
 
 Uses API excessively to...
 - Discover projects
@@ -47,15 +47,15 @@ Data is transformed into traces so that...
 - stages are represented by spans
 - jobs are represented by spans
 
-Based on [Semantic Conventions for CI/CD](https://github.com/open-telemetry/semantic-conventions/tree/main/docs/cicd)
+Based on Semantic Conventions for CI/CD [](https://github.com/open-telemetry/semantic-conventions/tree/main/docs/cicd)
 
 ### Status
 
-Work in Progress (WIP): [GitLab Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/gitlabreceiver)
+Work in Progress (WIP): GitLab Receiver [](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/gitlabreceiver)
 
-Progress tracked by [open-telemetry/opentelemetry-collector-contrib#35207](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35207)
+Progress tracked by open-telemetry/opentelemetry-collector-contrib#35207 [](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35207)
 
-GitLab Receiver was [merged on 2025-05-19](https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/39123)
+GitLab Receiver was merged on 2025-05-19 [](https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/39123)
 
 TODO:
 - https://github.com/open-telemetry/semantic-conventions/issues/1749

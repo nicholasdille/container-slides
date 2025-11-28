@@ -8,9 +8,9 @@
 
 ## Supply Chain Security
 
-[*Supply chain*](https://en.wikipedia.org/wiki/Software_supply_chain) - all libraries and tools used to develop, build and publish
+*Supply chain* [](https://en.wikipedia.org/wiki/Software_supply_chain) - all libraries and tools used to develop, build and publish
 
-[*Supply chain security*](https://en.wikipedia.org/wiki/Digital_supply_chain_security) - enhance the security within the supply chain
+*Supply chain security* [](https://en.wikipedia.org/wiki/Digital_supply_chain_security) - enhance the security within the supply chain
 
 *Supply chain attack* - exploit of a vulnerability in the supply chain
 
@@ -30,7 +30,7 @@ Unable to solve supply chain security **recursively**
 
 ## Renovate
 
-Automated [updates of dependencies](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) [<i class="fa-brands fa-github"></i>](https://github.com/renovatebot/renovate) [<i class="fa fa-solid fa-book"></i>](https://docs.renovatebot.com/)
+Automated updates of dependencies [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) [<i class="fa-brands fa-github"></i>](https://github.com/renovatebot/renovate) [<i class="fa fa-solid fa-book"></i>](https://docs.renovatebot.com/)
 
 Support for numerous languages and package managers
 
@@ -40,13 +40,13 @@ You are in control what gets merged
 
 ### Deployment options
 
-[Container image](https://hub.docker.com/r/renovate/renovate) available
+Container image [](https://hub.docker.com/r/renovate/renovate) available
 
 No integration with GitLab
 
-1. Pipeline job - optionally with [official template](https://gitlab.com/renovate-bot/renovate-runner)
+1. Pipeline job - optionally with official template [](https://gitlab.com/renovate-bot/renovate-runner)
 1. Process running separate from GitLab instance
-1. [Self-hosted](https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premises/) Renovate (formerly paid product)
+1. Self-hosted [](https://www.whitesourcesoftware.com/free-developer-tools/renovate/on-premises/) Renovate (formerly paid product)
 
 ---
 

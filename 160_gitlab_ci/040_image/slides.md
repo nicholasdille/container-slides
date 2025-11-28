@@ -8,7 +8,7 @@
 
 ## Image
 
-Choose which container [`image`](https://docs.gitlab.com/ee/ci/yaml/#image) is used for your jobs
+Choose which container `image` [](https://docs.gitlab.com/ee/ci/yaml/#image) is used for your jobs
 
 Each job can have its own container image
 
@@ -46,9 +46,9 @@ Images must contain a shell
 
 ## Pro tip 2: Using private registries
 
-[Private container registries](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#access-an-image-from-a-private-container-registry) are supported
+Private container registries [](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#access-an-image-from-a-private-container-registry) are supported
 
-Credentials must be provided in [variable `DOCKER_AUTH_CONFIG`](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#use-statically-defined-credentials)
+Credentials must be provided in variable `DOCKER_AUTH_CONFIG` [](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#use-statically-defined-credentials)
 
 - Either defined in pipeline/job
 - Or defined globally in runner

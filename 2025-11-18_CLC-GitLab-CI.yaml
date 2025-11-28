@@ -1,7 +1,7 @@
 date: 2025-11-18
 metadata:
   author: Nicholas Dille, Haufe Group
-  title: GitLab CI
+  title: GitLab CI/CD
   title_slug: gitlab-ci
   subtitle: The People Who Stare at Pipelines
   box:
@@ -101,7 +101,7 @@ events:
   name: Continuous Lifecycle 
   homepage: https://clc-conference.eu/
   type: Workshop
-  title: GitLab CI
+  title: GitLab CI/CD
   link: https://clc-conference.eu/veranstaltung-83818-0-ci-cd-mit-gitlab.html
 - date: "2025-11-20"
   name: Continuous Lifecycle
@@ -113,7 +113,7 @@ events:
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
-  title: GitLab CI
+  title: GitLab CI/CD
   link: https://heise-academy.de/Workshops/cicd-gitlab
 - date: "2025-12-15"
   name: DevOps Meetup Freiburg

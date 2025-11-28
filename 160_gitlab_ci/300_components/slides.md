@@ -10,7 +10,7 @@
 
 <i class="fa-duotone fa-solid fa-4x fa-sparkles"></i> <!-- .element: style="float: right;" -->
 
-[Components](https://docs.gitlab.com/ee/ci/components/) are a new way to offer reusable jobs
+Components [](https://docs.gitlab.com/ee/ci/components/) are a new way to offer reusable jobs
 
 They are similar to job templates...
 
@@ -18,7 +18,7 @@ They are similar to job templates...
 
 ### Usage
 
-Include a component using [`include:component`](https://docs.gitlab.com/ee/ci/yaml/#includecomponent)
+Include a component using `include:component` [](https://docs.gitlab.com/ee/ci/yaml/#includecomponent)
 
 The component must reside on the same server as the project
 
@@ -37,7 +37,7 @@ Directory layout for component called `go`:
 - Either: `templates/go.yml`
 - Or: `templates/go/template.yml`
 
-Components require a header with [`spec`](https://docs.gitlab.com/ee/ci/yaml/#spec) and body:
+Components require a header with `spec` [](https://docs.gitlab.com/ee/ci/yaml/#spec) and body:
 
   ```yaml
   spec:
@@ -104,10 +104,10 @@ Instance-wide catalog
 
 Components can be used without the catalog
 
-Project owners can [switch to catalog project](https://docs.gitlab.com/ee/ci/components/#set-a-component-project-as-a-catalog-project)
+Project owners can switch to catalog project [](https://docs.gitlab.com/ee/ci/components/#set-a-component-project-as-a-catalog-project)
 
 ---
 
 ## Hands-On
 
-See chapter [CI/CD Components](/hands-on/2025-11-27/300_components/exercise/)
+See chapter CI/CD Components [](/hands-on/2025-11-27/300_components/exercise/)

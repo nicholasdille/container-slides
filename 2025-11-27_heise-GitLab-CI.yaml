@@ -6,7 +6,7 @@ metadata:
   subtitle: The People Who Stare at Pipelines
   logo:
     image: 150_gitlab/media/gitlab-icon-rgb.svg
-    style: "float: right; width: 2em;"
+    style: "width: 4em;"
   box:
     width: 30%
     align: left
@@ -22,6 +22,7 @@ event:
   link: https://heise-academy.de
 
 pre_slides:
+- 000_introduction/heise_academy_housekeeping.md
 - 000_introduction/02_bio.md
 
 agenda:
@@ -35,9 +36,8 @@ agenda:
   text: Make your work reusable
 
 slides:
-- 000_introduction/heise_academy_housekeeping.md
 - 000_introduction/who_are_you.md
-- 160_gitlab_ci/questions.md
+#- 160_gitlab_ci/questions.md
 #- 160_gitlab_ci/timetable_1day_clc.md
 #- 160_gitlab_ci/timetable_1day.md
 - 160_gitlab_ci/timetable_2day.md
@@ -101,7 +101,7 @@ events:
   name: heise Academy
   homepage: https://heise-academy.de/
   type: Workshop
-  title: GitLab CI
+  title: GitLab CI/CD
   link: https://heise-academy.de/Workshops/cicd-gitlab
 - date: "2025-12-15"
   name: DevOps Meetup Freiburg

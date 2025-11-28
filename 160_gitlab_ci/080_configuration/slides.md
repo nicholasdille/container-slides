@@ -20,13 +20,13 @@ Shallow clones with 20 depth
 
 Job timeout defaults to 1h ...
 
-...but can be overridden in `.gitlab-ci.yml` using [`timeout`](https://docs.gitlab.com/ee/ci/yaml/#timeout)
+...but can be overridden in `.gitlab-ci.yml` using `timeout` [](https://docs.gitlab.com/ee/ci/yaml/#timeout)
 
 Automatic pipeline cleanup removes old pipelines (disabled by default)
 
 ### Auto DevOps
 
-[Auto DevOps](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
+Auto DevOps [](https://docs.gitlab.com/ee/topics/autodevops/) provides preconfigured jobs for building, testing and scanning software projects
 
 ---
 
@@ -123,3 +123,5 @@ Instead of `.gitlab-ci.yml`, [you can](https://docs.gitlab.com/ci/pipelines/sett
     ```
 
 <i class="fa-duotone fa-triangle-exclamation"></i> Use with care and communicate properly <i class="fa-duotone fa-triangle-exclamation"></i>
+
+Useful for immutable default pipelines or company-wide standard pipelines

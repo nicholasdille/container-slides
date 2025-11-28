@@ -1,6 +1,5 @@
 2025-11-27
-- GitLab logo on title page
-- Housekeeping: DU
+- Slide about storyline
 - Ausblick: Staging?
 - id_tokens: Anbindung Kubernetes? Anbindung an AWS?
 - vscode: Getting started
@@ -11,15 +10,13 @@
 - Einführung: Pipelines in the web UI (or at least a hint)?
 - GitLab: Disable project features?
 - Provision example program? No feature updates for example program?
-- Images: Task for speed improvement?
-- Artifacts: Code snippet -> Review slide
-- Job dependencies: Improve slides
-- Groups jobs https://docs.gitlab.com/ci/jobs/#group-similar-jobs-together-in-pipeline-views
-- Schedule ownership https://docs.gitlab.com/api/pipeline_schedules/#take-ownership-of-a-pipeline-schedule
-- Unveränderliche Default-Pipeline
 - Manual pipelines: Exercise? Move pipeline inputs here?
-- CI -> CI/CD
-- env: deploy needs build and test (!unit_tests)
 - Update exercises and describe intention first
-- GLOBA_VAR
 - pro tips sortieren
+- pro tips umbenennen
+- link checker
+    - https://github.com/tcort/markdown-link-check (javascript)
+    - https://github.com/raviqqe/muffet (go)
+    - https://github.com/lycheeverse/lychee (go)
+    - https://github.com/untitaker/hyperlink (go)
+    - https://github.com/rednafi/link-patrol (go)

@@ -10,7 +10,7 @@
 
 <i class="fa-duotone fa-solid fa-4x fa-sparkles"></i> <!-- .element: style="float: right;" -->
 
-[Secure files](https://docs.gitlab.com/ee/ci/secure_files/) are encrypted at rest
+Secure files [](https://docs.gitlab.com/ee/ci/secure_files/) are encrypted at rest
 
 Each secure file is encrypted with a unique key...
 
@@ -24,9 +24,9 @@ Stored outside the repository and are not version controlled
 
 ### Upload
 
-Either [through the UI](https://docs.gitlab.com/ee/ci/secure_files/#add-a-secure-file-to-a-project)
+Either through the UI [](https://docs.gitlab.com/ee/ci/secure_files/#add-a-secure-file-to-a-project)
 
-Or [through the API](https://docs.gitlab.com/ee/api/secure_files.html)
+Or through the API [](https://docs.gitlab.com/ee/api/secure_files.html)
 
 The Developer role is required to access secure files
 
@@ -36,7 +36,7 @@ The Developer role is required to access secure files
 
 ### Use secure files
 
-Downloading secure files in a pipeline [requires a binary](https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files)
+Downloading secure files in a pipeline requires a binary [](https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files)
 
 Environment variable `SECURE_FILES_DOWNLOAD_PATH` defines where files should be downloaded to
 

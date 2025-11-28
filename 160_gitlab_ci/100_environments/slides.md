@@ -8,7 +8,7 @@
 
 ## Environments
 
-[Environments](https://docs.gitlab.com/ee/ci/environments/) are deployment targets
+Environments [](https://docs.gitlab.com/ee/ci/environments/) are deployment targets
 
 CI variables can be scoped to environments
 
@@ -43,9 +43,9 @@ Branches can be used to represent target environments:
 
 Additonal use of environments: disposable review apps
 
-Environments can have a [stop action](https://docs.gitlab.com/ee/ci/environments/index.html#stopping-an-environment) for disposal
+Environments can have a stop action [](https://docs.gitlab.com/ee/ci/environments/index.html#stopping-an-environment) for disposal
 
-Environments can have an [expiration time](https://docs.gitlab.com/ee/ci/yaml/#environmentauto_stop_in)
+Environments can have an expiration time [](https://docs.gitlab.com/ee/ci/yaml/#environmentauto_stop_in)
 
 ```yaml
 vscode:

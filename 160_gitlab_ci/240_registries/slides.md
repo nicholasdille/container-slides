@@ -8,7 +8,7 @@
 
 ## Container registry
 
-Integrated [container registry](https://docs.gitlab.com/ee/user/packages/container_registry/index.html#build-and-push-by-using-gitlab-cicd)
+Integrated container registry [](https://docs.gitlab.com/ee/user/packages/container_registry/index.html#build-and-push-by-using-gitlab-cicd)
 
 Images must be named according to the project path
 
@@ -20,12 +20,12 @@ For example in project `bar` in group `foo`:
 
 Automatically enabled for the instance if using Let's Encrypt
 
-[Enable](https://docs.gitlab.com/ee/administration/packages/container_registry.html#enable-the-container-registry) the registry
+Enable [](https://docs.gitlab.com/ee/administration/packages/container_registry.html#enable-the-container-registry) the registry
 
 - Set a URL using `registry_external_url`
 - Configure certificates (integrated or in reverse proxy)
 
-Can be [disabled per project](https://docs.gitlab.com/ee/user/packages/container_registry/index.html#disable-the-container-registry-for-a-project)
+Can be disabled per project [](https://docs.gitlab.com/ee/user/packages/container_registry/index.html#disable-the-container-registry-for-a-project)
 
 ---
 
