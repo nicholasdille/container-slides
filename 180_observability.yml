@@ -1,0 +1,92 @@
+site_name: Observability for cloud native
+site_author: Nicholas Dille
+site_description: Long description
+copyright: Copyright &copy; Nicholas Dille
+repo_url: https://github.com/nicholasdille/container-slides
+repo_name: nicholasdille/container-slides
+edit_uri: tree/master/180_observability
+
+docs_dir: 180_observability
+exclude_docs: |
+  */slides.md
+  */README.md
+site_dir: site.180_observability
+
+theme:
+  name: material
+  icon:
+    logo: fontawesome/brands/gitlab
+    repo: fontawesome/brands/github
+    edit: fontawesome/regular/file-code
+  language: en
+  font: false
+  features:
+  #- content.action.edit
+  - tabs
+  - navigation.sections
+  - navigation.footer
+  palette:
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/brightness-auto
+      name: Switch to light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: default 
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: indigo
+    toggle:
+      icon: material/brightness-4
+      name: Switch to system preference
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nicholasdille/container-slides
+    - icon: fontawesome/brands/mastodon
+      link: https://freiburg.social/@nicholasdille
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/nicholas.dille.name
+
+plugins:
+- search:
+    lang:
+    - en
+- minify:
+    minify_html: false
+
+markdown_extensions:
+- toc:
+    title: On this page
+    permalink: true
+- admonition
+- pymdownx.details
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+- pymdownx.snippets:
+    base_path: .
+
+nav:
+- Home: index.md
+- Navigation: navigation.md
+- Introduction:
+  - GitLab: 000_introduction/exercise.md
+  - You are ready: 000_introduction/you_are_ready.md
+# TODO: Content
+- Wrap Up:
+  - You are done: 999_the_end/you_are_done.md

@@ -1,0 +1,42 @@
+date: 2025-12-15
+metadata:
+  author: Nicholas Dille, Haufe Group
+  title: Observability
+  title_slug: o11y
+  subtitle: For Cloud Native
+  box:
+    width: 30%
+    align: left
+  favicon: images/favicons/kubernetes.ico
+  background:
+    image: images/sieuwert-otterloo-6SyrBaRjLJ4-unsplash.jpg
+    size: 130%
+    position: left 0% top 60%
+event:
+  name: ""
+  logo: ""
+  logo_style: "height: 1.5em; margin-top: 0.5em;"
+  link: ""
+custom_style: |
+  .reveal p code {
+      background-color: #505050;
+      padding-left: 0.1em;
+      padding-right: 0.1em;
+      border-radius: 0.2em;
+  }
+
+pre_slides:
+- 000_introduction/02_bio.md
+
+agenda:
+- icon: question
+  text: XXX
+
+slides:
+- 180_observability/slides.md
+
+summary:
+- icon: question
+  text: XXX
+
+events: []
