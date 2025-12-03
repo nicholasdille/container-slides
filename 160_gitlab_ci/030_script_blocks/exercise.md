@@ -1,5 +1,7 @@
 # Scriptblocks
 
+We will learn about different script blocks.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -8,7 +10,7 @@
 
 ## Task: Separate script blocks into preparation and main task
 
-Commands are currently specified using the `script` directive. These commands consist of preparation, core functionality and (possibly) cleanup.
+Commands are currently located in the `script` keyword. These commands consist of preparation, core functionality and (possibly) cleanup.
 
 To improve readability, move the preparation of the execution environment to a `before_script`. See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#before_script).
 
@@ -67,7 +69,7 @@ Cleanup commands can be move to `after_script` ([official documentation](https:/
 
 ## Bonus task 1: When `after_script` is executed
 
-Add commands to all three script block `before_script`, `script` and `after_script`. Test two scenarios:
+Create a new job for testing and add commands to all three script block `before_script`, `script` and `after_script`. Test two scenarios:
 
 1. The pipeline succeeds
 1. The pipeline failes
@@ -81,7 +83,7 @@ What happens to the code in `after_script`?
 
 ## Bonus task 2: What happens to environment variables in script blocks?
 
-Define environment variables in all three script blocks and display them in the same and in the following script block.
+Define environment variables in all three script blocks and display them in the same and in the following script block(s).
 
 When are environment variables available?
 

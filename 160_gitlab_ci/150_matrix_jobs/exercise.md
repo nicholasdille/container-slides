@@ -1,17 +1,21 @@
 # Matrix Jobs
 
+We will learn how to create multiple jobs from a single job definition to execute the same commands with different environment variables.
+
+We will build our example application for multiple target platforms from a single job.
+
 !!! tip "Goal"
     Learn how to...
 
-    - run the same `script` for different inputs
+    - create a matrix job
+    - reuse the same `script`
+    - define environment variables as inputs
 
 ## Preparation
 
-Switch back to the branch `main`.
+Make sure you are working on the branch `main`.
 
 ## Task 1: Build binary for multiple platforms
-
-Build the `hello` binary for multiple target platform. Matrix jobs enable you to reuse the existing code and parameterize it using different inputs.
 
 Improve the template `.build-go` in `go.yaml` to build for `linux/amd64` and `linux/arm64`:
 
@@ -27,7 +31,7 @@ Improve the template `.build-go` in `go.yaml` to build for `linux/amd64` and `li
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    Matrix pipelines require the `parallel:matrix` keyword.
+    Matrix pipelines require the [`parallel:matrix`](https://docs.gitlab.com/ci/yaml/#parallelmatrix) keyword.
 
 ??? example "Solution (Click if you are stuck)"
     `go.yaml`:
@@ -186,7 +190,8 @@ Test whether the following syntax for the inputs produces the same results in a 
 
 Add another matrix job to check the target platform of the `hello` binaries:
 
-1. Add another template called `.test-go` to `go.yaml` defining a matrix job using the same inputs as for `.build-go`
+1. Move the `parallel` keyword from `.build-go` to a new template called `.go-targets`
+1. Add another template called `.test-go` defining a matrix job using the same inputs as for `.build-go`
 1. In the new template run `file hello-${GOOS}-${GOARCH}` to display the target platform
 1. Modify the job `test` to use the new template
 

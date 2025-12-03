@@ -1,11 +1,13 @@
 # CI/CD Steps
 
+We will learn how to use CI/CD steps as building blocks of jobs.
+
 !!! tip "Goal"
     Learn how to...
 
     - Create a step
     - Add inputs to a step
-    - Use a step locally
+    - Use the step
 
 !!! tip "Hints"
     [Official documentation](https://docs.gitlab.com/ee/ci/steps/) for CI/CD Components

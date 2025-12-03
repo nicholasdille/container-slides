@@ -1,11 +1,13 @@
 # CI/CD Components
 
+We will explore CI/CD components as the successor of templates.
+
 !!! tip "Goal"
     Learn how to...
 
     - Create a component
     - Add inputs to a component
-    - Use a component locally
+    - Use a component
 
 !!! tip "Hints"
     [Official documentation]() for CI/CD Components

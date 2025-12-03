@@ -1,5 +1,7 @@
 # Services
 
+We will learn how to launch services to in parallel to a single job or all jobs which is very useful for integration tests.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -8,7 +10,7 @@
 
 ## Task 1: Create and use a service
 
-Service are launched in parallel to the regular job to add missing functionality, e.g. a database backend to execute integration tests. See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#services) and modify the pipeline:
+Modify the pipeline to include a service and a new job to test it:
 
 1. Create service for the whole pipeline based on the container image `nginx:1.27.5`
 1. Add a new job `test-service` to the stage `test` with the following code:
@@ -16,6 +18,8 @@ Service are launched in parallel to the regular job to add missing functionality
     curl -s http://nginx
     ```
 1. Make sure the new job only executes when pushing to `main`
+
+See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#services).
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -149,7 +153,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Task 2: Move the service into the job
 
-The above task forced a second container to be created for every job although only one job has used the service. Optimize resource usage by moving the service into the job `test-service`.
+If the service is only required in a single job, it can be moved into the job.
+
+Move the service into the job `test-service`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 

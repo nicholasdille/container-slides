@@ -1,5 +1,7 @@
 # Variables
 
+We will learn about variables, how to add them and which predefined variables are available by default.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -17,7 +19,7 @@ git checkout upstream/160_gitlab_ci/020_variables/inline -- main.go
 
 ## Task 1: Create a job variable
 
-Add a variable called `version` to the job called `build` and modify the build command as follows:
+Add a variable called `version` to the job called `build` and modify the build command as follows to inject the value during the compilation:
 
 ```bash
 go build -o hello -ldflags "-X main.Version=${version}" .
@@ -70,16 +72,18 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     
     If you want to jump to the solution, execute the following command:
 
+    ```bash
     git checkout upstream/160_gitlab_ci/020_variables/inline -- '*'
+    ```
 
 ## Task 2: Use a predefined variable
 
-Read the [official documentation about predefined variables](https://docs.gitlab.com/ee/ci/variables/index.html#predefined-cicd-variables) and replace the job variable with the predefined variable `CI_COMMIT_REF_NAME`.
+Read the [official documentation about predefined variables](https://docs.gitlab.com/ee/ci/variables/index.html#predefined-cicd-variables) and update the value of the job variable `version` with the predefined variable `CI_COMMIT_REF_NAME`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    1. Instead of a hardcoded value, use the predefined variable `${CI_COMMIT_REF_NAME}` for the variable `version`
+    Instead of a hardcoded value, use the predefined variable `${CI_COMMIT_REF_NAME}` for the variable `version`
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:

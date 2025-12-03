@@ -1,5 +1,7 @@
 # Renovate
 
+We will learn how to use Renovate to automatically propose dependency updates.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -10,12 +12,14 @@ We will be using [Renovate](https://github.com/renovatebot/renovate) to discover
 
 ## Task: Add Renovate to your pipeline
 
-The easiest way to get Renovate on GitLab is to integrated it into your pipeline:
+The easiest way to run Renovate on GitLab is to integrated it into your pipeline:
 
 1. Create a new project access token `renovate` with role `Developer` and scopes `api`, `read_repository`, `read_registry`
-1. Add project access token `renovate` to CI variable `RENOVATE_TOKEN`
-1. Add a job `renovate` to the stage `check`
-1. Limit execution to a) scheduled pipelines and b) if the variable `$RENOVATE` is set
+1. Store the project access token `renovate` in a CI variable called `RENOVATE_TOKEN`
+1. Add a job `renovate`
+1. Limit execution to...
+    1. scheduled pipelines and
+    1. if the variable `$RENOVATE` is set
 1. Use the image `renovate/renovate`
 1. Set the variable `LOG_LEVEL` to `debug`
 1. Use the following script to execute Renovate:
@@ -26,7 +30,7 @@ The easiest way to get Renovate on GitLab is to integrated it into your pipeline
         --token ${RENOVATE_TOKEN} \
         ${CI_PROJECT_PATH}
     ```
-1. Create a scheduled pipeline and define a variable `RENOVATE` with the value `true`
+1. Create a scheduled pipeline and define a variable `RENOVATE` with a non-empty value
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 

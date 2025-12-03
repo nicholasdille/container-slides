@@ -1,13 +1,13 @@
 # Rules
 
+We will learn how to use rules to control when a job is executed. We will publish a static web page as a download page for the `hello` binary.
+
 !!! tip "Goal"
     Learn how to...
 
     - define when to run jobs (and when not)
     - how (workflow) rules can apply to whole pipelines
     - how to use [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/index.html) to publish static web pages
-
-In this exercise we will publish a static web page to download the `hello` binary.
 
 ## Preparation
 
@@ -16,8 +16,6 @@ Add a file `public/index.html` to your project using the following command:
 ```bash
 git checkout upstream/160_gitlab_ci/130_rules -- 'public/index.html'
 ```
-
-## Task 1: Prevent a job from running
 
 Add a job `pages` to the stage `deploy` with the following content:
 
@@ -31,10 +29,11 @@ pages:
     - public
 ```
 
-Review the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword and the [predefined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) to limit the job `pages` to run when...
+## Task 1: Control job execution
 
-- the pipeline was triggered by a push event AND
-- the change applied to the default branch
+Use the `rules` keyword to limit when the new job `pages` is executed. The conditions should allow the job to run, when the pipeline was triggered by a push event and the change was applied to the default branch.
+
+See the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword and the [predefined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html).
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -124,11 +123,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     git checkout upstream/160_gitlab_ci/130_templates -- '*'
     ```
 
-## Task 2: Prevent a pipeline from running
+## Task 2: Control pipeline execution
 
-Rules can also be placed under the global [`workflow`](https://docs.gitlab.com/ee/ci/yaml/#workflowrules) keyword to apply to the whole pipeline instead of individual jobs.
+Allow the pipeline to run for the events `push`, `web`, `schedule` and `pipeline` and prevent the pipeline for events `api` and `trigger`.
 
-Allow the pipeline to run for the triggers `push`, `web`, `schedule` and `pipeline` and prevent the pipeline for triggers `api` and `trigger`.
+See the official documentation of the [`workflow`](https://docs.gitlab.com/ee/ci/yaml/#workflowrules) keyword to control the execution of the whole pipeline instead of individual jobs.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -232,19 +231,19 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     git checkout upstream/160_gitlab_ci/130_rules_workflow -- '*'
     ```
 
-## Task 3: Use deploy freeze
+## Task 3: Implement a deploy freeze
 
-Projects can define a [deploy freeze](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze) to prevent pipelines to run but the settings only results in an environment variable `$CI_DEPLOY_FREEZE`. Rules as well as workflow rules can be used to enforce deploy freezes.
+Projects can define a [deploy freeze](https://docs.gitlab.com/ee/user/project/releases/index.html#prevent-unintentional-releases-by-setting-a-deploy-freeze) to prevent deployments to run. Configuring this setting results in a new environment variable called `$CI_DEPLOY_FREEZE`. Rules as well as workflow rules can be used to enforce deploy freezes.
 
 Modify the pipeline to prevent the execution when `$CI_DEPLOY_FREEZE` is not empty.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint 1 (Click if you are stuck)"
-    Simply enter the variable into a rule to check if it is not empty.
+    Simply enter the variable name into a rule to check if it is not empty.
 
 ??? info "Hint 2 (Click if you are stuck)"
-    Checkout the [`when`](https://docs.gitlab.com/ee/ci/yaml/#when) keyword under [`if`](https://docs.gitlab.com/ee/ci/yaml/#rulesif) to control whether to start a pipeline/job or not.
+    Checkout the [`when`](https://docs.gitlab.com/ee/ci/yaml/#when) keyword and place it under the [`if`](https://docs.gitlab.com/ee/ci/yaml/#rulesif) keyword to control pipeline/job execution.
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:

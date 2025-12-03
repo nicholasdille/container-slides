@@ -1,10 +1,12 @@
 # Docker
 
+We will build a container image and use a service for this.
+
 !!! tip "Goal"
     Learn how to...
 
-    - build a container image...
-    - ...using a service
+    - build a container image
+    - use a service to run the Docker daemon
 
 ## Preparation
 
@@ -18,8 +20,7 @@ git checkout upstream/160_gitlab_ci/230_docker -- Dockerfile
 
 For building a container image, you will need to...
 
-1. Add a new stage `package` to the pipeline
-1. Add a new job `package` to the pipeline
+1. Add a new job `package` to the pipeline which requires the jobs `build` and `unit_tests`
 1. Use the image `docker:29.0.4` for the job
 1. Add a rule to limit execution to pushes to the default branch
 1. Add a service to the job using the image `docker:29.0.4-dind`
@@ -165,7 +166,3 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout upstream/160_gitlab_ci/230_docker -- '*'
     ```
-
-## Bonus task: Create a template for building container images
-
-Similar to the template for building and testing Go, create a template for building container images including logging in and out of a container registry.

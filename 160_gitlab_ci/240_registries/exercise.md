@@ -1,14 +1,17 @@
 # Registries
 
+We will learn how to push the container image to the internal container registry.
+
 !!! tip "Goal"
     Learn how to...
 
+    - use the predefined variables for the GitLab container registry
     - authenticate to the GitLab container registry
     - push a container image to the registry
 
 ## Task: Push a container image
 
-GitLab include a container registry. In this task you will push a container image to the registry. If the container registry is enabled, GitLab automatically provides predefined variables to access and authenticate to the registry:
+If the container registry is enabled, GitLab automatically provides predefined variables to access and authenticate to the registry:
 
 - `$CI_REGISTRY`: The registry URL
 - `$CI_REGISTRY_IMAGE`: The registry URL with the project name
@@ -17,14 +20,17 @@ GitLab include a container registry. In this task you will push a container imag
 
 Modify the job `package`:
 
-1. Update the build command to use the variables above: `docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .`
-1. Add the push command directly after the build command: `docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"`
+1. Update the build command to use the variables above and use `${CI_COMMIT_REF_NAME}` as the image tag
+1. Add the push command directly after the build command: `docker push <image-name>`
 1. Login to the registry before building: `docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"`
 1. Logout from the registry after pushing: `docker logout "${CI_REGISTRY}"`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run. Check the web UI under **Deploy** -> **Container Registry**.
 
-??? info "Hint (Click if you are stuck)"
+??? info "Hint 1 (Click if you are stuck)"
+    Use the image name `${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}`
+
+??? info "Hint 2 (Click if you are stuck)"
     Use `before_script` for logging in and `after_script` after logging out.
 
 ??? example "Solution (Click if you are stuck)"
@@ -165,3 +171,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout upstream/160_gitlab_ci/240_registries -- '*'
     ```
+
+## Bonus task: Create a template for building container images
+
+Similar to the template for building and testing Go, create a template for building container images including logging in and out of a container registry.

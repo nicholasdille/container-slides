@@ -1,5 +1,7 @@
 # Job dependencies
 
+We will learn how to stages and job dependencies interact.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -8,7 +10,7 @@
 
 ## Task 1: Start a job early
 
-Start the job `build` as soon as the job `audit` completes without waiting for other job of the stage `check` to finish. Check out the official documentation of [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs).
+Use job dependencies to start the job `build` as soon as the job `audit` completes without waiting for other job of the stage `check` to finish. Check out the official documentation of [`needs`](https://docs.gitlab.com/ee/ci/yaml/#needs).
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -112,8 +114,13 @@ Modify your pipeline:
 
 1. Remove the declaration of `stages` at the top
 1. Remove the `stage` field from all jobs
-1. Add `needs` so that `build` requires `lint` and `audit`
-1. Add `needs` so that `test` requires `build`
+1. Add `needs` to the jobs so that the execution order remains the same
+
+??? info "Hint (Click if you are stuck)"
+    The following job dependencies are required:
+
+    1. `build` requires `lint` and `audit`
+    1. `test` requires `build`
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:

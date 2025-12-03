@@ -1,16 +1,43 @@
 # Merge requests
 
+We will explore how pipelines behave for merge requests. This will require the use of the `rules` keyword.
+
 !!! tip "Goal"
     Learn how to...
 
     - run pipelines in the context of a merge request using rules
-    - use template to avoid repetition when using rules
+    - use templates to avoid repetition when using rules
 
-## Task 1: Use rules to run in merge request context
+## Task 1: Allow pipeline in merge request context
 
-In the last chapter about `rules`, you learned how to use `$CI_PIPELINE_SOURCE` to restrict execution to specific events. You will need this now.
+Pipelines are usually only executed in branch context but not in merge request context. Before taking a closer look at jobs we need to extends the `workflow` rules.
 
-On the branch `main`, add rules to the jobs to specify when to run them:
+Extend the `workflow` rules to allow the pipeline to run for merge requests using `$CI_PIPELINE_SOURCE`.
+
+See the [official documentation about trigger events](https://docs.gitlab.com/ci/jobs/job_rules/#ci_pipeline_source-predefined-variable) for the appropriate event name.
+
+??? example "Solution (Click if you are stuck)"
+    ```yaml linenums="1" hl_lines="8"
+    workflow:
+      rules:
+      - if: $CI_DEPLOY_FREEZE
+        when: never
+      - if: $CI_PIPELINE_SOURCE == 'push'
+      - if: $CI_PIPELINE_SOURCE == 'web'
+      - if: $CI_PIPELINE_SOURCE == 'schedule'
+      - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+      - if: $CI_PIPELINE_SOURCE == 'pipeline'
+      - if: $CI_PIPELINE_SOURCE == 'api'
+        when: never
+      - if: $CI_PIPELINE_SOURCE == 'trigger'
+        when: never
+
+    # ...
+    ```
+
+## Task 2: Run jobs in merge request context
+
+On the branch `main`, add rules to specify when to run the jobs:
 
 1. Add rules the jobs `lint`, `audit`, `unit_tests`, `build` and `test` so that they are executed when...
     1. pushing to the default branch
@@ -18,8 +45,6 @@ On the branch `main`, add rules to the jobs to specify when to run them:
 1. Run the job `trigger` only when pushing to the default branch
 1. Run the job `deploy` only when on the branches `dev` and `live`
 1. Do not modify the existing rules for the job `pages`
-
-Also add the merge request event to the workflow rules to allow the pipeline to run in merge request context.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
@@ -141,17 +166,17 @@ Now we want to check which jobs are executed in the context of a merge request:
 
 1. Create a new branch based on `main`
 1. Push a change to the new branch, e.g. small change to the `README.md` file
-1. Create a merge request into `main`
+1. Create a merge request from your new branch into `main`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ## Bonus task: Explore additional predefined variables
 
-On the branch of the merge request, add a job and run `printenv` to get a list of variables available to the pipeline. Check out additional variables specific to merge request pipelines. See also the [official documentation](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines).
+See the [official documentation](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines) to learn about the predefined variables available for merge request pipelines.
 
 ## Task 3: Avoid repetition using rule templates
 
-In the first task we have implemented the same set of rules for multiple jobs. By combining rules with templates, this repetition can be avoided.
+So far, we have implemented the same set of rules for multiple jobs. By combining rules with templates, this repetition can be avoided.
 
 1. Create an inline template called `.run-on-push-to-default` with the corresponding rule(s)
 1. Create a second inline template called `.run-on-push-and-mr` with the corresponding rule(s)

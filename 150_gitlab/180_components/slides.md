@@ -20,7 +20,7 @@ But GitLab can be run as separate services
 
 ---
 
-### Hands-On
+## Hands-On
 
 Stop running deployment
 
@@ -37,3 +37,9 @@ docker compose --project-name gitlab \
     --file compose.yml \
     up -d
 ```
+
+---
+
+## Pro tip: Hook into Omnibus
+
+XXX https://gitlab.com/gitlab-org/omnibus-gitlab/-/merge_requests/1017

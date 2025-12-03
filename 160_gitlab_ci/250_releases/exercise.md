@@ -1,5 +1,7 @@
 # Releases
 
+We will learn how to create a release to mark a shippable state.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -8,22 +10,22 @@
 
 ## Task: Create a release
 
-GitLab can create [releases](https://docs.gitlab.com/ee/user/project/releases/index.html) based on a Git tag. The release can contain a description and links to assets. The assets must be stored elsewhere.
+GitLab can create [releases](https://docs.gitlab.com/ee/user/project/releases/index.html) based on a Git tag. The release can contain a description as well as assets.
 
-1. Check out the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#release) about the `release` keyword
-1. Modify the job `pages` to create a release in addition to the script block
+1. Check out the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#release) of the `release` keyword
+1. Modify the job `pages` to create a release in addition to the `script` block
 1. The release should be based on the current commit hash (`$CI_COMMIT_SHA`)
 1. Use the unique pipeline ID (`$CI_PIPELINE_IID`) as the tag name
 1. Set an arbitrary name and description
 
-For the `release` keyword to work, the `glab` binary must be present in the execution environment of the job:
+The `glab` binary must be present in the execution environment of the job for the `release` keyword to work:
 
 1. Set `image` to `registry.gitlab.com/gitlab-org/cli:v1.78.3`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
 ??? info "Hint (Click if you are stuck)"
-    Your release should look similar to this:
+    Your `release` keyword should look similar to this:
 
     ```yaml
     release:

@@ -1,22 +1,2 @@
 2025-11-27
-- Slide about storyline
-- Ausblick: Staging?
-- id_tokens: Anbindung Kubernetes? Anbindung an AWS?
-- vscode: Getting started
-    - workbench.startupEditor=none
-    - workbench.welcomePage.walkthroughs.openOnInstall=false
-- Deutsche Texte?
-- Pipeline Editor -> Configure pipeline -> zu komplex
-- Einführung: Pipelines in the web UI (or at least a hint)?
-- GitLab: Disable project features?
-- Provision example program? No feature updates for example program?
-- Manual pipelines: Exercise? Move pipeline inputs here?
-- Update exercises and describe intention first
-- pro tips sortieren
-- pro tips umbenennen
-- link checker
-    - https://github.com/tcort/markdown-link-check (javascript)
-    - https://github.com/raviqqe/muffet (go)
-    - https://github.com/lycheeverse/lychee (go)
-    - https://github.com/untitaker/hyperlink (go)
-    - https://github.com/rednafi/link-patrol (go)
+- XXX

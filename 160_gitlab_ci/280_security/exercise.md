@@ -1,5 +1,7 @@
 # Security
 
+We will learn how to use security features shipped by GitLab.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -13,15 +15,28 @@ GitLab offers multiple security scanners in the community edition:
 1. Checkout the [official documentation](https://docs.gitlab.com/ee/user/application_security/secret_detection/index.html) for secret detection and integrate it into your pipeline
 1. Checkout the [official documentation](https://docs.gitlab.com/ee/user/application_security/sast/index.html) for static application security testing and integrate it into your pipeline
 1. Checkout the [official documentation](https://docs.gitlab.com/ee/user/application_security/container_scanning/index.html) for container scanning and integrate it into your pipeline
+1. [Customize the container scanning feature](https://docs.gitlab.com/user/application_security/container_scanning/#overriding-the-container-scanning-template) to add:
+    1. Dependency to the job `package`
+    1. Variables `CS_DEFAULT_BRANCH_IMAGE`, `CI_APPLICATION_REPOSITORY` and `CI_APPLICATION_TAG`
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
-??? info "Hint (Click if you are stuck)"
+??? info "Hint 1 (Click if you are stuck)"
     The following templates are available for the above features:
 
     - Secret detection: `Security/Secret-Detection.gitlab-ci.yml`
     - Static application security testing: `Security/SAST.gitlab-ci.yml`
     - Container scanning: `Security/Container-Scanning.gitlab-ci.yml`
+
+??? info "Hint 2 (Click if you are stuck)"
+    Set the variables as follows:
+
+    ```yaml
+    variables:
+      CS_DEFAULT_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+      CI_APPLICATION_REPOSITORY: ${CI_REGISTRY_IMAGE}
+      CI_APPLICATION_TAG: ${CI_COMMIT_REF_NAME}
+    ```
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:

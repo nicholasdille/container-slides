@@ -1,5 +1,7 @@
 # Artifacts
 
+We will learn how to store artifacts for later use - either in a later pipeline job or for developer insights.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -8,7 +10,7 @@
 
 ## Task: Pass an artifact to the next stage
 
-Artifacts are useful for splitting a task in separate job. Refer to the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#artifacts).
+Artifacts are useful for splitting a task in separate jobs. Refer to the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#artifacts).
 
 Improve the pipeline by using artifacts:
 
@@ -180,7 +182,7 @@ The following hint and solution are a working example.
             -ldflags "-X main.Version=${CI_COMMIT_REF_NAME} -X 'main.Author=${AUTHOR}'" \
             -o "${BINARY_NAME}" \
             .
-      - echo "${BINARY_NAME}" >build.env
+      - echo "BINARY_NAME=${BINARY_NAME}" >build.env
       artifacts:
         paths:
         - hello

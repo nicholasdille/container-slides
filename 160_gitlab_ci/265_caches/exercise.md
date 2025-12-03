@@ -1,22 +1,24 @@
 # Caches
 
+We will explore how to improve the performance of the pipeline by caching and reusing dependencies.
+
 !!! tip "Goal"
     Learn how to...
 
     - define caches
     - store data in a cache
     - restore data from a cache
-    - avoid relying on the cache
+    - compensate for cleared cache
 
 ## Task 1: Test caching
 
 The [cache](https://docs.gitlab.com/ee/ci/caching/) is used by adding the keyword [`cache`](https://docs.gitlab.com/ee/ci/yaml/index.html#cache) in a pipeline job, a job template or in the `default` section. Let's give it a try:
 
-1. Add a job `test_cache` to the first stage
+1. Add a job `test_cache`
 1. Download dependency information from the uniget project:
     ```bash
-    curl -sSLfO https://github.com/uniget-org/cli/raw/main/go.mod
-    curl -sSLfO https://github.com/uniget-org/cli/raw/main/go.sum
+    curl -sSLfO https://gitlab.com/uniget-org/cli/-/raw/main/go.mod
+    curl -sSLfO https://gitlab.com/uniget-org/cli/-/raw/main/go.sum
     ```
 1. Use the [official example for Go](https://docs.gitlab.com/ee/ci/caching/#cache-go-dependencies) to enable caching
 1. Instead of `go test` run `go mod download` to download dependencies only
@@ -60,6 +62,9 @@ This was just a demonstration. The changes will not be preserved in the followin
 Now, integrate the job template `.go-cache` into the pipeline and use it for the jobs `build` and `unit_test`.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
+
+??? info "Hint (Click if you are stuck)"
+    Add the template `.go-cache` to `go.yaml`.
 
 ??? example "Solution (Click if you are stuck)"
     `go.yaml`:

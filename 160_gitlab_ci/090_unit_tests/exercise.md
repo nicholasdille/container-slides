@@ -1,5 +1,7 @@
 # Unit tests
 
+We will learn how the results of unit tests can be displayed in the web UI.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -27,22 +29,12 @@ gotestsum --junitfile report.xml
 
 See the official documentation for [special artifacts and specifically reports](https://docs.gitlab.com/ee/ci/yaml/artifacts_reports.html#artifactsreportsjunit).
 
-Add a job `unit_test` to the stage `check` containing the above commands. The job needs to define a special artifact from the file `report.xml` so that GitLab recognizes it as as JUnit XML report.
+Add a job `unit_test` containing the above commands. The job needs to create a special artifact from the file `report.xml` so that GitLab recognizes it as as JUnit XML report.
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run which shows the unit test results on the tab in the overview.
 
 ??? info "Hint (Click if you are stuck)"
-    GitLab has published an [example](https://docs.gitlab.com/ee/ci/testing/unit_test_report_examples.html#go). The unit test report is published using a special type of artifact:
-
-    ```yaml linenums="1" hl_lines="6-7"
-    build:
-      stage: test
-      script: echo
-      artifacts:
-        when: always
-        reports:
-          junit: report.xml
-    ```
+    GitLab has published an [example](https://docs.gitlab.com/ee/ci/testing/unit_test_report_examples.html#go). The unit test report is published using a special type of artifact.
 
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:

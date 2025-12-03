@@ -1,5 +1,7 @@
 # Environments
 
+We will learn how to access different target environments using CI/CD variables.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -17,15 +19,17 @@ Create CI variables for use in the following exercises:
 
 ## Task 1: Add target environment
 
-Add a new job called `deploy` and use the following commands. Add an [environment](https://docs.gitlab.com/ci/yaml/#environmentname) to the job in order to upload the binary to the `dev` environment:
+Update the pipeline to use an environment:
 
-```bash
-curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
-    --fail \
-    --verbose \
-    --upload-file hello \
-    --user seat${SEAT_INDEX}:${PASS}
-```
+1. Add a new job called `deploy` and use the following commands:
+    ```bash
+    curl https://seat${SEAT_INDEX}.dev.webdav.inmylab.de/ \
+        --fail \
+        --verbose \
+        --upload-file hello \
+        --user seat${SEAT_INDEX}:${PASS}
+    ```
+1. Add an [environment](https://docs.gitlab.com/ci/yaml/#environmentname) to the job in order to upload the binary to the `dev` environment
 
 Mind that `curl` is not available in the default image `golang:1.25.4`. You can use `curlimages/curl:8.17.0`.
 

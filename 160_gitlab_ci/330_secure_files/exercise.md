@@ -1,5 +1,7 @@
 # Secure Files
 
+We will learn how to upload secure files manually and use them in a pipeline job.
+
 !!! tip "Goal"
     Learn how to...
 

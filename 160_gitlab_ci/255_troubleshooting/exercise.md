@@ -5,7 +5,7 @@
 
 ## Preparation
 
-Open a terminal and make sure the working directory is your repository.
+Open a terminal in your Visual Studio Code instance and make sure the working directory is your repository.
 
 ## Task 1: Run a single job
 

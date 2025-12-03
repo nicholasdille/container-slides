@@ -1,5 +1,7 @@
 # Triggers
 
+We will learn how to trigger a downstream pipeline.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -10,7 +12,7 @@
     - use parent-child pipelines
 
 !!! info "Heads up"
-    Checkout the branch `main` to make sure that the following exercises are based on the correct code base.
+    Switch to the branch `main` to make sure that the following exercises are based on the correct code base.
 
 ## Preparation
 

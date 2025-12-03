@@ -1,5 +1,7 @@
 # Defaults
 
+We will learn how to define defaults for all pipeline jobs.
+
 !!! tip "Goal"
     Learn how to...
 

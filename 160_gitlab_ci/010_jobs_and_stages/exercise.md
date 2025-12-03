@@ -1,5 +1,7 @@
 # Jobs and stages
 
+We will create the first pipeline.
+
 !!! tip "Goal"
     Learn how to...
 
@@ -17,7 +19,7 @@ git checkout upstream/160_gitlab_ci/example_app -- '*'
 
 ## Task 1: Create a single job
 
-Add a pipeline to build the code using the following commands:
+Create a pipeline to build the example application using the following commands:
 
 ```bash
 apk update
@@ -54,7 +56,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 
 ## Task 2: Add a stage
 
-Modify the pipeline to consist of two stages called `check` and `build` where the `check` stage contains the following commands:
+Improve the pipeline to consist of two stages called `check` and `build` where the `check` stage contains a job called `check` with the following commands:
 
 ```bash
 apk update

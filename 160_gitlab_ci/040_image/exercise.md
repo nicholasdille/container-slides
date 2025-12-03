@@ -1,5 +1,7 @@
 # Images
 
+We will learn to select a custom execution environment using container images.
+
 !!! tip "Goal"
     Learn how to...
 
