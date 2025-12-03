@@ -55,6 +55,13 @@ audit:
 	@$(NPM) audit
 
 .PHONY:
+check-links: init
+	@\
+	find . -name \*.md -print0 \
+	| xargs -0 -n1 \
+		./node_modules/.bin/markdown-link-check --quiet
+
+.PHONY:
 nginx: themes/fontawesome.css
 	@\
 	echo "****************************************************"; \
