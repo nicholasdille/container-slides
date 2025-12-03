@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.20.0
 
-FROM alpine:3.21.2 AS cpk
+FROM alpine:3.23.0 AS cpk
 # renovate: datasource=github-releases depName=kubernetes-sigs/cloud-provider-kind
 ARG CPK_VERSION=0.6.0
 RUN <<EOF
