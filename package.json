@@ -6,7 +6,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "@awesome.me/kit-7a4232352c": "1.0.4",
-        "@fortawesome/fontawesome-pro": "7.0.1",
+        "@fortawesome/fontawesome-pro": "7.1.0",
         "highlight.js": "11.11.1",
         "reveal.js": "5.2.1"
     },
