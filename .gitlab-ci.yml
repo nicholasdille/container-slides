@@ -61,7 +61,6 @@ test:
   extends:
   - .run-on-push-and-in-mr
   - .test-go
-  - curl -s http://nginx
 
 deploy:
   needs:
