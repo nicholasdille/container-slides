@@ -1,14 +1,14 @@
 pipeline:
 
   frontend:
-    image: docker:27.3.1
+    image: docker:29.1.2
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
     - docker build --tag frontend frontend
 
   backend:
-    image: docker:27.3.1
+    image: docker:29.1.2
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:

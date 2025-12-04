@@ -4,7 +4,7 @@ services:
     image: alpine:3.20.3
     command: [ "sh", "-c", "while true; do sleep 5; done" ]
   dind:
-    image: docker:27.3.1-dind
+    image: docker:29.1.2-dind
     command: [ "dockerd", "--host", "tcp://127.0.0.1:2375" ]
     privileged: true
     network_mode: service:pod
