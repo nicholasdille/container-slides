@@ -20,32 +20,6 @@ Pipelines are stored in `.gitlab-ci.yml`
 
 Human-readable data serialization format [](https://yaml.org/)
 
-1. Fields:
-
-  ```yaml
-  key: value
-  ```
-
-1. Lists:
-
-  ```yaml
-  key:
-  - value1
-  - value2
-  ```
-
-1. Hash arrays:
-
-  ```yaml
-  key:
-    subkey1: value1
-    subkey2: value2
-  ```
-
----
-
-## YAML Example
-
 ```yaml
 # Commends are allowed
 firstname: Nicholas
@@ -140,7 +114,7 @@ Jobs fail if any command fails (exit code > 0)
 
 `script` supports all herestring variants of YAML [](https://docs.gitlab.com/ee/ci/yaml/script.html#split-long-commands)
 
-Literal multiline block:
+Literal multiline block where line breaks are preserved:
 
 ```yaml
 job_name:
@@ -152,15 +126,14 @@ job_name:
 
 Use this for commands with URLs or the colon will break parsing
 
-Shell here documents:
+Multiline block where line breaks are removed:
 
 ```yaml
 job_name:
   script:
-  - |
-    tr a-z A-Z <<EOF
-    lower case to be converted to upper case
-    EOF
+  - >
+    ls
+    -l
 ```
 
 ---
@@ -179,9 +152,9 @@ Special stages `.pre` and `.post`
 
 ---
 
-## Hands-On
+## Hands-On: Job and stages
 
-See chapter [Jobs and stages](/hands-on/2025-11-27/010_jobs_and_stages/exercise/)
+Go to [exercises](/hands-on/2025-11-27/010_jobs_and_stages/exercise/)
 
 ---
 

@@ -32,6 +32,16 @@ For building a container image, you will need to...
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
+!!! tip "Attention"
+    You may experience a race condition between the service and the job. The following code adds a loop waiting for the Docker daemon:
+
+    ```bash
+    while ! docker version; do
+        echo "Waiting for Docker..."
+        sleep 2
+    done
+    ```
+
 ??? info "Hint (Click if you are stuck)"
     The service should be set to:
 
@@ -45,7 +55,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="95-107"
+    ```yaml linenums="1" hl_lines="95-113"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -151,8 +161,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - name: docker:29.0.4-dind
       variables:
         DOCKER_TLS_CERTDIR: ""
+      before_script:
+      - |
+        while ! docker version; do
+            echo "Waiting for Docker..."
+            sleep 2
+        done
       script:
-      - docker build --tag hello .
+      - docker build --provenance=false --tag hello .
 
     trigger:
       extends:

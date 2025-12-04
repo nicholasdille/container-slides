@@ -14,8 +14,8 @@ Pipelines can automatically test merge requests [](https://docs.gitlab.com/ee/ci
 
 Commits to a branch with a merge request cause multiple events:
 
-1. Push event to branch -> **branch pipeline** <i class="fa-duotone fa-solid fa-code-branch"></i>
-1. Merge request event -> **merge request pipeline** <i class="fa-duotone fa-solid fa-code-pull-request"></i>
+1. Push event to branch <i class="fa-regular fa-arrow-right"></i> **branch pipeline** <i class="fa-duotone fa-solid fa-code-branch"></i>
+1. Merge request event <i class="fa-regular fa-arrow-right"></i> **merge request pipeline** <i class="fa-duotone fa-solid fa-code-pull-request"></i>
 
 Use rules [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_rules) to decide which jobs to run when
 
@@ -31,13 +31,15 @@ Only run when configured using the `rules` keyword [](https://docs.gitlab.com/ee
 
 Have access to more pre-defined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines)
 
-Do not have access to protected variables
+Do not have access to protected variables [](https://docs.gitlab.com/user/project/repository/branches/protected/)
+
+See chapter about protected branches [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](gitlab_branch_protection)
 
 ---
 
-## Hands-On
+## Hands-On: Merge requests
 
-See chapter [Merge requests](/hands-on/2025-11-27/140_merge_requests/exercise/)
+Go to [exercises](/hands-on/2025-11-27/140_merge_requests/exercise/)
 
 ---
 
@@ -92,6 +94,8 @@ Test changes to pipeline in a branch
 
 Use parent-child pipelines to organize jobs
 
+Child job `mr_child_job` only runs if the rule is present
+
 ```yaml
 # .gitlab-ci.yml
 mr_parent_job:
@@ -109,7 +113,7 @@ mr_child_job:
     echo "MR"
 ```
 
-Child job `mr_child_job` only runs if the rule is present
+<!-- .element: style="height: 17em;" -->
 
 ---
 

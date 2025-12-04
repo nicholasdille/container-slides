@@ -12,7 +12,7 @@ Integrated container registry [](https://docs.gitlab.com/ee/user/packages/contai
 
 Images must be named according to the project path
 
-For example in project `bar` in group `foo`:
+For example in our demo environment:
 
     gitlab.inmylab.de/seatN/demo:latest
 
@@ -42,9 +42,9 @@ CI jobs receive environment variables:
 
 ---
 
-## Hands-On
+## Hands-On: Registries
 
-See chapter [Registries](/hands-on/2025-11-27/240_registries/exercise/)
+Go to [exercises](/hands-on/2025-11-27/240_registries/exercise/)
 
 ---
 

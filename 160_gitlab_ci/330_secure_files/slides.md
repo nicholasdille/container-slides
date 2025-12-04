@@ -53,6 +53,6 @@ test:
 
 ---
 
-## Hands-On
+## Hands-On: Secure Files
 
-See chapter [Secure Files](/hands-on/2025-11-27/320_secure_files/exercise/)
+Go to [exercises](/hands-on/2025-11-27/320_secure_files/exercise/)

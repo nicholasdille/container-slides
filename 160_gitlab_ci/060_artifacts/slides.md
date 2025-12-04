@@ -61,13 +61,13 @@ See GitLab API [](https://docs.gitlab.com/ee/api/job_artifacts.html#download-the
 
 ---
 
-## Hands-On
+## Hands-On: Artifacts
 
-See chapter [Artifacts](/hands-on/2025-11-27/060_artifacts/exercise/)
+Go to [exercises](/hands-on/2025-11-27/060_artifacts/exercise/)
 
 ---
 
-## Pro tip: When variables are enough
+## Pro tip 1: When variables are enough
 
 Passing variables between jobs **is** possible (since GitLab 12.9)
 
@@ -92,7 +92,7 @@ job_name2:
 
 ---
 
-## Maximum artifact size
+## Pro tip 2: Maximum artifact size
 
 By default, artifacts can not be larger than 100MB [](https://docs.gitlab.com/administration/settings/continuous_integration/#set-maximum-artifacts-size)
 
@@ -108,7 +108,7 @@ gitlab.com: Maximum artifact size is 1GB (not configurable)
 
 ---
 
-## Conflicting artifact names
+## Pro tip 3: Conflicting artifact names
 
 When two jobs produce an artifact with the same name...
 
@@ -116,7 +116,7 @@ When two jobs produce an artifact with the same name...
 
 ---
 
-## Artifact retention
+## Pro tip 4: Artifact retention
 
 Defaults to keep artifacts from most recent successful jobs
 

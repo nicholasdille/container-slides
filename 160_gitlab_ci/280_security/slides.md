@@ -25,6 +25,6 @@ Available in all tiers:
 
 ---
 
-## Hands-On
+## Hands-On: Security
 
-See chapter [Security](/hands-on/2025-11-27/280_security/exercise/)
+Go to [exercises](/hands-on/2025-11-27/280_security/exercise/)

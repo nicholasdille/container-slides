@@ -55,13 +55,33 @@ job_name:
 
 ---
 
-## Hands-On
+## Hands-On: Matrix jobs
 
-See chapter [Matrix jobs](/hands-on/2025-11-27/150_matrix_jobs/exercise/)
+Go to [exercises](/hands-on/2025-11-27/150_matrix_jobs/exercise/)
 
 ---
 
-## Pro tip 1: Matrix jobs and `needs`
+## Pro tip 1: Runner tags
+
+Execute binary on matching hardware:
+
+```yaml
+test:
+  needs:
+  - build
+  parallel:
+    matrix:
+    - GOOS: linux
+      GOARCH: [amd64, arm64]
+  script:
+  - ./hello-${GOOS}-${GOARCH}
+  tags:
+  - saas-${GOOS}-small-${GOARCH}
+```
+
+---
+
+## Pro tip 2: Matrix jobs and `needs`
 
 Depend on individual jobs of a matrix
 
@@ -87,9 +107,11 @@ linux:rspec:
   script: echo "Running rspec on linux..."
 ```
 
+<!-- .element: style="height: 21em;" -->
+
 ---
 
-## Pro tip 2: Job Groups
+## Pro tip 3: Job Groups
 
 Jobs can also be grouped manually [](https://docs.gitlab.com/ci/jobs/#group-similar-jobs-together-in-pipeline-views)
 

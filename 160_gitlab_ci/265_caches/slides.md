@@ -26,9 +26,11 @@ Local on the same runner with Docker or shell executor
 
 Distributed with an S3-compatible backend (e.g. AWS S3 [](https://aws.amazon.com/de/pm/serv-s3/), MinIO [](https://min.io), Ceph [](https://ceph.io), SeaweedFS [](https://github.com/seaweedfs/seaweedfs))
 
-### Hands-On
+---
 
-See chapter caches [](/hands-on/2025-11-27/265_caches/exercise/)
+## Hands-On: Caches
+
+Go to [exercises](/hands-on/2025-11-27/265_caches/exercise/)
 
 ---
 

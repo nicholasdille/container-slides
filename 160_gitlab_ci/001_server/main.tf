@@ -116,6 +116,10 @@ resource "grafana_dashboard" "gitlab_platform" {
   config_json = data.http.gitlab_platform.response_body
 }
 
+resource "grafana_dashboard" "gitlab_ci" {
+  config_json = file("dashboard.json")
+}
+
 resource "gitlab_group" "grafana" {
   name             = "Grafana"
   path             = "grafana"

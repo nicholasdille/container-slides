@@ -12,7 +12,7 @@ Pipeline jobs can create releases [](https://docs.gitlab.com/ee/user/project/rel
 
 ...by adding the `release` [](https://docs.gitlab.com/ee/ci/yaml/#release) keyword
 
-Release assets can added to a release
+Links to ssets can added to a release
 
 ### GitLab CLI `glab` required
 
@@ -30,9 +30,9 @@ See official documentation [](https://docs.gitlab.com/user/project/releases/rele
 
 ---
 
-## Hands-On
+## Hands-On: Releases
 
-See chapter [Releases](/hands-on/2025-11-27/250_releases/exercise/)
+Go to [exercises](/hands-on/2025-11-27/250_releases/exercise/)
 
 ---
 

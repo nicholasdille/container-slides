@@ -46,10 +46,11 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
         - .go/pkg/mod/
 
     test_cache:
-      stage: check
       extends:
       - .go-cache
       script:
+      - curl -sSLfO https://gitlab.com/uniget-org/cli/-/raw/main/go.mod
+      - curl -sSLfO https://gitlab.com/uniget-org/cli/-/raw/main/go.sum
       - go mod download  
 
     #...

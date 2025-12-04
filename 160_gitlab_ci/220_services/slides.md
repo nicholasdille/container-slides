@@ -49,9 +49,9 @@ job_name:
 
 ---
 
-### Hands-On
+## Hands-On: Services
 
-See chapter [Services](/hands-on/2025-11-27/220_services/exercise/)
+Go to [exercises](/hands-on/2025-11-27/220_services/exercise/)
 
 ---
 

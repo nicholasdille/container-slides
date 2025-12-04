@@ -148,14 +148,11 @@ Useful when triggering the pipeline of a dependency
 
 ---
 
-## Pro tip 2: Artifacts from parent pipeline
-
-Child pipeline fetches artifact from parent pipeline
-
 ```yaml
+# parent pipeline
 build_artifacts:
   stage: build
-  script: echo "This is a test artifact!" >> artifact.txt
+  script: echo "Content!" >> artifact.txt
   artifacts:
     paths:
     - artifact.txt
@@ -165,11 +162,8 @@ deploy:
   trigger:
     include:
     - local: path/to/child-pipeline.yml
-```
 
-<!-- .element: style="float: left; font-size: 0.7em; width: 35em;" -->
-
-```yaml
+# child pipeline
 test:
   stage: test
   script: cat artifact.txt
@@ -177,11 +171,22 @@ test:
   - pipeline: $UPSTREAM_PIPELINE_ID
     job: build_artifacts
 ```
-<!-- .element: style="float: right; font-size: 0.7em; width: 25em; padding-bottom: 8em;" -->
+
+<!-- .element: style="float: right; font-size: 0.7em; height: 26em; width: 28em;" -->
+
+## Pro tip 2: Artifacts from parent pipeline
+
+Child pipeline fetches artifact from parent pipeline
 
 This works for `dotenv` reports as well [](https://docs.gitlab.com/ee/ci/variables/#control-which-jobs-receive-dotenv-variables)
 
-<i class="fa-duotone fa-triangle-exclamation"></i> Alternative `needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject) requires Premium subscription (see [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline) and [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts)) <i class="fa-duotone fa-solid fa-face-sad-tear"></i>
+### Alternative
+
+`needs:project` [](https://docs.gitlab.com/ee/ci/yaml/#needsproject)
+
+Requires Premium subscription
+
+See how-to [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#fetch-artifacts-from-an-upstream-pipeline) and troubleshooting [](https://docs.gitlab.com/ee/ci/jobs/job_artifacts_troubleshooting.html#error-message-this-job-could-not-start-because-it-could-not-retrieve-the-needed-artifacts)
 
 ---
 

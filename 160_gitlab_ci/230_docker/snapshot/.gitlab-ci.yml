@@ -61,7 +61,6 @@ test:
   extends:
   - .run-on-push-and-in-mr
   - .test-go
-  - curl -s http://nginx
 
 deploy:
   needs:
@@ -104,8 +103,14 @@ package:
   - name: docker:29.0.4-dind
   variables:
     DOCKER_TLS_CERTDIR: ""
+  before_script:
+  - |
+    while ! docker version; do
+        echo "Waiting for Docker..."
+        sleep 2
+    done
   script:
-  - docker build --tag hello .
+  - docker build --provenance=false --tag hello .
 
 trigger:
   extends:

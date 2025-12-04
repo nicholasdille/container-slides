@@ -46,8 +46,6 @@ slides:
 - 160_gitlab_ci/000_rollout/slides.md
 - 160_gitlab_ci/010_jobs_and_stages/slides.md
 - 160_gitlab_ci/020_variables/slides.md
-- 160_gitlab_ci/020_variables/predefined.md
-- 160_gitlab_ci/020_variables/ci.md
 - 160_gitlab_ci/030_script_blocks/slides.md
 - 160_gitlab_ci/040_image/slides.md
 - 160_gitlab_ci/050_defaults/slides.md

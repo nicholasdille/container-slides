@@ -25,6 +25,8 @@ job_name:
   #...
 ```
 
-### Hands-On
+---
 
-See chapter [Defaults](/hands-on/2025-11-27/050_defaults/exercise/)
+### Hands-On: Defaults
+
+Go to [exercises](/hands-on/2025-11-27/050_defaults/exercise/)

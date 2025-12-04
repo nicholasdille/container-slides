@@ -21,6 +21,8 @@ Builtin roles [](https://docs.gitlab.com/user/permissions/#roles)
 
 Guest < Planner < Reporter < Developer < Maintainer < Owner
 
+Auditor users [](https://docs.gitlab.com/administration/auditor_users/) with global read-only in GitLab Premium
+
 Custom roles [](https://docs.gitlab.com/user/custom_roles/) are only available in GitLab Ultimate
 
 ---

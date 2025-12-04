@@ -11,4 +11,5 @@ exec:
   - docker
   - build
   - ${{ inputs.context }}
+  - --provenance=false
   - --tag=${{ inputs.image }}

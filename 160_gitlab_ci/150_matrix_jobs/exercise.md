@@ -129,7 +129,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - build
       extends:
       - .run-on-push-and-in-mr
-      - .test-go
+      image: alpine
+      script:
+      - ./hello
 
     deploy:
       needs:
@@ -174,7 +176,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     git checkout upstream/160_gitlab_ci/150_matrix_jobs_demo1 -- '*'
     ```
 
-## Task 2: Test an alternative to specify the same inputs
+## Bonus task 1: Test an alternative to specify the same inputs
 
 Test whether the following syntax for the inputs produces the same results in a pipeline:
 
@@ -186,13 +188,17 @@ Test whether the following syntax for the inputs produces the same results in a 
       GOARCH: [ amd64, arm64 ]
 ```
 
-## Bonus task: Check binaries for correct platform
+## Task 2: Check binaries for correct platform
 
 Add another matrix job to check the target platform of the `hello` binaries:
 
 1. Move the `parallel` keyword from `.build-go` to a new template called `.go-targets`
 1. Add another template called `.test-go` defining a matrix job using the same inputs as for `.build-go`
-1. In the new template run `file hello-${GOOS}-${GOARCH}` to display the target platform
+1. Add matrix input `LINUXARCH` with `x86-64` for `amd64`  and `aarch64` for `arm64`
+1. In the new template run
+    ```bash
+    file hello-${GOOS}-${GOARCH} | grep "${LINUXARCH}"
+    ```
 1. Modify the job `test` to use the new template
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
@@ -200,14 +206,16 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `go.yaml`:
 
-    ```yaml linenums="1" hl_lines="1-7 10-11 22-30"
+    ```yaml linenums="1" hl_lines="1-9 12-13 24-32"
     .go-targets:
       parallel:
         matrix:
         - GOOS: linux
           GOARCH: amd64
+          LINUXARCH: x86-64
         - GOOS: linux
           GOARCH: arm64
+          LINUX_ARCH: aarch64
 
     .build-go:
       extends:
@@ -230,7 +238,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       - apt-get -y install file
       script:
       - |
-        file hello-${GOOS}-${GOARCH}
+        file hello-${GOOS}-${GOARCH} | grep "${LINUXARCH}"
 
     .unit-tests-go:
       script:
@@ -351,3 +359,24 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```bash
     git checkout upstream/160_gitlab_ci/150_matrix_jobs_demo2 -- '*'
     ```
+
+## Bonus task 2: Test job dependencies for matrix jobs
+
+Modify all jobs depending on `build` to only require the matrix job for `GOOS=linux` and `GOARCH=amd64`.
+
+??? info "Hint (Click if you are stuck)"
+    Example:
+
+    ```yaml
+    job_name:
+      needs:
+      - job: build
+        parallel:
+          matrix:
+            - GOOS: linux
+              GOARCH: amd64
+      - unit_tests
+      #....
+    ```
+
+This was just a demonstration. The changes will not be preserved in the following chapters.

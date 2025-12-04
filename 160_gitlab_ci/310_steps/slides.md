@@ -59,6 +59,6 @@ Steps are easier to compose...
 
 ---
 
-## Hands-On
+## Hands-On: CI/CD steps
 
-See chapter [CI/CD Steps](/hands-on/2025-11-27/310_steps/exercise/)
+Go to [exercises](/hands-on/2025-11-27/310_steps/exercise/)

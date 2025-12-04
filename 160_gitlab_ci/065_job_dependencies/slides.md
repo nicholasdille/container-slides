@@ -8,13 +8,15 @@
 
 ## Job dependencies 1/
 
-XXX define order of jobs
+Alternative approach to define order of jobs
 
-XXX `needs` [](https://docs.gitlab.com/ee/ci/yaml/#needs)
+Keyword `needs` [](https://docs.gitlab.com/ee/ci/yaml/#needs) references one or more jobs
 
-XXX start job as soon as possible
+Jobs are started as soon as possible
 
-XXX replacement for stages
+Option 1: Combine with stages
+
+Option 2: Replacement for stages
 
 ---
 
@@ -92,6 +94,6 @@ Can be used for artifacts
 
 ---
 
-## Hands-On
+## Hands-On: Job dependencies
 
-See chapter [Job dependencies](/hands-on/2025-11-27/065_job_dependencies/exercise/)
+Go to [exercises](/hands-on/2025-11-27/065_job_dependencies/exercise/)

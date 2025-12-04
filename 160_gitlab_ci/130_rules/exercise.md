@@ -33,6 +33,8 @@ pages:
 
 Use the `rules` keyword to limit when the new job `pages` is executed. The conditions should allow the job to run, when the pipeline was triggered by a push event and the change was applied to the default branch.
 
+Also add conditions to the job `deploy` to limit execution to the branches `dev` and `live`.
+
 See the official documentation for the [`rules`](https://docs.gitlab.com/ee/ci/yaml/#rules) keyword and the [predefined variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html).
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
@@ -46,7 +48,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="53-64"
+    ```yaml linenums="1" hl_lines="40-41 53-64"
     include:
     - local: go.yaml
 
@@ -120,7 +122,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     If you want to jump to the solution, execute the following command:
 
     ```bash
-    git checkout upstream/160_gitlab_ci/130_templates -- '*'
+    git checkout upstream/160_gitlab_ci/130_rules -- '*'
     ```
 
 ## Task 2: Control pipeline execution

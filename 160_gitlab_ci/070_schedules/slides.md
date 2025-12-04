@@ -22,9 +22,11 @@ Creator must have role Developer or have merge permissions on protected branches
 
 [Maximum frequency](https://docs.gitlab.com/ee/administration/cicd.html#change-maximum-scheduled-pipeline-frequency) configured during instance rollout
 
-### Hands-On
+---
 
-See chapter [Schedules](/hands-on/2025-11-27/070_schedules/exercise/)
+## Hands-On: Schedules
+
+Go to [exercises](/hands-on/2025-11-27/070_schedules/exercise/)
 
 ---
 

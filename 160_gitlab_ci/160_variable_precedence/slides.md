@@ -10,9 +10,7 @@
 
 Variables can be defined on many different levels
 
-GitLab has documented the precedence of variables [](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence)
-
-The order from lowest to highest precedence is:
+The order from lowest to highest precedence [](https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence) is:
 
 - Predefined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
 - Deployment variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#deployment-variables)
@@ -45,4 +43,4 @@ They have the same precedence:
 - Trigger variables [](https://docs.gitlab.com/ee/ci/triggers/index.html#pass-cicd-variables-in-the-api-call)
 - Variables passed downstream [](https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#pass-cicd-variables-to-a-downstream-pipeline)
 
-Only one is possible at a time
+Only one is possible at any time

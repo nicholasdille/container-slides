@@ -16,7 +16,7 @@ At least one successful rule for the job to be executed
 job_name:
   rules:
   - if: $VAR == "value"
-  - if: $VAR2 = "value2"
+  - if: $VAR2 == "value2"
   #...
 ```
 
@@ -36,7 +36,7 @@ Workflow rules [](https://docs.gitlab.com/ee/ci/yaml/#workflow) define whether t
 workflow:
   rules:
   - if: $VAR == "value"
-  - if: $VAR2 = "value2"
+  - if: $VAR2 == "value2"
 
 job_name:
   #...
@@ -79,14 +79,31 @@ Adjust order from most specific...
 
 ---
 
-## Hands-On
+## Hands-On: Rules
 
-Use GitLab Pages [](https://docs.gitlab.com/ee/user/project/pages/) to create a download page
+Go to [exercises](/hands-on/2025-11-27/130_rules/exercise/)
 
-- The job must be called `pages` [](https://docs.gitlab.com/ee/ci/yaml/#pages)
-- The must create an artifact from the directory called `public`
+---
 
-See chapter [Rules](/hands-on/2025-11-27/130_rules/exercise/)
+## How GitLab Pages work
+
+Static website hosting
+
+### Requirements
+
+The job must be called `pages`...
+
+...and create an artifact called `public`
+
+### Pipeline
+
+When the job `pages` completes successfully...
+
+...GitLab injects a job called `pages:deploy`
+
+### Hosting
+
+Find the URL under Deploy <i class="fa-regular fa-arrow-right"></i> Pages
 
 ---
 
@@ -137,10 +154,11 @@ But GitLab still shows a skipped pipelines
 Use a rule to avoid pipelines entirely:
 
 ```
-my_job:
+workflow:
   rules:
   - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_TITLE =~ /skip ci/i
     when: never
+  - when: on_success
 ```
 
 See the pre-defined variables [](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html) for more information about the variables
@@ -166,7 +184,7 @@ job_name:
 
 ---
 
-# Pro tip 5: Tweaking GitLab Pages
+## Pro tip 5: Tweaking GitLab Pages
 
 The content directory can be configured using `pages:publish` [](https://docs.gitlab.com/ee/ci/yaml/#pagespublish)
 
@@ -176,7 +194,7 @@ Premium/Ultimate: Expire a pages deployment `pages:pages.expire_in` [](https://d
 
 ---
 
-# Pro tip 6: GitLab Pages access control
+## Pro tip 6: GitLab Pages access control
 
 GitLab Pages are public by default
 
@@ -187,7 +205,7 @@ Access control can be enabled
 
 ---
 
-# Pro tip 7: Trigger Token fails
+## Pro tip 7: Trigger Token fails
 
 Situation:
 

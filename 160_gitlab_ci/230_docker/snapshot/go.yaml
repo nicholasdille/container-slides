@@ -3,8 +3,10 @@
     matrix:
     - GOOS: linux
       GOARCH: amd64
+      LINUXARCH: x86-64
     - GOOS: linux
       GOARCH: arm64
+      LINUX_ARCH: aarch64
 
 .build-go:
   extends:
@@ -27,7 +29,7 @@
   - apt-get -y install file
   script:
   - |
-    file hello-${GOOS}-${GOARCH}
+    file hello-${GOOS}-${GOARCH} | grep "${LINUXARCH}"
 
 .unit-tests-go:
   script:

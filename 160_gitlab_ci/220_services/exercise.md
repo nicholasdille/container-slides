@@ -273,3 +273,9 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
     ```
 
 This was just a demonstration. The changes will not be preserved in the following chapters.
+
+## Bonus task: Test alias for service
+
+Add an alias for the service and test whether `curl` is able to use it.
+
+See the [official documentation](https://docs.gitlab.com/ee/ci/yaml/#services).

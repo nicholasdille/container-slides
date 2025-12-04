@@ -170,6 +170,10 @@ Now we want to check which jobs are executed in the context of a merge request:
 
 Afterwards check the pipeline in the GitLab UI. You should see a successful pipeline run.
 
+Also check the differences between branch pipelines and merge request pipelines.
+
+Also open the merge requests and note that it displays the state (concerning the pipeline, approvals and merge conflicts) and offers an overview of the commits and the kumulative changes.
+
 ## Bonus task: Explore additional predefined variables
 
 See the [official documentation](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-for-merge-request-pipelines) to learn about the predefined variables available for merge request pipelines.

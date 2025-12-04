@@ -35,6 +35,6 @@ job_name:
 
 ---
 
-## Hands-On
+## Hands-On: Script blocks
 
-See chapter [Scriptblocks](/hands-on/2025-11-27/030_script_blocks/exercise/)
+Go to [exercises](/hands-on/2025-11-27/030_script_blocks/exercise/)

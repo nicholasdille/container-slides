@@ -118,9 +118,9 @@ job_name:
 
 ---
 
-## Hands-On
+## Hands-On: Templates
 
-See chapter [Templates](/hands-on/2025-11-27/120_templates/exercise/)
+Go to [exercises](/hands-on/2025-11-27/120_templates/exercise/)
 
 ---
 
@@ -173,7 +173,7 @@ job_name:
   - !reference[.template2, script]
 ```
 
-CI/CD Components are a proper solution in a later chapter [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components)
+CI/CD Components [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_components) and CI/CD Steps [<i class="fa fa-solid fa-arrow-right-to-bracket"></i>](#/gitlab_steps) are a proper solution in a later chapter
 
 ---
 

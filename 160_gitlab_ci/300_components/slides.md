@@ -108,6 +108,6 @@ Project owners can switch to catalog project [](https://docs.gitlab.com/ee/ci/co
 
 ---
 
-## Hands-On
+## Hands-On: CI/CD components
 
-See chapter CI/CD Components [](/hands-on/2025-11-27/300_components/exercise/)
+Go to [exercises](/hands-on/2025-11-27/300_components/exercise/)

@@ -27,6 +27,8 @@ golang:
       junit: report.xml
 ```
 
-### Hands-On
+---
 
-See chapter [Unit tests](/hands-on/2025-11-27/090_unit_tests/exercise/)
+## Hands-On: Unit tests
+
+Go to [exercises](/hands-on/2025-11-27/090_unit_tests/exercise/)

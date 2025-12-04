@@ -16,10 +16,12 @@ Rolled out in major version updates (release in May)
 
 Web page for more granular search [](https://gitlab-com.gitlab.io/cs-tools/gitlab-cs-tools/what-is-new-since/?tab=deprecations)
 
-Compiled from deprecation files on GitLab.com [](https://gitlab.com/gitlab-org/gitlab/-/tree/master/data/deprecations)
+Compiled from files on GitLab.com [](https://gitlab.com/gitlab-org/gitlab/-/tree/master/data/deprecations)
 
 ### Upcoming features
 
 GitLab also documents features of upcoming releases [](https://about.gitlab.com/upcoming-releases/)
 
 Web page for more granular search [](https://gitlab-com.gitlab.io/cs-tools/gitlab-cs-tools/what-is-new-since/?tab=features)
+
+Compiled from files on GitLab.com [](https://gitlab.com/gitlab-org/gitlab/-/tree/master/data/whats_new)

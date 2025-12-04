@@ -36,7 +36,7 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
 ??? example "Solution (Click if you are stuck)"
     `.gitlab-ci.yml`:
 
-    ```yaml linenums="1" hl_lines="115-121"
+    ```yaml linenums="1" hl_lines="121-126"
     workflow:
       rules:
       - if: $CI_DEPLOY_FREEZE
@@ -152,9 +152,14 @@ Afterwards check the pipeline in the GitLab UI. You should see a successful pipe
       variables:
         DOCKER_TLS_CERTDIR: ""
       before_script:
+      - |
+        while ! docker version; do
+            echo "Waiting for Docker..."
+            sleep 2
+        done
       - docker login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
       script:
-      - docker build --tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .
+      - docker build --provenance=false -tag "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}" .
       - docker push "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
       after_script:
       - docker logout "${CI_REGISTRY}"
