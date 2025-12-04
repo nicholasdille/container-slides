@@ -11,5 +11,10 @@ var Version string = "none"
 
 func main() {
 	println(color.InGreen("hello world"))
-	fmt.Printf("by %s, version %s", Author, Version)
+	fmt.Printf(
+		"version %s by %s",
+		Version,
+		Author,
+	)
+	println()
 }
