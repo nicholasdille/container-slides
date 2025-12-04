@@ -123,6 +123,12 @@ package:
   variables:
     DOCKER_TLS_CERTDIR: ""
   run:
+  - name: docker_wait
+    script: |
+      while ! docker version; do
+          echo "Waiting for Docker..."
+          sleep 2
+      done
   - name: docker_login
     step: ./steps/docker/login/step.yml
     inputs:
