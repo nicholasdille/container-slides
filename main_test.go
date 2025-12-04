@@ -4,6 +4,7 @@ import (
 	"io"
 	"os"
 	"testing"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -22,5 +23,5 @@ func TestMain(t *testing.T) {
 	output := captureOutput(func() {
 		main()
 	})
-	assert.Equal(t, "by unknown, version none", output)
+	assert.Equal(t, "version none by unknown", output)
 }
