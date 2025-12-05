@@ -17,11 +17,36 @@
   "rebaseWhen": "conflicted",
   "rebaseLabel": "renovate/rebase",
   "stopUpdatingLabel": "renovate/stop-updating",
-  "major":  { "labels": [ "bump/major", "type/renovate" ] },
-  "minor":  { "labels": [ "bump/minor", "type/renovate" ] },
-  "patch":  { "labels": [ "bump/patch", "type/renovate" ] },
-  "pin":    { "labels": [ "bump/pin",   "type/renovate" ] },
-  "digest": { "labels": [ "bump/digest", "type/renovate" ] },
+  "major": {
+    "labels": [
+      "bump/major",
+      "type/renovate"
+    ]
+  },
+  "minor": {
+    "labels": [
+      "bump/minor",
+      "type/renovate"
+    ]
+  },
+  "patch": {
+    "labels": [
+      "bump/patch",
+      "type/renovate"
+    ]
+  },
+  "pin": {
+    "labels": [
+      "bump/pin",
+      "type/renovate"
+    ]
+  },
+  "digest": {
+    "labels": [
+      "bump/digest",
+      "type/renovate"
+    ]
+  },
   "npmrcMerge": true,
   "hostRules": [
     {
@@ -36,13 +61,17 @@
         "@fortawesome/fontawesome-pro",
         "@fortawesome/fontawesome-free"
       ],
-      "matchDatasources": [ "npm" ],
-      "registryUrls": [ "https://npm.fontawesome.com" ]
+      "matchDatasources": [
+        "npm"
+      ],
+      "registryUrls": [
+        "https://npm.fontawesome.com"
+      ]
     }
   ],
   "gitlabci": {
-    "fileMatch": [
-      "(^|\/)\\.gitlab-ci\\.yml$"
+    "managerFilePatterns": [
+      "/(^|/)\\.gitlab-ci\\.yml$/"
     ]
   }
 }
