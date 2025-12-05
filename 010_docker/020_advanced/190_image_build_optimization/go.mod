@@ -1,6 +1,6 @@
 module gitlab.com/nicholasdille/the_perfect_dockerfile
 
-go 1.17
+go 1.25.5
 
 require github.com/fatih/color v1.18.0
 
