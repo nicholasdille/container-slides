@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+
+<title>Kubernetes</title>
+
+<!-- https://gauger.io/fonticon/ -->
+<link rel="icon" href="images/favicons/kubernetes.ico"/>
+
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
+<link rel="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" />
+<link rel="stylesheet" href="themes/theme2022.css" id="theme" />
+<link rel="stylesheet" href="themes/common.css" />
+<link rel="stylesheet" href="themes/fontawesome.css" />
+<style>
+.reveal p code {
+    background-color: #505050;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    border-radius: 0.2em;
+}
+
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section
+    id="title"
+    data-background="images/sieuwert-otterloo-6SyrBaRjLJ4-unsplash.jpg"
+    data-background-size="130%"
+    data-background-position="left 0% top 60%"
+    style="padding: 1em 1em 1em 1em; background: rgba(0, 0, 0, 0.5); width: 30%; margin: auto; text-align: left;">
+<h1 style="font-size: 1.5em;"><b>Kubernetes</b></h1>
+<h2 style="font-size: 1.2em; text-transform: none;">All the Way</h2>
+<p><em>Nicholas Dille, Haufe Group</em></p>
+
+</section>
+<section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section id="agenda">
+<h2>Agenda</h2>
+
+<i class="fa-duotone fa-4x fa-list-check" style="float: right;"></i>
+
+<ul id="bullets" class="fa-ul" style="line-height: 1.5em; font-size: larger; margin-top: 0.5em;">
+<li><i class="fa-duotone fa-li fa-question"></i> XXX</li>
+</ul>
+</section>
+<section data-markdown="120_kubernetes/slides/timetable.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/navigation.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/01-intro/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/01-intro/01-why-kubernetes.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/01-intro/02-what-is-kubernetes.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/01-intro/03-demo-env.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/01-intro/04-container-to-pod.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/01-intro/05-declarative-configuration.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/01-intro/06-yaml-everywhere.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/01-architecture.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/02-pod.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/03-labels.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/04-services.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/05-scale.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/06-deployments.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/07-env.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/08-secrets.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/09-configmaps.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/10-volumes.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/11-mount.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/12-multi-tier-app.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/13-init.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/14-sidecar.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/15-status.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/16-update_strategy.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/02-use/17-pull.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/01-architecture.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/02-nodes.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/03-namespaces.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/04-dns.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/05-kubeconfig.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/06-rbac.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/07-token.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/08-api.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/03-understand/09-k3s.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/01-scheduling.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/02-nodeselector.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/03-resources.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/04-affinity.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/05-taints.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/06-probes.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/07-endpoints.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/08-statefulsets.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/09-daemonsets.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/10-jobs.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/11-storage.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/12-hpa.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/13-helm.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/04-master/14-operator.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/05-access/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/05-access/01-kube-proxy.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/05-access/02-port-forwarding.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/05-access/03-ports.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/05-access/04-ingress.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/05-access/05-api.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/06-network/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/06-network/09-network-policies.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/07-storage/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/08-deployment/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/09-monitoring/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/09-monitoring/01-observability.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/09-monitoring/02-metrics.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/09-monitoring/03-metrics-collection.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/09-monitoring/04-visualization.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/09-monitoring/05-logs.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/09-monitoring/06-tracing.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/09-monitoring/07-alerting.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/10-security/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/10-security/01-capabilities.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/10-security/02-security-context.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/10-security/03-user.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/10-security/04-psp.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/10-security/05-api.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/10-security/06-network-policies.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/10-security/07-trivy.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/slides/11-troubleshooting/00-toc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section id="summary">
+<h2>Summary</h2>
+
+<i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
+
+<ul id="bullets" class="fa-ul" style="line-height: 1.5em;">
+<li><i class="fa-duotone fa-li fa-question"></i> XXX</li>
+</ul>
+</section>
+
+</div>
+</div>
+
+<script src="node_modules/reveal.js/dist/reveal.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/plugin/markdown/markdown.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/plugin/highlight/highlight.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/plugin/notes/notes.js" type="application/javascript"></script>
+<script>
+    Reveal.initialize({
+        width: 1920,
+        height: 1080,
+        minScale: 0.5,
+        maxScale: 2.0,
+        margin: 0.05,
+
+        controls: false,
+        controlsTutorial: false,
+        progress: true,
+        slideNumber: false,
+        keyboard: true,
+        touch: false,
+        mouseWheel: false,
+
+        hash: true,
+        history: false,
+        overview: true,
+        fragments: true,
+        fragmentInURL: true,
+        transition: 'convex',
+        transitionSpeed: 'default',
+        backgroundTransition: 'fade',
+        hideInactiveCursor: true,
+
+        autoPlayMedia: null,
+        previewLinks: false,
+
+        center: true,
+        help: true,
+
+        markdown: {
+            smartypants: true
+        },
+
+        plugins: [
+            RevealMarkdown,
+            RevealHighlight,
+            RevealNotes
+        ]
+    });
+</script>
+
+</body>
+</html>

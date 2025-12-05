@@ -1,0 +1,155 @@
+site_name: Kubernetes All the Way
+site_author: Nicholas Dille
+site_description: Long description
+copyright: Copyright &copy; Nicholas Dille
+repo_url: https://github.com/nicholasdille/container-slides
+repo_name: nicholasdille/container-slides
+edit_uri: tree/master/120_kubernetes
+
+docs_dir: 120_kubernetes
+exclude_docs: |
+  */slides.md
+  */README.md
+site_dir: site.120_kubernetes
+theme:
+  name: material
+  icon:
+    logo: fontawesome/brands/gitlab
+    repo: fontawesome/brands/github
+    edit: fontawesome/regular/file-code
+  language: en
+  font: false
+  features:
+  #- content.action.edit
+  - tabs
+  - navigation.sections
+  - navigation.footer
+  palette:
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/brightness-auto
+      name: Switch to light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: default 
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: indigo
+    toggle:
+      icon: material/brightness-4
+      name: Switch to system preference
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nicholasdille/container-slides
+    - icon: fontawesome/brands/mastodon
+      link: https://freiburg.social/@nicholasdille
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/nicholas.dille.name
+
+plugins:
+- search:
+    lang:
+    - en
+- minify:
+    minify_html: false
+
+markdown_extensions:
+- toc:
+    title: On this page
+    permalink: true
+- admonition
+- pymdownx.details
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+- pymdownx.snippets:
+    base_path: .
+
+nav:
+  - Home: index.md
+  - Introduction: intro.md
+  - Exercises:
+    - Using Kubernetes:
+      - Working with Pods: exercises/02-use/01-pods.md
+      - Working with Labels: exercises/02-use/03-labels.md
+      - Services: exercises/02-use/04-services.md
+      - Scaling Pods: exercises/02-use/05-scale.md
+      - Pod Lifecycle: exercises/02-use/06-deployments.md
+      - Environment variables: exercises/02-use/07-env.md
+      - Managing secrets: exercises/02-use/08-secrets.md
+      - Managing configuration: exercises/02-use/09-configmaps.md
+      - Persisting data with Volumes: exercises/02-use/10-volumes.md
+      - Mounting files: exercises/02-use/11-mount.md
+      - Deploying a multi-tier application: exercises/02-use/12-multi-tier-application.md
+      - Container for Initialization: exercises/02-use/13-init.md
+      - Sidecars: exercises/02-use/14-sidecar.md
+      - Pod Status: exercises/02-use/15-pod_status.md
+      - Deployment Strategies: exercises/02-use/16-update_strategies.md
+      - Using private registries: exercises/02-use/17-pull_secrets.md
+    - Understanding Kubernetes:
+      - Architecture: exercises/03-understand/01-architecture.md
+      - Nodes: exercises/03-understand/02-nodes.md
+      - Namespaces: exercises/03-understand/03-namespaces.md
+      - DNS: exercises/03-understand/04-dns.md
+      - Kubeconfig: exercises/03-understand/05-kubeconfig.md
+      - RBAC: exercises/03-understand/06-rbac.md
+      - Tokens: exercises/03-understand/07-token.md
+      - Kubernetes API: exercises/03-understand/08-api.md
+      - Lightweight clusters: exercises/03-understand/09-k3s.md
+    - Mastering Kubernetes:
+      - Scheduling: exercises/04-master/01-scheduling.md
+      - NodeSelector: exercises/04-master/02-nodeselector.md
+      - Resources: exercises/04-master/03-resources.md
+      - Node/Pod Affinity: exercises/04-master/04-affinity.md
+      - Taints and Tolerations: exercises/04-master/05-taints.md
+      - Probes: exercises/04-master/06-probes.md
+      - Endpoints: exercises/04-master/07-endpoints.md
+      - StatefulSet: exercises/04-master/08-statefulsets.md
+      - DaemonSet: exercises/04-master/09-daemonsets.md
+      - (Cron)Job: exercises/04-master/10-jobs.md
+      - Storage: exercises/04-master/11-storage.md
+      - Horizontal Pod Autoscaler: exercises/04-master/12-hpa.md
+      - Helm: exercises/04-master/13-helm.md
+      - Operator: exercises/04-master/14-operator.md
+    - Accessing services in Kubernetes:
+      - kube-proxy: exercises/05-access/01-kube-proxy.md
+      - Port Forwarding: exercises/05-access/02-port-forwarding.md
+      - NodePorts and HostPorts: exercises/05-access/03-ports.md
+      - Ingress (Controller): exercises/05-access/04-ingress.md
+      - API Proxy: exercises/05-access/05-api.md
+    - Monitoring:
+      - K8s Metrics: exercises/09-monitoring/02-metrics.md
+      - Metrics Collection: exercises/09-monitoring/04-metrics-collection.md
+      - Visualization: exercises/09-monitoring/05-visualization.md
+      - Logs: exercises/09-monitoring/06-logs.md
+      - Tracing: exercises/09-monitoring/07-tracing.md
+      - Alerting: exercises/09-monitoring/08-alerting.md
+    - Networking:
+      - Container Networking: exercises/06-networking/01-container-networking.md
+      - CNI: exercises/06-networking/02-cni.md
+      - Plugins: exercises/06-networking/03-plugins.md
+      - IP Tunneling: exercises/06-networking/04-ip-tunneling.md
+      - Flat address spaces: exercises/06-networking/05-cloud-flat-address-space.md
+      - CNI Chaining: exercises/06-networking/06-chaining.md
+      - Cloud Controller Manager: exercises/06-networking/07-cloud-controller-manager.md
+      - Observability with Cilium Hubble: exercises/06-networking/08-hubble.md
+      - Network Policies: exercises/06-networking/09-network-policies.md
+  - Cheatsheets:
+    - Kubernetes Quick Reference: https://kubernetes.io/docs/reference/kubectl/quick-reference/
+  - Slides: http://devinfra.gitlab.haufedev.systems/internals/eventreihe/kubernetes-workshop/slides
+
