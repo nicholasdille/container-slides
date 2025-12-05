@@ -97,7 +97,7 @@ pages:
   - hello-unit-tests-go
   extends:
   - .run-on-push-to-default-branch
-  image: registry.gitlab.com/gitlab-org/cli:v1.78.3
+  image: registry.gitlab.com/gitlab-org/cli:v1.79.0
   release:
     tag_name: ${CI_PIPELINE_IID}
     name: Release ${CI_PIPELINE_IID}
