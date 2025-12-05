@@ -15,7 +15,7 @@ include:
 - local: go.yaml
 
 default:
-  image: golang:1.25.4
+  image: golang:1.25.5
 
 lint:
   script:
