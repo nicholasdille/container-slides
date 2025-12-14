@@ -49,12 +49,13 @@ slides:
 
 summary:
 - icon: question
-  text: XXX
+  text: Not using the full potential
+- icon: window-flip
+  text: So much faster than GUIs/TUIs
+- icon: face-glasses
+  text: We can look so cool
 
-events:
-- date: "2025-12-15"
-  name: DevOps Meetup Freiburg
-  homepage: https://www.meetup.com/de-DE/devops-freiburg/
-  type: Talk
-  title: kubectl like a pro
-  link: ""
+events: []
+
+post_slides:
+- 120_kubernetes/kubectl/controller.md

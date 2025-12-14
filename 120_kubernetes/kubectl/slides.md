@@ -33,7 +33,7 @@ Two options
 | Streaming output of changes    | Regularly runs the command |
 | Hard to read for many replicas | Truncated to screen height |
 
-### Filter output of `watch`
+### Filter output for `watch`
 
 - <i class="fa-duotone fa-solid fa-square-xmark" style="--fa-secondary-color: red;"></i>`watch kubectl get pods | grep foo`
 - <i class="fa-duotone fa-solid fa-square-check" style="--fa-secondary-color: green;"></i>`watch "kubectl get pods | grep foo"`
@@ -78,7 +78,7 @@ Always have shell completion ready
 kubectl completion bash|zsh|fish
 ```
 
-Avoid pod names:
+Avoid pod names unless specific pod is required:
 
 ```bash
 kubectl logs deployment/typing
@@ -94,7 +94,7 @@ complete -F __start_kubectl k
 
 ---
 
-## Multiple resources at once
+## Multiple resources at once 1/2
 
 Show only required resources:
 
@@ -116,7 +116,7 @@ kubectl get deploy/gone --ignore-not-found
 
 ---
 
-## Multiple resources at once
+## Multiple resources at once 2/2
 
 Fun fact:
 
@@ -166,6 +166,8 @@ XXX server-side printing (`--server-print=false`)
 
 ## KYAML
 
+Why? Shortcomings of YAML
+
 Client-side processing
 
 Requires `kubectl` 1.34+ [](https://kubernetes.io/blog/2025/07/28/kubernetes-v1-34-sneak-peek/#support-for-kyaml-a-kubernetes-dialect-of-yaml)
@@ -186,7 +188,7 @@ kubectl get pod --output=kyaml
 
 ---
 
-## Wide is too wide (REMOVE?)
+## Wide is too wide
 
 `kubectl get pods` often misses interesting fields
 
@@ -235,7 +237,7 @@ But if you must, use `kubectl [...] --no-headers`
 
 `kubectl` supports JSONPath for filtering natively [](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
 
-Based on IETF RFC9535 [](https://www.rfc-editor.org/rfc/rfc9535)
+Based on open standard RFC9535 [](https://www.rfc-editor.org/rfc/rfc9535)
 
 ### Also better: `--output=json | jq`
 
@@ -257,7 +259,7 @@ Integrated in `kubectl` for parsing manifests
 
 ```bash
 kubectl get node --output=go-template=\
-'{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
+    '{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
 ```
 
 ### Demo (08_go_template)
@@ -273,10 +275,10 @@ kubectl ... | xargs ...
 kubectl ... | while read -r ...
 ```
 
-This is usually combined with machine readable output:
-- jsonpath
-- json
-- go-template
+This is usually combined with machine readable `--output`:
+- `jsonpath`
+- `json`
+- `go-template`
 
 ### Demo (09_pipe)
 
@@ -334,7 +336,7 @@ export KUBECTL_EXTERNAL_DIFF=delta
 
 Always prefer automated approaches (GitOps, CI/CD)
 
-### Manual changes
+### Manual changes <i class="fa-duotone fa-solid fa-thumbs-down"></i>
 
 Update resource on-the-fly:
 
@@ -350,7 +352,7 @@ export KUBE_EDITOR=nano
 
 `kubectl` also honours `EDITOR` environment variable
 
-<i class="fa-duotone fa-solid fa-triangle-exclamation"></i> Mood killer: Immutable fields <i class="fa-duotone fa-solid fa-triangle-exclamation"></i>
+<i class="fa-duotone fa-solid fa-triangle-exclamation"></i> Vibe killer: Immutable fields <i class="fa-duotone fa-solid fa-triangle-exclamation"></i>
 
 ---
 
@@ -358,7 +360,7 @@ export KUBE_EDITOR=nano
 
 Always prefer automated approaches (GitOps, CI/CD)
 
-### Scripted changes
+### Scripted changes <i class="fa-duotone fa-solid fa-thumbs-up"></i>
 
 Use `kubectl patch` with three options [](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/)
 
@@ -368,7 +370,7 @@ JSON merge patch [](https://tools.ietf.org/html/rfc7386)
 
 JSON patch [](https://tools.ietf.org/html/rfc6902)
 
-<i class="fa-duotone fa-solid fa-triangle-exclamation"></i> Mood killer: Immutable fields <i class="fa-duotone fa-solid fa-triangle-exclamation"></i>
+<i class="fa-duotone fa-solid fa-triangle-exclamation"></i> Vibe killer: Immutable fields <i class="fa-duotone fa-solid fa-triangle-exclamation"></i>
 
 ---
 
@@ -419,19 +421,25 @@ Don't we all?!
 
 Single `kubeconfig` file
 
-MUltiple clusters, users and contexts
+Multiple clusters, users and contexts
 
 ### Alternative
 
 Single `kubeconfig` file per cluster
 
-Reference multiple files: `export KUBECONFIG=a:b`
+Reference multiple files:
+
+```bash
+export KUBECONFIG=$HOME/.kube/config.dev:$HOME/.kube/config.prod
+```
 
 ---
 
 ## Switching clusters and contexts
 
 Builtin: `kubeconfig config use-context FOO`
+
+E_COMMAND_TOO_LONG <i class="fa-duotone fa-solid fa-face-grin-wink"></i>
 
 ### `kubeswitch`
 
@@ -491,9 +499,17 @@ kubectl --as=user --as-group=group
 
 ---
 
-## Only pods for port forwarding
+## Port forwarding
 
-Selecting services downgrades to pods
+Connect a local port to a pod:
+
+```bash
+kubectl port-forward foo-012345678-abcde 8080:8080
+```
+
+### Only one pod
+
+Selecting services downgrades to one pod
 
 ```bash
 kubectl port-forward svc/foo 8080:8080
@@ -544,36 +560,12 @@ Install plugins using `krew` [](https://krew.sigs.k8s.io/)
 
 ### Opinionated examples
 
-kubectl-ai [](https://github.com/GoogleCloudPlatform/kubectl-ai)
+kubectl-ai [](https://github.com/GoogleCloudPlatform/kubectl-ai) - Use agent to perform tasks
 
-kubectl-blame [](https://github.com/knight42/kubectl-blame)
+kubectl-blame [](https://github.com/knight42/kubectl-blame) - Use `managedFields` to show author per line
 
-kubectl-foreach [](https://github.com/ahmetb/kubectl-foreach)
+kubectl-foreach [](https://github.com/ahmetb/kubectl-foreach) - Run subcommands on multiple contexts
 
-kubectl-node-shell [](https://github.com/kvaps/kubectl-node-shell)
+kubectl-node-shell [](https://github.com/kvaps/kubectl-node-shell) - Enter node shell without SSH
 
 Many more plugins [](https://krew.sigs.k8s.io/plugins/)
-
----
-
-<i class="fa-duotone fa-solid fa-hand-holding-skull fa-4x"></i> <!-- .element: style="float: right;" -->
-
-## Bonus: To Shell or not to Shell
-
-### Testing the boundaries of shell code
-
----
-
-## Watching events
-
-Writing a minimalistic operator:
-
-```bash
-kubectl get namespaces --watch=true --output-watch-events=true --output=json | \
-jq --compact-output --monochrome-output --unbuffered 'del(.object.metadata.managedFields)' | \
-while read EVENT; do
-    #
-done
-```
-
-Alternative: `shell-operator` [](https://github.com/flant/shell-operator)
