@@ -10,33 +10,66 @@ Switch to namespace `backend`:
 kubeswitch backend
 ```
 
-
 ## jsonpath
 
 Select first pod:
 
 ```sh
-kubectl get pods -o=jsonpath='{.items[0]}'
+kubectl get pods --output=jsonpath='{.items[0]}'
 
 ```
 
 Show name of all pods:
 
 ```sh
-kubectl get pods -o=jsonpath='{.items[*].metadata.name}'
+kubectl get pods --output=jsonpath='{.items[*].metadata.name}'
 
 ```
 
 Show all pods with start time:
 
 ```sh
-kubectl get pods -o=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.startTime}{"\n"}{end}'
+kubectl get pods --output=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.startTime}{"\n"}{end}'
+```
+
+Select pods with a specific label:
+
+```sh
+kubectl get pods --all-namespaces --output=jsonpath='{.items[?(@.metadata.labels.app=="service15")].metadata.name}'
 ```
 
 ## jq
 
-XXX
+Select first pod:
+
+```sh
+kubectl get pods --output=json | jq '.items[0]'
+
+```
+
+Show name of all pods:
+
+```sh
+kubectl get pods --output=json | jq --raw-output '.items[].metadata.name'
+
+```
+
+Show all pods with start time:
+
+```sh
+kubectl get pods --output=json | jq --raw-output '.items[] | "\(.metadata.name)\t\(.status.startTime)"'
+```
+
+Select pods with a specific label:
+
+```sh
+kubectl get pods --all-namespaces --output=json | jq --raw-output '.items[] | select(.metadata.labels.app == "service15") | .metadata.name'
+```
 
 ## Cleanup
 
-XXX
+Return to default namespace:
+
+```sh
+kubeswitch default
+```

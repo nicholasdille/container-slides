@@ -259,7 +259,7 @@ Integrated in `kubectl` for parsing manifests
 
 ```bash
 kubectl get node --output=go-template=\
-    '{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
+'{{range .items}}{{if .spec.unschedulable}}{{.metadata.name}} {{.spec.externalID}}{{"\n"}}{{end}}{{end}}'
 ```
 
 ### Demo (08_go_template)

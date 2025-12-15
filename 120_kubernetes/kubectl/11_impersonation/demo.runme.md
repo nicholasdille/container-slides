@@ -1,22 +1,22 @@
 # Impersonate
 
-XXX
+Use read-only user for daily work and impersonate admin only when needed.
 
 ## Preparation
 
-XXX:
+Create test namespace:
 
 ```bash
 kubectl create namespace test
 ```
 
-XXX:
+Create required (Cluster)Role(Binding):
 
 ```bash
 kubectl apply -f rbac.yaml
 ```
 
-XXX:
+Create context for read-only user:
 
 ```bash
 TOKEN="$(
@@ -28,7 +28,7 @@ kubectl config set-credentials test-reader --token=${TOKEN}
 kubectl config set-context kind-test --user=test-reader --cluster=kind-kind
 ```
 
-XXX:
+Switch tio read-only context:
 
 ```bash
 kubectl config use-context kind-test
