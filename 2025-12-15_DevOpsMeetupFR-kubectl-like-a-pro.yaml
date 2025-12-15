@@ -26,6 +26,7 @@ custom_style: |
   }
 
 pre_slides:
+- 000_introduction/audience/console.md
 - 000_introduction/02_bio.md
 
 agenda:
@@ -59,3 +60,4 @@ events: []
 
 post_slides:
 - 120_kubernetes/kubectl/controller.md
+- 120_kubernetes/kubectl/oidc.md

@@ -19,13 +19,11 @@ kubectl apply -f rbac.yaml
 Create context for read-only user:
 
 ```bash
-TOKEN="$(
-    kubectl --namespace=test get secrets reader --output=json \
-    | jq --raw-output '.data.token' \
-    | base64 -d
-)"
+TOKEN="$( kubectl --namespace=test create token reader --duration=3600s )"
+CURRENT_CONTEXT="$( kubectl config current-context )"
+CLUSTER_NAME="$( kubectl config view --output=json | jq --raw-output '.contexts[] | select(.name == "kind-foo") | .context.cluster' )"
 kubectl config set-credentials test-reader --token=${TOKEN}
-kubectl config set-context kind-test --user=test-reader --cluster=kind-kind
+kubectl config set-context kind-test --user=test-reader --cluster="${CLUSTER_NAME}" --namespace=tesst
 ```
 
 Switch tio read-only context:
@@ -38,7 +36,7 @@ kubectl config use-context kind-test
 
 Show permissions in namespace test:
 
-```sh
+```sh {"terminalRows":"21"}
 kubectl auth can-i --list -n test
 ```
 
@@ -80,4 +78,8 @@ kubectl -n test delete pod sh --as=test-admin
 
 ## Cleanup
 
-None
+Revert `kubeconfig`:
+
+```sh
+kubectl config delete-context kind-test
+```
