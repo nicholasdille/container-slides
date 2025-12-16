@@ -52,19 +52,19 @@ kubectl get pods -A --no-headers | wc -l
 
 How many Deployments are there:
 
-```bash
+```bash {"terminalRows":"25"}
 kubectl get deployment -A
 ```
 
 How many backend pods are there:
 
 ```bash
-kubectl -n backend get pods --no-header | wc -l
+kubectl -n backend get pods --no-headers | wc -l
 ```
 
 Which labels are available:
 
-```bash
+```bash {"terminalRows":"12"}
 kubectl -n backend get deployments.apps --show-labels
 ```
 
@@ -80,7 +80,7 @@ Use field selectors to filter resources.
 
 Show all pods not contained in namespace `kube-system`:
 
-```bash
+```bash {"terminalRows":"17"}
 kubectl get deployment -A --field-selector "metadata.namespace!=kube-system"
 ```
 

@@ -11,7 +11,7 @@ Two panes, vertical split
 Apply the deployment in pane 1:
 
 ```bash
-kubectl apply -f deployment
+kubectl apply -f deployment.yaml
 ```
 
 Display pods with wide output and note line breaks making the output unreadable:

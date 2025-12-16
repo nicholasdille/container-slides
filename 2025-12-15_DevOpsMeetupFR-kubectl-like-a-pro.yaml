@@ -31,19 +31,19 @@ pre_slides:
 
 agenda:
 - icon: magnifying-glass
-  text: Finding the needle in the haystack
+  text: Finding resources
 - icon: shirt-jersey
   text: Styling the output
 - icon: keyboard
   text: Console grind
 - icon: scale-balanced
-  text: State affairs
+  text: Updating resources
 - icon: octopus
-  text: Multiple clusters and contexts
+  text: Multiple clusters
 - icon: crosshairs-simple
-  text: How to reach a pod for testing
+  text: Testing pods
 - icon: handshake
-  text: Community contributions
+  text: Community
 
 slides:
 - 120_kubernetes/kubectl/slides.md
@@ -53,6 +53,10 @@ summary:
   text: Not using the full potential
 - icon: window-flip
   text: So much faster than GUIs/TUIs
+- icon: file-code
+  text: First steps towards automation
+- icon: dumbbell
+  text: It's all muscle memory
 - icon: face-glasses
   text: We can look so cool
 

@@ -23,7 +23,7 @@ TOKEN="$( kubectl --namespace=test create token reader --duration=3600s )"
 CURRENT_CONTEXT="$( kubectl config current-context )"
 CLUSTER_NAME="$( kubectl config view --output=json | jq --raw-output '.contexts[] | select(.name == "kind-foo") | .context.cluster' )"
 kubectl config set-credentials test-reader --token=${TOKEN}
-kubectl config set-context kind-test --user=test-reader --cluster="${CLUSTER_NAME}" --namespace=tesst
+kubectl config set-context kind-test --user=test-reader --cluster="${CLUSTER_NAME}" --namespace=test
 ```
 
 Switch tio read-only context:
@@ -36,7 +36,7 @@ kubectl config use-context kind-test
 
 Show permissions in namespace test:
 
-```sh {"terminalRows":"21"}
+```sh {"terminalRows":"29"}
 kubectl auth can-i --list -n test
 ```
 
@@ -48,7 +48,7 @@ kubectl -n test get all
 
 Fail to access namespace default
 
-```sh
+```sh {"terminalRows":"21"}
 kubectl -n default get all
 ```
 

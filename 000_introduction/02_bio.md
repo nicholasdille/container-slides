@@ -4,7 +4,9 @@
 
 <img src="images/NicholasDille.jpg" style="width: 25%; float: right; border-radius: 8px;" />
 
-**Husband, father, runner, trumpeteer**
+**Husband, father, geek, trumpeteer**
+
+`#kubernetes` `#observability` `#automation` `#cicd`
 
 - <span class="fa-li"><i class="fa-duotone fa-globe"></i></span> [Blogger][1] since 2003
 - <span class="fa-li"><i class="fa-duotone fa-microphone"></i></span> [Speaker][2] since 2009

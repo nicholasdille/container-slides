@@ -14,7 +14,7 @@ kubeswitch backend
 
 Select first pod:
 
-```sh
+```sh {"terminalRows":"28"}
 kubectl get pods --output=jsonpath='{.items[0]}'
 
 ```
