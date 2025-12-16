@@ -70,7 +70,7 @@ kubectl get --field-selector="metadata.namespace!=kube-system"
 
 ---
 
-## Less typing
+## Less typing 1/2
 
 Always have shell completion ready
 
@@ -91,6 +91,39 @@ Use shortcut with shell completion:
 alias k=kubectl
 complete -F __start_kubectl k
 ```
+
+---
+
+## Less typing 1/2
+
+```yaml
+# Suggested defaults as per
+# https://kubernetes.io/docs/reference/kubectl/kuberc/#suggested-defaults
+apiVersion: kubectl.config.k8s.io/v1beta1
+kind: Preference
+defaults:
+  # (1) default server-side apply
+  - command: apply
+    options:
+      - name: server-side
+        default: "true"
+
+  # (2) default interactive deletion
+  - command: delete
+    options:
+      - name: interactive
+        default: "true"
+```
+
+<!-- .element: style="float: right; height: 25em; width: 30em;" -->
+
+Custom behaviour using `kuberc` [](https://kubernetes.io/docs/reference/kubectl/kuberc/)
+
+Aliases are now first class citizens
+
+Configure default options per subcommand
+
+Suggested defaults [](https://kubernetes.io/docs/reference/kubectl/kuberc/#suggested-defaults)
 
 ---
 
@@ -313,7 +346,7 @@ Long flag in scripts for readability
 Check for configuration drift:
 
 ```bash
-kubectl diff -k ./dir/
+kubectl diff -f deployment.yaml
 ```
 
 Even use your favourite `diff` tool:
