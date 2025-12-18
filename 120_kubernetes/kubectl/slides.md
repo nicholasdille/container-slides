@@ -205,7 +205,7 @@ Client-side processing
 
 Requires `kubectl` 1.34+ [](https://kubernetes.io/blog/2025/07/28/kubernetes-v1-34-sneak-peek/#support-for-kyaml-a-kubernetes-dialect-of-yaml)
 
-Hidden behind feature flag:
+Hidden behind feature flag in 1.34:
 
 ```bash
 export KUBECTL_KYAML=true
