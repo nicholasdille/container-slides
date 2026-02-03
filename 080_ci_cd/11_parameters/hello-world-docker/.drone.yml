@@ -8,7 +8,7 @@ pipeline:
     secrets: [ WEBDAV_USER, WEBDAV_PASS ]
 
   build:
-    image: docker:29.1.2
+    image: docker:29.2.1
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
@@ -17,14 +17,14 @@ pipeline:
     - docker push registry:5000/${CI_REPO_NAME}:dev
 
   test:
-    image: docker:29.1.2
+    image: docker:29.2.1
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
     - docker run --rm registry:5000/${CI_REPO_NAME}:${CI_BUILD_NUMBER} test -f /tmp/testing
 
   publish:
-    image: docker:29.1.2
+    image: docker:29.2.1
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:

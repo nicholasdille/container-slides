@@ -2,10 +2,10 @@ stages:
 - build
 
 services:
-- docker:29.1.2-dind
+- docker:29.2.1-dind
 
 default:
-  image: docker:29.1.2
+  image: docker:29.2.1
 
 variables:
   DOCKER_BUILDKIT: 1

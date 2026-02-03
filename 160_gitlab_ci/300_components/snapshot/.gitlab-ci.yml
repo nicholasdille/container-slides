@@ -115,11 +115,11 @@ package:
   needs:
   - hello-build-go
   - hello-unit-tests-go
-  image: docker:29.1.2
+  image: docker:29.2.1
   extends:
   - .run-on-push-to-default-branch
   services:
-  - name: docker:29.1.2-dind
+  - name: docker:29.2.1-dind
   variables:
     DOCKER_TLS_CERTDIR: ""
   before_script:
