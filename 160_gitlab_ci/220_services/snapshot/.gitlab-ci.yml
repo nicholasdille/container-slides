@@ -25,7 +25,7 @@ include:
   - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 default:
-  image: golang:1.25.5
+  image: golang:1.25.7
 
 services:
 - nginx:1.29.3
