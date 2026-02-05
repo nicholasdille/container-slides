@@ -12,6 +12,6 @@ services:
     - public
     - private
   svc2:
-    image: nginx:1.29.3
+    image: nginx:1.29.5
     networks:
     - private
