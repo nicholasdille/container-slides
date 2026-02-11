@@ -36,7 +36,7 @@ container_scanning:
   - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 default:
-  image: golang:1.25.5
+  image: golang:1.26.0
 
 renovate:
   rules:
