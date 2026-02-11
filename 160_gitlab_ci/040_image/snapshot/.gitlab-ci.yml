@@ -4,19 +4,19 @@ stages:
 
 lint:
   stage: check
-  image: golang:1.25.5
+  image: golang:1.26.0
   script:
   - go fmt .
 
 audit:
   stage: check
-  image: golang:1.25.5
+  image: golang:1.26.0
   script:
   - go vet .
 
 build:
   stage: build
-  image: golang:1.25.5
+  image: golang:1.26.0
   variables:
     version: $CI_COMMIT_REF_NAME
   script:
