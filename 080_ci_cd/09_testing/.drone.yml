@@ -1,7 +1,7 @@
 pipeline:
 
   build:
-    image: docker:29.1.2
+    image: docker:29.1.5
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
@@ -9,14 +9,14 @@ pipeline:
     - docker push registry:5000/groot/testing
 
   prepare:
-    image: docker:29.1.2
+    image: docker:29.1.5
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
     - docker ps --quiet --filter "name=testcont" | xargs -r docker rm -f
 
   test:
-    image: docker:29.1.2
+    image: docker:29.1.5
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
@@ -26,7 +26,7 @@ pipeline:
     - docker rm -f testcont
 
   clean:
-    image: docker:29.1.2
+    image: docker:29.1.5
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:

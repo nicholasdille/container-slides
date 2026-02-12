@@ -44,7 +44,7 @@ services:
       traefik.http.routers.registry.entrypoints: http
 
   dind:
-    image: docker:29.1.2-dind
+    image: docker:29.1.5-dind
     privileged: true
     network_mode: service:registry
 
