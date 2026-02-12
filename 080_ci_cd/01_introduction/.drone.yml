@@ -8,7 +8,7 @@ pipeline:
     - java HelloWorld
 
   docker:
-    image: docker:29.1.2
+    image: docker:29.1.5
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     commands:
