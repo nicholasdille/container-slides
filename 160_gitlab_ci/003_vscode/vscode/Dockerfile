@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.20.0
+#syntax=docker/dockerfile:1.21.0
 
 FROM codercom/code-server:4.106.3
 USER root
