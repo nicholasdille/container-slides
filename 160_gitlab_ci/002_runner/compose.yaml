@@ -15,7 +15,7 @@ configs:
 services:
 
   runner:
-    image: gitlab/gitlab-runner:v18.6.5
+    image: gitlab/gitlab-runner:v18.9.0
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /var/run/docker.sock:/var/run/docker.sock:rw
