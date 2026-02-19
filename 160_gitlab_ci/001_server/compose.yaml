@@ -197,4 +197,4 @@ services:
     image: yuzutech/kroki-bpmn:0.28.0
 
   excalidraw:
-    image: yuzutech/kroki-excalidraw:0.28.0
+    image: yuzutech/kroki-excalidraw:0.30.0
