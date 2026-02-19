@@ -133,7 +133,7 @@ services:
     restart: always
 
   kroki:
-    image: yuzutech/kroki:0.28.0
+    image: yuzutech/kroki:0.30.0
     environment:
       KROKI_MERMAID_HOST: mermaid
       KROKI_BPMN_HOST: bpmn
