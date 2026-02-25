@@ -1,0 +1,10 @@
+mode: standalone
+persistence:
+  size: 10Gi
+resources:
+  requests:
+    memory: 1Gi
+accessKey: "minioadmin"
+secretKey: "minioadmin"
+service:
+  type: ClusterIP
