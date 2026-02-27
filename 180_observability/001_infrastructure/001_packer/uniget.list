@@ -1,0 +1,25 @@
+# shell
+jq
+yq
+
+# containerization
+docker
+docker-compose
+buildx
+regclient
+cosign
+dive
+oras
+
+# kubernetes
+kubectl
+kubeswitch
+kind
+helm
+kyverno
+cilium
+
+# security
+syft
+grype
+trivy
