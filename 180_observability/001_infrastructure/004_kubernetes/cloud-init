@@ -1,0 +1,34 @@
+#cloud-config
+
+apt:
+  conf: |
+    APT {
+      Install-Recommends "false";
+      Install-Suggests "false";
+      Get {
+        Assume-Yes "true";
+        Fix-Broken "true";
+      };
+    };
+
+package_update: true
+package_upgrade: true
+packages:
+- bash
+- curl
+- ca-certificates
+
+runcmd:
+- sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="systemd.unified_cgroup_hierarchy=1"/' /etc/default/grub
+- update-grub
+- curl -sLf "https://gitlab.com/uniget-org/cli/-/releases/permalink/latest/downloads/uniget_Linux_$(uname -m).tar.gz" | tar -xzC /usr/local/bin uniget
+- uniget install jq yq docker docker-compose buildx kubectl kubeswitch kind helm
+- groupadd --system docker
+- systemctl daemon-reload
+- systemctl disable docker.service
+- systemctl enable docker.socket
+- systemctl start docker.socket
+
+power_state:
+  mode: reboot
+  delay: now
