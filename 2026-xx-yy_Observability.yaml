@@ -34,6 +34,11 @@ agenda:
 
 slides:
 - 180_observability/slides.md
+- 180_observability/010_introduction/slides.md
+- 180_observability/020_lgtm/slides.md
+- 180_observability/030_data/slides.md
+- 180_observability/040_visualization/slides.md
+- 180_observability/050_alarms/slides.md
 
 summary:
 - icon: question
