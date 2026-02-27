@@ -3,7 +3,7 @@ terraform {
     gitlab = {
       # https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs
       source  = "gitlabhq/gitlab"
-      version = "18.6.1"
+      version = "18.9.0"
     }
     grafana = {
       # https://registry.terraform.io/providers/grafana/grafana/latest/docs
