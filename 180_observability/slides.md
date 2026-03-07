@@ -4,6 +4,12 @@ XXX
 
 ---
 
+> Observability is the ability to understand the internal state of a system based on its external outputs.
+
+- IBM [](https://www.ibm.com/topics/observability)
+
+---
+
 ## Why observability
 
 ### Performance monitoring
@@ -24,11 +30,7 @@ Maintaining a secure and compliant environment
 
 ---
 
-## Introduction
-
-[IBM says](https://www.ibm.com/topics/observability), it is the ability to understand the internal state of a system based on its external outputs.
-
-Three pillars
+## Three pillars of observability
 
 Metrics - quantative data
 
@@ -97,6 +99,12 @@ Spans are linked together to form a tree structure that represents the entire re
 
 ---
 
+## Correlation
+
+XXX
+
+---
+
 ## Sampling
 
 - Practice of collecting only a subset of traces, metrics or logs
@@ -109,13 +117,17 @@ Spans are linked together to form a tree structure that represents the entire re
 
 ## LGTM Stack
 
-Metrics with Mimir
+Grafana Labs
+
+Metrics with Mimir (instead of Prometheus)
 
 Logs with Loki - Horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus
 
 Traces with Tempo
 
 Visualization with Grafana
+
+LGTM - Looks Good To Me ;-)
 
 ---
 
@@ -127,11 +139,29 @@ Centralized storage
 - Harder to temper with
 
 Layers
+- Infrastructure
+- Virtualization hosts
 - Cluster
 - Node
 - Pod
 - Container
 - Application
+
+---
+
+## Existing data sources
+
+Infrastructure
+
+Host OS (Linux)
+
+Node (kubelet, kube-proxy, node-exporter, metrics-server)
+
+Cluster (kube-apiserver, kube-state-metrics, kube-controller-manager, kube-scheduler)
+
+Pod (kubelet, metrics-server)
+
+Container (kubelet)
 
 ---
 
@@ -165,20 +195,6 @@ Layers
 
 ---
 
-## Existing data sources
-
-Host OS (Linux)
-
-Node (kubelet, kube-proxy, node-exporter, metrics-server)
-
-Cluster (kube-apiserver, kube-state-metrics, kube-controller-manager, kube-scheduler)
-
-Pod (kubelet, metrics-server)
-
-Container (kubelet)
-
----
-
 ## Collecting metrics
 
 Metrics exporters
@@ -206,9 +222,23 @@ Prometheus Operator adds declarative configuration
 
 ---
 
+## Why Mimir instead of Prometheus
+
+XXX shortcomings of Prometheus
+
+XXX advantages of Mimir
+
+XXX Mimir in addition to Prometheus
+
+---
+
 ## Collecting logs and traces
 
 Push based
+
+Agents
+
+Accessible endpoints
 
 ---
 
@@ -292,6 +322,10 @@ OpenTelemetry Collector (OtelCol)
 
 Grafana Alloy - an OTel distribution
 
+Grafana Agent (EOL)
+
+Grafana promtail for Loki (deprecated)
+
 ---
 
 ## Chaining collection
@@ -299,6 +333,8 @@ Grafana Alloy - an OTel distribution
 AWS CloudWatch Logs
 
 Azure Monitor Logs
+
+OtelCol/Alloy in between
 
 ---
 
@@ -309,12 +345,6 @@ XXX metrics exporter
 XXX log shipping
 
 XXX auto instrumentation
-
----
-
-## Data transformation
-
-XXX
 
 ---
 
@@ -344,7 +374,13 @@ XXX
 
 ---
 
-Dashboard
+## Data transformation
+
+XXX
+
+---
+
+## Dashboard
 
 Query languages
 - Prometheus Query Language (PromQL)
@@ -475,10 +511,15 @@ https://grafana.com/blog/2024/11/20/metrics-logs-traces-and-mayhem-introducing-a
 
 https://opentelemetry.io/docs/demo/
 
-- [Kubernetes Metrics — Part 1 The Node Metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-66936addedae)
-- [Kubernetes Metrics — Part 2 USE method](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-2-c869581e9f29)
-- [Kubernetes Metrics — Part 3 Container Resource Metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-3-container-resource-metrics-361c5ee46e66)
-- [Kubernetes Metrics — Part 4 The Kubernetes API Server](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-4-the-kubernetes-api-server-72f1e1210770)
-- [Kubernetes Metrics — Part 5 etcd Metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-5-etcd-metrics-6502693fa58)
-- [Kubernetes Metrics — Part 6 kube-state-metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-6-kube-state-metrics-14f4e7c8710b)
+[Kubernetes Metrics — Part 1 The Node Metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-66936addedae)
+
+[Kubernetes Metrics — Part 2 USE method](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-2-c869581e9f29)
+
+[Kubernetes Metrics — Part 3 Container Resource Metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-3-container-resource-metrics-361c5ee46e66)
+
+[Kubernetes Metrics — Part 4 The Kubernetes API Server](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-4-the-kubernetes-api-server-72f1e1210770)
+
+[Kubernetes Metrics — Part 5 etcd Metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-5-etcd-metrics-6502693fa58)
+
+[Kubernetes Metrics — Part 6 kube-state-metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-6-kube-state-metrics-14f4e7c8710b)
 
