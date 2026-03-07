@@ -86,7 +86,11 @@ nav:
 - Navigation: navigation.md
 - Introduction:
   - GitLab: 000_introduction/exercise.md
-  - You are ready: 000_introduction/you_are_ready.md
-# TODO: Content
+  - You are ready: 001_you_are_ready/you_are_ready.md
+- Observability: 010_introduction/exercises.md
+- Grafana LGTM: 020_lgtm/exercises.md
+- Data Collection: 030_data/exercises.md
+- Visualization: 040_visualization/exercises.md
+- Alarms: 050_alarms/exercises.md
 - Wrap Up:
   - You are done: 999_the_end/you_are_done.md
