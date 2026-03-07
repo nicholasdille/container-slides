@@ -11,3 +11,7 @@ Traces with Tempo
 Visualization with Grafana
 
 LGTM - Looks Good To Me ;-)
+
+---
+
+XXX intro for each service
