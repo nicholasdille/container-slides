@@ -9,3 +9,4 @@ id_rsa_*
 mkdocs
 node_modules
 themes/fontawesome.css*
+.env.mk
