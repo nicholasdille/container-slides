@@ -1,10 +1,12 @@
 > Observability is the ability to understand the internal state of a system based on its external outputs.
 
-- IBM [](https://www.ibm.com/topics/observability)
+IBM [](https://www.ibm.com/topics/observability) <!-- .element: style="text-align: right;" -->
 
 ---
 
 ## Why observability
+
+<i class="fa-duotone fa-solid fa-lightbulb-on fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ### Performance monitoring
 
@@ -26,15 +28,19 @@ Maintaining a secure and compliant environment
 
 ## Three pillars of observability
 
-Metrics - quantative data
+<i class="fa-duotone fa-solid fa-tally-3 fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Logs - textual records of events
+Metrics - quantative data <i class="fa-duotone fa-solid fa-chart-fft"></i>
 
-Traces - flow of a request through a system of services
+Logs - textual records of events <i class="fa-duotone fa-solid fa-file-lines"></i>
+
+Traces - flow of a request through a system of services <i class="fa-duotone fa-solid fa-route"></i>
 
 ---
 
 ## Metrics
+
+<i class="fa-duotone fa-solid fa-chart-fft fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Numerical values that can be aggregated and visualized
 
@@ -54,6 +60,8 @@ Can be used to identify trends and establish performance baselines
 ---
 
 ## Logs
+
+<i class="fa-duotone fa-solid fa-file-lines fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Timestamped textual records of events and activities
 
@@ -83,6 +91,8 @@ Understand how users interact with your application
 
 ## Traces
 
+<i class="fa-duotone fa-solid fa-route fa-4x"></i> <!-- .element: style="float: right;" -->
+
 Track the flow of a request
 
 Each trace consists of a series of **spans**
@@ -95,11 +105,15 @@ Spans are linked together to form a tree structure that represents the entire re
 
 ## Correlation
 
+<i class="fa-duotone fa-solid fa-diagram-venn fa-4x"></i> <!-- .element: style="float: right;" -->
+
 XXX
 
 ---
 
 ## Sampling
+
+<i class="fa-duotone fa-solid fa-eye-dropper-half fa-4x"></i> <!-- .element: style="float: right;" -->
 
 - Practice of collecting only a subset of traces, metrics or logs
 - Aggregation of data is also a form of sampling. (e.g. average, sum, etc.)

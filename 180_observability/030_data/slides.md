@@ -1,5 +1,7 @@
 ## Data Collection
 
+<i class="fa-duotone fa-solid fa-vacuum fa-4x"></i> <!-- .element: style="float: right;" -->
+
 Centralized storage
 - Independent of system availability
 - Correlation
@@ -34,6 +36,8 @@ Container (kubelet)
 
 ## Node metrics
 
+<i class="fa-duotone fa-solid fa-server fa-4x"></i> <!-- .element: style="float: right;" -->
+
 - **CPU usage**: Current utilization, requests, and limits
 - **Memory usage**: Current utilization, requests, and limits
 - **Disk usage**: Capacity, usage, and I/O statistics
@@ -44,6 +48,8 @@ Container (kubelet)
 
 ## Pod metrics
 
+<i class="fa-duotone fa-solid fa-container-storage fa-4x"></i> <!-- .element: style="float: right;" -->
+
 - **CPU usage**: Current utilization, requests, and limits
 - **Memory usage**: Current utilization, requests, and limits
 - **Network**: Latency, bandwidth, and error rates for pod communication
@@ -52,6 +58,8 @@ Container (kubelet)
 ---
 
 ## Cluster metrics
+
+<i class="fa-duotone fa-solid fa-network-wired fa-4x"></i> <!-- .element: style="float: right;" -->
 
 - Object specific metrics in Kubernetes
 - For example:
@@ -63,6 +71,8 @@ Container (kubelet)
 ---
 
 ## Collecting metrics
+
+<i class="fa-duotone fa-solid fa-cart-shopping fa-4x"></i> <!-- .element: style="float: right;" -->
 
 Metrics exporters
 
@@ -101,11 +111,23 @@ XXX Mimir in addition to Prometheus
 
 ## Collecting logs and traces
 
+<i class="fa-duotone fa-solid fa-person-dolly fa-4x"></i> <!-- .element: style="float: right;" -->
+
 Push based
 
 Agents
 
 Accessible endpoints
+
+---
+
+## Firewall considerations
+
+<i class="fa-duotone fa-solid fa-block-brick-fire fa-4x"></i> <!-- .element: style="float: right;" -->
+
+XXX pull
+
+XXX push
 
 ---
 
@@ -185,9 +207,11 @@ It is vendor-neutral and supports multiple backends like Jaeger, Tempo, etc.
 
 ## Tools
 
-OpenTelemetry Collector (OtelCol)
+<i class="fa-duotone fa-solid fa-screwdriver-wrench fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Grafana Alloy - an OTel distribution
+OpenTelemetry Collector (OtelCol) ![](180_observability/media/opentelemetry-icon-color.svg) <!-- .element: style="width: 1em;" -->
+
+Grafana Alloy - an OTel distribution ![](180_observability/media/alloy.svg) <!-- .element: style="width: 1em;" -->
 
 Grafana Agent (EOL)
 
@@ -196,6 +220,8 @@ Grafana promtail for Loki (deprecated)
 ---
 
 ## Chaining collection
+
+<i class="fa-duotone fa-solid fa-link fa-4x"></i> <!-- .element: style="float: right;" -->
 
 AWS CloudWatch Logs
 
@@ -206,6 +232,8 @@ OtelCol/Alloy in between
 ---
 
 ## Application level data
+
+<i class="fa-duotone fa-solid fa-browser fa-4x"></i> <!-- .element: style="float: right;" -->
 
 XXX metrics exporter
 
