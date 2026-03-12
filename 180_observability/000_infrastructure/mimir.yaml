@@ -40,19 +40,27 @@ kind: Deployment
 metadata:
   name: mimir
 spec:
-  containers:
-  - name: mimir
-    image: grafana/mimir:3.0.4
-    args:
-    - -config.file=/etc/mimir.yaml
-    volumeMounts:
-    - mountPath: /etc/mimir.yaml
-      name: mimir
-    - mountPath: /data
-      name: data
-  volumes:
-  - name: config
-    configMap:
-      name: mimir
-  - name: data
-    emptyDir: {}
+  selector:
+    matchLabels:
+      app: mimir
+  template:
+    metadata:
+      labels:
+        app: mimir
+    spec:
+      containers:
+      - name: mimir
+        image: grafana/mimir:3.0.4
+        args:
+        - -config.file=/etc/mimir.yaml
+        volumeMounts:
+        - mountPath: /etc/mimir.yaml
+          name: mimir
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: config
+        configMap:
+          name: mimir
+      - name: data
+        emptyDir: {}
