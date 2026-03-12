@@ -1,5 +1,15 @@
 # https://docs.docker.com/compose/compose-file
 
+configs:
+  default_certificate.yaml:
+    content: |
+      tls:
+        stores:
+          default:
+            defaultCertificate:
+              certFile: /etc/traefik/ssl/tls.full
+              keyFile: /etc/traefik/ssl/tls.key
+
 services:
 
   # https://doc.traefik.io/traefik/
@@ -15,6 +25,9 @@ services:
     - --providers.file.directory=/etc/traefik/conf.d
     - --providers.docker=true
     - --providers.docker.exposedByDefault=false
+    configs:
+    - source: default_certificate.yaml
+      target: /etc/traefik/conf.d/default_certificate.yaml
     ports:
     - 80:80
     - 443:443
@@ -39,31 +52,28 @@ services:
       # traefik dashboard: redirection to HTTPS
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.rule: Host(`traefik.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}`)
+      traefik.http.routers.traefik.rule: Host(`traefik.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.traefik.middlewares: redirect-to-https
       # traefik dashboard: authenticated endpoint
       traefik.http.routers.traefik-s.entrypoints: https
       traefik.http.routers.traefik-s.service: api@internal
-      traefik.http.routers.traefik-s.rule: Host(`traefik.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}`)
+      traefik.http.routers.traefik-s.rule: Host(`traefik.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.traefik-s.tls: "true"
-      # TODO: Fix auth
-      #traefik.http.routers.traefik-s.middlewares: seat-auth
-      
+
   vscode:
     image: vscode
     command:
-    - --auth
-    - none
-    - --proxy-domain
-    - seat${SEAT_INDEX}.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}
+    - --auth=password
+    - --password=75f962691adf3f70319505323b2d549e
+    - --proxy-domain=vscode.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}
     - --disable-telemetry
-    environment:
-      GIT_USER: "${GIT_USER}"
-      GIT_EMAIL: "${GIT_EMAIL}"
-      GIT_CRED: "${GIT_CRED}"
+    - --disable-update-check
+    - --locale=de
+    #- --install-extension=PUBLISHER/NAME@VERSION
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+    - 80:8080
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8080"]
@@ -73,19 +83,15 @@ services:
       start_period: 5s
     labels:
       traefik.enable: "true"
-      # Auth
-      traefik.http.middlewares.vscode${SEAT_INDEX}-auth.basicauth.users: ${SEAT${SEAT_INDEX}_HTPASSWD?Environment variable SEAT${SEAT_INDEX} is mandatory}
       # Service port
-      traefik.http.services.vscode${SEAT_INDEX}.loadbalancer.server.port: 8080
+      traefik.http.services.vscode.loadbalancer.server.port: 8080
       # Redirection to HTTPS
-      traefik.http.routers.vscode${SEAT_INDEX}.entrypoints: http
-      traefik.http.routers.vscode${SEAT_INDEX}.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}`)
-      traefik.http.routers.vscode${SEAT_INDEX}.service: vscode${SEAT_INDEX}
-      traefik.http.routers.vscode${SEAT_INDEX}.middlewares: redirect-to-https
+      traefik.http.routers.vscode.entrypoints: http
+      traefik.http.routers.vscode.rule: Host(`seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}`)
+      traefik.http.routers.vscode.service: vscode
+      traefik.http.routers.vscode.middlewares: redirect-to-https
       # Authenticated endpoint
-      traefik.http.routers.vscode${SEAT_INDEX}-s.entrypoints: https
-      traefik.http.routers.vscode${SEAT_INDEX}-s.rule: Host(`seat${SEAT_INDEX}.vscode.${DOMAIN?Environment variable DOMAIN is mandatory}`)
-      traefik.http.routers.vscode${SEAT_INDEX}-s.service: vscode${SEAT_INDEX}
-      traefik.http.routers.vscode${SEAT_INDEX}-s.middlewares: vscode${SEAT_INDEX}-auth
-      traefik.http.routers.vscode${SEAT_INDEX}-s.tls: "true"
-
+      traefik.http.routers.vscode-s.entrypoints: https
+      traefik.http.routers.vscode-s.rule: Host(`seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}`)
+      traefik.http.routers.vscode-s.service: vscode
+      traefik.http.routers.vscode-s.tls: "true"
