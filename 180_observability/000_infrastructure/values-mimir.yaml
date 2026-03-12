@@ -1,0 +1,35 @@
+minio:
+  enabled: false
+
+common:
+  storage:
+    backend: s3
+    s3:
+      endpoint: http://minio.minio:9000
+      access_key_id: minioadmin
+      secret_access_key: minioadmin
+      insecure: true
+      bucket_name: mimir
+
+ingester:
+  replicas: 1
+  zoneAwareReplication:
+    enabled: false
+store_gateway:
+  replicas: 1
+  zoneAwareReplication:
+    enabled: false
+rollout_operator:
+  enabled: false
+distributor:
+  replicas: 1
+query_scheduler:
+  enabled: false
+query_frontend:
+  replicas: 1
+querier:
+  replicas: 1
+ruler:
+  enabled: false
+alertmanager:
+  enabled: false

@@ -13,8 +13,7 @@ helm repo update
 helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
-    grafana grafana-community/grafana \
-        --values=values-grafana.yaml
+    grafana grafana-community/grafana
 
 # MinIO
 helm --namespace=minio upgrade \
@@ -22,22 +21,32 @@ helm --namespace=minio upgrade \
     --create-namespace \
     minio minio/minio \
         --values=values-minio.yaml
+kubectl --namespace=minio exec -it deployment/minio -- bash <<EOF
+mc alias set local http://localhost:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD --insecure
+mc admin accesskey create local/ --access-key=minioadmin --secret-key=minioadmin
+mc mb local/loki-chunks
+mc mb local/loki-ruler
+mc mb local/mimir
+EOF
 
 # Mimir
-helm --namespace=monitoring upgrade \
-    --install \
-    --create-namespace \
-    mimir grafana/mimir-distributed \
-        --values=values-mimir-small.yaml
+# https://grafana.com/docs/mimir/latest/set-up/helm-chart/
+# https://grafana.com/docs/mimir/latest/manage/run-production-environment/planning-capacity/
+#helm --namespace=monitoring upgrade \
+#    --install \
+#    --create-namespace \
+#    mimir grafana/mimir-distributed
+kubectl apply -f mimir.yaml
 
 # Loki
 # 2026-03-16: Migrated to https://github.com/grafana-community/helm-charts
 # https://grafana.com/docs/loki/latest/setup/install/helm/
+# https://grafana.com/docs/loki/latest/setup/install/helm/install-monolithic/
 helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
     loki grafana/loki \
-        --values=values-loki-simple-scalable.yaml
+        --values=values-loki.yaml
 
 # Tempo
 # https://grafana.com/docs/helm-charts/tempo-distributed/next/get-started-helm-charts/
