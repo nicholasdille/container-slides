@@ -42,6 +42,7 @@ kubectl apply -f mimir.yaml
 # 2026-03-16: Migrated to https://github.com/grafana-community/helm-charts
 # https://grafana.com/docs/loki/latest/setup/install/helm/
 # https://grafana.com/docs/loki/latest/setup/install/helm/install-monolithic/
+# https://grafana.com/docs/loki/latest/setup/size/
 helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
@@ -53,7 +54,7 @@ helm --namespace=monitoring upgrade \
 helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
-    tempo grafana-community/tempo-distributed \
+    tempo grafana-community/tempo \
         --values=values-tempo.yaml
 
 # https://github.com/grafana/k8s-monitoring-helm

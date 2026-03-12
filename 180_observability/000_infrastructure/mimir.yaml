@@ -36,10 +36,11 @@ data:
       log_level: warn
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: mimir
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: mimir
@@ -54,8 +55,8 @@ spec:
         args:
         - -config.file=/etc/mimir.yaml
         volumeMounts:
-        - mountPath: /etc/mimir.yaml
-          name: mimir
+        - mountPath: /etc/
+          name: config
         - mountPath: /data
           name: data
       volumes:
