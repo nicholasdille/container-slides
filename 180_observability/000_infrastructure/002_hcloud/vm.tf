@@ -1,6 +1,6 @@
 data "hcloud_image" "packer" {
   provider      = hcloud.default
-  with_selector = "type=gitlab"
+  with_selector = "type=docker"
   most_recent   = true
 }
 
@@ -8,7 +8,7 @@ resource "hcloud_server" "k8s_host" {
   count = var.seat_count
 
   provider    = hcloud.default
-  name        = "k8s_${count.index}"
+  name        = "k8s${count.index}"
   location    = var.hcloud_location
   server_type = var.hcloud_server_type
   image       = data.hcloud_image.packer.id
@@ -29,7 +29,7 @@ resource "null_resource" "wait_for_ssh" {
 
   provisioner "remote-exec" {
     connection {
-      host        = hcloud_server.k8s_host[index].ipv4_address
+      host        = hcloud_server.k8s_host[count.index].ipv4_address
       user        = "root"
       private_key = tls_private_key.ssh_private_key.private_key_openssh
     }

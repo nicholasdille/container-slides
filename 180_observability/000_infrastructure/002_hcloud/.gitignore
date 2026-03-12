@@ -1,2 +1,5 @@
 /.terraform/
 /.terraform.lock*
+/plan.out
+/git_http_backend.auto.tf
+/state.json

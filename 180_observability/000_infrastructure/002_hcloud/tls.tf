@@ -1,6 +1,4 @@
 resource "tls_private_key" "certificate" {
-  count = var.seat_count
-
   algorithm = "RSA"
 }
 
@@ -10,13 +8,13 @@ resource "acme_registration" "reg" {
 }
 
 resource "acme_certificate" "k8s" {
-  count = var.seat_count
+  count    = var.seat_count
 
   account_key_pem = acme_registration.reg.account_key_pem
-  common_name     = "seat${count.index}.k8s.${var.domain}"
+  common_name     = "seat${count.index}.${var.domain}"
   subject_alternative_names = [
-    "seat${count.index}.k8s.${var.domain}",
-    "*.seat${count.index}.k8s.${var.domain}"
+    "seat${count.index}.${var.domain}",
+    "*.seat${count.index}.${var.domain}"
   ]
 
   dns_challenge {
@@ -32,14 +30,14 @@ resource "remote_file" "tls_key" {
   count = var.seat_count
 
   conn {
-    host        = hcloud_server.k8s_host[index].ipv4_address
+    host        = hcloud_server.k8s_host[count.index].ipv4_address
     port        = 22
     user        = "root"
     private_key = tls_private_key.ssh_private_key.private_key_openssh
   }
 
   path        = "/etc/ssl/tls.key"
-  content     = acme_certificate.k8s[index].private_key_pem
+  content     = acme_certificate.k8s[count.index].private_key_pem
   permissions = "0600"
 }
 
@@ -47,14 +45,14 @@ resource "remote_file" "tls_crt" {
   count = var.seat_count
 
   conn {
-    host        = hcloud_server.k8s_host[index].ipv4_address
+    host        = hcloud_server.k8s_host[count.index].ipv4_address
     port        = 22
     user        = "root"
     private_key = tls_private_key.ssh_private_key.private_key_openssh
   }
 
   path        = "/etc/ssl/tls.crt"
-  content     = acme_certificate.k8s[index].certificate_pem
+  content     = acme_certificate.k8s[count.index].certificate_pem
   permissions = "0644"
 }
 
@@ -62,13 +60,13 @@ resource "remote_file" "tls_chain_gitlab" {
   count = var.seat_count
 
   conn {
-    host        = hcloud_server.k8s_host[index].ipv4_address
+    host        = hcloud_server.k8s_host[count.index].ipv4_address
     port        = 22
     user        = "root"
     private_key = tls_private_key.ssh_private_key.private_key_openssh
   }
 
   path        = "/etc/ssl/tls.chain"
-  content     = acme_certificate.k8s[index].issuer_pem
+  content     = acme_certificate.k8s[count.index].issuer_pem
   permissions = "0644"
 }

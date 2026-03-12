@@ -10,21 +10,21 @@ variable "seat_count" {
 }
 
 variable "domain" {
-  type = string
+  type        = string
   description = ""
-  default = "inmylab.de"
+  default     = "inmylab.de"
 }
 
 variable "hcloud_location" {
-  type = string
+  type        = string
   description = ""
-  default = "fsn1"
+  default     = "nbg1"
 }
 
 variable "hcloud_server_type" {
-  type = string
+  type        = string
   description = ""
-  default = "cx43"
+  default     = "cx43"
 }
 
 variable "hcloud_token" {
@@ -33,4 +33,9 @@ variable "hcloud_token" {
 
 variable "hcloud_dns_token" {
   sensitive = true
+}
+
+variable "acme_staging" {
+  type    = bool
+  default = true
 }

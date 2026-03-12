@@ -1,5 +1,5 @@
 output "ssh_private_key" {
-  value = tls_private_key.ssh_private_key.private_key_openssh
+  value     = tls_private_key.ssh_private_key.private_key_openssh
   sensitive = true
 }
 
@@ -12,7 +12,7 @@ output "ipv4_addresses" {
 }
 
 output "tls_keys" {
-  value = tls_private_key.certificate[*].private_key_pem
+  value     = tls_private_key.certificate[*].private_key_pem
   sensitive = true
 }
 

@@ -3,14 +3,16 @@ data "hcloud_zone" "main" {
   name     = var.domain
 }
 
-resource "hcloud_zone_rrset" "gitlab" {
+resource "hcloud_zone_rrset" "k8s_host" {
+  count = var.seat_count
+
   provider = hcloud.dns
   zone     = data.hcloud_zone.main.name
-  name     = "gitlab"
+  name     = "seat${count.index}"
   type     = "A"
   ttl      = 120
   records = [
-    { value = hcloud_server.gitlab.ipv4_address },
+    { value = hcloud_server.k8s_host[count.index].ipv4_address },
   ]
 }
 
@@ -26,12 +28,14 @@ resource "local_file" "ssh_pub" {
   file_permission = "0644"
 }
 
-resource "local_file" "ssh_config_file_gitlab" {
+resource "local_file" "ssh_config_file_k8s_host" {
+  count = var.seat_count
+
   content = templatefile("ssh_config.tpl", {
-    node         = hcloud_server.gitlab.name,
-    node_ip      = hcloud_server.gitlab.ipv4_address
+    node         = hcloud_server.k8s_host[count.index].name,
+    node_ip      = hcloud_server.k8s_host[count.index].ipv4_address
     ssh_key_file = local_file.ssh.filename
   })
-  filename        = pathexpand("~/.ssh/config.d/gitlab")
+  filename        = pathexpand("~/.ssh/config.d/k8s${count.index}")
   file_permission = "0644"
 }
