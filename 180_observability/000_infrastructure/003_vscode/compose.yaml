@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+
 # https://docs.docker.com/compose/compose-file
 
 configs:
@@ -7,10 +9,27 @@ configs:
         stores:
           default:
             defaultCertificate:
-              certFile: /etc/traefik/ssl/tls.full
+              certFile: /etc/traefik/ssl/tls.crt
               keyFile: /etc/traefik/ssl/tls.key
 
+volumes:
+  traefik-config:
+
 services:
+
+  traefik-prepare-config:
+    image: alpine
+    entrypoint:
+    - sh
+    - -c
+    command:
+    - cp /etc-traefik-conf.d/default_certificate.yaml /etc/traefik/conf.d/
+    configs:
+    - source: default_certificate.yaml
+      target: /etc-traefik-conf.d/default_certificate.yaml
+    volumes:
+    - traefik-config:/etc/traefik/conf.d
+    restart: no
 
   # https://doc.traefik.io/traefik/
   traefik:
@@ -25,18 +44,19 @@ services:
     - --providers.file.directory=/etc/traefik/conf.d
     - --providers.docker=true
     - --providers.docker.exposedByDefault=false
-    configs:
-    - source: default_certificate.yaml
-      target: /etc/traefik/conf.d/default_certificate.yaml
     ports:
     - 80:80
     - 443:443
     volumes:
-    - ./traefik.d:/etc/traefik/conf.d:ro
+    - traefik-config:/etc/traefik/conf.d:rw
     - /etc/ssl:/etc/traefik/ssl:ro
     - /var/run/docker.sock:/var/run/docker.sock:ro
     - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
+    depends_on:
+      traefik-prepare-config:
+        required: true
+        condition: service_completed_successfully
     healthcheck:
       test: ["CMD-SHELL", "netstat -tunapl | grep LISTEN | grep :80"]
       interval: 10s
@@ -48,7 +68,7 @@ services:
       # Global redirection middleware
       traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
       # Auth
-      traefik.http.middlewares.traefik-auth.basicauth.users: ${TRAEFIK_HTPASSWD?Environment variable TRAEFIK_HTPASSWD is mandatory}
+      #traefik.http.middlewares.traefik-auth.basicauth.users: ${TRAEFIK_HTPASSWD?Environment variable TRAEFIK_HTPASSWD is mandatory}
       # traefik dashboard: redirection to HTTPS
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal
@@ -61,19 +81,18 @@ services:
       traefik.http.routers.traefik-s.tls: "true"
 
   vscode:
-    image: vscode
+    image: codercom/code-server:4.106.3
     command:
     - --auth=password
-    - --password=75f962691adf3f70319505323b2d549e
     - --proxy-domain=vscode.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}
     - --disable-telemetry
     - --disable-update-check
     - --locale=de
     #- --install-extension=PUBLISHER/NAME@VERSION
+    environment:
+      PASSWORD: "${VSCODE_PASSWORD?Missing VSCODE_PASSWORD environment variable}"
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    ports:
-    - 80:8080
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8080"]

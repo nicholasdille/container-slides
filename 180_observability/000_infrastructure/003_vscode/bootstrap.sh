@@ -49,7 +49,7 @@ IP=$IP
 DOMAIN=$DOMAIN
 VSCODE_PASSWORD=$PASSWORD
 EOF
-    ${SCP_CMD} env-$INDEX root@${IP}:~/env
+    ${SCP_CMD} env-$INDEX root@${IP}:~/container-slides/180_observability/000_infrastructure/003_vscode/.env
 
     # Launch remote bootstrap
     ${SSH_CMD} env -C /root/container-slides/180_observability/000_infrastructure/003_vscode bash bootstrap-remote.sh
