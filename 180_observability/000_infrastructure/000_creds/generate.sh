@@ -1,8 +1,8 @@
 #!/bin/bash
 set -o errexit -o pipefail
 
-: "${SET_NAME:=$(date +%Y%m%d)}"
-: "${COUNT:=1}"
+: "${EVENT_NAME:=$(date +%Y%m%d)}"
+: "${SEAT_COUNT:=1}"
 : "${DOMAIN:=inmylab.de}"
 
 if test -f seats.json; then
@@ -13,8 +13,8 @@ fi
 result="$(
     jq \
         --null-input \
-        --arg name "${SET_NAME}" \
-        --arg count "${COUNT}" \
+        --arg name "${EVENT_NAME}" \
+        --arg count "${SEAT_COUNT}" \
         --arg domain "${DOMAIN}" \
         '
         {
@@ -26,7 +26,7 @@ result="$(
         '
 )"
 
-for INDEX in $( seq 0 $(( COUNT - 1)) ); do
+for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
     result="$(
         echo "${result}" | jq \
             --arg index "${INDEX}" \

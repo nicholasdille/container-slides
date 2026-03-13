@@ -2,4 +2,8 @@
 /.terraform.lock*
 /plan.out
 /git_http_backend.auto.tf
+/errored.tfstate
 /state.json
+/ssh
+/ips.txt
+/infrastructure.json

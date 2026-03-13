@@ -1,0 +1,1 @@
+make SEAT_COUNT=1 DOMAIN=go-nerd.de apply

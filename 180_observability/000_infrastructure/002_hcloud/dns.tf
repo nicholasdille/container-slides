@@ -16,6 +16,19 @@ resource "hcloud_zone_rrset" "k8s_host" {
   ]
 }
 
+resource "hcloud_zone_rrset" "k8s_host_wildcard" {
+  count = var.seat_count
+
+  provider = hcloud.dns
+  zone     = data.hcloud_zone.main.name
+  name     = "*.seat${count.index}"
+  type     = "CNAME"
+  ttl      = 120
+  records = [
+    { value = hcloud_zone_rrset.k8s_host[count.index].name },
+  ]
+}
+
 resource "local_file" "ssh" {
   content         = tls_private_key.ssh_private_key.private_key_openssh
   filename        = pathexpand("~/.ssh/${var.event_name}_ssh")
