@@ -78,6 +78,7 @@ services:
       traefik.http.routers.traefik-s.entrypoints: https
       traefik.http.routers.traefik-s.service: api@internal
       traefik.http.routers.traefik-s.rule: Host(`traefik.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}`)
+      traefik.http.routers.traefik-s.middlewares: traefik-auth
       traefik.http.routers.traefik-s.tls: "true"
 
   vscode:
