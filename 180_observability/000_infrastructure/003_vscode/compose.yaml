@@ -68,7 +68,7 @@ services:
       # Global redirection middleware
       traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
       # Auth
-      #traefik.http.middlewares.traefik-auth.basicauth.users: ${TRAEFIK_HTPASSWD?Environment variable TRAEFIK_HTPASSWD is mandatory}
+      traefik.http.middlewares.traefik-auth.basicauth.users: ${TRAEFIK_HTPASSWD?Environment variable TRAEFIK_HTPASSWD is mandatory}
       # traefik dashboard: redirection to HTTPS
       traefik.http.routers.traefik.entrypoints: http
       traefik.http.routers.traefik.service: api@internal

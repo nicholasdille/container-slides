@@ -7,22 +7,29 @@ echo "### vscode         ###"
 echo "###                ###"
 echo "######################"
 
-if ! test -f ../002_hcloud/infrastructure.json; then
+if ! test -f infrastructure.json; then
     echo "ERROR: Unable to find infrastructure.json."
     exit 1
 fi
 
-EVENT_NAME="$( jq --raw-output '.name' ../002_hcloud/infrastructure.json )"
-SEAT_COUNT="$( jq --raw-output '.count' ../002_hcloud/infrastructure.json )"
-DOMAIN="$( jq --raw-output '.domain' ../002_hcloud/infrastructure.json )"
+if ! command htpasswd; then
+    echo "ERROR: Missing htpasswd."
+    exit 1
+fi
+
+EVENT_NAME="$( jq --raw-output '.name' infrastructure.json )"
+SEAT_COUNT="$( jq --raw-output '.count' infrastructure.json )"
+DOMAIN="$( jq --raw-output '.domain' infrastructure.json )"
+TRAEFIK_PASSWORD="$( jq --raw-output '.traefik_password' infrastructure.json )"
+TRAEFIK_HTPASSWD="$( htpasswd -nBb admin "${TRAEFIK_PASSWORD}" )"
 
 echo "EVENT_NAME: ${EVENT_NAME}"
 echo "SEAT_COUNT: ${SEAT_COUNT}"
 echo "DOMAIN    : ${DOMAIN}"
 
 for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
-    IP="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .ip' ../002_hcloud/infrastructure.json )"
-    PASSWORD="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .password' ../002_hcloud/infrastructure.json )"
+    IP="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .ip' infrastructure.json )"
+    PASSWORD="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .password' infrastructure.json )"
 
     SSH_CMD="ssh -i id_rsa root@${IP}"
     SCP_CMD="scp -i id_rsa"
@@ -47,6 +54,8 @@ for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
 SEAT_INDEX=$INDEX
 IP=$IP
 DOMAIN=$DOMAIN
+TRAEFIK_PASSWORD=$TRAEFIK_PASSWORD
+TRAEFIK_HTPASSWD=$TRAEFIK_HTPASSWD
 VSCODE_PASSWORD=$PASSWORD
 EOF
     ${SCP_CMD} env-$INDEX root@${IP}:~/container-slides/180_observability/000_infrastructure/003_vscode/.env

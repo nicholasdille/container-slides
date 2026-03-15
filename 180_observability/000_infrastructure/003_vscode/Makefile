@@ -1,5 +1,4 @@
-id_rsa:
-	@jq --raw-output '.outputs.ssh_private_key.value' ../002_hcloud/state.json >$@
+TRAEFIK_PASSWORD := $(shell openssl rand -hex 16)
 
-ips.txt:
-	@jq --raw-output '.outputs.ipv4_addresses.value[]' ../002_hcloud/state.json >$@
+infrastructure.json: ../002_hcloud/infrastructure.json
+	@jq --arg password "$(TRAEFIK_PASSWORD)" '.traefik_password = $$password' ../002_hcloud/infrastructure.json >$@
