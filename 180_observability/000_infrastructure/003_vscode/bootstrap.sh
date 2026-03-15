@@ -12,7 +12,7 @@ if ! test -f infrastructure.json; then
     exit 1
 fi
 
-if ! command htpasswd; then
+if ! type htpasswd; then
     echo "ERROR: Missing htpasswd."
     exit 1
 fi
