@@ -48,7 +48,7 @@ deploy:
   - unit_tests
   environment:
     name: ${CI_COMMIT_REF_NAME}
-  image: curlimages/curl:8.17.0
+  image: curlimages/curl:8.18.0
   script:
   - |
     curl https://seat${SEAT_INDEX}.${CI_COMMIT_REF_NAME}.webdav.inmylab.de/ \
