@@ -28,7 +28,7 @@ default:
   image: golang:1.25.8
 
 services:
-- nginx:1.29.3
+- nginx:1.29.7
 
 test-service:
   extends:
