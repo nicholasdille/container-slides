@@ -1,12 +1,6 @@
-## Alarms
+<i class="fa-duotone fa-solid fa-bell-ring fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Channels
-
-Rules
-
-Thresholds
-
-Baselines
+# Alarms
 
 ---
 
@@ -20,7 +14,7 @@ The goal is to **reduce downtime** and **improve reliability**
 
 **Reduce the time to resolution**
 
-proactive > reactive
+**proactive** > **reactive**
 
 ---
 
@@ -54,6 +48,8 @@ Prometheus-Operator and AlertManager...
 
 ...with custom resources
 
+XXX grafana unified alerting for small to medium deployments
+
 ---
 
 ## Prometheus Alerting
@@ -71,3 +67,96 @@ Multiple deployment options
 Options 1 and 3 allow alerting rules to be managed through custom resources
 
 Option 2 uses the Grafana UI for managing alerting rules
+
+Scope of workshop: Alartmanager only
+
+---
+
+## Grafana vs. Alertmanager
+
+| Aspekt	    | Grafana Alerts   | Alertmanager        |
+|---------------|------------------|---------------------|
+| Datenquellen	| Viele	           | Nur Prometheus      |
+| Einrichtung	| Sehr schnell	   | Prometheus + Config |
+| Routing	    | Einfach / Mittel | Sehr mächtig        |
+| Deduplication | Grundlegend	   | Ausgereift          |
+
+---
+
+## Alert Manager
+
+Part of Prometheus ecosystem
+
+Evaluates queries (rules) against Mimir, Loki and Tempo
+
+Purpose: Grouping, Deduplication, Routing, Silencing, Inhibition
+
+### Concepts
+
+Labels: Context for alerts (service, component, team)
+
+Grouping: Bundle similar alerts into a single message
+
+Routing Tree: Rules for receivers
+
+Receivers: Channels (Slack, Mail, PagerDuty etc.)
+
+---
+
+## Routing & Deduplication
+
+XXX matchers
+
+XXX continue
+
+XXX group_by
+
+XXX group_wait / group_interval / repeat_interval
+
+XXX dedup
+
+---
+
+## Silences & Inhibition
+
+XXX silence
+
+XXX inhibition
+
+### Use Cases
+
+Maintenance windows
+
+Only alert for root cause
+
+---
+
+## Best Practices
+
+Choose labels wisely
+
+XXX severity, e.g. warning, critical, page
+
+XXX groups alerts per service
+
+XXX inhibition for root cause
+
+Establish SLO/SLI
+
+Include links in alerts
+
+---
+
+## Best Practices
+
+Few and helpful alerts
+
+Establish conventions for formatting alerts
+
+Establish priorities
+
+Make use of snooze and silence
+
+Avoid alerting fatigue
+
+Store alerts in git for versioning and documentation

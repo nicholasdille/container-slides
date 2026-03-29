@@ -1,70 +1,101 @@
-## Visualization
+<i class="fa-duotone fa-solid fa-chart-line fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX
+# Visualization
 
 ---
 
 ## Why is data visualization crucial?
 
-- **Simplifies complex data**: Easy-to-understand visuals
-- **Faster insights**: Quick identification of patterns and trends
-- **Improves monitoring**: Spot issues and anomalies at a glance
-- **Enhanced communication**: Clear insights for stakeholders
-- **Better analysis**: Detailed understanding of metrics
+**Simplifies complex data**: Easy-to-understand visuals
+
+**Faster insights**: Quick identification of patterns and trends
+
+**Improves monitoring**: Spot issues and anomalies at a glance
+
+**Enhanced communication**: Clear insights for stakeholders
+
+**Better analysis**: Detailed understanding of metrics
 
 ---
 
 ## Benefits of data visualization
 
-- **Pattern recognition**: Identify trends, outliers, and correlations
-- **Real-time monitoring**: Up-to-date visual insights
-- **Historical comparison**: Compare current and past data
-- **Custom dashboards**: Tailor views for focused monitoring
-- **Interactive exploration**: Drill down for detailed analysis
+**Pattern recognition**: Identify trends, outliers, and correlations
+
+**Real-time monitoring**: Up-to-date visual insights
+
+**Historical comparison**: Compare current and past data
+
+**Custom dashboards**: Tailor views for focused monitoring
+
+**Interactive exploration**: Drill down for detailed analysis
 
 ---
 
-## Data transformation
+## Dashboards
 
-XXX
+XXX dashboard represents specialized overview
+
+Collection of panels
+
+Each panel displays one aspect
+
+XXX data sources
+
+XXX time range
+
+XXX filters
 
 ---
 
-## Dashboard
+## PromQL
 
-Query languages
-- Prometheus Query Language (PromQL)
-- Log Query Language (LogQL)
-- Trace Query Language (TraceQL)
-
-XXX SQL-based pipelines language?!
-
----
-
-## Example PromQL Queries
-
-Query structure:
-```text
-<metric_name>{<label_name>=<label_value>}[<aggregation_interval>]
-```
-
-Examples:
+All time series for a metric:
 
 ```text
-# Select all time series for a metric
 http_requests_total
 ```
 
+Data for the given label filter:
+
 ```text
-# Return http_requests_total for given job and handler labels
 http_requests_total{job="apiserver", handler="/api/comments"}
 ```
 
+Rate of change with a sliding window of 5 minutes:
+
 ```text
-# 5-minute range of http_requests_total for given job and handler labels
-http_requests_total{job="apiserver", handler="/api/comments"}[5m]
+rate(http_requests_total{job="apiserver", handler="/api/comments"}[5m])
 ```
-```text
-# Regex
-http_requests_total{job=~".*server"}
+
+---
+
+## LogsQL
+
+All log lines for the label filter:
+
+```plaintext
+{namespace=kube-system}
 ```
+
+Filter for string `dns`:
+
+```plaintext
+{namespace=kube-system} |= `dns`
+```
+
+Exclude lines with string `dns`:
+
+```plaintext
+{namespace=kube-system} != `dns`
+```
+
+XXX json
+
+XXX pattern
+
+---
+
+## TraceQL
+
+XXX

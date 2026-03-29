@@ -29,11 +29,19 @@ pre_slides:
 - 000_introduction/02_bio.md
 
 agenda:
-- icon: question
-  text: XXX
+- icon: binoculars
+  text: Introduction to Observability
+- icon: layer-group
+  text: Grafana LGTM Stack
+- icon: vacuum
+  text: Data collection
+- icon: chart-line
+  text: Visualization
+- icon: bell-ring
+  text: Alarms
 
 slides:
-- 180_observability/slides.md
+#- 180_observability/slides.md
 - 180_observability/010_introduction/slides.md
 - 180_observability/020_lgtm/slides.md
 - 180_observability/030_data/slides.md

@@ -1,9 +1,3 @@
-# Observability
-
-XXX
-
----
-
 ## References
 
 https://github.com/grafana/docker-otel-lgtm/
