@@ -10,6 +10,7 @@ docs_dir: 180_observability
 exclude_docs: |
   */slides.md
   */README.md
+  000_infrastructure/**
 site_dir: site.180_observability
 
 theme:
@@ -85,12 +86,15 @@ nav:
 - Home: index.md
 - Navigation: navigation.md
 - Introduction:
-  - GitLab: 000_introduction/exercise.md
+  - Environment: 001_you_are_ready/exercise.md
   - You are ready: 001_you_are_ready/you_are_ready.md
 - Observability: 010_introduction/exercises.md
 - Grafana LGTM: 020_lgtm/exercises.md
 - Data Collection: 030_data/exercises.md
-- Visualization: 040_visualization/exercises.md
+- Visualization:
+  - Metrics: 040_visualization/exercises_metrics.md
+  - Logs: 040_visualization/exercises_logs.md
+  - Traces: 040_visualization/exercises_traces.md
 - Alarms: 050_alarms/exercises.md
 - Wrap Up:
   - You are done: 999_the_end/you_are_done.md

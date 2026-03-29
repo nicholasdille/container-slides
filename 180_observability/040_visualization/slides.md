@@ -32,22 +32,6 @@
 
 ---
 
-## Dashboards
-
-XXX dashboard represents specialized overview
-
-Collection of panels
-
-Each panel displays one aspect
-
-XXX data sources
-
-XXX time range
-
-XXX filters
-
----
-
 ## PromQL
 
 All time series for a metric:
@@ -99,3 +83,19 @@ XXX pattern
 ## TraceQL
 
 XXX
+
+---
+
+## Dashboards
+
+XXX dashboard represents specialized overview
+
+Collection of panels
+
+Each panel displays one aspect
+
+XXX data sources
+
+XXX time range
+
+XXX filters

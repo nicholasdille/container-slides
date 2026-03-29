@@ -105,6 +105,10 @@ mkdocs:
 		regex
 
 .PHONY:
+mkdocs-serve: mkdocs
+	@./mkdocs serve --config-file=180_observability.yml --open --watch 180_observability
+
+.PHONY:
 clean:
 	@rm -fv *.final.md *.command
 	@docker compose down --remove-orphans
