@@ -4,7 +4,7 @@ stages:
 - test
 
 default:
-  image: golang:1.25.8
+  image: golang:1.26.1
 
 lint:
   stage: check
