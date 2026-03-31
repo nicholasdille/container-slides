@@ -61,9 +61,9 @@
 
 <i class="fa-duotone fa-4x fa-list-check" style="float: right;"></i>
 
-<ul id="bullets" class="fa-ul" style="line-height: 1.5em; font-size: larger; margin-top: 0.5em;">
+<ul id="bullets" style="font-size: larger;">
 {{- range (datasource "talk").agenda }}
-<li><i class="fa-duotone fa-li fa-{{ .icon }}"></i> {{ .text }}</li>
+<li><span class="fa-li"><i class="fa-duotone fa-{{ .icon }}"></i></span> {{ .text }}</li>
 {{- end }}
 </ul>
 </section>
@@ -77,9 +77,9 @@
 
 <i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
 
-<ul id="bullets" class="fa-ul" style="line-height: 1.5em;">
+<ul id="bullets" style="font-size: larger;">
 {{- range (datasource "talk").summary }}
-<li><i class="fa-duotone fa-li fa-{{ .icon }}"></i> {{ .text }}</li>
+<li><span class="fa-li"><i class="fa-duotone fa-{{ .icon }}"></i></span> {{ .text }}</li>
 {{- end }}
 </ul>
 
@@ -102,10 +102,10 @@
 </div>
 </div>
 
-<script src="node_modules/reveal.js/dist/reveal.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/markdown/markdown.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/highlight/highlight.js" type="application/javascript"></script>
-<script src="node_modules/reveal.js/plugin/notes/notes.js" type="application/javascript"></script>
+<script src="node_modules/reveal.js/dist/reveal.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/markdown.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/highlight.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/notes.js"></script>
 <script>
     Reveal.initialize({
         width: 1920,

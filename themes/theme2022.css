@@ -50,17 +50,15 @@
     margin-bottom: 0.5em;
 }
 
-.reveal ul.fa-ul {
+.reveal ul.fa-ul,
+.reveal ul:has(.fa-li) {
     list-style-type: none;
     line-height: 200%;
+    margin-left: 2em;
 }
 
 .reveal .fa-li {
-    left: calc(var(--fa-li-width, 1em)*-1);
-}
-
-.reveal .fa-ul > li {
-    padding-left: 1em;
+    left: calc(var(--fa-li-width, 1em)*-0.25);
 }
 
 .reveal a:empty::before {
