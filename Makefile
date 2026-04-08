@@ -94,8 +94,8 @@ $(addsuffix .pdf,$(shell find . -maxdepth 1 -name \*.html -printf '%P\n' | xargs
 #     --pip-args "mkdocs-material mkdocs-material-extensions pymdown-extensions mkdocs-minify-plugin mkdocs-macros-plugin mkdocs-redirects regex" \
 #     --force
 mkdocs:
-	@shiv --output-file ./mkdocs --console-script mkdocs \
-		mkdocs \
+	@shiv --output-file ./mkdocs --console-script properdocs \
+		properdocs \
 		mkdocs-material \
 		mkdocs-material-extensions \
 		pymdown-extensions \
