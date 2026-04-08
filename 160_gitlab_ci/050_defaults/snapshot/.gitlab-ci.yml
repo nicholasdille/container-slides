@@ -3,7 +3,7 @@ stages:
 - build
 
 default:
-  image: golang:1.26.1
+  image: golang:1.26.2
 
 lint:
   stage: check
