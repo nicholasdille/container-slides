@@ -82,7 +82,7 @@ services:
       traefik.http.routers.traefik-s.tls: "true"
 
   vscode:
-    image: codercom/code-server:4.112.0
+    image: codercom/code-server:4.116.0
     command:
     - --auth=password
     - --proxy-domain=vscode.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}
