@@ -32,7 +32,7 @@ services:
       traefik.protocol: "http"
 
   telegraf:
-    image: telegraf:1.38.2-alpine
+    image: telegraf:1.38.3-alpine
     entrypoint: "sh"
     command: "-c 'echo \"$${INFLUXDB_CONF}\" > /etc/telegraf/telegraf.conf && exec telegraf'"
     environment:
