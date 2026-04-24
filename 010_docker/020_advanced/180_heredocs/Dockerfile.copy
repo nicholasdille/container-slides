@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.22.0
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 COPY --chmod=0755 <<EOF /entrypoint.sh
 #!/bin/bash

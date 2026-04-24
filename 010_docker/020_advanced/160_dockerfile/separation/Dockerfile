@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS base
+FROM ubuntu:26.04 AS base
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
         golang \
@@ -11,6 +11,6 @@ RUN go mod download
 COPY . .
 RUN go build -o hello .
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 COPY --from=builder /src/hello /
 ENTRYPOINT [ "/hello" ]
