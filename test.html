@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+
+<script type="module" src="node_modules/@awesome.me/webawesome/dist/webawesome.loader.js"></script>
+<script type="module">
+  import { setIconPath } from '/dist/webawesome.js';
+
+  // Point to the `svgs` directory from your Font Awesome download
+  setIconPath('node_modules/@fortawesome/fontawesome-pro/svgs');
+</script>
+
+<!--
+<link id="theme-stylesheet" rel="stylesheet" href="node_modules/@awesome.me/webawesome/dist/styles/themes/default.css" render="blocking" fetchpriority="high" >
+-->
+
+<link rel="stylesheet" href="node_modules/@awesome.me/webawesome/dist/styles/webawesome.css">
+
+</head>
+
+<body>
+
+<wa-callout>
+  <wa-icon slot="icon" name="circle-info"></wa-icon>
+  This is a standard callout. You can customize its content and even the icon.
+</wa-callout>
+<wa-icon family="duotone" name="bell"></wa-icon>
+
+
+</body>
+</html>
