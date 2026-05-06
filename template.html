@@ -43,7 +43,7 @@
 <p><a href="{{ (datasource "talk").event.link }}"><img src="{{ (datasource "talk").event.logo }}" style="{{ (datasource "talk").event.logo_style }}" /></a></p>
 {{- else }}
 {{- if (datasource "talk").event.link }}
-<p><a href="{{ (datasource "talk").event.link }}">{{ (datasource "talk").event.name }}</a></p>
+<p style="font-size: smaller;"><b><a href="{{ (datasource "talk").event.link }}">{{ (datasource "talk").event.name }}</a></b></p>
 {{- else }}
 {{ (datasource "talk").event.name }}
 {{- end }}
