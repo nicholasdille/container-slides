@@ -4,19 +4,13 @@
 <head>
 <meta charset="utf-8"/>
 
-<script type="module" src="node_modules/@awesome.me/webawesome/dist/webawesome.loader.js"></script>
+<link rel="stylesheet" href="/node_modules/@awesome.me/webawesome/dist-cdn/styles/themes/default.css">
+<script type="module" src="/node_modules/@awesome.me/webawesome/dist-cdn/webawesome.loader.js"></script>
 <script type="module">
-  import { setIconPath } from '/dist/webawesome.js';
-
-  // Point to the `svgs` directory from your Font Awesome download
-  setIconPath('node_modules/@fortawesome/fontawesome-pro/svgs');
+  import { setIconPath } from '/node_modules/@awesome.me/webawesome/dist-cdn/webawesome.js';
+  setIconPath('/node_modules/@fortawesome/fontawesome-pro/svgs');
 </script>
-
-<!--
-<link id="theme-stylesheet" rel="stylesheet" href="node_modules/@awesome.me/webawesome/dist/styles/themes/default.css" render="blocking" fetchpriority="high" >
--->
-
-<link rel="stylesheet" href="node_modules/@awesome.me/webawesome/dist/styles/webawesome.css">
+<link rel="stylesheet" href="/node_modules/@awesome.me/webawesome/dist-cdn/styles/native.css">
 
 </head>
 
