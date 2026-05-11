@@ -59,4 +59,10 @@ summary:
 - icon: bicep
   text: Act now
 
-events: []
+events:
+- date: "2026-11-11"
+  name: CLC
+  homepage: https://clc-conference.eu/
+  type: Talk
+  title: Cluster API
+  link: ""
