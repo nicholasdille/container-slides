@@ -4,18 +4,6 @@
 
 ---
 
-<!-- .slide: data-visibility="hidden" -->
-
-<i class="fa fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
-
-## Performance
-
-### use of external commands
-
-XXX
-
----
-
 <i class="fa fa-solid fa-gauge-high fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ## Performance
@@ -36,19 +24,19 @@ Editing breaks execution
 
 ### Working with data structure 1/2
 
-JSON is not natively supported
+No native support for JSON
 
 `jq` to the rescue?
 
 One call per value for retrieval
 
 ```bash
-# Fetch version
+# uniget: Fetch version of a tool from metadata
 jq --raw-output \
     '.tools[] | select(.name == 'aws2') | .version' \
     ~/.cache/uniget/metadata.json
     
-# Fetch homepage
+# uniget: Fetch homepage of a tool from metadata
 jq --raw-output \
     '.tools[] | select(.name == 'aws2') | .homepage' \
     ~/.cache/uniget/metadata.json
@@ -65,7 +53,10 @@ jq --raw-output \
 One alternative is to use the builtin command `mapfile`:
 
 ```bash
+# Declare an array
 declare -a value_array
+
+# Read values from stdin into the array
 mapfile -t value_array < <(
     jq --raw-output \
         '.tools[] | select(.name == "aws2") | [.version, .homepage] | join("\n")' \
@@ -83,10 +74,10 @@ Avoiding repetition sacrifices readability <i class="fa fa-face-rolling-eyes"></
 
 ### Avoid excessive forking
 
-O(n), ~100 processes, 13 seconds:
+O(n), ~1.100 processes, 18 seconds:
 
 ```bash
-# Loop to show all tools with version in reverse order
+# uniget: Show all tools with version in reverse order
 time \
 jq --raw-output '.tools[].name' ~/.cache/uniget/metadata.json \
 | sort -r \
@@ -97,10 +88,10 @@ jq --raw-output '.tools[].name' ~/.cache/uniget/metadata.json \
 done
 ```
 
-O(1), 1 process, 13 milliseconds:
+O(1), 1 process, 25 milliseconds:
 
 ```bash
-# Show all tools with version in reverse order
+# uniget: Show all tools with version in reverse order
 time \
 jq --raw-output '.tools[] | "\(.name) v\(.version)"' ~/.cache/uniget/metadata.json \
 | sort -r

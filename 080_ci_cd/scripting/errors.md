@@ -10,13 +10,13 @@
 
 ### `errexit` is not enough
 
-Breaks when a command fails:
+Break when a command fails:
 
 ```bash
-# Enable (short version)
+# Enable errexit (short version)
 set -e
 
-# Enable (long version)
+# Enable errexit (long version)
 set -o errexit
 ```
 
@@ -30,7 +30,7 @@ Use `errexit` in addition to error handling
 
 ## Error Handling
 
-### Errors should be handled
+### Errors must be handled
 
 Do not suppress errors:
 
@@ -38,7 +38,7 @@ Do not suppress errors:
 test -f missing_file_name || true
 ```
 
-Be careful - this rarely makes sense!
+This rarely makes sense!
 
 ---
 
@@ -51,6 +51,7 @@ Be careful - this rarely makes sense!
 Maps to `true` except when return code > 0:
 
 ```bash
+# Check if file exists
 if test -f missing_file_name; then
     echo "File exists"
 else
@@ -58,9 +59,10 @@ else
 fi
 ```
 
-...also:
+...works for any tool:
 
 ```bash
+# Check for pattern in file
 if grep --quiet pattern file; then
     echo "Pattern exists in file"
 else
@@ -128,7 +130,7 @@ false | cat
 echo "This is executed"
 ```
 
-Use `set -o pipefail` to catch errors in pipelines
+Enable `pipefail` to catch errors in pipelines:
 
 ```bash
 set -o errexit

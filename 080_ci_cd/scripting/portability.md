@@ -108,7 +108,7 @@ Long parameter are missing:
 # Breaks on busybox
 cat file | grep --quiet "pattern"
 
-# Works on both
+# Works on busybox
 cat file | grep -q "pattern"
 ```
 

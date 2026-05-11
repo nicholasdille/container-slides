@@ -30,11 +30,11 @@ pre_slides:
 
 agenda:
 - icon: face-grin-stars
-  text: Shell scripts are great
+  text: Shell code is great
 - icon: face-surprise
-  text: Are they really?
+  text: Oh really?
 - icon: face-sad-cry
-  text: What have you done?
+  text: What have I done?
 - icon: face-rolling-eyes
   text: Compromise
 
@@ -52,11 +52,11 @@ slides:
 summary:
 - icon: hands-holding
   text: Shell code is omnipresent
-- icon: book
-  text: Make it repeatable
 - icon: hat-wizard
   text: You feel powerful
 - icon: person-falling-burst
   text: Until you loose control
+- icon: bicep
+  text: Act now
 
 events: []

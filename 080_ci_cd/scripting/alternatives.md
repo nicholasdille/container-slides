@@ -10,7 +10,10 @@
 
 ### High-level programming language
 
-When to switch:
+For example: Go, Rust, Java, C#
+
+### When to switch
+
 - Parsing of structured files
 - Length
 - Readability
@@ -29,9 +32,10 @@ Think about a custom CLI <i class="fa fa-solid fa-wand-magic-sparkles"></i>
 
 For example: Python, Ruby, Perl, PowerShell
 
-Be careful about the runtime dependency
+The runtime becomes a hard dependency
 
-When to switch:
+### When to switch
+
 - Parsing of structured files
 - Length
 - Readability
@@ -46,11 +50,15 @@ When to switch:
 
 ### Wrap in `Dockerfile`
 
-Manage the runtime environment
+Manages the runtime environment
 
-Create shippable unit
+Creates shippable unit
 
 Intermediate step before switching to another language
+
+### When to switch
+
+- Portability
 
 ---
 
@@ -62,10 +70,13 @@ Intermediate step before switching to another language
 
 Consume logic from existing tools
 
-For example:
-- Terraform / OpenTofu
-- Docker Compose
-- Ansible
+### For example
+
+Terraform / OpenTofu
+
+Docker Compose
+
+Ansible
 
 ---
 
@@ -77,7 +88,10 @@ For example:
 
 Complexity caused by design decisions
 
-For example:
-- `xmlstarlet` is great for processing XML/XHTML
-- Excessive use sacrifices readability and performance
-- Templating can be an alternative, e.g. `gomplate`
+### For example
+
+`xmlstarlet` is great for processing XML/XHTML
+
+Excessive use sacrifices readability and performance
+
+Templating can be an alternative, e.g. `gomplate`

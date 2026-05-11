@@ -58,13 +58,15 @@ test:
   image: golang
   script: go test ./...
 ```
-<!-- .element: style="width: 30em; height: 19em; float: right;" -->
+<!-- .element: style="width: 30em; height: 20em; float: right;" -->
 
 ## Also Shell Code
 
 Declarative pipelines
 
-Shell code is embedded into declaration
+Shell code is embedded
+
+### For example
 
 GitLab: `.gitlab-ci.yml`
 
@@ -72,7 +74,7 @@ Jenkins: `Jenkinsfile`
 
 GitHub: `.github/workflows/*`
 
-`Makefile` (and alternatives)
+Tooling: `Makefile` (and alternatives)
 
 ---
 
@@ -96,9 +98,9 @@ Wrapped in a `Dockerfile`
 
 Embedded or copied
 
-Controlled runtime environment
+Repeatable and reproducible...
 
-Repeatable and reproducible
+...in a controlled runtime environment
 
 ---
 
@@ -108,11 +110,11 @@ Repeatable and reproducible
 
 Always available
 
-No libraries
+Requires no libraries
 
-Command line tools
+Gazillion command line tools
 
-Easy glue code
+Is easy glue code
 
 Script collection
 

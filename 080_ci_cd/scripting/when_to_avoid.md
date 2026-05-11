@@ -1,12 +1,12 @@
 <i class="fa fa-solid fa-triangle-exclamation fa-8x"></i> <!-- .element: style="float: right;" -->
 
-## When to Avoid
+## When to Avoid Shell Code
 
 ---
 
 <i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
-## When to Avoid
+## When to Avoid Shell Code
 
 ### Length
 
@@ -14,31 +14,33 @@
 
 ~900 lines of code
 
+Impossible to read and maintain
+
 ---
 
 <i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
-## When to Avoid
+## When to Avoid Shell Code
 
 ### Complexity
 
 [Predecessor of uniget](https://github.com/nicholasdille/docker-setup/blob/v1.7.47) was sourcing files
 
-4 files of ~1000 lines of code in total
+4 files of ~1000 LoC in total
 
-(Script included logic for hot loading <i class="fa fa-solid fa-face-dizzy"></i>)
+(plus logic for hot loading <i class="fa fa-solid fa-face-dizzy"></i>)
 
 ---
 
 <i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
-## When to Avoid
+## When to Avoid Shell Code
 
 ### Readability
 
 Are you using?
 - Oneliners
-- Language-specific constructs
+- Dialect specific constructs
 - Sourcing files
 
 Are you creating a script collection?
@@ -49,7 +51,7 @@ Are you creating a function library?
 
 <i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
-## When to Avoid
+## When to Avoid Shell Code
 
 ### Maintainability
 
@@ -57,25 +59,25 @@ Many checks for required tools
 
 Use of dictionaries (`declare -A my_dictionary`)
 
-Extensive parsing of JSON
+Extensive parsing of structured data (e.g. JSON)
 
 ---
 
 <i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
-## When to Avoid
+## When to Avoid Shell Code
 
 ### Performance
 
 Dependencies on external tools
 
-Many additional processes
+Excessive forking
 
 ---
 
 <i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
 
-## When to Avoid
+## When to Avoid Shell Code
 
 ### You are truly lost if you...
 

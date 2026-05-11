@@ -8,7 +8,7 @@
 
 ## Readability
 
-## Avoid Oneliners
+### Avoid Oneliners
 
 Count instances of `git-credential-oauth`:
 
@@ -30,7 +30,7 @@ ghcr.io/uniget-org/tools/metadata | tar -xzO metadata.json | jq -r '.tools[].nam
 
 ## Readability
 
-### Break long lines
+### Break long lines, add indentation
 
 Count instances of `git-credential-oauth`:
 
