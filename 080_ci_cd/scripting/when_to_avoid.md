@@ -57,7 +57,18 @@ Are you creating a function library?
 
 Many checks for required tools
 
-Use of dictionaries (`declare -A my_dictionary`)
+Use of dictionaries
+
+```
+declare -A my_dictionary
+my_dictionary=(
+    ["key1"]="value1"
+    ["key2"]="value2"
+)
+for key in "${!my_dictionary[@]}"; do
+    echo "Key: ${key}, Value: ${my_dictionary[${key}]}"
+done
+```
 
 Extensive parsing of structured data (e.g. JSON)
 
@@ -72,6 +83,22 @@ Extensive parsing of structured data (e.g. JSON)
 Dependencies on external tools
 
 Excessive forking
+
+---
+
+<i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## When to Avoid Shell Code
+
+### Text parsing
+
+Standard unix tools write formatted output
+
+Extraction of data required text parsing
+
+Think `grep`, `cut`, `tr`, `awk`, `sed`
+
+Partly mitigated by parsing JSON output with `jq`
 
 ---
 

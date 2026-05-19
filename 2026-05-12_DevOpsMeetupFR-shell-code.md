@@ -1,5 +1,3 @@
-shell dicts syntax
-text parsing
 nushell
 nix
 bun compile
