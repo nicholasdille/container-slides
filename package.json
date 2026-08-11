@@ -9,11 +9,11 @@
         "@awesome.me/webawesome": "^3.6.0",
         "@fortawesome/fontawesome-pro": "7.2.0",
         "highlight.js": "11.11.1",
+        "mermaid": "11.16.1",
         "reveal.js": "6.0.0"
     },
     "devDependencies": {
         "browser-sync": "3.0.4",
-        "gulp": "5.0.1",
-        "markdown-link-check": "3.14.2"
+        "gulp": "5.0.1"
     }
 }

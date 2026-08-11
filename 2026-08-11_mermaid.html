@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+
+<title>How Much Shell Code is Too Much</title>
+
+<!-- https://gauger.io/fonticon/ -->
+<link rel="icon" href="images/favicons/renovate.ico"/>
+
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
+<link rel="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" />
+<link rel="stylesheet" href="themes/theme2022.css" id="theme" />
+<link rel="stylesheet" href="themes/common.css" />
+<link rel="stylesheet" href="themes/fontawesome.css" />
+<style>
+.reveal p code {
+    background-color: #505050;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    border-radius: 0.2em;
+}
+
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section>
+<h2>Agenda</h2>
+
+<pre class="mermaid">
+---
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+    Observer --o Subject
+    ConcreteObserver --|> Observer
+    ConcreteSubject --|> Subject
+    ConcreteObserver --> ConcreteSubject : observes
+
+    class Observer {
+        &lt;&lt;interface&gt;&gt;
+        +update()
+    }
+
+    class Subject {
+        &lt;&lt;interface&gt;&gt;
+        +attach(o: Observer)
+        +detach(o: Observer)
+        +notify()
+    }
+</pre>
+
+</div>
+</div>
+
+<script type="module">
+    import mermaid from './node_modules/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark'
+    });
+</script>
+
+<script src="node_modules/reveal.js/dist/reveal.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/markdown.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/highlight.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/notes.js"></script>
+<script>
+    Reveal.initialize({
+        width: 1920,
+        height: 1080,
+        minScale: 0.5,
+        maxScale: 2.0,
+        margin: 0.05,
+
+        controls: false,
+        controlsTutorial: false,
+        progress: true,
+        slideNumber: false,
+        keyboard: true,
+        touch: true,
+        mouseWheel: false,
+
+        hash: true,
+        history: false,
+        overview: true,
+        fragments: true,
+        fragmentInURL: true,
+        transition: 'convex',
+        transitionSpeed: 'default',
+        backgroundTransition: 'fade',
+        hideInactiveCursor: true,
+
+        autoPlayMedia: null,
+        previewLinks: false,
+
+        center: true,
+        help: true,
+
+        markdown: {
+            smartypants: true
+        },
+
+        plugins: [
+            RevealMarkdown,
+            RevealHighlight,
+            RevealNotes
+        ]
+    });
+</script>
+
+</body>
+</html>
