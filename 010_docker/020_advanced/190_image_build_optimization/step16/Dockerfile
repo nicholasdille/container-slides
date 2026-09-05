@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.22.0
 
-FROM golang:1.26 AS build
+FROM golang:1.27 AS build
 WORKDIR /go/src/gitlab.com/nicholasdille/cc22_container_image_build_optimization
 COPY go.* .
 RUN go mod download
