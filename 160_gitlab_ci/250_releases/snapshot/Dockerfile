@@ -1,3 +1,3 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 COPY hello-linux-amd64 /hello
 CMD [ "/hello" ]
