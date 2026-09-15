@@ -14,7 +14,9 @@
 
 ~900 lines of code
 
-Impossible to read and maintain
+Impossible to read and hard to maintain
+
+Many exotic shell language constructs
 
 ---
 
@@ -26,7 +28,7 @@ Impossible to read and maintain
 
 [Predecessor of uniget](https://github.com/nicholasdille/docker-setup/blob/v1.7.47) was sourcing files
 
-4 files of ~1000 LoC in total
+4 files of ~1000 lines of code in total
 
 (plus logic for hot loading <i class="fa fa-solid fa-face-dizzy"></i>)
 
@@ -40,8 +42,10 @@ Impossible to read and maintain
 
 Are you using?
 - Oneliners
-- Dialect specific constructs
+- Advanced language constructs
+- Constructs specific to a shell dialect
 - Sourcing files
+- Parsing of structured data, e.g. JSON
 
 Are you creating a script collection?
 
@@ -84,6 +88,8 @@ Dependencies on external tools
 
 Excessive forking
 
+Workarounds found in [pure sh bible](https://github.com/dylanaraps/pure-sh-bible) (increases complexity)
+
 ---
 
 <i class="fa fa-solid fa-triangle-exclamation fa-4x"></i> <!-- .element: style="float: right;" -->
@@ -99,6 +105,8 @@ Extraction of data required text parsing
 Think `grep`, `cut`, `tr`, `awk`, `sed`
 
 Partly mitigated by parsing JSON output with `jq`
+
+Alternatives: [nushell](https://www.nushell.sh/)
 
 ---
 

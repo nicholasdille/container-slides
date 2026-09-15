@@ -8,9 +8,13 @@
 
 ## Alternatives
 
-### High-level programming language
+### Programming language
 
-For example: Go, Rust, Java, C#
+High-level languages: Go, Rust, Java, C#
+
+Script languages: Python, Ruby, Perl, PowerShell
+
+The runtime becomes a hard dependency
 
 ### When to switch
 
@@ -28,37 +32,17 @@ Think about a custom CLI <i class="fa fa-solid fa-wand-magic-sparkles"></i>
 
 ## Alternatives
 
-### Script languages
-
-For example: Python, Ruby, Perl, PowerShell
-
-The runtime becomes a hard dependency
-
-### When to switch
-
-- Parsing of structured files
-- Length
-- Readability
-- Portability
-- Performance
-
----
-
-<i class="fa fa-solid fa-shuffle fa-4x"></i> <!-- .element: style="float: right;" -->
-
-## Alternatives
-
 ### Wrap in `Dockerfile`
 
 Manages the runtime environment
 
-Creates shippable unit
+Creates a shippable unit
 
 Intermediate step before switching to another language
 
 ### When to switch
 
-- Portability
+Portability
 
 ---
 

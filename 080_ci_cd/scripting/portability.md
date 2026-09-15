@@ -16,9 +16,11 @@ Least common denominator
 # Only bash
 [[ $var =~ /^foo\s/ ]] && echo "starts with foo"
 
-# Portable
+# Portable alternatives to [[...]]
 test -z "$var" && echo "empty"
 [ -z "$var" ] && echo "empty"
+
+# Portable alternative to regular expressions
 grep --extended-regexp --quiet '^foo\s' <<< "$var" && echo "starts with foo"
 ```
 
@@ -45,10 +47,6 @@ func check_tool() {
 check_tool curl
 check_tool jq
 ```
-
-Workarounds found in [pure sh bible](https://github.com/dylanaraps/pure-sh-bible) (increases complexity)
-
-Also: Security issues from outdated tools
 
 ---
 
@@ -88,8 +86,8 @@ For example, network configuration files:
 | Distribution | Tool               | Location            | Format |
 |--------------|--------------------|---------------------|--------|
 | Ubuntu       | netplan            | /etc/netplan/       | YAML   |
-| Fedora       | NetworkManager     | /etc/NetworkManager/| TOML   |
 | Alpine Linux | ifupdown (busybox) | /etc/network/       | Text   |
+| Fedora       | NetworkManager     | /etc/NetworkManager/| TOML   |
 
 <!-- .element: style="font-size: smaller;" -->
 
@@ -112,4 +110,4 @@ cat file | grep --quiet "pattern"
 cat file | grep -q "pattern"
 ```
 
-Size sacrifices readability <i class="fa fa-face-rolling-eyes"></i>
+Portability sacrifices size sacrifices readability <i class="fa fa-face-rolling-eyes"></i>

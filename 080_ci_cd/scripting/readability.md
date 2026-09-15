@@ -99,4 +99,4 @@ source functions.sh
 get_uniget_metadata()
 ```
 
-Additional files to install
+Additional files to install and update

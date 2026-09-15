@@ -20,7 +20,9 @@ set -e
 set -o errexit
 ```
 
-Often you want to handle the error gracefully
+Often, failed commands provide information to continue execution
+
+You want to handle the error gracefully
 
 Use `errexit` in addition to error handling
 
@@ -78,7 +80,7 @@ fi
 
 ### Know your tools
 
-`curl` signals success if it completed:
+`curl` signals success if the call completed:
 
 ```bash
 if curl http://example.com; then
@@ -90,7 +92,7 @@ Tell `curl` to `--fail` on HTTP errors (>= 400):
 
 ```bash
 if curl --fail http://example.com; then
-    echo "Succeeded only for HTTP 2xx"
+    echo "Succeeded only for HTTP 2xx/3xx"
 fi
 ```
 
@@ -139,3 +141,30 @@ set -o pipefail
 false | cat
 echo "This is NOT executed"
 ```
+
+---
+
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+
+## Errors caused by error handling
+
+### Early Pipe Closure
+
+Pipes can close early
+
+`head -n 1` closes stdin after the first line...
+
+...and `sort` writes to a close pipe causing `SIGPIPE`
+
+```bash
+# fails with SIGPIPE
+cat data.txt | sort | head -n 1
+
+# works
+cat data.txt | sort -r | tail -n 1
+
+# workaround
+cat data.txyt | sort | (head -n 1; cat >/dev/null)
+```
+
+Cause of flaky tests
