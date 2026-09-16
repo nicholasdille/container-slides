@@ -11,6 +11,6 @@
 
 *The universal installer and updater for (container) tools*
 
-XXX
+![](000_introduction/uniget/uniget.gif) <!-- .element: style="width: 70%;" -->
 
-uniget.dev
+Learn more on [uniget.dev](https://uniget.dev)
