@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Window size</title>
+<link rel="stylesheet" href="themes/fontawesome.css" />
+<style>
+    .ratio-button {
+        font: inherit;
+    }
+
+    .ratio-button.active {
+        background-color: gray;
+        color: white;
+    }
+</style>
+</head>
+<body style="background-color: dimgray; font-family: 'Courier New', Courier, monospace;">
+<div style="text-align: center; font-size: 20px; color: white;">
+    <p style="color: lightgray;">next best dimension below: <span id="dimensions-below">unknown</span></p>
+    <p><i class="fa-duotone fa-solid fa-angles-up"></i></p>
+    <p>desired ratio:
+        <button class="ratio-button active" type="button" data-ratio="16:9" aria-pressed="true">16:9</button>
+        <button class="ratio-button" type="button" data-ratio="16:10" aria-pressed="false">16:10</button>
+        <button class="ratio-button" type="button" data-ratio="4:3" aria-pressed="false">4:3</button>
+        <button class="ratio-button" type="button" data-ratio="3:2" aria-pressed="false">3:2</button>
+        <button class="ratio-button" type="button" data-ratio="21:9" aria-pressed="false">21:9</button>
+        <button class="ratio-button" type="button" data-ratio="32:9" aria-pressed="false">32:9</button>
+        <button class="ratio-button" type="button" data-ratio="1:1" aria-pressed="false">1:1</button>
+    </p>
+    <p>current dimensions: <span id="width">unknown</span> x <span id="height">unknown</span></p>
+    <p>closest dimensions: <span id="current-width">unknown</span> x <span id="desired-height">unknown</span></p>
+    <p><i class="fa-duotone fa-solid fa-angles-down"></i></p>
+    <p style="color: lightgray;">next best dimension above: <span id="dimensions-above">unknown</span></p>
+</div>
+<script>
+    document.getElementById('width').textContent = window.innerWidth;
+    document.getElementById('height').textContent = window.innerHeight;
+
+    function handleResize() {
+        // Your logic here, e.g., accessing window.innerWidth
+        console.log("Window resized to: " + window.innerWidth);
+        document.getElementById('width').textContent = window.innerWidth;
+        document.getElementById('height').textContent = window.innerHeight;
+        const ratio = document.querySelector('.ratio-button.active').dataset.ratio.split(':').map(Number);
+        const desiredHeight = window.innerWidth / (ratio[0] / ratio[1]);
+        const widthStep = ratio[0];
+        const lowerMultiplier = Math.max(1, Math.floor((window.innerWidth - 1) / widthStep));
+        const upperMultiplier = Math.ceil((window.innerWidth + 1) / widthStep);
+        const lowerWidth = widthStep * lowerMultiplier;
+        const upperWidth = widthStep * upperMultiplier;
+        document.getElementById('current-width').textContent = window.innerWidth;
+        document.getElementById('desired-height').textContent = desiredHeight;
+        document.getElementById('dimensions-below').textContent = lowerWidth + ' x ' + (ratio[1] * lowerMultiplier);
+        document.getElementById('dimensions-above').textContent = upperWidth + ' x ' + (ratio[1] * upperMultiplier);
+    }
+
+    // Call immediately on load
+    handleResize();
+
+    // Attach listener for subsequent resizes
+    window.addEventListener("resize", handleResize);
+    document.querySelectorAll('.ratio-button').forEach((button) => {
+        button.addEventListener("click", () => {
+            const activeButton = document.querySelector('.ratio-button.active');
+            activeButton.classList.remove('active');
+            activeButton.setAttribute('aria-pressed', 'false');
+            button.classList.add('active');
+            button.setAttribute('aria-pressed', 'true');
+            handleResize();
+        });
+    });
+</script>
+</body>
+</html>
