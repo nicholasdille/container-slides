@@ -26,7 +26,7 @@ custom_style: |
   }
 
 pre_slides:
-- 000_introduction/02_bio.md
+- 000_introduction/02_bio_short.md
 
 agenda:
 - icon: face-grin-stars
@@ -42,12 +42,12 @@ slides:
 - 080_ci_cd/scripting/introduction.md
 - 000_introduction/uniget/intro.md
 - 080_ci_cd/scripting/readability.md
-- 080_ci_cd/scripting/portability.md
+- 080_ci_cd/scripting/portability_short.md
 - 080_ci_cd/scripting/performance.md
 #- 080_ci_cd/scripting/data.md
-- 080_ci_cd/scripting/errors.md
+- 080_ci_cd/scripting/errors_short.md
 #- 080_ci_cd/scripting/development.md
-- 080_ci_cd/scripting/when_to_avoid.md
+- 080_ci_cd/scripting/when_to_avoid_short.md
 - 080_ci_cd/scripting/alternatives_short.md
 
 summary:

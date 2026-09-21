@@ -7,10 +7,12 @@
                |___/
 </pre>
 
-<!-- .element: style2="font-size: x-larger;" -->
+<!-- .element: style="margin-left: 0px; font-size: x-larger;" -->
 
 *The universal installer and updater for (container) tools*
 
-![](000_introduction/uniget/uniget.gif) <!-- .element: style="width: 70%;" -->
+![](000_introduction/uniget/uniget.gif) <!-- .element: style="width: 65%;" -->
+
+Handles tools not included in your distro's package manager
 
 Learn more on [uniget.dev](https://uniget.dev)
