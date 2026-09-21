@@ -41,7 +41,8 @@ $(BIN)/%:
 	@uniget install $*
 
 $(addsuffix .html,$(shell find . -maxdepth 1 -name \*.yaml -printf '%P\n' | xargs -I{} basename {} .yaml)):%.html: Makefile template.html %.yaml $(GOMPLATE)
-	@$(GOMPLATE) --file=template.html --datasource=talk=$*.yaml --out=$@; \
+	$(eval TEMPLATE_SUFFIX := $(shell yq eval .template_suffix $*.yaml))
+	@$(GOMPLATE) --file=template$(TEMPLATE_SUFFIX).html --datasource=talk=$*.yaml --out=$@; \
 	sed -i 's/&lt;/</g; s/&gt;/>/g' $@
 
 .PHONY:

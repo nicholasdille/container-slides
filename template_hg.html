@@ -4,10 +4,10 @@
 <head>
 <meta charset="utf-8"/>
 
-<title>How Much Shell Code is Too Much</title>
+<title>{{ (datasource "talk").metadata.title }}</title>
 
 <!-- https://gauger.io/fonticon/ -->
-<link rel="icon" href="images/favicons/hg_devops.ico"/>
+<link rel="icon" href="{{ (datasource "talk").metadata.favicon }}"/>
 
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
 <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
@@ -16,15 +16,11 @@
 <link rel="stylesheet" href="themes/hg.css" />
 <link rel="stylesheet" href="themes/common.css" />
 <link rel="stylesheet" href="themes/fontawesome.css" />
+{{- if has (datasource "talk") "custom_style" }}
 <style>
-.reveal p code {
-    background-color: var(--hg-secondary-mid-deep-blue);
-    padding-left: 0.1em;
-    padding-right: 0.1em;
-    border-radius: 0.2em;
-}
-
+{{ (datasource "talk").custom_style }}
 </style>
+{{- end }}
 </head>
 
 <body>
@@ -33,22 +29,27 @@
 
 <section
     id="title"
-    data-background="images/arjun-kapoor-gR_-FEC_zQc-unsplash.jpg"
-    data-background-size="120%"
-    data-background-position="left 0% top 30%">
+    data-background="{{ (datasource "talk").metadata.background.image }}"
+    data-background-size="{{ (datasource "talk").metadata.background.size }}"
+    data-background-position="{{ (datasource "talk").metadata.background.position }}">
 
 <div style="margin-top: 10%; width: 30%; padding-top: 3.5em; padding-bottom: 3em; padding-left: 1em; display: inline-block; transform: skewY(-23deg); background: var(--hg-primary-blue); border: none;z-index: -1;">
 <div style="transform: skewY(23deg);">
 
-<p>DevOps Day 2026</p>
-<h1 style="font-size: 1.5em;"><b>How Much Shell Code is Too Much</b></h1>
-<h2 style="font-size: 1.2em; text-transform: none;"></h2>
-<p><em>Nicholas Dille<br/>DevOps Services</em></p>
+<p>{{ (datasource "talk").event.name }}</p>
+<h1 style="font-size: 1.5em;"><b>{{ (datasource "talk").metadata.title }}</b></h1>
+<h2 style="font-size: 1.2em; text-transform: none;">{{ (datasource "talk").metadata.subtitle }}</h2>
+<p><em>{{ (datasource "talk").metadata.author }}</em></p>
 
 </div>
 </div>
 </section>
-<section data-markdown="000_introduction/02_bio_short.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+{{- if has (datasource "talk") "pre_slides" }}
+{{- range (datasource "talk").pre_slides }}
+<section data-markdown="{{ . }}" data-separator="^---$" data-separator-vertical="^--$"></section>
+{{- end }}
+{{- end }}
 
 <section id="agenda">
 <h2>Agenda</h2>
@@ -56,20 +57,15 @@
 <i class="fa-duotone fa-4x fa-list-check" style="float: right;"></i>
 
 <ul id="bullets" style="font-size: larger;">
-<li><span class="fa-li"><i class="fa-duotone fa-face-grin-stars"></i></span> Shell code is great</li>
-<li><span class="fa-li"><i class="fa-duotone fa-face-surprise"></i></span> Oh really?</li>
-<li><span class="fa-li"><i class="fa-duotone fa-face-sad-cry"></i></span> What have I done?</li>
-<li><span class="fa-li"><i class="fa-duotone fa-face-rolling-eyes"></i></span> Compromise</li>
+{{- range (datasource "talk").agenda }}
+<li><span class="fa-li"><i class="fa-duotone fa-{{ .icon }}"></i></span> {{ .text }}</li>
+{{- end }}
 </ul>
 </section>
-<section data-markdown="080_ci_cd/scripting/introduction.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="000_introduction/uniget/intro.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="080_ci_cd/scripting/readability.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="080_ci_cd/scripting/portability_short.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="080_ci_cd/scripting/performance.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="080_ci_cd/scripting/errors_short.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="080_ci_cd/scripting/when_to_avoid_short.md" data-separator="^---$" data-separator-vertical="^--$"></section>
-<section data-markdown="080_ci_cd/scripting/alternatives_short.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+{{- range (datasource "talk").slides }}
+<section data-markdown="{{ . }}" data-separator="^---$" data-separator-vertical="^--$"></section>
+{{- end }}
 
 <section id="summary">
 <h2>Summary</h2>
@@ -77,13 +73,17 @@
 <i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
 
 <ul id="bullets" style="font-size: larger;">
-<li><span class="fa-li"><i class="fa-duotone fa-hands-holding"></i></span> Shell code is omnipresent</li>
-<li><span class="fa-li"><i class="fa-duotone fa-hat-wizard"></i></span> You feel powerful</li>
-<li><span class="fa-li"><i class="fa-duotone fa-person-falling-burst"></i></span> Until you stumble</li>
-<li><span class="fa-li"><i class="fa-duotone fa-bicep"></i></span> Act now</li>
-<li><span class="fa-li"><i class="fa-duotone fa-hand-shaka"></i></span> Stay in control</li>
+{{- range (datasource "talk").summary }}
+<li><span class="fa-li"><i class="fa-duotone fa-{{ .icon }}"></i></span> {{ .text }}</li>
+{{- end }}
 </ul>
 </section>
+
+{{- if has (datasource "talk") "post_slides" }}
+{{- range (datasource "talk").post_slides }}
+<section data-markdown="{{ . }}" data-separator="^---$" data-separator-vertical="^--$"></section>
+{{- end }}
+{{- end }}
 
 </div>
 </div>

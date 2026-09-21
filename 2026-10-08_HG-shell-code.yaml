@@ -1,25 +1,20 @@
 date: 2026-10-08
+template_suffix: _hg
 metadata:
-  author: Nicholas Dille, DevOps Services
+  author: Nicholas Dille<br/>DevOps Services
   title: How Much Shell Code is Too Much
   title_slug: shell-code
   subtitle: ""
-  box:
-    width: 20%
-    align: left
-  favicon: images/shield.ico
+  favicon: images/favicons/hg_devops.ico
   background:
     image: images/arjun-kapoor-gR_-FEC_zQc-unsplash.jpg
     size: 120%
     position: left 0% top 30%
 event:
   name: DevOps Day 2026
-  logo: ""
-  logo_style: "height: 1.5em; margin-top: 0.5em;"
-  link: https://devops-day-2026.haufedev.systems
 custom_style: |
   .reveal p code {
-      background-color: #505050;
+      background-color: var(--hg-secondary-mid-deep-blue);
       padding-left: 0.1em;
       padding-right: 0.1em;
       border-radius: 0.2em;
@@ -44,9 +39,7 @@ slides:
 - 080_ci_cd/scripting/readability.md
 - 080_ci_cd/scripting/portability_short.md
 - 080_ci_cd/scripting/performance.md
-#- 080_ci_cd/scripting/data.md
 - 080_ci_cd/scripting/errors_short.md
-#- 080_ci_cd/scripting/development.md
 - 080_ci_cd/scripting/when_to_avoid_short.md
 - 080_ci_cd/scripting/alternatives_short.md
 
@@ -61,5 +54,3 @@ summary:
   text: Act now
 - icon: hand-shaka
   text: Stay in control
-
-events: []
