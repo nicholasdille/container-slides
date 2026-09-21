@@ -10,3 +10,5 @@ mkdocs
 node_modules
 themes/fontawesome.css*
 .env.mk
+
+themes/hg_optional_fonts/**
