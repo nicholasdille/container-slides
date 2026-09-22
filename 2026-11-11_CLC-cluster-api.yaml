@@ -1,0 +1,65 @@
+date: 2026-11-11
+metadata:
+  author: Nicholas Dille, Haufe Group
+  title: Introduction to Cluster API
+  title_slug: cluster-api
+  subtitle: "Declarative Cluster Management<br/>for Kubernetes"
+  box:
+    width: 50%
+    align: left
+  favicon: images/favicons/kubernetes.ico
+  background:
+    image: images/maria-kovalets-yugJdY4NVrc-unsplash.jpg
+    size: 120%
+    position: left 0% top 30%
+event:
+  name: " "
+  logo: images/logos/clc2025_white.svg
+  logo_style: "height: 1.5em; margin-top: 0.5em;"
+  link: https://www.continuouslifecycle.de/
+custom_style: |
+  .reveal p code {
+      background-color: var(--hg-secondary-mid-deep-blue);
+      padding-left: 0.1em;
+      padding-right: 0.1em;
+      border-radius: 0.2em;
+
+pre_slides:
+- 000_introduction/02_bio.md
+
+agenda:
+- icon: face-grin-stars
+  text: Kubernetes-native lifecycle model
+- icon: face-surprise
+  text: Chicken-and-egg problem
+- icon: face-sad-cry
+  text: Management and workload clusters
+- icon: face-thinking
+  text: Pluggable infrastructure provider
+
+slides:
+- 120_kubernetes/cluster-api/slides.md
+
+summary:
+- icon: face-grin-stars
+  text: Kubernetes-native lifecycle model
+- icon: face-surprise
+  text: Chicken-and-egg problem
+- icon: face-sad-cry
+  text: Management and workload clusters
+- icon: face-thinking
+  text: Pluggable infrastructure provider
+
+events:
+- date: "2025-10-15"
+  name: heise Conferences
+  homepage: https://heise-conferences.de/
+  type: Workshop (2 days)
+  title: GitLab CI/CD
+  link: https://heise-conferences.de/workshop/ci-cd-mit-gitlab-tykPueCV0IxT56
+- date: "2026-11-19"
+  name: heise Conferences
+  homepage: https://heise-conferences.de/
+  type: Workshop
+  title: Cloud Native Observability
+  link: https://heise-conferences.de/workshop/observability-fur-kubernetes-umgebungen-yGa7OVTSsUhY4U
