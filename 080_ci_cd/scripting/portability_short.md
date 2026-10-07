@@ -24,7 +24,9 @@ test -z "$var" && echo "empty"
 grep --extended-regexp --quiet '^foo\s' <<< "$var" && echo "starts with foo"
 ```
 
-Rule of thumb: If it makes your life easier, it will not be portable <i class="fa fa-face-rolling-eyes"></i>
+Rule of thumb 1: If it makes your life easier, it will not be portable <i class="fa fa-face-rolling-eyes"></i>
+
+Rule of thumb 2: If it looks horrific, it is more likely to be portable <i class="fa fa-face-smile-wink"></i>
 
 ---
 

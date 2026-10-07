@@ -20,8 +20,8 @@ custom_style: |
       border-radius: 0.2em;
   }
 
-pre_slides:
-- 000_introduction/02_bio_short.md
+pre_slides: []
+#- 000_introduction/02_bio_short.md
 
 agenda:
 - icon: face-grin-stars
@@ -54,3 +54,5 @@ summary:
   text: Act now
 - icon: hand-shaka
   text: Stay in control
+- icon: microchip
+  text: Still relevant in the AI era

@@ -4,7 +4,12 @@ ul.flex-columns {
     justify-content: space-evenly;
     align-items: flex-start;
 }
+
 ul.flex-columns > li {
     list-style: none;
     padding: 1em;
+}
+
+.reveal table.hljs-ln td.hljs-ln-code {
+    text-align: left;
 }

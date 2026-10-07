@@ -14,7 +14,7 @@ Shell scripts are read and executed line-by-line
 
 This is slow
 
-Editing breaks execution
+Editing during execution breaks logic
 
 ---
 
@@ -50,16 +50,13 @@ jq --raw-output \
 
 ### Working with data structure 2/2
 
-One alternative is to use the builtin command `mapfile`:
+One alternative is to use the builtin command `read`:
 
 ```bash
-# Declare an array
-declare -a value_array
-
 # Read values from stdin into the array
-mapfile -t value_array < <(
+read -r name homepage <<<$(
     jq --raw-output \
-        '.tools[] | select(.name == "aws2") | [.version, .homepage] | join("\n")' \
+        '.tools[] | select(.name == "aws2") | "\(.name) \(.homepage)"' \
         ~/.cache/uniget/metadata.json
 )
 ```

@@ -4,26 +4,25 @@
 
 ---
 
-<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right;" -->
+<i class="fa fa-solid fa-poo-storm fa-4x"></i> <!-- .element: style="float: right; z-index: 1;" -->
 
-## Error Handling
+## Errors must be handled
 
-### Errors must be handled
+Do not suppress errors:
 
 ```bash
-# do not suppress errors
 test -f missing_file_name || true
 ```
 
 ### `errexit` is not enough
 
 ```bash
-# Enable errexit (short version)
 set -e
-
-# Enable errexit (long version)
+# ... OR ...
 set -o errexit
 ```
+
+Commands also carry information when failing
 
 ### Use `if` for error handling
 
@@ -64,6 +63,8 @@ fi
 ## Error Handling
 
 ### Fail on missing variables
+
+`nounset` is your friend:
 
 ```bash
 set -o nounset
