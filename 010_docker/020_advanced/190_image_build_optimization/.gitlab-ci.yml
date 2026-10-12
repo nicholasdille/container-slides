@@ -5,10 +5,10 @@ stages:
 - promote
 
 services:
-- docker:29.8.1-dind
+- docker:29.8.2-dind
 
 default:
-  image: docker:29.8.1
+  image: docker:29.8.2
 
 variables:
   DOCKER_BUILDKIT: 1
