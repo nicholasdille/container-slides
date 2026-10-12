@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-runner:v19.4.0
+FROM gitlab/gitlab-runner:v19.4.1
 COPY --chmod=0755 entrypoint.sh /
 RUN mkdir /builds \
  && chown gitlab-runner /builds
