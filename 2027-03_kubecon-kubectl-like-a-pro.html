@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+
+<title>kubectl</title>
+
+<!-- https://gauger.io/fonticon/ -->
+<link rel="icon" href="images/favicons/kubernetes.ico"/>
+
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+<link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" id="theme" />
+<link rel="stylesheet" href="node_modules/highlight.js/styles/rainbow.css" />
+<link rel="stylesheet" href="themes/theme2022.css" id="theme" />
+<link rel="stylesheet" href="themes/common.css" />
+<link rel="stylesheet" href="themes/fontawesome.css" />
+<style>
+.reveal p code {
+    background-color: #505050;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    border-radius: 0.2em;
+}
+
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section
+    id="title"
+    data-background="images/jade-lee-h_Uxi-NeNSA-unsplash.jpg"
+    data-background-size="130%"
+    data-background-position="left 0% top 60%"
+    style="padding: 1em 1em 1em 1em; background: rgba(0, 0, 0, 0.5); width: 30%; margin: auto; text-align: left;">
+<h1 style="font-size: 1.5em;"><b>kubectl</b></h1>
+<h2 style="font-size: 1.2em; text-transform: none;">Like a Pro</h2>
+<p><em>Nicholas Dille, Haufe Group</em></p>
+<p style="font-size: smaller;"><b><a href="https://www.meetup.com/de-DE/devops-freiburg/">DevOps Meetup Freiburg</a></b></p>
+</section>
+<section data-markdown="000_introduction/audience/console.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section id="agenda">
+<h2>Agenda</h2>
+
+<i class="fa-duotone fa-4x fa-list-check" style="float: right;"></i>
+
+<ul id="bullets" style="font-size: larger;">
+<li><span class="fa-li"><i class="fa-duotone fa-magnifying-glass"></i></span> Finding resources</li>
+<li><span class="fa-li"><i class="fa-duotone fa-shirt-jersey"></i></span> Styling the output</li>
+<li><span class="fa-li"><i class="fa-duotone fa-keyboard"></i></span> Console grind</li>
+<li><span class="fa-li"><i class="fa-duotone fa-scale-balanced"></i></span> Updating resources</li>
+<li><span class="fa-li"><i class="fa-duotone fa-octopus"></i></span> Multiple clusters</li>
+<li><span class="fa-li"><i class="fa-duotone fa-crosshairs-simple"></i></span> Testing pods</li>
+<li><span class="fa-li"><i class="fa-duotone fa-handshake"></i></span> Community</li>
+</ul>
+</section>
+<section data-markdown="120_kubernetes/kubectl/slides.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+<section id="summary">
+<h2>Summary</h2>
+
+<i class="fa-duotone fa-4x fa-lightbulb-on" style="float: right;"></i>
+
+<ul id="bullets" style="font-size: larger;">
+<li><span class="fa-li"><i class="fa-duotone fa-question"></i></span> Not using the full potential</li>
+<li><span class="fa-li"><i class="fa-duotone fa-window-flip"></i></span> So much faster than GUIs/TUIs</li>
+<li><span class="fa-li"><i class="fa-duotone fa-file-code"></i></span> First steps towards automation</li>
+<li><span class="fa-li"><i class="fa-duotone fa-dumbbell"></i></span> It's all muscle memory</li>
+<li><span class="fa-li"><i class="fa-duotone fa-face-glasses"></i></span> We can look so cool</li>
+<li><span class="fa-li"><i class="fa-duotone fa-microchip"></i></span> Handsfree with Kubernetes MCP</li>
+<li><span class="fa-li"><i class="fa-duotone fa-keyboard"></i></span> Faster navigation with TUIs like k9s/sofka</li>
+</ul>
+</section>
+<section data-markdown="120_kubernetes/kubectl/controller.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+<section data-markdown="120_kubernetes/kubectl/oidc.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+</div>
+</div>
+
+<script type="module">
+    import mermaid from './node_modules/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark'
+    });
+</script>
+
+<script src="node_modules/reveal.js/dist/reveal.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/markdown.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/highlight.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/notes.js"></script>
+<script>
+    Reveal.initialize({
+        width: 1920,
+        height: 1080,
+        minScale: 0.5,
+        maxScale: 2.0,
+        margin: 0.05,
+
+        controls: false,
+        controlsTutorial: false,
+        progress: true,
+        slideNumber: false,
+        keyboard: true,
+        touch: true,
+        mouseWheel: false,
+
+        hash: true,
+        history: false,
+        overview: true,
+        fragments: true,
+        fragmentInURL: true,
+        transition: 'convex',
+        transitionSpeed: 'default',
+        backgroundTransition: 'fade',
+        hideInactiveCursor: true,
+
+        autoPlayMedia: null,
+        previewLinks: false,
+
+        center: true,
+        help: true,
+
+        markdown: {
+            smartypants: true
+        },
+
+        plugins: [
+            RevealMarkdown,
+            RevealHighlight,
+            RevealNotes
+        ]
+    });
+</script>
+
+</body>
+</html>

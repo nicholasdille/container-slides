@@ -1,0 +1,71 @@
+date: 2025-12-15
+metadata:
+  author: Nicholas Dille, Haufe Group
+  title: kubectl
+  title_slug: kubectl-like-a-pro
+  subtitle: Like a Pro
+  box:
+    width: 30%
+    align: left
+  favicon: images/favicons/kubernetes.ico
+  background:
+    image: images/jade-lee-h_Uxi-NeNSA-unsplash.jpg
+    size: 130%
+    position: left 0% top 60%
+event:
+  name: "DevOps Meetup Freiburg"
+  logo: ""
+  logo_style: "height: 1.5em; margin-top: 0.5em;"
+  link: https://www.meetup.com/de-DE/devops-freiburg/
+custom_style: |
+  .reveal p code {
+      background-color: #505050;
+      padding-left: 0.1em;
+      padding-right: 0.1em;
+      border-radius: 0.2em;
+  }
+
+pre_slides:
+- 000_introduction/audience/console.md
+- 000_introduction/02_bio.md
+
+agenda:
+- icon: magnifying-glass
+  text: Finding resources
+- icon: shirt-jersey
+  text: Styling the output
+- icon: keyboard
+  text: Console grind
+- icon: scale-balanced
+  text: Updating resources
+- icon: octopus
+  text: Multiple clusters
+- icon: crosshairs-simple
+  text: Testing pods
+- icon: handshake
+  text: Community
+
+slides:
+- 120_kubernetes/kubectl/slides.md
+
+summary:
+- icon: question
+  text: Not using the full potential
+- icon: window-flip
+  text: So much faster than GUIs/TUIs
+- icon: file-code
+  text: First steps towards automation
+- icon: dumbbell
+  text: It's all muscle memory
+- icon: face-glasses
+  text: We can look so cool
+- icon: microchip
+  text: Handsfree with Kubernetes MCP
+- icon: keyboard
+  text: Faster navigation with TUIs like k9s/sofka
+
+events: []
+
+post_slides:
+- 120_kubernetes/kubectl/controller.md
+- 120_kubernetes/kubectl/oidc.md
