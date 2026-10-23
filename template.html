@@ -38,7 +38,7 @@
 {{- end }}
 <h1 style="font-size: 1.5em;"><b>{{ (datasource "talk").metadata.title }}</b></h1>
 <h2 style="font-size: 1.2em; text-transform: none;">{{ (datasource "talk").metadata.subtitle }}</h2>
-<p><em>{{ (datasource "talk").metadata.author }}</em></p>
+<p>{{ (datasource "talk").metadata.author }}</p>
 {{- if (datasource "talk").event.logo }}
 <p><a href="{{ (datasource "talk").event.link }}"><img src="{{ (datasource "talk").event.logo }}" style="{{ (datasource "talk").event.logo_style }}" /></a></p>
 {{- else }}
@@ -102,18 +102,11 @@
 </div>
 </div>
 
-<script type="module">
-    import mermaid from './node_modules/mermaid/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({
-        startOnLoad: true,
-        theme: 'dark'
-    });
-</script>
-
 <script src="node_modules/reveal.js/dist/reveal.js"></script>
 <script src="node_modules/reveal.js/dist/plugin/markdown.js"></script>
 <script src="node_modules/reveal.js/dist/plugin/highlight.js"></script>
 <script src="node_modules/reveal.js/dist/plugin/notes.js"></script>
+<script src="node_modules/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js"></script>
 <script>
     Reveal.initialize({
         width: 1920,
@@ -153,8 +146,73 @@
         plugins: [
             RevealMarkdown,
             RevealHighlight,
-            RevealNotes
-        ]
+            RevealNotes,
+            {
+                // The markdown plugin renders ```mermaid fences as
+                // <pre><code class="mermaid">. Since hljs doesn't know the
+                // language, it auto-detects and injects <span> markup which
+                // makes the mermaid plugin fail with a parse error. Convert
+                // the block to the <div class="mermaid"> the mermaid plugin
+                // expects, with clean source text.
+                id: 'mermaid-fences',
+                init: function (reveal) {
+                    reveal.getRevealElement().querySelectorAll('pre code.mermaid').forEach(function (code) {
+                        const diagram = document.createElement('div');
+                        diagram.className = 'mermaid';
+                        diagram.textContent = code.textContent;
+                        code.closest('pre').replaceWith(diagram);
+                    });
+                }
+            },
+            RevealMermaid
+        ],
+
+
+        mermaid: {
+            theme: 'base',
+            fontFamily: "'Poppins', Helvetica, sans-serif",
+            flowchart: {
+                curve: 'basis',
+                padding: 16,
+                nodeSpacing: 40,
+                rankSpacing: 50,
+                useMaxWidth: true
+            },
+            themeVariables: {
+                darkMode: true,
+                background: 'transparent',
+                primaryTextColor: '#191919',
+                primaryBorderColor: '#7cbad4',
+                secondaryTextColor: '#ffffff',
+                secondaryBorderColor: '#7cbad4',
+                tertiaryTextColor: '#ffffff',
+                lineColor: '#ffffff',
+                arrowheadColor: '#ffffff',
+                textColor: '#ffffff',
+                mainBkg: '#7cbad4',
+                nodeBorder: '#7cbad4',
+                clusterBkg: 'transparent',
+                clusterBorder: '#7cbad4',
+                edgeLabelBackground: '#ffffff',
+                fontSize: '17px',
+                actorBkg: '#1c3f50',
+                actorTextColor: '#ffffff',
+                actorBorder: '#7cbad4',
+                actorLineColor: '#7cbad4',
+                signalColor: '#ffffff',
+                signalTextColor: '#ffffff',
+                labelBoxBkgColor: '#1c3f50',
+                labelBoxBorderColor: '#7cbad4',
+                labelTextColor: '#ffffff',
+                loopTextColor: '#ffffff',
+                activationBkgColor: '#234a5c',
+                activationBorderColor: '#7cbad4',
+                noteBkgColor: '#234a5c',
+                noteTextColor: '#ffffff',
+                noteBorderColor: '#7cbad4',
+                sequenceNumberColor: '#ffffff'
+            }
+        },
     });
 </script>
 

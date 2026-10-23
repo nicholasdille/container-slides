@@ -18,10 +18,18 @@
 <link rel="stylesheet" href="themes/fontawesome.css" />
 <style>
 .reveal p code {
-    background-color: var(--hg-secondary-mid-deep-blue);
+    background-color: grey;
     padding-left: 0.1em;
     padding-right: 0.1em;
     border-radius: 0.2em;
+}
+
+/* theme default is width: 90% -> reduced by 25% */
+.reveal pre {
+    width: 67.5%;
+    margin-left: 0;
+    margin-right: 0;
+}
 
 </style>
 </head>
@@ -38,7 +46,7 @@
     style="padding: 1em 1em 1em 1em; background: rgba(0, 0, 0, 0.5); width: 50%; margin: auto; text-align: left;">
 <h1 style="font-size: 1.5em;"><b>Introduction to Cluster API</b></h1>
 <h2 style="font-size: 1.2em; text-transform: none;">Declarative Cluster Management<br/>for Kubernetes</h2>
-<p><em>Nicholas Dille, Haufe Group</em></p>
+<p>Nicholas Dille, Haufe Group</p>
 <p><a href="https://www.continuouslifecycle.de/"><img src="images/logos/clc2025_white.svg" style="height: 1.5em; margin-top: 0.5em;" /></a></p>
 </section>
 <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$"></section>
@@ -78,18 +86,11 @@
 </div>
 </div>
 
-<script type="module">
-    import mermaid from './node_modules/mermaid/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({
-        startOnLoad: true,
-        theme: 'dark'
-    });
-</script>
-
 <script src="node_modules/reveal.js/dist/reveal.js"></script>
 <script src="node_modules/reveal.js/dist/plugin/markdown.js"></script>
 <script src="node_modules/reveal.js/dist/plugin/highlight.js"></script>
 <script src="node_modules/reveal.js/dist/plugin/notes.js"></script>
+<script src="node_modules/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js"></script>
 <script>
     Reveal.initialize({
         width: 1920,
@@ -129,8 +130,73 @@
         plugins: [
             RevealMarkdown,
             RevealHighlight,
-            RevealNotes
-        ]
+            RevealNotes,
+            {
+                // The markdown plugin renders ```mermaid fences as
+                // <pre><code class="mermaid">. Since hljs doesn't know the
+                // language, it auto-detects and injects <span> markup which
+                // makes the mermaid plugin fail with a parse error. Convert
+                // the block to the <div class="mermaid"> the mermaid plugin
+                // expects, with clean source text.
+                id: 'mermaid-fences',
+                init: function (reveal) {
+                    reveal.getRevealElement().querySelectorAll('pre code.mermaid').forEach(function (code) {
+                        const diagram = document.createElement('div');
+                        diagram.className = 'mermaid';
+                        diagram.textContent = code.textContent;
+                        code.closest('pre').replaceWith(diagram);
+                    });
+                }
+            },
+            RevealMermaid
+        ],
+
+
+        mermaid: {
+            theme: 'base',
+            fontFamily: "'Poppins', Helvetica, sans-serif",
+            flowchart: {
+                curve: 'basis',
+                padding: 16,
+                nodeSpacing: 40,
+                rankSpacing: 50,
+                useMaxWidth: true
+            },
+            themeVariables: {
+                darkMode: true,
+                background: 'transparent',
+                primaryTextColor: '#191919',
+                primaryBorderColor: '#7cbad4',
+                secondaryTextColor: '#ffffff',
+                secondaryBorderColor: '#7cbad4',
+                tertiaryTextColor: '#ffffff',
+                lineColor: '#ffffff',
+                arrowheadColor: '#ffffff',
+                textColor: '#ffffff',
+                mainBkg: '#7cbad4',
+                nodeBorder: '#7cbad4',
+                clusterBkg: 'transparent',
+                clusterBorder: '#7cbad4',
+                edgeLabelBackground: '#ffffff',
+                fontSize: '17px',
+                actorBkg: '#1c3f50',
+                actorTextColor: '#ffffff',
+                actorBorder: '#7cbad4',
+                actorLineColor: '#7cbad4',
+                signalColor: '#ffffff',
+                signalTextColor: '#ffffff',
+                labelBoxBkgColor: '#1c3f50',
+                labelBoxBorderColor: '#7cbad4',
+                labelTextColor: '#ffffff',
+                loopTextColor: '#ffffff',
+                activationBkgColor: '#234a5c',
+                activationBorderColor: '#7cbad4',
+                noteBkgColor: '#234a5c',
+                noteTextColor: '#ffffff',
+                noteBorderColor: '#7cbad4',
+                sequenceNumberColor: '#ffffff'
+            }
+        },
     });
 </script>
 

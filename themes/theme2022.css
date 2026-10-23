@@ -33,6 +33,10 @@
     text-align: left;
 }
 
+.reveal section#title h2 {
+    font-style: italic;
+}
+
 .reveal img {
     margin: 0;
 }

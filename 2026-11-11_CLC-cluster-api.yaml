@@ -19,10 +19,18 @@ event:
   link: https://www.continuouslifecycle.de/
 custom_style: |
   .reveal p code {
-      background-color: var(--hg-secondary-mid-deep-blue);
+      background-color: grey;
       padding-left: 0.1em;
       padding-right: 0.1em;
       border-radius: 0.2em;
+  }
+
+  /* theme default is width: 90% -> reduced by 25% */
+  .reveal pre {
+      width: 67.5%;
+      margin-left: 0;
+      margin-right: 0;
+  }
 
 pre_slides:
 - 000_introduction/02_bio.md
