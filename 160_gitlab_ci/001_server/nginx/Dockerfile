@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.27.0
 
-FROM nginx:1.31.6
+FROM nginx:1.31.8
 
 RUN <<EOF
 apt-get update
