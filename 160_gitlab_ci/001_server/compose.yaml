@@ -194,7 +194,7 @@ services:
     image: yuzutech/kroki-mermaid:0.34.0
 
   bpmn:
-    image: yuzutech/kroki-bpmn:0.33.0
+    image: yuzutech/kroki-bpmn:0.34.0
 
   excalidraw:
     image: yuzutech/kroki-excalidraw:0.34.0
