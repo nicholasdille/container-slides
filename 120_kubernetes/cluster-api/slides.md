@@ -3,6 +3,7 @@
 <i class="fa-duotone fa-solid fa-4x fa-rocket"></i> <!-- .element: style="float: right;" -->
 
 - Many teams still create clusters by hand
+- Honorable mention for those using hosted clusters with vendor tooling or terraform
 - Manual setup causes drift, inconsistency, slow recovery
 - Kubernetes already has the right control-loop model
 
@@ -16,6 +17,22 @@
 - Everything represented as resources and managed by controllers
 - Runs in a management cluster, reconciles declaratively
 - Portable abstraction
+- The ease of `Deployment` but for nodes
+
+```mermaid
+flowchart LR
+    subgraph K8s[In a workload cluster]
+        direction LR
+        Dep[Deployment<br>replicas 1] -->|scale to 3| Pods[Pods x3]
+    end
+
+    subgraph Mgmt[In the management cluster]
+        direction LR
+        MD[MachineDeployment<br>replicas 1] -->|scale to 3| Mach[Machines x3]
+    end
+
+    K8s ~~~ Mgmt
+```
 
 ---
 
