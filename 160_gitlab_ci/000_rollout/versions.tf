@@ -15,7 +15,7 @@ terraform {
     }
     ssh = {
       source  = "loafoe/ssh"
-      version = "2.7.0"
+      version = "2.9.0"
     }
     null = {
       source  = "hashicorp/null"
