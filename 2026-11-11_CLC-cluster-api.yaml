@@ -58,13 +58,10 @@ summary:
 - icon: face-thinking
   text: Pluggable infrastructure provider
 
+post_slides:
+- 120_kubernetes/cluster-api/references.md
+
 events:
-- date: "2025-10-15"
-  name: heise Conferences
-  homepage: https://heise-conferences.de/
-  type: Workshop (2 days)
-  title: GitLab CI/CD
-  link: https://heise-conferences.de/workshop/ci-cd-mit-gitlab-tykPueCV0IxT56
 - date: "2026-11-19"
   name: heise Conferences
   homepage: https://heise-conferences.de/

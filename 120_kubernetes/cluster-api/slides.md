@@ -3,7 +3,7 @@
 <i class="fa-duotone fa-solid fa-4x fa-rocket"></i> <!-- .element: style="float: right;" -->
 
 - Many teams still create clusters by hand
-- Honorable mention for those using hosted clusters with vendor tooling or terraform
+- Honorable mention for those with managed clusters with automation
 - Manual setup causes drift, inconsistency, slow recovery
 - Kubernetes already has the right control-loop model
 
@@ -17,7 +17,8 @@
 - Everything represented as resources and managed by controllers
 - Runs in a management cluster, reconciles declaratively
 - Portable abstraction
-- The ease of `Deployment` but for nodes
+
+### The ease of `Deployment` but for nodes <i class="fa fa-sparkles"></i>
 
 ```mermaid
 flowchart LR
@@ -53,6 +54,120 @@ flowchart LR
 - Desired state lives in Kubernetes objects
 - Controllers compare and reconcile continuously
 - Same model as workloads and it scales to infrastructure
+
+---
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1beta2
+kind: Cluster
+metadata:
+  name: foo
+spec:
+  clusterNetwork:
+    services:
+      cidrBlocks:
+      - 100.64.0.0/16  # CGNAT
+  controlPlaneEndpoint:
+    host: https://redacted.eu-central-1.eks.amazonaws.com
+    port: 443
+  controlPlaneRef:
+    apiGroup: controlplane.cluster.x-k8s.io
+    kind: AWSManagedControlPlane
+    name: foo
+  infrastructureRef:
+    apiGroup: infrastructure.cluster.x-k8s.io
+    kind: AWSManagedCluster
+    name: foo
+```
+
+<!-- .element: style="width: 34em; height: 28em; float: right;" -->
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1beta2
+kind: Cluster
+metadata:
+  name: bar
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks:
+      - 100.64.128.0/17
+    services:
+      cidrBlocks:
+      - 100.64.0.0/17
+  controlPlaneEndpoint:
+    host: 10.0.0.10
+    port: 6443
+  controlPlaneRef:
+    apiGroup: controlplane.cluster.x-k8s.io
+    kind: KubeadmControlPlane
+    name: bar
+  infrastructureRef:
+    apiGroup: infrastructure.cluster.x-k8s.io
+    kind: VSphereCluster
+    name: bar
+```
+
+<!-- .element: style="width: 34em; height: 28em;" -->
+
+---
+
+```yaml
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+kind: AWSManagedMachinePool
+metadata:
+  name: worker
+spec:
+  amiType: AL2023_x86_64_STANDARD
+  amiVersion: 1.37.1-20261023
+  capacityType: onDemand
+  eksNodegroupName: worker
+  instanceType: m8i-flex.4xlarge
+  providerIDList:
+  - [REDACTED]
+  roleName: foo-worker-iam-service-role
+  scaling:
+    maxSize: 8
+    minSize: 1
+  updateConfig:
+    maxUnavailable: 1
+```
+
+<!-- .element: style="width: 34em; height: 28em; float: right;" -->
+
+```yaml
+apiVersion: cluster.x-k8s.io/v1beta2
+kind: MachineDeployment
+metadata:
+  name: worker
+spec:
+  clusterName: foo
+  replicas: 3
+  selector:
+    matchLabels:
+      cluster.x-k8s.io/cluster-name: foo
+      cluster.x-k8s.io/deployment-name: worker
+  template:
+    metadata:
+      labels:
+        cluster.x-k8s.io/cluster-name: foo
+        cluster.x-k8s.io/deployment-name: worker
+        haufedev.systems/node-type: services
+    spec:
+      bootstrap:
+        configRef:
+          apiGroup: bootstrap.cluster.x-k8s.io
+          kind: KubeadmConfigTemplate
+          name: worker
+      clusterName: foo
+      infrastructureRef:
+        apiGroup: infrastructure.cluster.x-k8s.io
+        kind: VSphereMachineTemplate
+        name: worker
+      version: v1.37.1
+```
+
+<!-- .element: style="width: 34em; height: 35em;" -->
 
 ---
 
