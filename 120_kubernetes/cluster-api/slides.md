@@ -1,3 +1,5 @@
+<!-- .slide: data-visibility="hidden" -->
+
 ## Why this matters
 
 <i class="fa-duotone fa-solid fa-4x fa-rocket"></i> <!-- .element: style="float: right;" -->
@@ -9,51 +11,32 @@
 
 ---
 
-## What is Cluster API?
+## What is Cluster API (CAPI)?
 
 <i class="fa-duotone fa-solid fa-4x fa-server"></i> <!-- .element: style="float: right;" -->
 
 - Kubernetes native cluster lifecycle
-- Everything represented as resources and managed by controllers
+- Everything represented as resources
+- Managed by controllers (think reconciliation loop)
 - Runs in a management cluster, reconciles declaratively
-- Portable abstraction
+- Official project by Kubernetes SIG Cluster Lifecycle
 
 ### The ease of `Deployment` but for nodes <i class="fa fa-sparkles"></i>
 
 ```mermaid
 flowchart LR
-    subgraph K8s[In a workload cluster]
+    subgraph K8s[Workload]
         direction LR
         Dep[Deployment<br>replicas 1] -->|scale to 3| Pods[Pods x3]
     end
 
-    subgraph Mgmt[In the management cluster]
+    subgraph Mgmt[Cluster API]
         direction LR
         MD[MachineDeployment<br>replicas 1] -->|scale to 3| Mach[Machines x3]
     end
 
     K8s ~~~ Mgmt
 ```
-
----
-
-## The problem it solves
-
-<i class="fa-duotone fa-solid fa-4x fa-bug-slash"></i> <!-- .element: style="float: right;" -->
-
-- Scripts work for one cluster, not for many
-- Per-environment provisioning logic causes drift
-- One declarative API instead of custom commands
-
----
-
-## The key mental model
-
-<i class="fa-duotone fa-solid fa-4x fa-brain"></i> <!-- .element: style="float: right;" -->
-
-- Desired state lives in Kubernetes objects
-- Controllers compare and reconcile continuously
-- Same model as workloads and it scales to infrastructure
 
 ---
 
@@ -133,7 +116,7 @@ spec:
     maxUnavailable: 1
 ```
 
-<!-- .element: style="width: 34em; height: 28em; float: right;" -->
+<!-- .element: style="width: 34em; height: 34em; float: right;" -->
 
 ```yaml
 apiVersion: cluster.x-k8s.io/v1beta2
@@ -152,7 +135,6 @@ spec:
       labels:
         cluster.x-k8s.io/cluster-name: foo
         cluster.x-k8s.io/deployment-name: worker
-        haufedev.systems/node-type: services
     spec:
       bootstrap:
         configRef:
@@ -167,15 +149,15 @@ spec:
       version: v1.37.1
 ```
 
-<!-- .element: style="width: 34em; height: 35em;" -->
+<!-- .element: style="width: 34em; height: 34em;" -->
 
 ---
 
-## Management cluster vs workload cluster
+## Management and workload clusters
 
 <i class="fa-duotone fa-solid fa-4x fa-diagram-project"></i> <!-- .element: style="float: right;" -->
 
-- Management cluster is the control plane
+- Management cluster is the control plane for CAPI
 - It hosts controllers and infrastructure providers
 - Workload cluster is created and managed by it
 
@@ -193,180 +175,9 @@ flowchart LR
 
     CAPI -->|reconcile| Prov
     CAPI -->|create & manage| CP
-    Prov -->|provision infra| CP
+    Prov -->|provision infrastructure| CP
     CP --> W1
 ```
-
----
-
-## Core resources
-
-<i class="fa-duotone fa-solid fa-4x fa-cubes"></i> <!-- .element: style="float: right;" -->
-
-- Cluster: cluster definition and topology
-- KubeadmControlPlane: control plane resources
-- MachineDeployment: rolls out machine sets over time
-- MachineSet: machines at a fixed replica count
-- Machine: one node to create or replace
-
-```mermaid
-flowchart LR
-    Cluster[Cluster]
-    KCP[KubeadmControlPlane]
-    MD[MachineDeployment]
-    MS[MachineSet]
-    M1[Machine]
-    M2[Machine]
-
-    Cluster --> KCP
-    Cluster --> MD
-    MD --> MS
-    MS --> M1
-    MS --> M2
-```
-
----
-
-## Infrastructure providers
-
-<i class="fa-duotone fa-solid fa-4x fa-cloud"></i> <!-- .element: style="float: right;" -->
-
-- The API stays generic
-- Providers add platform specifics
-- Providers create VMs, networks, disks, load balancers
-- Portable API with platform-specific machinery
-
----
-
-## Bootstrap providers
-
-<i class="fa-duotone fa-solid fa-4x fa-wand-sparkles"></i> <!-- .element: style="float: right;" -->
-
-- Prepare machines to join the target cluster
-- Handle OS config, kubeadm, and join details
-- Separation from infrafrastructure
-- Modular and portable
-
----
-
-## The reconciliation loop
-
-<i class="fa-duotone fa-solid fa-4x fa-repeat"></i> <!-- .element: style="float: right;" -->
-
-- Controllers watch CAPI objects and provider state
-- Compare desired vs actual to spot drift
-- Create, patch, or replace until converged
-
-```mermaid
-flowchart LR
-    Desired[Desired state] --> Watch[Controller watches]
-    Watch --> Compare[Compare desired vs actual]
-    Compare --> Drift{Drift detected?}
-    Drift -- yes --> Reconcile[Reconcile resources]
-    Reconcile --> Actual[Actual state updates]
-    Drift -- no --> Watch
-    Actual --> Watch
-```
-
----
-
-## Cluster creation flow
-
-<i class="fa-duotone fa-solid fa-4x fa-arrows-spin"></i> <!-- .element: style="float: right;" -->
-
-- Define infrastructure: networks, disks, compute
-- Define the Cluster and control plane topology
-- Create MachineDeployments for workers
-- Providers create and bootstrap the nodes
-- Everything converges to a ready state
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant CAPI as Cluster API
-    participant Infra as Infrastructure Provider
-    participant Bootstrap as Bootstrap Provider
-    participant Nodes as Worker Nodes
-
-    User->>CAPI: Declare Cluster + Machines
-    CAPI->>Infra: Create network / disks / VMs
-    Infra-->>CAPI: Infrastructure ready
-    CAPI->>Bootstrap: Bootstrap machines
-    Bootstrap-->>Nodes: Join config + kubeadm
-    Nodes-->>CAPI: Nodes reported ready
-    CAPI-->>User: Cluster reaches ready state
-```
-
----
-
-## Upgrades and rolling changes
-
-<i class="fa-duotone fa-solid fa-4x fa-arrow-trend-up"></i> <!-- .element: style="float: right;" -->
-
-- Controlled replacement and rollout workflows
-- MachineDeployment for worker-node lifecycle
-- Provider-aware control-plane upgrades
-- Repeatable, observable, safer cluster evolution
-
-XXX Machine drain rules
-
----
-
-## GitOps-friendly
-
-<i class="fa-duotone fa-solid fa-4x fa-code-branch"></i> <!-- .element: style="float: right;" -->
-
-- Definitions are declarative manifests
-- Changes are reviewable, repeatable, auditable
-- Drift is visible and reconciled automatically
-- Easy to wrap in helm or kustomize
-
----
-
-## Multi-cluster management
-
-<i class="fa-duotone fa-solid fa-4x fa-people-group"></i> <!-- .element: style="float: right;" -->
-
-- Many environments, one declarative model
-- Every cluster is reproducible from it
-- Less scripting, consistent lifecycle pattern
-
-```mermaid
-flowchart LR
-    subgraph Many["One management, many workloads"]
-        MA[Management] --> W1[Workload 1]
-        MA --> W2[Workload 2]
-        MA --> W3[Workload 3]
-    end
-
-    subgraph Single["One management, one workload"]
-        MB[Management] --> W[Workload]
-    end
-
-    subgraph Combined["Management and workload cluster"]
-        CC["CAPI + Apps"]
-    end
-
-    Many ~~~ Single ~~~ Combined
-```
-
----
-
-## Operational realities
-
-<i class="fa-duotone fa-solid fa-4x fa-triangle-exclamation"></i> <!-- .element: style="float: right;" -->
-
-- You still need a management cluster
-- Provider maturity varies across clouds
-- RBAC and security boundaries still matter
-- Debugging means conditions, events, controller logs
-
-### Common pitfalls
-
-- Treating CAPI as a cloud abstraction only
-- Expecting identical behavior across backends
-- Skipping observability and debugging setup
-- Forgetting CAPI complements existing tooling
 
 ---
 
@@ -395,9 +206,11 @@ flowchart LR
 
 Create a temporary management cluster using `kind`
 
-```bash
+```shell
 kind create cluster --name temporary
 ```
+
+Any alternative works as well: `k3s`, `k3d` etc.
 
 ---
 
@@ -412,9 +225,7 @@ export HCLOUD_TOKEN="<your-hcloud-token>"
 export HCLOUD_SSH_KEY="<ssh-key-name>"
 
 clusterctl init \
-  --infrastructure hcloud \
-  --bootstrap kubeadm \
-  --control-plane kubeadm
+  --infrastructure hcloud
 ```
 
 ---
@@ -450,6 +261,135 @@ Apply it and watch the cluster come up
 ```bash
 kubectl apply -f ${MGMT_CLUSTER_NAME}.yaml
 kubectl get clusters,machines,machinesets -A -w
+```
+
+XXX Check cluster with https://github.com/Jont828/cluster-api-visualizer?
+
+---
+
+## Core resources
+
+<i class="fa-duotone fa-solid fa-4x fa-cubes"></i> <!-- .element: style="float: right;" -->
+
+`Cluster` cluster definition and topology
+
+`KubeadmControlPlane` control plane resources
+
+`MachineDeployment` rolls out machine sets over time
+
+`MachineSet` machines at a fixed replica count
+
+`Machine` one node to create or replace
+
+```mermaid
+flowchart LR
+    Cluster[Cluster]
+    KCP[KubeadmControlPlane]
+    MD[MachineDeployment]
+    MS[MachineSet]
+    M1[Machine]
+    M2[Machine]
+
+    Cluster --> KCP
+    Cluster --> MD
+    MD --> MS
+    MS --> M1
+    MS --> M2
+```
+
+---
+
+```yaml
+XXX KubeadmControlPlane
+XXX KubeadmConfigTemplate
+```
+
+---
+
+## Infrastructure providers
+
+<i class="fa-duotone fa-solid fa-4x fa-cloud"></i> <!-- .element: style="float: right;" -->
+
+- The API stays generic
+- Providers add platform specifics
+- Providers create VMs, networks, disks, load balancers
+- Additional provider-specific resources
+- Pluggable API with platform-specific machinery
+
+Official list of [infrastructure providers](https://cluster-api.sigs.k8s.io/reference/providers.html#infrastructure).
+
+*Sidenote: Docker provider for local testing and development*
+
+---
+
+```yaml
+XXX example resources for Hetzner provider
+```
+
+---
+
+## Bootstrap providers
+
+<i class="fa-duotone fa-solid fa-4x fa-wand-sparkles"></i> <!-- .element: style="float: right;" -->
+
+- Prepare machines to join the target cluster
+- Handle OS config, kubeadm, and join details
+- Separation from infrafrastructure
+- Again: pluggable API
+- Defaults to `kubeadm`
+
+Official list of [bootstrap providers](https://cluster-api.sigs.k8s.io/reference/providers.html#bootstrap).
+
+---
+
+<!-- .slide: data-visibility="hidden" -->
+
+## The reconciliation loop
+
+<i class="fa-duotone fa-solid fa-4x fa-repeat"></i> <!-- .element: style="float: right;" -->
+
+- Controllers watch CAPI objects and provider state
+- Compare desired vs actual to spot drift
+- Create, patch, or replace until converged
+
+```mermaid
+flowchart LR
+    Desired[Desired state] --> Watch[Controller watches]
+    Watch --> Compare[Compare desired vs actual]
+    Compare --> Drift{Drift detected?}
+    Drift -- yes --> Reconcile[Reconcile resources]
+    Reconcile --> Actual[Actual state updates]
+    Drift -- no --> Watch
+    Actual --> Watch
+```
+
+---
+
+## Cluster creation flow
+
+<i class="fa-duotone fa-solid fa-4x fa-arrows-spin"></i> <!-- .element: style="float: right;" -->
+
+- Declare the infrastructure
+- Declare the control plane
+- Declare workers
+- Providers create and bootstrap the nodes
+- Everything converges to a ready state
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant CAPI as Cluster API
+    participant Infra as Infrastructure Provider
+    participant Bootstrap as Bootstrap Provider
+    participant Nodes as Worker Nodes
+
+    User->>CAPI: Declare cluster
+    CAPI->>Infra: Create network / disks / VMs
+    Infra-->>CAPI: Infrastructure ready
+    CAPI->>Bootstrap: Bootstrap machines
+    Bootstrap-->>Nodes: Join config + kubeadm
+    Nodes-->>CAPI: Nodes reported ready
+    CAPI-->>User: Cluster reaches ready state
 ```
 
 ---
@@ -513,3 +453,68 @@ kubectl get clusters,machines -A -w
 ```
 
 <!-- .element: style="height: 18em;" -->
+
+---
+
+## Upgrades and rolling changes
+
+<i class="fa-duotone fa-solid fa-4x fa-arrow-trend-up"></i> <!-- .element: style="float: right;" -->
+
+- Controlled replacement and rollout workflows
+- MachineDeployment for worker-node lifecycle
+- Provider-aware control-plane upgrades
+- Repeatable, observable, safer cluster evolution
+
+XXX Machine drain rules
+
+---
+
+## GitOps-friendly
+
+<i class="fa-duotone fa-solid fa-4x fa-code-branch"></i> <!-- .element: style="float: right;" -->
+
+- Definitions are declarative manifests
+- Changes are reviewable, repeatable, auditable
+- Drift is visible and reconciled automatically
+- Easy to wrap in helm or kustomize
+
+---
+
+## Multi-cluster management
+
+<i class="fa-duotone fa-solid fa-4x fa-people-group"></i> <!-- .element: style="float: right;" -->
+
+- Many environments, one declarative model
+- Every cluster is reproducible from it
+- Less scripting, consistent lifecycle pattern
+
+```mermaid
+flowchart LR
+    subgraph Many["One management, many workloads"]
+        MA[Management] --> W1[Workload 1]
+        MA --> W2[Workload 2]
+        MA --> W3[Workload 3]
+    end
+
+    subgraph Single["One management, one workload"]
+        MB[Management] --> W[Workload]
+    end
+
+    subgraph Combined["Management and workload cluster"]
+        CC["CAPI + Apps"]
+    end
+
+    Many ~~~ Single ~~~ Combined
+```
+
+---
+
+## More abstraction
+
+<i class="fa-duotone fa-solid fa-4x fa-layer-group"></i> <!-- .element: style="float: right;" -->
+
+IP Address Management (IPAM) using `InClusterIPPool` [](https://github.com/kubernetes-sigs/cluster-api-ipam-provider-in-cluster)
+
+Deploy helm charts using `HelmChartProxy` [](https://github.com/kubernetes-sigs/cluster-api-addon-provider-helm/)
+
+Create many similar clusters using `ClusterClass` [](https://cluster-api.sigs.k8s.io/tasks/experimental-features/cluster-class/index.html)

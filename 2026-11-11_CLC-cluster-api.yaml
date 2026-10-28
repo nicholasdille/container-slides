@@ -18,7 +18,8 @@ event:
   logo_style: "height: 1.5em; margin-top: 0.5em;"
   link: https://www.continuouslifecycle.de/
 custom_style: |
-  .reveal p code {
+  .reveal p code,
+  .reveal li code {
       background-color: grey;
       padding-left: 0.1em;
       padding-right: 0.1em;
@@ -32,31 +33,33 @@ custom_style: |
       margin-right: 0;
   }
 
-pre_slides:
-- 000_introduction/02_bio.md
+pre_slides: []
 
 agenda:
-- icon: face-grin-stars
-  text: Kubernetes-native lifecycle model
-- icon: face-surprise
-  text: Chicken-and-egg problem
-- icon: face-sad-cry
-  text: Management and workload clusters
-- icon: face-thinking
-  text: Pluggable infrastructure provider
+- icon: message-question
+  text: What is Cluster API?
+- icon: chart-network
+  text: Architecture and components
+- icon: arrow-progress
+  text: Cluster creation flow
+- icon: terminal
+  text: Demo
 
 slides:
+- 000_introduction/02_bio.md
 - 120_kubernetes/cluster-api/slides.md
 
 summary:
 - icon: face-grin-stars
   text: Kubernetes-native lifecycle model
-- icon: face-surprise
-  text: Chicken-and-egg problem
-- icon: face-sad-cry
-  text: Management and workload clusters
 - icon: face-thinking
-  text: Pluggable infrastructure provider
+  text: Even more YAML
+- icon: egg
+  text: Chicken-and-egg problem
+- icon: handshake
+  text: Management and workload clusters
+- icon: plug
+  text: Pluggable providers
 
 post_slides:
 - 120_kubernetes/cluster-api/references.md
