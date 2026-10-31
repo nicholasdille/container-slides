@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   traefik:
-    image: traefik:v3.7.16
+    image: traefik:v3.7.17
     command:
     - --log=true
     - --log.level=DEBUG
