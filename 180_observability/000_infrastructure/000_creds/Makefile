@@ -1,6 +1,9 @@
-EVENT_NAME := 20260416
-SEAT_COUNT := 21
+EVENT_NAME := 20261119
+SEAT_COUNT := 10
 DOMAIN     := inmylab.de
+
+clean:
+	@rm -f seats.json passwords.csv
 
 seats.json:
 	@EVENT_NAME=$(EVENT_NAME) SEAT_COUNT=$(SEAT_COUNT) DOMAIN=$(DOMAIN) bash generate.sh

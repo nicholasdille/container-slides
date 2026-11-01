@@ -1,22 +1,39 @@
 include ../.env.mk
 
+REMOTE_STATE           := true
 REPOSITORY_URL         := https://github.com/nicholasdille/terraform-state
 REPOSITORY_BRANCH      := main
 SEATS_JSON_FILE        := ../000_creds/seats.json
 STATE_NAME             := $(shell jq --raw-output '.name' $(SEATS_JSON_FILE))
 DOMAIN                 ?= $(shell jq --raw-output '.domain' $(SEATS_JSON_FILE))
 SEAT_COUNT   		   ?= $(shell jq --raw-output '.seats | length' $(SEATS_JSON_FILE))
-TERRAFORM_WITH_BACKEND := TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME) TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD) GIT_USERNAME=$(GIT_USERNAME) GIT_PASSWORD=$(GIT_PASSWORD) terraform-backend-git git --repository $(REPOSITORY_URL) --ref $(REPOSITORY_BRANCH) --state $(STATE_NAME)/state.json terraform
+PROVIDER_NAME          := hcloud
+CREATE_DNS             := true
+CREATE_TLS             := true
+ifeq ($(REMOTE_STATE),true)
+	TERRAFORM_WITH_BACKEND := TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME) TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD) GIT_USERNAME=$(GIT_USERNAME) GIT_PASSWORD=$(GIT_PASSWORD) terraform-backend-git git --repository $(REPOSITORY_URL) --ref $(REPOSITORY_BRANCH) --state $(STATE_NAME)/state.json tofu
+else
+	TERRAFORM_WITH_BACKEND := tofu
+endif
 
 .PHONY:
 debug:
-	@echo "STATE_NAME: $(STATE_NAME)"
-	@echo "DOMAIN    : $(DOMAIN)"
-	@echo "SEAT_COUNT: $(SEAT_COUNT)"
+	@echo "STATE_NAME            : $(STATE_NAME)"
+	@echo "DOMAIN                : $(DOMAIN)"
+	@echo "SEAT_COUNT            : $(SEAT_COUNT)"
+	@echo "REMOTE_STATE          : $(REMOTE_STATE)"
+	@echo "TERRAFORM_WITH_BACKEND: $(TERRAFORM_WITH_BACKEND)"
+	@echo "PROVIDER_NAME         : $(PROVIDER_NAME)"
+	@echo "CREATE_DNS            : $(CREATE_DNS)"
+	@echo "CREATE_TLS            : $(CREATE_TLS)"
 
 .PHONY:
 clean:
 	@rm -rf plan.out terraform.tfstate* .terraform* git_http_backend.auto.tf
+
+.PHONY:
+clean-state:
+	@rm -rf plan.out terraform.tfstate*
 
 .PHONY:
 show:
@@ -50,7 +67,12 @@ plan.out: *.tf .terraform.lock.hcl
 		-var="domain=$(DOMAIN)" \
 		-var="seat_count=$(SEAT_COUNT)" \
 		-var="hcloud_token=$(HCLOUD_TOKEN)" \
-		-var="hcloud_dns_token=$(HCLOUD_TOKEN_DNS)"
+		-var="hcloud_dns_token=$(HCLOUD_TOKEN_DNS)" \
+		-var="scaleway_token=$(SCALEWAY_TOKEN)" \
+		-var="scaleway_project_id=$(SCALEWAY_PROJECT_ID)" \
+		-var="provider_name=$(PROVIDER_NAME)" \
+		-var="create_dns=$(CREATE_DNS)" \
+		-var="create_tls=$(CREATE_TLS)"
 
 .PHONY:
 apply: plan.out
@@ -80,5 +102,10 @@ destroy:
 		-var="domain=$(DOMAIN)" \
 		-var="seat_count=$(SEAT_COUNT)" \
 		-var="hcloud_token=$(HCLOUD_TOKEN)" \
-		-var="hcloud_dns_token=$(HCLOUD_TOKEN_DNS)"
+		-var="hcloud_dns_token=$(HCLOUD_TOKEN_DNS)" \
+		-var="scaleway_token=$(SCALEWAY_TOKEN)" \
+		-var="scaleway_project_id=$(SCALEWAY_PROJECT_ID)" \
+		-var="provider_name=$(PROVIDER_NAME)" \
+		-var="create_dns=$(CREATE_DNS)" \
+		-var="create_tls=$(CREATE_TLS)"
 	@rm -f terraform.tfstate*

@@ -3,14 +3,15 @@ resource "tls_private_key" "certificate" {
 }
 
 resource "acme_registration" "reg" {
+  count = var.create_tls ? 1 : 0
   account_key_pem = tls_private_key.certificate.private_key_pem
   email_address   = "webmaster@${var.domain}"
 }
 
 resource "acme_certificate" "k8s" {
-  count    = var.seat_count
+  count    = var.create_tls ? var.seat_count : 0
 
-  account_key_pem = acme_registration.reg.account_key_pem
+  account_key_pem = acme_registration.reg[0].account_key_pem
   common_name     = "seat${count.index}.${var.domain}"
   subject_alternative_names = [
     "seat${count.index}.${var.domain}",
@@ -27,7 +28,7 @@ resource "acme_certificate" "k8s" {
 }
 
 resource "remote_file" "tls_key" {
-  count = var.seat_count
+  count    = var.create_tls ? var.seat_count : 0
 
   conn {
     host        = hcloud_server.k8s_host[count.index].ipv4_address
@@ -42,7 +43,7 @@ resource "remote_file" "tls_key" {
 }
 
 resource "remote_file" "tls_crt" {
-  count = var.seat_count
+  count    = var.create_tls ? var.seat_count : 0
 
   conn {
     host        = hcloud_server.k8s_host[count.index].ipv4_address
@@ -57,7 +58,7 @@ resource "remote_file" "tls_crt" {
 }
 
 resource "remote_file" "tls_chain_gitlab" {
-  count = var.seat_count
+  count    = var.create_tls ? var.seat_count : 0
 
   conn {
     host        = hcloud_server.k8s_host[count.index].ipv4_address

@@ -1,14 +1,20 @@
 packer {
   required_plugins {
     hcloud = {
-      source  = "github.com/hashicorp/hcloud"
-      version = "~> 1"
+      # https://github.com/hetznercloud/packer-plugin-hcloud  
+      source  = "github.com/hetznercloud/hcloud"
+      version = "1.8.2"
+    }
+    scaleway = {
+      # https://github.com/scaleway/packer-plugin-scaleway
+      source  = "github.com/scaleway/scaleway"
+      version = "1.5.0"
     }
   }
 }
 
 source "hcloud" "uniget" {
-  image = "ubuntu-24.04"
+  image = "ubuntu-26.04"
   location = "nbg1"
   server_type = "cx23"
   ssh_username = "root"
@@ -19,8 +25,23 @@ source "hcloud" "uniget" {
   }
 }
 
+source "scaleway" "uniget" {
+  image = "ubuntu_resolute"
+  zone = "fr-par-1"
+  commercial_type = "DEV1-S"
+  ssh_username = "root"
+  ssh_private_key_file = "~/.ssh/id_ed25519_scaleway"
+  tags = [
+    "ubuntu",
+    "docker"
+  ]
+}
+
 build {
-  sources = ["source.hcloud.uniget"]
+  sources = [
+    "source.hcloud.uniget",
+    "source.scaleway.uniget"
+  ]
 
   provisioner "file" {
     content = <<EOF
@@ -38,7 +59,7 @@ EOF
 
   provisioner "file" {
     source = "uniget.list"
-    destination = "/tmp/uniget"
+    destination = "/tmp/uniget.list"
   }
 
   provisioner "shell" {
@@ -50,8 +71,10 @@ EOF
         "update-grub",
         "curl -sLf \"https://gitlab.com/uniget-org/cli/-/releases/permalink/latest/downloads/uniget_Linux_$(uname -m).tar.gz\" | tar -xzC /usr/local/bin uniget",
         "uniget update",
-        "uniget install --file /tmp/uniget",
-        "rm /tmp/uniget",
+        "uniget install --file /tmp/uniget.list",
+        "rm /tmp/uniget.list",
+        "cp /usr/local/etc/systemd/system/docker.socket /etc/systemd/system/",
+        "cp /usr/local/etc/systemd/system/docker.service /etc/systemd/system/",
         "groupadd --system docker",
         "systemctl daemon-reload",
         "systemctl disable docker.service",

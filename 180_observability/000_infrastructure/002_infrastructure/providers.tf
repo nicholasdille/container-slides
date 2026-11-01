@@ -3,7 +3,11 @@ terraform {
     hcloud = {
       # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs
       source  = "hetznercloud/hcloud"
-      version = "1.70.1"
+      version = "1.70.2"
+    }
+    scaleway = {
+      source = "scaleway/scaleway"
+      version = "2.89.0"
     }
     acme = {
       source  = "vancluever/acme"

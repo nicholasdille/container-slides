@@ -5,7 +5,7 @@ data "hcloud_image" "packer" {
 }
 
 resource "hcloud_server" "k8s_host" {
-  count = var.seat_count
+  count = var.provider_name == "hcloud" ? var.seat_count : 0
 
   provider    = hcloud.default
   name        = "k8s${count.index}"
@@ -13,7 +13,7 @@ resource "hcloud_server" "k8s_host" {
   server_type = var.hcloud_server_type
   image       = data.hcloud_image.packer.id
   ssh_keys = [
-    hcloud_ssh_key.ssh_public_key.name
+    hcloud_ssh_key.ssh_public_key[0].name
   ]
   public_net {
     ipv4_enabled = true
@@ -24,8 +24,8 @@ resource "hcloud_server" "k8s_host" {
   }
 }
 
-resource "null_resource" "wait_for_ssh" {
-  count = var.seat_count
+resource "null_resource" "hcloud_wait_for_ssh" {
+  count = var.provider_name == "hcloud" ? var.seat_count : 0
 
   provisioner "remote-exec" {
     connection {
