@@ -99,3 +99,9 @@ XXX data sources
 XXX time range
 
 XXX filters
+
+---
+
+## AI-created dashboards
+
+XXX

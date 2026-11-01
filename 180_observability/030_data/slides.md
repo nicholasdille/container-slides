@@ -34,15 +34,29 @@ XXX agents
 
 Infrastructure
 
-Host OS (Linux)
-
-Node (kubelet, kube-proxy, node-exporter, metrics-server)
-
 Cluster (kube-apiserver, kube-state-metrics, kube-controller-manager, kube-scheduler)
 
-Pod (kubelet, metrics-server)
+Host OS (Linux)
 
-Container (kubelet)
+Node
+
+Pod/container
+
+---
+
+## Cluster metrics
+
+<i class="fa-duotone fa-solid fa-network-wired fa-4x"></i> <!-- .element: style="float: right;" -->
+
+Object-specific metrics in Kubernetes
+
+CronJob status
+
+Deployment status,
+
+Number of ready replicas
+
+etc.
 
 ---
 
@@ -60,9 +74,11 @@ Container (kubelet)
 
 **Node health**: Node conditions, such as ready, disk pressure, memory pressure
 
+Sources: kubelet, kube-proxy, node-exporter, metrics-server
+
 ---
 
-## Pod metrics
+## Pod/container metrics
 
 <i class="fa-duotone fa-solid fa-container-storage fa-4x"></i> <!-- .element: style="float: right;" -->
 
@@ -74,21 +90,7 @@ Container (kubelet)
 
 **Pod health**: Status of each pod, restart counts, and lifecycle events
 
----
-
-## Cluster metrics
-
-<i class="fa-duotone fa-solid fa-network-wired fa-4x"></i> <!-- .element: style="float: right;" -->
-
-Object specific metrics in Kubernetes
-
-CronJob status
-
-Deployment status,
-
-Number of ready replicas
-
-etc.
+Source: kubelet, metrics-server
 
 ---
 
@@ -108,11 +110,18 @@ Prometheus Operator adds declarative configuration
 
 ## Why Mimir instead of Prometheus
 
-XXX shortcomings of Prometheus
+### Prometheus does not scale
 
-XXX advantages of Mimir
+- Monolithic process
+- Memory usage increases with stored data
+- WAL replay makes startup slow
 
-XXX Mimir in addition to Prometheus
+### Mimir scales well
+
+- Microservices
+- Scales horizontally and vertically
+- Designed for long-term storage
+- Does not scrape on its own
 
 ---
 
@@ -120,11 +129,11 @@ XXX Mimir in addition to Prometheus
 
 <i class="fa-duotone fa-solid fa-person-dolly fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX push based
+Both are collected push-based
 
-XXX agents
+Collection done by agents or instrumentation
 
-XXX accessible endpoints
+Endpoints for Loki and Tempo must be accessible
 
 ---
 
@@ -158,10 +167,6 @@ Supercedes Grafana Agent (EOL since 2025-11-01) and promtail (deprecated)
 
 Collect, transform and forward data
 
-### k8s-monitoring
-
-Uber helm chart based on Alloy to collect EVERYTHING
-
 ---
 
 ## Chaining collection
@@ -180,14 +185,26 @@ XXX OtelCol/Alloy in between
 
 <i class="fa-duotone fa-solid fa-browser fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX metrics exporter (integrated, sidecar)
+### Utilize existing exporter
 
-XXX log shipping
+- Integrated endpoints
+- Sidecars (possibly community projects or paid extensions)
+- Maybe need to convert data into OpenMetrics format
 
-XXX auto instrumentation
+### Log shipping is mostly solved
+
+- Log files can be scraped
+- Container logs can be scraped
+
+### Tracing
+
+- Instrumentation through SDKs for many languages
+- Auto-Instrumentation
 
 ---
 
 ## Data transformation
 
-XXX
+XXX otel pipelines
+
+XXX alloy pipelines

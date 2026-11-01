@@ -49,7 +49,15 @@ slides:
 - 180_observability/050_alarms/slides.md
 
 summary:
-- icon: question
-  text: XXX
+- icon: function
+  text: o11y = metrics + logs + traces
+- icon: hand-holding-seedling
+  text: LGTM stack has you covered
+- icon: arrows-up-down-left-right
+  text: Components scale well
+- icon: chart-mixed
+  text: Visualization supports understanding
+- icon: wand-magic-sparkles
+  text: Let AI create dashboards on-demand
 
 events: []

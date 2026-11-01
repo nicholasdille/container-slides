@@ -102,7 +102,11 @@ Spans are linked together to form a tree structure that represents the entire re
 
 ### Purpose
 
-XXX
+**XXX**: Trace requests through a networ of microservices
+
+**Root cause analysis**: Identify where the request fails
+
+**Performance monitoring**: Identify bottlenecks in request flow
 
 ---
 
@@ -182,10 +186,17 @@ Do NOT collect data that you do not need
 
 ---
 
+## Profiling
+
+XXX
+
+---
+
 ## Comparison
 
-Type    | Description                   | Purpose                   | Example                    |
---------|-------------------------------|---------------------------|----------------------------|
-Metrics | Quantative values             | State, trends             | Memory usage, latency      |
-Logs    | Event-based, textual data     | Detailed analysis         | Error messages, debug info |
-Traces  | Trace requests across systems | Performance, dependencies | Request state, correlation |
+Type      | Description                   | Purpose                   | Example                    |
+----------|-------------------------------|---------------------------|----------------------------|
+Metrics   | Quantative values             | State, trends             | Memory usage, latency      |
+Logs      | Event-based, textual data     | Detailed analysis         | Error messages, debug info |
+Traces    | Trace requests across systems | Performance, dependencies | Request state, correlation |
+Profiling | XXX                           | XXX                       | XXX                        |
