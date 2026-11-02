@@ -12,18 +12,18 @@ nodes:
     kind: InitConfiguration
     nodeRegistration:
       kubeletExtraArgs:
-        system-reserved: memory=15Gi,cpu=7
+        system-reserved: memory=14Gi,cpu=6
 - role: worker
   kubeadmConfigPatches:
   - |
     kind: JoinConfiguration
     nodeRegistration:
       kubeletExtraArgs:
-        system-reserved: memory=12Gi,cpu=6
+        system-reserved: memory=9Gi,cpu=5
 - role: worker
   kubeadmConfigPatches:
   - |
     kind: JoinConfiguration
     nodeRegistration:
       kubeletExtraArgs:
-        system-reserved: memory=12Gi,cpu=6
+        system-reserved: memory=9Gi,cpu=5

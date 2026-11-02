@@ -5,6 +5,7 @@ if ! test -s ssh; then
     ssh-keygen -N '' -f ssh -t ed25519
 fi
 
+hcloud ssh-key delete o11y-local || true
 hcloud ssh-key create \
     --name=o11y-local \
     --public-key-from-file=ssh.pub \
@@ -13,7 +14,7 @@ hcloud ssh-key create \
 hcloud server create \
     --name=o11y-local \
     --type=cx43 \
-    --location=nbg1 \
+    --location=fsn1 \
     --image=ubuntu-24.04 \
     --ssh-key=o11y-local \
     --user-data-from-file=cloud-init \
