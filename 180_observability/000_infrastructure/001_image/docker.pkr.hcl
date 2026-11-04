@@ -26,11 +26,11 @@ source "hcloud" "uniget" {
 }
 
 source "scaleway" "uniget" {
+  image_name = "uniget-docker"
   image = "ubuntu_resolute"
   zone = "fr-par-1"
   commercial_type = "DEV1-S"
   ssh_username = "root"
-  ssh_private_key_file = "~/.ssh/id_ed25519_scaleway"
   tags = [
     "ubuntu",
     "docker"

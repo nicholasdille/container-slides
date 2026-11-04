@@ -8,7 +8,11 @@ output "ssh_public_key" {
 }
 
 output "ipv4_addresses" {
-  value = hcloud_server.k8s_host[*].ipv4_address
+  value = (
+    var.provider_name == "hcloud"   ? hcloud_server.k8s_host[*].ipv4_address :
+    var.provider_name == "scaleway" ? scaleway_instance_server.k8s_host[*].public_ips[0].address :
+    []
+  )
 }
 
 output "tls_keys" {

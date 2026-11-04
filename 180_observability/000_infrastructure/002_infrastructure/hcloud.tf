@@ -7,6 +7,8 @@ resource "hcloud_ssh_key" "ssh_public_key" {
 }
 
 data "hcloud_image" "packer" {
+  count = var.provider_name == "hcloud" ? 1 : 0
+
   provider      = hcloud.default
   with_selector = "type=docker"
   most_recent   = true
@@ -19,7 +21,7 @@ resource "hcloud_server" "k8s_host" {
   name        = "k8s${count.index}"
   location    = var.hcloud_location
   server_type = var.hcloud_server_type
-  image       = data.hcloud_image.packer.id
+  image       = data.hcloud_image.packer[0].id
   ssh_keys = [
     hcloud_ssh_key.ssh_public_key[0].name
   ]

@@ -19,8 +19,16 @@ resource "local_file" "ssh_config_file_k8s_host" {
   count = var.create_dns ? var.seat_count : 0
 
   content = templatefile("ssh_config.tpl", {
-    node         = hcloud_server.k8s_host[count.index].name,
-    node_ip      = hcloud_server.k8s_host[count.index].ipv4_address
+    node         = (
+      var.provider_name == "hcloud"   ? hcloud_server.k8s_host[count.index].name :
+      var.provider_name == "scaleway" ? scaleway_instance_server.k8s_host[count.index].name :
+      count.index
+    )
+    node_ip      = (
+      var.provider_name == "hcloud"   ? hcloud_server.k8s_host[count.index].ipv4_address :
+      var.provider_name == "scaleway" ? scaleway_instance_server.k8s_host[count.index].public_ips[0].address :
+      ""
+    )
     ssh_key_file = local_file.ssh.filename
   })
   filename        = pathexpand("~/.ssh/config.d/k8s${count.index}")

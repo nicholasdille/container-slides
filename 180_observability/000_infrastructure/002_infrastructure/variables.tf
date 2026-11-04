@@ -72,7 +72,7 @@ variable "scaleway_location" {
 variable "scaleway_server_type" {
   type        = string
   description = ""
-  default     = "BASIC2-A8C-16G"    # https://www.scaleway.com/en/pricing/virtual-instances/?ram=8|16&cpu=4|8&cpu_type=shared
+  default     = "BASIC3-X8C-16G"    # https://www.scaleway.com/en/pricing/virtual-instances/?ram=8|16&cpu=4|8&cpu_type=shared
 }
 
 variable "scaleway_image_uuid" {

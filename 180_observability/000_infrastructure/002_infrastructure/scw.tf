@@ -1,3 +1,15 @@
+data "scaleway_instance_image" "packer" {
+  name = "uniget-docker"
+}
+
+resource "scaleway_iam_ssh_key" "ssh_public_key" {
+  count = var.provider_name == "scaleway" ? var.seat_count : 0
+
+  name       = var.event_name
+  project_id = var.scaleway_project_id
+  public_key = tls_private_key.ssh_private_key.public_key_openssh
+}
+
 resource "scaleway_instance_ip" "public_ip" {
   count = var.provider_name == "scaleway" ? var.seat_count : 0
 
@@ -46,7 +58,7 @@ resource "scaleway_instance_server" "k8s_host" {
 
   project_id = var.scaleway_project_id
   type       = var.scaleway_server_type
-  image      = "ubuntu_jammy"
+  image      = data.scaleway_instance_image.packer.id
 
   tags = [
     var.event_name
@@ -60,7 +72,7 @@ resource "scaleway_instance_server" "k8s_host" {
     size_in_gb = 50
   }
 
-  #security_group_id = scaleway_instance_security_group.www[count.index].id
+  security_group_id = scaleway_instance_security_group.www[count.index].id
 }
 
 resource "null_resource" "scw_wait_for_ssh" {

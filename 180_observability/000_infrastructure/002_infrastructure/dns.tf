@@ -12,7 +12,13 @@ resource "hcloud_zone_rrset" "k8s_host" {
   type     = "A"
   ttl      = 120
   records = [
-    { value = hcloud_server.k8s_host[count.index].ipv4_address },
+    { 
+      value = (
+        var.provider_name == "hcloud"   ? hcloud_server.k8s_host[count.index].ipv4_address : 
+        var.provider_name == "scaleway" ? scaleway_instance_server.k8s_host[count.index].public_ips[0].address :
+        ""
+      ),
+    },
   ]
 }
 

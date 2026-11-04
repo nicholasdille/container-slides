@@ -20,6 +20,7 @@ fi
 EVENT_NAME="$( jq --raw-output '.name' infrastructure.json )"
 SEAT_COUNT="$( jq --raw-output '.count' infrastructure.json )"
 DOMAIN="$( jq --raw-output '.domain' infrastructure.json )"
+SSH_KEY_FILE=../002_infrastructure/ssh
 TRAEFIK_PASSWORD="$( jq --raw-output '.traefik_password' infrastructure.json )"
 TRAEFIK_HTPASSWD="$( htpasswd -nBb admin "${TRAEFIK_PASSWORD}" )"
 
@@ -31,8 +32,8 @@ for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
     IP="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .ip' infrastructure.json )"
     PASSWORD="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .password' infrastructure.json )"
 
-    SSH_CMD="ssh -i id_rsa root@${IP}"
-    SCP_CMD="scp -i id_rsa"
+    SSH_CMD="ssh -i ${SSH_KEY_FILE} root@${IP}"
+    SCP_CMD="scp -i ${SSH_KEY_FILE}"
 
     # Check availability
     if ! ${SSH_CMD} true; then
@@ -55,7 +56,7 @@ SEAT_INDEX=$INDEX
 IP=$IP
 DOMAIN=$DOMAIN
 TRAEFIK_PASSWORD=$TRAEFIK_PASSWORD
-TRAEFIK_HTPASSWD=$TRAEFIK_HTPASSWD
+TRAEFIK_HTPASSWD=$( echo $TRAEFIK_HTPASSWD | sed 's/\$/\$\$/g' )
 VSCODE_PASSWORD=$PASSWORD
 EOF
     ${SCP_CMD} env-$INDEX root@${IP}:~/container-slides/180_observability/000_infrastructure/003_vscode/.env

@@ -7,7 +7,6 @@ SEATS_JSON_FILE        := ../000_creds/seats.json
 STATE_NAME             := $(shell jq --raw-output '.name' $(SEATS_JSON_FILE))
 DOMAIN                 ?= $(shell jq --raw-output '.domain' $(SEATS_JSON_FILE))
 SEAT_COUNT   		   ?= $(shell jq --raw-output '.seats | length' $(SEATS_JSON_FILE))
-PROVIDER_NAME          := hcloud
 CREATE_DNS             := true
 CREATE_TLS             := true
 ifeq ($(REMOTE_STATE),true)
@@ -43,7 +42,7 @@ show:
 output:
 	@terraform output
 
-.PHONY:
+.PHONY: debug
 init: .terraform.lock.hcl
 
 .PHONY:

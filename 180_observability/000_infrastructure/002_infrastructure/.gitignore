@@ -3,6 +3,7 @@
 /plan.out
 /git_http_backend.auto.tf
 /errored.tfstate
+/terraform.tfstate*
 /state.json
 /ssh
 /ips.txt
