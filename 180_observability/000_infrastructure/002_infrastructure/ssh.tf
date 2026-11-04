@@ -26,10 +26,3 @@ resource "local_file" "ssh_config_file_k8s_host" {
   filename        = pathexpand("~/.ssh/config.d/k8s${count.index}")
   file_permission = "0644"
 }
-
-resource "hcloud_ssh_key" "ssh_public_key" {
-  count = var.provider_name == "hcloud" ? 1 : 0
-  provider   = hcloud.default
-  name       = var.event_name
-  public_key = tls_private_key.ssh_private_key.public_key_openssh
-}

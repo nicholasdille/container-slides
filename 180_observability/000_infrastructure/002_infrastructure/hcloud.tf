@@ -1,3 +1,11 @@
+resource "hcloud_ssh_key" "ssh_public_key" {
+  count = var.provider_name == "hcloud" ? 1 : 0
+
+  provider   = hcloud.default
+  name       = var.event_name
+  public_key = tls_private_key.ssh_private_key.public_key_openssh
+}
+
 data "hcloud_image" "packer" {
   provider      = hcloud.default
   with_selector = "type=docker"
