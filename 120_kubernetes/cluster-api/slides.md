@@ -186,7 +186,7 @@ flowchart LR
 <i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
 
 - Create a temporary management cluster
-- Initialize Cluster API with provider for Hetzner
+- Initialize Cluster API with provider
 - Generate and apply the cluster manifest
 - Fetch the kubeconfig and watch nodes
 - Move management role to the new cluster
@@ -218,15 +218,21 @@ Any alternative works as well: `k3s`, `k3d` etc.
 
 <i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
 
-Initialize Cluster API with the Hetzner provider
+Initialize Cluster API with the provider
 
 ```bash
-export HCLOUD_TOKEN="<your-hcloud-token>"
-export HCLOUD_SSH_KEY="<ssh-key-name>"
+export SCW_ACCESS_KEY="$( scw config get access-key )"
+export SCW_SECRET_KEY="$( scw config get secret-key )"
+export SCW_PROJECT_ID="$( scw config get default-project-id )"
+export SCW_REGION="$( scw config get default-region )"
 
 clusterctl init \
-  --infrastructure hcloud
+  --infrastructure scaleway
+
+kubectl get pods -A
 ```
+
+XXX https://github.com/scaleway/cluster-api-provider-scaleway
 
 ---
 
@@ -238,17 +244,23 @@ Generate a workload cluster definition
 
 ```bash
 export MGMT_CLUSTER_NAME="management"
-export KUBERNETES_VERSION=v1.37.0
+export KUBERNETES_VERSION=v1.36.1
 export MGMT_CONTROL_PLANE_MACHINE_COUNT=3
 export MGMT_WORKER_MACHINE_COUNT=3
+export CONTROL_PLANE_MACHINE_IMAGE=cluster-api-ubuntu-2604-v1.36.1
+export WORKER_MACHINE_IMAGE=cluster-api-ubuntu-2604-v1.36.1
 
 clusterctl generate cluster ${MGMT_CLUSTER_NAME} \
-  --infrastructure hcloud \
+  --infrastructure scaleway \
   --kubernetes-version ${KUBERNETES_VERSION} \
   --control-plane-machine-count ${MGMT_CONTROL_PLANE_MACHINE_COUNT} \
   --worker-machine-count ${MGMT_WORKER_MACHINE_COUNT} \
   > ${MGMT_CLUSTER_NAME}.yaml
 ```
+
+XXX fix API server port
+
+XXX show CIDR ranges and machine type
 
 ---
 
@@ -260,10 +272,53 @@ Apply it and watch the cluster come up
 
 ```bash
 kubectl apply -f ${MGMT_CLUSTER_NAME}.yaml
-kubectl get clusters,machines,machinesets -A -w
+watch clusterctl describe cluster ${MGMT_CLUSTER_NAME}
+scw instance server list
+kubectl get clusters,machines,machinesets
 ```
 
 XXX Check cluster with https://github.com/Jont828/cluster-api-visualizer?
+
+---
+
+## Demo 4: XXX
+
+<i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
+
+Get `kubeconfig` for the management cluster:
+
+```shell
+clusterctl get kubeconfig management >${MGMT_CLUSTER_NAME}.kubeconfig
+```
+
+Deploy CNI:
+
+```shell
+helm repo add cilium https://helm.cilium.io/
+helm repo update
+helm install cilium cilium/cilium --namespace kube-system
+cilium --kubeconfig kubeconfig status
+```
+
+Deploy CCM:
+
+```shell
+cat <<EOF >scaleway-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: scaleway-secret
+  namespace: kube-system
+type: Opaque
+stringData:
+  SCW_ACCESS_KEY: "$( scw config get access-key )"
+  SCW_SECRET_KEY: "$( scw config get secret-key )"
+  SCW_DEFAULT_PROJECT_ID: "$( scw config get default-project-id )"
+  SCW_DEFAULT_REGION: "$( scw config get default-region )"
+  SCW_DEFAULT_ZONE: "$( scw config get default-zone )"
+EOF
+kubectl --kubeconfig kubeconfig apply -f https://github.com/scaleway/scaleway-cloud-controller-manager/raw/refs/tags/v0.36.2/examples/k8s-scaleway-ccm-latest.yml
+```
 
 ---
 
@@ -323,7 +378,7 @@ Official list of [infrastructure providers](https://cluster-api.sigs.k8s.io/refe
 ---
 
 ```yaml
-XXX example resources for Hetzner provider
+XXX example resources for Scaleway provider
 ```
 
 ---
@@ -394,65 +449,19 @@ sequenceDiagram
 
 ---
 
-## Demo 5: Fetch the kubeconfig
-
-<i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
-
-Fetch the kubeconfig once the cluster is ready
-
-```bash
-clusterctl get kubeconfig ${MGMT_CLUSTER_NAME} > ${MGMT_CLUSTER_NAME}.kubeconfig
-kubectl --kubeconfig=${MGMT_CLUSTER_NAME}.kubeconfig get nodes
-```
-
----
-
-## Demo 6: Move the management role
+## Demo 5: Remove cluster
 
 <i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
 
 Hand management over to the new cluster
 
 ```bash
-clusterctl init \
-  --infrastructure hcloud \
-  --bootstrap kubeadm \
-  --control-plane kubeadm \
-  --kubeconfig ${MGMT_CLUSTER_NAME}.kubeconfig
-
-clusterctl move \
-  --to-kubeconfig ${MGMT_CLUSTER_NAME}.kubeconfig
-
-kubectl --kubeconfig ${MGMT_CLUSTER_NAME}.kubeconfig \
-  get clusters,machines -A
+kubectl delete cluster management
+w scw instance server list
+kind delete cluster --name temporary
 ```
 
----
-
-## Demo 7: Create a workload cluster
-
-<i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
-
-Same commands, now from the self-hosted management cluster
-
-```bash
-export WORK_CLUSTER_NAME="workload"
-export KUBECONFIG=${MGMT_CLUSTER_NAME}.kubeconfig
-export WORK_CONTROL_PLANE_MACHINE_COUNT=3
-export WORK_WORKER_MACHINE_COUNT=5
-
-clusterctl generate cluster ${WORK_CLUSTER_NAME} \
-  --infrastructure hcloud \
-  --kubernetes-version ${KUBERNETES_VERSION} \
-  --control-plane-machine-count ${WORK_CONTROL_PLANE_MACHINE_COUNT} \
-  --worker-machine-count ${WORK_WORKER_MACHINE_COUNT} \
-  > ${WORK_CLUSTER_NAME}.yaml
-
-kubectl apply -f ${WORK_CLUSTER_NAME}.yaml
-kubectl get clusters,machines -A -w
-```
-
-<!-- .element: style="height: 18em;" -->
+XXX next steps: deploy CSI https://github.com/scaleway/scaleway-csi
 
 ---
 
