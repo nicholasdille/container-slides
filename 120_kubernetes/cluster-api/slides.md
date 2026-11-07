@@ -463,6 +463,8 @@ kind delete cluster --name temporary
 
 XXX next steps: deploy CSI https://github.com/scaleway/scaleway-csi
 
+XXX next steps: Build your own image using `image-builder` https://github.com/kubernetes-sigs/image-builder, https://image-builder.sigs.k8s.io/capi/providers/scaleway
+
 ---
 
 ## Upgrades and rolling changes
