@@ -207,7 +207,8 @@ flowchart LR
 Create a temporary management cluster using `kind`
 
 ```shell
-kind create cluster --name temporary
+kind create cluster \
+    --name temporary
 ```
 
 Any alternative works as well: `k3s`, `k3d` etc.
@@ -226,13 +227,14 @@ export SCW_SECRET_KEY="$( scw config get secret-key )"
 export SCW_PROJECT_ID="$( scw config get default-project-id )"
 export SCW_REGION="$( scw config get default-region )"
 
+# https://github.com/scaleway/cluster-api-provider-scaleway
 clusterctl init \
   --infrastructure scaleway
 
 kubectl get pods -A
 ```
 
-XXX https://github.com/scaleway/cluster-api-provider-scaleway
+XXX
 
 ---
 
@@ -240,27 +242,25 @@ XXX https://github.com/scaleway/cluster-api-provider-scaleway
 
 <i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
 
-Generate a workload cluster definition
+Generate a cluster definition
 
 ```bash
-export MGMT_CLUSTER_NAME="management"
-export KUBERNETES_VERSION=v1.36.1
-export MGMT_CONTROL_PLANE_MACHINE_COUNT=3
-export MGMT_WORKER_MACHINE_COUNT=3
 export CONTROL_PLANE_MACHINE_IMAGE=cluster-api-ubuntu-2604-v1.36.1
 export WORKER_MACHINE_IMAGE=cluster-api-ubuntu-2604-v1.36.1
 
-clusterctl generate cluster ${MGMT_CLUSTER_NAME} \
+clusterctl generate cluster management \
   --infrastructure scaleway \
-  --kubernetes-version ${KUBERNETES_VERSION} \
-  --control-plane-machine-count ${MGMT_CONTROL_PLANE_MACHINE_COUNT} \
-  --worker-machine-count ${MGMT_WORKER_MACHINE_COUNT} \
-  > ${MGMT_CLUSTER_NAME}.yaml
+  --kubernetes-version v1.36.1 \
+  --control-plane-machine-count 3 \
+  --worker-machine-count 3 \
+  > management.yaml
 ```
 
-XXX fix API server port
+Manual fixes:
 
-XXX show CIDR ranges and machine type
+- Fix the API server port (null <i class="fa-duotone fa-solid fa-arrow-right"></i> 6443)
+- Set the CIDR ranges for the pods and services
+- Set the machine type for control plane and worker nodes
 
 ---
 
@@ -271,19 +271,21 @@ XXX show CIDR ranges and machine type
 Apply it and watch the cluster come up
 
 ```bash
-kubectl apply -f ${MGMT_CLUSTER_NAME}.yaml
-watch clusterctl describe cluster ${MGMT_CLUSTER_NAME}
+kubectl apply -f management.yaml
+watch clusterctl describe cluster management
 scw instance server list
 kubectl get clusters,machines,machinesets
 ```
 
-XXX Check cluster with https://github.com/Jont828/cluster-api-visualizer?
+Visualize the deployment using the [`cluster-api-visualizer`](https://github.com/Jont828/cluster-api-visualizer)
 
 ---
 
-## Demo 4: XXX
+## Demo 4: Deploy a CNI plugin
 
 <i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
+
+Networking does not work out-of-the-box
 
 Get `kubeconfig` for the management cluster:
 
@@ -291,7 +293,7 @@ Get `kubeconfig` for the management cluster:
 clusterctl get kubeconfig management >${MGMT_CLUSTER_NAME}.kubeconfig
 ```
 
-Deploy CNI:
+Deploy CNI plugin:
 
 ```shell
 helm repo add cilium https://helm.cilium.io/
@@ -300,7 +302,11 @@ helm install cilium cilium/cilium --namespace kube-system
 cilium --kubeconfig kubeconfig status
 ```
 
-Deploy CCM:
+---
+
+## Demo 4: Deploy the Cloud Controller Manager (CCM)
+
+Deploy cloud controller manager:
 
 ```shell
 cat <<EOF >scaleway-secret.yaml
@@ -317,8 +323,14 @@ stringData:
   SCW_DEFAULT_REGION: "$( scw config get default-region )"
   SCW_DEFAULT_ZONE: "$( scw config get default-zone )"
 EOF
-kubectl --kubeconfig kubeconfig apply -f https://github.com/scaleway/scaleway-cloud-controller-manager/raw/refs/tags/v0.36.2/examples/k8s-scaleway-ccm-latest.yml
+SCW_CCM_URL=https://github.com/scaleway/scaleway-cloud-controller-manager
+kubectl \
+    --kubeconfig kubeconfig \
+    apply -f \
+        ${SCW_CCM_URL}/raw/refs/tags/v0.36.2/examples/k8s-scaleway-ccm-latest.yml
 ```
+
+<!-- .element: style="height: 23em;" -->
 
 ---
 
@@ -355,9 +367,50 @@ flowchart LR
 ---
 
 ```yaml
-XXX KubeadmControlPlane
-XXX KubeadmConfigTemplate
+apiVersion: controlplane.cluster.x-k8s.io/v1beta2
+kind: KubeadmControlPlane
+metadata:
+  name: foo
+spec:
+  kubeadmConfigSpec:
+    clusterConfiguration: {}
+    files: []
+    format: cloud-config
+    initConfiguration: {}
+    joinConfiguration: {}
+    preKubeadmCommands: []
+  machineTemplate:
+    spec:
+      infrastructureRef:
+        apiGroup: infrastructure.cluster.x-k8s.io
+        kind: VSphereMachineTemplate
+        name: mario-2110-1.36.6-linux-2.1.158-controlplane
+  replicas: 3
+  rollout:
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+      type: RollingUpdate
+  version: v1.36.1
 ```
+
+<!-- .element: style="width: 34em; height: 34em; float: left;" -->
+
+```yaml
+apiVersion: bootstrap.cluster.x-k8s.io/v1beta2
+kind: KubeadmConfigTemplate
+metadata:
+  name: bar
+spec:
+  template:
+    spec:
+      files: []
+      format: cloud-config
+      joinConfiguration: {}
+      preKubeadmCommands: []
+```
+
+<!-- .element: style="width: 34em; height: 34em; float: right;" -->
 
 ---
 
@@ -371,7 +424,9 @@ XXX KubeadmConfigTemplate
 - Additional provider-specific resources
 - Pluggable API with platform-specific machinery
 
-Official list of [infrastructure providers](https://cluster-api.sigs.k8s.io/reference/providers.html#infrastructure).
+Official list of [infrastructure providers](https://cluster-api.sigs.k8s.io/reference/providers.html#infrastructure) includes...
+
+AWS (CAPA) | Azure (CAPZ) | Hetzner Cloud (CAPH) | Scaleway (CAPS) | vSphere (CAPV)
 
 *Sidenote: Docker provider for local testing and development*
 
@@ -393,7 +448,9 @@ XXX example resources for Scaleway provider
 - Again: pluggable API
 - Defaults to `kubeadm`
 
-Official list of [bootstrap providers](https://cluster-api.sigs.k8s.io/reference/providers.html#bootstrap).
+Official list of [bootstrap providers](https://cluster-api.sigs.k8s.io/reference/providers.html#bootstrap) includes...
+
+EKS | RKE2 | Talos
 
 ---
 
@@ -453,17 +510,27 @@ sequenceDiagram
 
 <i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
 
-Hand management over to the new cluster
+### Next steps
+
+Move management functions to new cluster:
+
+```shell
+clusterctl move \\
+    --kubeconfig temporary.kubeconfig \
+    --to-kubeconfig management.kubeconfig
+```
+
+Deploy CSI for your infrastructure, e.g. [Scaleway CSI](https://github.com/scaleway/scaleway-csi)
+
+Build your own image using [`image-builder`](https://github.com/kubernetes-sigs/image-builder) with [support for Scaleway](https://image-builder.sigs.k8s.io/capi/providers/scaleway)
+
+### Remove cluster
 
 ```bash
 kubectl delete cluster management
 w scw instance server list
 kind delete cluster --name temporary
 ```
-
-XXX next steps: deploy CSI https://github.com/scaleway/scaleway-csi
-
-XXX next steps: Build your own image using `image-builder` https://github.com/kubernetes-sigs/image-builder, https://image-builder.sigs.k8s.io/capi/providers/scaleway
 
 ---
 
