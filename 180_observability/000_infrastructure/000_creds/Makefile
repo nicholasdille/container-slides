@@ -1,5 +1,5 @@
 EVENT_NAME := 20261119
-SEAT_COUNT := 10
+SEAT_COUNT := 11
 DOMAIN     := inmylab.de
 
 clean:

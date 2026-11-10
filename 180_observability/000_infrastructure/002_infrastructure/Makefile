@@ -10,7 +10,7 @@ SEAT_COUNT   		   ?= $(shell jq --raw-output '.seats | length' $(SEATS_JSON_FILE
 CREATE_DNS             := true
 CREATE_TLS             := true
 ifeq ($(REMOTE_STATE),true)
-	TERRAFORM_WITH_BACKEND := TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME) TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD) GIT_USERNAME=$(GIT_USERNAME) GIT_PASSWORD=$(GIT_PASSWORD) terraform-backend-git git --repository $(REPOSITORY_URL) --ref $(REPOSITORY_BRANCH) --state $(STATE_NAME)/state.json tofu
+	TERRAFORM_WITH_BACKEND := TF_BACKEND_GIT_HTTP_USERNAME=$(GIT_USERNAME) TF_BACKEND_GIT_HTTP_PASSWORD=$(GIT_PASSWORD) GIT_USERNAME=$(GIT_USERNAME) GIT_PASSWORD=$(GIT_PASSWORD) terraform-backend-git git --repository $(REPOSITORY_URL) --ref $(REPOSITORY_BRANCH) --state $(STATE_NAME)/state.json terraform
 else
 	TERRAFORM_WITH_BACKEND := tofu
 endif
@@ -87,8 +87,8 @@ ssh: state.json
 ips.txt: state.json
 	@jq --raw-output '.outputs.ipv4_addresses.value[]' state.json >$@
 
-infrastructure.json: ips.txt ../000_creds/seats.json
-	@DOMAIN=$(DOMAIN) bash create_infrastructure_json.sh >$@
+infrastructure.json: ips.txt ../000_creds/seats.json state.json
+	@bash create_infrastructure_json.sh >$@
 
 .PHONY:
 state: state.json

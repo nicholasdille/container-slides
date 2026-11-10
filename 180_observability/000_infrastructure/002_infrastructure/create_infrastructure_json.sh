@@ -9,12 +9,16 @@ if ! test -f ips.txt; then
     echo "ERROR: Unable to find ips.txt"
     exit 1
 fi
+if ! test -f state.json; then
+    echo "ERROR: Unable to find state.json"
+    exit 1
+fi
 
 readarray -t ips <ips.txt
 
 : "${EVENT_NAME:=$( jq --raw-output '.name' ../000_creds/seats.json )}"
 : "${SEAT_COUNT:=${#ips[@]}}"
-: "${DOMAIN:=$( jq --raw-output '.domain' ../000_creds/seats.json )}"
+: "${DOMAIN:=$( jq --raw-output '.resources[] | select(.type == "hcloud_zone") | .instances[0].attributes.name' state.json )}"
 
 result="$(
     jq \

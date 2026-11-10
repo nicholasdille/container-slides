@@ -17,6 +17,8 @@ resource "acme_certificate" "k8s" {
     "seat${count.index}.${var.domain}",
     "*.seat${count.index}.${var.domain}"
   ]
+  disable_authoritative_propagation = true
+  pre_check_delay = 300
 
   dns_challenge {
     provider = "hetzner"
@@ -31,7 +33,11 @@ resource "remote_file" "tls_key" {
   count    = var.create_tls ? var.seat_count : 0
 
   conn {
-    host        = hcloud_server.k8s_host[count.index].ipv4_address
+    host        = (
+      var.provider_name == "hcloud"   ? hcloud_server.k8s_host[count.index].ipv4_address :
+      var.provider_name == "scaleway" ? scaleway_instance_server.k8s_host[count.index].public_ips[0].address :
+      ""
+    )
     port        = 22
     user        = "root"
     private_key = tls_private_key.ssh_private_key.private_key_openssh
@@ -46,7 +52,11 @@ resource "remote_file" "tls_crt" {
   count    = var.create_tls ? var.seat_count : 0
 
   conn {
-    host        = hcloud_server.k8s_host[count.index].ipv4_address
+    host        = (
+      var.provider_name == "hcloud"   ? hcloud_server.k8s_host[count.index].ipv4_address :
+      var.provider_name == "scaleway" ? scaleway_instance_server.k8s_host[count.index].public_ips[0].address :
+      ""
+    )
     port        = 22
     user        = "root"
     private_key = tls_private_key.ssh_private_key.private_key_openssh
@@ -61,7 +71,11 @@ resource "remote_file" "tls_chain_gitlab" {
   count    = var.create_tls ? var.seat_count : 0
 
   conn {
-    host        = hcloud_server.k8s_host[count.index].ipv4_address
+    host        = (
+      var.provider_name == "hcloud"   ? hcloud_server.k8s_host[count.index].ipv4_address :
+      var.provider_name == "scaleway" ? scaleway_instance_server.k8s_host[count.index].public_ips[0].address :
+      ""
+    )
     port        = 22
     user        = "root"
     private_key = tls_private_key.ssh_private_key.private_key_openssh

@@ -57,6 +57,7 @@ resource "scaleway_instance_server" "k8s_host" {
   count = var.provider_name == "scaleway" ? var.seat_count : 0
 
   project_id = var.scaleway_project_id
+  name       = "k8s${count.index}"
   type       = var.scaleway_server_type
   image      = data.scaleway_instance_image.packer.id
 
