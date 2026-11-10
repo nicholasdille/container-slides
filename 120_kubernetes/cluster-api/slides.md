@@ -41,6 +41,36 @@ flowchart LR
 ---
 
 ```yaml
+# Cluster API on vSphere
+apiVersion: cluster.x-k8s.io/v1beta2
+kind: Cluster
+metadata:
+  name: bar
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks:
+      - 100.64.128.0/17  # CGNAT
+    services:
+      cidrBlocks:
+      - 100.64.0.0/17  # CGNAT
+  controlPlaneEndpoint:
+    host: 10.0.0.10
+    port: 6443
+  controlPlaneRef:
+    apiGroup: controlplane.cluster.x-k8s.io
+    kind: KubeadmControlPlane
+    name: bar
+  infrastructureRef:
+    apiGroup: infrastructure.cluster.x-k8s.io
+    kind: VSphereCluster
+    name: bar
+```
+
+<!-- .element: style="width: 34em; height: 29em; float: left;" -->
+
+```yaml
+# Cluster API on AWS EKS
 apiVersion: cluster.x-k8s.io/v1beta2
 kind: Cluster
 metadata:
@@ -63,62 +93,12 @@ spec:
     name: foo
 ```
 
-<!-- .element: style="width: 34em; height: 28em; float: right;" -->
-
-```yaml
-apiVersion: cluster.x-k8s.io/v1beta2
-kind: Cluster
-metadata:
-  name: bar
-spec:
-  clusterNetwork:
-    pods:
-      cidrBlocks:
-      - 100.64.128.0/17
-    services:
-      cidrBlocks:
-      - 100.64.0.0/17
-  controlPlaneEndpoint:
-    host: 10.0.0.10
-    port: 6443
-  controlPlaneRef:
-    apiGroup: controlplane.cluster.x-k8s.io
-    kind: KubeadmControlPlane
-    name: bar
-  infrastructureRef:
-    apiGroup: infrastructure.cluster.x-k8s.io
-    kind: VSphereCluster
-    name: bar
-```
-
-<!-- .element: style="width: 34em; height: 28em;" -->
+<!-- .element: style="width: 34em; height: 29em; float: right;" -->
 
 ---
 
 ```yaml
-apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
-kind: AWSManagedMachinePool
-metadata:
-  name: worker
-spec:
-  amiType: AL2023_x86_64_STANDARD
-  amiVersion: 1.37.1-20261023
-  capacityType: onDemand
-  eksNodegroupName: worker
-  instanceType: m8i-flex.4xlarge
-  providerIDList:
-  - [REDACTED]
-  roleName: foo-worker-iam-service-role
-  scaling:
-    maxSize: 8
-    minSize: 1
-  updateConfig:
-    maxUnavailable: 1
-```
-
-<!-- .element: style="width: 34em; height: 34em; float: right;" -->
-
-```yaml
+# Worker nodes on vSphere
 apiVersion: cluster.x-k8s.io/v1beta2
 kind: MachineDeployment
 metadata:
@@ -149,7 +129,31 @@ spec:
       version: v1.37.1
 ```
 
-<!-- .element: style="width: 34em; height: 34em;" -->
+<!-- .element: style="width: 34em; height: 35em; float: left;" -->
+
+```yaml
+# Worker nodes on AWS EKS
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+kind: AWSManagedMachinePool
+metadata:
+  name: worker
+spec:
+  amiType: AL2023_x86_64_STANDARD
+  amiVersion: 1.37.1-20261023
+  capacityType: onDemand
+  eksNodegroupName: worker
+  instanceType: m8i-flex.4xlarge
+  providerIDList:
+  - [REDACTED]
+  roleName: foo-worker-iam-service-role
+  scaling:
+    maxSize: 8
+    minSize: 1
+  updateConfig:
+    maxUnavailable: 1
+```
+
+<!-- .element: style="width: 34em; height: 35em; float: right;" -->
 
 ---
 
@@ -194,7 +198,10 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    T["Temporary kind cluster"] -->|"creates"| M["Management cluster"]
+    subgraph Demo[Scope of demo]
+        T["Temporary kind cluster"] -->|"creates"| M["Management cluster"]
+    end
+    
     M -->|"creates"| W["Workload cluster"]
 ```
 
@@ -234,7 +241,61 @@ clusterctl init \
 kubectl get pods -A
 ```
 
-XXX
+---
+
+## Core resources
+
+<i class="fa-duotone fa-solid fa-4x fa-cubes"></i> <!-- .element: style="float: right;" -->
+
+`Cluster` cluster definition and topology
+
+`KubeadmControlPlane` control plane resources
+
+`MachineDeployment` rolls out machine sets over time
+
+`MachineSet` machines at a fixed replica count
+
+`Machine` one node to create or replace
+
+```mermaid
+flowchart LR
+    Cluster[Cluster]
+    KCP[KubeadmControlPlane]
+    MD[MachineDeployment]
+    MS[MachineSet]
+    M1[Machine]
+    M2[Machine]
+
+    Cluster --> KCP
+    Cluster --> MD
+    MD --> MS
+    MS --> M1
+    MS --> M2
+```
+
+---
+
+## Infrastructure providers
+
+<i class="fa-duotone fa-solid fa-4x fa-cloud"></i> <!-- .element: style="float: right;" -->
+
+- The API stays generic
+- Providers add platform specifics
+- Providers create VMs, networks, disks, load balancers
+- Additional provider-specific resources
+- Pluggable API with platform-specific machinery
+
+Official list of [infrastructure providers](https://cluster-api.sigs.k8s.io/reference/providers.html#infrastructure) includes...
+
+AWS (CAPA) | Azure (CAPZ) | Hetzner Cloud (CAPH) | Scaleway (CAPS) | vSphere (CAPV)
+
+*Sidenote: Docker provider for local testing and development*
+
+---
+
+```yaml
+XXX example resources for Scaleway provider
+```
 
 ---
 
@@ -334,39 +395,24 @@ kubectl \
 
 ---
 
-## Core resources
+## Bootstrap providers
 
-<i class="fa-duotone fa-solid fa-4x fa-cubes"></i> <!-- .element: style="float: right;" -->
+<i class="fa-duotone fa-solid fa-4x fa-wand-sparkles"></i> <!-- .element: style="float: right;" -->
 
-`Cluster` cluster definition and topology
+- Prepare machines to join the target cluster
+- Handle OS config, kubeadm, and join details
+- Separation from infrafrastructure
+- Again: pluggable API
+- Defaults to `kubeadm`
 
-`KubeadmControlPlane` control plane resources
+Official list of [bootstrap providers](https://cluster-api.sigs.k8s.io/reference/providers.html#bootstrap) includes...
 
-`MachineDeployment` rolls out machine sets over time
-
-`MachineSet` machines at a fixed replica count
-
-`Machine` one node to create or replace
-
-```mermaid
-flowchart LR
-    Cluster[Cluster]
-    KCP[KubeadmControlPlane]
-    MD[MachineDeployment]
-    MS[MachineSet]
-    M1[Machine]
-    M2[Machine]
-
-    Cluster --> KCP
-    Cluster --> MD
-    MD --> MS
-    MS --> M1
-    MS --> M2
-```
+EKS | RKE2 | Talos
 
 ---
 
 ```yaml
+# Cluster API managed control plane on vSphere
 apiVersion: controlplane.cluster.x-k8s.io/v1beta2
 kind: KubeadmControlPlane
 metadata:
@@ -411,46 +457,6 @@ spec:
 ```
 
 <!-- .element: style="width: 34em; height: 34em; float: right;" -->
-
----
-
-## Infrastructure providers
-
-<i class="fa-duotone fa-solid fa-4x fa-cloud"></i> <!-- .element: style="float: right;" -->
-
-- The API stays generic
-- Providers add platform specifics
-- Providers create VMs, networks, disks, load balancers
-- Additional provider-specific resources
-- Pluggable API with platform-specific machinery
-
-Official list of [infrastructure providers](https://cluster-api.sigs.k8s.io/reference/providers.html#infrastructure) includes...
-
-AWS (CAPA) | Azure (CAPZ) | Hetzner Cloud (CAPH) | Scaleway (CAPS) | vSphere (CAPV)
-
-*Sidenote: Docker provider for local testing and development*
-
----
-
-```yaml
-XXX example resources for Scaleway provider
-```
-
----
-
-## Bootstrap providers
-
-<i class="fa-duotone fa-solid fa-4x fa-wand-sparkles"></i> <!-- .element: style="float: right;" -->
-
-- Prepare machines to join the target cluster
-- Handle OS config, kubeadm, and join details
-- Separation from infrafrastructure
-- Again: pluggable API
-- Defaults to `kubeadm`
-
-Official list of [bootstrap providers](https://cluster-api.sigs.k8s.io/reference/providers.html#bootstrap) includes...
-
-EKS | RKE2 | Talos
 
 ---
 
@@ -506,16 +512,27 @@ sequenceDiagram
 
 ---
 
+## Upgrades and rolling changes
+
+<i class="fa-duotone fa-solid fa-4x fa-arrow-trend-up"></i> <!-- .element: style="float: right;" -->
+
+- Controlled replacement and rollout workflows
+- MachineDeployment for worker-node lifecycle
+- Provider-aware control-plane upgrades
+- Repeatable, observable, safer cluster evolution
+
+---
+
 ## Demo 5: Remove cluster
 
 <i class="fa-duotone fa-solid fa-4x fa-terminal"></i> <!-- .element: style="float: right;" -->
 
-### Next steps
+### Next steps (usually)
 
 Move management functions to new cluster:
 
 ```shell
-clusterctl move \\
+clusterctl move \
     --kubeconfig temporary.kubeconfig \
     --to-kubeconfig management.kubeconfig
 ```
@@ -531,19 +548,6 @@ kubectl delete cluster management
 w scw instance server list
 kind delete cluster --name temporary
 ```
-
----
-
-## Upgrades and rolling changes
-
-<i class="fa-duotone fa-solid fa-4x fa-arrow-trend-up"></i> <!-- .element: style="float: right;" -->
-
-- Controlled replacement and rollout workflows
-- MachineDeployment for worker-node lifecycle
-- Provider-aware control-plane upgrades
-- Repeatable, observable, safer cluster evolution
-
-XXX Machine drain rules
 
 ---
 
@@ -591,8 +595,12 @@ flowchart LR
 
 <i class="fa-duotone fa-solid fa-4x fa-layer-group"></i> <!-- .element: style="float: right;" -->
 
-IP Address Management (IPAM) using `InClusterIPPool` [](https://github.com/kubernetes-sigs/cluster-api-ipam-provider-in-cluster)
+Control draining during rotation using `MachineDrainRules` [](https://cluster-api.sigs.k8s.io/tasks/automated-machine-management/machine_deletions.html#node-drain)
 
 Deploy helm charts using `HelmChartProxy` [](https://github.com/kubernetes-sigs/cluster-api-addon-provider-helm/)
+
+Cluster Autoscaler for `MachineDeployment` [](https://cluster-api.sigs.k8s.io/tasks/automated-machine-management/autoscaling)
+
+IP Address Management (IPAM) using `InClusterIPPool` [](https://github.com/kubernetes-sigs/cluster-api-ipam-provider-in-cluster)
 
 Create many similar clusters using `ClusterClass` [](https://cluster-api.sigs.k8s.io/tasks/experimental-features/cluster-class/index.html)

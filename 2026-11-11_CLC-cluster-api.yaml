@@ -14,7 +14,7 @@ metadata:
     position: left 0% top 30%
 event:
   name: " "
-  logo: images/logos/clc2025_white.svg
+  logo: images/logos/clc2026_white.svg
   logo_style: "height: 1.5em; margin-top: 0.5em;"
   link: https://www.continuouslifecycle.de/
 custom_style: |
