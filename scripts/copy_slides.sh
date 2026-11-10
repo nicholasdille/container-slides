@@ -49,10 +49,12 @@ fi
 echo "${FILE}" | copy_to_target
 
 REVEALJS_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "reveal.js") | .value.version' )"
+REVEALJS_MERMAID_PLUGIN_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "reveal.js-mermaid-plugin") | .value.version' )"
 SOURCE_SANS_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "@fontsource/source-sans-3") | .value.version' )"
 HIGHLIGHTJS_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "highlight.js") | .value.version' )"
 FONTAWESOME_VERSION="$( npm list --json | jq --raw-output '.dependencies | to_entries[] | select(.key == "@fortawesome/fontawesome-pro") | .value.version' )"
 sed -E -i "s|node_modules/reveal.js/|https://cdn.dille.name/reveal.js@${REVEALJS_VERSION}/|" "${TARGET}/${FILE}"
+sed -E -i "s|node_modules/reveal.js-mermaid-plugin/|https://cdn.dille.name/reveal.js-mermaid-plugin@${REVEALJS_MERMAID_PLUGIN_VERSION}/|" "${TARGET}/${FILE}"
 sed -E -i "s|node_modules/@fontsource/source-sans-3/|https://cdn.dille.name/source-sans-3@${SOURCE_SANS_VERSION}/|" "${TARGET}/${FILE}"
 sed -E -i "s|node_modules/highlight.js/|https://cdn.dille.name/highlight.js@${HIGHLIGHTJS_VERSION}/|" "${TARGET}/${FILE}"
 sed -E -i "s|node_modules/@fortawesome/fontawesome-pro/|https://cdn.dille.name/fontawesome-pro@${FONTAWESOME_VERSION}/|" "${TARGET}/${FILE}"
