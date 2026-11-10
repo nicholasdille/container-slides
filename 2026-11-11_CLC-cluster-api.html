@@ -134,12 +134,6 @@
             RevealHighlight,
             RevealNotes,
             {
-                // The markdown plugin renders ```mermaid fences as
-                // <pre><code class="mermaid">. Since hljs doesn't know the
-                // language, it auto-detects and injects <span> markup which
-                // makes the mermaid plugin fail with a parse error. Convert
-                // the block to the <div class="mermaid"> the mermaid plugin
-                // expects, with clean source text.
                 id: 'mermaid-fences',
                 init: function (reveal) {
                     reveal.getRevealElement().querySelectorAll('pre code.mermaid').forEach(function (code) {
