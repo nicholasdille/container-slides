@@ -294,8 +294,40 @@ AWS (CAPA) | Azure (CAPZ) | Hetzner Cloud (CAPH) | Scaleway (CAPS) | vSphere (CA
 ---
 
 ```yaml
-XXX example resources for Scaleway provider
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+kind: ScalewayCluster
+metadata:
+  name: management
+  namespace: default
+spec:
+  failureDomains:
+  - fr-par-1
+  projectID: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  region: fr-par
+  scalewaySecretName: management
 ```
+
+<!-- .element: style="width: 34em; height: 20em; float: left;" -->
+
+```yaml
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+kind: ScalewayMachineTemplate
+metadata:
+  name: management-control-plane
+  namespace: default
+spec:
+  template:
+    spec:
+      commercialType: DEV1-S
+      image:
+        name: cluster-api-ubuntu-2604-v1.36.1
+      publicNetwork:
+        enableIPv4: true
+      rootVolume:
+        type: block
+```
+
+<!-- .element: style="width: 34em; height: 20em; float: right;" -->
 
 ---
 
@@ -314,7 +346,7 @@ clusterctl generate cluster management \
   --kubernetes-version v1.36.1 \
   --control-plane-machine-count 3 \
   --worker-machine-count 3 \
-  > management.yaml
+  >management.yaml
 ```
 
 Manual fixes:
@@ -333,7 +365,7 @@ Apply it and watch the cluster come up
 
 ```bash
 kubectl apply -f management.yaml
-watch clusterctl describe cluster management
+clusterctl describe cluster management
 scw instance server list
 kubectl get clusters,machines,machinesets
 ```
@@ -351,7 +383,8 @@ Networking does not work out-of-the-box
 Get `kubeconfig` for the management cluster:
 
 ```shell
-clusterctl get kubeconfig management >${MGMT_CLUSTER_NAME}.kubeconfig
+clusterctl get kubeconfig management \
+    >management.kubeconfig
 ```
 
 Deploy CNI plugin:
@@ -359,39 +392,37 @@ Deploy CNI plugin:
 ```shell
 helm repo add cilium https://helm.cilium.io/
 helm repo update
-helm install cilium cilium/cilium --namespace kube-system
-cilium --kubeconfig kubeconfig status
+helm install cilium cilium/cilium \
+     --kubeconfig management.kubeconfig \
+     --namespace kube-system
+cilium status \
+     --kubeconfig management.kubeconfig
 ```
 
 ---
 
 ## Demo 4: Deploy the Cloud Controller Manager (CCM)
 
-Deploy cloud controller manager:
+Deploy cloud controller manager to fix `coredns`:
 
 ```shell
-cat <<EOF >scaleway-secret.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: scaleway-secret
-  namespace: kube-system
-type: Opaque
-stringData:
-  SCW_ACCESS_KEY: "$( scw config get access-key )"
-  SCW_SECRET_KEY: "$( scw config get secret-key )"
-  SCW_DEFAULT_PROJECT_ID: "$( scw config get default-project-id )"
-  SCW_DEFAULT_REGION: "$( scw config get default-region )"
-  SCW_DEFAULT_ZONE: "$( scw config get default-zone )"
-EOF
+kubectl create secret generic scaleway-secret \
+    --namespace kube-system \
+    --kubeconfig management.kubeconfig \
+    --from-literal SCW_ACCESS_KEY="$( scw config get access-key )" \
+    --from-literal SCW_SECRET_KEY="$( scw config get secret-key )" \
+    --from-literal SCW_DEFAULT_PROJECT_ID="$( scw config get default-project-id )" \
+    --from-literal SCW_DEFAULT_REGION="$( scw config get default-region )" \
+    --from-literal SCW_DEFAULT_ZONE="$( scw config get default-zone )"
+
 SCW_CCM_URL=https://github.com/scaleway/scaleway-cloud-controller-manager
 kubectl \
-    --kubeconfig kubeconfig \
+    --kubeconfig management.kubeconfig \
     apply -f \
         ${SCW_CCM_URL}/raw/refs/tags/v0.36.2/examples/k8s-scaleway-ccm-latest.yml
 ```
 
-<!-- .element: style="height: 23em;" -->
+<!-- .element: style="height: 27em;" -->
 
 ---
 
