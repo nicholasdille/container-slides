@@ -491,6 +491,12 @@ spec:
 
 ---
 
+## Concepts
+
+![](120_kubernetes/cluster-api/overview.drawio.svg) <!-- .element: style="width: 90%;" -->
+
+---
+
 <!-- .slide: data-visibility="hidden" -->
 
 ## The reconciliation loop
