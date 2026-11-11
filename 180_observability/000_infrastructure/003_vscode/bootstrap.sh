@@ -62,6 +62,7 @@ EOF
     ${SCP_CMD} env-$INDEX root@${IP}:~/container-slides/180_observability/000_infrastructure/003_vscode/.env
 
     cp ../004_kubernetes/kubeconfig.k8s${INDEX} kubeconfig.k8s${INDEX}
+    sed -i 's/127.0.0.1/kind-control-plane/' kubeconfig.k8s${INDEX}
     docker --host=ssh://k8s${INDEX} build --build-arg=INDEX=${INDEX} --tag code-server .
 
     # Launch remote bootstrap
