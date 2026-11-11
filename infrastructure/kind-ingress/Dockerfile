@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.28.0
+#syntax=docker/dockerfile:1.29.0
 
 FROM alpine:3.24.4 AS cpk
 # renovate: datasource=github-releases depName=kubernetes-sigs/cloud-provider-kind
