@@ -82,7 +82,7 @@ services:
       traefik.http.routers.traefik-s.tls: "true"
 
   vscode:
-    image: codercom/code-server:4.145.2
+    image: code-server
     command:
     - --auth=password
     - --proxy-domain=vscode.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}
@@ -103,6 +103,8 @@ services:
       start_period: 5s
     labels:
       traefik.enable: "true"
+      # Redirect middlewarex
+      traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
       # Service port
       traefik.http.services.vscode.loadbalancer.server.port: 8080
       # Redirection to HTTPS
