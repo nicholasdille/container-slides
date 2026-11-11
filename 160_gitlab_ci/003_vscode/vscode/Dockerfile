@@ -20,8 +20,8 @@ apt-get -y install --no-install-recommends \
 EOF
 
 RUN <<EOF
-curl -sLf https://github.com/uniget-org/cli/releases/latest/download/uniget_linux_$(uname -m).tar.gz \
-| sudo tar -xzC /usr/local/bin uniget
+curl -sLf https://gitlab.com/uniget-org/cli/-/releases/permalink/latest/downloads/uniget_Linux_$(uname -m).tar.gz \
+| tar -xzC /usr/local/bin uniget
 uniget install \
     gojq \
     go \
