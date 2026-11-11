@@ -49,7 +49,7 @@ for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
     fi
 
     # Launch remote bootstrap
-    ${SSH_CMD} env -C /root/container-slides/180_observability/000_infrastructure/004_kubernetes bash bootstrap-remote.sh
+    ${SSH_CMD} env -C /root/container-slides/180_observability/000_infrastructure/003_kubernetes bash bootstrap-remote.sh
 
     ${SCP_CMD} root@${IP}:~/.kube/config kubeconfig.k8s${INDEX}
 done

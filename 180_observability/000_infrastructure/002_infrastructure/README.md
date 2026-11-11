@@ -20,4 +20,4 @@ For example:
 make apply REMOTE_STATE=false SEAT_COUNT=1 CREATE_DNS=true CREATE_TLS=false PROVIDER_NAME=scaleway
 ```
 
-Proceed to [003_vscode](../003_vscode/)
+Proceed to [003_vscode](../003_kubernetes/)

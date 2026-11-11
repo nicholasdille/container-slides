@@ -19,3 +19,11 @@ Host with 24GB and 12 CPUs
 | controller | 1     | 1    | 1     |  1      |  1         |
 | worker     | 3     | 6    | 3     | 18      |  9         |
 | SUM        | 6     |      |       | 22      | 12         |
+
+## Deploy
+
+```shell
+bash bootstrap.sh
+```
+
+Proceed to [004_kubernetes](../004_kubernetes/)
