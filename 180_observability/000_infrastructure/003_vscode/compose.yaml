@@ -15,6 +15,11 @@ configs:
 volumes:
   traefik-config:
 
+networks:
+  kind:
+    name: kind
+    external: true
+
 services:
 
   traefik-prepare-config:
@@ -94,8 +99,9 @@ services:
       PASSWORD: "${VSCODE_PASSWORD?Missing VSCODE_PASSWORD environment variable}"
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    ports:
-    - "127.0.0.1:6443:6443"
+    networks:
+    - default
+    - kind
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8080"]

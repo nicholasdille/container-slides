@@ -2,3 +2,4 @@ infrastructure.json
 /env-*
 /id_rsa
 /ips.txt
+/kubeconfig.k8s*
