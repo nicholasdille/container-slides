@@ -1,36 +1,33 @@
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 networking:
-  #apiServerAddress: "0.0.0.0"
   apiServerPort: 6443
-  podSubnet: "100.64.0.0/17"
-  serviceSubnet: "100.64.127.0/17"
 nodes:
 - role: control-plane
-  #kubeadmConfigPatches:
-  #- |
-  #  kind: InitConfiguration
-  #  nodeRegistration:
-  #    kubeletExtraArgs:
-  #      system-reserved: memory=15Gi,cpu=7
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        system-reserved: memory=15Gi,cpu=7
 - role: worker
-  #kubeadmConfigPatches:
-  #- |
-  #  kind: JoinConfiguration
-  #  nodeRegistration:
-  #    kubeletExtraArgs:
-  #      system-reserved: memory=12Gi,cpu=6
+  kubeadmConfigPatches:
+  - |
+    kind: JoinConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        system-reserved: memory=12Gi,cpu=6
 - role: worker
-  #kubeadmConfigPatches:
-  #- |
-  #  kind: JoinConfiguration
-  #  nodeRegistration:
-  #    kubeletExtraArgs:
-  #      system-reserved: memory=12Gi,cpu=6
+  kubeadmConfigPatches:
+  - |
+    kind: JoinConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        system-reserved: memory=12Gi,cpu=6
 - role: worker
-  #kubeadmConfigPatches:
-  #- |
-  #  kind: JoinConfiguration
-  #  nodeRegistration:
-  #    kubeletExtraArgs:
-  #      system-reserved: memory=12Gi,cpu=6
+  kubeadmConfigPatches:
+  - |
+    kind: JoinConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        system-reserved: memory=12Gi,cpu=6
