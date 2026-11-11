@@ -8,4 +8,4 @@ echo "IP             : ${IP}"
 echo "DOMAIN         : ${DOMAIN}"
 echo "VSCODE_PASSWORD: ${VSCODE_PASSWORD}"
 
-docker compose config
+docker compose up -d
