@@ -94,6 +94,8 @@ services:
       PASSWORD: "${VSCODE_PASSWORD?Missing VSCODE_PASSWORD environment variable}"
     volumes:
     - /etc/localtime:/etc/localtime:ro
+    ports:
+    - "127.0.0.1:6443:6443"
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8080"]
