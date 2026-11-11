@@ -491,9 +491,43 @@ spec:
 
 ---
 
+<!-- .slide: data-transition="fade" -->
+
 ## Concepts
 
-![](120_kubernetes/cluster-api/overview.drawio.svg) <!-- .element: style="width: 90%;" -->
+![](120_kubernetes/cluster-api/overview1.drawio.svg) <!-- .element: style="width: 100%;" -->
+
+---
+
+<!-- .slide: data-transition="fade" -->
+
+## Concepts
+
+![](120_kubernetes/cluster-api/overview2.drawio.svg) <!-- .element: style="width: 100%;" -->
+
+---
+
+<!-- .slide: data-transition="fade" -->
+
+## Concepts
+
+![](120_kubernetes/cluster-api/overview3.drawio.svg) <!-- .element: style="width: 100%;" -->
+
+---
+
+<!-- .slide: data-transition="fade" -->
+
+## Concepts
+
+![](120_kubernetes/cluster-api/overview4.drawio.svg) <!-- .element: style="width: 100%;" -->
+
+---
+
+<!-- .slide: data-transition="fade" -->
+
+## Concepts
+
+![](120_kubernetes/cluster-api/overview5.drawio.svg) <!-- .element: style="width: 100%;" -->
 
 ---
 
