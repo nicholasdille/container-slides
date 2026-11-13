@@ -1,0 +1,12 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+networking:
+  apiServerPort: 6443
+nodes:
+- role: control-plane
+- role: worker
+  extraMounts:
+  - hostPath: /data
+    containerPath: /data
+  - hostPath: /data/local-path-provisioner
+    containerPath: /var/local-path-provisioner

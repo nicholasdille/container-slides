@@ -1,8 +1,0 @@
-mode: standalone
-persistence:
-  size: 10Gi
-resources:
-  requests:
-    memory: 1Gi
-service:
-  type: ClusterIP

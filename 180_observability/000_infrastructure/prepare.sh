@@ -2,9 +2,10 @@
 set -o errexit
 
 kind create cluster --config=kind.yaml
+mkdir -p /data/loki
+chown 10001:10001 /data/loki
 
 # LGTM
-helm repo add grafana https://grafana.github.io/helm-charts
 helm repo add grafana-community https://grafana-community.github.io/helm-charts
 helm repo add minio https://charts.min.io/
 helm repo update
@@ -14,20 +15,6 @@ helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
     grafana grafana-community/grafana
-
-# MinIO
-helm --namespace=minio upgrade \
-    --install \
-    --create-namespace \
-    minio minio/minio \
-        --values=values-minio.yaml
-kubectl --namespace=minio exec -it deployment/minio -- bash <<EOF
-mc alias set local http://localhost:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD --insecure
-mc admin accesskey create local/ --access-key=minioadmin --secret-key=minioadmin
-mc mb local/loki-chunks
-mc mb local/loki-ruler
-mc mb local/mimir
-EOF
 
 # Mimir
 # https://grafana.com/docs/mimir/latest/set-up/helm-chart/
@@ -46,7 +33,7 @@ kubectl apply -f mimir.yaml
 helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
-    loki grafana/loki \
+    loki grafana-community/loki \
         --values=values-loki.yaml
 
 # Tempo
