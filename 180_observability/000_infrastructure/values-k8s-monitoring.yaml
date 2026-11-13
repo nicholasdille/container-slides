@@ -11,7 +11,7 @@ destinations:
   metrics:
     name: hostedMetrics
     type: prometheus
-    url: http://mimir:9009/api/v1/push
+    url: http://mimir-gateway/api/v1/push
     headers:
       X-Scope-OrgID: anonymous
   logs:

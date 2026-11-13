@@ -1,9 +1,12 @@
 #!/bin/bash
 set -o errexit
 
+# MAke sure inotify limits are sufficient for monitoring components
+sudo sysctl -w fs.inotify.max_user_instances=8192
+sudo sysctl -w fs.inotify.max_user_watches=524288
+
+# Create cluster
 kind create cluster --config=kind.yaml
-mkdir -p /data/loki
-chown 10001:10001 /data/loki
 
 # LGTM
 helm repo add grafana-community https://grafana-community.github.io/helm-charts
@@ -64,7 +67,5 @@ helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
     k8s-monitoring grafana/k8s-monitoring --values values-k8s-monitoring.yaml
-
-# https://grafana.com/docs/grafana-cloud/monitor-infrastructure/kubernetes-monitoring/configuration/helm-chart-config/helm-chart/
 
 # helm: example app

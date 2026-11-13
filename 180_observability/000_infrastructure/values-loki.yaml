@@ -24,17 +24,36 @@ singleBinary:
   persistence:
     enabled: true
     storageClassName: standard
-    size: 10Gi
 
-# Zero out replica counts of other deployment modes
 backend:
   replicas: 0
+
 read:
   replicas: 0
+
 write:
   replicas: 0
 
 lokiCanary:
   enabled: false
+
 test:
   enabled: false
+
+chunksCache:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+resultsCache:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi

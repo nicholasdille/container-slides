@@ -1,8 +1,11 @@
 minio:
   enabled: false
 
+kafka:
+  enabled: true
+
 mimir:
-  config: |
+  structuredConfig:
     multitenancy_enabled: false
     server:
       http_listen_address: 0.0.0.0
@@ -15,20 +18,41 @@ alertmanager:
     enabled: true
     storageClass: standard
     size: 10Gi
-  replicas: 0
+  replicas: 1
   statefulSet:
     enabled: true
   zoneAwareReplication:
     enabled: false
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 compactor:
   persistentVolume:
     enabled: true
     storageClass: standard
     size: 10Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 distributor:
   replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 ingester:
   persistentVolume:
@@ -36,31 +60,73 @@ ingester:
     storageClass: standard
     size: 10Gi
   replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
   zoneAwareReplication:
     enabled: false
 
 chunks-cache:
   enabled: true
   replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 index-cache:
   enabled: true
   replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 metadata-cache:
   enabled: true
   replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 results-cache:
   enabled: true
   replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 overrides_exporter:
-  replicas: 1
+  replicas: 0
   persistentVolume:
     enabled: true
     storageClass: standard
     size: 10Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 querier:
   replicas: 1
@@ -68,6 +134,13 @@ querier:
     enabled: true
     storageClass: standard
     size: 10Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 query_frontend:
   replicas: 1
@@ -75,13 +148,27 @@ query_frontend:
     enabled: true
     storageClass: standard
     size: 10Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 ruler:
-  replicas: 1
+  replicas: 0
   persistentVolume:
     enabled: true
     storageClass: standard
     size: 10Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 store_gateway:
   persistentVolume:
@@ -89,11 +176,36 @@ store_gateway:
     storageClass: standard
     size: 10Gi
   replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
   zoneAwareReplication:
     enabled: false
 
 gateway:
   replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
-kafka:
+rollout_operator:
   enabled: false
+
+query_scheduler:
+  enabled: true
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
