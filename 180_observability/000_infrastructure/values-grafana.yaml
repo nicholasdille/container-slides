@@ -1,32 +1,35 @@
+image:
+  tag: "{{ .Chart.AppVersion }}"
+
 adminUser: admin
 adminPassword: admin
 
 persistence:
-  enabled: false
-  storageClassName: local-path
+  enabled: true
+  storageClassName: standard
   annotations:
     volumeType: local
   inMemory:
-    enabled: true
+    enabled: false
+    size: 10Gi
 
 datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
-      - name: Mimir
-        type: prometheus
-        access: proxy
-        url: http://mimir:9090
-        isDefault: true
-      - name: Loki
-        type: loki
-        access: proxy
-        url: http://loki:3100
-        isDefault: false
-      - name: Tempo
-        type: tempo
-        access: proxy
-        url: http://tempo:3200
-        isDefault: false
-
-#grafana.ini:
+    - name: Mimir
+      type: prometheus
+      access: proxy
+      url: http://mimir:9009/prometheus
+      jsonData:
+        prometheusType: Mimir
+    - name: Loki
+      type: loki
+      access: proxy
+      url: http://loki-headless:3100
+      isDefault: false
+    - name: Tempo
+      type: tempo
+      access: proxy
+      url: http://tempo-headless:3200
+      isDefault: false

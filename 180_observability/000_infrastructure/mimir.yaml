@@ -7,12 +7,22 @@ metadata:
 data:
   mimir.yaml: |
     target: all
+    multitenancy_enabled: false
     server:
-      http_listen_port: 8080
+      http_listen_address: 0.0.0.0
+      http_listen_port: 9009
     blocks_storage:
       backend: filesystem
-      filesystem:
-        dir: /data/tsdb
+    limits:
+      max_label_name_length: 1024
+      max_label_value_length: 2048
+      max_label_names_per_series: 30
+    memberlist:
+      bind_addr:
+      - 127.0.0.1
+    ingester:
+      ring:
+        replication_factor: 1
 ---
 apiVersion: v1
 kind: Service
@@ -23,14 +33,14 @@ spec:
   type: ClusterIP
   clusterIP: None
   ports:
-    - port: 9090
-      protocol: TCP
-      name: http-metrics
-      targetPort: http-metrics
-    - port: 9095
-      protocol: TCP
-      name: grpc
-      targetPort: grpc
+  - port: 9009
+    protocol: TCP
+    name: http-metrics
+    targetPort: http-metrics
+  - port: 9095
+    protocol: TCP
+    name: grpc
+    targetPort: grpc
   selector:
     app: mimir
   publishNotReadyAddresses: true
@@ -46,6 +56,15 @@ spec:
   selector:
     matchLabels:
       app: mimir
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 10Gi
   template:
     metadata:
       labels:
@@ -55,10 +74,6 @@ spec:
       - name: config
         configMap:
           name: mimir
-      - name: data
-        hostPath:
-          path: /data/mimir
-          type: DirectoryOrCreate
       containers:
       - name: mimir
         image: grafana/mimir:3.2.5
@@ -67,7 +82,7 @@ spec:
         - -config.file=/etc/mimir/mimir.yaml
         ports:
         - name: http-metrics
-          containerPort: 9090
+          containerPort: 9009
           protocol: TCP
         - name: grpc
           containerPort: 9095

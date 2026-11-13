@@ -1,14 +1,5 @@
-defaults:
-  extraVolumes:
-  - name: data
-    hostPath: 
-      path: /data/loki
-      type: DirectoryOrCreate
-  extraVolumeMounts:
-  - name: data
-    mountPath: /data
-
 loki:
+  auth_enabled: false
   commonConfig:
     replication_factor: 1
   schemaConfig:
@@ -25,14 +16,15 @@ loki:
     bucketNames:
       chunks: loki-chunks
       ruler: loki-ruler
-    filesystem:
-      chunks_directory: /data/chunks
-      rules_directory: /data/rules
 
 deploymentMode: SingleBinary
 
 singleBinary:
   replicas: 1
+  persistence:
+    enabled: true
+    storageClassName: standard
+    size: 10Gi
 
 # Zero out replica counts of other deployment modes
 backend:
@@ -41,3 +33,8 @@ read:
   replicas: 0
 write:
   replicas: 0
+
+lokiCanary:
+  enabled: false
+test:
+  enabled: false

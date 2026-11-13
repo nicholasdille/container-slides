@@ -7,8 +7,16 @@ chown 10001:10001 /data/loki
 
 # LGTM
 helm repo add grafana-community https://grafana-community.github.io/helm-charts
-helm repo add minio https://charts.min.io/
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
+
+# metrics-server
+helm --namespace=monitoring upgrade \
+    --install \
+    metrics-server metrics-server/metrics-server \
+        --set=args[0]=--kubelet-insecure-tls
 
 # Grafana
 helm --namespace=monitoring upgrade \
@@ -22,7 +30,8 @@ helm --namespace=monitoring upgrade \
 #helm --namespace=monitoring upgrade \
 #    --install \
 #    --create-namespace \
-#    mimir grafana/mimir-distributed
+#    mimir grafana/mimir-distributed \
+#        --values=values-mimir.yaml
 kubectl apply -f mimir.yaml
 
 # Loki
@@ -44,8 +53,18 @@ helm --namespace=monitoring upgrade \
     tempo grafana-community/tempo \
         --values=values-tempo.yaml
 
-# https://github.com/grafana/k8s-monitoring-helm
-# https://grafana.com/docs/grafana-cloud/monitor-infrastructure/kubernetes-monitoring/configuration/helm-chart-config/helm-chart/
+# CRDs
+helm --namespace=monitoring upgrade \
+    --install \
+    --create-namespace \
+    prometheus-operator-crds prometheus-community/prometheus-operator-crds
 
+# https://github.com/grafana/k8s-monitoring-helm
+helm --namespace=monitoring upgrade \
+    --install \
+    --create-namespace \
+    k8s-monitoring grafana/k8s-monitoring --values values-k8s-monitoring.yaml
+
+# https://grafana.com/docs/grafana-cloud/monitor-infrastructure/kubernetes-monitoring/configuration/helm-chart-config/helm-chart/
 
 # helm: example app

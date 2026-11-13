@@ -4,30 +4,9 @@ networking:
   apiServerPort: 6443
 nodes:
 - role: control-plane
-  kubeadmConfigPatches:
-  - |
-    kind: InitConfiguration
-    nodeRegistration:
-      kubeletExtraArgs:
-        system-reserved: memory=15Gi,cpu=7
 - role: worker
-  kubeadmConfigPatches:
-  - |
-    kind: JoinConfiguration
-    nodeRegistration:
-      kubeletExtraArgs:
-        system-reserved: memory=12Gi,cpu=6
-- role: worker
-  kubeadmConfigPatches:
-  - |
-    kind: JoinConfiguration
-    nodeRegistration:
-      kubeletExtraArgs:
-        system-reserved: memory=12Gi,cpu=6
-- role: worker
-  kubeadmConfigPatches:
-  - |
-    kind: JoinConfiguration
-    nodeRegistration:
-      kubeletExtraArgs:
-        system-reserved: memory=12Gi,cpu=6
+  extraMounts:
+  - hostPath: /data
+    containerPath: /data
+  - hostPath: /data/local-path-provisioner
+    containerPath: /var/local-path-provisioner

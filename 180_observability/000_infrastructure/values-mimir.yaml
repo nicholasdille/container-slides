@@ -1,0 +1,99 @@
+minio:
+  enabled: false
+
+mimir:
+  config: |
+    multitenancy_enabled: false
+    server:
+      http_listen_address: 0.0.0.0
+      http_listen_port: 9009
+    blocks_storage:
+      backend: filesystem
+
+alertmanager:
+  persistentVolume:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+  replicas: 0
+  statefulSet:
+    enabled: true
+  zoneAwareReplication:
+    enabled: false
+
+compactor:
+  persistentVolume:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+
+distributor:
+  replicas: 1
+
+ingester:
+  persistentVolume:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+  replicas: 1
+  zoneAwareReplication:
+    enabled: false
+
+chunks-cache:
+  enabled: true
+  replicas: 1
+
+index-cache:
+  enabled: true
+  replicas: 1
+
+metadata-cache:
+  enabled: true
+  replicas: 1
+
+results-cache:
+  enabled: true
+  replicas: 1
+
+overrides_exporter:
+  replicas: 1
+  persistentVolume:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+
+querier:
+  replicas: 1
+  persistentVolume:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+
+query_frontend:
+  replicas: 1
+  persistentVolume:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+
+ruler:
+  replicas: 1
+  persistentVolume:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+
+store_gateway:
+  persistentVolume:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+  replicas: 1
+  zoneAwareReplication:
+    enabled: false
+
+gateway:
+  replicas: 1
+
+kafka:
+  enabled: false

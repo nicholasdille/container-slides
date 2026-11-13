@@ -1,18 +1,8 @@
-extraVolumes:
-- name: data
-  hostPath:
-    path: /data/tempo
-    type: DirectoryOrCreate
-
 storage:
   trace:
     backend: local
-    local:
-      path: /data/tempo/blocks
-    wal:
-      path: /data/tempo/wal
 
-tempo:
-  extraVolumeMounts:
-  - name: data
-    mountPath: /data
+persistence:
+  enabled: true
+  storageClassName: standard
+  size: 10Gi
