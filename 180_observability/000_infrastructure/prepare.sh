@@ -69,3 +69,8 @@ helm --namespace=monitoring upgrade \
     k8s-monitoring grafana/k8s-monitoring --values values-k8s-monitoring.yaml
 
 # helm: example app
+helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+helm --namespace=default upgrade \
+    --install \
+    my-otel-demo open-telemetry/opentelemetry-demo \
+        --values=values-otel-demo.yaml
