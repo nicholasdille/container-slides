@@ -46,5 +46,6 @@ EOF
 # code-server --install-extension <publisher>.<extension-name>
 RUN <<EOF
 code-server --install-extension redhat.vscode-yaml
+code-server --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code-server --install-extension editorConfig.editorConfig
 EOF

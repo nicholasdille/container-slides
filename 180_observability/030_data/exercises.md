@@ -40,7 +40,7 @@ helm --namespace=monitoring upgrade \
     k8s-monitoring grafana/k8s-monitoring --values values-k8s-monitoring.yaml
 ```
 
-XXX check sources
+XXX check datasources
 
 XXX check data in Grafana
 
@@ -52,11 +52,7 @@ XXX
 
 XXX
 
-## Task 4: Check traces
-
-XXX
-
-## Task 5: Application-Level data
+## Task 4: Application-Level data
 
 XXX podinfo?
 
@@ -67,3 +63,7 @@ helm --namespace=default upgrade \
     my-otel-demo open-telemetry/opentelemetry-demo \
         --values=values-otel-demo.yaml
 ```
+
+## Task 5: Check traces
+
+XXX

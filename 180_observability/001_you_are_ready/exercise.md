@@ -13,3 +13,7 @@ The password is the same as your GitLab password.
     Your username looks like `seatN` where `N` is a number.
 
     Your password is a long, random string which is displayed on the web pages access in the previous chapter.
+
+## Task 2: Access your Kubernetes cluster
+
+XXX

@@ -2,7 +2,9 @@
 
 XXX prerequisites: VM works, vscode is accessible, k8s is accessible
 
-XXX GMLT ;-)
+XXX MLTG ;-)
+
+XXX Looks good to me
 
 ## Prep
 
@@ -12,22 +14,7 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
 
-## Task 1: Deploy Grafana
-
-XXX helm
-
-```shell
-helm --namespace=monitoring upgrade \
-    --install \
-    --create-namespace \
-    grafana grafana-community/grafana
-```
-
-XXX extract admin password
-
-XXX access web UI
-
-## Task 2: Deploy Mimir
+## Task 1: Deploy Mimir
 
 XXX helm
 
@@ -39,9 +26,9 @@ helm --namespace=monitoring upgrade \
         --values=values-mimir.yaml
 ```
 
-XXX add data source in Grafana
+XXX wait for ready pods
 
-## Task 3: Deploy Loki
+## Task 2: Deploy Loki
 
 XXX helm
 
@@ -53,9 +40,9 @@ helm --namespace=monitoring upgrade \
         --values=values-loki.yaml
 ```
 
-XXX add data source in Grafana
+XXX wait for ready pods
 
-## Task 4: Deploy Tempo
+## Task 3: Deploy Tempo
 
 XXX helm
 
@@ -67,4 +54,24 @@ helm --namespace=monitoring upgrade \
         --values=values-tempo.yaml
 ```
 
-XXX add data source in Grafana
+XXX wait for ready pods
+
+## Task 4: Check datasources in Grafana
+
+XXX
+
+## Task 5: Deploy Grafana
+
+XXX helm
+
+```shell
+helm --namespace=monitoring upgrade \
+    --install \
+    --create-namespace \
+    grafana grafana-community/grafana \
+        --values=values-grafana.yaml
+```
+
+XXX port forwarding using vscode
+
+XXX access web UI (admin:admin)
