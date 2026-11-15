@@ -1,12 +1,12 @@
 # LGTM Stack
 
-XXX prerequisites: VM works, vscode is accessible, k8s is accessible
+In this exercise you will deploy the LGTM stack which consists of Loki, Grafana, Tempo and Mimir. It is also a an acronym widely used in software development meaning "Looks Good To Me". Afterwards, you will have the infrastructure to start collecting metrics, logs and traces.
 
-XXX MLTG ;-)
+This exercise assumes that you have access to the workshop environment with Visual Studio Code and the Kubernetes cluster.
 
-XXX Looks good to me
+## Preparation
 
-## Prep
+You will deploy Helm charts for the components of the LGTM stack. Make sure your `helm` knows about the necessary repositories:
 
 ```shell
 helm repo add grafana-community https://grafana-community.github.io/helm-charts
@@ -16,7 +16,9 @@ helm repo update
 
 ## Task 1: Deploy Mimir
 
-XXX helm
+Mimir is deployed as the replacement for Prometheus and offers long-term storage as well as a query engine built for high performance.
+
+The values for the helm chart are available as file: `container-slides/180_observability/020_lgtm/values-mimir.yaml`. You can also view it in a web browser [in the repository on Gitub](https://github.com/nicholasdille/container-slides/blob/master/180_observability/020_lgtm/values-mimir.yaml).
 
 ```shell
 helm --namespace=monitoring upgrade \
@@ -26,11 +28,13 @@ helm --namespace=monitoring upgrade \
         --values=values-mimir.yaml
 ```
 
-XXX wait for ready pods
+Wait for the pods to become ready.
 
 ## Task 2: Deploy Loki
 
-XXX helm
+Loki is deployed for log aggregation and storage.
+
+The values for the helm chart are available as file: `container-slides/180_observability/020_lgtm/values-loki.yaml`. You can also view it in a web browser [in the repository on Gitub](https://github.com/nicholasdille/container-slides/blob/master/180_observability/020_lgtm/values-loki.yaml).
 
 ```shell
 helm --namespace=monitoring upgrade \
@@ -40,11 +44,13 @@ helm --namespace=monitoring upgrade \
         --values=values-loki.yaml
 ```
 
-XXX wait for ready pods
+Wait for the pods to become ready.
 
 ## Task 3: Deploy Tempo
 
-XXX helm
+Tempo is deployed for distributed tracing.
+
+The values for the helm chart are available as file: `container-slides/180_observability/020_lgtm/values-tempo.yaml`. You can also view it in a web browser [in the repository on Gitub](https://github.com/nicholasdille/container-slides/blob/master/180_observability/020_lgtm/values-tempo.yaml).
 
 ```shell
 helm --namespace=monitoring upgrade \
@@ -54,15 +60,13 @@ helm --namespace=monitoring upgrade \
         --values=values-tempo.yaml
 ```
 
-XXX wait for ready pods
+Wait for the pods to become ready.
 
-## Task 4: Check datasources in Grafana
+## Task 4: Deploy Grafana
 
-XXX
+Grafana is deployed for visualization and monitoring of metrics, logs, and traces.
 
-## Task 5: Deploy Grafana
-
-XXX helm
+The values for the helm chart are available as file: `container-slides/180_observability/020_lgtm/values-grafana.yaml`. You can also view it in a web browser [in the repository on Gitub](https://github.com/nicholasdille/container-slides/blob/master/180_observability/020_lgtm/values-grafana.yaml).
 
 ```shell
 helm --namespace=monitoring upgrade \
@@ -72,6 +76,18 @@ helm --namespace=monitoring upgrade \
         --values=values-grafana.yaml
 ```
 
+Wait for the pod to become ready.
+
 XXX port forwarding using vscode
 
-XXX access web UI (admin:admin)
+As soon as you have access to the Grafana web UI, you can login using the default credentials:
+- Username: `admin`
+- Password: `admin`
+
+You will be forced to change the password on the first login.
+
+## Task 5: Check datasources in Grafana
+
+Check that the datasources for Mimir, Loki, and Tempo are correctly configured in Grafana. You can do this by navigating to the Grafana web UI, going to `Configuration` -> `Data Sources`, and verifying that each datasource is listed and has a green checkmark indicating it is working correctly.
+
+Also, open all three datasources and click on the button labeled `Test` as the bottom.
