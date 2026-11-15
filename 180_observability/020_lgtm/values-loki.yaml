@@ -25,6 +25,9 @@ singleBinary:
     enabled: true
     storageClassName: standard
 
+serviceMonitor:
+  enabled: true
+
 backend:
   replicas: 0
 

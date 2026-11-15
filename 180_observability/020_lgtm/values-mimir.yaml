@@ -4,6 +4,10 @@ minio:
 kafka:
   enabled: true
 
+metrics:
+  serviceMonitor:
+    enabled: true
+
 mimir:
   structuredConfig:
     multitenancy_enabled: false

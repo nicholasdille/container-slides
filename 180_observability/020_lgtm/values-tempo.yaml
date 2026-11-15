@@ -6,3 +6,6 @@ persistence:
   enabled: true
   storageClassName: standard
   size: 10Gi
+
+serviceMonitor:
+  enabled: true

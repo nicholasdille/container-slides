@@ -13,6 +13,9 @@ persistence:
     enabled: false
     size: 10Gi
 
+serviceMonitor:
+  enabled: true
+
 datasources:
   datasources.yaml:
     apiVersion: 1
@@ -20,7 +23,7 @@ datasources:
     - name: Mimir
       type: prometheus
       access: proxy
-      url: http://mimir:9009/prometheus
+      url: http://mimir-gateway:9009/prometheus
       jsonData:
         prometheusType: Mimir
     - name: Loki
