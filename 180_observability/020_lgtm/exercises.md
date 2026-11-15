@@ -78,7 +78,15 @@ helm --namespace=monitoring upgrade \
 
 Wait for the pod to become ready.
 
-XXX port forwarding using vscode
+## Task 5: Access Grafana Web UI
+
+Create a port forwarding for Grafana:
+
+```shell
+kubectl --namespace=monitoring port-forward svc/grafana 3000:80
+```
+
+Visual Studio Code will automatically pick up the port forwarding and provide access under https://3000.seatN.inmylab.de
 
 As soon as you have access to the Grafana web UI, you can login using the default credentials:
 - Username: `admin`
@@ -86,7 +94,7 @@ As soon as you have access to the Grafana web UI, you can login using the defaul
 
 You will be forced to change the password on the first login.
 
-## Task 5: Check datasources in Grafana
+## Task 6: Check datasources in Grafana
 
 Check that the datasources for Mimir, Loki, and Tempo are correctly configured in Grafana. You can do this by navigating to the Grafana web UI, going to `Configuration` -> `Data Sources`, and verifying that each datasource is listed and has a green checkmark indicating it is working correctly.
 

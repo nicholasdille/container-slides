@@ -24,11 +24,23 @@ curl -sLf https://gitlab.com/uniget-org/cli/-/releases/permalink/latest/download
 | tar -xzC /usr/local/bin uniget
 uniget install \
     jq \
+    yq \
     kubectl \
+    kubeswitch \
     helm \
     opencode \
     copilot \
-    claude
+    claude \
+    k9s \
+    sofka \
+    regclient \
+    trivy \
+    cosign \
+    oras \
+    syft \
+    grype \
+    gh \
+    glab
 EOF
 
 USER coder

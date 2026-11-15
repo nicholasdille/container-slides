@@ -132,11 +132,11 @@ Endpoints for Loki and Tempo must be accessible
 
 <i class="fa-duotone fa-solid fa-block-brick-fire fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX pull
+Pull-based collection is usually blocked by firewalls
 
-XXX push
+Push-based collection sends the data to a public endpoint
 
-XXX image
+![](180_observability/030_data/firewall.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
 
 ---
 
@@ -166,11 +166,13 @@ Collect, transform and forward data
 
 <i class="fa-duotone fa-solid fa-link fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX AWS CloudWatch
+Collect data using the native services offered by providers:
+- AWS CloudWatch
+- Azure Monitor
 
-XXX Azure Monitor
+Use OtelCol/Alloy to centralize data from multiple sources
 
-XXX OtelCol/Alloy in between
+![](180_observability/030_data/provider.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
 
 ---
 

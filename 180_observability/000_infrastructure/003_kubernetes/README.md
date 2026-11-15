@@ -26,4 +26,4 @@ Host with 24GB and 12 CPUs
 bash bootstrap.sh
 ```
 
-Proceed to [004_kubernetes](../004_kubernetes/)
+Proceed to [004_kubernetes](../004_vscode/)

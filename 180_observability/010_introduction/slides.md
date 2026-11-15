@@ -118,8 +118,6 @@ A **trace** is single unit of work in a distributed system
 
 A **span** is a single operation within a trace
 
-XXX
-
 ![](slides/09-monitoring/traces.drawio.svg) <!-- .element: style="width: 90%;" -->
 
 All spans of a trace have the same context, e.g. a unique ID
@@ -129,10 +127,6 @@ The context is passed between spans
 ---
 
 ## Distributed Traces in Open Telemetry
-
-XXX
-
-![](slides/09-monitoring/otel.svg) <!-- .element: style="float: right; width: 10%;" -->
 
 [Open Telemetry](https://opentelemetry.io/) provides observability to your applications
 

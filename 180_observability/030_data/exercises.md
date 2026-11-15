@@ -54,24 +54,32 @@ Observability data will now flow from cluster components into the LGTM stack.
 
 ## Task 3: Check metrics
 
-XXX check for jobs
+XXX
+
+```promql
+cortex_distributor_received_samples_total
+```
 
 ## Task 4: Check logs
 
-XXX check for jobs
+XXX
+
+```promql
+loki_distributor_lines_received_total
+```
 
 ## Task 5: Deploy demo application
 
-XXX podinfo
+`podinfo` is a demo application that showcases various Kubernetes features such as deployments, services, and observability integrations: https://github.com/stefanprodan/podinfo.
 
-XXX https://github.com/stefanprodan/podinfo
+You will deploy another helm chart for a demo application. Make sure your `helm` knows about the necessary repositories:
 
 ```shell
 helm repo add podinfo https://stefanprodan.github.io/podinfo
 helm repo update
 ```
 
-XXX
+Deploy the frontend of the demo application:
 
 ```shell
 helm --namespace=default upgrade \
@@ -79,36 +87,92 @@ helm --namespace=default upgrade \
     --set replicaCount=2 \
     --set backend=http://backend-podinfo:9898/echo \
     frontend podinfo/podinfo \
+        --set=serviceMonitor.enabled=true \
         --set=extraEnvs[0].name=OTEL_EXPORTER_OTLP_TRACES_ENDPOINT \
         --set=extraEnvs[0].value=http://tempo.monitoring:4317
 ```
 
-XXX
+Test that the frontend is working correctly:
 
 ```shell
 helm --namespace=default test \
     frontend
 ```
 
-XXX
+Deploy the backend of the demo application:
 
 ```shell
 helm --namespace=default upgrade \
     --install \
     --set redis.enabled=true \
     backend podinfo/podinfo \
+        --set=serviceMonitor.enabled=true \
         --set=extraEnvs[0].name=OTEL_EXPORTER_OTLP_TRACES_ENDPOINT \
-        --set=extraEnvs[0].value=http//tempo.monitoring:4317
+        --set=extraEnvs[0].value=http://tempo.monitoring:4317
 ```
 
 XXX create port forwarding
 
+```shell
+kubectl --namespace=default port-forward svc/frontend-podinfo 9898:9898
+```
+
+XXX open https://9898.seatN.inmylab.de
+
 ## Task 5: Application-Level metrics
 
-XXX checkout `ServiceMonitor`
+`podinfo` ships with a `ServiceMonitor` for exposing application-level metrics. Such a resource is automatically scraped by `alloy`.
+
+Check out the `ServiceMonitor` for the frontend of the `podinfo` application:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: frontend-podinfo
+spec:
+  endpoints:
+  - interval: 15s
+    path: /metrics
+    port: http
+  namespaceSelector:
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: frontend-podinfo
+```
+
+Check out the `ServiceMonitor` for the backend of the `podinfo` application:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: backend-podinfo
+spec:
+  endpoints:
+  - interval: 15s
+    path: /metrics
+    port: http
+  namespaceSelector:
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: backend-podinfo
+```
 
 XXX check data
+
+```promql
+scrape_samples_scraped{job="frontend-podinfo"}
+```
 
 ## Task 6: Working with traces
 
 XXX
+
+```promql
+tempo_distributor_spans_received_total
+```

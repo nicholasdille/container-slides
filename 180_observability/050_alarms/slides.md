@@ -54,7 +54,7 @@ XXX grafana unified alerting for small to medium deployments
 
 ## Prometheus Alerting
 
-![](slides/09-monitoring/alerting.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
+XXX image
 
 Multiple deployment options
 
