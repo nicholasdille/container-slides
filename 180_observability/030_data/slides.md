@@ -13,6 +13,14 @@ Centralized storage
 - Correlation
 - Harder to temper with
 
+---
+
+## Data Collection
+
+<i class="fa-duotone fa-solid fa-vacuum fa-4x"></i> <!-- .element: style="float: right;" -->
+
+XXX image
+
 Layers
 - Infrastructure
 - Virtualization hosts
@@ -34,9 +42,9 @@ XXX agents
 
 Infrastructure
 
-Cluster (kube-apiserver, kube-state-metrics, kube-controller-manager, kube-scheduler)
-
 Host OS (Linux)
+
+Kubernetes cluster
 
 Node
 
@@ -108,23 +116,6 @@ Prometheus Operator adds declarative configuration
 
 ---
 
-## Why Mimir instead of Prometheus
-
-### Prometheus does not scale
-
-- Monolithic process
-- Memory usage increases with stored data
-- WAL replay makes startup slow
-
-### Mimir scales well
-
-- Microservices
-- Scales horizontally and vertically
-- Designed for long-term storage
-- Does not scrape on its own
-
----
-
 ## Collecting logs and traces
 
 <i class="fa-duotone fa-solid fa-person-dolly fa-4x"></i> <!-- .element: style="float: right;" -->
@@ -145,6 +136,8 @@ XXX pull
 
 XXX push
 
+XXX image
+
 ---
 
 ## Tools
@@ -159,11 +152,11 @@ Support for all signals
 
 Modular but complex configuration
 
-### Grafana Alloy - an OTel distribution ![](180_observability/media/alloy.svg) <!-- .element: style="width: 1em;" -->
+### Grafana Alloy ![](180_observability/media/alloy.svg) <!-- .element: style="width: 1em;" -->
 
 Custom distribution of OtelCol
 
-Supercedes Grafana Agent (EOL since 2025-11-01) and promtail (deprecated)
+Supercedes Grafana Agent and promtail
 
 Collect, transform and forward data
 
@@ -193,10 +186,10 @@ XXX OtelCol/Alloy in between
 
 ### Log shipping is mostly solved
 
-- Log files can be scraped
-- Container logs can be scraped
+- Container logs are scraped automatically
+- Log files can be scraped as well
 
-### Tracing
+### Distributed tracing
 
 - Instrumentation through SDKs for many languages
 - Auto-Instrumentation

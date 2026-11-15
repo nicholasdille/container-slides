@@ -6,19 +6,20 @@
 
 ## LGTM Stack
 
+<span style="float: right;"><code>/lgtm</code></span>
+
 Grafana Labs
 
-Metrics with Mimir (instead of Prometheus)
+Horizontally scalable architecture
 
-Logs with Loki - Horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus
+- <img src="180_observability/media/grafana.svg" style="height: 2em;" /><br/>**Grafana** for visualization<br/>Dashboards<br/>Alerting
+- <img src="180_observability/media/mimir.svg" style="height: 2em;" /><br/>**Mimir** for metrics<br/>Long-term storage<br/>High performance query engine
+- <img src="180_observability/media/loki.svg" style="height: 2em;" /><br/>**Loki** for logs<br/>Multi-tenancy<br/>Inspired by Prometheus
+- <img src="180_observability/media/tempo.svg" style="height: 2em;" /><br/>**Tempo** for traces<br/>XXX
 
-Traces with Tempo
+<!-- .element: class="flex-columns" style="text-align: center;" -->
 
 (Profiling with Beyla)
-
-Visualization with Grafana
-
-LGTM - Looks Good To Me ;-)
 
 ---
 
@@ -36,50 +37,81 @@ XXX
 
 ![](180_observability/media/mimir.svg) <!-- .element: style="float: right; width: 5em;" -->
 
-XXX equivalent to Prometheus
+Replacement for Prometheus
 
-XXX microservices for scalability
+Microservices for scalability
 
-XXX long-term storage
+Long-term storage
 
-XXX no scraping - often chained with Prometheus - alloy will be introduced later
+High performance query engine
+
+### Offers no scraping
+
+Often chained with Prometheus
+
+Alternatives will be introduced later ;-)
+
+---
+
+## Why Mimir instead of Prometheus
+
+### Prometheus does not scale
+
+- Monolithic process
+- Memory usage increases with stored data
+- WAL replay makes startup slow
+
+### Mimir scales well
+
+- Microservices
+- Scales horizontally and vertically
+- Designed for long-term storage
+- Does not scrape on its own
 
 ---
 
 ## Data format
 
-XXX `<name>{<key>=<value>,...} value`
+`<name>{<key>=<value>,...} value`
 
 ### Counter
+
+Represents a value that only increases and resets to zero
 
 ```plaintext
 # HELP http_requests_total Anzahl der HTTP Requests
 # TYPE http_requests_total counter
 http_requests_total{method="post",code="200"} 1027
 http_requests_total{method="post",code="400"} 3
+# EOF
 ```
 
 ---
 
 ## Data format
 
-XXX `<name>{<key>=<value>,...} value`
+`<name>{<key>=<value>,...} value`
 
 ### Gauge
+
+Represents a value that can go up and down
 
 ```plaintext
 # HELP cpu_usage CPU-Auslastung in Prozent
 # TYPE cpu_usage gauge
 cpu_usage{node="capricorn"} 23.7
+# EOF
 ```
 
 ---
 
 ## Data format
 
-XXX `<name>{<key>=<value>,...} value`
+`<name>{<key>=<value>,...} value`
 
 ### Histogram
+
+Represents a value that samples observations
 
 ```plaintext
 # HELP http_request_duration_seconds Dauer der HTTP Requests
@@ -91,17 +123,8 @@ http_request_duration_seconds_bucket{le="1"} 129389
 http_request_duration_seconds_bucket{le="+Inf"} 144320
 http_request_duration_seconds_sum 53423
 http_request_duration_seconds_count 144320
+# EOF
 ```
-
----
-
-## Data format
-
-XXX <name>{<key>=<value>,...} value
-
-### Summary
-
-XXX ???
 
 ---
 

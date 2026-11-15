@@ -48,6 +48,10 @@ helm --namespace=monitoring upgrade \
 
 The values for the helm chart are available as file: `container-slides/180_observability/030_data/values-k8s-monitoring.yaml`. You can also view it in a web browser [in the repository on Gitub](https://github.com/nicholasdille/container-slides/blob/master/180_observability/030_data/values-k8s-monitoring.yaml).
 
+## Milestone
+
+Observability data will now flow from cluster components into the LGTM stack.
+
 ## Task 3: Check metrics
 
 XXX check for jobs

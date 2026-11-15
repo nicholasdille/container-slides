@@ -3,11 +3,23 @@
 !!! goal "Ziel"
     You will learn how to use Grafana:
 
+    - Explore view
     - Create a new dashboard
     - Add panels for multiple signals
     - Configure visualization
+        - Line/bar chart panels
+        - Use left and right axis
+        - Single stat panels
 
-## Task 1: Create a new dashboard
+## Task 1: Explore view
+
+XXX
+
+```promql
+1 - avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance)
+```
+
+## Task 2: Create a new dashboard
 
 Create a new dashboard and add a panel with the data source `Prometheus`.
 
@@ -16,9 +28,9 @@ Create a new dashboard and add a panel with the data source `Prometheus`.
     - Click **New**
     - Select **New dashboard**
     - Click **Add visualization**
-    - Select the data source **Prometheus**
+    - Select the data source **Mimir**
 
-## Task 2: Display CPU usage
+## Task 3: Display CPU usage
 
 1. Configure the panel to display the CPU usage using the following query:
     ```promql
@@ -38,7 +50,7 @@ Now change the legend to display the label `nodename`.
     - Select **Custom**
     - Enter `{{nodename}}` to use the label value
 
-## Task 3: Display memory usage
+## Task 4: Display memory usage
 
 1. Create a new panel with the following query:
     ```
@@ -50,41 +62,15 @@ Now change the legend to display the label `nodename`.
     - Unit type: **percent (0.0-1.0)**
     - Use the value of the label `nodename` in the legend
 
-## Task 4: Display filesystem usage
+## Task 5: Add remaining memory
 
-1. Create a new panel with the following query:
-    ```
-    1-node_filesystem_free_bytes{mountpoint="/"}/node_filesystem_size_bytes{mountpoint="/"} * on(instance) group_left(nodename) node_uname_info
-    ```
-1. Set the title to **Filesystem usage of /**
-1. Configure the panel similar to the previous panels
-    - Visualization: **Gauge**
-    - Adjust the font size so that the node name is visible
+XXX single stat
 
-## Bonus Task 1: Move panels
+XXX color yellow below 5GB
 
-XXX order
+XXX color red below 2GB
 
-## Task 5: Display log levels
-
-1. Create a new dashboard
-1. Add a new panel
-1. Select the data source **Loki**
-1. Use the following query:
-    ```
-    count_over_time({app="traefik"}[5m])
-    ```
-
-Summarize the number of log lines by `detected_level`.
-
-??? help "Solution (Click on the arrow if you are stuck)"
-    ```
-    sum(count_over_time({app="traefik"}[5m])) by (detected_level)
-    ```
-
-Customize the panel to your liking and configure the legend so that `detected_level` is displayed.
-
-## Task 6: Display log lines
+## Task 5: Display log lines
 
 1. Create a new panel
 1. Select the data source **Loki**
@@ -96,26 +82,12 @@ Customize the panel to your liking and configure the legend so that `detected_le
     {app="traefik"} | detected_level="error"
     ```
 
-## Task 7: Display HTTP response code
+## Task 6: Left and right axis
 
-1. Create another panel in the dashboard
-1. Display logs by HTTP response code with the following query:
-    ```
-    count_over_time({app="traefik"} | json OriginStatus | OriginStatus=~"[0-9]{3}" [5m])
-    ```
-1. Summarize the number of log lines by `OriginStatus`
+XXX use first dashboard
 
-??? help "Solution (Click on the arrow if you are stuck)"
-    ```
-    sum(count_over_time({app="traefik"} | json OriginStatus | OriginStatus=~"[0-9]{3}" [5m])) by (OriginStatus)
-    ```
+XXX add `node_memory_MemAvailable_bytes`
 
-## Bonux Task 1: Display HTTP 404
+XXX add label
 
-1. Create another panel in the dashboard
-1. Display the number of log lines with HTTP response code 404 and summarize by host and path
-
-??? help "Solution (Click on the arrow if you are stuck)"
-    ```
-    sum(count_over_time({app="traefik"} | json OriginStatus, RequestHost, RequestPath | OriginStatus="404", RequestRequestHost=~".*" [5m])) by (RequestHost, RequestPath)
-    ```
+XXX add override

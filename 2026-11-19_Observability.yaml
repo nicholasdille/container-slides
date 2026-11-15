@@ -1,11 +1,11 @@
 date: 2026-xx-yy
 metadata:
   author: Nicholas Dille, Haufe Group
-  title: Observability
+  title: Cloud Native Observability
   title_slug: o11y
-  subtitle: For Cloud Native
+  subtitle: For Kubernetes
   box:
-    width: 30%
+    width: 50%
     align: left
   favicon: images/favicons/kubernetes.ico
   background:

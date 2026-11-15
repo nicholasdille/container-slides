@@ -32,15 +32,15 @@ Maintaining a secure and compliant environment
 
 ## Pillars of observability
 
-<i class="fa-duotone fa-solid fa-tally-3 fa-4x"></i> <!-- .element: style="float: right;" -->
+- <i class="fa-duotone fa-solid fa-2x fa-chart-fft"></i><br/>**Metrics**<br/>quantative data
+- <i class="fa-duotone fa-solid fa-2x fa-file-lines"></i><br/>**Logs**<br/>textual records of events
+- <i class="fa-duotone fa-solid fa-2x fa-route"></i><br/>**Distributed Traces**<br/>flow of a request<br/>through a system of services
 
-Metrics - quantative data <i class="fa-duotone fa-solid fa-chart-fft"></i>
+<!-- .element: class="flex-columns" style="text-align: center;" -->
 
-Logs - textual records of events <i class="fa-duotone fa-solid fa-file-lines"></i>
+### An emerging fourth pillar
 
-Traces - flow of a request through a system of services <i class="fa-duotone fa-solid fa-route"></i>
-
-(Profiling - function-level insights into application runtime behavior <i class="fa-duotone fa-solid fa-arrow-progress"></i>)
+Profiling - function-level insights into application runtime behavior <i class="fa-duotone fa-solid fa-arrow-progress"></i>
 
 ---
 
@@ -50,7 +50,7 @@ Traces - flow of a request through a system of services <i class="fa-duotone fa-
 
 Numerical values that can be aggregated and visualized
 
-For example, CPU usage, memory usage, request latency, error rate
+Example: CPU usage, memory usage, request latency, error rate
 
 ### Purpose
 
@@ -76,6 +76,8 @@ Timestamped textual records of events and activities
 
 Crucial for diagnosing issues and monitoring system behavior
 
+Example: User login events, API request logs, error messages
+
 ### Purpose
 
 **Troubleshooting issues**: Identify and diagnose issues in your applications
@@ -88,9 +90,11 @@ Crucial for diagnosing issues and monitoring system behavior
 
 ---
 
-## Traces
+## Distributed Traces
 
 <i class="fa-duotone fa-solid fa-route fa-4x"></i> <!-- .element: style="float: right;" -->
+
+Complex distributed systems have many components
 
 Track the flow of a request
 
@@ -102,25 +106,9 @@ Spans are linked together to form a tree structure that represents the entire re
 
 ### Purpose
 
-**XXX**: Trace requests through a networ of microservices
-
 **Root cause analysis**: Identify where the request fails
 
 **Performance monitoring**: Identify bottlenecks in request flow
-
----
-
-## Traces
-
-Complex distributed systems have many components
-
-**Tracing** is a method to track requests as they flow
-
-It helps to identify, e.g. :
-- Slow requests
-- Bottlenecks
-- Errors
-- Performance issues
 
 ---
 
@@ -130,6 +118,8 @@ A **trace** is single unit of work in a distributed system
 
 A **span** is a single operation within a trace
 
+XXX
+
 ![](slides/09-monitoring/traces.drawio.svg) <!-- .element: style="width: 90%;" -->
 
 All spans of a trace have the same context, e.g. a unique ID
@@ -138,7 +128,9 @@ The context is passed between spans
 
 ---
 
-## Traces: Open Telemetry
+## Distributed Traces in Open Telemetry
+
+XXX
 
 ![](slides/09-monitoring/otel.svg) <!-- .element: style="float: right; width: 10%;" -->
 
@@ -156,13 +148,13 @@ It is vendor-neutral and supports multiple backends like Jaeger, Tempo, etc.
 
 <i class="fa-duotone fa-solid fa-diagram-venn fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Notice anomaly in one signal
+Anomaly in one signal
 
 Check time range for other signals
 
 ### Example 1
 
-High CPU load in a service <i class="fa-duotone fa-solid fa-arrow-right"></i> Logs show abnormal behaviour
+High CPU load in a service <i class="fa-duotone fa-solid fa-arrow-right"></i> Access logs show high amount of requests
 
 ### Example 2
 
@@ -186,9 +178,31 @@ Do NOT collect data that you do not need
 
 ---
 
+## Retention
+
+<i class="fa-duotone fa-solid fa-broom-wide fa-4x"></i> <!-- .element: style="float: right;" -->
+
+Practice of collecting removing unnecessary data
+
+Reduces the overhead of storing all data
+
+Example: historical metrics, quickly remove build logs
+
+### Suggestion
+
+Remove data that is no longer needed to optimize storage and performance
+
+---
+
 ## Profiling
 
-XXX
+Considered the fourth pillar of observability
+
+Provides code-level insight into application performance
+
+Captures detailed stack traces to identify bottlenecks
+
+### Out of scope for this workshop
 
 ---
 
@@ -199,4 +213,4 @@ Type      | Description                   | Purpose                   | Example 
 Metrics   | Quantative values             | State, trends             | Memory usage, latency      |
 Logs      | Event-based, textual data     | Detailed analysis         | Error messages, debug info |
 Traces    | Trace requests across systems | Performance, dependencies | Request state, correlation |
-Profiling | XXX                           | XXX                       | XXX                        |
+Profiling | Code-level performance data   | Identify code bottlenecks | Wasted CPU cycles          |
