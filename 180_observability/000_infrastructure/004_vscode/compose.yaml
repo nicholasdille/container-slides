@@ -92,11 +92,10 @@ services:
     image: code-server
     command:
     - --auth=password
-    - --proxy-domain=vscode.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}
+    - --proxy-domain=seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}
     - --disable-telemetry
     - --disable-update-check
     - --locale=de
-    #- --install-extension=PUBLISHER/NAME@VERSION
     environment:
       PASSWORD: "${VSCODE_PASSWORD?Missing VSCODE_PASSWORD environment variable}"
     volumes:
@@ -127,3 +126,8 @@ services:
       traefik.http.routers.vscode-s.rule: Host(`seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}`)
       traefik.http.routers.vscode-s.service: vscode
       traefik.http.routers.vscode-s.tls: "true"
+      # Authenticated endpoint
+      traefik.http.routers.vscode-proxy-s.entrypoints: https
+      traefik.http.routers.vscode-proxy-s.rule: Host(`*.seat${SEAT_INDEX}.${DOMAIN?Environment variable DOMAIN is mandatory}`)
+      traefik.http.routers.vscode-proxy-s.service: vscode
+      traefik.http.routers.vscode-proxy-s.tls: "true"
