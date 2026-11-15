@@ -31,6 +31,8 @@ uniget install \
     opencode \
     copilot \
     claude \
+    kubernetes-mcp-server \
+    mcp-grafana \
     k9s \
     sofka \
     regclient \
