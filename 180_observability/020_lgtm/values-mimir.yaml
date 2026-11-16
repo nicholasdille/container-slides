@@ -16,24 +16,16 @@ mimir:
       http_listen_port: 9009
     blocks_storage:
       backend: filesystem
+    ruler_storage:
+      backend: filesystem
+      filesystem:
+        dir: /data/ruler
+    ruler:
+      rule_path: /data/eval
+      alertmanager_url: http://alertmanager:9093
 
 alertmanager:
-  persistentVolume:
-    enabled: true
-    storageClass: standard
-    size: 10Gi
-  replicas: 1
-  statefulSet:
-    enabled: true
-  zoneAwareReplication:
-    enabled: false
-  resources:
-    requests:
-      cpu: 100m
-      memory: 128Mi
-    limits:
-      cpu: 1
-      memory: 1Gi
+  enabled: false
 
 compactor:
   persistentVolume:
@@ -161,11 +153,7 @@ query_frontend:
       memory: 1Gi
 
 ruler:
-  replicas: 0
-  persistentVolume:
-    enabled: true
-    storageClass: standard
-    size: 10Gi
+  replicas: 1
   resources:
     requests:
       cpu: 100m

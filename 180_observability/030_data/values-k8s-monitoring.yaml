@@ -14,6 +14,10 @@ destinations:
     url: http://mimir-gateway/api/v1/push
     headers:
       X-Scope-OrgID: anonymous
+    rules:
+      enabled: true
+      address: http://mimir-gateway
+      syncInterval: 1m
   logs:
     name: hostedLogs
     type: loki

@@ -87,6 +87,16 @@ config:
     group_interval: 5m
     receiver: webhook-echo
     repeat_interval: 3h
+    routes:
+    - matchers: ['severity="critical"']
+      receiver: webhook-echo
+      group_wait: 0s
+      repeat_interval: 1h
+
+  inhibit_rules:
+  - source_matchers: ['severity="critical"']
+    target_matchers: ['severity="warning"']
+    equal: ['alertname']
 ```
 
 Install the Alertmanager with this configuration:
@@ -96,7 +106,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 helm --namespace=monitoring upgrade \
     --install \
-    alertmanager prometheus-community/prometheus-alertmanager \
+    alertmanager prometheus-community/alertmanager \
         --values values_alertmanager.yaml \
         --values alertmanager.yaml
 ```
@@ -105,7 +115,7 @@ helm --namespace=monitoring upgrade \
 
     The route is deliberately kept simple here: All alerts go to the receiver `shop-mail`, which sends an email via Mailpit. Alerts with the label `team="debug"` go to the receiver `webhook-echo` instead. Check the installation with `kubectl --namespace=monitoring get pods`. The pod should be `Running`. You can check the applied configuration in the ConfigMap `alertmanager` under the key `alertmanager.yaml`.
 
-### Task 2.3 - Trigger a test alert
+### Task 3: Trigger a test alert
 
 The Alertmanager accepts alerts via a REST API. First create a port-forward:
 
@@ -134,124 +144,16 @@ curl -s -XPOST http://localhost:9093/api/v2/alerts \
 Observe the alert:
 
 - Open the Alertmanager UI at `http://localhost:9093` and take a look at the alert
-- Open Mailpit and watch the incoming email
+- XXX View alert in webhook
 
-Trigger the same alert again and observe:
+## Task 4: Declarative alerts with PrometheusRule
 
-- The labels are identical → the Alertmanager recognizes the duplicate and sends **no** second email (deduplication)
-- Change `instance` to `node-2` and trigger again → both alerts are bundled into **one** notification (grouping)
-
-??? help "Solution (Click on the arrow if you are stuck)"
-
-    Deduplication is based on the identity of an alert, i.e. its labels. Grouping is controlled via `group_by`: alerts with the same `alertname` and `team` end up in the same group and are sent together. `group_wait: 0s` ensures that the first notification goes out immediately.
-
-### Task 2.4 - Silence an alert
-
-Create a silence in the Alertmanager UI:
-
-- Open `http://localhost:9093`
-- Select the alert `DiskAlmostFull` and click **Silence**
-- Duration: `1h`, creator and comment of your choice
-- Trigger the alert again and observe: no more email arrives
-- The alert remains visible in the UI but is marked as silenced
-
-??? help "Solution (Click on the arrow if you are stuck)"
-
-    Silences are matchers on labels, here by default `alertname="DiskAlmostFull"`. You can find them in the Alertmanager UI under **Silences**. From there they can also be ended ahead of time.
-
-## Task 3 - Declarative alerts with PrometheusRule
-
-Alerts do not have to be maintained in a UI. The Prometheus operator can manage alerts as a Kubernetes resource (`PrometheusRule`), and Prometheus evaluates them automatically.
-
-### Task 3.1 - Install the Prometheus operator
-
-In the exercise `030_data` the CRDs have already been installed. Now add the operator itself, which manages the objects:
-
-```shell
-curl -sSLf https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.81.0/bundle.yaml \
-    | sed 's/^  namespace: default/  namespace: monitoring/' \
-    | kubectl apply --server-side --filename=-
-```
-
-Check that the operator is running:
-
-```shell
-kubectl --namespace=monitoring get pods
-```
-
-??? help "Solution (Click on the arrow if you are stuck)"
-
-    The pod is called `prometheus-operator-...` and should be `Running`. If the operator is already installed, `kubectl apply` is idempotent and the command changes nothing.
-
-### Task 3.2 - Declare the Prometheus instance
-
-Prometheus itself is also operated declaratively as a CRD. Create a file `prometheus.yaml` with the following content:
-
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: prometheus
-  namespace: monitoring
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: prometheus
-rules:
-- apiGroups: [""]
-  resources: [pods, services, endpoints]
-  verbs: [get, list, watch]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: prometheus
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: prometheus
-subjects:
-- kind: ServiceAccount
-  name: prometheus
-  namespace: monitoring
----
-apiVersion: monitoring.coreos.com/v1
-kind: Prometheus
-metadata:
-  name: prometheus
-  namespace: monitoring
-spec:
-  serviceAccountName: prometheus
-  ruleSelector: {}
-  evaluationInterval: 30s
-  alerting:
-    alertmanagers:
-    - namespace: monitoring
-      name: alertmanager
-      port: 9093
-```
-
-Apply the file:
-
-```shell
-kubectl apply --filename=prometheus.yaml
-```
-
-Two settings are important here:
-
-- `ruleSelector: {}`: Prometheus accepts **all** `PrometheusRule` objects in the namespace
-- `alerting`: Firing alerts are forwarded to the Alertmanager from Task 2
-
-??? help "Solution (Click on the arrow if you are stuck)"
-
-    The operator creates a StatefulSet with the pod `prometheus-prometheus-0` from this. Check with `kubectl --namespace=monitoring get prometheus` and `kubectl --namespace=monitoring get pods`.
-
-### Task 3.3 - Declare an alert
+Alerts do not have to be maintained in a UI. They can be managed as a Kubernetes resource (`PrometheusRule`) to be evaluated automatically.
 
 Create a file `demo-alert.yaml` with the following content:
 
 ```yaml
+---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
@@ -260,10 +162,12 @@ metadata:
 spec:
   groups:
   - name: demo
+    limit: 10
     rules:
     - alert: DemoAlert
       expr: vector(1)
       for: 1m
+      keep_firing_for: 5m
       labels:
         team: shop
         severity: warning
@@ -275,34 +179,59 @@ spec:
 The expression `vector(1)` always returns a result greater than `0` - so the alert is guaranteed to fire. Apply the file:
 
 ```shell
-kubectl apply --filename=demo-alert.yaml
+kubectl apply -f demo-alert.yaml
 ```
 
-??? help "Solution (Click on the arrow if you are stuck)"
-
-    Check that the object exists: `kubectl --namespace=monitoring get prometheusrule`. The operator passes the rule on to Prometheus; you can trace this in the generated configuration using `kubectl --namespace=monitoring get prometheus -o yaml`.
-
-### Task 3.4 - Observe the alert status
-
-Create a port-forward for Prometheus:
+XXX checkout the resource
 
 ```shell
-kubectl --namespace=monitoring port-forward svc/prometheus-operated 9090:9090
+kubectl delete -f demo-alert.yaml
 ```
 
-Observe the lifecycle of the alert at `http://localhost:9090/alerts`:
+### A second example: CPU usage relative to the limit
 
-- First `Pending`: The condition is met but `for: 1m` is not yet fulfilled
-- After one minute `Firing`: The alert is forwarded to the Alertmanager
-- In the Alertmanager UI (`http://localhost:9093`), `DemoAlert` appears with the labels `team=shop` and `severity=warning`
-- The notification arrives in Mailpit
+Real alerts are based on actual metrics. Create a file `pod-cpu-alert.yaml` with the following content:
 
-Then delete the rule and observe how the alert switches to `Inactive` and is marked as `Resolved` in the Alertmanager:
+```yaml
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pod-cpu-alerts
+  namespace: monitoring
+spec:
+  groups:
+  - name: podinfo
+    rules:
+    - alert: PodHighCPUUsage
+      expr: |
+        100 * rate(container_cpu_usage_seconds_total{container!="", container!="POD"}[5m])
+          / on (namespace, pod, container)
+          kube_pod_container_resource_limits{resource="cpu"}
+        > 80
+      for: 5m
+      labels:
+        team: shop
+        severity: critical
+      annotations:
+        summary: Pod {{ $labels.pod }} uses {{ printf "%.0f" $value }}% of its CPU limit
+        description: Container {{ $labels.container }} in namespace {{ $labels.namespace }} uses more than 80% of its CPU limit
+```
+
+The expression divides the CPU usage of each container by its CPU limit and compares the result to 80%. The matcher `container!=""` filters out metrics without a container, and `container!="POD"` filters out the aggregated pod metrics. The `on (namespace, pod, container)` clause joins the usage series with the matching limit series. Because the condition must hold for `for: 5m`, short spikes do not trigger the alert.
+
+Note that the Alertmanager routes alerts with `severity="critical"` to the `webhook-echo` receiver with `group_wait: 0s` and `repeat_interval: 1h` - this alert therefore appears in the webhook sooner than the warning demo alert. Apply the file:
 
 ```shell
-kubectl delete --filename=demo-alert.yaml
+kubectl apply -f pod-cpu-alert.yaml
 ```
 
-??? help "Solution (Click on the arrow if you are stuck)"
+To see the alert fire, a pod has to actually approach its CPU limit. Check the value of the expression in Explore with the PromQL query above (without the `> 80`).
 
-    The lifecycle is: `inactive` → `pending` → `firing`. `for` prevents flapping: short-term outliers do not trigger an alarm. Only firing alerts are sent to the Alertmanager, which decides via the route from Task 2 who gets notified.
+```shell
+kubectl delete -f pod-cpu-alert.yaml
+```
+
+## Task 5: XXX
+
+XXX

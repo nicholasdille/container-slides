@@ -1,0 +1,23 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pod-cpu-alerts
+  namespace: monitoring
+spec:
+  groups:
+  - name: podinfo
+    rules:
+    - alert: PodHighCPUUsage
+      expr: |
+        100 * rate(container_cpu_usage_seconds_total{container!="", container!="POD"}[5m])
+          / on (namespace, pod, container)
+          kube_pod_container_resource_limits{resource="cpu"}
+        > 80
+      for: 5m
+      labels:
+        team: shop
+        severity: critical
+      annotations:
+        summary: Pod {{ $labels.pod }} uses {{ printf "%.0f" $value }}% of its CPU limit
+        description: Container {{ $labels.container }} in namespace {{ $labels.namespace }} uses more than 80% of its CPU limit

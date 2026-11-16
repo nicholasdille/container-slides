@@ -1,0 +1,21 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: demo-alerts
+  namespace: monitoring
+spec:
+  groups:
+  - name: demo
+    limit: 10
+    rules:
+    - alert: DemoAlert
+      expr: vector(1)
+      for: 1m
+      keep_firing_for: 5m
+      labels:
+        team: shop
+        severity: warning
+      annotations:
+        summary: Demo alert for testing the alerting pipeline
+        description: This alert is always active (value {{ $value }})
