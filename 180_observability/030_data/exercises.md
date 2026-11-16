@@ -89,7 +89,8 @@ helm --namespace=default upgrade \
     frontend podinfo/podinfo \
         --set=serviceMonitor.enabled=true \
         --set=extraEnvs[0].name=OTEL_EXPORTER_OTLP_TRACES_ENDPOINT \
-        --set=extraEnvs[0].value=http://tempo.monitoring:4317
+        --set=extraEnvs[0].value=http://tempo.monitoring:4317 \
+        --set=extraArgs[0]=--otel-service-name=podinfo-frontend
 ```
 
 Test that the frontend is working correctly:
@@ -108,7 +109,8 @@ helm --namespace=default upgrade \
     backend podinfo/podinfo \
         --set=serviceMonitor.enabled=true \
         --set=extraEnvs[0].name=OTEL_EXPORTER_OTLP_TRACES_ENDPOINT \
-        --set=extraEnvs[0].value=http://tempo.monitoring:4317
+        --set=extraEnvs[0].value=http://tempo.monitoring:4317 \
+        --set=extraArgs[0]=--otel-service-name=podinfo-backend
 ```
 
 XXX create port forwarding
@@ -170,6 +172,18 @@ scrape_samples_scraped{job="frontend-podinfo"}
 ```
 
 ## Task 6: Working with traces
+
+XXX
+
+```shell
+curl -svX POST -d foo http://localhost:9898/api/echo
+```
+
+XXX
+
+```traceql
+{ .service.name="frontend-podinfo" } && { .service.name="backend-podinfo"}
+```
 
 XXX
 
