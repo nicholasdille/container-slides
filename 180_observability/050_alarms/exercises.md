@@ -1,117 +1,295 @@
 # Alerts
 
-!!! goal "Ziel"
-    In diesem Projekt lernst du, wie man in Grafana Alerts einrichtet und testet. Du wirst:
+!!! goal "Goal"
+    In this project you will learn how to set up and test alerts in Grafana.
 
-    - einen Contact Point für Benachrichtigungen erstellen
-    - eine Notification Policy konfigurieren
-    - eine Alert Rule erstellen, die auf bestimmte Log-Ereignisse reagiert
-    - den Alert auslösen und die Benachrichtigung testen
+    Afterwards you will get to know the Alertmanager and declarative alerting:
 
-!!! tipp "Hilfsmittel"
+    - Install and configure the Alertmanager declaratively
+    - Trigger test alerts and observe their delivery
+    - Declare alerts as `PrometheusRule` and have them evaluated
 
-    - Versuche, die Aufgaben eigenständig zu lösen. Bei jeder Aufgabe findest du einen ausklappbaren Block mit einem Lösungsvorschlag, falls du nicht weiterkommst.
+!!! tipp "Resources"
 
-## Aufgabe 1 - Alerting mit Grafana
+    - Try to solve the tasks on your own. Each task has a collapsible block with a suggested solution in case you get stuck.
 
-### Aufgabe 1.1 - Contact Point einrichten
+## Task 1
 
-Erstelle einen neuen Contact Point in Grafana mit folgender Konfiguration:
+Create a simple HTTP echo server deployment and service in the `monitoring` namespace. This will be used later as a webhook receiver for the Alertmanager.
 
-- Name: `Admin E-Mail`
-- Type: `Email`
-- E-Mail-Adresse: `admin@example.com`
+```yaml
+# httpbin-echo.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin-echo
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin-echo
+  template:
+    metadata:
+      labels:
+        app: httpbin-echo
+    spec:
+      containers:
+      - name: httpbin
+        image: mccutchen/go-httpbin
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin-echo
+  namespace: monitoring
+spec:
+  selector:
+    app: httpbin-echo
+  ports:
+  - port: 8080
+```
 
-??? help "Lösung (Klicken Sie auf den Pfeil, falls Sie nicht weiterkommen)"
+### Task 2: Install Alertmanager
 
-    - Wechsle in Grafana in den Bereich **Alerting**.
-    - Klicke auf **Contact points**.
-    - Klicke auf **Create contact point**.
-    - Setze den Namen auf `Admin E-Mail`.
-    - Wähle als Typ `Email`.
-    - Gib als E-Mail-Adresse `admin@example.com` ein.
-    - Klicke auf **Save contact point**.
+Create a file `alertmanager.yaml` with the following content. Replace the smarthost with the value determined in Task 2.1:
 
-### Aufgabe 1.2 - Notification Policy erstellen
+```yaml
+config:
+  route:
+    group_by:
+    - alertname
+    - team
+    group_wait: 0s
+    group_interval: 1m
+    repeat_interval: 4h
+    receiver: shop-mail
+    routes:
+    - matchers:
+      - team="debug"
+      receiver: webhook-echo
+  receivers:
+  - name: webhook-echo
+    webhook_configs:
+    - url: http://httpbin-echo.monitoring.svc.cluster.local:8080/post
+      send_resolved: true
+```
 
-Erstelle eine neue Notification Policy in Grafana mit folgender Konfiguration:
+Install the Alertmanager with this configuration:
 
-- Label: `team=admin`
-- Contact Point: `Admin E-Mail`
-- Group wait: `0s`
-- Group interval: `1s`
-- Repeat interval: `4h`
+```shell
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm --namespace=monitoring upgrade \
+    --install \
+    alertmanager prometheus-community/prometheus-alertmanager \
+        --values alertmanager.yaml
+```
 
-Die Zeiten sind hier so kurz gewählt, damit du die Alerts schnell testen kannst. In der Praxis sollten diese Zeiten natürlich an deine Bedürfnisse angepasst werden.
+??? help "Solution (Click on the arrow if you are stuck)"
 
-??? help "Lösung (Klicken Sie auf den Pfeil, falls Sie nicht weiterkommen)"
+    The route is deliberately kept simple here: All alerts go to the receiver `shop-mail`, which sends an email via Mailpit. Alerts with the label `team="debug"` go to the receiver `webhook-echo` instead. Check the installation with `kubectl --namespace=monitoring get pods`. The pod should be `Running`. You can check the applied configuration in the ConfigMap `alertmanager` under the key `alertmanager.yaml`.
 
-    - Wechsle in Grafana in den Bereich **Alerting**.
-    - Klicke auf **Notification policies**.
-    - Klicke auf **New child policy**.
-    - Setze das Label auf `team=admin`.
-    - Wähle als Contact Point `Admin E-Mail`.
-    - Klicke auf `Override general timings`.
-    - Setze Group wait auf `0s`.
-    - Setze Group interval auf `1s`.
-    - Setze Repeat interval auf `4h`.
-    - Klicke auf **Save policy**.
+### Task 2.3 - Trigger a test alert
 
+The Alertmanager accepts alerts via a REST API. First create a port-forward:
 
-### Aufgabe 1.3 - Alert Rule erstellen
+```shell
+kubectl --namespace=monitoring port-forward svc/alertmanager 9093:9093
+```
 
-Erstelle eine neue Alert Rule in Grafana mit folgender Konfiguration:
+Trigger a test alert:
 
-- Name: `Wrong login link accessed`
-- Data source: `Loki`
-- Query: `sum(count_over_time({app="traefik"} | json RequestPath | RequestPath="/loginn" [1m]))`
-- Condition: `IS ABOVE 0`
-- Folder: `Traefik`
-- Die Notification Policy `team=admin` soll genutzt werden.
-- Evaluation alle 10 Sekunden
-- Pending period: `0s`
-- Keep firing for: `0s`
-- Alert state if no data or all values are null: `Normal`
-- Aktiviere `Advanced options` bei "Configure notifications"
+```shell
+curl -s -XPOST http://localhost:9093/api/v2/alerts \
+    --header 'Content-Type: application/json' \
+    --data '[{
+      "labels": {
+        "alertname": "DiskAlmostFull",
+        "team": "shop",
+        "severity": "warning",
+        "instance": "node-1"
+      },
+      "annotations": {
+        "summary": "Disk usage above 90% on node-1"
+      }
+    }]'
+```
 
+Observe the alert:
 
-??? help "Lösung (Klicken Sie auf den Pfeil, falls Sie nicht weiterkommen)"
+- Open the Alertmanager UI at `http://localhost:9093` and take a look at the alert
+- Open Mailpit and watch the incoming email
 
-    - Wechsle in Grafana in den Bereich **Alerting**.
-    - Klicke auf **Alert rules**.
-    - Klicke auf **New alert rule**.
-    - Setze den Namen auf `Wrong login link accessed`.
-    - Wähle als Datenquelle `Loki`.
-    - Setze die Abfrage auf `sum(count_over_time({app="traefik"} | json RequestPath |  RequestPath="/loginn" [1m]))`.
-    - Setze die Bedingung auf `IS ABOVE 0`.
-    - Klicke auf `New folder` und erstelle einen neuen Ordner mit dem Namen `Traefik`.
-    - Klicke auf `Add labels` und füge das Label `team=admin` hinzu.
-    - Klicke auf `New evaluation group` und erstelle eine neue Gruppe mit beliebigem Namen.
-    - Setze die Evaluation auf `10s`.
-    - Setze Pending period auf `0s`.
-    - Setze Keep firing for auf `0s`.
-    - Klicke auf `Configure no data and error handling`.
-    - Setze Alert state if no data or all values are null auf `Normal`.
-    - Unter 5. "Configure notifications" aktiviere `Advanced options`.
-    - Klicke auf **Save**.
+Trigger the same alert again and observe:
 
-### Aufgabe 1.4 - Alert testen
+- The labels are identical → the Alertmanager recognizes the duplicate and sends **no** second email (deduplication)
+- Change `instance` to `node-2` and trigger again → both alerts are bundled into **one** notification (grouping)
 
-- Rufe `https://mailpit.cluster.<VSCode-URL>` auf.
+??? help "Solution (Click on the arrow if you are stuck)"
 
-Hier können wir beobachten welche E-Mails versendet werden, wenn der Alert ausgelöst wird.
+    Deduplication is based on the identity of an alert, i.e. its labels. Grouping is controlled via `group_by`: alerts with the same `alertname` and `team` end up in the same group and are sent together. `group_wait: 0s` ensures that the first notification goes out immediately.
 
-- Rufe deine Grafana Instanz unter `/loginn` auf.
-- Beobachte, dass der Alert ausgelöst wird.
-- Beobachte wie der Alert in Mailpit ankommt.
-- Klicke in Mailpit auf den Alert und schaue dir die Details an.
-- Klicke auf den Link in der E-Mail, um die Alert Rule in Grafana zu öffnen.
-- Beobachte wie der Alert wieder auf `Normal` wechselt.
-- Schaue dir ebenfalls die Mail dazu an.
+### Task 2.4 - Silence an alert
 
+Create a silence in the Alertmanager UI:
 
-<!--
-## Aufgabe 2 - Alert manager
+- Open `http://localhost:9093`
+- Select the alert `DiskAlmostFull` and click **Silence**
+- Duration: `1h`, creator and comment of your choice
+- Trigger the alert again and observe: no more email arrives
+- The alert remains visible in the UI but is marked as silenced
 
-TODO: Hier was mit Alertmanager machen.
--->
+??? help "Solution (Click on the arrow if you are stuck)"
+
+    Silences are matchers on labels, here by default `alertname="DiskAlmostFull"`. You can find them in the Alertmanager UI under **Silences**. From there they can also be ended ahead of time.
+
+## Task 3 - Declarative alerts with PrometheusRule
+
+Alerts do not have to be maintained in a UI. The Prometheus operator can manage alerts as a Kubernetes resource (`PrometheusRule`), and Prometheus evaluates them automatically.
+
+### Task 3.1 - Install the Prometheus operator
+
+In the exercise `030_data` the CRDs have already been installed. Now add the operator itself, which manages the objects:
+
+```shell
+curl -sSLf https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.81.0/bundle.yaml \
+    | sed 's/^  namespace: default/  namespace: monitoring/' \
+    | kubectl apply --server-side --filename=-
+```
+
+Check that the operator is running:
+
+```shell
+kubectl --namespace=monitoring get pods
+```
+
+??? help "Solution (Click on the arrow if you are stuck)"
+
+    The pod is called `prometheus-operator-...` and should be `Running`. If the operator is already installed, `kubectl apply` is idempotent and the command changes nothing.
+
+### Task 3.2 - Declare the Prometheus instance
+
+Prometheus itself is also operated declaratively as a CRD. Create a file `prometheus.yaml` with the following content:
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+  namespace: monitoring
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus
+rules:
+- apiGroups: [""]
+  resources: [pods, services, endpoints]
+  verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+- kind: ServiceAccount
+  name: prometheus
+  namespace: monitoring
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  serviceAccountName: prometheus
+  ruleSelector: {}
+  evaluationInterval: 30s
+  alerting:
+    alertmanagers:
+    - namespace: monitoring
+      name: alertmanager
+      port: 9093
+```
+
+Apply the file:
+
+```shell
+kubectl apply --filename=prometheus.yaml
+```
+
+Two settings are important here:
+
+- `ruleSelector: {}`: Prometheus accepts **all** `PrometheusRule` objects in the namespace
+- `alerting`: Firing alerts are forwarded to the Alertmanager from Task 2
+
+??? help "Solution (Click on the arrow if you are stuck)"
+
+    The operator creates a StatefulSet with the pod `prometheus-prometheus-0` from this. Check with `kubectl --namespace=monitoring get prometheus` and `kubectl --namespace=monitoring get pods`.
+
+### Task 3.3 - Declare an alert
+
+Create a file `demo-alert.yaml` with the following content:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: demo-alerts
+  namespace: monitoring
+spec:
+  groups:
+  - name: demo
+    rules:
+    - alert: DemoAlert
+      expr: vector(1)
+      for: 1m
+      labels:
+        team: shop
+        severity: warning
+      annotations:
+        summary: Demo alert for testing the alerting pipeline
+        description: This alert is always active (value {{ $value }})
+```
+
+The expression `vector(1)` always returns a result greater than `0` - so the alert is guaranteed to fire. Apply the file:
+
+```shell
+kubectl apply --filename=demo-alert.yaml
+```
+
+??? help "Solution (Click on the arrow if you are stuck)"
+
+    Check that the object exists: `kubectl --namespace=monitoring get prometheusrule`. The operator passes the rule on to Prometheus; you can trace this in the generated configuration using `kubectl --namespace=monitoring get prometheus -o yaml`.
+
+### Task 3.4 - Observe the alert status
+
+Create a port-forward for Prometheus:
+
+```shell
+kubectl --namespace=monitoring port-forward svc/prometheus-operated 9090:9090
+```
+
+Observe the lifecycle of the alert at `http://localhost:9090/alerts`:
+
+- First `Pending`: The condition is met but `for: 1m` is not yet fulfilled
+- After one minute `Firing`: The alert is forwarded to the Alertmanager
+- In the Alertmanager UI (`http://localhost:9093`), `DemoAlert` appears with the labels `team=shop` and `severity=warning`
+- The notification arrives in Mailpit
+
+Then delete the rule and observe how the alert switches to `Inactive` and is marked as `Resolved` in the Alertmanager:
+
+```shell
+kubectl delete --filename=demo-alert.yaml
+```
+
+??? help "Solution (Click on the arrow if you are stuck)"
+
+    The lifecycle is: `inactive` → `pending` → `firing`. `for` prevents flapping: short-term outliers do not trigger an alarm. Only firing alerts are sent to the Alertmanager, which decides via the route from Task 2 who gets notified.

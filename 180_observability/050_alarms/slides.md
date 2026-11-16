@@ -87,7 +87,9 @@ Scope of workshop: Alartmanager only
 
 Part of Prometheus ecosystem
 
-Evaluates queries (rules) against Mimir, Loki and Tempo
+Receives firing alerts from Prometheus, Grafana or the Mimir ruler
+
+Does not evaluate rules itself
 
 Purpose: Grouping, Deduplication, Routing, Silencing, Inhibition
 
@@ -100,6 +102,115 @@ Grouping: Bundle similar alerts into a single message
 Routing Tree: Rules for receivers
 
 Receivers: Channels (Slack, Mail, PagerDuty etc.)
+
+---
+
+## Alert pipeline
+
+Alerting is split into two jobs
+
+### Rule evaluation
+
+Runs a query on a schedule and decides when something is wrong
+
+Done by Prometheus, Grafana or the Mimir ruler
+
+### Notification
+
+Alertmanager receives firing alerts and decides who gets notified
+
+Grouping → deduplication → silencing → routing → delivery
+
+---
+
+## Declarative alerts: `PrometheusRule`
+
+Alerts are Kubernetes resources, stored and versioned in git
+
+Prometheus discovers them through label selectors
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: podinfo-alerts
+spec:
+  groups:
+  - name: podinfo
+    rules:
+    - alert: PodRestartingTooOften
+      expr: increase(kube_pod_container_status_restarts_total[30m]) > 3
+      for: 5m
+      labels:
+        severity: warning
+        team: shop
+      annotations:
+        summary: Pod {{ $labels.pod }} restarts too often
+        description: More than 3 restarts in the last 30 minutes
+```
+
+---
+
+## Anatomy of an alert rule
+
+`expr`: PromQL query, any result above `0` triggers the alert
+
+`for`: Condition must hold this long, avoids flapping
+
+`labels`: Identity of the alert, used for grouping and routing
+
+`annotations`: Human readable text, templated with `{{ $labels.pod }}` and `{{ $value }}`
+
+Labels for machines, annotations for humans
+
+---
+
+## Routing in Alertmanager
+
+Alertmanager matches alerts by label matchers along a route tree
+
+```yaml
+route:
+  group_by: [alertname, team]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 4h
+  routes:
+  - matchers:
+    - team="shop"
+    receiver: shop-mail
+receivers:
+- name: shop-mail
+  email_configs:
+  - to: shop@example.com
+```
+
+`group_by` bundles similar alerts into a single notification
+
+---
+
+## Declarative routing: `AlertmanagerConfig`
+
+Routing per namespace, also a Kubernetes resource
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: AlertmanagerConfig
+metadata:
+  name: shop
+  namespace: shop
+spec:
+  route:
+    matchers:
+    - team="shop"
+    receiver: shop-mail
+  receivers:
+  - name: shop-mail
+    emailConfigs:
+    - to: shop@example.com
+```
+
+Requires an Alertmanager managed by prometheus-operator
 
 ---
 
