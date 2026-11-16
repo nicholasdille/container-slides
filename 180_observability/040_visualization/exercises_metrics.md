@@ -49,34 +49,72 @@ Now filter for a specific instance of `node-exporter`.
 
     (Replace the IP address with any one that is available in your environment.)
 
-## Task 4: Calculate the CPU usage
+## Task 5: Container CPU usage
 
-The metric `node_cpu_seconds_total` counts the time for different states of the CPU, e.g. idle, user, system. It is a counter and will increase whenever the CPU is in a specific state. Use the `rate` function to calculate the change with a 5 minutes sliding window.
+The metric `container_cpu_usage_seconds_total` counts CPU seconds per container. It is a counter with the labels `namespace`, `pod` and `container`. Calculate the per second CPU usage (cores) with a 5 minutes sliding window. Exclude the pod level entries with `container!=""`.
 
 ??? help "Solution (Click on the arrow if you are stuck)"
     ```promql
-    rate(node_cpu_seconds_total[5m])
+    rate(container_cpu_usage_seconds_total{container!=""}[5m])
     ```
 
-Filter for the state `idle` using the label `mode`.
+Sum the containers of each pod.
 
 ??? help "Solution (Click on the arrow if you are stuck)"
     ```promql
-    rate(node_cpu_seconds_total{mode="idle"}[5m])
+    sum by (namespace, pod) (rate(container_cpu_usage_seconds_total{container!=""}[5m]))
     ```
 
-Calculate the average idle time for each CPU core.
+## Task 6: Memory vs limit
+
+The metric `container_memory_working_set_bytes` shows the memory that counts towards the OOM limit. Calculate the used memory per container in GiB.
 
 ??? help "Solution (Click on the arrow if you are stuck)"
     ```promql
-    avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m]))
+    container_memory_working_set_bytes{container!=""} / 1024 / 1024 / 1024
     ```
 
-Calculate the non-idle time for each CPU core.
+Calculate the percent of the memory limit used, with `kube_pod_container_resource_limits{resource="memory"}`. Aggregate both sides to identical labels first, otherwise the label sets do not match.
 
 ??? help "Solution (Click on the arrow if you are stuck)"
     ```promql
-    1 - avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m]))
+    sum by (namespace, pod, container) (container_memory_working_set_bytes{container!=""})
+    /
+    sum by (namespace, pod, container) (kube_pod_container_resource_limits{resource="memory"})
+    ```
+
+## Task 7: Restarts and top lists
+
+Show which containers restarted in the last hour, with `kube_pod_container_status_restarts_total`.
+
+??? help "Solution (Click on the arrow if you are stuck)"
+    ```promql
+    sum by (namespace, pod, container) (increase(kube_pod_container_status_restarts_total[1h])) > 0
+    ```
+
+Show the three containers with the highest memory usage.
+
+??? help "Solution (Click on the arrow if you are stuck)"
+    ```promql
+    topk(3, container_memory_working_set_bytes{container!=""})
+    ```
+
+## Bonus Task 2: Peak memory
+
+Calculate the peak memory per container over the last 24 hours, in GiB.
+
+??? help "Solution (Click on the arrow if you are stuck)"
+    ```promql
+    max_over_time(container_memory_working_set_bytes{container!=""}[24h]) / 1024 / 1024 / 1024
+    ```
+
+## Bonus Task 3: Check for missing series
+
+Write a query that returns a result only when no containers are running in the namespace `shop`.
+
+??? help "Solution (Click on the arrow if you are stuck)"
+    ```promql
+    absent(container_cpu_usage_seconds_total{namespace="shop", container!=""})
     ```
 
 ## Bonus Task 1: Combine metrics
