@@ -13,12 +13,12 @@
 
     - Try to solve the tasks on your own. Each task has a collapsible block with a suggested solution in case you get stuck.
 
-## Task 1
+## Task 1: Create a receiver for alerts
 
 Create a simple HTTP echo server deployment and service in the `monitoring` namespace. This will be used later as a webhook receiver for the Alertmanager.
 
 ```yaml
-# httpbin-echo.yaml
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -52,29 +52,41 @@ spec:
   - port: 8080
 ```
 
+XXX port-forwarding for svc/httpbin-echo:8080
+
+```shell
+kubectl --namespace=monitoring port-forward svc/httpbin-echo 8080:8080
+```
+
+XXX test
+
+```shell
+curl -s -XPOST http://localhost:8080/post \
+    --header 'Content-Type: application/json' \
+    --data '{"message": "Hello, world!"}'
+```
+
 ### Task 2: Install Alertmanager
 
 Create a file `alertmanager.yaml` with the following content. Replace the smarthost with the value determined in Task 2.1:
 
 ```yaml
 config:
-  route:
-    group_by:
-    - alertname
-    - team
-    group_wait: 0s
-    group_interval: 1m
-    repeat_interval: 4h
-    receiver: shop-mail
-    routes:
-    - matchers:
-      - team="debug"
-      receiver: webhook-echo
+  enabled: true
+
+  global: {}
+
   receivers:
   - name: webhook-echo
     webhook_configs:
-    - url: http://httpbin-echo.monitoring.svc.cluster.local:8080/post
+    - url: http://httpbin-echo.monitoring:8080/post
       send_resolved: true
+
+  route:
+    group_wait: 10s
+    group_interval: 5m
+    receiver: webhook-echo
+    repeat_interval: 3h
 ```
 
 Install the Alertmanager with this configuration:
@@ -85,6 +97,7 @@ helm repo update
 helm --namespace=monitoring upgrade \
     --install \
     alertmanager prometheus-community/prometheus-alertmanager \
+        --values values_alertmanager.yaml \
         --values alertmanager.yaml
 ```
 

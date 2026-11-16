@@ -15,8 +15,7 @@ Horizontally scalable architecture
 - <img src="180_observability/media/grafana.svg" style="height: 2em;" /><br/>**Grafana** for visualization<br/>Dashboards<br/>Alerting
 - <img src="180_observability/media/mimir.svg" style="height: 2em;" /><br/>**Mimir** for metrics<br/>Long-term storage<br/>High performance query engine
 - <img src="180_observability/media/loki.svg" style="height: 2em;" /><br/>**Loki** for logs<br/>Multi-tenancy<br/>Inspired by Prometheus
-- <img src="180_observability/media/tempo.svg" style="height: 2em;" /><br/>**Tempo** for traces<br/>XXX
-
+- <img src="180_observability/media/tempo.svg" style="height: 2em;" /><br/>**Tempo** for traces<br/>High-volume tracing at low cost<br/>Based on OpenTelemetry
 <!-- .element: class="flex-columns" style="text-align: center;" -->
 
 (Profiling with Beyla)
@@ -27,7 +26,22 @@ Horizontally scalable architecture
 
 ![](180_observability/media/grafana.svg) <!-- .element: style="float: right; width: 5em;" -->
 
-XXX
+Open source visualization and observability platform
+
+Connects to many data sources
+
+- Time series (Mimir, Prometheus, InfluxDB)
+- Logs (Loki, Elasticsearch)
+- Traces (Tempo, Jaeger)
+- SQL databases and cloud services
+
+Dashboards with a large plugin ecosystem
+
+Alerting engine with notification channels
+
+Explore view for ad-hoc queries
+
+Dashboards can be provisioned as code
 
 ---
 
@@ -43,7 +57,7 @@ Microservices for scalability
 
 Long-term storage
 
-High performance query engine
+High performance query engine fully compatible with PromQL
 
 ### Offers no scraping
 
@@ -128,25 +142,23 @@ http_request_duration_seconds_count 144320
 
 ---
 
-## Query Language
-
-XXX PromQL
-
----
-
 ## Loki
 
 <i class="fa-duotone fa-solid fa-file-lines fa-4x"></i> <!-- .element: style="float: right;" -->
 
 ![](180_observability/media/loki.svg) <!-- .element: style="float: right; width: 4em;" -->
 
-XXX
+Log aggregation system
 
----
+Indexes only labels, not log contents
 
-## Query Language
+Stores compressed chunks in cheap object storage
 
-XXX LogQL
+### Cost-efficient
+
+Queries with LogQL, modeled on PromQL
+
+Collection via Grafana Alloy (successor of Promtail)
 
 ---
 
@@ -156,10 +168,12 @@ XXX LogQL
 
 ![](180_observability/media/tempo.svg) <!-- .element: style="float: right; width: 5em;" -->
 
-XXX
+Distributed tracing backend
 
----
+Receives traces via OTLP (OpenTelemetry)
 
-## Query Language
+Stores traces in cheap object storage (S3, GCS, Azure Blob)
 
-XXX TraceQL
+Queries with TraceQL
+
+Correlates traces with logs and metrics

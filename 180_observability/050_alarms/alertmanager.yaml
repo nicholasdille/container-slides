@@ -1,0 +1,16 @@
+config:
+  enabled: true
+
+  global: {}
+
+  receivers:
+  - name: webhook-echo
+    webhook_configs:
+    - url: http://httpbin-echo.monitoring:8080/post
+      send_resolved: true
+
+  route:
+    group_wait: 10s
+    group_interval: 5m
+    receiver: webhook-echo
+    repeat_interval: 3h

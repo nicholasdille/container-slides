@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin-echo
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin-echo
+  template:
+    metadata:
+      labels:
+        app: httpbin-echo
+    spec:
+      containers:
+      - name: httpbin
+        image: mccutchen/go-httpbin
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin-echo
+  namespace: monitoring
+spec:
+  selector:
+    app: httpbin-echo
+  ports:
+  - port: 8080

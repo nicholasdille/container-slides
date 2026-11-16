@@ -19,22 +19,13 @@ Centralized storage
 
 <i class="fa-duotone fa-solid fa-vacuum fa-4x"></i> <!-- .element: style="float: right;" -->
 
-XXX image
-
-Layers
-- Infrastructure
-- Virtualization hosts
-- Cluster
-- Node
-- Pod
-- Container
-- Application
+![](180_observability/030_data/layers.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 ---
 
 ## Traditional data collection
 
-XXX agents
+"You get an agent. You get an agent. Everyone gets an agent!" - Oprah Winfrey
 
 ---
 
@@ -200,6 +191,38 @@ Use OtelCol/Alloy to centralize data from multiple sources
 
 ## Data transformation
 
-XXX otel pipelines
+Open Telemetry Collector Pipelines are built around the concept of:
 
-XXX alloy pipelines
+Receiver -> Processor -> Exporter
+
+```yaml
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/jaeger]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/prometheus]
+```
+
+Alloy Pipelines are similar in concept but use a different configuration syntax:
+
+```
+discovery.kubernetes "pods" {
+  role = "pod"
+}
+
+prometheus.scrape "app_metrics" {
+  targets    = discovery.kubernetes.pods.targets
+  forward_to = [prometheus.remote_write.production.receiver]
+}
+
+prometheus.remote_write "production" {
+  endpoint {
+    url = "https://prometheus.example.com/api/v1/write"
+  }
+}   
+```

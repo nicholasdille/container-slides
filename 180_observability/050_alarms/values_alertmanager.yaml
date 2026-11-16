@@ -1,0 +1,7 @@
+serviceMonitor:
+  enabled: true
+
+persistence:
+  enabled: true
+  storageClass: standard
+  size: 10Gi

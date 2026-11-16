@@ -40,21 +40,7 @@ AWS CloudWatch, Google Cloud Monitoring, etc.
 
 ---
 
-## Scope of this Workshop
-
-Alerting based on prometheus metrics
-
-Prometheus-Operator and AlertManager...
-
-...with custom resources
-
-XXX grafana unified alerting for small to medium deployments
-
----
-
 ## Prometheus Alerting
-
-XXX image
 
 Multiple deployment options
 
@@ -68,18 +54,18 @@ Options 1 and 3 allow alerting rules to be managed through custom resources
 
 Option 2 uses the Grafana UI for managing alerting rules
 
-Scope of workshop: Alartmanager only
+Scope of workshop: Alertmanager only
 
 ---
 
 ## Grafana vs. Alertmanager
 
-| Aspekt	    | Grafana Alerts   | Alertmanager        |
+| Aspect        | Grafana Alerts   | Alertmanager        |
 |---------------|------------------|---------------------|
-| Datenquellen	| Viele	           | Nur Prometheus      |
-| Einrichtung	| Sehr schnell	   | Prometheus + Config |
-| Routing	    | Einfach / Mittel | Sehr mächtig        |
-| Deduplication | Grundlegend	   | Ausgereift          |
+| Data sources  | Many             | Prometheus only     |
+| Setup         | Very fast        | Prometheus + Config |
+| Routing       | Easy / Medium    | Very powerful       |
+| Deduplication | Basic            | Mature              |
 
 ---
 
@@ -165,9 +151,9 @@ Labels for machines, annotations for humans
 
 ---
 
-## Routing in Alertmanager
+## Routing
 
-Alertmanager matches alerts by label matchers along a route tree
+Routing defines how alerts are sent to receivers based on their labels and other criteria:
 
 ```yaml
 route:
@@ -185,80 +171,71 @@ receivers:
   - to: shop@example.com
 ```
 
-`group_by` bundles similar alerts into a single notification
-
----
-
-## Declarative routing: `AlertmanagerConfig`
-
-Routing per namespace, also a Kubernetes resource
-
-```yaml
-apiVersion: monitoring.coreos.com/v1
-kind: AlertmanagerConfig
-metadata:
-  name: shop
-  namespace: shop
-spec:
-  route:
-    matchers:
-    - team="shop"
-    receiver: shop-mail
-  receivers:
-  - name: shop-mail
-    emailConfigs:
-    - to: shop@example.com
-```
-
-Requires an Alertmanager managed by prometheus-operator
+Supported receivers include: Email, Slack, Teams, Discord, Jira, WebHook
 
 ---
 
 ## Routing & Deduplication
 
-XXX matchers
+### Matching
 
-XXX continue
+Alerts enter at the root route and walk down child routes, matched by label matchers
 
-XXX group_by
+First matching child route wins, `continue: true` evaluates further routes
 
-XXX group_wait / group_interval / repeat_interval
+Allows notifying multiple receivers, e.g. mail for warnings, pager for criticals
 
-XXX dedup
+### Grouping
+
+`group_by: [alertname, team]`: alerts with identical label values are bundled into a single notification
+
+Prevents notification storms during large outages
+
+### Timing
+
+`group_wait`: wait before the first notification of a new group, default 30s
+
+`group_interval`: minimum time between notifications of a group that received new alerts, default 5m
+
+`repeat_interval`: re-notify an unchanged group, default 4h
+
+### Deduplication
+
+Alerts with an identical set of labels are treated as a single alert
+
+Also filters duplicates from redundant sources, e.g. a high availability pair of Alertmanagers
 
 ---
 
 ## Silences & Inhibition
 
-XXX silence
+### Silences
 
-XXX inhibition
+Temporarily mute alerts whose labels match given matchers
+
+Created in the Alertmanager UI or via `amtool`, with creator, comment and duration
+
+Alerts still show as silenced, no notification is sent
+
+### Inhibition
+
+Rules in the Alertmanager config: when a source alert fires, matching target alerts are muted
+
+Defined by `source_matchers`, `target_matchers` and `equal` labels
+
+Example: inhibit warnings when the same service is already critical
 
 ### Use Cases
 
-Maintenance windows
+Maintenance windows: silence alerts during planned changes
 
-Only alert for root cause
+Only alert for root cause: inhibit the effects, page the cause
 
 ---
 
 ## Best Practices
 
 Choose labels wisely
-
-XXX severity, e.g. warning, critical, page
-
-XXX groups alerts per service
-
-XXX inhibition for root cause
-
-Establish SLO/SLI
-
-Include links in alerts
-
----
-
-## Best Practices
 
 Few and helpful alerts
 
