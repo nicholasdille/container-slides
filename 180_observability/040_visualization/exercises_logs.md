@@ -16,7 +16,7 @@
 
 1. Go to Explore in Grafana
 1. Switch the data source to `Loki`
-1. Display all logs from XXX
+1. Display all logs from `traefik`
 
 ??? help "Solution (Click on the arrow if you are stuck)"
     ```
@@ -25,7 +25,7 @@
 
 ## Task 2: Filter using structured metadata
 
-Filter logs by label and only display lines with `XXX=YYY`.
+Filter logs by label and only display lines with `detected_level="info"`.
 
 ??? help "Solution (Click on the arrow if you are stuck)"
     ```

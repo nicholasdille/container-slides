@@ -186,29 +186,158 @@ Mismatches silently produce empty results
 
 ---
 
-## LogsQL
+## LogQL
 
-All log lines for the label filter:
+Practical introduction in 30 minutes
+
+Query language for Loki
+
+Same shape as PromQL: selector first, then pipeline
+
+Read it: dashboards, alerts, troubleshooting cluster components
+
+Write it: ad hoc analysis in Grafana Explore
+
+---
+
+## Setup
+
+Grafana → `Explore` → Loki data source
+
+Start with a single component and look at the raw lines
+
+Every query in this section works as a live demo
+
+XXX insert screenshot of Explore with Loki
+
+---
+
+## Data model: streams and lines
+
+The selector picks log streams, not single lines
+
+Stream = unique label set, labels are indexed and cheap
+
+Line content is not indexed, every filter reads lines
+
+Keep labels few and low cardinality
+
+Everything else happens per line in the pipeline
+
+---
+
+## Stream selectors
+
+All logs of one component:
 
 ```plaintext
-{namespace=kube-system}
+{service_name="kube-apiserver"}
 ```
 
-Filter for string `dns`:
+Same matcher operators as PromQL: `=`, `!=`, `=~`, `!~`
 
 ```plaintext
-{namespace=kube-system} |= `dns`
+{namespace="kube-system", pod=~"coredns-.*"}
 ```
 
-Exclude lines with string `dns`:
+Start narrow: component, namespace, node
+
+---
+
+## Line filters
+
+Contains / does not contain:
 
 ```plaintext
-{namespace=kube-system} != `dns`
+{service_name="kube-apiserver"} |= `Unauthorized`
+{service_name="kube-apiserver"} != `/healthz`
 ```
 
-XXX json
+Regex, case insensitive with `(?i)`:
 
-XXX pattern
+```plaintext
+{namespace="kube-system"} |~ `(?i)error|failed`
+```
+
+Chain filters, cheapest first:
+
+```plaintext
+{service_name="kube-apiserver"} |= `request` |= `failed` |~ `40[134]`
+```
+
+---
+
+## Parsers: json
+
+Parse all fields, then filter:
+
+```plaintext
+{service_name="kube-apiserver"} | json | OriginStatus="401"
+```
+
+Parse only needed fields, much faster:
+
+```plaintext
+{service_name="kube-apiserver"} | json OriginStatus, Verb | OriginStatus="401", Verb!="GET"
+```
+
+Other formats: `logfmt`, `pattern`, `regexp`
+
+---
+
+## Parsers: plain text formats
+
+`logfmt` for `key=value` lines:
+
+```plaintext
+{service_name="kube-scheduler"} | logfmt | err!=""
+```
+
+`pattern` with a literal template:
+
+```plaintext
+{service_name="kubelet"} | pattern `<timestamp> <level> <msg>`
+```
+
+`regexp` with named capture groups as fallback:
+
+```plaintext
+{service_name="etcd"} | regexp `took too long (?P<duration>\S+)`
+```
+
+---
+
+## Metrics from logs
+
+Wrap a pipeline in a range function:
+
+```plaintext
+rate({service_name="kube-apiserver"} |= `Unauthorized` [5m])
+```
+
+```plaintext
+count_over_time({service_name="coredns"} |~ `NXDOMAIN` [10m])
+```
+
+```plaintext
+bytes_over_time({namespace="kube-system"} [1h])
+```
+
+Lines per second, matches per minute, log volume per stream
+
+---
+
+## Aggregation
+
+```plaintext
+topk(5, sum by (service_name) (count_over_time({namespace="kube-system"} [1h])))
+```
+
+```plaintext
+sum by (pod) (rate({app="traefik"} | json | RequestMethod="POST" [5m]))
+```
+
+This is what dashboard panels and alert rules use
 
 ---
 
