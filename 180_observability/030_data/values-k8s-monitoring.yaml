@@ -103,6 +103,7 @@ costMetrics:
   enabled: false
 
 hostMetrics:
+  enabled: true
   linuxHosts:
     enabled: true
   windowsHosts:
