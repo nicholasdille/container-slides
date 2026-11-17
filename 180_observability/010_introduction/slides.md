@@ -32,9 +32,9 @@ Maintaining a secure and compliant environment
 
 ## Pillars of observability
 
-- <i class="fa-duotone fa-solid fa-2x fa-chart-fft"></i><br/>**Metrics**<br/>quantative data
-- <i class="fa-duotone fa-solid fa-2x fa-file-lines"></i><br/>**Logs**<br/>textual records of events
-- <i class="fa-duotone fa-solid fa-2x fa-route"></i><br/>**Distributed Traces**<br/>flow of a request<br/>through a system of services
+- <i class="fa-duotone fa-solid fa-2x fa-chart-fft"></i><br/>**Metrics**<br/>Quantative data
+- <i class="fa-duotone fa-solid fa-2x fa-file-lines"></i><br/>**Logs**<br/>Textual records of events
+- <i class="fa-duotone fa-solid fa-2x fa-route"></i><br/>**Distributed Traces**<br/>Flow of a request<br/>through a system of services
 
 <!-- .element: class="flex-columns" style="text-align: center;" -->
 
@@ -114,11 +114,11 @@ Spans are linked together to form a tree structure that represents the entire re
 
 ## What is a trace?
 
+![](180_observability/010_introduction/trace.drawio.svg) <!-- .element: style="float: right; width: 40%;" -->
+
 A **trace** is single unit of work in a distributed system
 
 A **span** is a single operation within a trace
-
-![](slides/09-monitoring/traces.drawio.svg) <!-- .element: style="width: 90%;" -->
 
 All spans of a trace have the same context, e.g. a unique ID
 
@@ -130,11 +130,11 @@ The context is passed between spans
 
 [Open Telemetry](https://opentelemetry.io/) provides observability to your applications
 
-It includes APIs, libraries, agents, and instrumentation
+Includes APIs, libraries, agents, and instrumentation
 
-It provides a single set of APIs and libraries to capture distributed traces and metrics from your applications
+Vendor-neutral
 
-It is vendor-neutral and supports multiple backends like Jaeger, Tempo, etc.
+Supports multiple backends (like Jaeger, Tempo etc.)
 
 ---
 
@@ -160,11 +160,11 @@ High latency of user requests <i class="fa-duotone fa-solid fa-arrow-right"></i>
 
 <i class="fa-duotone fa-solid fa-eye-dropper-half fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Practice of collecting only a subset of metrics, logs, and traces
+Collecting only a subset of metrics, logs, and traces
 
 Reduces the overhead of collecting and storing all data
 
-Example: collect only error traces, drop specific labels, drop metrics with specific labels
+Example: collect only error traces, drop specific labels, drop metrics with specific labels, scrape metrics every 30 seconds
 
 ### Suggestion
 
@@ -176,7 +176,7 @@ Do NOT collect data that you do not need
 
 <i class="fa-duotone fa-solid fa-broom-wide fa-4x"></i> <!-- .element: style="float: right;" -->
 
-Practice of collecting removing unnecessary data
+Removing outdated data
 
 Reduces the overhead of storing all data
 
@@ -184,19 +184,29 @@ Example: historical metrics, quickly remove build logs
 
 ### Suggestion
 
-Remove data that is no longer needed to optimize storage and performance
+Remove data that is no longer needed
+
+This helps optimize storage and performance
 
 ---
+
+![](180_observability/media/MediaWiki_flame_graph_screenshot_2014-12-15_22.png) <!-- .element: style="float: right; width: 35%;" -->
 
 ## Profiling
 
 Considered the fourth pillar of observability
+
+Think flame graphs
 
 Provides code-level insight into application performance
 
 Captures detailed stack traces to identify bottlenecks
 
 ### Out of scope for this workshop
+
+<div style="float: right; font-size: 0.5em;">
+(Source: <a href="https://en.wikipedia.org/wiki/File:MediaWiki_flame_graph_screenshot_2014-12-15_22.png">MediaWiki</a> flame graph screenshot)
+</div>
 
 ---
 

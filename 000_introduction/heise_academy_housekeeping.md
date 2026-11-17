@@ -4,9 +4,9 @@
 
 Please make this as interactive as possible
 
-### <i class="fa-duotone fa-envelope-open-text"></i> events@heise-academy.de
+### <i class="fa-duotone fa-envelope-open-text"></i> Questions or issues
 
-Contact for any questions or issues
+Contact events@heise-academy.de
 
 ### <i class="fa-duotone fa-file-certificate"></i> Certificate of attendance
 

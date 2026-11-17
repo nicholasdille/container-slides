@@ -19,27 +19,15 @@ Centralized storage
 
 <i class="fa-duotone fa-solid fa-vacuum fa-4x"></i> <!-- .element: style="float: right;" -->
 
-![](180_observability/030_data/layers.drawio.svg) <!-- .element: style="width: 50%;" -->
+![](180_observability/030_data/collection.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 ---
 
 ## Traditional data collection
 
-"You get an agent. You get an agent. Everyone gets an agent!" - Oprah Winfrey
-
----
-
-## Existing data sources
-
-Infrastructure
-
-Host OS (Linux)
-
-Kubernetes cluster
-
-Node
-
-Pod/container
+> You get an agent. You get an agent. Everyone gets an agent!
+> 
+> — Oprah Winfrey
 
 ---
 
@@ -127,7 +115,7 @@ Pull-based collection is usually blocked by firewalls
 
 Push-based collection sends the data to a public endpoint
 
-![](180_observability/030_data/firewall.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
+![](180_observability/030_data/firewall.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 ---
 
@@ -137,7 +125,7 @@ Push-based collection sends the data to a public endpoint
 
 ### OpenTelemetry Collector (OtelCol) ![](180_observability/media/opentelemetry-icon-color.svg) <!-- .element: style="width: 1em;" -->
 
-Vendor neutral standard
+Vendor-neutral standard
 
 Support for all signals
 
@@ -147,9 +135,9 @@ Modular but complex configuration
 
 Custom distribution of OtelCol
 
-Supercedes Grafana Agent and promtail
-
 Collect, transform and forward data
+
+Supercedes Grafana Agent and promtail
 
 ---
 
@@ -163,7 +151,7 @@ Collect data using the native services offered by providers:
 
 Use OtelCol/Alloy to centralize data from multiple sources
 
-![](180_observability/030_data/provider.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
+![](180_observability/030_data/provider.drawio.svg) <!-- .element: style="width: 50%;" -->
 
 ---
 
@@ -191,11 +179,11 @@ Use OtelCol/Alloy to centralize data from multiple sources
 
 ## Data transformation
 
-Open Telemetry Collector Pipelines are built around the concept of:
-
-Receiver -> Processor -> Exporter
-
 ```yaml
+# OpenTelemetry Collector
+# Receiver -> Processor -> Exporter
+# Declarative
+
 service:
   pipelines:
     traces:
@@ -208,9 +196,13 @@ service:
       exporters: [otlp/prometheus]
 ```
 
-Alloy Pipelines are similar in concept but use a different configuration syntax:
+<!-- .element: style="width: 30em; height: 22em; float: left;" -->
 
 ```
+# Grafana Alloy
+# Similar in concept but different format
+# Functional
+
 discovery.kubernetes "pods" {
   role = "pod"
 }
@@ -226,3 +218,11 @@ prometheus.remote_write "production" {
   }
 }   
 ```
+
+<!-- .element: style="width: 38em; height: 22em; float: right;" -->
+
+---
+
+## Exercises
+
+XXX link to exercises

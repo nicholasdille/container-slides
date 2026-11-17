@@ -22,10 +22,6 @@ The goal is to **reduce downtime** and **improve reliability**
 
 Among many others...
 
-### prometheus-operator
-
-Popular and also supports alerting (via CRDs and AlertManager)
-
 ### Grafana
 
 Has a built-in alerting engine
@@ -37,6 +33,10 @@ Standalone component that can be used with Prometheus
 ### Cloud Monitoring
 
 AWS CloudWatch, Google Cloud Monitoring, etc.
+
+### prometheus-operator
+
+Popular and also supports alerting (via CRDs and AlertManager)
 
 ---
 
@@ -54,7 +54,7 @@ Options 1 and 3 allow alerting rules to be managed through custom resources
 
 Option 2 uses the Grafana UI for managing alerting rules
 
-Scope of workshop: Alertmanager only
+### Scope of workshop: Alertmanager only
 
 ---
 
@@ -85,9 +85,9 @@ Labels: Context for alerts (service, component, team)
 
 Grouping: Bundle similar alerts into a single message
 
-Routing Tree: Rules for receivers
+Receivers: Channels (Email, messengers, webhook etc.)
 
-Receivers: Channels (Slack, Mail, PagerDuty etc.)
+Routing Tree: Rules for receivers
 
 ---
 
@@ -135,6 +135,8 @@ spec:
         description: More than 3 restarts in the last 30 minutes
 ```
 
+<!-- .element: style="height: 21em;" -->
+
 ---
 
 ## Anatomy of an alert rule
@@ -145,13 +147,15 @@ spec:
 
 `labels`: Identity of the alert, used for grouping and routing
 
-`annotations`: Human readable text, templated with `{{ $labels.pod }}` and `{{ $value }}`
+`annotations`: Human-readable, templated text
 
-Labels for machines, annotations for humans
+### Labels for machines, annotations for humans
 
 ---
 
 ## Routing
+
+Supported receivers include: Email, Slack, Teams, Discord, Jira, WebHook
 
 Routing defines how alerts are sent to receivers based on their labels and other criteria:
 
@@ -171,39 +175,39 @@ receivers:
   - to: shop@example.com
 ```
 
-Supported receivers include: Email, Slack, Teams, Discord, Jira, WebHook
+<!-- .element: style="height: 16em;" -->
 
 ---
 
-## Routing & Deduplication
+## Routing
 
 ### Matching
 
-Alerts enter at the root route and walk down child routes, matched by label matchers
+Matched by labels from root route to child routes
 
-First matching child route wins, `continue: true` evaluates further routes
+Allows notifying multiple receivers
 
-Allows notifying multiple receivers, e.g. mail for warnings, pager for criticals
+---
+
+## Deduplication
 
 ### Grouping
 
-`group_by: [alertname, team]`: alerts with identical label values are bundled into a single notification
+Group by labels
 
 Prevents notification storms during large outages
 
 ### Timing
 
-`group_wait`: wait before the first notification of a new group, default 30s
+Wait before the first notification (`group_wait`)
 
-`group_interval`: minimum time between notifications of a group that received new alerts, default 5m
+Minimum time between notifications of a group (`group_interval`)
 
-`repeat_interval`: re-notify an unchanged group, default 4h
+Re-notify an unchanged group (`repeat_interval`)
 
 ### Deduplication
 
 Alerts with an identical set of labels are treated as a single alert
-
-Also filters duplicates from redundant sources, e.g. a high availability pair of Alertmanagers
 
 ---
 
@@ -211,19 +215,17 @@ Also filters duplicates from redundant sources, e.g. a high availability pair of
 
 ### Silences
 
+Matched by labels
+
 Temporarily mute alerts whose labels match given matchers
 
-Created in the Alertmanager UI or via `amtool`, with creator, comment and duration
-
-Alerts still show as silenced, no notification is sent
+Alerts show as silenced, no notification is sent
 
 ### Inhibition
 
 Rules in the Alertmanager config: when a source alert fires, matching target alerts are muted
 
 Defined by `source_matchers`, `target_matchers` and `equal` labels
-
-Example: inhibit warnings when the same service is already critical
 
 ### Use Cases
 
@@ -248,3 +250,9 @@ Make use of snooze and silence
 Avoid alerting fatigue
 
 Store alerts in git for versioning and documentation
+
+---
+
+## Exercises
+
+XXX link to exercises

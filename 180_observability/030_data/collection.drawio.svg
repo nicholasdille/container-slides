@@ -1,28 +1,25 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="402px" height="292px" viewBox="0 0 402 292" id="ge-svg-I-oWnzy0qAtK4wGZJMNf" content="&lt;mxfile&gt;&lt;diagram id=&quot;NWSOWckgXvy7JaCLsp8o&quot; name=&quot;Page-1&quot;&gt;7ZhRb5swEMc/DdL2UAnbpAmPK0u6PbSrFKlbHy3sBCsGI2NGsk8/Uw4I6tZlUcwDSh4i3//ss3M/Y3L2SJTu7zXNkwfFuPSwz/Ye+exhHOK5/a6FQyMgglCjbLVgoPXCWvziIPqgloLxYtDRKCWNyIdirLKMx2agUa1VNey2UXI4a063/I2wjql8q34XzCSNupj5vf6Fi23Szox88KS07QxCkVCmqiOJLD0SaaVM00r3EZd18tq8NONWf/F2C9M8M6cM2D2vvrEXOUeh/5j/WBKU75KbP0QBqTCHNgdalRnjdRjkkbsqEYavcxrX3spSt1piUglu6PzEtUi54RrkjZAyUlLVdqYyO/auMFrteCvKOok3jOrdBw+T1evHw1HX/lgHUZmBLYJurd2s9CeVJaz0a7bR1MYtY1NqDm6uDd8f/TZIzz1XdoH6YLskRwQDwFX1tIOWKURZgAl7OgjBprDXtl3kHodtAJH/oIOnRSeSZVHPOQ4WErjCQqaF5fnhUkQQfv9BcUYkuBI5jUj3NnKOZHZFchoScjsWkvm0kDzaP5sjnVzE2St+cWVy7tnlDkp4hXLu6eUOSlsRToXKk2KXgrJ49/DC7pBMrHx0hwSFozGZWNHojgkOZ2MxmVjF6I5JV9O7ZzKxmvFTnksRUyNUdik2/7hgwWcUKtbsbzxffUf3xmT5Gw==&lt;/diagram&gt;&lt;/mxfile&gt;">
-    <style type="text/css">
-        @supports (color: light-dark(#000, #fff)) { #ge-svg-I-oWnzy0qAtK4wGZJMNf { --ge-adaptive-fg: light-dark(#000000, var(--ge-light-color, #ffffff)); } }
-    </style>
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="402px" height="232px" viewBox="0 0 402 232" content="&lt;mxfile&gt;&lt;diagram id=&quot;NWSOWckgXvy7JaCLsp8o&quot; name=&quot;Page-1&quot;&gt;7ZlBb5swFMc/DdJ2qITtpAnHlSXdDu0qReq2o4WdYMXYyJiR7NPPlAcEdevaKuZCOCD7/+yH/X7G5DkBibPDraF5eqcZlwEO2SEgnwOMI7xw91o4NgIiCDXKzggGWi9sxG8OYghqKRgvBg2t1tKKfCgmWime2IFGjdHVsNlWy+FTc7rjz4RNQuVz9btgNm3U5Tzs9S9c7NL2ySgES0bbxiAUKWW6OpHIKiCx0do2pewQc1kHr41L02/9D2s3MMOVfU2H/eP6G/spFygK7/MfK4LyfXr1Fy8gFfbYxsDoUjFeu0EBualSYfkmp0ltrRx1p6U2k2CGxg/ciIxbbkDeCiljLXVdV1q5vjeFNXrPW1HWQbxi1Ow/BJisn64Ax135Y+1EKwtLBF1D/S39m5n9orKEmX1VW0PdOMrEloaDmRvLDyexgHDecu0mZI6uSXpCnADeql8ds3YNgJclVOEdmEVQp7A2d53nHp8rAME30MTTphnLsqjHOA5GsvCFkUwb4+PduQgi/PKLOPdFcHYh6Idg9zX1jnB+QegHIbkeC+Fi2gjv3Y/xsXZS5Ivh8sJwtL3UG8ToAnG03dQbxNbxVCk+aHYuiMuXEwviDeHE031/CFE0GsOJJ/n+GOJoPhbDiWf4/hh2Zzb+GU48x/+U51Ik1AqtzsXyPwdu+B3npq7an7A/2U7+pyCrPw==&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
         <g data-cell-id="0">
             <g data-cell-id="1">
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-1">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="0" y="250" width="400" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="0" y="200" width="400" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 398px; height: 1px; padding-top: 270px; margin-left: 1px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 398px; height: 1px; padding-top: 215px; margin-left: 1px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Infrastructure
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="200" y="275" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="200" y="220" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Infrastructure
                                 </text>
                             </switch>
@@ -31,21 +28,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-2">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="0" y="100" width="400" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="0" y="80" width="400" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 398px; height: 1px; padding-top: 120px; margin-left: 1px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 398px; height: 1px; padding-top: 95px; margin-left: 1px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Cluster
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="200" y="125" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="200" y="100" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Cluster
                                 </text>
                             </switch>
@@ -54,21 +51,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-3">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="0" y="200" width="120" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="0" y="160" width="120" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 220px; margin-left: 1px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 175px; margin-left: 1px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 VM
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="60" y="225" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="60" y="180" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     VM
                                 </text>
                             </switch>
@@ -77,21 +74,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-4">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="140" y="200" width="120" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="140" y="160" width="120" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 220px; margin-left: 141px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 175px; margin-left: 141px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 VM
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="200" y="225" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="200" y="180" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     VM
                                 </text>
                             </switch>
@@ -100,21 +97,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-5">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="280" y="200" width="120" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="280" y="160" width="120" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 220px; margin-left: 281px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 175px; margin-left: 281px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 VM
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="340" y="225" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="340" y="180" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     VM
                                 </text>
                             </switch>
@@ -123,21 +120,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-7">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="0" y="150" width="120" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="0" y="120" width="120" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 170px; margin-left: 1px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 135px; margin-left: 1px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Node
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="60" y="175" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="60" y="140" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Node
                                 </text>
                             </switch>
@@ -146,21 +143,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-8">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="140" y="150" width="120" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="140" y="120" width="120" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 170px; margin-left: 141px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 135px; margin-left: 141px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Node
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="200" y="175" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="200" y="140" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Node
                                 </text>
                             </switch>
@@ -169,21 +166,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-9">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="280" y="150" width="120" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="280" y="120" width="120" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 170px; margin-left: 281px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 135px; margin-left: 281px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Node
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="340" y="175" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="340" y="140" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Node
                                 </text>
                             </switch>
@@ -192,21 +189,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-10">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="0" y="50" width="80" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="0" y="40" width="80" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 70px; margin-left: 1px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 55px; margin-left: 1px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Pod
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="40" y="75" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="40" y="60" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Pod
                                 </text>
                             </switch>
@@ -215,21 +212,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-11">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="110" y="50" width="80" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="110" y="40" width="80" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 70px; margin-left: 111px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 55px; margin-left: 111px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Pod
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="150" y="75" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="150" y="60" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Pod
                                 </text>
                             </switch>
@@ -238,21 +235,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-12">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="215" y="50" width="80" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="215" y="40" width="80" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 70px; margin-left: 216px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 55px; margin-left: 216px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Pod
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="255" y="75" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="255" y="60" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Pod
                                 </text>
                             </switch>
@@ -261,21 +258,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-13">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="320" y="50" width="80" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="320" y="40" width="80" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 70px; margin-left: 321px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 55px; margin-left: 321px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Pod
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="360" y="75" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="360" y="60" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Pod
                                 </text>
                             </switch>
@@ -284,21 +281,21 @@
                 </g>
                 <g data-cell-id="kVFOdYl7190NpXE31pkh-14">
                     <g transform="translate(0.5,0.5)">
-                        <rect x="0" y="0" width="400" height="40" rx="6" ry="6" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
+                        <rect x="0" y="0" width="400" height="30" rx="4.5" ry="4.5" fill="none" stroke="#ffffff" pointer-events="all" style="stroke: rgb(255, 255, 255);"/>
                     </g>
                     <g>
                         <g>
                             <switch>
                                 <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 398px; height: 1px; padding-top: 20px; margin-left: 1px;">
-                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: var(--ge-adaptive-fg, #000000); line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 398px; height: 1px; padding-top: 15px; margin-left: 1px;">
+                                        <div style="box-sizing: border-box; font-size: 0; text-align: center; color: #FFFFFF; ">
+                                            <div style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
                                                 Application
                                             </div>
                                         </div>
                                     </div>
                                 </foreignObject>
-                                <text x="200" y="25" fill="#000000" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: var(--ge-adaptive-fg, #000000);">
+                                <text x="200" y="20" fill="#FFFFFF" font-family="Helvetica" font-size="16px" text-anchor="middle" style="fill: rgb(255, 255, 255);">
                                     Application
                                 </text>
                             </switch>

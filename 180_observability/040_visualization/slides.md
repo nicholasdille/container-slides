@@ -32,57 +32,45 @@
 
 ---
 
+## Dashboards
+
+XXX dashboard represents specialized overview
+
+Collection of panels
+
+Each panel displays one aspect
+
+XXX data sources
+
+XXX time range
+
+XXX filters
+
+---
+
+## Exercise
+
+XXX link to exercises
+
+---
+
 ## PromQL
-
-Practical introduction in one hour
-
-Prometheus query language
-
-Read it: dashboards, alerts, `kubectl`-like insight into the cluster
-
-Write it: ad hoc analysis in Grafana Explore
-
----
-
-## One hour plan
-
-### Theory and live demos (~40 minutes)
-
-Data model → selectors → counters → gauges → aggregation → range functions → pitfalls
-
-### Hands on (~20 minutes)
-
-Exercises in `exercises_metrics.md`
-
-Bring questions from your own clusters
-
----
-
-## Setup
 
 Grafana → `Explore` → Prometheus data source
 
 Select `Code` instead of `Build`
 
-Every query in this section works as a live demo
+Every query can be tested
 
-XXX insert screenshot of Explore in code mode
-
----
-
-## Metrics available in a cluster
-
-### kubelet / cAdvisor (per container)
-
-`container_cpu_usage_seconds_total`, `container_memory_working_set_bytes`, `container_network_receive_bytes_total`, `container_fs_writes_bytes_total`
-
-### kube-state-metrics (per object)
-
-`kube_pod_status_phase`, `kube_pod_container_status_restarts_total`, `kube_pod_container_resource_requests`, `kube_pod_container_resource_limits`, `kube_deployment_status_replicas_available`
+XXX
 
 ---
 
-## Data model: metric types
+## Remember
+
+### Format
+
+`<name>{<key>=<value>,...} value`
 
 ### Counter
 
@@ -96,33 +84,43 @@ Goes up and down, current state
 
 Bucketed observations, latency distributions
 
-Type decides which functions make sense
-
 ---
 
 ## Selectors: label matchers
 
+### Examples
+
 ```promql
 container_memory_working_set_bytes{namespace="shop"}
+container_memory_working_set_bytes{namespace=~"shop|payments", container!=""}
 ```
 
-`=` exact match, `!=` not equal
-
-`=~` regex match, `!~` regex not match
-
-```promql
-container_memory_working_set_bytes{namespace=~"shop|payments", pod!=""}
-```
+| Operator | Description     |
+|----------|-----------------|
+| `=`      | exact match     |
+| `!=`     | not equal       |
+| `=~`     | regex match     |
+| `!~`     | regex not match |
 
 ---
 
-## Two important filter tricks
+## The empty container label
 
-Exclude empty containers (pod level entries, duplicates numbers):
+Exclude empty containers:
 
 ```promql
-{container!=""}
+container_memory_working_set_bytes{container!=""}
 ```
+
+### Cause
+
+Pods are created by a hidden container running `pause`
+
+---
+
+## Counters
+
+XXX rate
 
 ---
 
@@ -144,19 +142,23 @@ rate(container_cpu_usage_seconds_total{container!=""}[5m])
 
 ## Aggregation operators
 
-`sum`, `avg`, `min`, `max`, `count`, `stddev`
+Wraps the inner expression
 
 ```promql
 sum by (namespace) (container_memory_working_set_bytes{container!=""})
 ```
 
-`without` instead of `by` drops only the given labels
+`sum`, `avg`, `min`, `max`, `count`, `stddev`
 
-Aggregation wraps the inner expression
+`without` instead of `by` drops only the given labels
 
 ---
 
 ## Range functions for gauges
+
+Sliding window functions
+
+No aggregation
 
 ```promql
 max_over_time(container_memory_working_set_bytes{container=""}[24h])
@@ -164,15 +166,13 @@ max_over_time(container_memory_working_set_bytes{container=""}[24h])
 
 `avg_over_time`, `min_over_time`, `last_over_time`
 
-Use case: peak memory of the last day vs today
-
 Long windows are expensive
 
 ---
 
-## Vector matching
+## Vector matching (Join)
 
-Binary operators need identical label sets
+XXX Binary operators need identical label sets
 
 `on (...)` match on selected labels
 
@@ -186,29 +186,19 @@ Mismatches silently produce empty results
 
 ---
 
-## LogQL
+## Exercises
 
-Practical introduction in 30 minutes
-
-Query language for Loki
-
-Same shape as PromQL: selector first, then pipeline
-
-Read it: dashboards, alerts, troubleshooting cluster components
-
-Write it: ad hoc analysis in Grafana Explore
+XXX link to exercises
 
 ---
 
-## Setup
+## LogQL
 
 Grafana → `Explore` → Loki data source
 
 Start with a single component and look at the raw lines
 
 Every query in this section works as a live demo
-
-XXX insert screenshot of Explore with Loki
 
 ---
 
@@ -281,8 +271,6 @@ Parse only needed fields, much faster:
 {service_name="kube-apiserver"} | json OriginStatus, Verb | OriginStatus="401", Verb!="GET"
 ```
 
-Other formats: `logfmt`, `pattern`, `regexp`
-
 ---
 
 ## Parsers: plain text formats
@@ -309,35 +297,49 @@ Other formats: `logfmt`, `pattern`, `regexp`
 
 ## Metrics from logs
 
-Wrap a pipeline in a range function:
+Wrap a pipeline in a range function
+
+Lines per second:
 
 ```plaintext
 rate({service_name="kube-apiserver"} |= `Unauthorized` [5m])
 ```
 
+Matches per minute:
+
 ```plaintext
 count_over_time({service_name="coredns"} |~ `NXDOMAIN` [10m])
 ```
+
+Log volume per stream:
 
 ```plaintext
 bytes_over_time({namespace="kube-system"} [1h])
 ```
 
-Lines per second, matches per minute, log volume per stream
-
 ---
 
 ## Aggregation
+
+This is what dashboard panels and alert rules use
+
+Top 5 services by lines matched:
 
 ```plaintext
 topk(5, sum by (service_name) (count_over_time({namespace="kube-system"} [1h])))
 ```
 
+Post requests per pod:
+
 ```plaintext
 sum by (pod) (rate({app="traefik"} | json | RequestMethod="POST" [5m]))
 ```
 
-This is what dashboard panels and alert rules use
+---
+
+## Exercise
+
+XXX link to exercise
 
 ---
 
@@ -347,19 +349,9 @@ XXX
 
 ---
 
-## Dashboards
+## Exercise
 
-XXX dashboard represents specialized overview
-
-Collection of panels
-
-Each panel displays one aspect
-
-XXX data sources
-
-XXX time range
-
-XXX filters
+XXX link to exercise
 
 ---
 

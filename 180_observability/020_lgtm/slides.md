@@ -6,8 +6,6 @@
 
 ## LGTM Stack
 
-<span style="float: right;"><code>/lgtm</code></span>
-
 Grafana Labs
 
 Horizontally scalable architecture
@@ -16,9 +14,10 @@ Horizontally scalable architecture
 - <img src="180_observability/media/mimir.svg" style="height: 2em;" /><br/>**Mimir** for metrics<br/>Long-term storage<br/>High performance query engine
 - <img src="180_observability/media/loki.svg" style="height: 2em;" /><br/>**Loki** for logs<br/>Multi-tenancy<br/>Inspired by Prometheus
 - <img src="180_observability/media/tempo.svg" style="height: 2em;" /><br/>**Tempo** for traces<br/>High-volume tracing at low cost<br/>Based on OpenTelemetry
+
 <!-- .element: class="flex-columns" style="text-align: center;" -->
 
-(Profiling with Beyla)
+(Profiling with Beyla ![](180_observability/media/beyla.svg) <!-- .element: style="height: 0.8em;" -->)
 
 ---
 
@@ -72,13 +71,14 @@ Alternatives will be introduced later ;-)
 ### Prometheus does not scale
 
 - Monolithic process
+- Only scales vertically
 - Memory usage increases with stored data
 - WAL replay makes startup slow
 
 ### Mimir scales well
 
 - Microservices
-- Scales horizontally and vertically
+- Scales horizontally as well
 - Designed for long-term storage
 - Does not scrape on its own
 
@@ -113,7 +113,7 @@ Represents a value that can go up and down
 ```plaintext
 # HELP cpu_usage CPU-Auslastung in Prozent
 # TYPE cpu_usage gauge
-cpu_usage{node="capricorn"} 23.7
+cpu_usage{node="worker"} 23.7
 # EOF
 ```
 
@@ -177,3 +177,23 @@ Stores traces in cheap object storage (S3, GCS, Azure Blob)
 Queries with TraceQL
 
 Correlates traces with logs and metrics
+
+---
+
+## Exercises
+
+![](180_observability/020_lgtm/env.drawio.svg) <!-- .element: style="float: right; width: 50%;" -->
+
+### Workshop environment
+
+Dedicated virtual machine
+
+Pre-installed Visual Studio Code
+
+Pre-installed Kubernetes cluster
+
+Pre-installed CLI tools
+
+### Now go to the exercises
+
+XXX link to exercises

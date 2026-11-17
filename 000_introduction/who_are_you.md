@@ -8,8 +8,6 @@ Keep it short and sweet
 
 ### Your profile
 
-Name
+<i class="fa-duotone fa-solid fa-address-card"></i> Name
 
-Job
-
-Why GitLab
+<i class="fa-duotone fa-solid fa-briefcase"></i> Job
