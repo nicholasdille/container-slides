@@ -7,8 +7,8 @@ echo "### test           ###"
 echo "###                ###"
 echo "######################"
 
-if ! test -f infrastructure.json; then
-    echo "ERROR: Unable to find infrastructure.json."
+if ! test -f ../004_vscode/infrastructure.json; then
+    echo "ERROR: Unable to find ../004_vscode/infrastructure.json."
     exit 1
 fi
 
@@ -17,11 +17,11 @@ if ! type htpasswd; then
     exit 1
 fi
 
-EVENT_NAME="$( jq --raw-output '.name' infrastructure.json )"
+EVENT_NAME="$( jq --raw-output '.name' ../004_vscode/infrastructure.json )"
 if test -z "${SEAT_COUNT}"; then
-    SEAT_COUNT="$( jq --raw-output '.count' infrastructure.json )"
+    SEAT_COUNT="$( jq --raw-output '.count' ../004_vscode/infrastructure.json )"
 fi
-DOMAIN="$( jq --raw-output '.domain' infrastructure.json )"
+DOMAIN="$( jq --raw-output '.domain' ../004_vscode/infrastructure.json )"
 SSH_KEY_FILE=../002_infrastructure/ssh
 SSH="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 SCP="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
@@ -38,7 +38,7 @@ if test -z "${INDEX}"; then
 fi
 shift
 
-IP="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .ip' infrastructure.json )"
+IP="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .ip' ../004_vscode/infrastructure.json )"
 SSH_CMD="${SSH} -i ${SSH_KEY_FILE} root@${IP}"
 SCP_CMD="${SCP} -i ${SSH_KEY_FILE}"
 

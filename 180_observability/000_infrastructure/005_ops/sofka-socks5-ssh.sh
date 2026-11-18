@@ -10,7 +10,7 @@ SEAT_COUNT="$( jq --raw-output '.count' ../002_infrastructure/infrastructure.jso
 KUBECONFIGS=()
 PIDS=()
 for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
-    KUBECONFIG_FILE=kubeconfig.k8s${INDEX}
+    KUBECONFIG_FILE=../003_kubernetes/kubeconfig.k8s${INDEX}
     KUBECONFIG_FILE_SOCKS5="${KUBECONFIG_FILE}.socks5"
     SOCKS5_PORT=$(( 1080 + INDEX ))
 
