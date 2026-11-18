@@ -6,5 +6,6 @@ sysctl -w fs.inotify.max_user_instances=8192
 sysctl -w fs.inotify.max_user_watches=524288
 
 # Deploy kubernetes cluster
-kind delete cluster
-kind create cluster --config=kind.yaml
+if kind get clusters | grep -q "No kind clusters found."; then
+    kind create cluster --config=kind.yaml
+fi
