@@ -9,5 +9,5 @@ sysctl -w fs.inotify.max_user_watches=524288
 
 # Deploy kubernetes cluster
 kind delete cluster
-kind delete cluster --name seat${INDEX}
-kind create cluster --name seat${INDEX} --config=kind.yaml
+kind delete cluster --name seat${SEAT_INDEX}
+kind create cluster --name seat${SEAT_INDEX} --config=kind.yaml
