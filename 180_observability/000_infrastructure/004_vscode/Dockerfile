@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.28.0
+#syntax=docker/dockerfile:1.29.0
 
 FROM codercom/code-server:4.145.2
 USER root
