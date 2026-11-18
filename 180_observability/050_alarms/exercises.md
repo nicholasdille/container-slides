@@ -52,18 +52,24 @@ spec:
   - port: 8080
 ```
 
-XXX port-forwarding for svc/httpbin-echo:8080
+Create a port forwarding for `svc/httpbin-echo:8080` using `kubectl`:
 
 ```shell
 kubectl --namespace=monitoring port-forward svc/httpbin-echo 8080:8080
 ```
 
-XXX test
+Test sending a manual webhook request to test the webhook receiver:
 
 ```shell
 curl -s -XPOST http://localhost:8080/post \
     --header 'Content-Type: application/json' \
     --data '{"message": "Hello, world!"}'
+```
+
+Now check the logs of the `httpbin-echo` pod to see if the webhook request was received:
+
+```shell
+kubectl --namespace=monitoring logs -l app=httpbin-echo
 ```
 
 ### Task 2: Install Alertmanager
@@ -144,7 +150,7 @@ curl -s -XPOST http://localhost:9093/api/v2/alerts \
 Observe the alert:
 
 - Open the Alertmanager UI at `http://localhost:9093` and take a look at the alert
-- XXX View alert in webhook
+- View alert in webhook receiver
 
 ## Task 4: Declarative alerts with PrometheusRule
 
@@ -182,7 +188,7 @@ The expression `vector(1)` always returns a result greater than `0` - so the ale
 kubectl apply -f demo-alert.yaml
 ```
 
-XXX checkout the resource
+Take a look at the alert in Alertmanager. Then remove this alert:
 
 ```shell
 kubectl delete -f demo-alert.yaml
@@ -231,7 +237,3 @@ To see the alert fire, a pod has to actually approach its CPU limit. Check the v
 ```shell
 kubectl delete -f pod-cpu-alert.yaml
 ```
-
-## Task 5: XXX
-
-XXX

@@ -34,23 +34,23 @@
 
 ## Dashboards
 
-XXX dashboard represents specialized overview
+Represents tailored view on a topic
 
 Collection of panels
 
 Each panel displays one aspect
 
-XXX data sources
+Data is pulled from various data sources
 
-XXX time range
+Configurable time range
 
-XXX filters
+Custom filters
 
 ---
 
-## Exercise
+## Exercises for Grafana
 
-XXX link to exercises
+[Visualization exercises](/hands-on/2026-11-19/040_visualization/exercises_grafana/)
 
 ---
 
@@ -60,9 +60,7 @@ Grafana → `Explore` → Prometheus data source
 
 Select `Code` instead of `Build`
 
-Every query can be tested
-
-XXX
+Every query on the following slides can be tested
 
 ---
 
@@ -120,7 +118,13 @@ Pods are created by a hidden container running `pause`
 
 ## Counters
 
-XXX rate
+Values are monotonicly increasing
+
+Rate of change over time is of interest
+
+```promql
+rate(container_cpu_usage_seconds_total{container!=""}[5m])
+```
 
 ---
 
@@ -172,7 +176,7 @@ Long windows are expensive
 
 ## Vector matching (Join)
 
-XXX Binary operators need identical label sets
+Require identical label sets
 
 `on (...)` match on selected labels
 
@@ -186,9 +190,9 @@ Mismatches silently produce empty results
 
 ---
 
-## Exercises
+## Exercises for PromQL
 
-XXX link to exercises
+[Visualization](/hands-on/2026-11-19/040_visualization/exercises_metrics/)
 
 ---
 
@@ -337,24 +341,33 @@ sum by (pod) (rate({app="traefik"} | json | RequestMethod="POST" [5m]))
 
 ---
 
-## Exercise
+## Exercises for LogQL
 
-XXX link to exercise
-
----
-
-## TraceQL
-
-XXX
+[Visualization](/hands-on/2026-11-19/040_visualization/exercises_logs/)
 
 ---
 
-## Exercise
+## Exercises for TraceQL
 
-[Visualization](/hands-on/2026-11-19/040_visualization/exercises/)
+[Visualization](/hands-on/2026-11-19/040_visualization/exercises_traces/)
 
 ---
 
 ## AI-created dashboards
 
-XXX
+AI is capable of automatically generating dashboards
+
+Grafana offers an MCP server
+
+### Demo
+
+1. Create a service account in Grafana
+1. Create a token for the service account
+1. Configure OpenCode with the token in `~/.config/opencode/opencode.jsonc`
+1. Start OpenCode
+
+### Examples
+
+```plaintext
+Create a dashboard with panels for CPU usage and memory usage per pod. The namespace should be selectable through a variable.
+```

@@ -30,6 +30,20 @@ Maintaining a secure and compliant environment
 
 ---
 
+## What is Cloud Native
+
+Approach that designs, builds, and operates applications to fully exploit the advantages of cloud computing
+
+**Standardized** interfaces and practices
+
+**Scalable** architecture
+
+**Highly automated** operations
+
+**Resilient** systems that can recover from failures
+
+---
+
 ## Pillars of observability
 
 - <i class="fa-duotone fa-solid fa-2x fa-chart-fft"></i><br/>**Metrics**<br/>Quantative data
