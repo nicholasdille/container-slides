@@ -225,4 +225,4 @@ prometheus.remote_write "production" {
 
 ## Exercises
 
-[Data Collection](/hands-on/180_observability/030_data/exercises/)
+[Data Collection](/hands-on/2026-11-19/030_data/exercises/)
