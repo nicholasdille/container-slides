@@ -255,4 +255,4 @@ Store alerts in git for versioning and documentation
 
 ## Exercises
 
-XXX link to exercises
+[Alarms](/hands-on/180_observability/050_alarms/exercises/)

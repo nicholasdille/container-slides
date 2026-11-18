@@ -15,9 +15,9 @@ for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
     SOCKS5_PORT=$(( 1080 + INDEX ))
 
     cp "${KUBECONFIG_FILE}" "${KUBECONFIG_FILE_SOCKS5}"
-    KUBECONFIG="${KUBECONFIG_FILE_SOCKS5}" kubectl config set clusters.kind-kind.proxy-url "socks5://127.0.0.1:${SOCKS5_PORT}"
+    KUBECONFIG="${KUBECONFIG_FILE_SOCKS5}" kubectl config set clusters.kind-seat${INDEX}.proxy-url "socks5://127.0.0.1:${SOCKS5_PORT}"
 
-    ssh -f -N -D ${SOCKS5_PORT} k8s${INDEX} &
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -f -N -D ${SOCKS5_PORT} k8s${INDEX} &
 
     KUBECONFIGS+=("${KUBECONFIG_FILE_SOCKS5}")
 done
@@ -26,8 +26,8 @@ KUBECONFIG=$(IFS=:; echo "${KUBECONFIGS[*]}")
 export KUBECONFIG
 echo "KUBECONFIG set to: $KUBECONFIG"
 
-read -p "Press enter to start sofka..."
+#read -p "Press enter to start sofka..."
 sofka
 
-read -p "Press enter to exit and kill SSH tunnels..."
+#read -p "Press enter to exit and kill SSH tunnels..."
 netstat -tunapl 2>/dev/null | grep -v tcp6 | grep LISTEN | grep "ssh" | tr -s ' ' | cut -d' ' -f7 | cut -d/ -f1 | xargs -r kill

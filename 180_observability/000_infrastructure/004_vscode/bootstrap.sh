@@ -18,35 +18,44 @@ if ! type htpasswd; then
 fi
 
 EVENT_NAME="$( jq --raw-output '.name' infrastructure.json )"
-SEAT_COUNT="$( jq --raw-output '.count' infrastructure.json )"
+if test -z "${SEAT_COUNT}"; then
+    SEAT_COUNT="$( jq --raw-output '.count' infrastructure.json )"
+fi
 DOMAIN="$( jq --raw-output '.domain' infrastructure.json )"
 SSH_KEY_FILE=../002_infrastructure/ssh
 TRAEFIK_PASSWORD="$( jq --raw-output '.traefik_password' infrastructure.json )"
 TRAEFIK_HTPASSWD="$( htpasswd -nBb admin "${TRAEFIK_PASSWORD}" )"
+SSH="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+SCP="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
 echo "EVENT_NAME: ${EVENT_NAME}"
 echo "SEAT_COUNT: ${SEAT_COUNT}"
 echo "DOMAIN    : ${DOMAIN}"
+echo
 
 for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
+    echo "### Processing seat ${INDEX}"
+
     IP="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .ip' infrastructure.json )"
     PASSWORD="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .password' infrastructure.json )"
 
-    SSH_CMD="ssh -i ${SSH_KEY_FILE} root@${IP}"
-    SCP_CMD="scp -i ${SSH_KEY_FILE}"
+    echo "  IP: ${IP}"
+
+    SSH_CMD="${SSH} -i ${SSH_KEY_FILE} root@${IP}"
+    SCP_CMD="${SCP} -i ${SSH_KEY_FILE}"
 
     # Check availability
     if ! ${SSH_CMD} true; then
-        echo "runner not reachable"
+        echo "    VM not reachable"
         exit 1
     fi
 
     # Clone repo on server
     if ${SSH_CMD} test -d /root/container-slides; then
-        echo "### Pulling updates"
+        echo "    Pulling updates"
         ${SSH_CMD} git -C /root/container-slides pull
     else
-        echo "### Cloning repository"
+        echo "    Cloning repository"
         ${SSH_CMD} git -C /root clone https://github.com/nicholasdille/container-slides
     fi
 
@@ -67,4 +76,5 @@ EOF
 
     # Launch remote bootstrap
     ${SSH_CMD} env -C /root/container-slides/180_observability/000_infrastructure/004_vscode bash bootstrap-remote.sh
+    echo
 done

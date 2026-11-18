@@ -54,15 +54,17 @@ Observability data will now flow from cluster components into the LGTM stack.
 
 ## Task 3: Check metrics
 
-XXX
+Go to the `Explore` view in Grafana, switch to the datasource `Mimir` and plot the following query to view the number of metric samples received by Mimir:
 
 ```promql
 cortex_distributor_received_samples_total
 ```
 
+The metric is a counter and should increase every few seconds.
+
 ## Task 4: Check logs
 
-XXX
+Go to the `Explore` view in Grafana, switch to the datasource `Loki` and plot the following query to view the number of lines received by Loki:
 
 ```promql
 loki_distributor_lines_received_total
@@ -113,13 +115,17 @@ helm --namespace=default upgrade \
         --set=extraArgs[0]=--otel-service-name=podinfo-backend
 ```
 
-XXX create port forwarding
+## Task 6: Create a port forwarding
+
+First, create a port forwarding using `kubectl` to interact with `podinfo`:
 
 ```shell
 kubectl --namespace=default port-forward svc/frontend-podinfo 9898:9898
 ```
 
-XXX open https://9898.seatN.inmylab.de
+Then, create a port forwarding in Visual Studio Code for port 9898.
+
+Now, open `https://9898.seatN.inmylab.de`.
 
 ## Task 5: Application-Level metrics
 
@@ -165,7 +171,7 @@ spec:
       app.kubernetes.io/name: backend-podinfo
 ```
 
-XXX check data
+Check that data is being received for `podinfo` by running the following query:
 
 ```promql
 scrape_samples_scraped{job="frontend-podinfo"}
@@ -173,19 +179,21 @@ scrape_samples_scraped{job="frontend-podinfo"}
 
 ## Task 6: Working with traces
 
-XXX
+`podinfo` is able to send traces to Grafana Tempo. You will need the port forwarding from above for this.
+
+Execute the following command to query the frontend which will trigger a trace across both the frontend and the backend:
 
 ```shell
 curl -svX POST -d foo http://localhost:9898/api/echo
 ```
 
-XXX
+The following query in TraceQL will filter for the traces you have just triggered:
 
 ```traceql
 { .service.name="frontend-podinfo" } && { .service.name="backend-podinfo"}
 ```
 
-XXX
+You can also check that spans are received by Grafana Tempo by running the following query:
 
 ```promql
 tempo_distributor_spans_received_total

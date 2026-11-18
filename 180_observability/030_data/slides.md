@@ -225,4 +225,4 @@ prometheus.remote_write "production" {
 
 ## Exercises
 
-XXX link to exercises
+[Data Collection](/hands-on/180_observability/030_data/exercises/)

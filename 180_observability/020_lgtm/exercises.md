@@ -86,9 +86,10 @@ Create a port forwarding for Grafana:
 kubectl --namespace=monitoring port-forward svc/grafana 3000:80
 ```
 
-For Grafana to be accessible, Visual Studio Code must have a another port forwarding and provide access under https://3000.seatN.inmylab.de.
+For Grafana to be accessible, Visual Studio Code must have port forwarding as well to provide access under `https://3000.seatN.inmylab.de`.
 
 As soon as you have access to the Grafana web UI, you can login using the default credentials:
+
 - Username: `admin`
 - Password: `admin`
 

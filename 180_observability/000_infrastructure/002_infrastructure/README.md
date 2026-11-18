@@ -3,6 +3,7 @@
 ```shell
 make debug
 make init
+make plan
 make apply
 make state ssh infrastructure.json
 ```

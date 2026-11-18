@@ -351,7 +351,7 @@ XXX
 
 ## Exercise
 
-XXX link to exercise
+[Visualization](/hands-on/180_observability/040_visualization/exercises/)
 
 ---
 

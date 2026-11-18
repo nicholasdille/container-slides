@@ -16,7 +16,7 @@ Understanding of Kubernetes and container orchestration
 
 ## Goals
 
-XXX
+Understand observability and its meaning in the context of cloud native infrastructure
 
 ## Style
 

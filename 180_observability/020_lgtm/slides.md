@@ -196,4 +196,4 @@ Pre-installed CLI tools
 
 ### Now go to the exercises
 
-XXX link to exercises
+[Grafana LGTM](/hands-on/180_observability/020_lgtm/exercises/)

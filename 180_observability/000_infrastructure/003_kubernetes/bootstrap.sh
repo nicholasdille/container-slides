@@ -21,35 +21,52 @@ EVENT_NAME="$( jq --raw-output '.name' ../002_infrastructure/infrastructure.json
 SEAT_COUNT="$( jq --raw-output '.count' ../002_infrastructure/infrastructure.json )"
 DOMAIN="$( jq --raw-output '.domain' ../002_infrastructure/infrastructure.json )"
 SSH_KEY_FILE=../002_infrastructure/ssh
+SSH="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+SCP="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
 echo "EVENT_NAME: ${EVENT_NAME}"
 echo "SEAT_COUNT: ${SEAT_COUNT}"
 echo "DOMAIN    : ${DOMAIN}"
+echo
 
 for INDEX in $( seq 0 $(( SEAT_COUNT - 1)) ); do
+    echo "### Processing seat ${INDEX}"
+
     IP="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .ip' ../002_infrastructure/infrastructure.json )"
     PASSWORD="$( jq --raw-output --arg index "${INDEX}" '.seats[] | select(.index == $index) | .password' ../002_infrastructure/infrastructure.json )"
 
-    SSH_CMD="ssh -i ${SSH_KEY_FILE} root@${IP}"
-    SCP_CMD="scp -i ${SSH_KEY_FILE}"
+    echo "  IP: ${IP}"
+
+    SSH_CMD="${SSH} -i ${SSH_KEY_FILE} root@${IP}"
+    SCP_CMD="${SCP} -i ${SSH_KEY_FILE}"
 
     # Check availability
     if ! ${SSH_CMD} true; then
-        echo "runner not reachable"
+        echo "    VM not reachable"
         exit 1
     fi
 
     # Clone repo on server
     if ${SSH_CMD} test -d /root/container-slides; then
-        echo "### Pulling updates"
+        echo "    Pulling updates"
         ${SSH_CMD} git -C /root/container-slides pull
     else
-        echo "### Cloning repository"
+        echo "    Cloning repository"
         ${SSH_CMD} git -C /root clone https://github.com/nicholasdille/container-slides
     fi
+
+    # Prepare and copy env file
+    cat >env-$INDEX <<EOF
+SEAT_INDEX=$INDEX
+IP=$IP
+DOMAIN=$DOMAIN
+EOF
+    ${SCP_CMD} env-$INDEX root@${IP}:~/container-slides/180_observability/000_infrastructure/003_kubernetes/.env
 
     # Launch remote bootstrap
     ${SSH_CMD} env -C /root/container-slides/180_observability/000_infrastructure/003_kubernetes bash bootstrap-remote.sh
 
     ${SCP_CMD} root@${IP}:~/.kube/config kubeconfig.k8s${INDEX}
+
+    echo
 done

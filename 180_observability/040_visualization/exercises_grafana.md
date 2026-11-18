@@ -1,6 +1,6 @@
-# Visualizsation in Grafana
+# Visualization in Grafana
 
-!!! goal "Ziel"
+!!! goal "Goal"
     You will learn how to use Grafana:
 
     - Explore view
@@ -11,83 +11,143 @@
         - Use left and right axis
         - Single stat panels
 
-## Task 1: Explore view
+!!! tipp "Resources"
 
-XXX
+    - Use the [official documentation of Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/)
+    - Use the [official documentation of Grafana panels and visualizations](https://grafana.com/docs/grafana/latest/panels-visualizations/)
 
-```promql
-1 - avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance)
+## Preparation: Log in to Grafana
+
+Create the port forwarding for port 3000 using `kubectl` and Visual Studio Code. See [task 5 in the chapter about Grafana LGTM](../020_lgtm/exercises.md#task-5-access-grafana-web-ui).
+
+The panels you will create show the metrics of the demo application `podinfo` which you deployed in [the chapter about data collection](../030_data/exercises.md#task-5-deploy-demo-application). Keep the port forwarding for port 9898 from [task 6 in that chapter](../030_data/exercises.md#task-6-create-a-port-forwarding) and generate some traffic so that the panels have data to display:
+
+```shell
+curl https://9898.seatN.inmylab.de/api/echo
 ```
 
-## Task 2: Create a new dashboard
+Trigger a few errors as well - you will need them for the status code panels:
 
-Create a new dashboard and add a panel with the data source `Prometheus`.
+```shell
+curl https://9898.seatN.inmylab.de/api/status/500
+```
+
+## Task 1: Create a new dashboard
+
+1. In the main menu, go to `Dashboards`
+1. Click `New` and select `New dashboard`
+1. Click `+ Add visualization` and select the data source `Mimir`
+1. Use the query `up` and click `Run query`
+1. Save the dashboard using the name `Observability`
+1. Set the auto-refresh interval to `10s` using the dropdown in the top right corner. The panels you create below will then update on their own while you generate traffic.
+
+## Task 2: Line chart panel
+
+Add a panel to the dashboard which shows the request rate of the demo application as a line chart. The metric `http_requests_total` counts the HTTP requests of `podinfo` and is scraped from Mimir.
+
+1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Enter the query and click `Run query`
+1. Set the panel title to `Request rate`
+1. Set the unit to `requests/sec` in `Standard options`
 
 ??? help "Solution (Click on the arrow if you are stuck)"
-    - Go to **Dashboards**
-    - Click **New**
-    - Select **New dashboard**
-    - Click **Add visualization**
-    - Select the data source **Mimir**
 
-## Task 3: Display CPU usage
+    Query:
 
-1. Configure the panel to display the CPU usage using the following query:
     ```promql
-    1 - avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance)
+    sum(rate(http_requests_total{job="frontend-podinfo"}[5m]))
     ```
-1. Choose the visualization **Time series**
-1. Add a title like **CPU usage**
-1. Set the unit type to **percent (0.0-1.0)**
-1. Click **Run query** to the the panel
 
-Now change the legend to display the label `nodename`.
+    The default visualization type is `Time series`, which is a line chart.
+
+## Task 3: Bar chart panel
+
+Add a panel which shows the number of requests per status code as a bar chart.
+
+1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Enter the query and click `Run query`
+1. Switch the visualization type from `Time series` to `Bar chart` using the dropdown in the top right corner of the panel editor
+1. Set the panel title to `Requests by status`
+
+Generate some more traffic, including errors using `/api/status/500`, and watch the bars change.
 
 ??? help "Solution (Click on the arrow if you are stuck)"
-    - Expand the query
-    - Click **Options**
-    - Click **Legend**
-    - Select **Custom**
-    - Enter `{{nodename}}` to use the label value
 
-## Task 4: Display memory usage
-
-1. Create a new panel with the following query:
+    ```promql
+    sum by (status) (increase(http_requests_total{job="frontend-podinfo"}[5m]))
     ```
-    (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * on(instance) group_left(nodename) node_uname_info
-    ```
-1. Set the title to **Memory usage**
-1. Configure the panel similar to the first one
-    - Visualization: **Time series**
-    - Unit type: **percent (0.0-1.0)**
-    - Use the value of the label `nodename` in the legend
 
-## Task 5: Add remaining memory
+    The `status` label of the metric contains the HTTP status code.
 
-XXX single stat
+## Task 4: Multiple signals with left and right axis
 
-XXX color yellow below 5GB
+Add a panel which combines two signals with different units: the request rate on the left axis and the 95th percentile of the request duration on the right axis. The metric `http_request_duration_seconds_bucket` is a histogram of the request durations.
 
-XXX color red below 2GB
-
-## Task 5: Display log lines
-
-1. Create a new panel
-1. Select the data source **Loki**
-1. Use the visualization **Logs**
-1. Configure the panel to display error lines.
+1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Enter the query for the request rate as query `A` and the query for the request duration as query `B`
+1. Expand the options of query `B` (below the query) and set `Axis` to `Right`
+1. Set the unit of the panel to `requests/sec`, then add a field override for the field of query `B` and set its unit to `seconds (s)`
+1. Set the panel title to `Request rate vs. duration`
 
 ??? help "Solution (Click on the arrow if you are stuck)"
+
+    Query `A`:
+
+    ```promql
+    sum(rate(http_requests_total{job="frontend-podinfo"}[5m]))
     ```
-    {app="traefik"} | detected_level="error"
+
+    Query `B`:
+
+    ```promql
+    histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket{job="frontend-podinfo"}[5m])))
     ```
 
-## Task 6: Left and right axis
+    Field overrides are configured in the tab `All` → `Field` → `Overrides`: Add an override for the field matching the name of query `B` and set its unit.
 
-XXX use first dashboard
+## Task 5: Single stat panel
 
-XXX add `node_memory_MemAvailable_bytes`
+Add a single stat panel which shows the total number of requests of the last hour.
 
-XXX add label
+1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Enter the query and click `Run query`
+1. Switch the visualization type to `Stat`
+1. Set the panel title to `Requests (last hour)`
+1. In the `Graph styles` options, set `Graph mode` to `Area` so that the stat shows a sparkline of the values
 
-XXX add override
+??? help "Solution (Click on the arrow if you are stuck)"
+
+    ```promql
+    sum(increase(http_requests_total{job="frontend-podinfo"}[1h]))
+    ```
+
+## Bonus Task 1: Thresholds on a stat panel
+
+Add another stat panel which shows the number of failed requests (status code 5xx) of the last hour and turns red as soon as any failure happened.
+
+1. Copy the stat panel from task 5 (panel menu → `More` → `Duplicate`) and adjust the query
+1. In `Standard options`, set the threshold: green at `0`, red at `1`
+1. Set the panel title to `Failed requests`
+
+??? help "Solution (Click on the arrow if you are stuck)"
+
+    ```promql
+    sum(increase(http_requests_total{job="frontend-podinfo", status=~"5.."}[1h]))
+    ```
+
+## Bonus Task 2: Pie chart over the selected time range
+
+Add a pie chart which shows the share of each status code over the currently selected dashboard time range - without editing the query when you change the time range.
+
+1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Enter the query and click `Run query`
+1. Switch the visualization type to `Pie chart`
+1. Set the panel title to `Status code distribution`
+
+??? help "Solution (Click on the arrow if you are stuck)"
+
+    ```promql
+    sum by (status) (increase(http_requests_total{job="frontend-podinfo"}[$__range]))
+    ```
+
+    The variable `$__range` always contains the currently selected dashboard time range.

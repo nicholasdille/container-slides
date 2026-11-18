@@ -31,7 +31,3 @@ The Kubernetes cluster is only accessible from within Visual Studio Code. The `k
     kubectl get nodes
     kubectl get pods -A
     ```
-
-## Bonus Task: Start using k9s/sofka
-
-XXX

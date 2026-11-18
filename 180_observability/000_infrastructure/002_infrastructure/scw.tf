@@ -3,7 +3,7 @@ data "scaleway_instance_image" "packer" {
 }
 
 resource "scaleway_iam_ssh_key" "ssh_public_key" {
-  count = var.provider_name == "scaleway" ? var.seat_count : 0
+  count = var.provider_name == "scaleway" ? 1 : 0
 
   name       = var.event_name
   project_id = var.scaleway_project_id
