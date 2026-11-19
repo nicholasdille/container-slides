@@ -8,7 +8,6 @@ You will deploy more helm charts. Make sure your `helm` knows about the necessar
 
 ```shell
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
@@ -27,15 +26,6 @@ helm --namespace=monitoring upgrade \
 Check out the metrics collected by the metrics server using `kubectl top pods` in the different namespaces.
 
 ## Task 2: Tap existing data sources
-
-When replacing Prometheus with modern components, you need to install the custom resource definitions (CRDs) for the Prometheus operator first. The are the defacto standard for declaring scrape targets metrics collection:
-
-```shell
-helm --namespace=monitoring upgrade \
-    --install \
-    --create-namespace \
-    prometheus-operator-crds prometheus-community/prometheus-operator-crds
-```
 
 Grafana has consilidated the collection of metrics and logs from cluster components into a single uber-chart. This simplifies deployment but is rather complex to configure.
 

@@ -9,9 +9,19 @@ This exercise assumes that you have access to the workshop environment with Visu
 You will deploy Helm charts for the components of the LGTM stack. Make sure your `helm` knows about the necessary repositories:
 
 ```shell
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add grafana-community https://grafana-community.github.io/helm-charts
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
+```
+
+When replacing Prometheus with modern components, you need to install the custom resource definitions (CRDs) for the Prometheus operator first. The are the defacto standard for declaring scrape targets metrics collection:
+
+```shell
+helm --namespace=monitoring upgrade \
+    --install \
+    --create-namespace \
+    prometheus-operator-crds prometheus-community/prometheus-operator-crds
 ```
 
 ## Task 1: Deploy Mimir
@@ -28,7 +38,7 @@ helm --namespace=monitoring upgrade \
         --values=values-mimir.yaml
 ```
 
-Wait for the pods to become ready.
+Wait for the pods to become ready. This will take around two minutes.
 
 ## Task 2: Deploy Loki
 
@@ -86,7 +96,7 @@ Create a port forwarding for Grafana:
 kubectl --namespace=monitoring port-forward svc/grafana 3000:80
 ```
 
-For Grafana to be accessible, Visual Studio Code must have port forwarding as well to provide access under `https://3000.seatN.inmylab.de`.
+For Grafana to be accessible, Visual Studio Code must have port forwarding for port 3000 as well to provide access under `https://3000.seatN.inmylab.de`. To configure this, open the command palette in Visual Studio Code, search for `Forward a Port`, and enter port 3000.
 
 As soon as you have access to the Grafana web UI, you can login using the default credentials:
 

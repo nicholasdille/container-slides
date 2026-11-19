@@ -36,17 +36,21 @@ curl https://9898.seatN.inmylab.de/api/status/500
 
 1. In the main menu, go to `Dashboards`
 1. Click `New` and select `New dashboard`
-1. Click `+ Add visualization` and select the data source `Mimir`
+1. On the right hand side under `Panel`, click `+`, then `Configure visualization` and select the data source `Mimir`
+1. Switch the query to `Code` on the right hand side
 1. Use the query `up` and click `Run query`
 1. Save the dashboard using the name `Observability`
 1. Set the auto-refresh interval to `10s` using the dropdown in the top right corner. The panels you create below will then update on their own while you generate traffic.
+
+After finishing with the first panel, click `<- Back` to return to the whole dashboard.
 
 ## Task 2: Line chart panel
 
 Add a panel to the dashboard which shows the request rate of the demo application as a line chart. The metric `http_requests_total` counts the HTTP requests of `podinfo` and is scraped from Mimir.
 
-1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Click `+` (twice) in the sidebar on the right hand side and select `Configure visualization`, then choose the data source `Mimir`
 1. Enter the query and click `Run query`
+1. Select a visualization type, for example `Time series` / `Line chart`
 1. Set the panel title to `Request rate`
 1. Set the unit to `requests/sec` in `Standard options`
 
@@ -64,9 +68,9 @@ Add a panel to the dashboard which shows the request rate of the demo applicatio
 
 Add a panel which shows the number of requests per status code as a bar chart.
 
-1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Click `+` (twice) in the sidebar on the right hand side and select `Configure visualization`, then choose the data source `Mimir`
 1. Enter the query and click `Run query`
-1. Switch the visualization type from `Time series` to `Bar chart` using the dropdown in the top right corner of the panel editor
+1. Switch the visualization type to `Time series` / `Bar chart`
 1. Set the panel title to `Requests by status`
 
 Generate some more traffic, including errors using `/api/status/500`, and watch the bars change.
@@ -83,9 +87,9 @@ Generate some more traffic, including errors using `/api/status/500`, and watch 
 
 Add a panel which combines two signals with different units: the request rate on the left axis and the 95th percentile of the request duration on the right axis. The metric `http_request_duration_seconds_bucket` is a histogram of the request durations.
 
-1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Click `+` (twice) in the sidebar on the right hand side and select `Configure visualization`, then choose the data source `Mimir`
 1. Enter the query for the request rate as query `A` and the query for the request duration as query `B`
-1. Expand the options of query `B` (below the query) and set `Axis` to `Right`
+1. Set the visualization type to `Time series` / `Line chart`
 1. Set the unit of the panel to `requests/sec`, then add a field override for the field of query `B` and set its unit to `seconds (s)`
 1. Set the panel title to `Request rate vs. duration`
 
@@ -103,13 +107,13 @@ Add a panel which combines two signals with different units: the request rate on
     histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket{job="frontend-podinfo"}[5m])))
     ```
 
-    Field overrides are configured in the tab `All` → `Field` → `Overrides`: Add an override for the field matching the name of query `B` and set its unit.
+    Field overrides are configured on the right hand side at the bottom: Add an override for the field matching the name of query `B` and set its unit.
 
 ## Task 5: Single stat panel
 
 Add a single stat panel which shows the total number of requests of the last hour.
 
-1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Click `+` (twice) in the sidebar on the right hand side and select `Configure visualization`, then choose the data source `Mimir`
 1. Enter the query and click `Run query`
 1. Switch the visualization type to `Stat`
 1. Set the panel title to `Requests (last hour)`
@@ -139,7 +143,7 @@ Add another stat panel which shows the number of failed requests (status code 5x
 
 Add a pie chart which shows the share of each status code over the currently selected dashboard time range - without editing the query when you change the time range.
 
-1. Click `+ Add` and select `Visualization`, then choose the data source `Mimir`
+1. Click `+` (twice) in the sidebar on the right hand side and select `Configure visualization`, then choose the data source `Mimir`
 1. Enter the query and click `Run query`
 1. Switch the visualization type to `Pie chart`
 1. Set the panel title to `Status code distribution`
