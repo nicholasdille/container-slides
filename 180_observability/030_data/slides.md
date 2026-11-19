@@ -177,6 +177,43 @@ Use OtelCol/Alloy to centralize data from multiple sources
 
 ---
 
+## Application level data
+
+<i class="fa-duotone fa-solid fa-browser fa-4x"></i> <!-- .element: style="float: right;" -->
+
+### `ServiceMonitor`
+
+Declarative configuration for scraping
+
+Publishes scrape endpoints through Kubernetes services
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: frontend-podinfo
+spec:
+  # in which namespace to look for the service
+  namespaceSelector:
+    matchNames:
+    - default
+  # which services to select for scraping
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: frontend-podinfo
+  # which endpoints to scrape for the selected services
+  endpoints:
+  - interval: 15s
+    path: /metrics
+    port: http
+```
+
+<!-- .element: style="height: 22em; width: 30em; float: right;" -->
+
+![](180_observability/030_data/servicemonitor.drawio.svg) <!-- .element: style="width: 50%;" -->
+
+---
+
 ## Data transformation
 
 ```yaml

@@ -53,13 +53,6 @@ clusterMetrics:
       - kube_pod_created
       - kube_pod_completion_time
       - kube_pod_container_status_running
-    metricLabelsAllowlist:
-    - nodes=[*]
-    - pods=[*]
-    - deployments=[*]
-    - jobs=[*]
-    metricAnnotationsAllowList:
-    - pods=[job.runner.gitlab.com/url, job.runner.gitlab.com/name, project.runner.gitlab.com/id]
     extraMetricProcessingRules: |-
       rule {
         action = "labeldrop"
@@ -331,6 +324,13 @@ collectors:
 telemetryServices:
   kube-state-metrics:
     deploy: true
+    metricLabelsAllowlist:
+    - nodes=[*]
+    - pods=[*]
+    - deployments=[*]
+    - jobs=[*]
+    metricAnnotationsAllowList:
+    - pods=[job.runner.gitlab.com/url, job.runner.gitlab.com/name, project.runner.gitlab.com/id]
   node-exporter:
     deploy: true
 

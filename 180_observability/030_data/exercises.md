@@ -54,7 +54,7 @@ The metric is a counter and should increase every few seconds.
 
 ## Task 4: Check logs
 
-Go to the `Explore` view in Grafana, switch to the datasource `Loki` and plot the following query to view the number of lines received by Loki:
+Go to the `Explore` view in Grafana, switch to the datasource `Mimir` and plot the following query to view the number of lines received by Loki:
 
 ```promql
 loki_distributor_lines_received_total

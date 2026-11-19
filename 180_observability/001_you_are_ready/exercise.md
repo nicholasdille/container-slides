@@ -42,6 +42,6 @@ Option 2: Open the command palette by pressing `Ctrl+Shift+P` and search for `Te
 
 The advantage of option 2 is that it opens the terminal directly in the editor area, making it easier to work with multiple terminals and keep them organized within the Visual Studio Code interface.
 
-## Head-up
+## Heads-up
 
 You will be working with copy and paste a lot. Note that your browser will probably show a pop-up asking you to allow interaction with the clipboard.

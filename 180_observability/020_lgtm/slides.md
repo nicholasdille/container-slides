@@ -111,9 +111,9 @@ http_requests_total{method="post",code="400"} 3
 Represents a value that can go up and down
 
 ```plaintext
-# HELP cpu_usage CPU-Auslastung in Prozent
-# TYPE cpu_usage gauge
-cpu_usage{node="worker"} 23.7
+# HELP container_memory_working_set_bytes Memory usage in percent
+# TYPE container_memory_working_set_bytes gauge
+container_memory_working_set_bytes{node="worker"} 23.7
 # EOF
 ```
 

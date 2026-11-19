@@ -23,13 +23,15 @@ Create the port forwarding for port 3000 using `kubectl` and Visual Studio Code.
 The panels you will create show the metrics of the demo application `podinfo` which you deployed in [the chapter about data collection](../030_data/exercises.md#task-5-deploy-demo-application). Keep the port forwarding for port 9898 from [task 6 in that chapter](../030_data/exercises.md#task-6-create-a-port-forwarding) and generate some traffic so that the panels have data to display:
 
 ```shell
-curl https://9898.seatN.inmylab.de/api/echo
+curl http://localhost:9898/api/echo
 ```
 
 Trigger a few errors as well - you will need them for the status code panels:
 
 ```shell
-curl https://9898.seatN.inmylab.de/api/status/500
+curl http://localhost:9898/status/500
+curl http://localhost:9898/status/429
+curl http://localhost:9898/status/404
 ```
 
 ## Task 1: Create a new dashboard
