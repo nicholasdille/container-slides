@@ -7,7 +7,7 @@ terraform {
     }
     scaleway = {
       source = "scaleway/scaleway"
-      version = "2.91.0"
+      version = "2.93.0"
     }
     acme = {
       source  = "vancluever/acme"
