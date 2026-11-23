@@ -1,4 +1,4 @@
-FROM nginx:1.31.8
+FROM nginx:1.31.10
 COPY default.conf /etc/nginx/conf.d/
 COPY index.html /usr/share/nginx/html/
 COPY codes /usr/share/nginx/html/codes/
