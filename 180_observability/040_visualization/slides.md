@@ -48,9 +48,9 @@ Custom filters
 
 ---
 
-## Exercises for Grafana
+## Hands-On for Grafana
 
-[Visualization exercises](/hands-on/2026-11-19/040_visualization/exercises_grafana/)
+Configure [visualization with Grafana](/hands-on/2026-11-19/040_visualization/exercises_grafana/)
 
 ---
 
@@ -190,9 +190,9 @@ Mismatches silently produce empty results
 
 ---
 
-## Exercises for PromQL
+## Hands-On for PromQL
 
-[Visualization](/hands-on/2026-11-19/040_visualization/exercises_metrics/)
+Configure [visualization](/hands-on/2026-11-19/040_visualization/exercises_metrics/) using PromQL
 
 ---
 
@@ -341,15 +341,15 @@ sum by (pod) (rate({app="traefik"} | json | RequestMethod="POST" [5m]))
 
 ---
 
-## Exercises for LogQL
+## Hands-On for LogQL
 
-[Visualization](/hands-on/2026-11-19/040_visualization/exercises_logs/)
+Configure [visualization](/hands-on/2026-11-19/040_visualization/exercises_logs/) using LogQL
 
 ---
 
-## Exercises for TraceQL
+## Hands-On for TraceQL
 
-[Visualization](/hands-on/2026-11-19/040_visualization/exercises_traces/)
+Configure [visualization](/hands-on/2026-11-19/040_visualization/exercises_traces/) using TraceQL
 
 ---
 

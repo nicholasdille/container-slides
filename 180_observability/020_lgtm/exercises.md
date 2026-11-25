@@ -35,7 +35,7 @@ helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
     mimir grafana/mimir-distributed \
-        --values=values-mimir.yaml
+        --values=container-slides/180_observability/020_lgtm/values-mimir.yaml
 ```
 
 Wait for the pods to become ready. This will take around two minutes.
@@ -51,7 +51,7 @@ helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
     loki grafana-community/loki \
-        --values=values-loki.yaml
+        --values=container-slides/180_observability/020_lgtm/values-loki.yaml
 ```
 
 Wait for the pods to become ready.
@@ -67,7 +67,7 @@ helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
     tempo grafana-community/tempo \
-        --values=values-tempo.yaml
+        --values=container-slides/180_observability/020_lgtm/values-tempo.yaml
 ```
 
 Wait for the pods to become ready.
@@ -83,7 +83,7 @@ helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
     grafana grafana-community/grafana \
-        --values=values-grafana.yaml
+        --values=container-slides/180_observability/020_lgtm/values-grafana.yaml
 ```
 
 Wait for the pod to become ready.
@@ -96,7 +96,7 @@ Create a port forwarding for Grafana:
 kubectl --namespace=monitoring port-forward svc/grafana 3000:80
 ```
 
-For Grafana to be accessible, Visual Studio Code must have port forwarding for port 3000 as well to provide access under `https://3000.seatN.inmylab.de`. To configure this, open the command palette in Visual Studio Code, search for `Forward a Port`, and enter port 3000.
+Grafana will be accessible under `https://3000.seatN.inmylab.de` where N is your seat number.
 
 As soon as you have access to the Grafana web UI, you can login using the default credentials:
 

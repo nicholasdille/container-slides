@@ -18,10 +18,16 @@ destinations:
       enabled: true
       address: http://mimir-gateway
       syncInterval: 1m
+    extraLabels:
+      cluster: demo
+      stage: dev
   logs:
     name: hostedLogs
     type: loki
     url: http://loki-headless:3100/loki/api/v1/push
+    extraLabels:
+      cluster: demo
+      stage: dev
 
 clusterMetrics:
   enabled: true

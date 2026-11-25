@@ -58,7 +58,7 @@ etc.
 **Disk usage**: Capacity, usage, and I/O statistics
 
 **Network**: Latency, bandwidth, and error rates
-
+·
 **Node health**: Node conditions, such as ready, disk pressure, memory pressure
 
 Sources: kubelet, kube-proxy, node-exporter, metrics-server
@@ -123,7 +123,7 @@ Push-based collection sends the data to a public endpoint
 
 <i class="fa-duotone fa-solid fa-screwdriver-wrench fa-4x"></i> <!-- .element: style="float: right;" -->
 
-### OpenTelemetry Collector (OtelCol) ![](180_observability/media/opentelemetry-icon-color.svg) <!-- .element: style="width: 1em;" -->
+### OpenTelemetry Collector (OTelCol) ![](180_observability/media/opentelemetry-icon-color.svg) <!-- .element: style="width: 1em;" -->
 
 Vendor-neutral standard
 
@@ -133,7 +133,7 @@ Modular but complex configuration
 
 ### Grafana Alloy ![](180_observability/media/alloy.svg) <!-- .element: style="width: 1em;" -->
 
-Custom distribution of OtelCol
+Custom distribution of OTelCol
 
 Collect, transform and forward data
 
@@ -212,6 +212,8 @@ spec:
 
 ![](180_observability/030_data/servicemonitor.drawio.svg) <!-- .element: style="width: 50%;" -->
 
+There is an equivalent to match pods called `PodMonitor`.
+
 ---
 
 ## Data transformation
@@ -260,6 +262,6 @@ prometheus.remote_write "production" {
 
 ---
 
-## Exercises
+## Hands-On
 
-[Data Collection](/hands-on/2026-11-19/030_data/exercises/)
+Configure [Data Collection](/hands-on/2026-11-19/030_data/exercises/) into the LGTM stack

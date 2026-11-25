@@ -113,9 +113,11 @@ helm repo update
 helm --namespace=monitoring upgrade \
     --install \
     alertmanager prometheus-community/alertmanager \
-        --values values_alertmanager.yaml \
-        --values alertmanager.yaml
+        --values container-slides/180_observability/050_alarms/values_alertmanager.yaml \
+        --values container-slides/180_observability/050_alarms/alertmanager.yaml
 ```
+
+The values for the helm chart are available as files in `container-slides/180_observability/050_alarms/`. You can also view it in a web browser [in the repository on Gitub](https://github.com/nicholasdille/container-slides/blob/master/180_observability/050_alarms/).
 
 ??? help "Solution (Click on the arrow if you are stuck)"
 

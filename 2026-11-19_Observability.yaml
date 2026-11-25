@@ -50,7 +50,6 @@ slides:
 - 180_observability/030_data/slides.md
 - 180_observability/040_visualization/slides.md
 - 180_observability/050_alarms/slides.md
-- 180_observability/060_architecture/slides.md
 
 summary:
 - icon: function

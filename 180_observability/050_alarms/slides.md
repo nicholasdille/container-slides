@@ -253,6 +253,6 @@ Store alerts in git for versioning and documentation
 
 ---
 
-## Exercises
+## Hands-On
 
-[Alarms](/hands-on/2026-11-19/050_alarms/exercises/)
+Configure [alarms](/hands-on/2026-11-19/050_alarms/exercises/) in the LGTM stack

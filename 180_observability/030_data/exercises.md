@@ -33,7 +33,8 @@ Grafana has consilidated the collection of metrics and logs from cluster compone
 helm --namespace=monitoring upgrade \
     --install \
     --create-namespace \
-    k8s-monitoring grafana/k8s-monitoring --values values-k8s-monitoring.yaml
+    k8s-monitoring grafana/k8s-monitoring \
+        --values=container-slides/180_observability/030_data/values-k8s-monitoring.yaml
 ```
 
 The values for the helm chart are available as file: `container-slides/180_observability/030_data/values-k8s-monitoring.yaml`. You can also view it in a web browser [in the repository on Gitub](https://github.com/nicholasdille/container-slides/blob/master/180_observability/030_data/values-k8s-monitoring.yaml).
@@ -47,7 +48,7 @@ Observability data will now flow from cluster components into the LGTM stack.
 Go to the `Explore` view in Grafana, switch to the datasource `Mimir` and plot the following query to view the number of metric samples received by Mimir:
 
 ```promql
-cortex_distributor_received_samples_total
+cortex_distributor_samples_in_total
 ```
 
 The metric is a counter and should increase every few seconds.
@@ -113,9 +114,7 @@ First, create a port forwarding using `kubectl` to interact with `podinfo`:
 kubectl --namespace=default port-forward svc/frontend-podinfo 9898:9898
 ```
 
-Then, create a port forwarding in Visual Studio Code for port 9898.
-
-Now, open `https://9898.seatN.inmylab.de`.
+Now, open `https://9898.seatN.inmylab.de` where N is your seat number.
 
 ## Task 5: Application-Level metrics
 
@@ -167,24 +166,51 @@ Check that data is being received for `podinfo` by running the following query:
 scrape_samples_scraped{job="frontend-podinfo"}
 ```
 
-## Task 6: Working with traces
+## Task 7: Deploy k6-operator
 
-`podinfo` is able to send traces to Grafana Tempo. You will need the port forwarding from above for this.
+The `k6-operator` allows running distributed load tests using `k6` inside the cluster: https://github.com/grafana/k6-operator. Tests are described as `TestRun` resources and the operator takes care of spinning up the required pods.
 
-Execute the following command to query the frontend which will trigger a trace across both the frontend and the backend:
+The `grafana` helm repository from the preparation above already contains the chart for the operator. Deploy it with the `ServiceMonitor` enabled so that the operator's metrics are scraped by `alloy`:
 
 ```shell
-curl -svX POST -d foo http://localhost:9898/api/echo
+helm --namespace=k6-operator-system \
+    --create-namespace \
+    upgrade \
+    --install \
+    k6-operator grafana/k6-operator \
+        --set=metrics.serviceMonitor.enabled=true
 ```
 
-The following query in TraceQL will filter for the traces you have just triggered:
+Check that the operator is up and running:
 
-```traceql
-{ .service.name="frontend-podinfo" } && { .service.name="backend-podinfo"}
+```shell
+kubectl --namespace=k6-operator-system get pods
 ```
 
-You can also check that spans are received by Grafana Tempo by running the following query:
+## Task 8: Run a load test
+
+Now that the operator is running, deploy a load test against the frontend of the `podinfo` application. The test starts 10 parallel users requesting random status codes in an endless loop with a random delay between 2 and 5 seconds.
+
+The `TestRun` resource and the `k6` script are available as file: `container-slides/180_observability/030_data/podinfo-load-test.yaml`. You can also view it in a web browser [in the repository on Gitub](https://github.com/nicholasdille/container-slides/blob/master/180_observability/030_data/podinfo-load-test.yaml).
+
+```shell
+kubectl apply -f podinfo-load-test.yaml
+```
+
+The operator will spin up a runner pod to execute the test:
+
+```shell
+kubectl --namespace=default get pods -l k6_cr=podinfo-load-test -w
+```
+
+The runner sends the k6 metrics to Mimir using the Prometheus remote write protocol. Check that the load test is running by opening the `Explore` view in Grafana, switching to the datasource `Mimir` and plotting the following query:
 
 ```promql
-tempo_distributor_spans_received_total
+sum(rate(k6_http_reqs_total{job="podinfo-load-test"}[1m]))
+```
+
+The requests are tagged with the HTTP status code so the distribution can be verified using the following query:
+
+```promql
+sum by (status) (rate(k6_http_reqs_total{job="podinfo-load-test"}[1m]))
 ```
