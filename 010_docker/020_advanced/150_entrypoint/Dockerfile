@@ -1,4 +1,4 @@
-FROM nginx:1.31.8
+FROM nginx:1.31.10
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
