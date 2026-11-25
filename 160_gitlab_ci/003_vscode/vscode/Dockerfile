@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.28.0
 
-FROM codercom/code-server:4.145.2
+FROM codercom/code-server:4.146.0
 USER root
 
 RUN <<EOF
