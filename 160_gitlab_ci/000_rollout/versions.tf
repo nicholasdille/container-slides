@@ -7,7 +7,7 @@ terraform {
     }
     acme = {
       source  = "vancluever/acme"
-      version = "3.3.0"
+      version = "3.4.0"
     }
     remote = {
       source  = "tenstad/remote"
